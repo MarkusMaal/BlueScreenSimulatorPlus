@@ -1,0 +1,296 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EEF3D7F9-CA40-47BC-9CD1-7DB1780FD157}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>UltimateBlueScreenSimulator</RootNamespace>
+    <AssemblyName>UltimateBlueScreenSimulator</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>bsodgen_npJ_icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Management">
+      <Private>False</Private>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AboutBox1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutBox1.Designer.cs">
+      <DependentUpon>AboutBox1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BootMgr.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BootMgr.Designer.cs">
+      <DependentUpon>BootMgr.cs</DependentUpon>
+    </Compile>
+    <Compile Include="bsodhacks.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="bsodhacks.Designer.cs">
+      <DependentUpon>bsodhacks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BTS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BTS.Designer.cs">
+      <DependentUpon>BTS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="cebsod.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="cebsod.Designer.cs">
+      <DependentUpon>cebsod.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ClickIt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClickIt.Designer.cs">
+      <DependentUpon>ClickIt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ClickIt2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClickIt2.Designer.cs">
+      <DependentUpon>ClickIt2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IndexForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IndexForm.Designer.cs">
+      <DependentUpon>IndexForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NTBSOD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NTBSOD.Designer.cs">
+      <DependentUpon>NTBSOD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="old_bluescreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="old_bluescreen.Designer.cs">
+      <DependentUpon>old_bluescreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PrankMode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PrankMode.Designer.cs">
+      <DependentUpon>PrankMode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Splash.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Splash.Designer.cs">
+      <DependentUpon>Splash.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StringEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StringEdit.Designer.cs">
+      <DependentUpon>StringEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SupportEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SupportEditor.Designer.cs">
+      <DependentUpon>SupportEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UpdateInterface.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UpdateInterface.Designer.cs">
+      <DependentUpon>UpdateInterface.cs</DependentUpon>
+    </Compile>
+    <Compile Include="w2kbs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="w2kbs.Designer.cs">
+      <DependentUpon>w2kbs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WindowScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WindowScreen.Designer.cs">
+      <DependentUpon>WindowScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WXBS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WXBS.Designer.cs">
+      <DependentUpon>WXBS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="xvsbs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="xvsbs.Designer.cs">
+      <DependentUpon>xvsbs.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="AboutBox1.resx">
+      <DependentUpon>AboutBox1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BootMgr.resx">
+      <DependentUpon>BootMgr.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="bsodhacks.resx">
+      <DependentUpon>bsodhacks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BTS.resx">
+      <DependentUpon>BTS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="cebsod.resx">
+      <DependentUpon>cebsod.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ClickIt.resx">
+      <DependentUpon>ClickIt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ClickIt2.resx">
+      <DependentUpon>ClickIt2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IndexForm.resx">
+      <DependentUpon>IndexForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NTBSOD.resx">
+      <DependentUpon>NTBSOD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="old_bluescreen.resx">
+      <DependentUpon>old_bluescreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PrankMode.resx">
+      <DependentUpon>PrankMode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Splash.resx">
+      <DependentUpon>Splash.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StringEdit.resx">
+      <DependentUpon>StringEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SupportEditor.resx">
+      <DependentUpon>SupportEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UpdateInterface.resx">
+      <DependentUpon>UpdateInterface.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="w2kbs.resx">
+      <DependentUpon>w2kbs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WindowScreen.resx">
+      <DependentUpon>WindowScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WXBS.resx">
+      <DependentUpon>WXBS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="xvsbs.resx">
+      <DependentUpon>xvsbs.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="bin\Release\default.bscfg" />
+    <None Include="bin\Release\final.bat" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bsodqr.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rasters.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rasterNT.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rasters2.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NTERRORDATABASE.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bsodgen_npJ_icon.ico" />
+    <None Include="Resources\corner_br1.png" />
+    <None Include="Resources\corner_tr.png" />
+    <None Include="Resources\corner_tl.png" />
+    <None Include="Resources\corner_br.png" />
+    <None Include="Resources\corner_bl.png" />
+    <None Include="Resources\MarkusTegelane_element_brandpic.png" />
+    <None Include="Resources\rasters3.bmp" />
+    <None Include="Resources\verifile.png" />
+    <None Include="Resources\msoftware.png" />
+    <None Include="Resources\bsodbanner.png" />
+    <None Include="Resources\success.gif" />
+    <None Include="Resources\pending.gif" />
+    <None Include="Resources\failure.gif" />
+    <None Include="Resources\current1.gif" />
+    <None Include="Resources\current.gif" />
+    <None Include="Resources\bsodqr_transparent.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
