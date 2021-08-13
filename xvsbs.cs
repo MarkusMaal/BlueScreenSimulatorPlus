@@ -86,6 +86,7 @@ namespace UltimateBlueScreenSimulator
             if (w6mode == true) 
             {
                 errorCode.Text = errorCode.Text.Replace("CRITICAL_OBJECT_TERMINATION", "A process or thread crucial to system operation has unexpectedly exited or been terminated.");
+                errorCode.Visible = me.GetBool("show_description");
                 if (whatfail == "") { label5.Text = "Collecting data for crash dump ..."; label6.Text = "Initializing disk for crash dump ..."; } else { label6.Visible = false; }
                 label7.Text = "Beginning dump of physical memory.\nDumping physical memory to disk:   0";
                 if (whatfail != "") { label7.Margin = new Padding(3, 15, 3, 0); }
@@ -96,7 +97,7 @@ namespace UltimateBlueScreenSimulator
                 label5.Margin = new Padding(3, 15, 3, 0);
             }
             if (!fullscreen) { this.FormBorderStyle = FormBorderStyle.FixedSingle; this.ShowInTaskbar = true; this.ShowIcon = true; }
-            if (Program.f1.supporttext == "")
+            if (!errorCode.Visible && !label5.Visible && !label6.Visible)
             {
                 supportInfo.Visible = false;
                 label1.Visible = false;

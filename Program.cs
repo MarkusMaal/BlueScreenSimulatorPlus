@@ -90,7 +90,6 @@ namespace UltimateBlueScreenSimulator
         /// The main entry point for the application.
         /// </summary>
         //Form creation
-        public static StringEdit bh;
         public static Form1 f1;
         public static Splash spl;
 
@@ -149,8 +148,8 @@ namespace UltimateBlueScreenSimulator
 
             //Initialize forms
             f1 = new Form1();
-            bh = new StringEdit();
             bluescreens = new List<BlueScreen>();
+            new StringEdit().ReRe();
 
             //Load application configuration if it exists
             if (File.Exists("settings.cfg"))
@@ -159,27 +158,6 @@ namespace UltimateBlueScreenSimulator
                 {
                     string[] fc = File.ReadAllText("settings.cfg").Split('\n');
                     string[] comboitems = File.ReadAllText("settings.cfg").Split('\"')[1].Split('\n');
-                    //This part hides specified operating systems
-                    bool show1 = false;
-                    bool show2 = false;
-                    bool show3 = false;
-                    bool show4 = false;
-                    bool show5 = false;
-                    bool show6 = false;
-                    bool show7 = false;
-                    bool show8 = false;
-                    bool show9 = false;
-                    if (comboitems.Contains("Windows 10 (Native, Safe mode: 640x480, ClearType)")) { show1 = true; }
-                    if (comboitems.Contains("Windows 8/8.1 (Native, Safe mode: 640x480, ClearType)")) { show2 = true; }
-                    if (comboitems.Contains("Windows Vista/7 (640x480, ClearType)")) { show3 = true; }
-                    if (comboitems.Contains("Windows XP (640x480, Standard)")) { show4 = true; }
-                    if (comboitems.Contains("Windows 2000 Professional/Server Family (640x480, Standard)")) { show5 = true; }
-                    if (comboitems.Contains("Windows 9x/Millennium Edition (EGA text mode, Standard)")) { show6 = true; }
-                    if (comboitems.Contains("Windows CE 3.0 and later (750x400, Standard)")) { show7 = true; }
-                    if (comboitems.Contains("Windows NT 4.0/3.x (VGA text mode, Standard)")) { show8 = true; }
-                    if (comboitems.Contains("Windows 3.1 (EGA text mode, Standard)")) { show9 = true; }
-                    bool[] shows = { show1, show2, show3, show4, show5, show6, show7, show8, show9, true };
-                    f1.osshows = shows;
                     foreach (string element in fc)
                     {
                         //Other configurations
@@ -214,8 +192,6 @@ namespace UltimateBlueScreenSimulator
                     //Configuration seems to be corrupted, if this part is executed...
                 }
             }
-            //Load default settings on bluescreen hacks dialog
-            bh.ReRe();
 
             //Load Windows NT error codes from the database
             f1.comboBox1.Items.Clear();
@@ -675,7 +651,7 @@ namespace SimulatorDatabase
             this.os = base_os;
             string[] codes_temp = { "RRRRRRRRRRRRRRRR", "RRRRRRRRRRRRRRRR", "RRRRRRRRRRRRRRRR", "RRRRRRRRRRRRRRRR" };
             this.ecodes = codes_temp;
-            this.code = "IRQL_NOT_LESS_OR_EQUAL";
+            this.code = "IRQL_NOT_LESS_OR_EQUAL (0x0000000A)";
             this.emoticon = ":(";
             this.screen_mode = "System error";
             this.windowed = false;
@@ -826,34 +802,56 @@ namespace SimulatorDatabase
             return filename;
         }
 
-        public Form SetupForm (Form f)
+        public void Show()
         {
             switch (this.os)
             {
                 case "Windows 11":
-                    return SetupWinXabove((WXBS)f);
+                    SetupWinXabove(new WXBS(), true);
+                    break;
                 case "Windows 10":
-                    return SetupWinXabove((WXBS)f);
+                    SetupWinXabove(new WXBS());
+                    break;
                 case "Windows 8/8.1":
-                    return SetupWin8((WXBS)f);
+                    SetupWin8(new WXBS());
+                    break;
                 case "Windows Vista/7":
-                    return SetupVista((Xvsbs)f);
+                    SetupVista(new Xvsbs());
+                    break;
                 case "Windows XP":
-                    return SetupExperience((Xvsbs)f);
+                    SetupExperience(new Xvsbs());
+                    break;
                 case "Windows 2000":
-                    return Setup2k((w2kbs)f);
-                case "Windows NT 3.1x/4.0":
-                    return SetupNT((NTBSOD)f);
+                    Setup2k(new w2kbs());
+                    break;
+                case "Windows CE":
+                    SetupCE(new cebsod());
+                    break;
+                case "Windows NT 3.x/4.0":
+                    SetupNT(new NTBSOD());
+                    break;
                 case "Windows 9x/Me":
-                    return Setup9x((old_bluescreen)f);
+                    Setup9x(new old_bluescreen());
+                    break;
                 case "Windows 3.1x":
-                    return Setup9x((old_bluescreen)f);
-                default:
-                    return f;
+                    this.screen_mode = "No unresponsive programs";
+                    Setup9x(new old_bluescreen());
+                    break;
             }
         }
 
-        private Form SetupNT (NTBSOD bs)
+        private void SetupCE (cebsod bs)
+        {
+            bs.BackColor = this.GetTheme(true);
+            bs.ForeColor = this.GetTheme(false);
+            bs.Font = this.GetFont();
+            bs.fullscreen = !this.windowed;
+            bs.waterMarkText.Visible = this.watermark;
+            bs.technicalCode.Text = "*** STOP: 0x" + this.code.Split(' ')[1].ToString().Replace(")", "").Replace("(", "").ToString().Substring(4, 6) + " (" + this.code.Split(' ')[0].ToString().Replace("_", " ").ToLower() + ")";
+            bs.Show();
+        }
+
+        private void SetupNT (NTBSOD bs)
         {
             bs.BackColor = this.GetTheme(true);
             bs.ForeColor = this.GetTheme(false);
@@ -864,10 +862,10 @@ namespace SimulatorDatabase
             bs.stacktrace = this.stack_trace;
             bs.blink = this.blink;
             bs.waterMarkText.Visible = this.watermark;
-            return bs;
+            bs.Show();
         }
 
-        private Form Setup9x (old_bluescreen bs)
+        private void Setup9x (old_bluescreen bs)
         {
             bs.BackColor = this.GetTheme(true);
             bs.ForeColor = this.GetTheme(false);
@@ -875,22 +873,23 @@ namespace SimulatorDatabase
             bs.screenmode = this.GetString("screen_mode");
             bs.errorCode = GenHex(2, GetString("ecode1")) + " : " + GenHex(4, GetString("ecode2")) + " : " + GenHex(6, GetString("ecode3"));
             bs.waterMarkText.Visible = this.GetBool("watermark");
-            return bs;
+            bs.Show();
         }
 
-        private Form Setup2k (w2kbs bs)
+        private void Setup2k (w2kbs bs)
         {
             bs.BackColor = this.GetTheme(true);
             bs.ForeColor = this.GetTheme(false);
             bs.fullscreen = !this.GetBool("windowed");
             bs.waterMarkText.Visible = this.GetBool("watermark");
             if (this.GetBool("show_file")) { bs.whatfail = this.GetString("culprit"); }
+            MessageBox.Show(this.GetString("code"));
             bs.errorCode.Text = "*** STOP: " + this.GetString("code").Split(' ')[1].ToString().Replace(")", "").Replace("(", "").ToString() + " (" + GenAddress(4, 8, false) + ")";
             bs.errorCode.Text = bs.errorCode.Text + "\n" + this.GetString("code").Split(' ')[0].ToString();
-            return bs;
+            bs.Show();
         }
 
-        private Form SetupExperience (Xvsbs bs)
+        private void SetupExperience (Xvsbs bs)
         {
             bs.BackColor = this.GetTheme(true);
             bs.ForeColor = this.GetTheme(false);
@@ -899,12 +898,12 @@ namespace SimulatorDatabase
             bs.waterMarkText.Visible = this.GetBool("watermark");
             if (this.GetBool("show_file")) { bs.whatfail = this.GetString("culprit"); }
             bs.errorCode.Text = this.GetString("code").Split(' ')[0].ToString();
-            bs.technicalCode.Text = "*** STOP: " + this.GetString("code").Split(' ')[1].ToString().Replace(")", "").Replace("(", "").ToString() + " (" + GenAddress(4, 16, false) + ")";
+            bs.technicalCode.Text = "*** STOP: " + this.GetString("code").Split(' ')[1].ToString().Replace(")", "").Replace("(", "").ToString() + " (" + GenAddress(4, 8, false) + ")";
             bs.supportInfo.Text = this.GetTexts()["Technical support"] + "\n\n\nTechnical information:";
-            return bs;
+            bs.Show();
         }
 
-        private Form SetupVista(Xvsbs bs)
+        private void SetupVista(Xvsbs bs)
         {
             bs.BackColor = this.GetTheme(true);
             bs.ForeColor = this.GetTheme(false);
@@ -914,7 +913,7 @@ namespace SimulatorDatabase
             if (this.GetBool("show_file")) { bs.whatfail = this.GetString("culprit"); }
             if (this.GetBool("acpi"))
             {
-                bs.errorCode.Visible = false;
+                //bs.errorCode.Visible = false;
                 bs.label1.Visible = false;
                 bs.label5.Visible = false;
                 bs.label6.Visible = false;
@@ -924,33 +923,34 @@ namespace SimulatorDatabase
             bs.technicalCode.Text = "*** STOP: " + this.GetString("code").Split(' ')[1].ToString().Replace(")", "").Replace("(", "").ToString() + " (" + GenAddress(4, 16, false) + ")";
             bs.supportInfo.Text = this.GetTexts()["Technical support"] + "\n\n\nTechnical information:";
             bs.w6mode = true;
-            return bs;
+            bs.Show();
         }
 
-        private Form SetupWinXabove(WXBS bs)
+        private void SetupWinXabove(WXBS bs, bool w11 = false)
         {
             bs.label1.Text = this.GetString("emoticon");
             bs.BackColor = this.GetTheme(true);
             bs.ForeColor = this.GetTheme(false);
-            bs.qr = GetBool("qr");
-            bs.close = GetBool("autoclose");
-            bs.green = GetBool("insider");
-            bs.server = GetBool("server");
+            bs.qr = this.qr;
+            bs.close = this.autoclose;
+            bs.green = this.insider;
+            bs.server = this.server;
+            bs.w11 = w11;
             bs.waterMarkText.Visible = GetBool("watermark");
             if (GetBool("show_file")) { bs.whatfail = GetString("culprit"); }
             if (GetBool("windowed")) { bs.WindowState = FormWindowState.Normal; bs.FormBorderStyle = FormBorderStyle.Sizable; }
             if (GetBool("show_description"))
             {
-                bs.code = GetString("code").Split(' ')[1].ToString().Replace(")", "").Replace("(", "").ToString();
+                bs.code = GetString("code").Split(' ')[0].ToString();
             }
             else
             {
-                bs.code = GetString("code").Split(' ')[0].ToString();
+                bs.code = GetString("code").Split(' ')[1].ToString().Replace(")", "").Replace("(", "").ToString();
             }
-            return bs;
+            bs.Show();
         }
 
-        private Form SetupWin8(WXBS bs)
+        private void SetupWin8(WXBS bs)
         {
             bs.label1.Text = this.GetString("emoticon");
             bs.BackColor = this.GetTheme(true);
@@ -965,13 +965,13 @@ namespace SimulatorDatabase
             if (GetBool("windowed")) { bs.WindowState = FormWindowState.Normal; bs.FormBorderStyle = FormBorderStyle.Sizable; }
             if (GetBool("show_description"))
             {
-                bs.code = GetString("code").Split(' ')[1].ToString().Replace(")", "").Replace("(", "").ToString();
+                bs.code = GetString("code").Split(' ')[0].ToString();
             }
             else
             {
-                bs.code = GetString("code").Split(' ')[0].ToString();
+                bs.code = GetString("code").Split(' ')[1].ToString().Replace(")", "").Replace("(", "").ToString();
             }
-            return bs;
+            bs.Show();
         }
 
         public string GetString(string name)
@@ -1006,6 +1006,11 @@ namespace SimulatorDatabase
             }
         }
 
+        public void ClearAllTitleTexts()
+        {
+            this.titles.Clear();
+            this.texts.Clear();
+        }
         public void SetString(string name, string value)
         {
             switch (name)
@@ -1024,7 +1029,7 @@ namespace SimulatorDatabase
             this.titles[name] = value;
         }
 
-        private void PushTitle(string name, string value)
+        public void PushTitle(string name, string value)
         {
             this.titles.Add(name, value);
         }
@@ -1039,7 +1044,7 @@ namespace SimulatorDatabase
             this.texts[name] = value;
         }
 
-        private void PushText(string name, string value)
+        public void PushText(string name, string value)
         {
             this.texts.Add(name, value);
         }
@@ -1216,7 +1221,7 @@ namespace SimulatorDatabase
                 case "Windows Vista/7":
                     this.icon = "3D flag";
                     PushText("A problem has been detected...", "A problem has been detected and Windows has been shut down to prevent damage\r\nto your computer.");
-                    PushText("Troubleshooting introduction", "If this is the first time you've seen this Stop error screen,\r\nrestart your computer.If this screen appears again, follow\r\nthese steps:");
+                    PushText("Troubleshooting introduction", "If this is the first time you've seen this Stop error screen,\r\nrestart your computer. If this screen appears again, follow\r\nthese steps:");
                     PushText("Troubleshooting", "Check to make sure any new hardware or software is properly installed.\r\nIf this is a new installation, ask your hardware or software manufacturer\r\nfor any Windows updates you might need.\r\n\r\nIf problems continue, disable or remove any newly installed hardware\r\nor software.Disable BIOS memory options such as caching or shadowing.\r\nIf you need to use Safe mode to remove or disable components, restart\r\nyour computer, press F8 to select Advanced Startup Options, and then\r\nselect Safe Mode.");
                     PushText("Technical information", "Technical information:");
                     PushText("Technical information formatting", "*** STOP: {0} ({1})");

@@ -105,7 +105,7 @@ namespace UltimateBlueScreenSimulator
             ntPanel.Visible = false;
             xpNote.Visible = false;
             // set current bluescreen
-            me = Program.bluescreens[windowVersion.SelectedIndex];
+            me = Program.bluescreens[Program.bluescreens.Count - 1 - windowVersion.SelectedIndex];
             // set control visibility for specific OS-es
             if (me.GetString("os") == "Windows 11")
             {
@@ -142,6 +142,7 @@ namespace UltimateBlueScreenSimulator
                 winMode.Visible = true;
                 acpiBox.Visible = true;
                 checkBox1.Visible = true;
+                autoBox.Visible = true;
             }
             else if (me.GetString("os") == "Windows XP")
             {
@@ -149,6 +150,7 @@ namespace UltimateBlueScreenSimulator
                 winMode.Visible = true;
                 xpNote.Visible = true;
                 checkBox1.Visible = true;
+                autoBox.Visible = true;
             }
             else if (me.GetString("os") == "Windows 2000")
             {
@@ -203,7 +205,7 @@ namespace UltimateBlueScreenSimulator
         public void GetOS()
         {
             windowVersion.Items.Clear();
-            for (int i = 0; i < Program.bluescreens.Count; i++)
+            for (int i = Program.bluescreens.Count - 1; i >= 0 ; i--)
             {
                 windowVersion.Items.Add(Program.bluescreens[i].GetString("friendlyname"));
             }
@@ -536,16 +538,13 @@ namespace UltimateBlueScreenSimulator
                 label10.Text = "";
                 return;
             }
-            Form bs = new Form();
-            bs = me.SetupForm(bs);
+            me.Show();
             try
             {
-                bs.Show();
                 if (spl2.Visible) { spl2.Close(); }
             }
             catch
             {
-                bs.Show();
             }
             //Windows Vista/7 bootmgr error screen
             //optional attributes
@@ -705,7 +704,8 @@ namespace UltimateBlueScreenSimulator
                     return;
                 }
             }
-            Program.bh.Show();
+            StringEdit bh = new StringEdit();
+            bh.Show();
         }
 
         private void Button6_Click(object sender, EventArgs e)
@@ -928,7 +928,7 @@ namespace UltimateBlueScreenSimulator
             if (textBox1.Text == "betadark")
             {
                 MessageBox.Show("This egg is experimental. Don't complain please...", "Dark mode beta", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Form[] allForms = { this, Program.bh, Program.spl };
+                Form[] allForms = { this, new StringEdit(), Program.spl };
                 foreach (Form f in allForms)
                 {
                     f.BackColor = Color.Black;
@@ -1076,7 +1076,14 @@ namespace UltimateBlueScreenSimulator
 
         private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-            me.SetString("code", comboBox1.SelectedItem.ToString());
+            try
+            {
+                if (windowVersion.SelectedIndex != -1)
+                {
+                    me.SetString("code", comboBox1.SelectedItem.ToString());
+                }
+            }
+            catch { }
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
@@ -1122,6 +1129,11 @@ namespace UltimateBlueScreenSimulator
         private void winMode_CheckedChanged(object sender, EventArgs e)
         {
             me.SetBool("windowed", winMode.Checked);
+        }
+
+        private void flowLayoutPanel2_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

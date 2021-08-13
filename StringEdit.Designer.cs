@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StringEdit));
-            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("Property name", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("Value", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup3 = new System.Windows.Forms.ListViewGroup("Property name", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup4 = new System.Windows.Forms.ListViewGroup("Value", System.Windows.Forms.HorizontalAlignment.Left);
             this.winVers = new System.Windows.Forms.ListView();
             this.AllIcons = new System.Windows.Forms.ImageList(this.components);
             this.labelWinVers = new System.Windows.Forms.Label();
@@ -45,40 +45,42 @@
             this.stringProps = new System.Windows.Forms.Panel();
             this.stringEditor = new System.Windows.Forms.TextBox();
             this.colorProps = new System.Windows.Forms.Panel();
-            this.specificPropsFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.colorPreview = new System.Windows.Forms.Label();
             this.colorButton = new System.Windows.Forms.Button();
-            this.colorChooser = new System.Windows.Forms.ColorDialog();
-            this.blinkProps = new System.Windows.Forms.Panel();
-            this.previewLabel = new System.Windows.Forms.Label();
-            this.blinkingDash = new System.Windows.Forms.Label();
-            this.speedTrackbar = new System.Windows.Forms.TrackBar();
-            this.blinkywinky = new System.Windows.Forms.Timer(this.components);
-            this.fontProps = new System.Windows.Forms.Panel();
-            this.fontPreview = new System.Windows.Forms.Label();
-            this.fontChangeButton = new System.Windows.Forms.Button();
-            this.fontChooser = new System.Windows.Forms.FontDialog();
-            this.timeoutProps = new System.Windows.Forms.Panel();
-            this.secondsLabel = new System.Windows.Forms.Label();
-            this.timeoutBox = new System.Windows.Forms.TextBox();
-            this.simpleToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.colorPreview = new System.Windows.Forms.Label();
+            this.specificPropsFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.qrProps = new System.Windows.Forms.Panel();
+            this.browseButton = new System.Windows.Forms.Button();
+            this.filenameLabel = new System.Windows.Forms.Label();
             this.radioFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.defaultRadioBtn = new System.Windows.Forms.RadioButton();
             this.transparentRadioBtn = new System.Windows.Forms.RadioButton();
             this.customRadioBtn = new System.Windows.Forms.RadioButton();
-            this.filenameLabel = new System.Windows.Forms.Label();
-            this.browseButton = new System.Windows.Forms.Button();
+            this.timeoutProps = new System.Windows.Forms.Panel();
+            this.timeoutBox = new System.Windows.Forms.TextBox();
+            this.secondsLabel = new System.Windows.Forms.Label();
+            this.fontProps = new System.Windows.Forms.Panel();
+            this.fontChangeButton = new System.Windows.Forms.Button();
+            this.fontPreview = new System.Windows.Forms.Label();
+            this.blinkProps = new System.Windows.Forms.Panel();
+            this.speedTrackbar = new System.Windows.Forms.TrackBar();
+            this.blinkingDash = new System.Windows.Forms.Label();
+            this.previewLabel = new System.Windows.Forms.Label();
+            this.colorChooser = new System.Windows.Forms.ColorDialog();
+            this.blinkywinky = new System.Windows.Forms.Timer(this.components);
+            this.fontChooser = new System.Windows.Forms.FontDialog();
+            this.simpleToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.customQRBrowser = new System.Windows.Forms.OpenFileDialog();
+            this.loadBsconfig = new System.Windows.Forms.OpenFileDialog();
+            this.saveBsconfig = new System.Windows.Forms.SaveFileDialog();
             this.stringProps.SuspendLayout();
             this.colorProps.SuspendLayout();
             this.specificPropsFlowLayoutPanel.SuspendLayout();
-            this.blinkProps.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.speedTrackbar)).BeginInit();
-            this.fontProps.SuspendLayout();
-            this.timeoutProps.SuspendLayout();
             this.qrProps.SuspendLayout();
             this.radioFlowLayoutPanel.SuspendLayout();
+            this.timeoutProps.SuspendLayout();
+            this.fontProps.SuspendLayout();
+            this.blinkProps.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.speedTrackbar)).BeginInit();
             this.SuspendLayout();
             // 
             // winVers
@@ -135,13 +137,13 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.MessageView.FullRowSelect = true;
             this.MessageView.GridLines = true;
-            listViewGroup1.Header = "Property name";
-            listViewGroup1.Name = "listViewGroup1";
-            listViewGroup2.Header = "Value";
-            listViewGroup2.Name = "listViewGroup2";
+            listViewGroup3.Header = "Property name";
+            listViewGroup3.Name = "listViewGroup1";
+            listViewGroup4.Header = "Value";
+            listViewGroup4.Name = "listViewGroup2";
             this.MessageView.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup1,
-            listViewGroup2});
+            listViewGroup3,
+            listViewGroup4});
             this.MessageView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.MessageView.HideSelection = false;
             this.MessageView.LargeImageList = this.AllIcons;
@@ -183,6 +185,7 @@
             this.buttonLoad.TabIndex = 31;
             this.buttonLoad.Text = "&Load";
             this.buttonLoad.UseVisualStyleBackColor = true;
+            this.buttonLoad.Click += new System.EventHandler(this.buttonLoad_Click);
             // 
             // buttonSave
             // 
@@ -193,6 +196,7 @@
             this.buttonSave.TabIndex = 30;
             this.buttonSave.Text = "&Save";
             this.buttonSave.UseVisualStyleBackColor = true;
+            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
             // buttonReset
             // 
@@ -233,6 +237,25 @@
             this.colorProps.TabIndex = 33;
             this.colorProps.Visible = false;
             // 
+            // colorButton
+            // 
+            this.colorButton.Location = new System.Drawing.Point(56, 10);
+            this.colorButton.Name = "colorButton";
+            this.colorButton.Size = new System.Drawing.Size(75, 23);
+            this.colorButton.TabIndex = 3;
+            this.colorButton.Text = "Change";
+            this.colorButton.UseVisualStyleBackColor = true;
+            this.colorButton.Click += new System.EventHandler(this.colorButton_Click);
+            // 
+            // colorPreview
+            // 
+            this.colorPreview.BackColor = System.Drawing.Color.Black;
+            this.colorPreview.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.colorPreview.Location = new System.Drawing.Point(11, 10);
+            this.colorPreview.Name = "colorPreview";
+            this.colorPreview.Size = new System.Drawing.Size(39, 23);
+            this.colorPreview.TabIndex = 2;
+            // 
             // specificPropsFlowLayoutPanel
             // 
             this.specificPropsFlowLayoutPanel.Controls.Add(this.qrProps);
@@ -246,130 +269,6 @@
             this.specificPropsFlowLayoutPanel.Size = new System.Drawing.Size(397, 343);
             this.specificPropsFlowLayoutPanel.TabIndex = 34;
             // 
-            // colorPreview
-            // 
-            this.colorPreview.BackColor = System.Drawing.Color.Black;
-            this.colorPreview.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.colorPreview.Location = new System.Drawing.Point(11, 10);
-            this.colorPreview.Name = "colorPreview";
-            this.colorPreview.Size = new System.Drawing.Size(39, 23);
-            this.colorPreview.TabIndex = 2;
-            // 
-            // colorButton
-            // 
-            this.colorButton.Location = new System.Drawing.Point(56, 10);
-            this.colorButton.Name = "colorButton";
-            this.colorButton.Size = new System.Drawing.Size(75, 23);
-            this.colorButton.TabIndex = 3;
-            this.colorButton.Text = "Change";
-            this.colorButton.UseVisualStyleBackColor = true;
-            this.colorButton.Click += new System.EventHandler(this.colorButton_Click);
-            // 
-            // blinkProps
-            // 
-            this.blinkProps.Controls.Add(this.speedTrackbar);
-            this.blinkProps.Controls.Add(this.blinkingDash);
-            this.blinkProps.Controls.Add(this.previewLabel);
-            this.blinkProps.Location = new System.Drawing.Point(3, 205);
-            this.blinkProps.Name = "blinkProps";
-            this.blinkProps.Size = new System.Drawing.Size(394, 71);
-            this.blinkProps.TabIndex = 35;
-            this.blinkProps.Visible = false;
-            this.blinkProps.Paint += new System.Windows.Forms.PaintEventHandler(this.blinkProps_Paint);
-            // 
-            // previewLabel
-            // 
-            this.previewLabel.AutoSize = true;
-            this.previewLabel.Location = new System.Drawing.Point(8, 12);
-            this.previewLabel.Name = "previewLabel";
-            this.previewLabel.Size = new System.Drawing.Size(48, 13);
-            this.previewLabel.TabIndex = 3;
-            this.previewLabel.Text = "Preview:";
-            // 
-            // blinkingDash
-            // 
-            this.blinkingDash.AutoSize = true;
-            this.blinkingDash.Location = new System.Drawing.Point(58, 12);
-            this.blinkingDash.Name = "blinkingDash";
-            this.blinkingDash.Size = new System.Drawing.Size(13, 13);
-            this.blinkingDash.TabIndex = 4;
-            this.blinkingDash.Text = "_";
-            // 
-            // speedTrackbar
-            // 
-            this.speedTrackbar.Location = new System.Drawing.Point(7, 28);
-            this.speedTrackbar.Maximum = 2000;
-            this.speedTrackbar.Minimum = 1;
-            this.speedTrackbar.Name = "speedTrackbar";
-            this.speedTrackbar.Size = new System.Drawing.Size(380, 45);
-            this.speedTrackbar.TabIndex = 5;
-            this.speedTrackbar.Value = 100;
-            this.speedTrackbar.Scroll += new System.EventHandler(this.trackBar1_Scroll);
-            // 
-            // blinkywinky
-            // 
-            this.blinkywinky.Tick += new System.EventHandler(this.blinkywinky_Tick);
-            // 
-            // fontProps
-            // 
-            this.fontProps.Controls.Add(this.fontChangeButton);
-            this.fontProps.Controls.Add(this.fontPreview);
-            this.fontProps.Location = new System.Drawing.Point(3, 115);
-            this.fontProps.Name = "fontProps";
-            this.fontProps.Size = new System.Drawing.Size(394, 84);
-            this.fontProps.TabIndex = 36;
-            this.fontProps.Visible = false;
-            // 
-            // fontPreview
-            // 
-            this.fontPreview.AutoSize = true;
-            this.fontPreview.Location = new System.Drawing.Point(8, 12);
-            this.fontPreview.Name = "fontPreview";
-            this.fontPreview.Size = new System.Drawing.Size(221, 13);
-            this.fontPreview.TabIndex = 4;
-            this.fontPreview.Text = "The quick brown fox jumps over the lazy dog.";
-            // 
-            // fontChangeButton
-            // 
-            this.fontChangeButton.Location = new System.Drawing.Point(11, 54);
-            this.fontChangeButton.Name = "fontChangeButton";
-            this.fontChangeButton.Size = new System.Drawing.Size(75, 23);
-            this.fontChangeButton.TabIndex = 5;
-            this.fontChangeButton.Text = "Change";
-            this.fontChangeButton.UseVisualStyleBackColor = true;
-            this.fontChangeButton.Click += new System.EventHandler(this.fontChangeButton_Click);
-            // 
-            // timeoutProps
-            // 
-            this.timeoutProps.Controls.Add(this.timeoutBox);
-            this.timeoutProps.Controls.Add(this.secondsLabel);
-            this.timeoutProps.Location = new System.Drawing.Point(3, 80);
-            this.timeoutProps.Name = "timeoutProps";
-            this.timeoutProps.Size = new System.Drawing.Size(394, 29);
-            this.timeoutProps.TabIndex = 35;
-            // 
-            // secondsLabel
-            // 
-            this.secondsLabel.AutoSize = true;
-            this.secondsLabel.Location = new System.Drawing.Point(62, 6);
-            this.secondsLabel.Name = "secondsLabel";
-            this.secondsLabel.Size = new System.Drawing.Size(47, 13);
-            this.secondsLabel.TabIndex = 0;
-            this.secondsLabel.Text = "seconds";
-            // 
-            // timeoutBox
-            // 
-            this.timeoutBox.Location = new System.Drawing.Point(9, 3);
-            this.timeoutBox.Name = "timeoutBox";
-            this.timeoutBox.Size = new System.Drawing.Size(47, 20);
-            this.timeoutBox.TabIndex = 1;
-            this.timeoutBox.TextChanged += new System.EventHandler(this.timeoutBox_TextChanged);
-            // 
-            // simpleToolTip
-            // 
-            this.simpleToolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Error;
-            this.simpleToolTip.ToolTipTitle = "Cannot change to specific value";
-            // 
             // qrProps
             // 
             this.qrProps.Controls.Add(this.browseButton);
@@ -380,6 +279,26 @@
             this.qrProps.Size = new System.Drawing.Size(394, 71);
             this.qrProps.TabIndex = 35;
             this.qrProps.Visible = false;
+            // 
+            // browseButton
+            // 
+            this.browseButton.Enabled = false;
+            this.browseButton.Location = new System.Drawing.Point(10, 45);
+            this.browseButton.Name = "browseButton";
+            this.browseButton.Size = new System.Drawing.Size(75, 23);
+            this.browseButton.TabIndex = 2;
+            this.browseButton.Text = "Browse";
+            this.browseButton.UseVisualStyleBackColor = true;
+            this.browseButton.Click += new System.EventHandler(this.browseButton_Click);
+            // 
+            // filenameLabel
+            // 
+            this.filenameLabel.AutoSize = true;
+            this.filenameLabel.Location = new System.Drawing.Point(8, 29);
+            this.filenameLabel.Name = "filenameLabel";
+            this.filenameLabel.Size = new System.Drawing.Size(86, 13);
+            this.filenameLabel.TabIndex = 1;
+            this.filenameLabel.Text = "Filename: local:0";
             // 
             // radioFlowLayoutPanel
             // 
@@ -426,29 +345,125 @@
             this.customRadioBtn.UseVisualStyleBackColor = true;
             this.customRadioBtn.CheckedChanged += new System.EventHandler(this.customRadioBtn_CheckedChanged);
             // 
-            // filenameLabel
+            // timeoutProps
             // 
-            this.filenameLabel.AutoSize = true;
-            this.filenameLabel.Location = new System.Drawing.Point(8, 29);
-            this.filenameLabel.Name = "filenameLabel";
-            this.filenameLabel.Size = new System.Drawing.Size(86, 13);
-            this.filenameLabel.TabIndex = 1;
-            this.filenameLabel.Text = "Filename: local:0";
+            this.timeoutProps.Controls.Add(this.timeoutBox);
+            this.timeoutProps.Controls.Add(this.secondsLabel);
+            this.timeoutProps.Location = new System.Drawing.Point(3, 80);
+            this.timeoutProps.Name = "timeoutProps";
+            this.timeoutProps.Size = new System.Drawing.Size(394, 29);
+            this.timeoutProps.TabIndex = 35;
+            this.timeoutProps.Visible = false;
             // 
-            // browseButton
+            // timeoutBox
             // 
-            this.browseButton.Enabled = false;
-            this.browseButton.Location = new System.Drawing.Point(10, 45);
-            this.browseButton.Name = "browseButton";
-            this.browseButton.Size = new System.Drawing.Size(75, 23);
-            this.browseButton.TabIndex = 2;
-            this.browseButton.Text = "Browse";
-            this.browseButton.UseVisualStyleBackColor = true;
-            this.browseButton.Click += new System.EventHandler(this.browseButton_Click);
+            this.timeoutBox.Location = new System.Drawing.Point(9, 3);
+            this.timeoutBox.Name = "timeoutBox";
+            this.timeoutBox.Size = new System.Drawing.Size(47, 20);
+            this.timeoutBox.TabIndex = 1;
+            this.timeoutBox.TextChanged += new System.EventHandler(this.timeoutBox_TextChanged);
+            // 
+            // secondsLabel
+            // 
+            this.secondsLabel.AutoSize = true;
+            this.secondsLabel.Location = new System.Drawing.Point(62, 6);
+            this.secondsLabel.Name = "secondsLabel";
+            this.secondsLabel.Size = new System.Drawing.Size(47, 13);
+            this.secondsLabel.TabIndex = 0;
+            this.secondsLabel.Text = "seconds";
+            // 
+            // fontProps
+            // 
+            this.fontProps.Controls.Add(this.fontChangeButton);
+            this.fontProps.Controls.Add(this.fontPreview);
+            this.fontProps.Location = new System.Drawing.Point(3, 115);
+            this.fontProps.Name = "fontProps";
+            this.fontProps.Size = new System.Drawing.Size(394, 84);
+            this.fontProps.TabIndex = 36;
+            this.fontProps.Visible = false;
+            // 
+            // fontChangeButton
+            // 
+            this.fontChangeButton.Location = new System.Drawing.Point(11, 54);
+            this.fontChangeButton.Name = "fontChangeButton";
+            this.fontChangeButton.Size = new System.Drawing.Size(75, 23);
+            this.fontChangeButton.TabIndex = 5;
+            this.fontChangeButton.Text = "Change";
+            this.fontChangeButton.UseVisualStyleBackColor = true;
+            this.fontChangeButton.Click += new System.EventHandler(this.fontChangeButton_Click);
+            // 
+            // fontPreview
+            // 
+            this.fontPreview.AutoSize = true;
+            this.fontPreview.Location = new System.Drawing.Point(8, 12);
+            this.fontPreview.Name = "fontPreview";
+            this.fontPreview.Size = new System.Drawing.Size(221, 13);
+            this.fontPreview.TabIndex = 4;
+            this.fontPreview.Text = "The quick brown fox jumps over the lazy dog.";
+            // 
+            // blinkProps
+            // 
+            this.blinkProps.Controls.Add(this.speedTrackbar);
+            this.blinkProps.Controls.Add(this.blinkingDash);
+            this.blinkProps.Controls.Add(this.previewLabel);
+            this.blinkProps.Location = new System.Drawing.Point(3, 205);
+            this.blinkProps.Name = "blinkProps";
+            this.blinkProps.Size = new System.Drawing.Size(394, 71);
+            this.blinkProps.TabIndex = 35;
+            this.blinkProps.Visible = false;
+            this.blinkProps.Paint += new System.Windows.Forms.PaintEventHandler(this.blinkProps_Paint);
+            // 
+            // speedTrackbar
+            // 
+            this.speedTrackbar.Location = new System.Drawing.Point(7, 28);
+            this.speedTrackbar.Maximum = 2000;
+            this.speedTrackbar.Minimum = 1;
+            this.speedTrackbar.Name = "speedTrackbar";
+            this.speedTrackbar.Size = new System.Drawing.Size(380, 45);
+            this.speedTrackbar.TabIndex = 5;
+            this.speedTrackbar.Value = 100;
+            this.speedTrackbar.Scroll += new System.EventHandler(this.trackBar1_Scroll);
+            // 
+            // blinkingDash
+            // 
+            this.blinkingDash.AutoSize = true;
+            this.blinkingDash.Location = new System.Drawing.Point(58, 12);
+            this.blinkingDash.Name = "blinkingDash";
+            this.blinkingDash.Size = new System.Drawing.Size(13, 13);
+            this.blinkingDash.TabIndex = 4;
+            this.blinkingDash.Text = "_";
+            // 
+            // previewLabel
+            // 
+            this.previewLabel.AutoSize = true;
+            this.previewLabel.Location = new System.Drawing.Point(8, 12);
+            this.previewLabel.Name = "previewLabel";
+            this.previewLabel.Size = new System.Drawing.Size(48, 13);
+            this.previewLabel.TabIndex = 3;
+            this.previewLabel.Text = "Preview:";
+            // 
+            // blinkywinky
+            // 
+            this.blinkywinky.Tick += new System.EventHandler(this.blinkywinky_Tick);
+            // 
+            // simpleToolTip
+            // 
+            this.simpleToolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Error;
+            this.simpleToolTip.ToolTipTitle = "Cannot change to specific value";
             // 
             // customQRBrowser
             // 
             this.customQRBrowser.Filter = "Raster images|*.jpg;*.jpeg;*.jpe;*.png;*.bmp;*.gif;*.tif;*.tiff";
+            // 
+            // loadBsconfig
+            // 
+            this.loadBsconfig.Filter = "Bluescreen simulator 2.x configuration files|*.bs2cfg|Blue screen simulator 1.x c" +
+    "onfiguration files|*.bscfg";
+            this.loadBsconfig.Title = "Load bluescreen configuration";
+            // 
+            // saveBsconfig
+            // 
+            this.saveBsconfig.Filter = "Bluescreen simulator 2.x configuration files|*.bs2cfg";
             // 
             // StringEdit
             // 
@@ -476,17 +491,17 @@
             this.stringProps.PerformLayout();
             this.colorProps.ResumeLayout(false);
             this.specificPropsFlowLayoutPanel.ResumeLayout(false);
-            this.blinkProps.ResumeLayout(false);
-            this.blinkProps.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.speedTrackbar)).EndInit();
-            this.fontProps.ResumeLayout(false);
-            this.fontProps.PerformLayout();
-            this.timeoutProps.ResumeLayout(false);
-            this.timeoutProps.PerformLayout();
             this.qrProps.ResumeLayout(false);
             this.qrProps.PerformLayout();
             this.radioFlowLayoutPanel.ResumeLayout(false);
             this.radioFlowLayoutPanel.PerformLayout();
+            this.timeoutProps.ResumeLayout(false);
+            this.timeoutProps.PerformLayout();
+            this.fontProps.ResumeLayout(false);
+            this.fontProps.PerformLayout();
+            this.blinkProps.ResumeLayout(false);
+            this.blinkProps.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.speedTrackbar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -532,5 +547,7 @@
         private System.Windows.Forms.RadioButton transparentRadioBtn;
         private System.Windows.Forms.RadioButton customRadioBtn;
         private System.Windows.Forms.OpenFileDialog customQRBrowser;
+        private System.Windows.Forms.OpenFileDialog loadBsconfig;
+        private System.Windows.Forms.SaveFileDialog saveBsconfig;
     }
 }
