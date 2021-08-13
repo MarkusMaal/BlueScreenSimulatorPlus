@@ -15,6 +15,7 @@ namespace UltimateBlueScreenSimulator
 {
     public partial class Form1 : Form
     {
+        BlueScreen me;
         //these variables deal with error codes
         public string c1 = "RRRRRRRRRRRRRRRR";
         public string c2 = "RRRRRRRRRRRRRRRR";
@@ -88,7 +89,7 @@ namespace UltimateBlueScreenSimulator
 
         private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //select bluescreen type
+            //hide all controls
             WXOptions.Visible = false;
             errorCode.Visible = false;
             nineXmessage.Visible = false;
@@ -103,7 +104,10 @@ namespace UltimateBlueScreenSimulator
             checkBox2.Enabled = true;
             ntPanel.Visible = false;
             xpNote.Visible = false;
-            if (windowVersion.SelectedItem.ToString().Trim() == "Windows 11 (Native, Safe mode: 640x480, ClearType)")
+            // set current bluescreen
+            me = Program.bluescreens[windowVersion.SelectedIndex];
+            // set control visibility for specific OS-es
+            if (me.GetString("os") == "Windows 11")
             {
                 WXOptions.Visible = true;
                 serverBox.Visible = true;
@@ -114,7 +118,7 @@ namespace UltimateBlueScreenSimulator
                 checkBox1.Visible = true;
                 winMode.Visible = true;
             }
-            else if (windowVersion.SelectedItem.ToString().Trim() == "Windows 10 (Native, Safe mode: 640x480, ClearType)")
+            else if (me.GetString("os") == "Windows 10")
             {
                 WXOptions.Visible = true;
                 serverBox.Visible = true;
@@ -125,39 +129,39 @@ namespace UltimateBlueScreenSimulator
                 checkBox1.Visible = true;
                 winMode.Visible = true;
             }
-            else if (windowVersion.SelectedItem.ToString().Trim() == "Windows 8/8.1 (Native, Safe mode: 640x480, ClearType)")
+            else if (me.GetString("os") == "Windows 8/8.1")
             {
                 WXOptions.Visible = true;
                 errorCode.Visible = true;
                 checkBox1.Visible = true;
                 winMode.Visible = true;
             }
-            else if (windowVersion.SelectedItem.ToString().Trim() == "Windows Vista/7 (640x480, ClearType)")
+            else if (me.GetString("os") == "Windows Vista/7")
             {
                 errorCode.Visible = true;
                 winMode.Visible = true;
                 acpiBox.Visible = true;
                 checkBox1.Visible = true;
             }
-            else if (windowVersion.SelectedItem.ToString().Trim() == "Windows XP (640x480, Standard)")
+            else if (me.GetString("os") == "Windows XP")
             {
                 errorCode.Visible = true;
                 winMode.Visible = true;
                 xpNote.Visible = true;
                 checkBox1.Visible = true;
             }
-            else if (windowVersion.SelectedItem.ToString().Trim() == "Windows 2000 Professional/Server Family (640x480, Standard)")
+            else if (me.GetString("os") == "Windows 2000")
             {
                 errorCode.Visible = true;
                 winMode.Visible = true;
                 checkBox1.Checked = true;
             }
-            else if (windowVersion.SelectedItem.ToString().Trim() == "Windows 9x/Millennium Edition (EGA text mode, Standard)")
+            else if (me.GetString("os") == "Windows 9x/Me")
             {
                 nineXmessage.Visible = true;
                 winMode.Visible = true;
             }
-            else if (windowVersion.SelectedItem.ToString().Trim() == "Windows CE 3.0 and later (750x400, Standard)")
+            else if (me.GetString("os") == "Windows CE")
             {
                 winMode.Visible = true;
                 errorCode.Visible = true;
@@ -166,7 +170,7 @@ namespace UltimateBlueScreenSimulator
                 textBox2.Enabled = false;
                 xpNote.Visible = true;
             }
-            else if (windowVersion.SelectedItem.ToString().Trim() == "Windows NT 4.0/3.x (VGA text mode, Standard)")
+            else if (me.GetString("os") == "Windows NT 3.x/4.0")
             {
                 errorCode.Visible = true;
                 amdBox.Visible = true;
@@ -174,18 +178,34 @@ namespace UltimateBlueScreenSimulator
                 ntPanel.Visible = true;
                 winMode.Visible = true;
             }
-            else if (windowVersion.SelectedItem.ToString().Trim() == "Windows 3.1 (EGA text mode, Standard)")
+            else if (me.GetString("os") == "Windows 3.1x")
             {
                 winMode.Visible = true;
             }
+            // load options for current bluescreen
+            autoBox.Checked = me.GetBool("autoclose");
+            serverBox.Checked = me.GetBool("server");
+            greenBox.Checked = me.GetBool("green");
+            qrBox.Checked = me.GetBool("qr");
+            comboBox1.SelectedItem = me.GetString("code");
+            comboBox2.SelectedItem = me.GetString("screen_mode");
+            checkBox1.Checked = me.GetBool("show_description");
+            checkBox2.Checked = me.GetBool("show_file");
+            textBox2.Text = me.GetString("culprit");
+            amdBox.Checked = me.GetBool("amd");
+            stackBox.Checked = me.GetBool("stack_trace");
+            blinkBox.Checked = me.GetBool("blink");
+            acpiBox.Checked = me.GetBool("acpi");
+            waterBox.Checked = me.GetBool("watermark");
+            winMode.Checked = me.GetBool("windowed");
         }
 
         public void GetOS()
         {
             windowVersion.Items.Clear();
-            for (int i = 0; i < defaultVersions.Items.Count; i++)
+            for (int i = 0; i < Program.bluescreens.Count; i++)
             {
-                windowVersion.Items.Add(defaultVersions.Items[i]);
+                windowVersion.Items.Add(Program.bluescreens[i].GetString("friendlyname"));
             }
             WXOptions.Visible = false;
             errorCode.Visible = false;
@@ -445,81 +465,6 @@ namespace UltimateBlueScreenSimulator
 
         }
 
-        //generates hexadecimal codes
-        //lettercount sets the length of the actual hex code
-        //inspir is a string where each character represents if the value is fixed or random
-        public string GenHex(int lettercount, string inspir)
-        {
-            //sleep command is used to make sure that randomization works properly
-            Thread.Sleep(20);
-            string output = "";
-            Random r = new Random();
-            for (int i = 0; i < lettercount; i++)
-            {
-                int temp = r.Next(15);
-                char lette = ' ';
-                if ((inspir + inspir).Substring(i, 1) == "R") { 
-                    if (temp < 10) { lette = Convert.ToChar(temp.ToString()); }
-                    if (temp == 10) { lette = 'A'; }
-                    if (temp == 11) { lette = 'B'; }
-                    if (temp == 12) { lette = 'C'; }
-                    if (temp == 13) { lette = 'D'; }
-                    if (temp == 14) { lette = 'E'; }
-                    if (temp == 15) { lette = 'F'; }
-                } else
-                {
-                    lette = Convert.ToChar((inspir + inspir).Substring(i, 1));
-                }
-                output += lette.ToString();
-            }
-            return output;
-        }
-
-
-        //GenAddress uses the last function to generate multiple error address codes
-        public string GenAddress(int count, int places, bool lower)
-        {
-            string ot = "";
-            string inspir = c1;
-            for (int i = 0; i < count; i++)
-            {
-                if (i == 1) { inspir = c2; }
-                if (i == 2) { inspir = c3; }
-                if (i == 3) { inspir = c4; }
-                if (ot != "") { ot += ", "; }
-                ot += "0x" + GenHex(places, inspir);
-            }
-            if (lower) { return ot.ToLower(); }
-            return ot;
-        }
-
-        //GenFile generates a new file for use in Windows NT blue screen
-        public string GenFile(bool lower = true)
-        {
-            Thread.Sleep(20);
-            string filename = "hal.dll";
-            Random r = new Random();
-            int temp = r.Next(15);
-            if (temp == 0) { filename = "ntoskrnl.exe"; }
-            if (temp == 1) { filename = "hal.dll"; }
-            if (temp == 2) { filename = "atapi.sys"; }
-            if (temp == 3) { filename = "tcpip.sys"; }
-            if (temp == 4) { filename = "Cdrom.sys"; }
-            if (temp == 5) { filename = "vga.sys"; }
-            if (temp == 6) { filename = "Floppy.sys"; }
-            if (temp == 7) { filename = "mup.sys"; }
-            if (temp == 8) { filename = "Beep.sys"; }
-            if (temp == 9) { filename = "Ntfs.sys"; }
-            if (temp == 10) { filename = "netbios.sys"; }
-            if (temp == 11) { filename = "CLASS32.SYS"; }
-            if (temp == 12) { filename = "srv.sys"; }
-            if (temp == 13) { filename = "SCSIPORT.SYS"; }
-            if (temp == 14) { filename = "Disk.SYS"; }
-            if (temp == 15) { filename = "Null.SYS"; }
-            if (lower == false) { return filename.ToUpper(); }
-            return filename;
-        }
-
         //launches troubleshooting text editor
         private void Button2_Click(object sender, EventArgs e)
         {
@@ -591,150 +536,16 @@ namespace UltimateBlueScreenSimulator
                 label10.Text = "";
                 return;
             }
-            if (windowVersion.SelectedItem.ToString().Trim() == "Windows 11 (Native, Safe mode: 640x480, ClearType)")
+            Form bs = new Form();
+            bs = me.SetupForm(bs);
+            try
             {
-                WXBS bs = new WXBS();
-                try
-                {
-                    bs.label1.Text = emoticon;
-                    bs.BackColor = Program.bluescreens[9].GetTheme(true);
-                    bs.ForeColor = Program.bluescreens[9].GetTheme(false);
-                    if (qrBox.Checked == false) { bs.qr = false; }
-                    if (autoBox.Checked == false) { bs.close = false; }
-                    if (greenBox.Checked == true) { bs.green = true; }
-                    if (serverBox.Checked == true) { bs.server = true; }
-                    if (waterBox.Checked == false) { bs.waterMarkText.Visible = false; }
-                    if (checkBox2.Checked == true) { bs.whatfail = textBox2.Text; }
-                    if (winMode.Checked == true) { bs.WindowState = FormWindowState.Normal; bs.FormBorderStyle = FormBorderStyle.Sizable; }
-                    if (checkBox1.Checked == false)
-                    {
-                        bs.code = comboBox1.SelectedItem.ToString().Split(' ')[1].ToString().Replace(")", "").Replace("(", "").ToString();
-                    }
-                    else
-                    {
-                        bs.code = comboBox1.SelectedItem.ToString().Split(' ')[0].ToString();
-                    }
-                    bs.Show();
-                    if (spl2.Visible) { spl2.Close(); }
-                }
-                catch
-                {
-                    bs.Show();
-                }
-            }
-            else if (windowVersion.SelectedItem.ToString().Trim() == "Windows 10 (Native, Safe mode: 640x480, ClearType)")
-            {
-                WXBS bs = new WXBS();
-                try { 
-                bs.label1.Text = emoticon;
-                bs.BackColor = Program.bluescreens[8].GetTheme(true);
-                bs.ForeColor = Program.bluescreens[8].GetTheme(false);
-                if (qrBox.Checked == false) { bs.qr = false; }
-                if (autoBox.Checked == false) { bs.close = false; }
-                if (greenBox.Checked == true) { bs.green = true; }
-                if (serverBox.Checked == true) { bs.server = true; }
-                if (waterBox.Checked == false) { bs.waterMarkText.Visible = false; }
-                if (checkBox2.Checked == true) { bs.whatfail = textBox2.Text; }
-                if (winMode.Checked == true) { bs.WindowState = FormWindowState.Normal; bs.FormBorderStyle = FormBorderStyle.Sizable; }
-                if (checkBox1.Checked == false)
-                {
-                    bs.code = comboBox1.SelectedItem.ToString().Split(' ')[1].ToString().Replace(")", "").Replace("(", "").ToString();
-                }
-                else
-                {
-                    bs.code = comboBox1.SelectedItem.ToString().Split(' ')[0].ToString();
-                }
                 bs.Show();
                 if (spl2.Visible) { spl2.Close(); }
-                }
-                catch
-                {
-                    bs.Show();
-                }
             }
-            //Windows 8.x blue screen
-            //optional attributes
-            /* autoBox (bool) - if true, blue screen will close automatically
-             * waterBox (bool) - if true, displays a watermark
-             * checkBox1 (bool) - if true, displays the error description
-             * checkBox2 (bool) - if true, shows a potential culprit file
-             * winMode (bool) - if true, the blue screen will display in a window
-             */
-            else if (windowVersion.SelectedItem.ToString().Trim() == "Windows 8/8.1 (Native, Safe mode: 640x480, ClearType)")
+            catch
             {
-                WXBS bs = new WXBS
-                {
-                    qr = false
-                };
-                try
-                {
-                    bs.label1.Text = emoticon;
-                    bs.BackColor = Program.bluescreens[7].GetTheme(true);
-                    bs.ForeColor = Program.bluescreens[7].GetTheme(false);
-                    if (autoBox.Checked == false) { bs.close = false; }
-                    if (waterBox.Checked == false) { bs.waterMarkText.Visible = false; }
-                    if (checkBox2.Checked == true) { bs.whatfail = textBox2.Text; }
-                    if (winMode.Checked == true) { bs.WindowState = FormWindowState.Normal; bs.FormBorderStyle = FormBorderStyle.Sizable; }
-                    bs.green = false;
-                    bs.server = false;
-                    bs.w8 = true;
-                    if (checkBox1.Checked == false)
-                    {
-                        bs.code = comboBox1.SelectedItem.ToString().Split(' ')[1].ToString().Replace(")", "").Replace("(", "").ToString();
-                    }
-                    else
-                    {
-                        bs.code = comboBox1.SelectedItem.ToString().Split(' ')[0].ToString();
-                    }
-                    bs.Show();
-                    if (spl2.Visible) { spl2.Close(); }
-                }
-                catch
-                {
-                    bs.Show();
-                }
-            }
-            //Windows Vista/7 blue screen
-            //optional attributes
-            /* waterBox (bool) - if true, displays a watermark
-             * checkBox1 (bool) - if true, displays the error description
-             * checkBox2 (bool) - if true, shows a potential culprit file
-             * winMode (bool) - if true, the blue screen will display in a window
-             * acpiBox (bool) - if true, displays only the technical information
-             */
-            else if (windowVersion.SelectedItem.ToString().Trim() == "Windows Vista/7 (640x480, ClearType)")
-            {
-                Xvsbs bs = new Xvsbs
-                {
-                    BackColor = Program.bluescreens[6].GetTheme(true),
-                    ForeColor = Program.bluescreens[6].GetTheme(false),
-                    w6mode = true
-                };
-                try
-                { 
-                    if (winMode.Checked == true) { bs.fullscreen = false; }
-                    if (checkBox1.Checked == false) { bs.errorCode.Visible = false; }
-                    if (waterBox.Checked == false) { bs.waterMarkText.Visible = false; }
-                    if (checkBox2.Checked == true) { bs.whatfail = textBox2.Text; }
-                    if (acpiBox.Checked == true)
-                    {
-                        bs.errorCode.Visible = false;
-                        bs.label1.Visible = false;
-                        bs.label5.Visible = false;
-                        bs.label6.Visible = false;
-                        bs.label7.Visible = false;
-                    }
-                    bs.errorCode.Text = comboBox1.SelectedItem.ToString().Split(' ')[0].ToString();
-                    bs.technicalCode.Text = "*** STOP: " + comboBox1.SelectedItem.ToString().Split(' ')[1].ToString().Replace(")", "").Replace("(", "").ToString() + " (" + GenAddress(4, 16, false) + ")";
-                    bs.supportInfo.Text = supporttext + "\n\n\nTechnical information:";
-                    bs.Show();
-                    if (spl2.Visible) { spl2.Close(); }
-                    if (acpiBox.Checked == true) { bs.supportInfo.Text = "\n\n\n\n\n"; }
-                }
-                catch
-                {
-                    bs.Show();
-                }
+                bs.Show();
             }
             //Windows Vista/7 bootmgr error screen
             //optional attributes
@@ -744,183 +555,10 @@ namespace UltimateBlueScreenSimulator
              * winMode (bool) - if true, the blue screen will display in a window
              * acpiBox (bool) - if true, displays only the technical information
              */
-            else if (windowVersion.SelectedItem.ToString().Trim() == "Windows Vista/7 BOOTMGR (1024x768, ClearType)")
+            if (windowVersion.SelectedItem.ToString().Trim() == "Windows Vista/7 BOOTMGR (1024x768, ClearType)")
             {
-                BootMgr bs = new BootMgr();
-                bs.Show();
-            }
-            //Windows XP blue screen
-            //optional attributes
-            /* waterBox (bool) - if true, displays a watermark
-             * checkBox1 (bool) - if true, displays the error description
-             * checkBox2 (bool) - if true, shows a potential culprit file
-             * winMode (bool) - if true, the blue screen will display in a window
-             */
-            else if (windowVersion.SelectedItem.ToString().Trim() == "Windows XP (640x480, Standard)")
-            {
-                Xvsbs bs = new Xvsbs
-                {
-                    BackColor = Program.bluescreens[5].GetTheme(true),
-                    ForeColor = Program.bluescreens[5].GetTheme(false)
-                };
-                try
-                { 
-                    if (winMode.Checked == true) { bs.fullscreen = false; }
-                    if (checkBox1.Checked == false) { bs.errorCode.Visible = false; }
-                    if (waterBox.Checked == false) { bs.waterMarkText.Visible = false; }
-                    if (checkBox2.Checked == true) { bs.whatfail = textBox2.Text; }
-                    bs.errorCode.Text = comboBox1.SelectedItem.ToString().Split(' ')[0].ToString();
-                    bs.technicalCode.Text = "*** STOP: " + comboBox1.SelectedItem.ToString().Split(' ')[1].ToString().Replace(")", "").Replace("(", "").ToString() + " (" + GenAddress(4, 8, false) + ")";
-                    bs.supportInfo.Text = supporttext + "\n\n\nTechnical information:";
-                    bs.Show();
-                    if (spl2.Visible) { spl2.Close(); }
-                } catch
-                {
-                    bs.Show();
-                }
-            }
-            //Windows 2000 blue screen
-            //optional attributes
-            /* waterBox (bool) - if true, displays a watermark
-             * checkBox1 (bool) - if true, displays the error description
-             * checkBox2 (bool) - if true, shows a potential culprit file
-             * winMode (bool) - if true, the blue screen will display in a window
-             */
-            else if (windowVersion.SelectedItem.ToString().Trim() == "Windows 2000 Professional/Server Family (640x480, Standard)")
-            {
-                w2kbs bs = new w2kbs
-                {
-                    BackColor = Program.bluescreens[4].GetTheme(true),
-                    ForeColor = Program.bluescreens[4].GetTheme(false)
-                };
-                try
-                { 
-                    if (winMode.Checked == true) { bs.fullscreen = false; }
-                    if (checkBox1.Checked == false) { bs.errorCode.Visible = false; }
-                    if (waterBox.Checked == false) { bs.waterMarkText.Visible = false; }
-                    if (checkBox2.Checked == true) { bs.whatfail = textBox2.Text; }
-                    bs.errorCode.Text = "*** STOP: " + comboBox1.SelectedItem.ToString().Split(' ')[1].ToString().Replace(")", "").Replace("(", "").ToString() + " (" + GenAddress(4, 8, false) + ")";
-                    bs.errorCode.Text = bs.errorCode.Text + "\n" + comboBox1.SelectedItem.ToString().Split(' ')[0].ToString();
-                    bs.Show();
-                    if (spl2.Visible) { spl2.Close(); }
-                }
-                catch
-                {
-                    bs.Show();
-                }
-            }
-            //Windows 9x/Me blue screen
-            //optional attributes
-            /* waterBox (bool) - if true, displays a watermark
-             * screenmode (string) - the type of error to be displayed (e.g. "System error")
-             * winMode (bool) - if true, the blue screen will display in a window
-             */
-            else if (windowVersion.SelectedItem.ToString().Trim() == "Windows 9x/Millennium Edition (EGA text mode, Standard)")
-            {
-                old_bluescreen bs = new old_bluescreen
-                {
-                    BackColor = Program.bluescreens[1].GetTheme(true),
-                    ForeColor = Program.bluescreens[1].GetTheme(false)
-                };
-                try
-                {
-                    if (winMode.Checked == true) { bs.window = true; }
-                    bs.screenmode = comboBox2.SelectedItem.ToString();
-                    bs.errorCode = GenHex(2, c1) + " : " + GenHex(4, c2) + " : " + GenHex(6, c3);
-                    if (waterBox.Checked == false) { bs.waterMarkText.Visible = false; }
-                    bs.Show();
-                    if (spl2.Visible) { spl2.Close(); }
-                }
-                catch
-                {
-                    bs.Show();
-                }
-            }
-            //Windows CE blue screen
-            //optional attributes
-            /* waterBox (bool) - if true, displays a watermark
-             * winMode (bool) - if true, the blue screen will display in a window
-             */
-            else if (windowVersion.SelectedItem.ToString().Trim() == "Windows CE 3.0 and later (750x400, Standard)")
-            {
-                cebsod bs = new cebsod
-                {
-                    BackColor = Program.bluescreens[2].GetTheme(true),
-                    ForeColor = Program.bluescreens[2].GetTheme(false),
-                    Font = Program.bluescreens[2].GetFont()
-                };
-                try
-                {
-                    if (winMode.Checked == true) { bs.fullscreen = false; }
-                    if (waterBox.Checked == false) { bs.waterMarkText.Visible = false; }
-                    bs.technicalCode.Text = "*** STOP: 0x" + comboBox1.SelectedItem.ToString().Split(' ')[1].ToString().Replace(")", "").Replace("(", "").ToString().Substring(4, 6) + " (" + comboBox1.SelectedItem.ToString().Split(' ')[0].ToString().Replace("_", " ").ToLower() + ")";
-                    bs.Show();
-                    if (spl2.Visible) { spl2.Close(); }
-                }
-                catch
-                {
-                    bs.Show();
-                }
-            }
-            //Windows NT 3.x/4.0 blue screen
-            //optional attributes
-            /* waterBox (bool) - if true, displays a watermark
-             * amdBox (bool) - if true, displays "AuthenticAMD" instead of "GenuineIntel" on the blue screen
-             * stackBox (bool) - if true, displays Stack trace
-             * blinkBox (bool) - if true, displays a blinking cursor
-             * checkBox1 (bool) - if true, displays the error description
-             * checkBox2 (bool) - if true, shows a potential culprit file
-             * winMode (bool) - if true, the blue screen will display in a window
-             */
-            else if (windowVersion.SelectedItem.ToString().Trim() == "Windows NT 4.0/3.x (VGA text mode, Standard)")
-            {
-                NTBSOD bs = new NTBSOD
-                {
-                    BackColor = Program.bluescreens[3].GetTheme(true),
-                    ForeColor = Program.bluescreens[3].GetTheme(false)
-                };
-                try { 
-                    if (checkBox2.Checked == true) { bs.whatfail = textBox2.Text; }
-                    bs.error = comboBox1.SelectedItem.ToString().Substring(0, comboBox1.SelectedItem.ToString().Length - 1);
-                    if (winMode.Checked == true) { bs.fullscreen = false; }
-                    if (amdBox.Checked == true) { bs.processortype = "AuthenticAMD"; }
-                    if (stackBox.Checked == false) { bs.stacktrace = false; }
-                    if (blinkBox.Checked == false) { bs.blink = false; }
-                    if (waterBox.Checked == false) { bs.waterMarkText.Visible = false; }
-                    bs.Show();
-                    if (spl2.Visible) { spl2.Close(); }
-                }
-                catch
-                {
-                    bs.Show();
-                }
-            }
-            //Windows 3.1x unofficial blue screen
-            //optional attributes
-            /* waterBox (bool) - if true, displays a watermark
-             * screenmode (string) - the type of error to be displayed (e.g. "No unresponsive programs")
-             * winMode (bool) - if true, the blue screen will display in a window
-             */
-            else if (windowVersion.SelectedItem.ToString().Trim() == "Windows 3.1 (EGA text mode, Standard)")
-            {
-                old_bluescreen bs = new old_bluescreen
-                {
-                    BackColor = Program.bluescreens[0].GetTheme(true),
-                    ForeColor = Program.bluescreens[0].GetTheme(false)
-                };
-                try
-                { 
-                    if (winMode.Checked == true) { bs.window = true; }
-                    bs.screenmode = "No unresponsive programs";
-                    bs.errorCode = GenHex(2, c1) + " : " + GenHex(4, c2) + " : " + GenHex(6, c3);
-                    if (waterBox.Checked == false) { bs.waterMarkText.Visible = false; }
-                    bs.Show();
-                    if (spl2.Visible) { spl2.Close(); }
-                }
-                catch
-                {
-                    bs.Show();
-                }
+                BootMgr bm = new BootMgr();
+                bm.Show();
             }
             //removes "Generating..." text
             label10.Text = "";
@@ -945,10 +583,11 @@ namespace UltimateBlueScreenSimulator
             RandFunction();
             button1.PerformClick();
         }
+
         internal void RandFunction()
         {
             try
-            { 
+            {
                 windowVersion.SelectedIndex = SetRnd(windowVersion.Items.Count - 1);
                 autoBox.Checked = Convert.ToBoolean(SetRnd(2) - 1);
                 greenBox.Checked = Convert.ToBoolean(SetRnd(2) - 1);
@@ -963,14 +602,14 @@ namespace UltimateBlueScreenSimulator
                 checkBox1.Checked = Convert.ToBoolean(SetRnd(2) - 1);
                 checkBox2.Checked = Convert.ToBoolean(SetRnd(2) - 1);
                 if (enableeggs)
-                { 
+                {
                     if (textBox1.Text == "blackscreen")
                     {
                         windowVersion.Items.Add("Windows Vista/7 BOOTMGR (1024x768, ClearType)");
                         windowVersion.SelectedIndex = windowVersion.Items.Count - 1;
                     }
                 }
-                textBox2.Text = GenFile();
+                textBox2.Text = me.GenFile();
                 if (windowVersion.SelectedIndex == 4) { checkBox1.Checked = true; }
             }
             catch (Exception ex)
@@ -981,14 +620,15 @@ namespace UltimateBlueScreenSimulator
 
         int SetRnd(int limit)
         {
-            Thread.Sleep(20);
+            System.Threading.Thread.Sleep(20);
             Random rnd = new Random();
             try
             {
                 int outp = 0;
                 outp = rnd.Next(limit);
                 return outp;
-            } catch
+            }
+            catch
             {
                 return 0;
             }
@@ -1019,13 +659,8 @@ namespace UltimateBlueScreenSimulator
         //enables, disa
         private void CheckBox2_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBox2.Checked == true)
-            {
-                textBox2.Enabled = true;
-            } else
-            {
-                textBox2.Enabled = false;
-            }
+            textBox2.Enabled = checkBox2.Checked;
+            me.SetBool("show_file", checkBox2.Checked);
         }
 
         private void Button5_Click(object sender, EventArgs e)
@@ -1417,6 +1052,76 @@ namespace UltimateBlueScreenSimulator
                     kode = "";
                 }
             }
+        }
+
+        private void autoBox_CheckedChanged(object sender, EventArgs e)
+        {
+            me.SetBool("autoclose", autoBox.Checked);
+        }
+
+        private void serverBox_CheckedChanged(object sender, EventArgs e)
+        {
+            me.SetBool("server", serverBox.Checked);
+        }
+
+        private void greenBox_CheckedChanged(object sender, EventArgs e)
+        {
+            me.SetBool("insider", greenBox.Checked);
+        }
+
+        private void qrBox_CheckedChanged(object sender, EventArgs e)
+        {
+            me.SetBool("qr", qrBox.Checked);
+        }
+
+        private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            me.SetString("code", comboBox1.SelectedItem.ToString());
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+            me.SetString("culprit", textBox2.Text);
+        }
+
+        private void amdBox_CheckedChanged(object sender, EventArgs e)
+        {
+            me.SetBool("amd", amdBox.Checked);
+        }
+
+        private void stackBox_CheckedChanged(object sender, EventArgs e)
+        {
+            me.SetBool("stack_trace", stackBox.Checked);
+        }
+
+        private void blinkBox_CheckedChanged(object sender, EventArgs e)
+        {
+            me.SetBool("blink", blinkBox.Checked);
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            me.SetString("screen_mode", comboBox2.SelectedItem.ToString());
+        }
+
+        private void acpiBox_CheckedChanged(object sender, EventArgs e)
+        {
+            me.SetBool("acpi", acpiBox.Checked);
+        }
+
+        private void waterBox_CheckedChanged(object sender, EventArgs e)
+        {
+            me.SetBool("watermark", waterBox.Checked);
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            me.SetBool("show_description", checkBox1.Checked);
+        }
+
+        private void winMode_CheckedChanged(object sender, EventArgs e)
+        {
+            me.SetBool("windowed", winMode.Checked);
         }
     }
 }

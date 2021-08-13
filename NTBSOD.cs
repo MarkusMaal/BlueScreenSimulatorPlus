@@ -45,13 +45,13 @@ namespace UltimateBlueScreenSimulator
             pictureBox3.BackColor = me.GetTheme(true, true);
             if (!blink) { pictureBox3.Visible = false; }
 
-            errorCode.Image = WriteWord(txt["Error code formatting"].Replace("{0}",error.Split(' ')[1].Replace(")", "").Replace("(", "").Replace(" ", "").ToString()).Replace("{1}", Program.f1.GenAddress(4, 8, false)).Trim(), me.GetTheme(true), me.GetTheme(false));
+            errorCode.Image = WriteWord(txt["Error code formatting"].Replace("{0}",error.Split(' ')[1].Replace(")", "").Replace("(", "").Replace(" ", "").ToString()).Replace("{1}", me.GenAddress(4, 8, false)).Trim(), me.GetTheme(true), me.GetTheme(false));
             if (whatfail == "")
             {
                 errorDescription.Image = WriteWord(error.Split(' ')[0].ToString(), me.GetTheme(true), me.GetTheme(false));
             } else
             {
-                errorDescription.Image = WriteWord(error.Split(' ')[0].ToString() + "*** Address " + Program.f1.GenHex(8, "RRRRRRRR").ToLower() + " has base at " + Program.f1.GenHex(8, "RRRRRRRR").ToLower() + " - " + whatfail.ToLower(), me.GetTheme(true), me.GetTheme(false));
+                errorDescription.Image = WriteWord(error.Split(' ')[0].ToString() + "*** Address " + me.GenHex(8, "RRRRRRRR").ToLower() + " has base at " + me.GenHex(8, "RRRRRRRR").ToLower() + " - " + whatfail.ToLower(), me.GetTheme(true), me.GetTheme(false));
             }
             if (stacktrace)
             {
@@ -59,45 +59,45 @@ namespace UltimateBlueScreenSimulator
                 tableHeader.Image = WriteWord(txt["Stack trace heading"].Trim() + GenSpace(40 - txt["Stack trace heading"].Trim().Length) + txt["Stack trace heading"].Trim(), me.GetTheme(true), me.GetTheme(false));
                 foreach (PictureBox ctrl in flowLayoutPanel2.Controls)
                 {
-                    string rnd1 = Program.f1.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
-                    string rnd2 = Program.f1.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
-                    ctrl.Image = WriteWord(txt["Stack trace table formatting"].Trim().Replace("{0}", rnd1).Replace("{1}", rnd2).Replace("{2}", Program.f1.GenFile()), me.GetTheme(true), me.GetTheme(false));
+                    string rnd1 = me.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
+                    string rnd2 = me.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
+                    ctrl.Image = WriteWord(txt["Stack trace table formatting"].Trim().Replace("{0}", rnd1).Replace("{1}", rnd2).Replace("{2}", me.GenFile()), me.GetTheme(true), me.GetTheme(false));
                 }
                 foreach (PictureBox ctrl in flowLayoutPanel3.Controls)
                 {
-                    string rnd1 = Program.f1.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
-                    string rnd2 = Program.f1.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
-                    ctrl.Image = WriteWord(txt["Stack trace table formatting"].Trim().Replace("{0}", rnd1).Replace("{1}", rnd2).Replace("{2}", Program.f1.GenFile()), me.GetTheme(true), me.GetTheme(false));
+                    string rnd1 = me.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
+                    string rnd2 = me.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
+                    ctrl.Image = WriteWord(txt["Stack trace table formatting"].Trim().Replace("{0}", rnd1).Replace("{1}", rnd2).Replace("{2}", me.GenFile()), me.GetTheme(true), me.GetTheme(false));
                 }
                 table2.Image = WriteWord(txt["Memory address dump heading"], me.GetTheme(true), me.GetTheme(false));
-                string r1 = Program.f1.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
-                string r2 = Program.f1.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
-                string r3 = Program.f1.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
-                string r4 = Program.f1.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
-                string r5 = Program.f1.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
-                string r6 = Program.f1.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
-                tablerow_1.Image = WriteWord(txt["Memory address dump table"].Replace("{0}", r1).Replace("{1}", r2).Replace("{2}", r3).Replace("{3}", r4).Replace("{4}", r5).Replace("{5}", r6).Replace("{6}", Program.f1.GenFile()), me.GetTheme(true), me.GetTheme(false));
-                r1 = Program.f1.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
-                r2 = Program.f1.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
-                r3 = Program.f1.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
-                r4 = Program.f1.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
-                r5 = Program.f1.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
-                r6 = Program.f1.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
-                tablerow_2.Image = WriteWord(txt["Memory address dump table"].Replace("{0}", r1).Replace("{1}", r2).Replace("{2}", r3).Replace("{3}", r4).Replace("{4}", r5).Replace("{5}", r6).Replace("{6}", Program.f1.GenFile()), me.GetTheme(true), me.GetTheme(false));
-                r1 = Program.f1.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
-                r2 = Program.f1.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
-                r3 = Program.f1.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
-                r4 = Program.f1.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
-                r5 = Program.f1.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
-                r6 = Program.f1.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
-                tablerow_3.Image = WriteWord(txt["Memory address dump table"].Replace("{0}", r1).Replace("{1}", r2).Replace("{2}", r3).Replace("{3}", r4).Replace("{4}", r5).Replace("{5}", r6).Replace("{6}", Program.f1.GenFile()), me.GetTheme(true), me.GetTheme(false));
-                r1 = Program.f1.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
-                r2 = Program.f1.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
-                r3 = Program.f1.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
-                r4 = Program.f1.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
-                r5 = Program.f1.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
-                r6 = Program.f1.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
-                tablerow_4.Image = WriteWord(txt["Memory address dump table"].Replace("{0}", r1).Replace("{1}", r2).Replace("{2}", r3).Replace("{3}", r4).Replace("{4}", r5).Replace("{5}", r6).Replace("{6}", Program.f1.GenFile()), me.GetTheme(true), me.GetTheme(false));
+                string r1 = me.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
+                string r2 = me.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
+                string r3 = me.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
+                string r4 = me.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
+                string r5 = me.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
+                string r6 = me.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
+                tablerow_1.Image = WriteWord(txt["Memory address dump table"].Replace("{0}", r1).Replace("{1}", r2).Replace("{2}", r3).Replace("{3}", r4).Replace("{4}", r5).Replace("{5}", r6).Replace("{6}", me.GenFile()), me.GetTheme(true), me.GetTheme(false));
+                r1 = me.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
+                r2 = me.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
+                r3 = me.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
+                r4 = me.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
+                r5 = me.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
+                r6 = me.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
+                tablerow_2.Image = WriteWord(txt["Memory address dump table"].Replace("{0}", r1).Replace("{1}", r2).Replace("{2}", r3).Replace("{3}", r4).Replace("{4}", r5).Replace("{5}", r6).Replace("{6}", me.GenFile()), me.GetTheme(true), me.GetTheme(false));
+                r1 = me.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
+                r2 = me.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
+                r3 = me.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
+                r4 = me.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
+                r5 = me.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
+                r6 = me.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
+                tablerow_3.Image = WriteWord(txt["Memory address dump table"].Replace("{0}", r1).Replace("{1}", r2).Replace("{2}", r3).Replace("{3}", r4).Replace("{4}", r5).Replace("{5}", r6).Replace("{6}", me.GenFile()), me.GetTheme(true), me.GetTheme(false));
+                r1 = me.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
+                r2 = me.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
+                r3 = me.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
+                r4 = me.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
+                r5 = me.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
+                r6 = me.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
+                tablerow_4.Image = WriteWord(txt["Memory address dump table"].Replace("{0}", r1).Replace("{1}", r2).Replace("{2}", r3).Replace("{3}", r4).Replace("{4}", r5).Replace("{5}", r6).Replace("{6}", me.GenFile()), me.GetTheme(true), me.GetTheme(false));
                 Program.f1.label10.Text = "";
 
 

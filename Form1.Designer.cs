@@ -72,7 +72,6 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.timer3 = new System.Windows.Forms.Timer(this.components);
-            this.defaultVersions = new System.Windows.Forms.ComboBox();
             this.flowLayoutPanel1.SuspendLayout();
             this.WXOptions.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
@@ -140,7 +139,7 @@
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(15, 70);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(472, 201);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(472, 306);
             this.flowLayoutPanel1.TabIndex = 3;
             // 
             // WXOptions
@@ -176,6 +175,7 @@
             this.autoBox.Text = "Auto restart [?]";
             this.helpTip.SetToolTip(this.autoBox, "Closes the blue screen automatically. Also displays a different blue screen.");
             this.autoBox.UseVisualStyleBackColor = true;
+            this.autoBox.CheckedChanged += new System.EventHandler(this.autoBox_CheckedChanged);
             this.autoBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Button7_KeyDown);
             // 
             // serverBox
@@ -188,6 +188,7 @@
             this.serverBox.Text = "Server blue screen [?]";
             this.helpTip.SetToolTip(this.serverBox, "Displays a blue screen without an emoticon :(");
             this.serverBox.UseVisualStyleBackColor = true;
+            this.serverBox.CheckedChanged += new System.EventHandler(this.serverBox_CheckedChanged);
             this.serverBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Button7_KeyDown);
             // 
             // greenBox
@@ -201,6 +202,7 @@
             this.helpTip.SetToolTip(this.greenBox, "Shows a green screen instead of a blue screen (from Windows Insider Preview build" +
         "s)");
             this.greenBox.UseVisualStyleBackColor = true;
+            this.greenBox.CheckedChanged += new System.EventHandler(this.greenBox_CheckedChanged);
             this.greenBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Button7_KeyDown);
             // 
             // qrBox
@@ -215,6 +217,7 @@
             this.qrBox.Text = "QR code [?]";
             this.helpTip.SetToolTip(this.qrBox, "Displays the QR code, visible on most Windows 10 versions");
             this.qrBox.UseVisualStyleBackColor = true;
+            this.qrBox.CheckedChanged += new System.EventHandler(this.qrBox_CheckedChanged);
             this.qrBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Button7_KeyDown);
             // 
             // errorCode
@@ -240,6 +243,7 @@
             this.textBox2.TabIndex = 6;
             this.textBox2.Text = "vga.sys";
             this.helpTip.SetToolTip(this.textBox2, "Specific file, that  may have caused the crash");
+            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             this.textBox2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Button7_KeyDown);
             // 
             // checkBox2
@@ -286,6 +290,7 @@
             this.comboBox1.Size = new System.Drawing.Size(361, 21);
             this.comboBox1.TabIndex = 1;
             this.helpTip.SetToolTip(this.comboBox1, "Select specific NT error message to display.");
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged_1);
             this.comboBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Button7_KeyDown);
             // 
             // label3
@@ -318,6 +323,7 @@
             this.blinkBox.Text = "Blink cursor [?]";
             this.helpTip.SetToolTip(this.blinkBox, "Displays blinking caret cursor, as seen in NT 3.x versions");
             this.blinkBox.UseVisualStyleBackColor = true;
+            this.blinkBox.CheckedChanged += new System.EventHandler(this.blinkBox_CheckedChanged);
             this.blinkBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Button7_KeyDown);
             // 
             // amdBox
@@ -330,6 +336,7 @@
             this.amdBox.Text = "AMD processor [?]";
             this.helpTip.SetToolTip(this.amdBox, "Displays \"AUTHENTICAMD\" instead of \"GENUINEINTEL\" on the NT blue screen");
             this.amdBox.UseVisualStyleBackColor = true;
+            this.amdBox.CheckedChanged += new System.EventHandler(this.amdBox_CheckedChanged);
             this.amdBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Button7_KeyDown);
             // 
             // stackBox
@@ -345,6 +352,7 @@
             this.helpTip.SetToolTip(this.stackBox, "Displays developer debug information on the NT blue screen\r\nNote: The blue screen" +
         " may take longer to load if enabled");
             this.stackBox.UseVisualStyleBackColor = true;
+            this.stackBox.CheckedChanged += new System.EventHandler(this.stackBox_CheckedChanged);
             this.stackBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Button7_KeyDown);
             // 
             // nineXmessage
@@ -374,6 +382,7 @@
             this.comboBox2.Size = new System.Drawing.Size(345, 21);
             this.comboBox2.TabIndex = 1;
             this.helpTip.SetToolTip(this.comboBox2, "Select specific 9x/Me error message to display.");
+            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             this.comboBox2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Button7_KeyDown);
             // 
             // label4
@@ -388,13 +397,14 @@
             // acpiBox
             // 
             this.acpiBox.AutoSize = true;
-            this.acpiBox.Location = new System.Drawing.Point(473, 3);
+            this.acpiBox.Location = new System.Drawing.Point(3, 188);
             this.acpiBox.Name = "acpiBox";
             this.acpiBox.Size = new System.Drawing.Size(124, 17);
             this.acpiBox.TabIndex = 8;
             this.acpiBox.Text = "ACPI error screen [?]";
             this.helpTip.SetToolTip(this.acpiBox, "Only displays the stop code (Windows Vista/7 only)");
             this.acpiBox.UseVisualStyleBackColor = true;
+            this.acpiBox.CheckedChanged += new System.EventHandler(this.acpiBox_CheckedChanged);
             this.acpiBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Button7_KeyDown);
             // 
             // waterBox
@@ -402,20 +412,21 @@
             this.waterBox.AutoSize = true;
             this.waterBox.Checked = true;
             this.waterBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.waterBox.Location = new System.Drawing.Point(473, 26);
+            this.waterBox.Location = new System.Drawing.Point(3, 211);
             this.waterBox.Name = "waterBox";
             this.waterBox.Size = new System.Drawing.Size(127, 17);
             this.waterBox.TabIndex = 4;
             this.waterBox.Text = "Display watermark [?]";
             this.helpTip.SetToolTip(this.waterBox, "Displays a watermark to let the user know that this a blue screen simulator");
             this.waterBox.UseVisualStyleBackColor = true;
+            this.waterBox.CheckedChanged += new System.EventHandler(this.waterBox_CheckedChanged);
             // 
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
             this.checkBox1.Checked = true;
             this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Location = new System.Drawing.Point(473, 49);
+            this.checkBox1.Location = new System.Drawing.Point(3, 234);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(237, 17);
             this.checkBox1.TabIndex = 6;
@@ -423,22 +434,24 @@
             this.helpTip.SetToolTip(this.checkBox1, "Displays error description in addition to STOP code (e.g. IRQL_NOT_LESS_OR_EQUAL)" +
         "");
             this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // winMode
             // 
             this.winMode.AutoSize = true;
-            this.winMode.Location = new System.Drawing.Point(473, 72);
+            this.winMode.Location = new System.Drawing.Point(3, 257);
             this.winMode.Name = "winMode";
             this.winMode.Size = new System.Drawing.Size(121, 17);
             this.winMode.TabIndex = 7;
             this.winMode.Text = "Windowed mode [?]";
             this.helpTip.SetToolTip(this.winMode, "Does not full screen bluescreens, which results in better quality");
             this.winMode.UseVisualStyleBackColor = true;
+            this.winMode.CheckedChanged += new System.EventHandler(this.winMode_CheckedChanged);
             // 
             // xpNote
             // 
             this.xpNote.AutoSize = true;
-            this.xpNote.Location = new System.Drawing.Point(473, 92);
+            this.xpNote.Location = new System.Drawing.Point(3, 277);
             this.xpNote.Name = "xpNote";
             this.xpNote.Size = new System.Drawing.Size(325, 13);
             this.xpNote.TabIndex = 13;
@@ -448,7 +461,7 @@
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(416, 285);
+            this.button1.Location = new System.Drawing.Point(416, 390);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(68, 23);
             this.button1.TabIndex = 4;
@@ -461,7 +474,7 @@
             // button3
             // 
             this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.Location = new System.Drawing.Point(301, 285);
+            this.button3.Location = new System.Drawing.Point(301, 390);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(109, 23);
             this.button3.TabIndex = 9;
@@ -474,7 +487,7 @@
             // button4
             // 
             this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button4.Location = new System.Drawing.Point(240, 285);
+            this.button4.Location = new System.Drawing.Point(240, 390);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(55, 23);
             this.button4.TabIndex = 10;
@@ -489,7 +502,7 @@
             // button5
             // 
             this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button5.Location = new System.Drawing.Point(175, 285);
+            this.button5.Location = new System.Drawing.Point(175, 390);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(59, 23);
             this.button5.TabIndex = 11;
@@ -502,7 +515,7 @@
             // button6
             // 
             this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button6.Location = new System.Drawing.Point(90, 285);
+            this.button6.Location = new System.Drawing.Point(90, 390);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(79, 23);
             this.button6.TabIndex = 12;
@@ -516,7 +529,7 @@
             // button7
             // 
             this.button7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button7.Location = new System.Drawing.Point(15, 285);
+            this.button7.Location = new System.Drawing.Point(15, 390);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(69, 23);
             this.button7.TabIndex = 14;
@@ -532,7 +545,7 @@
             // 
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(115, 272);
+            this.label7.Location = new System.Drawing.Point(115, 377);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(150, 13);
             this.label7.TabIndex = 6;
@@ -542,7 +555,7 @@
             // 
             this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(15, 272);
+            this.label8.Location = new System.Drawing.Point(15, 377);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(96, 13);
             this.label8.TabIndex = 7;
@@ -551,7 +564,7 @@
             // label10
             // 
             this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label10.Location = new System.Drawing.Point(351, 272);
+            this.label10.Location = new System.Drawing.Point(351, 377);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(134, 13);
             this.label10.TabIndex = 8;
@@ -572,35 +585,12 @@
             this.timer3.Interval = 6000;
             this.timer3.Tick += new System.EventHandler(this.Timer3_Tick);
             // 
-            // defaultVersions
-            // 
-            this.defaultVersions.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.defaultVersions.FormattingEnabled = true;
-            this.defaultVersions.Items.AddRange(new object[] {
-            "Windows 11 (Native, Safe mode: 640x480, ClearType)",
-            "Windows 10 (Native, Safe mode: 640x480, ClearType)",
-            "Windows 8/8.1 (Native, Safe mode: 640x480, ClearType)",
-            "Windows Vista/7 (640x480, ClearType)",
-            "Windows Vista/7 BOOTMGR (1024x768, ClearType)",
-            "Windows XP (640x480, Standard)",
-            "Windows 2000 Professional/Server Family (640x480, Standard)",
-            "Windows 9x/Millennium Edition (EGA text mode, Standard)",
-            "Windows CE 3.0 and later (750x400, Standard)",
-            "Windows NT 4.0/3.x (VGA text mode, Standard)",
-            "Windows 3.1 (EGA text mode, Standard)"});
-            this.defaultVersions.Location = new System.Drawing.Point(15, -8);
-            this.defaultVersions.Name = "defaultVersions";
-            this.defaultVersions.Size = new System.Drawing.Size(381, 21);
-            this.defaultVersions.TabIndex = 13;
-            this.defaultVersions.Visible = false;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(499, 334);
+            this.ClientSize = new System.Drawing.Size(499, 439);
             this.Controls.Add(this.button7);
-            this.Controls.Add(this.defaultVersions);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
@@ -685,7 +675,6 @@
         internal System.Windows.Forms.CheckBox checkBox1;
         internal System.Windows.Forms.CheckBox winMode;
         public System.Windows.Forms.Timer timer3;
-        public System.Windows.Forms.ComboBox defaultVersions;
         public System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Button button7;
     }

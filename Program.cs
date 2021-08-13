@@ -80,6 +80,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Collections.Generic;
 using SimulatorDatabase;
+using UltimateBlueScreenSimulator;
 
 namespace UltimateBlueScreenSimulator
 {
@@ -630,6 +631,8 @@ namespace SimulatorDatabase
         private string emoticon;
         private string screen_mode;
         private string qr_file;
+        private string friendlyname;
+        private string culprit;
 
         private readonly string os;
 
@@ -700,6 +703,8 @@ namespace SimulatorDatabase
             this.blinkblink = false;
             this.font_support = true;
             this.winxplus = false;
+            this.friendlyname = "";
+            this.culprit = "";
             SetOSSpecificDefaults();
         }
 
@@ -744,6 +749,230 @@ namespace SimulatorDatabase
                 case "autoclose": this.autoclose = value; break;
             }
         }
+        //GenAddress uses the last function to generate multiple error address codes
+        public string GenAddress(int count, int places, bool lower)
+        {
+            string ot = "";
+            string inspir = GetString("ecode1");
+            for (int i = 0; i < count; i++)
+            {
+                if (i == 1) { inspir = GetString("ecode2"); }
+                if (i == 2) { inspir = GetString("ecode3"); }
+                if (i == 3) { inspir = GetString("ecode4"); }
+                if (ot != "") { ot += ", "; }
+                ot += "0x" + GenHex(places, inspir);
+            }
+            if (lower) { return ot.ToLower(); }
+            return ot;
+        }
+        //generates hexadecimal codes
+        //lettercount sets the length of the actual hex code
+        //inspir is a string where each character represents if the value is fixed or random
+        public string GenHex(int lettercount, string inspir)
+        {
+            //sleep command is used to make sure that randomization works properly
+            System.Threading.Thread.Sleep(20);
+            string output = "";
+            Random r = new Random();
+            for (int i = 0; i < lettercount; i++)
+            {
+                int temp = r.Next(15);
+                char lette = ' ';
+                if ((inspir + inspir).Substring(i, 1) == "R")
+                {
+                    if (temp < 10) { lette = Convert.ToChar(temp.ToString()); }
+                    if (temp == 10) { lette = 'A'; }
+                    if (temp == 11) { lette = 'B'; }
+                    if (temp == 12) { lette = 'C'; }
+                    if (temp == 13) { lette = 'D'; }
+                    if (temp == 14) { lette = 'E'; }
+                    if (temp == 15) { lette = 'F'; }
+                }
+                else
+                {
+                    lette = Convert.ToChar((inspir + inspir).Substring(i, 1));
+                }
+                output += lette.ToString();
+            }
+            return output;
+        }
+
+
+
+        //GenFile generates a new file for use in Windows NT blue screen
+        public string GenFile(bool lower = true)
+        {
+            System.Threading.Thread.Sleep(20);
+            string filename = "hal.dll";
+            Random r = new Random();
+            int temp = r.Next(15);
+            if (temp == 0) { filename = "ntoskrnl.exe"; }
+            if (temp == 1) { filename = "hal.dll"; }
+            if (temp == 2) { filename = "atapi.sys"; }
+            if (temp == 3) { filename = "tcpip.sys"; }
+            if (temp == 4) { filename = "Cdrom.sys"; }
+            if (temp == 5) { filename = "vga.sys"; }
+            if (temp == 6) { filename = "Floppy.sys"; }
+            if (temp == 7) { filename = "mup.sys"; }
+            if (temp == 8) { filename = "Beep.sys"; }
+            if (temp == 9) { filename = "Ntfs.sys"; }
+            if (temp == 10) { filename = "netbios.sys"; }
+            if (temp == 11) { filename = "CLASS32.SYS"; }
+            if (temp == 12) { filename = "srv.sys"; }
+            if (temp == 13) { filename = "SCSIPORT.SYS"; }
+            if (temp == 14) { filename = "Disk.SYS"; }
+            if (temp == 15) { filename = "Null.SYS"; }
+            if (lower == false) { return filename.ToUpper(); }
+            return filename;
+        }
+
+        public Form SetupForm (Form f)
+        {
+            switch (this.os)
+            {
+                case "Windows 11":
+                    return SetupWinXabove((WXBS)f);
+                case "Windows 10":
+                    return SetupWinXabove((WXBS)f);
+                case "Windows 8/8.1":
+                    return SetupWin8((WXBS)f);
+                case "Windows Vista/7":
+                    return SetupVista((Xvsbs)f);
+                case "Windows XP":
+                    return SetupExperience((Xvsbs)f);
+                case "Windows 2000":
+                    return Setup2k((w2kbs)f);
+                case "Windows NT 3.1x/4.0":
+                    return SetupNT((NTBSOD)f);
+                case "Windows 9x/Me":
+                    return Setup9x((old_bluescreen)f);
+                case "Windows 3.1x":
+                    return Setup9x((old_bluescreen)f);
+                default:
+                    return f;
+            }
+        }
+
+        private Form SetupNT (NTBSOD bs)
+        {
+            bs.BackColor = this.GetTheme(true);
+            bs.ForeColor = this.GetTheme(false);
+            if (GetBool("show_file")) { bs.whatfail = GetString("culprit"); }
+            bs.error = this.code.Substring(0, this.code.ToString().Length - 1);
+            bs.fullscreen = !this.windowed;
+            if (this.amd) { bs.processortype = "AuthenticAMD"; }
+            bs.stacktrace = this.stack_trace;
+            bs.blink = this.blink;
+            bs.waterMarkText.Visible = this.watermark;
+            return bs;
+        }
+
+        private Form Setup9x (old_bluescreen bs)
+        {
+            bs.BackColor = this.GetTheme(true);
+            bs.ForeColor = this.GetTheme(false);
+            bs.window = this.GetBool("windowed");
+            bs.screenmode = this.GetString("screen_mode");
+            bs.errorCode = GenHex(2, GetString("ecode1")) + " : " + GenHex(4, GetString("ecode2")) + " : " + GenHex(6, GetString("ecode3"));
+            bs.waterMarkText.Visible = this.GetBool("watermark");
+            return bs;
+        }
+
+        private Form Setup2k (w2kbs bs)
+        {
+            bs.BackColor = this.GetTheme(true);
+            bs.ForeColor = this.GetTheme(false);
+            bs.fullscreen = !this.GetBool("windowed");
+            bs.waterMarkText.Visible = this.GetBool("watermark");
+            if (this.GetBool("show_file")) { bs.whatfail = this.GetString("culprit"); }
+            bs.errorCode.Text = "*** STOP: " + this.GetString("code").Split(' ')[1].ToString().Replace(")", "").Replace("(", "").ToString() + " (" + GenAddress(4, 8, false) + ")";
+            bs.errorCode.Text = bs.errorCode.Text + "\n" + this.GetString("code").Split(' ')[0].ToString();
+            return bs;
+        }
+
+        private Form SetupExperience (Xvsbs bs)
+        {
+            bs.BackColor = this.GetTheme(true);
+            bs.ForeColor = this.GetTheme(false);
+            bs.fullscreen = !this.GetBool("windowed");
+            bs.errorCode.Visible = this.GetBool("show_details");
+            bs.waterMarkText.Visible = this.GetBool("watermark");
+            if (this.GetBool("show_file")) { bs.whatfail = this.GetString("culprit"); }
+            bs.errorCode.Text = this.GetString("code").Split(' ')[0].ToString();
+            bs.technicalCode.Text = "*** STOP: " + this.GetString("code").Split(' ')[1].ToString().Replace(")", "").Replace("(", "").ToString() + " (" + GenAddress(4, 16, false) + ")";
+            bs.supportInfo.Text = this.GetTexts()["Technical support"] + "\n\n\nTechnical information:";
+            return bs;
+        }
+
+        private Form SetupVista(Xvsbs bs)
+        {
+            bs.BackColor = this.GetTheme(true);
+            bs.ForeColor = this.GetTheme(false);
+            bs.fullscreen = !this.GetBool("windowed");
+            bs.errorCode.Visible = this.GetBool("show_details");
+            bs.waterMarkText.Visible = this.GetBool("watermark");
+            if (this.GetBool("show_file")) { bs.whatfail = this.GetString("culprit"); }
+            if (this.GetBool("acpi"))
+            {
+                bs.errorCode.Visible = false;
+                bs.label1.Visible = false;
+                bs.label5.Visible = false;
+                bs.label6.Visible = false;
+                bs.label7.Visible = false;
+            }
+            bs.errorCode.Text = this.GetString("code").Split(' ')[0].ToString();
+            bs.technicalCode.Text = "*** STOP: " + this.GetString("code").Split(' ')[1].ToString().Replace(")", "").Replace("(", "").ToString() + " (" + GenAddress(4, 16, false) + ")";
+            bs.supportInfo.Text = this.GetTexts()["Technical support"] + "\n\n\nTechnical information:";
+            bs.w6mode = true;
+            return bs;
+        }
+
+        private Form SetupWinXabove(WXBS bs)
+        {
+            bs.label1.Text = this.GetString("emoticon");
+            bs.BackColor = this.GetTheme(true);
+            bs.ForeColor = this.GetTheme(false);
+            bs.qr = GetBool("qr");
+            bs.close = GetBool("autoclose");
+            bs.green = GetBool("insider");
+            bs.server = GetBool("server");
+            bs.waterMarkText.Visible = GetBool("watermark");
+            if (GetBool("show_file")) { bs.whatfail = GetString("culprit"); }
+            if (GetBool("windowed")) { bs.WindowState = FormWindowState.Normal; bs.FormBorderStyle = FormBorderStyle.Sizable; }
+            if (GetBool("show_description"))
+            {
+                bs.code = GetString("code").Split(' ')[1].ToString().Replace(")", "").Replace("(", "").ToString();
+            }
+            else
+            {
+                bs.code = GetString("code").Split(' ')[0].ToString();
+            }
+            return bs;
+        }
+
+        private Form SetupWin8(WXBS bs)
+        {
+            bs.label1.Text = this.GetString("emoticon");
+            bs.BackColor = this.GetTheme(true);
+            bs.ForeColor = this.GetTheme(false);
+            bs.qr = false;
+            bs.w8 = true;
+            bs.close = GetBool("autoclose");
+            bs.green = false;
+            bs.server = false;
+            bs.waterMarkText.Visible = GetBool("watermark");
+            if (GetBool("show_file")) { bs.whatfail = GetString("culprit"); }
+            if (GetBool("windowed")) { bs.WindowState = FormWindowState.Normal; bs.FormBorderStyle = FormBorderStyle.Sizable; }
+            if (GetBool("show_description"))
+            {
+                bs.code = GetString("code").Split(' ')[1].ToString().Replace(")", "").Replace("(", "").ToString();
+            }
+            else
+            {
+                bs.code = GetString("code").Split(' ')[0].ToString();
+            }
+            return bs;
+        }
 
         public string GetString(string name)
         {
@@ -753,8 +982,10 @@ namespace SimulatorDatabase
                 case "emoticon": return this.emoticon;
                 case "qr_file": return this.qr_file;
                 case "screen_mode": return this.screen_mode;
+                case "friendlyname": return this.friendlyname;
                 case "code": return this.code;
                 case "icon": return this.icon;
+                case "culprit": return this.culprit;
                 case "ecode1": return this.ecodes[0];
                 case "ecode2": return this.ecodes[1];
                 case "ecode3": return this.ecodes[2];
@@ -782,6 +1013,8 @@ namespace SimulatorDatabase
                 case "emoticon": this.emoticon = value; break;
                 case "qr_file": this.qr_file = value; break;
                 case "screen_mode": this.screen_mode = value; break;
+                case "culprit": this.culprit = value; break;
+                case "friendlyname": this.friendlyname = value; break;
                 case "code": this.code = value; break;
             }
         }
@@ -895,6 +1128,8 @@ namespace SimulatorDatabase
             return this.texts;
         }
 
+
+
         // default hacks for specific OS
         public void SetOSSpecificDefaults()
         {
@@ -907,6 +1142,7 @@ namespace SimulatorDatabase
                     PushTitle("Main", "Windows");
                     PushText("No unresponsive programs", "Altough you can use CTRL+ALT+DEL to quit an application that has\r\nstopped responding to the system, there is no application in this\r\nstate.\r\nTo quit an application, use the application's quit or exit command,\r\nor choose the Close command from the Control menu.\r\n* Press any key to return to Windows\r\n* Press CTRL + ALT + DEL again to restart your computer.You will\r\nlose any unsaved information in all applications.");
                     PushText("Prompt", "Press any key to continue");
+                    SetString("friendlyname", "Windows 3.1 (EGA text mode, Standard)");
                     this.font_support = false;
                     this.blinkblink = true;
                     break;
@@ -923,6 +1159,7 @@ namespace SimulatorDatabase
                     PushText("System is busy", "The system is busy waiting for the Close Program dialog box to be\r\ndisplayed. You can wait and see if it appears, or you can restart\r\nyour computer.\r\n\r\n* Press any key to return to Windows and wait.\r\n* Press CTRL + ALT + DEL again to restart your computer. You will\r\n  lose any unsaved information in programs that are running.");
                     PushText("System is unresponsive", "The system is either busy or has become unstable. You can wait and\r\nsee if it becomes available again, or you can restart your computer.\r\n\r\n* Press any key to return to Windows and wait.\r\n* Press CTRL + ALT + DEL again to restart your computer. You will\r\n  lose any unsaved information in programs that are running.");
                     PushText("Prompt", "Press any key to continue");
+                    SetString("friendlyname", "Windows 9x/Millennium Edition (EGA text mode, Standard)");
                     this.font_support = false;
                     this.blinkblink = true;
                     break;
@@ -936,6 +1173,7 @@ namespace SimulatorDatabase
                     PushText("Restart message", "The computer will restart automatically\r\nafter {0} seconds.");
                     SetInt("timer", 30);
                     SetFont("Lucida Console", 10.4f, System.Drawing.FontStyle.Regular);
+                    SetString("friendlyname", "Windows CE 3.0 and later (750x400, Standard)");
                     break;
                 case "Windows NT 3.x/4.0":
                     this.icon = "2D flag";
@@ -949,6 +1187,7 @@ namespace SimulatorDatabase
                     PushText("Memory address dump table", "{0} {1} {2} {3} {4} {5}           - {6}");
                     PushText("Troubleshooting text", "Restart and set the recovery options in the system control panel\r\nor the /CRASHDEBUG system start option.");
                     SetInt("blink_speed", 100);
+                    SetString("friendlyname", "Windows NT 4.0/3.x (VGA text mode, Standard)");
                     this.font_support = false;
                     this.blinkblink = true;
                     break;
@@ -958,6 +1197,7 @@ namespace SimulatorDatabase
                     PushText("Troubleshooting text", "Check for viruses on your computer. Remove any newly installed\r\nhard drives or hard drive controllers.Check your hard drive\r\nto make sure it is properly configured and terminated.\r\nRun CHKDSK / F to check for hard drive corruption, and then\r\n restart your computer.");
                     PushText("Additional troubleshooting information", "Refer to your Getting Started manual for more information on\r\ntroubleshooting Stop errors.");
                     SetFont("Lucida Console", 8.0f, System.Drawing.FontStyle.Bold);
+                    SetString("friendlyname", "Windows 2000 Professional/Server Family (640x480, Standard)");
                     SetTheme(RGB(0, 0, 128), RGB(255, 255, 255));
                     break;
                 case "Windows XP":
@@ -970,6 +1210,7 @@ namespace SimulatorDatabase
                     PushText("Physical memory dump", "Beginning dump of physical memory\r\nPhysical memory dump complete.");
                     PushText("Technical support", "Contact your system administrator or technical support group for further\r\nassistance.");
                     SetFont("Lucida Console", 10.4f, System.Drawing.FontStyle.Regular);
+                    SetString("friendlyname", "Windows XP (640x480, Standard)");
                     SetTheme(RGB(0, 0, 128), RGB(255, 255, 255));
                     break;
                 case "Windows Vista/7":
@@ -982,6 +1223,7 @@ namespace SimulatorDatabase
                     PushText("Physical memory dump", "Dumping physical memory to disk:{0}");
                     PushText("Technical support", "Contact your system admin or technical support group for further assistance.");
                     SetFont("Consolas", 9.4f, System.Drawing.FontStyle.Regular);
+                    SetString("friendlyname", "Windows Vista/7 (640x480, ClearType)");
                     SetTheme(RGB(0, 0, 128), RGB(255, 255, 255));
                     break;
                 case "Windows 8/8.1":
@@ -991,6 +1233,7 @@ namespace SimulatorDatabase
                     PushText("Error code", "You can search for the error online: {0}");
                     SetFont("Segoe UI", 19.4f, System.Drawing.FontStyle.Regular);
                     SetTheme(RGB(16, 113, 170), RGB(255, 255, 255));
+                    SetString("friendlyname", "Windows 8/8.1 (Native, ClearType)");
                     break;
                 case "Windows 10":
                     this.icon = "3D window";
@@ -1004,6 +1247,7 @@ namespace SimulatorDatabase
                     SetString("qr_file", "local:0");
                     SetFont("Segoe UI", 19.4f, System.Drawing.FontStyle.Regular);
                     SetTheme(RGB(16, 113, 170), RGB(255, 255, 255));
+                    SetString("friendlyname", "Windows 10 (Native, ClearType)");
                     this.winxplus = true;
                     break;
                 case "Windows 11":
@@ -1018,6 +1262,7 @@ namespace SimulatorDatabase
                     SetString("qr_file", "local:0");
                     SetFont("Segoe UI", 19.4f, System.Drawing.FontStyle.Regular);
                     SetTheme(RGB(0, 0, 0), RGB(255, 255, 255));
+                    SetString("friendlyname", "Windows 11 (Native, ClearType)");
                     this.winxplus = true;
                     break;
             }

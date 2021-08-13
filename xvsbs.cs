@@ -58,7 +58,7 @@ namespace UltimateBlueScreenSimulator
             if (whatfail != "") {
                 label6.Text = "";
                 label7.Text = "";
-                label5.Text = "***  " + whatfail.ToUpper() + " - Address " + Program.f1.GenHex(8, "RRRRRRRR") + " base at " + Program.f1.GenHex(8, "RRRRRRRR") + ", DateStamp " + Program.f1.GenHex(8, "RRRRRRRR").ToLower();
+                label5.Text = "***  " + whatfail.ToUpper() + " - Address " + me.GenHex(8, "RRRRRRRR") + " base at " + me.GenHex(8, "RRRRRRRR") + ", DateStamp " + me.GenHex(8, "RRRRRRRR").ToLower();
                 errorCode.Text = "The problem seems to be caused by the following file: " + whatfail.ToUpper() + "\n\n" + errorCode.Text;
             }
             label1.Text = txt["A problem has been detected..."];

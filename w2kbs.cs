@@ -51,7 +51,7 @@ namespace UltimateBlueScreenSimulator
             }
             if (whatfail != "")
             {
-                errorCode.Text += "\n\n*** Address " + Program.f1.GenHex(8, "RRRRRRRR") + " base at " + Program.f1.GenHex(8, "RRRRRRRR")  + ", DateStamp " + Program.f1.GenHex(8, "RRRRRRRR").ToLower() + " - " + whatfail.ToLower();
+                errorCode.Text += "\n\n*** Address " + me.GenHex(8, "RRRRRRRR") + " base at " + me.GenHex(8, "RRRRRRRR")  + ", DateStamp " + me.GenHex(8, "RRRRRRRR").ToLower() + " - " + whatfail.ToLower();
             }
             errorCode.Text = errorCode.Text.Replace("IRQL", "DRIVER_IRQL");
 
