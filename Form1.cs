@@ -10,7 +10,7 @@ using System.Threading;
 using System.Diagnostics;
 using Microsoft.Win32;
 using System.Drawing.Drawing2D;
-
+using SimulatorDatabase;
 namespace UltimateBlueScreenSimulator
 {
     public partial class Form1 : Form
@@ -20,14 +20,9 @@ namespace UltimateBlueScreenSimulator
         public string c2 = "RRRRRRRRRRRRRRRR";
         public string c3 = "RRRRRRRRRRRRRRRR";
         public string c4 = "RRRRRRRRRRRRRRRR";
-
+        
         public string kode = "";
-
-        //these variables deal with bsod themes
-        public Color[] bsodmodern = { Color.FromArgb(16, 113, 170), Color.White };
-        public Color[] bsodxvs = { Color.Navy, Color.White };
-        public Color[] bsodnt = { Color.FromArgb(0, 0, 168), Color.FromArgb(170, 170, 170)};
-        public Color[] bsodold = { Color.FromArgb(0, 0, 170), Color.White, Color.FromArgb(170, 170, 170), Color.FromArgb(0, 0, 170) };
+        
         public string emoticon = ":(";
 
         //these variables are used for prank mode
@@ -67,7 +62,7 @@ namespace UltimateBlueScreenSimulator
         public bool showcursor = false;
 
         //visible operating systems
-        public bool[] osshows = { true, true, true, true, true, true, true, true, true, true};
+        public bool[] osshows = { true, true, true, true, true, true, true, true, true, true, true, true};
 
         //enable/disable easter eggs
         public bool enableeggs = true;
@@ -108,7 +103,18 @@ namespace UltimateBlueScreenSimulator
             checkBox2.Enabled = true;
             ntPanel.Visible = false;
             xpNote.Visible = false;
-            if (windowVersion.SelectedItem.ToString().Trim() == "Windows 10 (Native, Safe mode: 640x480, ClearType)")
+            if (windowVersion.SelectedItem.ToString().Trim() == "Windows 11 (Native, Safe mode: 640x480, ClearType)")
+            {
+                WXOptions.Visible = true;
+                serverBox.Visible = true;
+                greenBox.Visible = true;
+                qrBox.Visible = true;
+                errorCode.Visible = true;
+                autoBox.Checked = true;
+                checkBox1.Visible = true;
+                winMode.Visible = true;
+            }
+            else if (windowVersion.SelectedItem.ToString().Trim() == "Windows 10 (Native, Safe mode: 640x480, ClearType)")
             {
                 WXOptions.Visible = true;
                 serverBox.Visible = true;
@@ -179,10 +185,7 @@ namespace UltimateBlueScreenSimulator
             windowVersion.Items.Clear();
             for (int i = 0; i < defaultVersions.Items.Count; i++)
             {
-                if (osshows[i] == true)
-                {
-                    windowVersion.Items.Add(defaultVersions.Items[i]);
-                }
+                windowVersion.Items.Add(defaultVersions.Items[i]);
             }
             WXOptions.Visible = false;
             errorCode.Visible = false;
@@ -211,6 +214,11 @@ namespace UltimateBlueScreenSimulator
             {
                 winver = specificos;
                 specificos = "";
+            }
+            //this code identifies Windows 11
+            if (winver.Contains("Windows 11"))
+            {
+                SetOS("Windows 11");
             }
             //this code identifies Windows 10
             if (winver.Contains("Windows 10"))
@@ -559,19 +567,6 @@ namespace UltimateBlueScreenSimulator
                         c.Text = "undefined";
                         c.Dispose();
                     }
-                    foreach (Control c in Program.bh.flowLayoutPanel1.Controls)
-                    {
-                        if (c is Panel)
-                        {
-                            foreach (Control ctrl in c.Controls)
-                            {
-                                if (ctrl is TextBox)
-                                {
-                                    ctrl.Text = "undefined";
-                                }
-                            }
-                        }
-                    }
                     this.Text = "";
                     this.HelpButton = false;
                     this.ShowIcon = false;
@@ -596,13 +591,44 @@ namespace UltimateBlueScreenSimulator
                 label10.Text = "";
                 return;
             }
-            if (windowVersion.SelectedItem.ToString().Trim() == "Windows 10 (Native, Safe mode: 640x480, ClearType)")
+            if (windowVersion.SelectedItem.ToString().Trim() == "Windows 11 (Native, Safe mode: 640x480, ClearType)")
+            {
+                WXBS bs = new WXBS();
+                try
+                {
+                    bs.label1.Text = emoticon;
+                    bs.BackColor = Program.bluescreens[9].GetTheme(true);
+                    bs.ForeColor = Program.bluescreens[9].GetTheme(false);
+                    if (qrBox.Checked == false) { bs.qr = false; }
+                    if (autoBox.Checked == false) { bs.close = false; }
+                    if (greenBox.Checked == true) { bs.green = true; }
+                    if (serverBox.Checked == true) { bs.server = true; }
+                    if (waterBox.Checked == false) { bs.waterMarkText.Visible = false; }
+                    if (checkBox2.Checked == true) { bs.whatfail = textBox2.Text; }
+                    if (winMode.Checked == true) { bs.WindowState = FormWindowState.Normal; bs.FormBorderStyle = FormBorderStyle.Sizable; }
+                    if (checkBox1.Checked == false)
+                    {
+                        bs.code = comboBox1.SelectedItem.ToString().Split(' ')[1].ToString().Replace(")", "").Replace("(", "").ToString();
+                    }
+                    else
+                    {
+                        bs.code = comboBox1.SelectedItem.ToString().Split(' ')[0].ToString();
+                    }
+                    bs.Show();
+                    if (spl2.Visible) { spl2.Close(); }
+                }
+                catch
+                {
+                    bs.Show();
+                }
+            }
+            else if (windowVersion.SelectedItem.ToString().Trim() == "Windows 10 (Native, Safe mode: 640x480, ClearType)")
             {
                 WXBS bs = new WXBS();
                 try { 
                 bs.label1.Text = emoticon;
-                bs.BackColor = bsodmodern[0];
-                bs.ForeColor = bsodmodern[1];
+                bs.BackColor = Program.bluescreens[8].GetTheme(true);
+                bs.ForeColor = Program.bluescreens[8].GetTheme(false);
                 if (qrBox.Checked == false) { bs.qr = false; }
                 if (autoBox.Checked == false) { bs.close = false; }
                 if (greenBox.Checked == true) { bs.green = true; }
@@ -643,25 +669,25 @@ namespace UltimateBlueScreenSimulator
                 try
                 {
                     bs.label1.Text = emoticon;
-                bs.BackColor = bsodmodern[0];
-                bs.ForeColor = bsodmodern[1];
-                if (autoBox.Checked == false) { bs.close = false; }
-                if (waterBox.Checked == false) { bs.waterMarkText.Visible = false; }
-                if (checkBox2.Checked == true) { bs.whatfail = textBox2.Text; }
-                if (winMode.Checked == true) { bs.WindowState = FormWindowState.Normal; bs.FormBorderStyle = FormBorderStyle.Sizable; }
-                bs.green = false;
-                bs.server = false;
-                bs.w8 = true;
-                if (checkBox1.Checked == false)
-                {
-                    bs.code = comboBox1.SelectedItem.ToString().Split(' ')[1].ToString().Replace(")", "").Replace("(", "").ToString();
-                }
-                else
-                {
-                    bs.code = comboBox1.SelectedItem.ToString().Split(' ')[0].ToString();
-                }
-                bs.Show();
-                if (spl2.Visible) { spl2.Close(); }
+                    bs.BackColor = Program.bluescreens[7].GetTheme(true);
+                    bs.ForeColor = Program.bluescreens[7].GetTheme(false);
+                    if (autoBox.Checked == false) { bs.close = false; }
+                    if (waterBox.Checked == false) { bs.waterMarkText.Visible = false; }
+                    if (checkBox2.Checked == true) { bs.whatfail = textBox2.Text; }
+                    if (winMode.Checked == true) { bs.WindowState = FormWindowState.Normal; bs.FormBorderStyle = FormBorderStyle.Sizable; }
+                    bs.green = false;
+                    bs.server = false;
+                    bs.w8 = true;
+                    if (checkBox1.Checked == false)
+                    {
+                        bs.code = comboBox1.SelectedItem.ToString().Split(' ')[1].ToString().Replace(")", "").Replace("(", "").ToString();
+                    }
+                    else
+                    {
+                        bs.code = comboBox1.SelectedItem.ToString().Split(' ')[0].ToString();
+                    }
+                    bs.Show();
+                    if (spl2.Visible) { spl2.Close(); }
                 }
                 catch
                 {
@@ -680,8 +706,8 @@ namespace UltimateBlueScreenSimulator
             {
                 Xvsbs bs = new Xvsbs
                 {
-                    BackColor = bsodxvs[0],
-                    ForeColor = bsodxvs[1],
+                    BackColor = Program.bluescreens[6].GetTheme(true),
+                    ForeColor = Program.bluescreens[6].GetTheme(false),
                     w6mode = true
                 };
                 try
@@ -734,8 +760,8 @@ namespace UltimateBlueScreenSimulator
             {
                 Xvsbs bs = new Xvsbs
                 {
-                    BackColor = bsodxvs[0],
-                    ForeColor = bsodxvs[1]
+                    BackColor = Program.bluescreens[5].GetTheme(true),
+                    ForeColor = Program.bluescreens[5].GetTheme(false)
                 };
                 try
                 { 
@@ -764,8 +790,8 @@ namespace UltimateBlueScreenSimulator
             {
                 w2kbs bs = new w2kbs
                 {
-                    BackColor = bsodxvs[0],
-                    ForeColor = bsodxvs[1]
+                    BackColor = Program.bluescreens[4].GetTheme(true),
+                    ForeColor = Program.bluescreens[4].GetTheme(false)
                 };
                 try
                 { 
@@ -793,8 +819,8 @@ namespace UltimateBlueScreenSimulator
             {
                 old_bluescreen bs = new old_bluescreen
                 {
-                    BackColor = bsodold[0],
-                    ForeColor = bsodold[1]
+                    BackColor = Program.bluescreens[1].GetTheme(true),
+                    ForeColor = Program.bluescreens[1].GetTheme(false)
                 };
                 try
                 {
@@ -819,8 +845,9 @@ namespace UltimateBlueScreenSimulator
             {
                 cebsod bs = new cebsod
                 {
-                    BackColor = bsodxvs[0],
-                    ForeColor = bsodxvs[1]
+                    BackColor = Program.bluescreens[2].GetTheme(true),
+                    ForeColor = Program.bluescreens[2].GetTheme(false),
+                    Font = Program.bluescreens[2].GetFont()
                 };
                 try
                 {
@@ -849,8 +876,8 @@ namespace UltimateBlueScreenSimulator
             {
                 NTBSOD bs = new NTBSOD
                 {
-                    BackColor = bsodnt[0],
-                    ForeColor = bsodnt[1]
+                    BackColor = Program.bluescreens[3].GetTheme(true),
+                    ForeColor = Program.bluescreens[3].GetTheme(false)
                 };
                 try { 
                     if (checkBox2.Checked == true) { bs.whatfail = textBox2.Text; }
@@ -878,8 +905,8 @@ namespace UltimateBlueScreenSimulator
             {
                 old_bluescreen bs = new old_bluescreen
                 {
-                    BackColor = bsodold[0],
-                    ForeColor = bsodold[1]
+                    BackColor = Program.bluescreens[0].GetTheme(true),
+                    ForeColor = Program.bluescreens[0].GetTheme(false)
                 };
                 try
                 { 

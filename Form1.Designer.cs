@@ -104,7 +104,8 @@
             "Windows 9x/Millennium Edition (EGA text mode, Standard)",
             "Windows CE 3.0 and later (750x400, Standard)",
             "Windows NT 4.0/3.x (VGA text mode, Standard)",
-            "Windows 3.1 (EGA text mode, Standard)"});
+            "Windows 3.1 (EGA text mode, Standard)",
+            "Windows Vista/7 BOOTMGR (1024x768, ClearType)"});
             this.windowVersion.Location = new System.Drawing.Point(106, 19);
             this.windowVersion.Name = "windowVersion";
             this.windowVersion.Size = new System.Drawing.Size(381, 21);
@@ -576,9 +577,11 @@
             this.defaultVersions.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.defaultVersions.FormattingEnabled = true;
             this.defaultVersions.Items.AddRange(new object[] {
+            "Windows 11 (Native, Safe mode: 640x480, ClearType)",
             "Windows 10 (Native, Safe mode: 640x480, ClearType)",
             "Windows 8/8.1 (Native, Safe mode: 640x480, ClearType)",
             "Windows Vista/7 (640x480, ClearType)",
+            "Windows Vista/7 BOOTMGR (1024x768, ClearType)",
             "Windows XP (640x480, Standard)",
             "Windows 2000 Professional/Server Family (640x480, Standard)",
             "Windows 9x/Millennium Edition (EGA text mode, Standard)",

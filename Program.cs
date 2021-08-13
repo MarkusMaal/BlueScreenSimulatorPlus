@@ -78,7 +78,8 @@ using System.IO;
 using System.Management;
 using System.Security.Cryptography;
 using System.Text;
-
+using System.Collections.Generic;
+using SimulatorDatabase;
 
 namespace UltimateBlueScreenSimulator
 {
@@ -93,13 +94,14 @@ namespace UltimateBlueScreenSimulator
         public static Splash spl;
 
         private static bool bad = false;
-        
+
         //Command line syntax
         public static string cmds = "/? - Displays command line syntax\n/wv:xx - Set the specific Windows version (3.1/9x/CE/Millennium/2000/XP/NT/Vista/7/8/8.1/10)\n/h - Doesn't show main GUI. If no simulation is started or the simulation is finished, the program will close.\n/hwm - Hides watermark\n/c - Simulates a system crash\n/hackfile:xx - Loads a hack file (xx is the file name)\n\n/ntc:xx - Specific NT error code to display. Replace xx with the actual code\n/9xc:xx - Specific 9x/Me message to display (system/application/driver/busy/unresponsive)\n/ddesc - Disables error descriptions\n/dqr - Disables QR code on Windows 10 blue screen\n/srv - Displays Windows Server 2016 blue screen when wv is set to 10\n/dac - Disables autoclose feature (Modern blue screens only)\n/gs - Displays green screen when wv is set to 10\n/ap - Displays ACPI blue screen (Windows Vista/7 only)\n/file:xx - Displays the potential culprit file (replace xx with the actual file name)\n/amd - Displays \"AuthenticAMD\" instead of \"GenuineIntel\" on Windows NT blue screen\n/blink - Shows a blinking cursor (NT blue screen)\n/dstack - Does not display stack trace (NT blue screen)\n/win - Enables windowed mode\n/random - Randomizes the blue screen (does NOT randomize any custom attributes set)\n\n/desc - Forcibly enable error description\n/ac - Forcibly enable autoclose feature\n/dap - Forcibly disable ACPI error screen (Windows Vista/7)\n/damd - Forcibly display \"GenuineIntel\" on Windows NT blue screen\n/dblink - Forcibly disable blinking cursor on Windows NT blue screen\n/dgs - Forcibly disable green screen on Windows 10 blue screen\n/qr - Forcibly enable QR code on Windows 10 blue screen\n/dsrv - Forcibly disable server blue screen when version is set to Windows 10\n/stack - Forcible enable stack trace on Windows NT blue screen\n/dfile - Forcible disables potential culprit file\n\n/code:xxxxxxxxxxxxxxxx,xxxxxxxxxxxxxxxx,xxxxxxxxxxxxxxxx,xxxxxxxxxxxxxxxx - Method for displaying error codes (0 - null, R - random, 1-F - static)\n/clr - Clears the verification certificate from this computer, causing the first use message to pop up.\n/hidesplash - Hides the splash screen";
 
         internal static bool verificate = false;
         public static bool hidden = false;
         private static ManagementObjectSearcher aa = new ManagementObjectSearcher("root\\CIMV2", "SELECT * FROM Win32_BaseBoard");
+        public static List<BlueScreen> bluescreens;
 
         [STAThread]
         public static void Main(string[] args)
@@ -147,6 +149,7 @@ namespace UltimateBlueScreenSimulator
             //Initialize forms
             f1 = new Form1();
             bh = new StringEdit();
+            bluescreens = new List<BlueScreen>();
 
             //Load application configuration if it exists
             if (File.Exists("settings.cfg"))
@@ -301,7 +304,7 @@ namespace UltimateBlueScreenSimulator
                     string filename = argument.Split(':')[1];
                     if (File.Exists(filename))
                     { 
-                        if (filename != "") { bh.LoadHack(filename); }
+                        if (filename != "") { /*bh.LoadHack(filename);*/ }
                     } else
                     {
                         f1.error = 24;
@@ -426,6 +429,11 @@ namespace UltimateBlueScreenSimulator
   
         }
 
+        /// <summary>
+        /// Computer verification system
+        /// </summary>
+        /// <param name="args">key array</param>
+        /// <returns>boolean</returns>
         //undocumented code
         internal static bool Verikey(string[] args)
         {
@@ -599,6 +607,419 @@ namespace UltimateBlueScreenSimulator
                 {
                     return "";
                 }
+            }
+        }
+    }
+}
+
+namespace SimulatorDatabase
+{
+
+    // Blue screen template struct
+    public class BlueScreen
+    {
+        // constructor
+        private System.Drawing.Color background;
+        private System.Drawing.Color foreground;
+        private System.Drawing.Color highlight_bg;
+        private System.Drawing.Color highlight_fg;
+
+        private string[] ecodes;
+
+        private string code;
+        private string emoticon;
+        private string screen_mode;
+        private string qr_file;
+
+        private readonly string os;
+
+        private bool windowed;
+        private bool autoclose;
+        private bool show_description;
+        private bool show_file;
+        private bool watermark;
+        private bool server;
+        private bool qr;
+        private bool insider;
+        private bool acpi;
+        private bool amd;
+        private bool stack_trace;
+        private bool blink;
+        private bool font_support;
+        private bool blinkblink;
+        private bool winxplus;
+
+        private int blink_speed;
+        private int timer;
+        private int qr_size;
+
+        private System.Drawing.Font font;
+
+        // possible values:
+        // 2D flag
+        // 3D flag
+        // 2D window
+        // 3D window
+        private string icon;
+
+        IDictionary<string, string> titles;
+        IDictionary<string, string> texts;
+
+        public BlueScreen(string base_os)
+        {
+            this.background = System.Drawing.Color.FromArgb(0, 0, 0);
+            this.foreground = System.Drawing.Color.FromArgb(255, 255, 255);
+            this.os = base_os;
+            string[] codes_temp = { "RRRRRRRRRRRRRRRR", "RRRRRRRRRRRRRRRR", "RRRRRRRRRRRRRRRR", "RRRRRRRRRRRRRRRR" };
+            this.ecodes = codes_temp;
+            this.code = "IRQL_NOT_LESS_OR_EQUAL";
+            this.emoticon = ":(";
+            this.screen_mode = "System error";
+            this.windowed = false;
+            this.autoclose = true;
+            this.watermark = true;
+            this.show_description = true;
+            this.show_file = false;
+            this.server = false;
+            this.qr = true;
+            this.insider = false;
+            this.acpi = false;
+            this.amd = false;
+            this.stack_trace = true;
+            this.blink = false;
+            this.highlight_bg = System.Drawing.Color.FromArgb(255, 255, 255);
+            this.highlight_fg = System.Drawing.Color.FromArgb(0, 0, 0);
+            this.icon = "2D flag";
+            this.blink_speed = 100;
+            this.titles = new Dictionary<string, string>();
+            this.texts = new Dictionary<string, string>();
+            this.timer = 30;
+            this.font = new System.Drawing.Font("Lucida Console", 10.4f, System.Drawing.FontStyle.Regular);
+            this.qr_size = 110;
+            this.qr_file = "local:0";
+            this.blinkblink = false;
+            this.font_support = true;
+            this.winxplus = false;
+            SetOSSpecificDefaults();
+        }
+
+        // blue screen properties
+        public bool GetBool(string name)
+        {
+            switch (name)
+            {
+                case "windowed": return this.windowed;
+                case "watermark": return this.watermark;
+                case "autoclose": return this.autoclose;
+                case "show_description": return this.show_description;
+                case "show_file": return this.show_file;
+                case "server": return this.server;
+                case "insider": return this.insider;
+                case "acpi": return this.acpi;
+                case "amd": return this.amd;
+                case "blink": return this.blink;
+                case "stack_trace": return this.stack_trace;
+                case "font_support": return this.font_support;
+                case "blinkblink": return this.blinkblink;
+                case "winxplus": return this.winxplus;
+                case "qr": return this.qr;
+                default: return false;
+            }
+        }
+        public void SetBool(string name, bool value)
+        {
+            switch (name)
+            {
+                case "windowed": this.windowed = value; break;
+                case "watermark": this.watermark = value; break;
+                case "show_description": this.show_description = value; break;
+                case "show_file": this.show_file = value; break;
+                case "server": this.server = value; break;
+                case "insider": this.insider = value; break;
+                case "acpi": this.acpi = value; break;
+                case "amd": this.amd = value; break;
+                case "blink": this.blink = value; break;
+                case "stack_trace": this.stack_trace = value; break;
+                case "qr": this.qr = value; break;
+                case "autoclose": this.autoclose = value; break;
+            }
+        }
+
+        public string GetString(string name)
+        {
+            switch (name)
+            {
+                case "os": return this.os;
+                case "emoticon": return this.emoticon;
+                case "qr_file": return this.qr_file;
+                case "screen_mode": return this.screen_mode;
+                case "code": return this.code;
+                case "icon": return this.icon;
+                case "ecode1": return this.ecodes[0];
+                case "ecode2": return this.ecodes[1];
+                case "ecode3": return this.ecodes[2];
+                case "ecode4": return this.ecodes[3];
+                default:
+                    if (this.titles.ContainsKey(name))
+                    {
+                        return titles[name];
+                    }
+                    else if (this.texts.ContainsKey(name))
+                    {
+                        return texts[name];
+                    }
+                    else
+                    {
+                        return "";
+                    }
+            }
+        }
+
+        public void SetString(string name, string value)
+        {
+            switch (name)
+            {
+                case "emoticon": this.emoticon = value; break;
+                case "qr_file": this.qr_file = value; break;
+                case "screen_mode": this.screen_mode = value; break;
+                case "code": this.code = value; break;
+            }
+        }
+
+        public void SetTitle(string name, string value)
+        {
+            this.titles[name] = value;
+        }
+
+        private void PushTitle(string name, string value)
+        {
+            this.titles.Add(name, value);
+        }
+
+        private void PopTitle()
+        {
+            this.titles.Remove(this.titles.Keys.Last());
+        }
+
+        public void SetText(string name, string value)
+        {
+            this.texts[name] = value;
+        }
+
+        private void PushText(string name, string value)
+        {
+            this.texts.Add(name, value);
+        }
+
+        private void PopText()
+        {
+            this.texts.Remove(this.titles.Keys.Last());
+        }
+
+        // theming
+        public System.Drawing.Color GetTheme(bool bg, bool highlight = false)
+        {
+            if (highlight)
+            {
+                if (bg) { return this.highlight_bg; } else { return this.highlight_fg; }
+            }
+            if (bg) { return this.background; } else { return this.foreground; }
+        }
+
+        public void SetTheme(System.Drawing.Color bg, System.Drawing.Color fg, bool highlight = false)
+        {
+            if (highlight)
+            {
+                this.highlight_bg = bg;
+                this.highlight_fg = fg;
+                return;
+            }
+            this.background = bg;
+            this.foreground = fg;
+        }
+
+        // error codes
+        public string[] GetCodes()
+        {
+            return this.ecodes;
+        }
+        public void SetCodes(string code1, string code2, string code3, string code4)
+        {
+            string[] code_temp = { code1, code2, code3, code4 };
+            this.ecodes = code_temp;
+        }
+
+        private System.Drawing.Color RGB(int r, int g, int b)
+        {
+            return System.Drawing.Color.FromArgb(r, g, b);
+        }
+
+        // integers
+        public int GetInt(string name)
+        {
+            switch (name)
+            {
+                case "blink_speed": return this.blink_speed;
+                case "timer": return this.timer;
+                case "qr_size": return this.qr_size;
+                default: return 0;
+            }
+        }
+        public void SetInt(string name, int value)
+        {
+            switch (name)
+            {
+                case "blink_speed": this.blink_speed = value; break;
+                case "timer": this.timer = value; break;
+                case "qr_size": this.qr_size = value; break;
+            }
+        }
+
+        public void SetFont(string font_family, float emsize, System.Drawing.FontStyle style)
+        {
+            this.font = new System.Drawing.Font(font_family, emsize, style);
+        }
+
+        public System.Drawing.Font GetFont()
+        {
+            return this.font;
+        }
+
+        public IDictionary<string, string> GetTitles()
+        {
+            return this.titles;
+        }
+
+        public IDictionary<string, string> GetTexts()
+        {
+            return this.texts;
+        }
+
+        // default hacks for specific OS
+        public void SetOSSpecificDefaults()
+        {
+            switch (this.os)
+            {
+                case "Windows 3.1x":
+                    SetTheme(RGB(0, 0, 170), RGB(255, 255, 255));
+                    SetTheme(RGB(170, 170, 170), RGB(0, 0, 170), true);
+                    SetInt("blink_speed", 100);
+                    PushTitle("Main", "Windows");
+                    PushText("No unresponsive programs", "Altough you can use CTRL+ALT+DEL to quit an application that has\r\nstopped responding to the system, there is no application in this\r\nstate.\r\nTo quit an application, use the application's quit or exit command,\r\nor choose the Close command from the Control menu.\r\n* Press any key to return to Windows\r\n* Press CTRL + ALT + DEL again to restart your computer.You will\r\nlose any unsaved information in all applications.");
+                    PushText("Prompt", "Press any key to continue");
+                    this.font_support = false;
+                    this.blinkblink = true;
+                    break;
+                case "Windows 9x/Me":
+                    SetTheme(RGB(0, 0, 170), RGB(255, 255, 255));
+                    SetTheme(RGB(170, 170, 170), RGB(0, 0, 170), true);
+                    SetInt("blink_speed", 100);
+                    PushTitle("Main", "Windows");
+                    PushTitle("System is busy", "System is busy. ");
+                    PushTitle("Warning", "WARNING!");
+                    PushText("System error", "An error has occurred. To continue:\r\n\r\nPress Enter to return to Windows, or\r\n\r\nPress CTRL + ALT + DEL to restart your computer. If you do this,\r\nyou will lose any unsaved information in all open applications.\r\n\r\nError: {0}");
+                    PushText("Application error", "A fatal exception 0E has occurred at {0}:{1}. The current\r\napplication will be terminated.\r\n\r\n* Press any key to terminate current application\r\n* Press CTRL + ALT + DEL again to restart your computer. You will\r\n  lose any unsaved information in all applications.");
+                    PushText("Driver error", "A fatal exception 0E has occurred at {0}:{1} in VXD VMM(01) +\r\n{2}. The current application will be terminated.\r\n\r\n* Press any key to terminate current application\r\n* Press CTRL + ALT + DEL again to restart your computer. You will\r\n  lose any unsaved information in all applications.");
+                    PushText("System is busy", "The system is busy waiting for the Close Program dialog box to be\r\ndisplayed. You can wait and see if it appears, or you can restart\r\nyour computer.\r\n\r\n* Press any key to return to Windows and wait.\r\n* Press CTRL + ALT + DEL again to restart your computer. You will\r\n  lose any unsaved information in programs that are running.");
+                    PushText("System is unresponsive", "The system is either busy or has become unstable. You can wait and\r\nsee if it becomes available again, or you can restart your computer.\r\n\r\n* Press any key to return to Windows and wait.\r\n* Press CTRL + ALT + DEL again to restart your computer. You will\r\n  lose any unsaved information in programs that are running.");
+                    PushText("Prompt", "Press any key to continue");
+                    this.font_support = false;
+                    this.blinkblink = true;
+                    break;
+                case "Windows CE":
+                    this.icon = "3D flag";
+                    SetTheme(RGB(0, 0, 128), RGB(255, 255, 255));
+                    PushText("A problem has occurred...", "A problem has occurred and Windows CE has been shut down to prevent damage to your\r\ncomputer.");
+                    PushText("CTRL+ALT+DEL message", "If you will try to restart your computer, press Ctrl+Alt+Delete.");
+                    PushText("Technical information", "Technical information:");
+                    PushText("Technical information formatting", "*** STOP: {0} ({1})");
+                    PushText("Restart message", "The computer will restart automatically\r\nafter {0} seconds.");
+                    SetInt("timer", 30);
+                    SetFont("Lucida Console", 10.4f, System.Drawing.FontStyle.Regular);
+                    break;
+                case "Windows NT 3.x/4.0":
+                    this.icon = "2D flag";
+                    SetTheme(RGB(0, 0, 160), RGB(170, 170, 170));
+                    PushText("Error code formatting", "*** STOP: {0} ({1})");
+                    PushText("CPUID formatting", "CPUID: {0} 6.3.3 irql:lf SYSVER 0xf0000565");
+                    PushText("Stack trace heading", "Dll Base DateStmp - Name");
+                    PushText("Stack trace table formatting", "{0} {1} - {2}");
+                    PushText("Memory address dump heading", "Address  dword dump   Build [1381]                            - Name");
+
+                    PushText("Memory address dump table", "{0} {1} {2} {3} {4} {5}           - {6}");
+                    PushText("Troubleshooting text", "Restart and set the recovery options in the system control panel\r\nor the /CRASHDEBUG system start option.");
+                    SetInt("blink_speed", 100);
+                    this.font_support = false;
+                    this.blinkblink = true;
+                    break;
+                case "Windows 2000":
+                    PushText("Error code formatting", "*** STOP: {0} ({1})");
+                    PushText("Troubleshooting introduction", "If this is the first time you've seen this Stop error screen,\r\nrestart your computer.If this screen appears again, follow\r\nthese steps: ");
+                    PushText("Troubleshooting text", "Check for viruses on your computer. Remove any newly installed\r\nhard drives or hard drive controllers.Check your hard drive\r\nto make sure it is properly configured and terminated.\r\nRun CHKDSK / F to check for hard drive corruption, and then\r\n restart your computer.");
+                    PushText("Additional troubleshooting information", "Refer to your Getting Started manual for more information on\r\ntroubleshooting Stop errors.");
+                    SetFont("Lucida Console", 8.0f, System.Drawing.FontStyle.Bold);
+                    SetTheme(RGB(0, 0, 128), RGB(255, 255, 255));
+                    break;
+                case "Windows XP":
+                    this.icon = "3D flag";
+                    PushText("A problem has been detected...", "A problem has been detected and Windows has been shut down to prevent damage\r\nto your computer.");
+                    PushText("Troubleshooting introduction", "If this is the first time you've seen this Stop error screen,\r\nrestart your computer.If this screen appears again, follow\r\nthese steps:");
+                    PushText("Troubleshooting", "Check to make sure any new hardware or software is properly installed.\r\nIf this is a new installation, ask your hardware or software manufacturer\r\nfor any Windows updates you might need.\r\n\r\nIf problems continue, disable or remove any newly installed hardware\r\nor software.Disable BIOS memory options such as caching or shadowing.\r\nIf you need to use Safe mode to remove or disable components, restart\r\nyour computer, press F8 to select Advanced Startup Options, and then\r\nselect Safe Mode.");
+                    PushText("Technical information", "Technical information:");
+                    PushText("Technical information formatting", "*** STOP: {0} ({1})");
+                    PushText("Physical memory dump", "Beginning dump of physical memory\r\nPhysical memory dump complete.");
+                    PushText("Technical support", "Contact your system administrator or technical support group for further\r\nassistance.");
+                    SetFont("Lucida Console", 10.4f, System.Drawing.FontStyle.Regular);
+                    SetTheme(RGB(0, 0, 128), RGB(255, 255, 255));
+                    break;
+                case "Windows Vista/7":
+                    this.icon = "3D flag";
+                    PushText("A problem has been detected...", "A problem has been detected and Windows has been shut down to prevent damage\r\nto your computer.");
+                    PushText("Troubleshooting introduction", "If this is the first time you've seen this Stop error screen,\r\nrestart your computer.If this screen appears again, follow\r\nthese steps:");
+                    PushText("Troubleshooting", "Check to make sure any new hardware or software is properly installed.\r\nIf this is a new installation, ask your hardware or software manufacturer\r\nfor any Windows updates you might need.\r\n\r\nIf problems continue, disable or remove any newly installed hardware\r\nor software.Disable BIOS memory options such as caching or shadowing.\r\nIf you need to use Safe mode to remove or disable components, restart\r\nyour computer, press F8 to select Advanced Startup Options, and then\r\nselect Safe Mode.");
+                    PushText("Technical information", "Technical information:");
+                    PushText("Technical information formatting", "*** STOP: {0} ({1})");
+                    PushText("Physical memory dump", "Dumping physical memory to disk:{0}");
+                    PushText("Technical support", "Contact your system admin or technical support group for further assistance.");
+                    SetFont("Consolas", 9.4f, System.Drawing.FontStyle.Regular);
+                    SetTheme(RGB(0, 0, 128), RGB(255, 255, 255));
+                    break;
+                case "Windows 8/8.1":
+                    this.icon = "3D window";
+                    PushText("Information text with dump", "Your PC ran into a problem and needs to restart. We're just\r\ncollecting some error info, and then you can restart. ({0}%\r\n complete)");
+                    PushText("Information text without dump", "Your PC ran into a problem that it couldn't\r\nhandle and now it needs to restart.");
+                    PushText("Error code", "You can search for the error online: {0}");
+                    SetFont("Segoe UI", 19.4f, System.Drawing.FontStyle.Regular);
+                    SetTheme(RGB(16, 113, 170), RGB(255, 255, 255));
+                    break;
+                case "Windows 10":
+                    this.icon = "3D window";
+                    PushText("Information text with dump", "Your PC ran into a problem and needs to restart. We're just\r\ncollecting some error info, and then we'll restart for you.");
+                    PushText("Information text without dump", "Your PC ran into a problem and needs to restart. We're just\r\ncollecting some error info, and then you can restart.");
+                    PushText("Additional information", "For more information about this issue and possible fixes, visit http://windows.com/stopcode");
+                    PushText("Culprit file", "What failed: {0}");
+                    PushText("Error code", "If you call a support person, give them this info:\r\n\r\nStop code: {0}");
+                    PushText("Progress", "{0}% complete");
+                    SetInt("qr_size", 110);
+                    SetString("qr_file", "local:0");
+                    SetFont("Segoe UI", 19.4f, System.Drawing.FontStyle.Regular);
+                    SetTheme(RGB(16, 113, 170), RGB(255, 255, 255));
+                    this.winxplus = true;
+                    break;
+                case "Windows 11":
+                    this.icon = "2D window";
+                    PushText("Information text with dump", "Your PC ran into a problem and needs to restart. We're just\r\ncollecting some error info, and then we'll restart for you.");
+                    PushText("Information text without dump", "Your PC ran into a problem and needs to restart. We're just\r\ncollecting some error info, and then you can restart.");
+                    PushText("Additional information", "For more information about this issue and possible fixes, visit http://windows.com/stopcode");
+                    PushText("Culprit file", "What failed: {0}");
+                    PushText("Error code", "If you call a support person, give them this info:\r\n\r\nStop code: {0}");
+                    PushText("Progress", "{0}% complete");
+                    SetInt("qr_size", 110);
+                    SetString("qr_file", "local:0");
+                    SetFont("Segoe UI", 19.4f, System.Drawing.FontStyle.Regular);
+                    SetTheme(RGB(0, 0, 0), RGB(255, 255, 255));
+                    this.winxplus = true;
+                    break;
             }
         }
     }

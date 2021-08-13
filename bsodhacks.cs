@@ -127,34 +127,10 @@ namespace UltimateBlueScreenSimulator
 
         private void Bsodhacks_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Program.f1.emoticon = eightBSOD.Text;
-            Color[] bt = { eightBSOD.BackColor, eightBSOD.ForeColor, };
-            Program.f1.bsodmodern = bt;
-            Color[] btx = { nt5bsod.BackColor, nt5bsod.ForeColor };
-            Program.f1.bsodxvs = btx;
-            Color[] btnt = { nt34bsod.BackColor, nt34bsod.ForeColor };
-            Program.f1.bsodnt = btnt;
-            Color[] btme = { me9xbsod.BackColor, me9xbsod.ForeColor, me9xhlbsod.BackColor, me9xhlbsod.ForeColor };
-            Program.f1.bsodold = btme;
         }
 
         private void Bsodhacks_Load(object sender, EventArgs e)
         {
-            eightBSOD.Text = Program.f1.emoticon;
-            eightBSOD.BackColor = Program.f1.bsodmodern[0];
-            eightBSOD.ForeColor = Program.f1.bsodmodern[1];
-            nt51bsod.BackColor = Program.f1.bsodxvs[0];
-            nt51bsod.ForeColor = Program.f1.bsodxvs[1];
-            nt5bsod.BackColor = Program.f1.bsodxvs[0];
-            nt5bsod.ForeColor = Program.f1.bsodxvs[1];
-            nt612bsod.BackColor = Program.f1.bsodxvs[0];
-            nt612bsod.ForeColor = Program.f1.bsodxvs[1];
-            me9xbsod.BackColor = Program.f1.bsodold[0];
-            me9xbsod.ForeColor = Program.f1.bsodold[1];
-            me9xhlbsod.BackColor = Program.f1.bsodold[2];
-            me9xhlbsod.ForeColor = Program.f1.bsodold[3];
-            nt34bsod.BackColor = Program.f1.bsodnt[0];
-            nt34bsod.ForeColor = Program.f1.bsodnt[1];
         }
 
         private void Button12_Click(object sender, EventArgs e)

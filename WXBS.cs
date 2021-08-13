@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using SimulatorDatabase;
 
 namespace UltimateBlueScreenSimulator
 {
@@ -18,8 +19,10 @@ namespace UltimateBlueScreenSimulator
         public string code = "";
         public string whatfail = "";
         public bool w8 = false;
+        public bool w11 = false;
         private bool w8close = false;
         private int progress = 0;
+        BlueScreen me;
         public WXBS()
         {
             InitializeComponent();
@@ -40,31 +43,47 @@ namespace UltimateBlueScreenSimulator
 
         private void WXBS_Load(object sender, EventArgs e)
         {
-            label1.Font = Program.bh.emotiFont.Font;
-            label2.Font = Program.bh.modernTextFont.Font;
-            label3.Font = Program.bh.modernTextFont.Font;
-            label4.Font = Program.bh.modernDetailFont.Font;
-            label5.Font = Program.bh.modernDetailFont.Font;
-            label2.Text = Program.bh.textBox41.Text;
-            pictureBox1.Size = new Size(Program.bh.trackBar1.Value, Program.bh.trackBar1.Value);
-            if (Program.bh.transparentQR.Checked == true) { pictureBox1.Image = Properties.Resources.bsodqr_transparent; }
-            if (Program.bh.defactoQR.Checked == true) { pictureBox1.Image = Properties.Resources.bsodqr; }
-            try { if (Program.bh.customQR.Checked == true) { pictureBox1.Image = Image.FromFile(Program.bh.qrFile.Text); } } catch { pictureBox1.Image = Properties.Resources.bsodqr; }
+            if (w8)
+            {
+                me = Program.bluescreens[7];
+            } else if (w11)
+            {
+                me = Program.bluescreens[9];
+            } else
+            {
+                me = Program.bluescreens[8];
+            }
+            Font textfont = me.GetFont();
+            float textsize = textfont.Size;
+            Font emotifont = new Font(me.GetFont().FontFamily, textsize * 5f, me.GetFont().Style);
+            Font modernDetailFont = new Font(me.GetFont().FontFamily, textsize * 0.55f, me.GetFont().Style);
+            label1.Font = emotifont;
+            label2.Font = textfont;
+            label3.Font = textfont;
+            label4.Font = modernDetailFont;
+            label5.Font = modernDetailFont;
+            label2.Text = me.GetTexts()["Information text with dump"];
+            
+            pictureBox1.Size = new Size(me.GetInt("qr_size"), me.GetInt("qr_size"));
+
+            if (me.GetString("qr_file") == "local:1") { pictureBox1.Image = Properties.Resources.bsodqr_transparent; }
+            else if (me.GetString("qr_file") == "local:0") { pictureBox1.Image = Properties.Resources.bsodqr; }
+            else { try { pictureBox1.Image = Image.FromFile(me.GetString("qr_file")); } catch { pictureBox1.Image = Properties.Resources.bsodqr; } }
             if (w8 == true)
             {
-                label2.Text = Program.bh.textBox37.Text.Replace("{0}", "0");
+                label2.Text = me.GetTexts()["Information text with dump"].Replace("{0}", "0");
                 if (close == true) { close = false; w8close = true; }
 
             } else
             {
-                label3.Text = Program.bh.textBox44.Text.Replace("{0}", "0");
-                label4.Text = Program.bh.textBox42.Text;
+                label3.Text = me.GetTexts()["Progress"].Replace("{0}", "0");
+                label4.Text = me.GetTexts()["Additional information"];
             }
             if (!w8close)
             { 
                 if (close == false)
                 {
-                    label2.Text = Program.bh.textBox40.Text;
+                    label2.Text = me.GetTexts()["Information text without dump"];
                 }
                 if (green)
                 {
@@ -95,11 +114,11 @@ namespace UltimateBlueScreenSimulator
             {
                 if (whatfail == "")
                 { 
-                    label5.Text = Program.bh.textBox45.Text.Replace("{0}", code);
+                    label5.Text = me.GetTexts()["Error code"].Replace("{0}", code);
                 } else
                 {
                     label5.Location = new Point(3, 36);
-                    label5.Text = Program.bh.textBox45.Text.Replace("{0}", code + "\n\n" + Program.bh.textBox43.Text.Replace("{0}", whatfail.ToLower()));
+                    label5.Text = me.GetTexts()["Error code"].Replace("{0}", code + "\n\n" + me.GetTexts()["Culprit file"].Replace("{0}", whatfail.ToLower()));
                 }
             }
             if (w8 == true)
@@ -107,10 +126,10 @@ namespace UltimateBlueScreenSimulator
                 label3.Visible = false;
                 if (whatfail == "")
                 {
-                    label5.Text = Program.bh.textBox39.Text.Replace("{0}", code);
+                    label5.Text = me.GetTexts()["Error code"].Replace("{0}", code);
                 } else
                 {
-                    label5.Text = Program.bh.textBox39.Text.Replace("{0}", code + " (" + whatfail.ToLower() + ")");
+                    label5.Text = me.GetTexts()["Error code"].Replace("{0}", code + " (" + whatfail.ToLower() + ")");
                 }
             }
             if (qr == true)
@@ -143,7 +162,7 @@ namespace UltimateBlueScreenSimulator
             {
                 if (w8close == false)
                 {
-                    label2.Text = Program.bh.textBox38.Text;
+                    label2.Text = me.GetTexts()["Information text without dump"];
                     timer1.Enabled = false;
                     label3.Visible = false;
                     Point locationOnForm = label2.FindForm().PointToClient(label2.Parent.PointToScreen(label2.Location));
@@ -163,11 +182,11 @@ namespace UltimateBlueScreenSimulator
                 {
                     timer1.Enabled = false;
                     if (close == true) { this.Close(); }
-                    label3.Text = Program.bh.textBox44.Text.Replace("{0}", "100");
+                    label3.Text = me.GetTexts()["Progress"].Replace("{0}", "100");
                 }
                 progress += 1;
                 if (progress > 60) { timer1.Interval = 300; }
-                label3.Text = Program.bh.textBox44.Text.Replace("{0}", progress.ToString());
+                label3.Text = me.GetTexts()["Progress"].Replace("{0}", progress.ToString());
             } else
             {
                 if (progress >= 100)

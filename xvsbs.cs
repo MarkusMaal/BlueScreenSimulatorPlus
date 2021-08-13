@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using SimulatorDatabase;
 
 namespace UltimateBlueScreenSimulator
 {
@@ -19,6 +20,10 @@ namespace UltimateBlueScreenSimulator
         bool inr = false;
         bool ing = false;
         bool inb = false;
+        BlueScreen me;
+        Color bg;
+        Color fg;
+        IDictionary<string, string> txt;
 
         string state = "0";
         WindowScreen ws = new WindowScreen();
@@ -29,12 +34,22 @@ namespace UltimateBlueScreenSimulator
 
         private void Xvsbs_Load(object sender, EventArgs e)
         {
+            if (w6mode)
+            {
+                me = Program.bluescreens[6];
+            } else
+            {
+                me = Program.bluescreens[5];
+            }
+            bg = me.GetTheme(true);
+            fg = me.GetTheme(false);
+            txt = me.GetTexts();
             if (Program.f1.enableeggs) { 
                 if (Program.f1.textBox2.Text.ToLower() == "tardis.sys")
                 {
                     tardisFade.Enabled = true;
                 }
-                if (Program.f1.bsodxvs[0] == Program.f1.bsodxvs[1])
+                if (bg == fg)
                 {
                     this.BackColor = Color.FromArgb(255, 0, 0);
                     rainBowScreen.Enabled = true;
@@ -46,16 +61,16 @@ namespace UltimateBlueScreenSimulator
                 label5.Text = "***  " + whatfail.ToUpper() + " - Address " + Program.f1.GenHex(8, "RRRRRRRR") + " base at " + Program.f1.GenHex(8, "RRRRRRRR") + ", DateStamp " + Program.f1.GenHex(8, "RRRRRRRR").ToLower();
                 errorCode.Text = "The problem seems to be caused by the following file: " + whatfail.ToUpper() + "\n\n" + errorCode.Text;
             }
-            label1.Text = Program.bh.textBox27.Text;
-            supportInfo.Text = Program.bh.textBox30.Text + "\n\n" + Program.bh.textBox31.Text + "\n\n" + Program.bh.textBox32.Text;
+            label1.Text = txt["A problem has been detected..."];
+            supportInfo.Text = txt["Troubleshooting introduction"] + "\n\n" + txt["Troubleshooting"] + "\n\n" + txt["Technical information"];
             string[] esplit = technicalCode.Text.Replace("*** STOP: ", "").Replace(")", "").Replace(" (", "*").Split('*');
-            technicalCode.Text = Program.bh.textBox33.Text.Replace("{0}", esplit[0]).Replace("{1}", esplit[1]);
+            technicalCode.Text = txt["Technical information formatting"].Replace("{0}", esplit[0]).Replace("{1}", esplit[1]);
             if (!w6mode) { 
                 try
                 { 
-                    label5.Text = Program.bh.textBox34.Text.Split('\n')[0].Trim();
-                    label6.Text = Program.bh.textBox34.Text.Split('\n')[1].Trim();
-                    label7.Text = Program.bh.textBox35.Text.Split('\n')[0].Trim() + "\n" +Program.bh.textBox35.Text.Split('\n')[1].Trim();
+                    label5.Text = txt["Physical memory dump"].Split('\n')[0].Trim();
+                    label6.Text = txt["Physical memory dump"].Split('\n')[1].Trim();
+                    label7.Text = txt["Technical support"].Split('\n')[0].Trim() + "\n" + txt["Technical support"].Split('\n')[1].Trim();
                 }
                 catch
                 {
@@ -65,20 +80,12 @@ namespace UltimateBlueScreenSimulator
             {
                 if (c is Label)
                 {
-                    c.Font = Program.bh.label49.Font;
+                    c.Font = me.GetFont();
                 }
             }
             if (w6mode == true) 
             {
                 errorCode.Text = errorCode.Text.Replace("CRITICAL_OBJECT_TERMINATION", "A process or thread crucial to system operation has unexpectedly exited or been terminated.");
-                Font f1 = Program.bh.label50.Font;
-                label1.Font = f1;
-                supportInfo.Font = f1;
-                label5.Font = f1;
-                label6.Font = f1;
-                label7.Font = f1;
-                errorCode.Font = f1;
-                technicalCode.Font = f1;
                 if (whatfail == "") { label5.Text = "Collecting data for crash dump ..."; label6.Text = "Initializing disk for crash dump ..."; } else { label6.Visible = false; }
                 label7.Text = "Beginning dump of physical memory.\nDumping physical memory to disk:   0";
                 if (whatfail != "") { label7.Margin = new Padding(3, 15, 3, 0); }
@@ -216,7 +223,7 @@ namespace UltimateBlueScreenSimulator
         private void TardisFade_Tick(object sender, EventArgs e)
         {
             int r = this.BackColor.R;
-            int target_r = Program.f1.bsodxvs[0].R;
+            int target_r = bg.R;
             if (r > 0)
             {
                 if (inr == false)
@@ -237,7 +244,7 @@ namespace UltimateBlueScreenSimulator
                 r += 1;
             }
             int gr = this.BackColor.G;
-            int target_g = Program.f1.bsodxvs[0].G;
+            int target_g = bg.G;
             if (gr > 0)
             {
                 if (ing == false)
@@ -259,7 +266,7 @@ namespace UltimateBlueScreenSimulator
                 gr += 1;
             }
             int b = this.BackColor.B;
-            int target_b = Program.f1.bsodxvs[0].B;
+            int target_b = bg.B;
             if (b > 0)
             {
                 if (inb == false)

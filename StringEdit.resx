@@ -124,8 +124,8 @@
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
-        ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAACi
-        CwAAAk1TRnQBSQFMAgEBBgEAAWABAAFgAQABEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAABc
+        DAAAAk1TRnQBSQFMAgEBBwEAAWgBAAFoAQABEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
         AwABQAMAASADAAEBAQABCAYAAQgYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
@@ -153,117 +153,47 @@
         AcwBAAH/AZkB/wEAAf8BzAIAAf8BzAEzAQAB/wHMAWYBAAH/AcwBmQEAAf8CzAEAAf8BzAH/AQAC/wEz
         AQABzAH/AWYBAAL/AZkBAAL/AcwBAAJmAf8BAAFmAf8BZgEAAWYC/wEAAf8CZgEAAf8BZgH/AQAC/wFm
         AQABIQEAAaUBAANfAQADdwEAA4YBAAOWAQADywEAA7IBAAPXAQAD3QEAA+MBAAPqAQAD8QEAA/gBAAHw
-        AfsB/wEAAaQCoAEAA4ADAAH/AgAB/wMAAv8BAAH/AwAB/wEAAf8BAAL/AgAD/wsAAf8BkjwAAZIB8AH3
-        AZIBAAG8OgAGkgHzNwABvAKSAfECAAEHAZIB9DcAAfECkgMAAf8CkgHvNwAB8wGSBAABkgEHNgABEAHy
-        ApIBBwEAAf8B7wGSAfACAAVBBR0FQiIAAREBEAFDAxABFASSAe8BkgIABUEFHQVCIwAFEAHqAZIB8AKS
-        BAAFQQUdBUIhAAMQAwABEQEQAeoBAAL0BAAFQQUdBUIhAAERAhAEAAIQOAACEAMAAewBEDgAAewCEAER
-        AQAB7AMQOgAEEDwAARABAAIQkAAB/wHzAfYFABDZJwABUwFZAaAB5QFeATgDABDZIAABBwHxAwAB8AG8
-        ATIBOAKgAeUB+wH/AgAK2QHbARkB/wHcAtkgAAHzAbMD2wGsAbIBMgE4AeUBoAHlAV4BmgIABdkB2wIZ
-        Bf8B3ALZCwABGQEAAf8TAAHTAdoC3AGzAawBGwE4AVkB5QJeATgCAAPZBP8BGQX/AdwC2QIAAc0EAAH/
-        Ac0BAAHNAf8B3AHNBgAB/AEAAfwCAAL8AQAD+wIAAbIB2gHcAeEB2wGsAfIBMgE4AeUCXgFZAgAD2QT/
-        ARkF/wHcAtkCAAHcAQkDAAHNAgABzgIAAc0FAAH8BQAC/AEAA/sCAAEJAdoB3AEZAdsBrAGtATIBmgH0
-        ARsB/wEbAfYBAAPZBP8BGQX/AdwC2QMABc0CAALNAQkBzQsAAvwBAAP7AgAB/wHTAdsB4QHcAdQBrQH/
-        AS4BVgF4AVcBXQF4AQAD2QTcAdsB3ATbAdoC2QMAAc0CAAEJAdYFAAHNFAABbwHyAfABvAH0AW8B/wEu
-        ATUCfgFYAVcBAAPZBP8BGQX/AdwC2QMAAf8BzgEAAc0DAAHNAgABzQYAAfkBAAH5AgAC+QEAA/oDAAFF
-        ASAB+QFHASABHwEHASgBNQF5AX4BXQFXAf8D2QT/ARkF/wHcAtkEAAHNAQABzQQAAd0B3AYAAfkFAAL5
-        AQAD+gMAAfIBIAH5ARcBRwIfAUkBLwFXAX4BXQFXAZgD2QT/ARkF/wHcAtkEAAHVAdQB/xIAAvkBAAP6
-        BAABIAH5ARcB4wEgAR8B8gEuAVcCXQFYAS8D2QEJA/8BGQX/AdwC2QUAAc0dAAEgAkcBFgFGAR8B8gEo
-        AfEDAAEbB9kB2gHcBP8B3ALZIwABkwFGAUcBlAHjASABkwYADNkB2gHbAtkkAAH/ARoCkwH/BwAQ2TAA
-        ENkQAAFCAU0BPgcAAT4DAAEoAwABQAMAASADAAEBAQABAQYAAQEWAAP/AQAB/wHPAv8EAAH/AQsC/wQA
-        Af8BAQL/BAAB/AExAv8EAAH8AXAC/wQAAf4BeQL/BAAB+AEhAYAFAAHAAQEBgAUAAeABBwGABQABjgEn
-        AYAFAAGPAT8C/wQAAc4BfwL/BAABhAE/Av8EAAHwA/8EAAH0A/8EAAT/BAAD/wEfAgAE/wH+AQcCAAT/
-        ATgBAwIAAv8B9QE8AQABAwIAAf8B6wHvAQABgAEDAgAB3gFDAfUBAAGAAQMCAAHOAdsB7wEAAYABAQIA
-        AeABwwH1AQABgAEBAgAB7AH7Ae8BAAHAAQECAAHlAdsB9QEAAcADAAH1AecB7wEAAcADAAHxAf8B9QEA
-        AeADAAH7Af8B7wEAAeABDgIAA/8BgwHgAT8CAAT/AfABfwIABv8CAAL/Cw==
+        AfsB/wEAAaQCoAEAA4ADAAH/AgAB/wMAAv8BAAH/AwAB/wEAAf8BAAL/AgAD/xsAAf8BkjwAAZIB8AH3
+        AZIBAAG8OgAGkgHzLAABGQEAAf8IAAG8ApIB8QIAAQcBkgH0IwABzQQAAf8BzQEAAc0B/wHcAc0IAAHx
+        ApIDAAH/ApIB7yIAAdwBCQMAAc0CAAHOAgABzQkAAfMBkgQAAZIBByQABc0CAALNAQkBzQcAARAB8gKS
+        AQcBAAH/Ae8BkgHwAgAFQQUdBUITAAHNAgABCQHWBQABzQQAAREBEAFDAxABFASSAe8BkgIABUEFHQVC
+        EwAB/wHOAQABzQMAAc0CAAHNBQAFEAHqAZIB8AKSBAAFQQUdBUIUAAHNAQABzQQAAd0B3AQAAxADAAER
+        ARAB6gEAAvQEAAVBBR0FQhQAAdUB1AH/CgABEQIQBAACECsAAc0MAAIQAwAB7AEQOAAB7AIQAREBAAHs
+        AxA6AAQQPAABEAEAAhCAAAH/AfMB9gUAENkBAAdlAQ0GZQEOFwABUwFZAaAB5QFeATgDABDZAQABsgWs
+        AbIBigasAQ0QAAEHAfEDAAHwAbwBMgE4AqAB5QH7Af8CAArZAdsBGQH/AdwC2QEAAbIFrAGyAYoGrAEN
+        EAAB8wGzA9sBrAGyATIBOAHlAaAB5QFeAZoCAAXZAdsCGQX/AdwC2QEAAbIFrAGyAYoGrAENEQAB0wHa
+        AtwBswGsARsBOAFZAeUCXgE4AgAD2QT/ARkF/wHcAtkBAAWyAawBsgGKBqwBDQQAAfwBAAH8AgAC/AEA
+        A/sCAAGyAdoB3AHhAdsBrAHyATIBOAHlAl4BWQIAA9kE/wEZBf8B3ALZAQAHsgGKBqwBDQMAAfwFAAL8
+        AQAD+wIAAQkB2gHcARkB2wGsAa0BMgGaAfQBGwH/ARsB9gEAA9kE/wEZBf8B3ALZAQAHsgGKAqwBsgOs
+        AQ0JAAL8AQAD+wIAAf8B0wHbAeEB3AHUAa0B/wEuAVYBeAFXAV0BeAEAA9kE3AHbAdwE2wHaAtkBAAZl
+        AaYHZQEOEgABbwHyAfABvAH0AW8B/wEuATUCfgFYAVcBAAPZBP8BGQX/AdwC2QEAB9MBiwTTArIBDQQA
+        AfkBAAH5AgAC+QEAA/oDAAFFASAB+QFHASABHwEHASgBNQF5AX4BXQFXAf8D2QT/ARkF/wHcAtkBAAey
+        AYoGsgENAwAB+QUAAvkBAAP6AwAB8gEgAfkBFwFHAh8BSQEvAVcBfgFdAVcBmAPZBP8BGQX/AdwC2QEA
+        B7IBiwayAQ0JAAL5AQAD+gQAASAB+QEXAeMBIAEfAfIBLgFXAl0BWAEvA9kBCQP/ARkF/wHcAtkBAAGz
+        BbIB0wGLBrIBDRMAASACRwEWAUYBHwHyASgB8QMAARsH2QHaAdwE/wHcAtkBAAGzBrIBiwayAQ0TAAGT
+        AUYBRwGUAeMBIAGTBgAM2QHaAdsC2QEAAdQFsgHTAYsGsgENFAAB/wEaApMB/wcAENkBAAfUAYsBsgXT
+        AQ0gABDZEAABQgFNAT4HAAE+AwABKAMAAUADAAEgAwABAQEAAQEGAAEBFgAD/wEAA/8BzwL/AgAD/wEL
+        Av8CAAP/AQEC/wIAAf8B6wH8ATEC/wIAAd4BQwH8AXAC/wIAAc4B2wH+AXkC/wIAAeABwwH4ASEBgAMA
+        AewB+wHAAQEBgAMAAeUB2wHgAQcBgAMAAfUB5wGOAScBgAMAAfEB/wGPAT8C/wIAAfsB/wHOAX8C/wIA
+        Av8BhAE/Av8CAAL/AfAD/wIAAv8B9AP/AgAG/wIAA/8BHwQAAv8B/gEHBAAC/wE4AQMEAAH1ATwBAAED
+        BAAB7wEAAYABAwQAAfUBAAGAAQMEAAHvAQABgAEBBAAB9QEAAYABAQQAAe8BAAHAAQEEAAH1AQABwAUA
+        Ae8BAAHABQAB9QEAAeAFAAHvAQAB4AEOBAAB/wGDAeABPwQAAv8B8AF/BAAE/wQACw==
 </value>
   </data>
-  <data name="textBox31.Text" xml:space="preserve">
-    <value>Check to make sure any new hardware or software is properly installed.
-If this is a new installation, ask your hardware or software manufacturer
-for any Windows updates you might need.
-
-If problems continue, disable or remove any newly installed hardware
-or software. Disable BIOS memory options such as caching or shadowing.
-If you need to use Safe mode to remove or disable components, restart
-your computer, press F8 to select Advanced Startup Options, and then
-select Safe Mode.</value>
-  </data>
-  <data name="textBox28.Text" xml:space="preserve">
-    <value>Check for viruses on your computer. Remove any newly installed
-hard drives or hard drive controllers. Check your hard drive
-to make sure it is properly configured and terminated.
-Run CHKDSK /F to check for hard drive corruption, and then
-restart your computer.
-</value>
-  </data>
-  <data name="textBox11.Text" xml:space="preserve">
-    <value>The system is either busy or has become unstable. You can wait and
-see if it becomes available again, or you can restart your computer.
-
-*  Press any key to return to Windows and wait.
-*  Press CTRL+ALT+DEL again to restart your computer. You will
-   lose any unsaved information in programs that are running.
-</value>
-  </data>
-  <data name="textBox10.Text" xml:space="preserve">
-    <value>The system is busy waiting for the Close Program dialog box to be
-displayed.  You can wait and see if it appears, or you can restart
-your computer.
-
-*  Press any key to return to Windows and wait.
-*  Press CTRL+ALT+DEL again to restart your computer. You will
-   lose any unsaved information in programs that are running.</value>
-  </data>
-  <data name="textBox9.Text" xml:space="preserve">
-    <value>A fatal exception 0E has occurred at {0}:{1} in VXD VMM(01) +
-{2}. The current application will be terminated.
-
-*  Press any key to terminate current application
-*  Press CTRL+ALT+DEL again to restart your computer. You will
-   lose any unsaved information in all applications.</value>
-  </data>
-  <data name="textBox8.Text" xml:space="preserve">
-    <value>A fatal exception 0E has occurred at {0}:{1}. The current
-application will be terminated.
-
-*  Press any key to terminate current application
-*  Press CTRL+ALT+DEL again to restart your computer. You will
-   lose any unsaved information in all applications.</value>
-  </data>
-  <data name="textBox6.Text" xml:space="preserve">
-    <value>Altough you can use CTRL+ALT+DEL to quit an application that has
-stopped responding to the system, there is no application in this
-state.
-To quit an application, use the application's quit or exit command,
-or choose the Close command from the Control menu.
-*  Press any key to return to Windows
-*  Press CTRL+ALT+DEL again to restart your computer. You will
-lose any unsaved information in all applications.</value>
-  </data>
-  <data name="textBox4.Text" xml:space="preserve">
-    <value>An error has occurred. To continue:
-
-Press Enter to return to Windows, or
-
-Press CTRL+ALT+DEL to restart your computer. If you do this,
-you will lose any unsaved information in all open applications.
-
-Error: {0}</value>
-  </data>
-  <metadata name="timer1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="colorChooser.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>111, 17</value>
   </metadata>
-  <metadata name="MainColorDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>198, 17</value>
+  <metadata name="blinkywinky.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>235, 17</value>
   </metadata>
-  <metadata name="OpenHack.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>342, 17</value>
+  <metadata name="fontChooser.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>350, 17</value>
   </metadata>
-  <metadata name="SaveHack.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>450, 17</value>
+  <metadata name="simpleToolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>469, 17</value>
   </metadata>
-  <metadata name="fontDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>554, 17</value>
+  <metadata name="customQRBrowser.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>597, 17</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

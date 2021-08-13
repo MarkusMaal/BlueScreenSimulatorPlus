@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using SimulatorDatabase;
 
 namespace UltimateBlueScreenSimulator
 {
@@ -17,6 +18,7 @@ namespace UltimateBlueScreenSimulator
         bool inr = false;
         bool ing = false;
         bool inb = false;
+        BlueScreen me = Program.bluescreens[2];
 
         string state = "0";
         public cebsod()
@@ -67,25 +69,25 @@ namespace UltimateBlueScreenSimulator
         {
             if (Program.f1.enableeggs)
             {
-                if (Program.f1.bsodxvs[0] == Program.f1.bsodxvs[1])
+                if (Program.bluescreens[2].GetTheme(true) == Program.bluescreens[2].GetTheme(false))
                 {
                     this.BackColor = Color.FromArgb(255, 0, 0);
                     rainBowScreen.Enabled = true;
                 }
             }
-            try { progress = Convert.ToInt32(Program.bh.textBox17.Text); }catch { progress = 30; }
-            timeOut.Text = Program.bh.textBox16.Text.Replace("{0}", progress.ToString());
+            try { progress = me.GetInt("timer"); }catch { progress = 30; }
+            timeOut.Text = me.GetTexts()["Restart message"].Replace("{0}", progress.ToString());
             string[] codez = technicalCode.Text.Replace("*** STOP: ", "").Replace(" (", "-").Replace(")", "").Split('-');
-            technicalCode.Text = Program.bh.textBox15.Text.Replace("{0}", codez[0].ToString()).Replace("{1}", codez[1]).ToString();
-            label2.Text = Program.bh.textBox14.Text;
-            label1.Text = Program.bh.textBox12.Text + "\n" + Program.bh.textBox13.Text;
+            technicalCode.Text = me.GetTexts()["Technical information formatting"].Replace("{0}", codez[0].ToString()).Replace("{1}", codez[1]).ToString();
+            label2.Text = me.GetTexts()["Technical information"];
+            label1.Text = me.GetTexts()["A problem has occurred..."] + "\n" + me.GetTexts()["CTRL+ALT+DEL message"];
             foreach (Control c in this.Controls)
             {
                 if (c is Label)
                 {
                     if (c.Name != "waterMarkText")
                     { 
-                        c.Font = Program.bh.label26.Font;
+                        c.Font = me.GetFont();
                     }
                 }
             }

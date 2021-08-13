@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using SimulatorDatabase;
 
 namespace UltimateBlueScreenSimulator
 {
@@ -15,6 +16,8 @@ namespace UltimateBlueScreenSimulator
         private bool naturalclose = false;
         public string whatfail = "";
         WindowScreen ws = new WindowScreen();
+        BlueScreen me = Program.bluescreens[4];
+        
         public w2kbs()
         {
             InitializeComponent();
@@ -32,14 +35,14 @@ namespace UltimateBlueScreenSimulator
         {
             string[] esplit = errorCode.Text.Split('\n')[0].Replace("*** STOP: ", "").Replace(")", "").Replace(" (", "*").Split('*');
 
-            errorCode.Text = Program.bh.textBox25.Text.Replace("{0}", esplit[0]).Replace("{1}", esplit[1]) + "\n" + errorCode.Text.Split('\n')[1];
-            label2.Text = Program.bh.textBox26.Text;
-            supportInfo.Text = Program.bh.textBox28.Text;
-            downMessage.Text = Program.bh.textBox29.Text;
-            errorCode.Font = Program.bh.label39.Font;
-            label2.Font = Program.bh.label39.Font;
-            supportInfo.Font = Program.bh.label39.Font;
-            downMessage.Font = Program.bh.label39.Font;
+            errorCode.Text = me.GetTexts()["Error code formatting"].Replace("{0}", esplit[0]).Replace("{1}", esplit[1]) + "\n" + errorCode.Text.Split('\n')[1];
+            label2.Text = me.GetTexts()["Troubleshooting introduction"];
+            supportInfo.Text = me.GetTexts()["Troubleshooting text"];
+            downMessage.Text = me.GetTexts()["Additional troubleshooting information"];
+            errorCode.Font = me.GetFont();
+            label2.Font = me.GetFont();
+            supportInfo.Font = me.GetFont();
+            downMessage.Font = me.GetFont();
             if (!fullscreen) { this.FormBorderStyle = FormBorderStyle.FixedSingle; this.ShowInTaskbar = true; this.ShowIcon = true; }
             if (Program.f1.supporttext == "")
             {
