@@ -164,7 +164,7 @@
             // 
             // waterMarkText
             // 
-            this.waterMarkText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.waterMarkText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.waterMarkText.AutoSize = true;
             this.waterMarkText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.waterMarkText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(163)))), ((int)(((byte)(230)))));

@@ -83,6 +83,12 @@
     <Compile Include="cebsod.Designer.cs">
       <DependentUpon>cebsod.cs</DependentUpon>
     </Compile>
+    <Compile Include="ChooseFile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChooseFile.Designer.cs">
+      <DependentUpon>ChooseFile.cs</DependentUpon>
+    </Compile>
     <Compile Include="ClickIt.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -191,6 +197,9 @@
     <EmbeddedResource Include="cebsod.resx">
       <DependentUpon>cebsod.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ChooseFile.resx">
+      <DependentUpon>ChooseFile.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ClickIt.resx">
       <DependentUpon>ClickIt.cs</DependentUpon>
     </EmbeddedResource>
@@ -276,6 +285,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="bsodgen_npJ_icon.ico" />
+    <None Include="Resources\CULPRIT_FILES.txt" />
     <None Include="Resources\corner_br1.png" />
     <None Include="Resources\corner_tr.png" />
     <None Include="Resources\corner_tl.png" />

@@ -27,3 +27,4 @@ C:\Users\Külaline.PICASSO-W10.000\Source\Repos\BlueScreenSimulatorPlus\obj\Debu
 C:\Users\Külaline.PICASSO-W10.000\Source\Repos\BlueScreenSimulatorPlus\obj\Debug\UltimateBlueScreenSimulator.csproj.CoreCompileInputs.cache
 C:\Users\Külaline.PICASSO-W10.000\Source\Repos\BlueScreenSimulatorPlus\obj\Debug\UltimateBlueScreenSimulator.exe
 C:\Users\Külaline.PICASSO-W10.000\Source\Repos\BlueScreenSimulatorPlus\obj\Debug\UltimateBlueScreenSimulator.pdb
+C:\Users\Külaline.PICASSO-W10.000\Source\Repos\BlueScreenSimulatorPlus\obj\Debug\UltimateBlueScreenSimulator.ChooseFile.resources

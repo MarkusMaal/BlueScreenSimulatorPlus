@@ -664,6 +664,7 @@ namespace UltimateBlueScreenSimulator
         private void CheckBox2_CheckedChanged(object sender, EventArgs e)
         {
             textBox2.Enabled = checkBox2.Checked;
+            button2.Enabled = checkBox2.Checked;
             me.SetBool("show_file", checkBox2.Checked);
         }
 
@@ -1144,6 +1145,16 @@ namespace UltimateBlueScreenSimulator
         private void memoryBox_CheckedChanged(object sender, EventArgs e)
         {
             me.SetBool("extracodes", memoryBox.Checked);
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            ChooseFile cf = new ChooseFile();
+            if (cf.ShowDialog() == DialogResult.OK)
+            {
+                textBox2.Text = cf.listView1.SelectedItems[0].Text;
+            }
+            cf.Dispose();
         }
     }
 }

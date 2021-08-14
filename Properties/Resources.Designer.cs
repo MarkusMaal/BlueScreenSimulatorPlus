@@ -165,6 +165,27 @@ namespace UltimateBlueScreenSimulator.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ACPI.sys:ACPI Driver for NT
+        ///acpiex.sys:ACPIEx Driver  
+        ///afd.sys:Ancillary Function Driver for WinSock  
+        ///afunix.sys:AF_UNIX socket provider 
+        ///AgileVpn.sys:RAS Agile Vpn Miniport Call Manager 
+        ///ahcache.sys:Application Compatibility Cache  
+        ///atrfiltr.sys:Example ATR Filter Driver  
+        ///bam.sys:BAM Kernel Driver 
+        ///BasicDisplay.sys:Microsoft Basic Display Driver
+        ///BasicRender.sys:Microsoft Basic Render Driver 
+        ///BazisVirtualCDBus.sys:WinCDEmu virtual CDROM bus 
+        ///Beep.SYS:BEEP Driver 
+        ///bindflt.sys:Windows Bind Filte [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string CULPRIT_FILES {
+            get {
+                return ResourceManager.GetString("CULPRIT_FILES", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap current {

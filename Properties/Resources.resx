@@ -190,4 +190,7 @@
   <data name="corner_br1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\corner_br1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="CULPRIT_FILES" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CULPRIT_FILES.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1257</value>
+  </data>
 </root>

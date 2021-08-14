@@ -42,7 +42,6 @@
             this.qrBox = new System.Windows.Forms.CheckBox();
             this.memoryBox = new System.Windows.Forms.CheckBox();
             this.errorCode = new System.Windows.Forms.Panel();
-            this.textBox2 = new System.Windows.Forms.TextBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -73,6 +72,8 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.timer3 = new System.Windows.Forms.Timer(this.components);
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.flowLayoutPanel1.SuspendLayout();
             this.WXOptions.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
@@ -238,6 +239,7 @@
             // 
             // errorCode
             // 
+            this.errorCode.Controls.Add(this.button2);
             this.errorCode.Controls.Add(this.textBox2);
             this.errorCode.Controls.Add(this.checkBox2);
             this.errorCode.Controls.Add(this.textBox1);
@@ -249,18 +251,6 @@
             this.errorCode.Name = "errorCode";
             this.errorCode.Size = new System.Drawing.Size(467, 84);
             this.errorCode.TabIndex = 1;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Enabled = false;
-            this.textBox2.Location = new System.Drawing.Point(151, 59);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(313, 20);
-            this.textBox2.TabIndex = 6;
-            this.textBox2.Text = "vga.sys";
-            this.helpTip.SetToolTip(this.textBox2, "Specific file, that  may have caused the crash");
-            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
-            this.textBox2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Button7_KeyDown);
             // 
             // checkBox2
             // 
@@ -601,6 +591,29 @@
             this.timer3.Interval = 6000;
             this.timer3.Tick += new System.EventHandler(this.Timer3_Tick);
             // 
+            // textBox2
+            // 
+            this.textBox2.Enabled = false;
+            this.textBox2.Location = new System.Drawing.Point(151, 59);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(244, 20);
+            this.textBox2.TabIndex = 6;
+            this.textBox2.Text = "vga.sys";
+            this.helpTip.SetToolTip(this.textBox2, "Specific file, that  may have caused the crash");
+            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            this.textBox2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Button7_KeyDown);
+            // 
+            // button2
+            // 
+            this.button2.Enabled = false;
+            this.button2.Location = new System.Drawing.Point(401, 59);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(63, 20);
+            this.button2.TabIndex = 7;
+            this.button2.Text = "Choose";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click_1);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -623,7 +636,7 @@
             this.HelpButton = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(515, 9999);
+            this.MaximumSize = new System.Drawing.Size(550, 9999);
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(515, 373);
             this.Name = "Form1";
@@ -691,9 +704,10 @@
         internal System.Windows.Forms.CheckBox checkBox1;
         internal System.Windows.Forms.CheckBox winMode;
         public System.Windows.Forms.Timer timer3;
-        public System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.CheckBox memoryBox;
+        public System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Button button2;
     }
 }
 
