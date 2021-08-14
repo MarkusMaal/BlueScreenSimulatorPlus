@@ -35,14 +35,14 @@
             this.textBox15 = new System.Windows.Forms.TextBox();
             this.textBox14 = new System.Windows.Forms.TextBox();
             this.textBox13 = new System.Windows.Forms.TextBox();
-            this.button34 = new System.Windows.Forms.Button();
-            this.button33 = new System.Windows.Forms.Button();
-            this.button32 = new System.Windows.Forms.Button();
-            this.button31 = new System.Windows.Forms.Button();
-            this.button30 = new System.Windows.Forms.Button();
-            this.button29 = new System.Windows.Forms.Button();
-            this.button28 = new System.Windows.Forms.Button();
-            this.button27 = new System.Windows.Forms.Button();
+            this.null16 = new System.Windows.Forms.Button();
+            this.null15 = new System.Windows.Forms.Button();
+            this.null14 = new System.Windows.Forms.Button();
+            this.null13 = new System.Windows.Forms.Button();
+            this.button16 = new System.Windows.Forms.Button();
+            this.button15 = new System.Windows.Forms.Button();
+            this.button14 = new System.Windows.Forms.Button();
+            this.button13 = new System.Windows.Forms.Button();
             this.c1_16 = new System.Windows.Forms.Label();
             this.c1_15 = new System.Windows.Forms.Label();
             this.c1_14 = new System.Windows.Forms.Label();
@@ -59,18 +59,18 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button13 = new System.Windows.Forms.Button();
-            this.button14 = new System.Windows.Forms.Button();
-            this.button15 = new System.Windows.Forms.Button();
-            this.button16 = new System.Windows.Forms.Button();
-            this.button17 = new System.Windows.Forms.Button();
-            this.button18 = new System.Windows.Forms.Button();
-            this.button19 = new System.Windows.Forms.Button();
-            this.button20 = new System.Windows.Forms.Button();
-            this.button21 = new System.Windows.Forms.Button();
-            this.button22 = new System.Windows.Forms.Button();
-            this.button23 = new System.Windows.Forms.Button();
-            this.button24 = new System.Windows.Forms.Button();
+            this.null1 = new System.Windows.Forms.Button();
+            this.null2 = new System.Windows.Forms.Button();
+            this.null3 = new System.Windows.Forms.Button();
+            this.null4 = new System.Windows.Forms.Button();
+            this.null5 = new System.Windows.Forms.Button();
+            this.null6 = new System.Windows.Forms.Button();
+            this.null7 = new System.Windows.Forms.Button();
+            this.null8 = new System.Windows.Forms.Button();
+            this.null9 = new System.Windows.Forms.Button();
+            this.null10 = new System.Windows.Forms.Button();
+            this.null11 = new System.Windows.Forms.Button();
+            this.null12 = new System.Windows.Forms.Button();
             this.button12 = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
@@ -144,14 +144,14 @@
             this.tableLayoutPanel1.Controls.Add(this.textBox15, 15, 3);
             this.tableLayoutPanel1.Controls.Add(this.textBox14, 14, 3);
             this.tableLayoutPanel1.Controls.Add(this.textBox13, 13, 3);
-            this.tableLayoutPanel1.Controls.Add(this.button34, 16, 2);
-            this.tableLayoutPanel1.Controls.Add(this.button33, 15, 2);
-            this.tableLayoutPanel1.Controls.Add(this.button32, 14, 2);
-            this.tableLayoutPanel1.Controls.Add(this.button31, 13, 2);
-            this.tableLayoutPanel1.Controls.Add(this.button30, 16, 1);
-            this.tableLayoutPanel1.Controls.Add(this.button29, 15, 1);
-            this.tableLayoutPanel1.Controls.Add(this.button28, 14, 1);
-            this.tableLayoutPanel1.Controls.Add(this.button27, 13, 1);
+            this.tableLayoutPanel1.Controls.Add(this.null16, 16, 2);
+            this.tableLayoutPanel1.Controls.Add(this.null15, 15, 2);
+            this.tableLayoutPanel1.Controls.Add(this.null14, 14, 2);
+            this.tableLayoutPanel1.Controls.Add(this.null13, 13, 2);
+            this.tableLayoutPanel1.Controls.Add(this.button16, 16, 1);
+            this.tableLayoutPanel1.Controls.Add(this.button15, 15, 1);
+            this.tableLayoutPanel1.Controls.Add(this.button14, 14, 1);
+            this.tableLayoutPanel1.Controls.Add(this.button13, 13, 1);
             this.tableLayoutPanel1.Controls.Add(this.c1_16, 16, 0);
             this.tableLayoutPanel1.Controls.Add(this.c1_15, 15, 0);
             this.tableLayoutPanel1.Controls.Add(this.c1_14, 14, 0);
@@ -168,18 +168,18 @@
             this.tableLayoutPanel1.Controls.Add(this.textBox3, 3, 3);
             this.tableLayoutPanel1.Controls.Add(this.textBox2, 2, 3);
             this.tableLayoutPanel1.Controls.Add(this.textBox1, 1, 3);
-            this.tableLayoutPanel1.Controls.Add(this.button13, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.button14, 2, 2);
-            this.tableLayoutPanel1.Controls.Add(this.button15, 3, 2);
-            this.tableLayoutPanel1.Controls.Add(this.button16, 4, 2);
-            this.tableLayoutPanel1.Controls.Add(this.button17, 5, 2);
-            this.tableLayoutPanel1.Controls.Add(this.button18, 6, 2);
-            this.tableLayoutPanel1.Controls.Add(this.button19, 7, 2);
-            this.tableLayoutPanel1.Controls.Add(this.button20, 8, 2);
-            this.tableLayoutPanel1.Controls.Add(this.button21, 9, 2);
-            this.tableLayoutPanel1.Controls.Add(this.button22, 10, 2);
-            this.tableLayoutPanel1.Controls.Add(this.button23, 11, 2);
-            this.tableLayoutPanel1.Controls.Add(this.button24, 12, 2);
+            this.tableLayoutPanel1.Controls.Add(this.null1, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.null2, 2, 2);
+            this.tableLayoutPanel1.Controls.Add(this.null3, 3, 2);
+            this.tableLayoutPanel1.Controls.Add(this.null4, 4, 2);
+            this.tableLayoutPanel1.Controls.Add(this.null5, 5, 2);
+            this.tableLayoutPanel1.Controls.Add(this.null6, 6, 2);
+            this.tableLayoutPanel1.Controls.Add(this.null7, 7, 2);
+            this.tableLayoutPanel1.Controls.Add(this.null8, 8, 2);
+            this.tableLayoutPanel1.Controls.Add(this.null9, 9, 2);
+            this.tableLayoutPanel1.Controls.Add(this.null10, 10, 2);
+            this.tableLayoutPanel1.Controls.Add(this.null11, 11, 2);
+            this.tableLayoutPanel1.Controls.Add(this.null12, 12, 2);
             this.tableLayoutPanel1.Controls.Add(this.button12, 12, 1);
             this.tableLayoutPanel1.Controls.Add(this.button11, 11, 1);
             this.tableLayoutPanel1.Controls.Add(this.button10, 10, 1);
@@ -279,101 +279,101 @@
             this.textBox13.TextChanged += new System.EventHandler(this.TextBox13_TextChanged);
             this.textBox13.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox1_KeyDown);
             // 
-            // button34
+            // null16
             // 
-            this.button34.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button34.Location = new System.Drawing.Point(620, 40);
-            this.button34.Margin = new System.Windows.Forms.Padding(0);
-            this.button34.Name = "button34";
-            this.button34.Size = new System.Drawing.Size(48, 20);
-            this.button34.TabIndex = 61;
-            this.button34.Text = "Set";
-            this.button34.UseVisualStyleBackColor = true;
-            this.button34.Click += new System.EventHandler(this.Button34_Click);
+            this.null16.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.null16.Location = new System.Drawing.Point(620, 40);
+            this.null16.Margin = new System.Windows.Forms.Padding(0);
+            this.null16.Name = "null16";
+            this.null16.Size = new System.Drawing.Size(48, 20);
+            this.null16.TabIndex = 61;
+            this.null16.Text = "Set";
+            this.null16.UseVisualStyleBackColor = true;
+            this.null16.Click += new System.EventHandler(this.Button34_Click);
             // 
-            // button33
+            // null15
             // 
-            this.button33.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button33.Location = new System.Drawing.Point(577, 40);
-            this.button33.Margin = new System.Windows.Forms.Padding(0);
-            this.button33.Name = "button33";
-            this.button33.Size = new System.Drawing.Size(43, 20);
-            this.button33.TabIndex = 60;
-            this.button33.Text = "Set";
-            this.button33.UseVisualStyleBackColor = true;
-            this.button33.Click += new System.EventHandler(this.Button33_Click);
+            this.null15.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.null15.Location = new System.Drawing.Point(577, 40);
+            this.null15.Margin = new System.Windows.Forms.Padding(0);
+            this.null15.Name = "null15";
+            this.null15.Size = new System.Drawing.Size(43, 20);
+            this.null15.TabIndex = 60;
+            this.null15.Text = "Set";
+            this.null15.UseVisualStyleBackColor = true;
+            this.null15.Click += new System.EventHandler(this.Button33_Click);
             // 
-            // button32
+            // null14
             // 
-            this.button32.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button32.Location = new System.Drawing.Point(537, 40);
-            this.button32.Margin = new System.Windows.Forms.Padding(0);
-            this.button32.Name = "button32";
-            this.button32.Size = new System.Drawing.Size(40, 20);
-            this.button32.TabIndex = 59;
-            this.button32.Text = "Set";
-            this.button32.UseVisualStyleBackColor = true;
-            this.button32.Click += new System.EventHandler(this.Button32_Click);
+            this.null14.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.null14.Location = new System.Drawing.Point(537, 40);
+            this.null14.Margin = new System.Windows.Forms.Padding(0);
+            this.null14.Name = "null14";
+            this.null14.Size = new System.Drawing.Size(40, 20);
+            this.null14.TabIndex = 59;
+            this.null14.Text = "Set";
+            this.null14.UseVisualStyleBackColor = true;
+            this.null14.Click += new System.EventHandler(this.Button32_Click);
             // 
-            // button31
+            // null13
             // 
-            this.button31.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button31.Location = new System.Drawing.Point(500, 40);
-            this.button31.Margin = new System.Windows.Forms.Padding(0);
-            this.button31.Name = "button31";
-            this.button31.Size = new System.Drawing.Size(37, 20);
-            this.button31.TabIndex = 58;
-            this.button31.Text = "Set";
-            this.button31.UseVisualStyleBackColor = true;
-            this.button31.Click += new System.EventHandler(this.Button31_Click);
+            this.null13.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.null13.Location = new System.Drawing.Point(500, 40);
+            this.null13.Margin = new System.Windows.Forms.Padding(0);
+            this.null13.Name = "null13";
+            this.null13.Size = new System.Drawing.Size(37, 20);
+            this.null13.TabIndex = 58;
+            this.null13.Text = "Set";
+            this.null13.UseVisualStyleBackColor = true;
+            this.null13.Click += new System.EventHandler(this.Button31_Click);
             // 
-            // button30
+            // button16
             // 
-            this.button30.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button30.Location = new System.Drawing.Point(620, 21);
-            this.button30.Margin = new System.Windows.Forms.Padding(0);
-            this.button30.Name = "button30";
-            this.button30.Size = new System.Drawing.Size(48, 19);
-            this.button30.TabIndex = 57;
-            this.button30.Text = "Set";
-            this.button30.UseVisualStyleBackColor = true;
-            this.button30.Click += new System.EventHandler(this.Button30_Click);
+            this.button16.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button16.Location = new System.Drawing.Point(620, 21);
+            this.button16.Margin = new System.Windows.Forms.Padding(0);
+            this.button16.Name = "button16";
+            this.button16.Size = new System.Drawing.Size(48, 19);
+            this.button16.TabIndex = 57;
+            this.button16.Text = "Set";
+            this.button16.UseVisualStyleBackColor = true;
+            this.button16.Click += new System.EventHandler(this.Button30_Click);
             // 
-            // button29
+            // button15
             // 
-            this.button29.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button29.Location = new System.Drawing.Point(577, 21);
-            this.button29.Margin = new System.Windows.Forms.Padding(0);
-            this.button29.Name = "button29";
-            this.button29.Size = new System.Drawing.Size(43, 19);
-            this.button29.TabIndex = 56;
-            this.button29.Text = "Set";
-            this.button29.UseVisualStyleBackColor = true;
-            this.button29.Click += new System.EventHandler(this.Button29_Click);
+            this.button15.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button15.Location = new System.Drawing.Point(577, 21);
+            this.button15.Margin = new System.Windows.Forms.Padding(0);
+            this.button15.Name = "button15";
+            this.button15.Size = new System.Drawing.Size(43, 19);
+            this.button15.TabIndex = 56;
+            this.button15.Text = "Set";
+            this.button15.UseVisualStyleBackColor = true;
+            this.button15.Click += new System.EventHandler(this.Button29_Click);
             // 
-            // button28
+            // button14
             // 
-            this.button28.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button28.Location = new System.Drawing.Point(537, 21);
-            this.button28.Margin = new System.Windows.Forms.Padding(0);
-            this.button28.Name = "button28";
-            this.button28.Size = new System.Drawing.Size(40, 19);
-            this.button28.TabIndex = 55;
-            this.button28.Text = "Set";
-            this.button28.UseVisualStyleBackColor = true;
-            this.button28.Click += new System.EventHandler(this.Button28_Click);
+            this.button14.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button14.Location = new System.Drawing.Point(537, 21);
+            this.button14.Margin = new System.Windows.Forms.Padding(0);
+            this.button14.Name = "button14";
+            this.button14.Size = new System.Drawing.Size(40, 19);
+            this.button14.TabIndex = 55;
+            this.button14.Text = "Set";
+            this.button14.UseVisualStyleBackColor = true;
+            this.button14.Click += new System.EventHandler(this.Button28_Click);
             // 
-            // button27
+            // button13
             // 
-            this.button27.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button27.Location = new System.Drawing.Point(500, 21);
-            this.button27.Margin = new System.Windows.Forms.Padding(0);
-            this.button27.Name = "button27";
-            this.button27.Size = new System.Drawing.Size(37, 19);
-            this.button27.TabIndex = 54;
-            this.button27.Text = "Set";
-            this.button27.UseVisualStyleBackColor = true;
-            this.button27.Click += new System.EventHandler(this.Button27_Click);
+            this.button13.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button13.Location = new System.Drawing.Point(500, 21);
+            this.button13.Margin = new System.Windows.Forms.Padding(0);
+            this.button13.Name = "button13";
+            this.button13.Size = new System.Drawing.Size(37, 19);
+            this.button13.TabIndex = 54;
+            this.button13.Text = "Set";
+            this.button13.UseVisualStyleBackColor = true;
+            this.button13.Click += new System.EventHandler(this.Button27_Click);
             // 
             // c1_16
             // 
@@ -603,149 +603,149 @@
             this.textBox1.TextChanged += new System.EventHandler(this.TextBox1_TextChanged);
             this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox1_KeyDown);
             // 
-            // button13
+            // null1
             // 
-            this.button13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button13.Location = new System.Drawing.Point(70, 40);
-            this.button13.Margin = new System.Windows.Forms.Padding(0);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(36, 20);
-            this.button13.TabIndex = 40;
-            this.button13.Text = "Set";
-            this.button13.UseVisualStyleBackColor = true;
-            this.button13.Click += new System.EventHandler(this.Button13_Click);
+            this.null1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.null1.Location = new System.Drawing.Point(70, 40);
+            this.null1.Margin = new System.Windows.Forms.Padding(0);
+            this.null1.Name = "null1";
+            this.null1.Size = new System.Drawing.Size(36, 20);
+            this.null1.TabIndex = 40;
+            this.null1.Text = "Set";
+            this.null1.UseVisualStyleBackColor = true;
+            this.null1.Click += new System.EventHandler(this.Button13_Click);
             // 
-            // button14
+            // null2
             // 
-            this.button14.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button14.Location = new System.Drawing.Point(106, 40);
-            this.button14.Margin = new System.Windows.Forms.Padding(0);
-            this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(37, 20);
-            this.button14.TabIndex = 39;
-            this.button14.Text = "Set";
-            this.button14.UseVisualStyleBackColor = true;
-            this.button14.Click += new System.EventHandler(this.Button14_Click);
+            this.null2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.null2.Location = new System.Drawing.Point(106, 40);
+            this.null2.Margin = new System.Windows.Forms.Padding(0);
+            this.null2.Name = "null2";
+            this.null2.Size = new System.Drawing.Size(37, 20);
+            this.null2.TabIndex = 39;
+            this.null2.Text = "Set";
+            this.null2.UseVisualStyleBackColor = true;
+            this.null2.Click += new System.EventHandler(this.Button14_Click);
             // 
-            // button15
+            // null3
             // 
-            this.button15.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button15.Location = new System.Drawing.Point(143, 40);
-            this.button15.Margin = new System.Windows.Forms.Padding(0);
-            this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(37, 20);
-            this.button15.TabIndex = 38;
-            this.button15.Text = "Set";
-            this.button15.UseVisualStyleBackColor = true;
-            this.button15.Click += new System.EventHandler(this.Button15_Click);
+            this.null3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.null3.Location = new System.Drawing.Point(143, 40);
+            this.null3.Margin = new System.Windows.Forms.Padding(0);
+            this.null3.Name = "null3";
+            this.null3.Size = new System.Drawing.Size(37, 20);
+            this.null3.TabIndex = 38;
+            this.null3.Text = "Set";
+            this.null3.UseVisualStyleBackColor = true;
+            this.null3.Click += new System.EventHandler(this.Button15_Click);
             // 
-            // button16
+            // null4
             // 
-            this.button16.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button16.Location = new System.Drawing.Point(180, 40);
-            this.button16.Margin = new System.Windows.Forms.Padding(0);
-            this.button16.Name = "button16";
-            this.button16.Size = new System.Drawing.Size(35, 20);
-            this.button16.TabIndex = 37;
-            this.button16.Text = "Set";
-            this.button16.UseVisualStyleBackColor = true;
-            this.button16.Click += new System.EventHandler(this.Button16_Click);
+            this.null4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.null4.Location = new System.Drawing.Point(180, 40);
+            this.null4.Margin = new System.Windows.Forms.Padding(0);
+            this.null4.Name = "null4";
+            this.null4.Size = new System.Drawing.Size(35, 20);
+            this.null4.TabIndex = 37;
+            this.null4.Text = "Set";
+            this.null4.UseVisualStyleBackColor = true;
+            this.null4.Click += new System.EventHandler(this.Button16_Click);
             // 
-            // button17
+            // null5
             // 
-            this.button17.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button17.Location = new System.Drawing.Point(215, 40);
-            this.button17.Margin = new System.Windows.Forms.Padding(0);
-            this.button17.Name = "button17";
-            this.button17.Size = new System.Drawing.Size(39, 20);
-            this.button17.TabIndex = 36;
-            this.button17.Text = "Set";
-            this.button17.UseVisualStyleBackColor = true;
-            this.button17.Click += new System.EventHandler(this.Button17_Click);
+            this.null5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.null5.Location = new System.Drawing.Point(215, 40);
+            this.null5.Margin = new System.Windows.Forms.Padding(0);
+            this.null5.Name = "null5";
+            this.null5.Size = new System.Drawing.Size(39, 20);
+            this.null5.TabIndex = 36;
+            this.null5.Text = "Set";
+            this.null5.UseVisualStyleBackColor = true;
+            this.null5.Click += new System.EventHandler(this.Button17_Click);
             // 
-            // button18
+            // null6
             // 
-            this.button18.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button18.Location = new System.Drawing.Point(254, 40);
-            this.button18.Margin = new System.Windows.Forms.Padding(0);
-            this.button18.Name = "button18";
-            this.button18.Size = new System.Drawing.Size(37, 20);
-            this.button18.TabIndex = 35;
-            this.button18.Text = "Set";
-            this.button18.UseVisualStyleBackColor = true;
-            this.button18.Click += new System.EventHandler(this.Button18_Click);
+            this.null6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.null6.Location = new System.Drawing.Point(254, 40);
+            this.null6.Margin = new System.Windows.Forms.Padding(0);
+            this.null6.Name = "null6";
+            this.null6.Size = new System.Drawing.Size(37, 20);
+            this.null6.TabIndex = 35;
+            this.null6.Text = "Set";
+            this.null6.UseVisualStyleBackColor = true;
+            this.null6.Click += new System.EventHandler(this.Button18_Click);
             // 
-            // button19
+            // null7
             // 
-            this.button19.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button19.Location = new System.Drawing.Point(291, 40);
-            this.button19.Margin = new System.Windows.Forms.Padding(0);
-            this.button19.Name = "button19";
-            this.button19.Size = new System.Drawing.Size(32, 20);
-            this.button19.TabIndex = 34;
-            this.button19.Text = "Set";
-            this.button19.UseVisualStyleBackColor = true;
-            this.button19.Click += new System.EventHandler(this.Button19_Click);
+            this.null7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.null7.Location = new System.Drawing.Point(291, 40);
+            this.null7.Margin = new System.Windows.Forms.Padding(0);
+            this.null7.Name = "null7";
+            this.null7.Size = new System.Drawing.Size(32, 20);
+            this.null7.TabIndex = 34;
+            this.null7.Text = "Set";
+            this.null7.UseVisualStyleBackColor = true;
+            this.null7.Click += new System.EventHandler(this.Button19_Click);
             // 
-            // button20
+            // null8
             // 
-            this.button20.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button20.Location = new System.Drawing.Point(323, 40);
-            this.button20.Margin = new System.Windows.Forms.Padding(0);
-            this.button20.Name = "button20";
-            this.button20.Size = new System.Drawing.Size(35, 20);
-            this.button20.TabIndex = 33;
-            this.button20.Text = "Set";
-            this.button20.UseVisualStyleBackColor = true;
-            this.button20.Click += new System.EventHandler(this.Button20_Click);
+            this.null8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.null8.Location = new System.Drawing.Point(323, 40);
+            this.null8.Margin = new System.Windows.Forms.Padding(0);
+            this.null8.Name = "null8";
+            this.null8.Size = new System.Drawing.Size(35, 20);
+            this.null8.TabIndex = 33;
+            this.null8.Text = "Set";
+            this.null8.UseVisualStyleBackColor = true;
+            this.null8.Click += new System.EventHandler(this.Button20_Click);
             // 
-            // button21
+            // null9
             // 
-            this.button21.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button21.Location = new System.Drawing.Point(358, 40);
-            this.button21.Margin = new System.Windows.Forms.Padding(0);
-            this.button21.Name = "button21";
-            this.button21.Size = new System.Drawing.Size(32, 20);
-            this.button21.TabIndex = 32;
-            this.button21.Text = "Set";
-            this.button21.UseVisualStyleBackColor = true;
-            this.button21.Click += new System.EventHandler(this.Button21_Click);
+            this.null9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.null9.Location = new System.Drawing.Point(358, 40);
+            this.null9.Margin = new System.Windows.Forms.Padding(0);
+            this.null9.Name = "null9";
+            this.null9.Size = new System.Drawing.Size(32, 20);
+            this.null9.TabIndex = 32;
+            this.null9.Text = "Set";
+            this.null9.UseVisualStyleBackColor = true;
+            this.null9.Click += new System.EventHandler(this.Button21_Click);
             // 
-            // button22
+            // null10
             // 
-            this.button22.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button22.Location = new System.Drawing.Point(390, 40);
-            this.button22.Margin = new System.Windows.Forms.Padding(0);
-            this.button22.Name = "button22";
-            this.button22.Size = new System.Drawing.Size(38, 20);
-            this.button22.TabIndex = 31;
-            this.button22.Text = "Set";
-            this.button22.UseVisualStyleBackColor = true;
-            this.button22.Click += new System.EventHandler(this.Button22_Click);
+            this.null10.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.null10.Location = new System.Drawing.Point(390, 40);
+            this.null10.Margin = new System.Windows.Forms.Padding(0);
+            this.null10.Name = "null10";
+            this.null10.Size = new System.Drawing.Size(38, 20);
+            this.null10.TabIndex = 31;
+            this.null10.Text = "Set";
+            this.null10.UseVisualStyleBackColor = true;
+            this.null10.Click += new System.EventHandler(this.Button22_Click);
             // 
-            // button23
+            // null11
             // 
-            this.button23.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button23.Location = new System.Drawing.Point(428, 40);
-            this.button23.Margin = new System.Windows.Forms.Padding(0);
-            this.button23.Name = "button23";
-            this.button23.Size = new System.Drawing.Size(36, 20);
-            this.button23.TabIndex = 30;
-            this.button23.Text = "Set";
-            this.button23.UseVisualStyleBackColor = true;
-            this.button23.Click += new System.EventHandler(this.Button23_Click);
+            this.null11.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.null11.Location = new System.Drawing.Point(428, 40);
+            this.null11.Margin = new System.Windows.Forms.Padding(0);
+            this.null11.Name = "null11";
+            this.null11.Size = new System.Drawing.Size(36, 20);
+            this.null11.TabIndex = 30;
+            this.null11.Text = "Set";
+            this.null11.UseVisualStyleBackColor = true;
+            this.null11.Click += new System.EventHandler(this.Button23_Click);
             // 
-            // button24
+            // null12
             // 
-            this.button24.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button24.Location = new System.Drawing.Point(464, 40);
-            this.button24.Margin = new System.Windows.Forms.Padding(0);
-            this.button24.Name = "button24";
-            this.button24.Size = new System.Drawing.Size(36, 20);
-            this.button24.TabIndex = 29;
-            this.button24.Text = "Set";
-            this.button24.UseVisualStyleBackColor = true;
-            this.button24.Click += new System.EventHandler(this.Button24_Click);
+            this.null12.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.null12.Location = new System.Drawing.Point(464, 40);
+            this.null12.Margin = new System.Windows.Forms.Padding(0);
+            this.null12.Name = "null12";
+            this.null12.Size = new System.Drawing.Size(36, 20);
+            this.null12.TabIndex = 29;
+            this.null12.Text = "Set";
+            this.null12.UseVisualStyleBackColor = true;
+            this.null12.Click += new System.EventHandler(this.Button24_Click);
             // 
             // button12
             // 
@@ -1226,18 +1226,18 @@
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button13;
-        private System.Windows.Forms.Button button14;
-        private System.Windows.Forms.Button button15;
-        private System.Windows.Forms.Button button16;
-        private System.Windows.Forms.Button button17;
-        private System.Windows.Forms.Button button18;
-        private System.Windows.Forms.Button button19;
-        private System.Windows.Forms.Button button20;
-        private System.Windows.Forms.Button button21;
-        private System.Windows.Forms.Button button22;
-        private System.Windows.Forms.Button button23;
-        private System.Windows.Forms.Button button24;
+        private System.Windows.Forms.Button null1;
+        private System.Windows.Forms.Button null2;
+        private System.Windows.Forms.Button null3;
+        private System.Windows.Forms.Button null4;
+        private System.Windows.Forms.Button null5;
+        private System.Windows.Forms.Button null6;
+        private System.Windows.Forms.Button null7;
+        private System.Windows.Forms.Button null8;
+        private System.Windows.Forms.Button null9;
+        private System.Windows.Forms.Button null10;
+        private System.Windows.Forms.Button null11;
+        private System.Windows.Forms.Button null12;
         private System.Windows.Forms.Button button12;
         private System.Windows.Forms.Button button11;
         private System.Windows.Forms.Button button10;
@@ -1273,10 +1273,10 @@
         private System.Windows.Forms.RadioButton radioButton4;
         private System.Windows.Forms.Button button25;
         private System.Windows.Forms.Button button26;
-        private System.Windows.Forms.Button button30;
-        private System.Windows.Forms.Button button29;
-        private System.Windows.Forms.Button button28;
-        private System.Windows.Forms.Button button27;
+        private System.Windows.Forms.Button button16;
+        private System.Windows.Forms.Button button15;
+        private System.Windows.Forms.Button button14;
+        private System.Windows.Forms.Button button13;
         private System.Windows.Forms.Label c1_16;
         private System.Windows.Forms.Label c1_15;
         private System.Windows.Forms.Label c1_14;
@@ -1285,10 +1285,10 @@
         private System.Windows.Forms.TextBox textBox15;
         private System.Windows.Forms.TextBox textBox14;
         private System.Windows.Forms.TextBox textBox13;
-        private System.Windows.Forms.Button button34;
-        private System.Windows.Forms.Button button33;
-        private System.Windows.Forms.Button button32;
-        private System.Windows.Forms.Button button31;
+        private System.Windows.Forms.Button null16;
+        private System.Windows.Forms.Button null15;
+        private System.Windows.Forms.Button null14;
+        private System.Windows.Forms.Button null13;
         private System.Windows.Forms.Button button35;
         private System.Windows.Forms.Button button36;
     }

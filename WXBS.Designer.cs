@@ -42,6 +42,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.waterMarkText = new System.Windows.Forms.Label();
+            this.memCodes = new System.Windows.Forms.Label();
             this.flowLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -55,7 +56,7 @@
             this.flowLayoutPanel1.Controls.Add(this.label3);
             this.flowLayoutPanel1.Controls.Add(this.flowLayoutPanel2);
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(-13, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(9999, 9999);
             this.flowLayoutPanel1.TabIndex = 0;
@@ -163,14 +164,25 @@
             // 
             // waterMarkText
             // 
+            this.waterMarkText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.waterMarkText.AutoSize = true;
             this.waterMarkText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.waterMarkText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(163)))), ((int)(((byte)(230)))));
-            this.waterMarkText.Location = new System.Drawing.Point(20, 50);
+            this.waterMarkText.Location = new System.Drawing.Point(1050, 670);
             this.waterMarkText.Name = "waterMarkText";
             this.waterMarkText.Size = new System.Drawing.Size(188, 20);
             this.waterMarkText.TabIndex = 4;
             this.waterMarkText.Text = "bluescreen simulator plus";
+            // 
+            // memCodes
+            // 
+            this.memCodes.AutoSize = true;
+            this.memCodes.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.memCodes.Location = new System.Drawing.Point(-3, 1);
+            this.memCodes.Name = "memCodes";
+            this.memCodes.Size = new System.Drawing.Size(132, 60);
+            this.memCodes.TabIndex = 5;
+            this.memCodes.Text = "0x0000000000000000\r\n0x0000000000000000\r\n0x0000000000000000\r\n0x0000000000000000";
             // 
             // WXBS
             // 
@@ -178,6 +190,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(113)))), ((int)(((byte)(170)))));
             this.ClientSize = new System.Drawing.Size(1280, 720);
+            this.Controls.Add(this.memCodes);
             this.Controls.Add(this.waterMarkText);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.flowLayoutPanel1);
@@ -219,5 +232,6 @@
         public System.Windows.Forms.Label waterMarkText;
         public System.Windows.Forms.Label label5;
         public System.Windows.Forms.Label label1;
+        internal System.Windows.Forms.Label memCodes;
     }
 }

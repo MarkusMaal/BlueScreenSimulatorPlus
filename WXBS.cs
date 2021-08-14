@@ -53,6 +53,7 @@ namespace UltimateBlueScreenSimulator
             {
                 me = Program.bluescreens[8];
             }
+            memCodes.Visible = me.GetBool("extracodes");
             Font textfont = me.GetFont();
             float textsize = textfont.Size;
             Font emotifont = new Font(me.GetFont().FontFamily, textsize * 5f, me.GetFont().Style);

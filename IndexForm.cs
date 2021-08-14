@@ -106,7 +106,7 @@ namespace UltimateBlueScreenSimulator
             {
                 c4 = c1_1.Text + c1_2.Text + c1_3.Text + c1_4.Text + c1_5.Text + c1_6.Text + c1_7.Text + c1_8.Text + c1_9.Text + c1_10.Text + c1_11.Text + c1_12.Text + c1_13.Text + c1_14.Text + c1_15.Text + c1_16.Text;
             }
-            label6.Text = "0x" + c1 + ", " + "0x" + c2 + ", " + "0x" + c3 + ", " + "0x" + c4;
+            label6.Text = DispCodes(c1, c2, c3, c4);
         }
 
         private void Button2_Click(object sender, EventArgs e)
@@ -427,10 +427,54 @@ namespace UltimateBlueScreenSimulator
                 this.DialogResult = DialogResult.Cancel;
                 this.Close();
             }
-            label6.Text = "0x" + c1 + ", " + "0x" + c2 + ", " + "0x" + c3 + ", " + "0x" + c4;
+            label6.Text = DispCodes(c1, c2, c3, c4);
             this.Text = "Error code generation (" + me.GetString("os") + ")";
             radioButton1.Checked = false;
             radioButton1.Checked = true;
+        }
+
+        private string DispCodes(string c1, string c2, string c3, string c4)
+        {
+            if ((me.GetString("os") == "Windows XP") || (me.GetString("os") == "Windows 2000") || (me.GetString("os") == "Windows NT 3.x/4.0"))
+            {
+                for (var i = 16; i > 8; i--)
+                {
+                    Button btn = (Button)tableLayoutPanel1.Controls["button" + i.ToString()];
+                    Button nullbtn = (Button)tableLayoutPanel1.Controls["null" + i.ToString()];
+                    TextBox txtbox = (TextBox)tableLayoutPanel1.Controls["textBox" + i.ToString()];
+                    btn.Enabled = false;
+                    nullbtn.Enabled = false;
+                    txtbox.Enabled = false;
+                }
+                return "0x" + c1.Substring(0, 8) + ", 0x" + c2.Substring(0, 8) + ", 0x" + c3.Substring(0, 8) + ", 0x" + c4.Substring(0, 8);
+            }
+            else if (me.GetString("os") == "Windows CE")
+            {
+                for (var i = 16; i > 6; i--)
+                {
+                    Button btn = (Button)tableLayoutPanel1.Controls["button" + i.ToString()];
+                    Button nullbtn = (Button)tableLayoutPanel1.Controls["null" + i.ToString()];
+                    TextBox txtbox = (TextBox)tableLayoutPanel1.Controls["textBox" + i.ToString()];
+                    btn.Enabled = false;
+                    nullbtn.Enabled = false;
+                    txtbox.Enabled = false;
+                }
+                return "0x" + c1.Substring(0, 6) + ", 0x" + c2.Substring(0, 6) + ", 0x" + c3.Substring(0, 6) + ", 0x" + c4.Substring(0, 6);
+            }
+            else if (me.GetString("os") == "Windows 9x/Me")
+            {
+                for (var i = 16; i > 4; i--)
+                {
+                    Button btn = (Button)tableLayoutPanel1.Controls["button" + i.ToString()];
+                    Button nullbtn = (Button)tableLayoutPanel1.Controls["null" + i.ToString()];
+                    TextBox txtbox = (TextBox)tableLayoutPanel1.Controls["textBox" + i.ToString()];
+                    btn.Enabled = false;
+                    nullbtn.Enabled = false;
+                    txtbox.Enabled = false;
+                }
+                return c1.Substring(0, 4) + ", " + c2.Substring(0, 4) + ", " + c3.Substring(0, 4) + ", " + c4.Substring(0, 4);
+            }
+            return "0x" + c1 + ", 0x" + c2 + ", 0x" + c3 + ", 0x" + c4;
         }
 
         private void TableLayoutPanel1_Paint(object sender, PaintEventArgs e)
@@ -519,30 +563,30 @@ namespace UltimateBlueScreenSimulator
             button9.PerformClick();
             button10.PerformClick();
             button12.PerformClick();
-            button27.PerformClick();
-            button28.PerformClick();
-            button29.PerformClick();
-            button30.PerformClick();
-        }
-
-        private void Button35_Click(object sender, EventArgs e)
-        {
             button13.PerformClick();
             button14.PerformClick();
             button15.PerformClick();
             button16.PerformClick();
-            button17.PerformClick();
-            button18.PerformClick();
-            button19.PerformClick();
-            button20.PerformClick();
-            button21.PerformClick();
-            button22.PerformClick();
-            button23.PerformClick();
-            button24.PerformClick();
-            button31.PerformClick();
-            button32.PerformClick();
-            button33.PerformClick();
-            button34.PerformClick();
+        }
+
+        private void Button35_Click(object sender, EventArgs e)
+        {
+            null1.PerformClick();
+            null2.PerformClick();
+            null3.PerformClick();
+            null4.PerformClick();
+            null5.PerformClick();
+            null6.PerformClick();
+            null7.PerformClick();
+            null8.PerformClick();
+            null9.PerformClick();
+            null10.PerformClick();
+            null11.PerformClick();
+            null12.PerformClick();
+            null13.PerformClick();
+            null14.PerformClick();
+            null15.PerformClick();
+            null16.PerformClick();
         }
     }
 }

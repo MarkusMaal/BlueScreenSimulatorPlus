@@ -40,6 +40,7 @@
             this.serverBox = new System.Windows.Forms.CheckBox();
             this.greenBox = new System.Windows.Forms.CheckBox();
             this.qrBox = new System.Windows.Forms.CheckBox();
+            this.memoryBox = new System.Windows.Forms.CheckBox();
             this.errorCode = new System.Windows.Forms.Panel();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
@@ -139,7 +140,7 @@
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(15, 70);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(472, 211);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(472, 242);
             this.flowLayoutPanel1.TabIndex = 3;
             // 
             // WXOptions
@@ -147,7 +148,7 @@
             this.WXOptions.Controls.Add(this.flowLayoutPanel2);
             this.WXOptions.Location = new System.Drawing.Point(3, 3);
             this.WXOptions.Name = "WXOptions";
-            this.WXOptions.Size = new System.Drawing.Size(464, 25);
+            this.WXOptions.Size = new System.Drawing.Size(464, 50);
             this.WXOptions.TabIndex = 0;
             // 
             // flowLayoutPanel2
@@ -156,10 +157,12 @@
             this.flowLayoutPanel2.Controls.Add(this.serverBox);
             this.flowLayoutPanel2.Controls.Add(this.greenBox);
             this.flowLayoutPanel2.Controls.Add(this.qrBox);
+            this.flowLayoutPanel2.Controls.Add(this.memoryBox);
+            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(464, 25);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(464, 50);
             this.flowLayoutPanel2.TabIndex = 4;
             this.flowLayoutPanel2.Paint += new System.Windows.Forms.PaintEventHandler(this.flowLayoutPanel2_Paint);
             // 
@@ -220,6 +223,19 @@
             this.qrBox.CheckedChanged += new System.EventHandler(this.qrBox_CheckedChanged);
             this.qrBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Button7_KeyDown);
             // 
+            // memoryBox
+            // 
+            this.memoryBox.AutoSize = true;
+            this.memoryBox.Location = new System.Drawing.Point(3, 26);
+            this.memoryBox.Name = "memoryBox";
+            this.memoryBox.Size = new System.Drawing.Size(143, 17);
+            this.memoryBox.TabIndex = 4;
+            this.memoryBox.Text = "Additional error codes [?]";
+            this.helpTip.SetToolTip(this.memoryBox, "Displays memory addresses at the top left of the screen (optional feature in Wind" +
+        "ows 8+ bluescreens)");
+            this.memoryBox.UseVisualStyleBackColor = true;
+            this.memoryBox.CheckedChanged += new System.EventHandler(this.memoryBox_CheckedChanged);
+            // 
             // errorCode
             // 
             this.errorCode.Controls.Add(this.textBox2);
@@ -228,7 +244,7 @@
             this.errorCode.Controls.Add(this.label5);
             this.errorCode.Controls.Add(this.comboBox1);
             this.errorCode.Controls.Add(this.label3);
-            this.errorCode.Location = new System.Drawing.Point(0, 34);
+            this.errorCode.Location = new System.Drawing.Point(0, 59);
             this.errorCode.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.errorCode.Name = "errorCode";
             this.errorCode.Size = new System.Drawing.Size(467, 84);
@@ -307,7 +323,7 @@
             this.ntPanel.Controls.Add(this.blinkBox);
             this.ntPanel.Controls.Add(this.amdBox);
             this.ntPanel.Controls.Add(this.stackBox);
-            this.ntPanel.Location = new System.Drawing.Point(0, 124);
+            this.ntPanel.Location = new System.Drawing.Point(0, 149);
             this.ntPanel.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.ntPanel.Name = "ntPanel";
             this.ntPanel.Size = new System.Drawing.Size(467, 27);
@@ -359,7 +375,7 @@
             // 
             this.nineXmessage.Controls.Add(this.comboBox2);
             this.nineXmessage.Controls.Add(this.label4);
-            this.nineXmessage.Location = new System.Drawing.Point(0, 157);
+            this.nineXmessage.Location = new System.Drawing.Point(0, 182);
             this.nineXmessage.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.nineXmessage.Name = "nineXmessage";
             this.nineXmessage.Size = new System.Drawing.Size(467, 25);
@@ -397,7 +413,7 @@
             // acpiBox
             // 
             this.acpiBox.AutoSize = true;
-            this.acpiBox.Location = new System.Drawing.Point(3, 188);
+            this.acpiBox.Location = new System.Drawing.Point(3, 213);
             this.acpiBox.Name = "acpiBox";
             this.acpiBox.Size = new System.Drawing.Size(124, 17);
             this.acpiBox.TabIndex = 8;
@@ -461,7 +477,7 @@
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(416, 295);
+            this.button1.Location = new System.Drawing.Point(416, 328);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(68, 23);
             this.button1.TabIndex = 4;
@@ -474,7 +490,7 @@
             // button3
             // 
             this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.Location = new System.Drawing.Point(301, 295);
+            this.button3.Location = new System.Drawing.Point(301, 328);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(109, 23);
             this.button3.TabIndex = 9;
@@ -487,7 +503,7 @@
             // button4
             // 
             this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button4.Location = new System.Drawing.Point(240, 295);
+            this.button4.Location = new System.Drawing.Point(240, 328);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(55, 23);
             this.button4.TabIndex = 10;
@@ -502,7 +518,7 @@
             // button5
             // 
             this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button5.Location = new System.Drawing.Point(175, 295);
+            this.button5.Location = new System.Drawing.Point(175, 328);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(59, 23);
             this.button5.TabIndex = 11;
@@ -515,7 +531,7 @@
             // button6
             // 
             this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button6.Location = new System.Drawing.Point(90, 295);
+            this.button6.Location = new System.Drawing.Point(90, 328);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(79, 23);
             this.button6.TabIndex = 12;
@@ -529,7 +545,7 @@
             // button7
             // 
             this.button7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button7.Location = new System.Drawing.Point(15, 295);
+            this.button7.Location = new System.Drawing.Point(15, 328);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(69, 23);
             this.button7.TabIndex = 14;
@@ -545,7 +561,7 @@
             // 
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(115, 282);
+            this.label7.Location = new System.Drawing.Point(115, 315);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(150, 13);
             this.label7.TabIndex = 6;
@@ -555,7 +571,7 @@
             // 
             this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(15, 282);
+            this.label8.Location = new System.Drawing.Point(15, 315);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(96, 13);
             this.label8.TabIndex = 7;
@@ -564,7 +580,7 @@
             // label10
             // 
             this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label10.Location = new System.Drawing.Point(351, 282);
+            this.label10.Location = new System.Drawing.Point(351, 315);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(134, 13);
             this.label10.TabIndex = 8;
@@ -589,7 +605,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(499, 344);
+            this.ClientSize = new System.Drawing.Size(499, 377);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.button5);
@@ -677,6 +693,7 @@
         public System.Windows.Forms.Timer timer3;
         public System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.CheckBox memoryBox;
     }
 }
 

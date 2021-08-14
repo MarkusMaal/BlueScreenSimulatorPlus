@@ -645,6 +645,7 @@ namespace UltimateBlueScreenSimulator
                     filedata += "\n" + "font_support=" + bs.GetBool("font_support").ToString() + ";";
                     filedata += "\n" + "blinkblink=" + bs.GetBool("blinkblink").ToString() + ";";
                     filedata += "\n" + "winxplus=" + bs.GetBool("winxplus").ToString() + ";";
+                    filedata += "\n" + "extracodes=" + bs.GetBool("extracodes").ToString() + ";";
 
                     filedata += "\n\n[integer]";
                     filedata += "\n" + "windowed=" + bs.GetInt("blink_speed") + ";";

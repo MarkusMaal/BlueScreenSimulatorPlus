@@ -104,6 +104,7 @@ namespace UltimateBlueScreenSimulator
             checkBox2.Enabled = true;
             ntPanel.Visible = false;
             xpNote.Visible = false;
+            memoryBox.Visible = false;
             // set current bluescreen
             me = Program.bluescreens[Program.bluescreens.Count - 1 - windowVersion.SelectedIndex];
             // set control visibility for specific OS-es
@@ -117,6 +118,7 @@ namespace UltimateBlueScreenSimulator
                 autoBox.Checked = true;
                 checkBox1.Visible = true;
                 winMode.Visible = true;
+                memoryBox.Visible = true;
             }
             else if (me.GetString("os") == "Windows 10")
             {
@@ -128,6 +130,7 @@ namespace UltimateBlueScreenSimulator
                 autoBox.Checked = true;
                 checkBox1.Visible = true;
                 winMode.Visible = true;
+                memoryBox.Visible = true;
             }
             else if (me.GetString("os") == "Windows 8/8.1")
             {
@@ -135,6 +138,7 @@ namespace UltimateBlueScreenSimulator
                 errorCode.Visible = true;
                 checkBox1.Visible = true;
                 winMode.Visible = true;
+                memoryBox.Visible = true;
             }
             else if (me.GetString("os") == "Windows Vista/7")
             {
@@ -1135,6 +1139,11 @@ namespace UltimateBlueScreenSimulator
         private void flowLayoutPanel2_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void memoryBox_CheckedChanged(object sender, EventArgs e)
+        {
+            me.SetBool("extracodes", memoryBox.Checked);
         }
     }
 }
