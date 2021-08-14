@@ -31,14 +31,14 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AboutBox1));
             this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.logoPictureBox = new System.Windows.Forms.PictureBox();
+            this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.labelProductName = new System.Windows.Forms.Label();
             this.labelVersion = new System.Windows.Forms.Label();
             this.labelCopyright = new System.Windows.Forms.Label();
             this.okButton = new System.Windows.Forms.Button();
             this.labelCompanyName = new System.Windows.Forms.Label();
-            this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -56,13 +56,23 @@
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.flowLayoutPanel6 = new System.Windows.Forms.FlowLayoutPanel();
+            this.resetButton = new System.Windows.Forms.Button();
+            this.resetHackButton = new System.Windows.Forms.Button();
+            this.addCfg = new System.Windows.Forms.Button();
+            this.removeCfg = new System.Windows.Forms.Button();
+            this.saveCfg = new System.Windows.Forms.Button();
+            this.loadCfg = new System.Windows.Forms.Button();
+            this.osName = new System.Windows.Forms.Label();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.label8 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.label4 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.flowLayoutPanel5 = new System.Windows.Forms.FlowLayoutPanel();
@@ -76,6 +86,8 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.helpTip = new System.Windows.Forms.ToolTip(this.components);
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.saveBsconfig = new System.Windows.Forms.SaveFileDialog();
+            this.loadBsconfig = new System.Windows.Forms.OpenFileDialog();
             this.tableLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).BeginInit();
             this.flowLayoutPanel4.SuspendLayout();
@@ -87,6 +99,7 @@
             this.flowLayoutPanel2.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.tabPage5.SuspendLayout();
+            this.flowLayoutPanel6.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.flowLayoutPanel5.SuspendLayout();
             this.flowLayoutPanel3.SuspendLayout();
@@ -99,12 +112,12 @@
             this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 26.56546F));
             this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 73.43453F));
             this.tableLayoutPanel.Controls.Add(this.logoPictureBox, 0, 0);
+            this.tableLayoutPanel.Controls.Add(this.flowLayoutPanel4, 1, 4);
             this.tableLayoutPanel.Controls.Add(this.labelProductName, 1, 0);
             this.tableLayoutPanel.Controls.Add(this.labelVersion, 1, 1);
             this.tableLayoutPanel.Controls.Add(this.labelCopyright, 1, 2);
             this.tableLayoutPanel.Controls.Add(this.okButton, 1, 5);
             this.tableLayoutPanel.Controls.Add(this.labelCompanyName, 1, 3);
-            this.tableLayoutPanel.Controls.Add(this.flowLayoutPanel4, 1, 4);
             this.tableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel.Name = "tableLayoutPanel";
@@ -113,10 +126,11 @@
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.572755F));
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.19195F));
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 27.86378F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 42.41486F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.55015F));
-            this.tableLayoutPanel.Size = new System.Drawing.Size(528, 323);
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40.24768F));
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15.47988F));
+            this.tableLayoutPanel.Size = new System.Drawing.Size(528, 346);
             this.tableLayoutPanel.TabIndex = 0;
+            this.tableLayoutPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel_Paint);
             // 
             // logoPictureBox
             // 
@@ -125,75 +139,18 @@
             this.logoPictureBox.Location = new System.Drawing.Point(3, 3);
             this.logoPictureBox.Name = "logoPictureBox";
             this.tableLayoutPanel.SetRowSpan(this.logoPictureBox, 6);
-            this.logoPictureBox.Size = new System.Drawing.Size(134, 317);
+            this.logoPictureBox.Size = new System.Drawing.Size(134, 340);
             this.logoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.logoPictureBox.TabIndex = 12;
             this.logoPictureBox.TabStop = false;
             // 
-            // labelProductName
-            // 
-            this.labelProductName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelProductName.Location = new System.Drawing.Point(146, 0);
-            this.labelProductName.Margin = new System.Windows.Forms.Padding(6, 0, 3, 0);
-            this.labelProductName.MaximumSize = new System.Drawing.Size(0, 17);
-            this.labelProductName.Name = "labelProductName";
-            this.labelProductName.Size = new System.Drawing.Size(379, 17);
-            this.labelProductName.TabIndex = 19;
-            this.labelProductName.Text = "Product Name";
-            this.labelProductName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // labelVersion
-            // 
-            this.labelVersion.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelVersion.Location = new System.Drawing.Point(146, 20);
-            this.labelVersion.Margin = new System.Windows.Forms.Padding(6, 0, 3, 0);
-            this.labelVersion.MaximumSize = new System.Drawing.Size(0, 17);
-            this.labelVersion.Name = "labelVersion";
-            this.labelVersion.Size = new System.Drawing.Size(379, 17);
-            this.labelVersion.TabIndex = 0;
-            this.labelVersion.Text = "Version";
-            this.labelVersion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // labelCopyright
-            // 
-            this.labelCopyright.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelCopyright.Location = new System.Drawing.Point(146, 38);
-            this.labelCopyright.Margin = new System.Windows.Forms.Padding(6, 0, 3, 0);
-            this.labelCopyright.MaximumSize = new System.Drawing.Size(0, 17);
-            this.labelCopyright.Name = "labelCopyright";
-            this.labelCopyright.Size = new System.Drawing.Size(379, 17);
-            this.labelCopyright.TabIndex = 21;
-            this.labelCopyright.Text = "Copyright";
-            this.labelCopyright.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // okButton
-            // 
-            this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.okButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.okButton.Location = new System.Drawing.Point(450, 297);
-            this.okButton.Name = "okButton";
-            this.okButton.Size = new System.Drawing.Size(75, 23);
-            this.okButton.TabIndex = 24;
-            this.okButton.Text = "&OK";
-            this.okButton.Click += new System.EventHandler(this.OkButton_Click);
-            // 
-            // labelCompanyName
-            // 
-            this.labelCompanyName.Dock = System.Windows.Forms.DockStyle.Top;
-            this.labelCompanyName.Location = new System.Drawing.Point(146, 58);
-            this.labelCompanyName.Margin = new System.Windows.Forms.Padding(6, 0, 3, 0);
-            this.labelCompanyName.Name = "labelCompanyName";
-            this.labelCompanyName.Size = new System.Drawing.Size(379, 90);
-            this.labelCompanyName.TabIndex = 22;
-            // 
             // flowLayoutPanel4
             // 
-            this.flowLayoutPanel4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.flowLayoutPanel4.Controls.Add(this.pictureBox1);
             this.flowLayoutPanel4.Controls.Add(this.pictureBox2);
+            this.flowLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel4.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel4.Location = new System.Drawing.Point(143, 151);
+            this.flowLayoutPanel4.Location = new System.Drawing.Point(143, 157);
             this.flowLayoutPanel4.Name = "flowLayoutPanel4";
             this.flowLayoutPanel4.Size = new System.Drawing.Size(382, 131);
             this.flowLayoutPanel4.TabIndex = 25;
@@ -216,10 +173,66 @@
             this.pictureBox2.Location = new System.Drawing.Point(0, 53);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(186, 62);
+            this.pictureBox2.Size = new System.Drawing.Size(202, 67);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 1;
             this.pictureBox2.TabStop = false;
+            // 
+            // labelProductName
+            // 
+            this.labelProductName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labelProductName.Location = new System.Drawing.Point(146, 0);
+            this.labelProductName.Margin = new System.Windows.Forms.Padding(6, 0, 3, 0);
+            this.labelProductName.MaximumSize = new System.Drawing.Size(0, 17);
+            this.labelProductName.Name = "labelProductName";
+            this.labelProductName.Size = new System.Drawing.Size(379, 17);
+            this.labelProductName.TabIndex = 19;
+            this.labelProductName.Text = "Product Name";
+            this.labelProductName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // labelVersion
+            // 
+            this.labelVersion.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labelVersion.Location = new System.Drawing.Point(146, 21);
+            this.labelVersion.Margin = new System.Windows.Forms.Padding(6, 0, 3, 0);
+            this.labelVersion.MaximumSize = new System.Drawing.Size(0, 17);
+            this.labelVersion.Name = "labelVersion";
+            this.labelVersion.Size = new System.Drawing.Size(379, 17);
+            this.labelVersion.TabIndex = 0;
+            this.labelVersion.Text = "Version";
+            this.labelVersion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // labelCopyright
+            // 
+            this.labelCopyright.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labelCopyright.Location = new System.Drawing.Point(146, 39);
+            this.labelCopyright.Margin = new System.Windows.Forms.Padding(6, 0, 3, 0);
+            this.labelCopyright.MaximumSize = new System.Drawing.Size(0, 17);
+            this.labelCopyright.Name = "labelCopyright";
+            this.labelCopyright.Size = new System.Drawing.Size(379, 17);
+            this.labelCopyright.TabIndex = 21;
+            this.labelCopyright.Text = "Copyright";
+            this.labelCopyright.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // okButton
+            // 
+            this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.okButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.okButton.Location = new System.Drawing.Point(450, 320);
+            this.okButton.Name = "okButton";
+            this.okButton.Size = new System.Drawing.Size(75, 23);
+            this.okButton.TabIndex = 24;
+            this.okButton.Text = "&OK";
+            this.okButton.Click += new System.EventHandler(this.OkButton_Click);
+            // 
+            // labelCompanyName
+            // 
+            this.labelCompanyName.Dock = System.Windows.Forms.DockStyle.Top;
+            this.labelCompanyName.Location = new System.Drawing.Point(146, 60);
+            this.labelCompanyName.Margin = new System.Windows.Forms.Padding(6, 0, 3, 0);
+            this.labelCompanyName.Name = "labelCompanyName";
+            this.labelCompanyName.Size = new System.Drawing.Size(379, 88);
+            this.labelCompanyName.TabIndex = 22;
             // 
             // tabControl1
             // 
@@ -234,7 +247,7 @@
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.Padding = new System.Drawing.Point(0, 0);
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(542, 355);
+            this.tabControl1.Size = new System.Drawing.Size(542, 378);
             this.tabControl1.TabIndex = 1;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.TabControl1_SelectedIndexChanged);
             // 
@@ -244,7 +257,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(534, 329);
+            this.tabPage1.Size = new System.Drawing.Size(534, 352);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "About";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -263,7 +276,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(534, 329);
+            this.tabPage2.Size = new System.Drawing.Size(534, 352);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Update settings";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -271,7 +284,7 @@
             // label7
             // 
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label7.Location = new System.Drawing.Point(3, 308);
+            this.label7.Location = new System.Drawing.Point(3, 329);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(531, 18);
             this.label7.TabIndex = 8;
@@ -283,7 +296,7 @@
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button2.AutoSize = true;
             this.button2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.button2.Location = new System.Drawing.Point(151, 282);
+            this.button2.Location = new System.Drawing.Point(151, 303);
             this.button2.Name = "button2";
             this.button2.Padding = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.button2.Size = new System.Drawing.Size(116, 23);
@@ -296,7 +309,7 @@
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button1.Location = new System.Drawing.Point(20, 282);
+            this.button1.Location = new System.Drawing.Point(20, 303);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(125, 23);
             this.button1.TabIndex = 6;
@@ -431,21 +444,161 @@
             // 
             // tabPage5
             // 
+            this.tabPage5.Controls.Add(this.comboBox2);
+            this.tabPage5.Controls.Add(this.label9);
+            this.tabPage5.Controls.Add(this.flowLayoutPanel6);
+            this.tabPage5.Controls.Add(this.osName);
+            this.tabPage5.Controls.Add(this.listBox1);
             this.tabPage5.Controls.Add(this.checkBox3);
             this.tabPage5.Controls.Add(this.label8);
             this.tabPage5.Controls.Add(this.comboBox1);
             this.tabPage5.Controls.Add(this.label6);
             this.tabPage5.Controls.Add(this.checkBox2);
             this.tabPage5.Controls.Add(this.label5);
-            this.tabPage5.Controls.Add(this.checkedListBox1);
             this.tabPage5.Controls.Add(this.label4);
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(534, 329);
+            this.tabPage5.Size = new System.Drawing.Size(534, 352);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Simulator settings";
             this.tabPage5.UseVisualStyleBackColor = true;
             this.tabPage5.Click += new System.EventHandler(this.TabPage5_Click);
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "Only modify primary display",
+            "Blank other screens",
+            "Mirror primary screen",
+            "Freeze secondary screens"});
+            this.comboBox2.Location = new System.Drawing.Point(143, 256);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(370, 21);
+            this.comboBox2.TabIndex = 18;
+            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(17, 259);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(116, 13);
+            this.label9.TabIndex = 17;
+            this.label9.Text = "Multi-monitor behaviour";
+            // 
+            // flowLayoutPanel6
+            // 
+            this.flowLayoutPanel6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.flowLayoutPanel6.Controls.Add(this.resetButton);
+            this.flowLayoutPanel6.Controls.Add(this.resetHackButton);
+            this.flowLayoutPanel6.Controls.Add(this.addCfg);
+            this.flowLayoutPanel6.Controls.Add(this.removeCfg);
+            this.flowLayoutPanel6.Controls.Add(this.saveCfg);
+            this.flowLayoutPanel6.Controls.Add(this.loadCfg);
+            this.flowLayoutPanel6.FlowDirection = System.Windows.Forms.FlowDirection.BottomUp;
+            this.flowLayoutPanel6.Location = new System.Drawing.Point(226, 97);
+            this.flowLayoutPanel6.Name = "flowLayoutPanel6";
+            this.flowLayoutPanel6.Size = new System.Drawing.Size(305, 91);
+            this.flowLayoutPanel6.TabIndex = 16;
+            // 
+            // resetButton
+            // 
+            this.resetButton.Enabled = false;
+            this.resetButton.Location = new System.Drawing.Point(3, 65);
+            this.resetButton.Name = "resetButton";
+            this.resetButton.Size = new System.Drawing.Size(141, 23);
+            this.resetButton.TabIndex = 12;
+            this.resetButton.Text = "Reset everything [?]";
+            this.helpTip.SetToolTip(this.resetButton, "Reset all settings in this configuration");
+            this.resetButton.UseVisualStyleBackColor = true;
+            this.resetButton.Click += new System.EventHandler(this.button7_Click);
+            // 
+            // resetHackButton
+            // 
+            this.resetHackButton.Enabled = false;
+            this.resetHackButton.Location = new System.Drawing.Point(3, 36);
+            this.resetHackButton.Name = "resetHackButton";
+            this.resetHackButton.Size = new System.Drawing.Size(141, 23);
+            this.resetHackButton.TabIndex = 13;
+            this.resetHackButton.Text = "Reset hacks [?]";
+            this.helpTip.SetToolTip(this.resetHackButton, "Deletes any custom hacks for this configuration");
+            this.resetHackButton.UseVisualStyleBackColor = true;
+            this.resetHackButton.Click += new System.EventHandler(this.resetHackButton_Click);
+            // 
+            // addCfg
+            // 
+            this.addCfg.Location = new System.Drawing.Point(3, 7);
+            this.addCfg.Name = "addCfg";
+            this.addCfg.Size = new System.Drawing.Size(141, 23);
+            this.addCfg.TabIndex = 14;
+            this.addCfg.Text = "Add configuration [?]";
+            this.helpTip.SetToolTip(this.addCfg, resources.GetString("addCfg.ToolTip"));
+            this.addCfg.UseVisualStyleBackColor = true;
+            this.addCfg.Click += new System.EventHandler(this.button7_Click_1);
+            // 
+            // removeCfg
+            // 
+            this.removeCfg.Enabled = false;
+            this.removeCfg.Location = new System.Drawing.Point(150, 65);
+            this.removeCfg.Name = "removeCfg";
+            this.removeCfg.Size = new System.Drawing.Size(145, 23);
+            this.removeCfg.TabIndex = 15;
+            this.removeCfg.Text = "Remove configuration [?]";
+            this.helpTip.SetToolTip(this.removeCfg, "Removes the configuration, meaning it will no longer be accessible in the main me" +
+        "nu or any other part of the program.");
+            this.removeCfg.UseVisualStyleBackColor = true;
+            this.removeCfg.Click += new System.EventHandler(this.button8_Click);
+            // 
+            // saveCfg
+            // 
+            this.saveCfg.Location = new System.Drawing.Point(150, 36);
+            this.saveCfg.Name = "saveCfg";
+            this.saveCfg.Size = new System.Drawing.Size(145, 23);
+            this.saveCfg.TabIndex = 16;
+            this.saveCfg.Text = "Save configurations [?]";
+            this.helpTip.SetToolTip(this.saveCfg, "Allows you to save all of these configurations into a file, that can be loaded la" +
+        "ter.");
+            this.saveCfg.UseVisualStyleBackColor = true;
+            this.saveCfg.Click += new System.EventHandler(this.button7_Click_2);
+            // 
+            // loadCfg
+            // 
+            this.loadCfg.Location = new System.Drawing.Point(150, 7);
+            this.loadCfg.Name = "loadCfg";
+            this.loadCfg.Size = new System.Drawing.Size(145, 23);
+            this.loadCfg.TabIndex = 17;
+            this.loadCfg.Text = "Load configurations [?]";
+            this.helpTip.SetToolTip(this.loadCfg, "Allows you to load configurations from a file. BSSP 1.x files also supported.");
+            this.loadCfg.UseVisualStyleBackColor = true;
+            this.loadCfg.Click += new System.EventHandler(this.loadCfg_Click);
+            // 
+            // osName
+            // 
+            this.osName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.osName.Location = new System.Drawing.Point(226, 64);
+            this.osName.Name = "osName";
+            this.osName.Size = new System.Drawing.Size(295, 30);
+            this.osName.TabIndex = 11;
+            this.osName.Text = "Select a configuration to modify/remove it";
+            // 
+            // listBox1
+            // 
+            this.listBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.listBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.ItemHeight = 20;
+            this.listBox1.Location = new System.Drawing.Point(20, 64);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.ScrollAlwaysVisible = true;
+            this.listBox1.Size = new System.Drawing.Size(200, 124);
+            this.listBox1.TabIndex = 9;
+            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            this.listBox1.SelectedValueChanged += new System.EventHandler(this.listBox1_SelectedValueChanged);
             // 
             // checkBox3
             // 
@@ -465,12 +618,13 @@
             // 
             this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label8.Location = new System.Drawing.Point(17, 279);
+            this.label8.Location = new System.Drawing.Point(17, 309);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(496, 40);
+            this.label8.Size = new System.Drawing.Size(496, 43);
             this.label8.TabIndex = 7;
             this.label8.Text = "Scaling mode does not affect modern Windows blue screens, as they use the native " +
-    "resolution of your monitor without scaling.";
+    "resolution of your monitor without scaling. Setting up multi-monitor behaviour i" +
+    "s recommended for prank/stealth modes.";
             // 
             // comboBox1
             // 
@@ -484,7 +638,7 @@
             "Nearest neighbour (sharpest, but blocky)",
             "Alternate bicubic (less artifacting)",
             "Alternate bilinear (sharper)"});
-            this.comboBox1.Location = new System.Drawing.Point(143, 255);
+            this.comboBox1.Location = new System.Drawing.Point(143, 285);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(370, 21);
             this.comboBox1.TabIndex = 6;
@@ -495,7 +649,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(17, 258);
+            this.label6.Location = new System.Drawing.Point(17, 288);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(120, 13);
             this.label6.TabIndex = 5;
@@ -520,34 +674,9 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(17, 48);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(155, 13);
+            this.label5.Size = new System.Drawing.Size(119, 13);
             this.label5.TabIndex = 3;
-            this.label5.Text = "Hide/Unhide operating systems";
-            // 
-            // checkedListBox1
-            // 
-            this.checkedListBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Items.AddRange(new object[] {
-            "Windows 10",
-            "Windows 8/8.1",
-            "Windows Vista/7",
-            "Windows XP",
-            "Windows 2000",
-            "Windows 9x/Millennium Edition",
-            "Windows CE",
-            "Windows NT 3.x/4.0",
-            "Windows 3.1x"});
-            this.checkedListBox1.Location = new System.Drawing.Point(20, 64);
-            this.checkedListBox1.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
-            this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(493, 139);
-            this.checkedListBox1.TabIndex = 2;
-            this.checkedListBox1.Click += new System.EventHandler(this.CheckedListBox1_Click);
-            this.checkedListBox1.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
-            this.checkedListBox1.SelectedValueChanged += new System.EventHandler(this.CheckedListBox1_SelectedValueChanged);
-            this.checkedListBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CheckedListBox1_KeyDown);
+            this.label5.Text = "Available configurations";
             // 
             // label4
             // 
@@ -564,7 +693,7 @@
             this.tabPage3.Controls.Add(this.flowLayoutPanel5);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(534, 329);
+            this.tabPage3.Size = new System.Drawing.Size(534, 352);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Help";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -577,7 +706,7 @@
             this.flowLayoutPanel5.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel5.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel5.Name = "flowLayoutPanel5";
-            this.flowLayoutPanel5.Size = new System.Drawing.Size(534, 329);
+            this.flowLayoutPanel5.Size = new System.Drawing.Size(534, 352);
             this.flowLayoutPanel5.TabIndex = 2;
             // 
             // flowLayoutPanel3
@@ -655,7 +784,7 @@
             this.tabPage4.Controls.Add(this.textBox1);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(534, 329);
+            this.tabPage4.Size = new System.Drawing.Size(534, 352);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Command line help";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -673,7 +802,7 @@
             this.textBox1.ReadOnly = true;
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.textBox1.ShortcutsEnabled = false;
-            this.textBox1.Size = new System.Drawing.Size(534, 329);
+            this.textBox1.Size = new System.Drawing.Size(534, 352);
             this.textBox1.TabIndex = 0;
             this.textBox1.WordWrap = false;
             // 
@@ -681,17 +810,27 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
             // 
+            // saveBsconfig
+            // 
+            this.saveBsconfig.Filter = "Bluescreen simulator 2.x configuration files|*.bs2cfg";
+            // 
+            // loadBsconfig
+            // 
+            this.loadBsconfig.Filter = "Bluescreen simulator 2.x configuration files|*.bs2cfg|Blue screen simulator 1.x c" +
+    "onfiguration files|*.bscfg";
+            this.loadBsconfig.Title = "Load bluescreen configuration";
+            // 
             // AboutBox1
             // 
             this.AcceptButton = this.okButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(548, 361);
+            this.ClientSize = new System.Drawing.Size(548, 384);
             this.Controls.Add(this.tabControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(564, 300);
+            this.MinimumSize = new System.Drawing.Size(564, 423);
             this.Name = "AboutBox1";
             this.Padding = new System.Windows.Forms.Padding(3);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AboutBox1_FormClosing);
@@ -712,6 +851,7 @@
             this.flowLayoutPanel1.PerformLayout();
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
+            this.flowLayoutPanel6.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             this.flowLayoutPanel5.ResumeLayout(false);
             this.flowLayoutPanel5.PerformLayout();
@@ -755,7 +895,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.CheckedListBox checkedListBox1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
@@ -772,5 +911,18 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel5;
+        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.Label osName;
+        private System.Windows.Forms.Button resetButton;
+        private System.Windows.Forms.Button resetHackButton;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel6;
+        private System.Windows.Forms.Button addCfg;
+        private System.Windows.Forms.Button removeCfg;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button saveCfg;
+        private System.Windows.Forms.SaveFileDialog saveBsconfig;
+        private System.Windows.Forms.Button loadCfg;
+        private System.Windows.Forms.OpenFileDialog loadBsconfig;
     }
 }

@@ -13,6 +13,7 @@ namespace UltimateBlueScreenSimulator
     public partial class bsodhacks : Form
     {
         //this form is depricated
+        //please see StringEdit.cs for new hacks window
         public bsodhacks()
         {
             InitializeComponent();

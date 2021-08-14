@@ -16,7 +16,7 @@ namespace UltimateBlueScreenSimulator
         private bool naturalclose = false;
         public string whatfail = "";
         WindowScreen ws = new WindowScreen();
-        BlueScreen me = Program.bluescreens[4];
+        internal BlueScreen me = Program.bluescreens[0];
         
         public w2kbs()
         {
@@ -25,6 +25,14 @@ namespace UltimateBlueScreenSimulator
 
         private void W2kbs_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                e.Cancel = Program.f1.lockout;
+            }
+            else
+            {
+                e.Cancel = false;
+            }
             if (!naturalclose)
             {
                 ws.Close();

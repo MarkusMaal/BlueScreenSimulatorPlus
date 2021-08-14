@@ -20,7 +20,7 @@ namespace UltimateBlueScreenSimulator
         bool inr = false;
         bool ing = false;
         bool inb = false;
-        BlueScreen me;
+        internal BlueScreen me = Program.bluescreens[0];
         Color bg;
         Color fg;
         IDictionary<string, string> txt;
@@ -34,13 +34,6 @@ namespace UltimateBlueScreenSimulator
 
         private void Xvsbs_Load(object sender, EventArgs e)
         {
-            if (w6mode)
-            {
-                me = Program.bluescreens[6];
-            } else
-            {
-                me = Program.bluescreens[5];
-            }
             bg = me.GetTheme(true);
             fg = me.GetTheme(false);
             txt = me.GetTexts();
@@ -199,6 +192,14 @@ namespace UltimateBlueScreenSimulator
 
         private void Xvsbs_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                e.Cancel = Program.f1.lockout;
+            }
+            else
+            {
+                e.Cancel = false;
+            }
             if (!naturalclose)
             {
                 ws.Close();

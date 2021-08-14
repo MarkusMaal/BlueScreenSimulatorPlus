@@ -59,6 +59,12 @@
     <Compile Include="AboutBox1.Designer.cs">
       <DependentUpon>AboutBox1.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddBluescreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddBluescreen.Designer.cs">
+      <DependentUpon>AddBluescreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="BootMgr.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -184,6 +190,9 @@
     </Compile>
     <EmbeddedResource Include="AboutBox1.resx">
       <DependentUpon>AboutBox1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddBluescreen.resx">
+      <DependentUpon>AddBluescreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BootMgr.resx">
       <DependentUpon>BootMgr.cs</DependentUpon>

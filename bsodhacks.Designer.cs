@@ -531,7 +531,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(647, 392);
             this.Name = "bsodhacks";
-            this.Text = "Blue screen experimental hacks";
+            this.Text = "Blue screen experimental hacks (depricated)";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Bsodhacks_FormClosing);
             this.Load += new System.EventHandler(this.Bsodhacks_Load);
             this.panel1.ResumeLayout(false);

@@ -21,7 +21,7 @@ namespace UltimateBlueScreenSimulator
         public string processortype = "GenuineIntel";
         public string error = "User manually initiated crash (0xDEADDEAD)";
         WindowScreen ws = new WindowScreen();
-        BlueScreen me = Program.bluescreens[3];
+        internal BlueScreen me = Program.bluescreens[0];
         IDictionary<string, string> txt;
         string[] letters = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ":", ",", ".", "+", "*", "(", ")", "[", "]", "{", "}", "/", "\\", "-", "_", " " };
         public NTBSOD()
@@ -254,6 +254,14 @@ namespace UltimateBlueScreenSimulator
 
         private void NTBSOD_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                e.Cancel = Program.f1.lockout;
+            }
+            else
+            {
+                e.Cancel = false;
+            }
             if (fullscreen)
             {
                 if (ws.Visible == true)

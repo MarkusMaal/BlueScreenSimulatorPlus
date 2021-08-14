@@ -62,6 +62,9 @@ namespace UltimateBlueScreenSimulator
         //whether or not to show the mouse cursor in fullscreen mode
         public bool showcursor = false;
 
+        //whether or not the user can close bluescreen with Alt+F4
+        public bool lockout = false;
+
         //visible operating systems
         public bool[] osshows = { true, true, true, true, true, true, true, true, true, true, true, true};
 
@@ -550,19 +553,6 @@ namespace UltimateBlueScreenSimulator
             catch
             {
             }
-            //Windows Vista/7 bootmgr error screen
-            //optional attributes
-            /* waterBox (bool) - if true, displays a watermark
-             * checkBox1 (bool) - if true, displays the error description
-             * checkBox2 (bool) - if true, shows a potential culprit file
-             * winMode (bool) - if true, the blue screen will display in a window
-             * acpiBox (bool) - if true, displays only the technical information
-             */
-            if (windowVersion.SelectedItem.ToString().Trim() == "Windows Vista/7 BOOTMGR (1024x768, ClearType)")
-            {
-                BootMgr bm = new BootMgr();
-                bm.Show();
-            }
             //removes "Generating..." text
             label10.Text = "";
         }
@@ -711,6 +701,7 @@ namespace UltimateBlueScreenSimulator
                 }
             }
             StringEdit bh = new StringEdit();
+            bh.me = me;
             bh.Show();
         }
 

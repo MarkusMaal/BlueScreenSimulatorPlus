@@ -32,15 +32,11 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StringEdit));
             System.Windows.Forms.ListViewGroup listViewGroup3 = new System.Windows.Forms.ListViewGroup("Property name", System.Windows.Forms.HorizontalAlignment.Left);
             System.Windows.Forms.ListViewGroup listViewGroup4 = new System.Windows.Forms.ListViewGroup("Value", System.Windows.Forms.HorizontalAlignment.Left);
-            this.winVers = new System.Windows.Forms.ListView();
             this.AllIcons = new System.Windows.Forms.ImageList(this.components);
-            this.labelWinVers = new System.Windows.Forms.Label();
             this.labelProps = new System.Windows.Forms.Label();
             this.MessageView = new System.Windows.Forms.ListView();
             this.specificProps = new System.Windows.Forms.Label();
             this.buttonOK = new System.Windows.Forms.Button();
-            this.buttonLoad = new System.Windows.Forms.Button();
-            this.buttonSave = new System.Windows.Forms.Button();
             this.buttonReset = new System.Windows.Forms.Button();
             this.stringProps = new System.Windows.Forms.Panel();
             this.stringEditor = new System.Windows.Forms.TextBox();
@@ -70,8 +66,7 @@
             this.fontChooser = new System.Windows.Forms.FontDialog();
             this.simpleToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.customQRBrowser = new System.Windows.Forms.OpenFileDialog();
-            this.loadBsconfig = new System.Windows.Forms.OpenFileDialog();
-            this.saveBsconfig = new System.Windows.Forms.SaveFileDialog();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.stringProps.SuspendLayout();
             this.colorProps.SuspendLayout();
             this.specificPropsFlowLayoutPanel.SuspendLayout();
@@ -82,24 +77,6 @@
             this.blinkProps.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.speedTrackbar)).BeginInit();
             this.SuspendLayout();
-            // 
-            // winVers
-            // 
-            this.winVers.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.winVers.HideSelection = false;
-            this.winVers.LargeImageList = this.AllIcons;
-            this.winVers.Location = new System.Drawing.Point(12, 39);
-            this.winVers.MultiSelect = false;
-            this.winVers.Name = "winVers";
-            this.winVers.Size = new System.Drawing.Size(132, 343);
-            this.winVers.SmallImageList = this.AllIcons;
-            this.winVers.TabIndex = 0;
-            this.winVers.TileSize = new System.Drawing.Size(127, 30);
-            this.winVers.UseCompatibleStateImageBehavior = false;
-            this.winVers.View = System.Windows.Forms.View.Tile;
-            this.winVers.ItemActivate += new System.EventHandler(this.winVers_ItemActivate);
-            this.winVers.SelectedIndexChanged += new System.EventHandler(this.winVers_SelectedIndexChanged);
             // 
             // AllIcons
             // 
@@ -113,19 +90,10 @@
             this.AllIcons.Images.SetKeyName(5, "setting.png");
             this.AllIcons.Images.SetKeyName(6, "theming.png");
             // 
-            // labelWinVers
-            // 
-            this.labelWinVers.AutoSize = true;
-            this.labelWinVers.Location = new System.Drawing.Point(12, 20);
-            this.labelWinVers.Name = "labelWinVers";
-            this.labelWinVers.Size = new System.Drawing.Size(91, 13);
-            this.labelWinVers.TabIndex = 1;
-            this.labelWinVers.Text = "Windows version:";
-            // 
             // labelProps
             // 
             this.labelProps.AutoSize = true;
-            this.labelProps.Location = new System.Drawing.Point(156, 20);
+            this.labelProps.Location = new System.Drawing.Point(12, 23);
             this.labelProps.Name = "labelProps";
             this.labelProps.Size = new System.Drawing.Size(54, 13);
             this.labelProps.TabIndex = 3;
@@ -133,8 +101,9 @@
             // 
             // MessageView
             // 
-            this.MessageView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+            this.MessageView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.MessageView.FullRowSelect = true;
             this.MessageView.GridLines = true;
             listViewGroup3.Header = "Property name";
@@ -147,11 +116,11 @@
             this.MessageView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.MessageView.HideSelection = false;
             this.MessageView.LargeImageList = this.AllIcons;
-            this.MessageView.Location = new System.Drawing.Point(156, 39);
+            this.MessageView.Location = new System.Drawing.Point(12, 39);
             this.MessageView.MultiSelect = false;
             this.MessageView.Name = "MessageView";
             this.MessageView.ShowGroups = false;
-            this.MessageView.Size = new System.Drawing.Size(215, 343);
+            this.MessageView.Size = new System.Drawing.Size(254, 324);
             this.MessageView.SmallImageList = this.AllIcons;
             this.MessageView.TabIndex = 2;
             this.MessageView.UseCompatibleStateImageBehavior = false;
@@ -160,7 +129,8 @@
             // 
             // specificProps
             // 
-            this.specificProps.Location = new System.Drawing.Point(385, 20);
+            this.specificProps.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.specificProps.Location = new System.Drawing.Point(271, 20);
             this.specificProps.Name = "specificProps";
             this.specificProps.Size = new System.Drawing.Size(383, 13);
             this.specificProps.TabIndex = 4;
@@ -168,7 +138,7 @@
             // buttonOK
             // 
             this.buttonOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonOK.Location = new System.Drawing.Point(713, 398);
+            this.buttonOK.Location = new System.Drawing.Point(608, 379);
             this.buttonOK.Name = "buttonOK";
             this.buttonOK.Size = new System.Drawing.Size(75, 23);
             this.buttonOK.TabIndex = 5;
@@ -176,34 +146,12 @@
             this.buttonOK.UseVisualStyleBackColor = true;
             this.buttonOK.Click += new System.EventHandler(this.button1_Click);
             // 
-            // buttonLoad
-            // 
-            this.buttonLoad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonLoad.Location = new System.Drawing.Point(647, 398);
-            this.buttonLoad.Name = "buttonLoad";
-            this.buttonLoad.Size = new System.Drawing.Size(60, 23);
-            this.buttonLoad.TabIndex = 31;
-            this.buttonLoad.Text = "&Load";
-            this.buttonLoad.UseVisualStyleBackColor = true;
-            this.buttonLoad.Click += new System.EventHandler(this.buttonLoad_Click);
-            // 
-            // buttonSave
-            // 
-            this.buttonSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonSave.Location = new System.Drawing.Point(581, 398);
-            this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(60, 23);
-            this.buttonSave.TabIndex = 30;
-            this.buttonSave.Text = "&Save";
-            this.buttonSave.UseVisualStyleBackColor = true;
-            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
-            // 
             // buttonReset
             // 
             this.buttonReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonReset.Location = new System.Drawing.Point(515, 398);
+            this.buttonReset.Location = new System.Drawing.Point(527, 379);
             this.buttonReset.Name = "buttonReset";
-            this.buttonReset.Size = new System.Drawing.Size(60, 23);
+            this.buttonReset.Size = new System.Drawing.Size(75, 23);
             this.buttonReset.TabIndex = 28;
             this.buttonReset.Text = "&Reset";
             this.buttonReset.UseVisualStyleBackColor = true;
@@ -258,15 +206,17 @@
             // 
             // specificPropsFlowLayoutPanel
             // 
+            this.specificPropsFlowLayoutPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.specificPropsFlowLayoutPanel.Controls.Add(this.qrProps);
             this.specificPropsFlowLayoutPanel.Controls.Add(this.timeoutProps);
             this.specificPropsFlowLayoutPanel.Controls.Add(this.fontProps);
             this.specificPropsFlowLayoutPanel.Controls.Add(this.blinkProps);
             this.specificPropsFlowLayoutPanel.Controls.Add(this.colorProps);
             this.specificPropsFlowLayoutPanel.Controls.Add(this.stringProps);
-            this.specificPropsFlowLayoutPanel.Location = new System.Drawing.Point(388, 39);
+            this.specificPropsFlowLayoutPanel.Location = new System.Drawing.Point(274, 39);
             this.specificPropsFlowLayoutPanel.Name = "specificPropsFlowLayoutPanel";
-            this.specificPropsFlowLayoutPanel.Size = new System.Drawing.Size(397, 343);
+            this.specificPropsFlowLayoutPanel.Size = new System.Drawing.Size(404, 325);
             this.specificPropsFlowLayoutPanel.TabIndex = 34;
             // 
             // qrProps
@@ -455,38 +405,37 @@
             // 
             this.customQRBrowser.Filter = "Raster images|*.jpg;*.jpeg;*.jpe;*.png;*.bmp;*.gif;*.tif;*.tiff";
             // 
-            // loadBsconfig
+            // linkLabel1
             // 
-            this.loadBsconfig.Filter = "Bluescreen simulator 2.x configuration files|*.bs2cfg|Blue screen simulator 1.x c" +
-    "onfiguration files|*.bscfg";
-            this.loadBsconfig.Title = "Load bluescreen configuration";
-            // 
-            // saveBsconfig
-            // 
-            this.saveBsconfig.Filter = "Bluescreen simulator 2.x configuration files|*.bs2cfg";
+            this.linkLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(12, 385);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(189, 13);
+            this.linkLabel1.TabIndex = 35;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "Where are the save and load buttons?";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // StringEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 433);
+            this.ClientSize = new System.Drawing.Size(695, 414);
+            this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.specificPropsFlowLayoutPanel);
-            this.Controls.Add(this.buttonLoad);
-            this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.buttonReset);
             this.Controls.Add(this.buttonOK);
             this.Controls.Add(this.specificProps);
             this.Controls.Add(this.labelProps);
             this.Controls.Add(this.MessageView);
-            this.Controls.Add(this.labelWinVers);
-            this.Controls.Add(this.winVers);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimumSize = new System.Drawing.Size(534, 206);
             this.Name = "StringEdit";
             this.Text = "Bluescreen hacks";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.StringEdit_FormClosing);
             this.Load += new System.EventHandler(this.StringEdit_Load);
-            this.VisibleChanged += new System.EventHandler(this.StringEdit_VisibleChanged);
             this.stringProps.ResumeLayout(false);
             this.stringProps.PerformLayout();
             this.colorProps.ResumeLayout(false);
@@ -508,16 +457,11 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.ListView winVers;
-        private System.Windows.Forms.Label labelWinVers;
         private System.Windows.Forms.Label labelProps;
         private System.Windows.Forms.ListView MessageView;
         private System.Windows.Forms.ImageList AllIcons;
         private System.Windows.Forms.Label specificProps;
         private System.Windows.Forms.Button buttonOK;
-        private System.Windows.Forms.Button buttonLoad;
-        private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.Button buttonReset;
         private System.Windows.Forms.Panel stringProps;
         private System.Windows.Forms.TextBox stringEditor;
@@ -547,7 +491,6 @@
         private System.Windows.Forms.RadioButton transparentRadioBtn;
         private System.Windows.Forms.RadioButton customRadioBtn;
         private System.Windows.Forms.OpenFileDialog customQRBrowser;
-        private System.Windows.Forms.OpenFileDialog loadBsconfig;
-        private System.Windows.Forms.SaveFileDialog saveBsconfig;
+        private System.Windows.Forms.LinkLabel linkLabel1;
     }
 }

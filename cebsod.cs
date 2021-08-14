@@ -18,7 +18,7 @@ namespace UltimateBlueScreenSimulator
         bool inr = false;
         bool ing = false;
         bool inb = false;
-        BlueScreen me = Program.bluescreens[2];
+        internal BlueScreen me = Program.bluescreens[0];
 
         string state = "0";
         public cebsod()
@@ -125,6 +125,14 @@ namespace UltimateBlueScreenSimulator
 
         private void Cebsod_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                e.Cancel = Program.f1.lockout;
+            }
+            else
+            {
+                e.Cancel = false;
+            }
             if (fullscreen)
             {
                 if (ws.Visible)

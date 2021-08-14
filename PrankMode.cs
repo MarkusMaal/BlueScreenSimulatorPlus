@@ -307,92 +307,11 @@ namespace UltimateBlueScreenSimulator
                 if (radioButton1.Checked == true)
                 {
                     Program.f1.winMode.Checked = false;
-                    //this code identifies Windows 10
-                    if (winver.Contains("Windows 10"))
+                    for (int i = 0; i < Program.bluescreens.Count; i++)
                     {
-                        for (int i = 0; i < Program.f1.windowVersion.Items.Count; i++)
+                        if (winver.Contains(Program.bluescreens[i].GetString("os")))
                         {
-                            if (Program.f1.windowVersion.Items[i].ToString().Contains("Windows 10"))
-                            {
-                                Program.f1.windowVersion.SelectedIndex = i;
-                            }
-                        }
-                    }
-                    //this code identifies Windows 8 or Windows 8.1
-                    else if (winver.Contains("Windows 8"))
-                    {
-                        for (int i = 0; i < Program.f1.windowVersion.Items.Count; i++)
-                        {
-                            if (Program.f1.windowVersion.Items[i].ToString().Contains("Windows 8"))
-                            {
-                                Program.f1.windowVersion.SelectedIndex = i;
-                            }
-                        }
-                    }
-                    //this code identifies Windows 7 or Windows Vista
-                    else if ((winver.Contains("Windows 7")) || (winver.Contains("Windows Vista")))
-                    {
-                        for (int i = 0; i < Program.f1.windowVersion.Items.Count; i++)
-                        {
-                            if (Program.f1.windowVersion.Items[i].ToString().Contains("Windows Vista"))
-                            {
-                                Program.f1.windowVersion.SelectedIndex = i;
-                            }
-                        }
-                    }
-                    //this code identifies Windows XP
-                    else if (winver.Contains("Windows XP"))
-                    {
-                        for (int i = 0; i < Program.f1.windowVersion.Items.Count; i++)
-                        {
-                            if (Program.f1.windowVersion.Items[i].ToString().Contains("Windows XP"))
-                            {
-                                Program.f1.windowVersion.SelectedIndex = i;
-                            }
-                        }
-                    }
-                    //this code identifies Windows 2000
-                    else if ((winver.Contains("Windows 2000")) || (winver.Contains("Windows NT 5")))
-                    {
-                        for (int i = 0; i < Program.f1.windowVersion.Items.Count; i++)
-                        {
-                            if (Program.f1.windowVersion.Items[i].ToString().Contains("Windows 2000"))
-                            {
-                                Program.f1.windowVersion.SelectedIndex = i;
-                            }
-                        }
-                    }
-                    //this code identifies Windows 95 or Windows 98
-                    else if ((winver.Contains("Windows 95")) || (winver.Contains("Windows 98")))
-                    {
-                        for (int i = 0; i < Program.f1.windowVersion.Items.Count; i++)
-                        {
-                            if (Program.f1.windowVersion.Items[i].ToString().Contains("Windows 9x"))
-                            {
-                                Program.f1.windowVersion.SelectedIndex = i;
-                            }
-                        }
-                    }
-                    //this code identifies old Windows NT versions
-                    else if ((winver.Contains("Windows NT 4")) || (winver.Contains("Windows NT 3")))
-                    {
-                        for (int i = 0; i < Program.f1.windowVersion.Items.Count; i++)
-                        {
-                            if (Program.f1.windowVersion.Items[i].ToString().Contains("Windows NT"))
-                            {
-                                Program.f1.windowVersion.SelectedIndex = i;
-                            }
-                        }
-                    }
-                    //this code identifies Windows 3.1x or unknown Windows versions
-                    else
-                    {
-                        for (int i = 0; i < Program.f1.windowVersion.Items.Count; i++)
-                        {
-                            if (Program.f1.windowVersion.Items[i].ToString().Contains("Windows 3.1"))
-                            {
-                                Program.f1.windowVersion.SelectedIndex = i;
-                            }
+                            Program.f1.windowVersion.SelectedIndex = i;
                         }
                     }
                 }
@@ -421,6 +340,7 @@ namespace UltimateBlueScreenSimulator
                 Program.f1.Hide();
                 Program.f1.waterBox.Checked = false;
                 Program.f1.timer2.Enabled = true;
+                Program.f1.lockout = !checkBox1.Checked;
                 this.Close();
             }
         }

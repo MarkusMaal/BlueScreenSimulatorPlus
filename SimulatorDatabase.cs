@@ -233,6 +233,11 @@ namespace SimulatorDatabase
         {
             switch (this.os)
             {
+                case "BOOTMGR":
+                    BootMgr bm = new BootMgr();
+                    bm.Show();
+                    //bm.Dispose();
+                    break;
                 case "Windows 11":
                     SetupWinXabove(new WXBS(), true);
                     break;
@@ -275,6 +280,7 @@ namespace SimulatorDatabase
             bs.fullscreen = !this.windowed;
             bs.waterMarkText.Visible = this.watermark;
             bs.technicalCode.Text = "*** STOP: 0x" + this.code.Split(' ')[1].ToString().Replace(")", "").Replace("(", "").ToString().Substring(4, 6) + " (" + this.code.Split(' ')[0].ToString().Replace("_", " ").ToLower() + ")";
+            bs.me = this;
             bs.Show();
         }
 
@@ -289,6 +295,7 @@ namespace SimulatorDatabase
             bs.stacktrace = this.stack_trace;
             bs.blink = this.blink;
             bs.waterMarkText.Visible = this.watermark;
+            bs.me = this;
             bs.Show();
         }
 
@@ -300,6 +307,7 @@ namespace SimulatorDatabase
             bs.screenmode = this.GetString("screen_mode");
             bs.errorCode = GenHex(2, GetString("ecode1")) + " : " + GenHex(4, GetString("ecode2")) + " : " + GenHex(6, GetString("ecode3"));
             bs.waterMarkText.Visible = this.GetBool("watermark");
+            bs.me = this;
             bs.Show();
         }
 
@@ -317,6 +325,7 @@ namespace SimulatorDatabase
                                 GenHex(8, this.GetString("ecode3")) + ", " +
                                 GenHex(8, this.GetString("ecode4")) +  ")";
             bs.errorCode.Text = bs.errorCode.Text + "\n" + this.GetString("code").Split(' ')[0].ToString();
+            bs.me = this;
             bs.Show();
         }
 
@@ -331,6 +340,7 @@ namespace SimulatorDatabase
             bs.errorCode.Text = this.GetString("code").Split(' ')[0].ToString();
             bs.technicalCode.Text = "*** STOP: " + this.GetString("code").Split(' ')[1].ToString().Replace(")", "").Replace("(", "").ToString() + " (" + GenAddress(4, 8, false) + ")";
             bs.supportInfo.Text = this.GetTexts()["Technical support"] + "\n\n\nTechnical information:";
+            bs.me = this;
             bs.Show();
         }
 
@@ -354,6 +364,7 @@ namespace SimulatorDatabase
             bs.technicalCode.Text = "*** STOP: " + this.GetString("code").Split(' ')[1].ToString().Replace(")", "").Replace("(", "").ToString() + " (" + GenAddress(4, 16, false) + ")";
             bs.supportInfo.Text = this.GetTexts()["Technical support"] + "\n\n\nTechnical information:";
             bs.w6mode = true;
+            bs.me = this;
             bs.Show();
         }
 
@@ -382,6 +393,7 @@ namespace SimulatorDatabase
             {
                 bs.code = GetString("code").Split(' ')[1].ToString().Replace(")", "").Replace("(", "").ToString();
             }
+            bs.me = this;
             bs.Show();
         }
 
@@ -410,6 +422,7 @@ namespace SimulatorDatabase
             {
                 bs.code = GetString("code").Split(' ')[1].ToString().Replace(")", "").Replace("(", "").ToString();
             }
+            bs.me = this;
             bs.Show();
         }
 
@@ -459,6 +472,7 @@ namespace SimulatorDatabase
                 case "screen_mode": this.screen_mode = value; break;
                 case "culprit": this.culprit = value; break;
                 case "friendlyname": this.friendlyname = value; break;
+                case "icon": this.icon = value; break;
                 case "code": this.code = value; break;
             }
         }

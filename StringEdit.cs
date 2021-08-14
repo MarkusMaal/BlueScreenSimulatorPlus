@@ -13,7 +13,7 @@ namespace UltimateBlueScreenSimulator
 {
     public partial class StringEdit : Form
     {
-        private BlueScreen me;
+        internal BlueScreen me;
         private string editable = "";
         private string type = "String";
         private bool theme_bg = false;
@@ -45,36 +45,9 @@ namespace UltimateBlueScreenSimulator
 
         private void StringEdit_Load(object sender, EventArgs e)
         {
-        }
-
-        private void StringEdit_VisibleChanged(object sender, EventArgs e)
-        {
-            if (this.Visible)
-            {
-                winVers.Clear();
-                foreach (BlueScreen bs in Program.bluescreens)
-                {
-                    ListViewItem li = new ListViewItem();
-                    li.ImageIndex = 0;
-                    switch (bs.GetString("icon"))
-                    {
-                        case "2D flag":
-                            li.ImageIndex = 0;
-                            break;
-                        case "3D flag":
-                            li.ImageIndex = 1;
-                            break;
-                        case "2D window":
-                            li.ImageIndex = 3;
-                            break;
-                        case "3D window":
-                            li.ImageIndex = 2;
-                            break;
-                    }
-                    li.Text = bs.GetString("os");
-                    winVers.Items.Add(li);
-                }
-            }
+            HideAllProps();
+            MessageView.Clear();
+            UpdateMessageView();
         }
 
         private void winVers_ItemActivate(object sender, EventArgs e)
@@ -94,14 +67,8 @@ namespace UltimateBlueScreenSimulator
         private void winVers_SelectedIndexChanged(object sender, EventArgs e)
         {
             HideAllProps();
-            if (winVers.SelectedItems.Count < 1)
-            {
-                MessageView.Clear();
-            } else
-            {
-                MessageView.Clear();
-                UpdateMessageView();
-            }
+            MessageView.Clear();
+            UpdateMessageView();
         }
 
         private void UpdateMessageView()
@@ -110,7 +77,6 @@ namespace UltimateBlueScreenSimulator
             MessageView.Columns.Add("Value");
             MessageView.Columns[0].Width = 120;
             MessageView.Columns[1].Width = 150;
-            me = Program.bluescreens[winVers.SelectedIndices[0]];
             IDictionary<string, string> titles = me.GetTitles();
             IDictionary<string, string> texts = me.GetTexts();
             if ((me.GetString("os") == "Windows 8/8.1") || me.GetBool("winxplus"))
@@ -473,223 +439,9 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void buttonLoad_Click(object sender, EventArgs e)
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            if (loadBsconfig.ShowDialog() == DialogResult.OK)
-            {
-                string filedata = File.ReadAllText(loadBsconfig.FileName);
-                string version = filedata.Split('\n')[0];
-                if (version.StartsWith("*** Blue screen simulator plus 1."))
-                {
-                    MessageBox.Show("This configuration file is not compatible with this development build of blue screen simulator plus 2.0.", "Cannot open configuration file", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else if (version.StartsWith("*** Blue screen simulator plus 2."))
-                {
-                    string[] primary_section_tokens = filedata.Split('#');
-                    Program.bluescreens.Clear();
-                    foreach (string section in primary_section_tokens)
-                    {
-                        string[] subsection_tokens = section.Split('[');
-                        if (section.StartsWith("*")) { continue; }
-                        string os_name = subsection_tokens[0].Replace("\n", "");
-                        if (os_name == "") { continue; }
-                        BlueScreen bs = new BlueScreen(os_name);
-                        bs.ClearAllTitleTexts();
-                        foreach (string subsection in subsection_tokens)
-                        {
-                            string type = "";
-                            if (subsection.StartsWith("string")) { type = "string"; }
-                            else if (subsection.StartsWith("boolean")) { type = "boolean"; }
-                            else if (subsection.StartsWith("integer")) { type = "integer"; }
-                            else if (subsection.StartsWith("theme")) { type = "theme"; }
-                            else if (subsection.StartsWith("title")) { type = "title"; }
-                            else if (subsection.StartsWith("text")) { type = "text"; }
-                            else if (subsection.StartsWith("format")) { type = "format"; }
-                            string subsection_withoutheading = subsection.Substring(type.Length + 1);
-                            string[] entries = subsection_withoutheading.Split(';');
-                            Color theme_bg = Color.Black ;
-                            Color theme_fg = Color.White ;
-                            Color theme_hbg = Color.White ;
-                            Color theme_hfg = Color.Black ;
-                            string fontfamily = "";
-                            float size = 1.0f;
-                            FontStyle style = FontStyle.Regular;
-                            foreach (string entry in entries)
-                            {
-                                if (entry.Replace("\n", "") != "")
-                                {
-                                    string key = entry.Split('=')[0].Replace("\n", "");
-                                    string value = entry.Substring(entry.IndexOf("=") + 1);
-                                    switch (type)
-                                    {
-                                        case "string":
-                                            bs.SetString(key, value);
-                                            break;
-                                        case "integer":
-                                            bs.SetInt(key, Convert.ToInt32(value));
-                                            break;
-                                        case "bool":
-                                            bs.SetBool(key, Convert.ToBoolean(value));
-                                            break;
-                                        case "title":
-                                            bs.PushTitle(key, value);
-                                            break;
-                                        case "text":
-                                            bs.PushText(key, value);
-                                            break;
-                                        case "theme":
-                                            switch (key)
-                                            {
-                                                case "bg":
-                                                    theme_bg = StringToRGB(value);
-                                                    bs.SetTheme(theme_bg, theme_fg);
-                                                    break;
-                                                case "fg":
-                                                    theme_fg = StringToRGB(value);
-                                                    bs.SetTheme(theme_bg, theme_fg);
-                                                    break;
-                                                case "hbg":
-                                                    theme_hbg = StringToRGB(value);
-                                                    bs.SetTheme(theme_hbg, theme_hfg, true);
-                                                    break;
-                                                case "hfg":
-                                                    theme_hfg = StringToRGB(value);
-                                                    bs.SetTheme(theme_hbg, theme_hfg, true);
-                                                    break;
-                                            }
-                                            break;
-                                        case "format":
-                                            switch (key)
-                                            {
-                                                case "fontfamily":
-                                                    fontfamily = value;
-                                                    break;
-                                                case "size":
-                                                    size = (float)Convert.ToDouble(value);
-                                                    break;
-                                                case "style":
-                                                    style = (FontStyle)Enum.Parse(typeof(FontStyle), value);
-                                                    break;
-                                            }
-                                            break;
-                                    }
-                                }
-                            }
-                            bs.SetFont(fontfamily, size, style);
-                        }
-                        Program.bluescreens.Add(bs);
-                    }
-                }
-            }
-            HideAllProps();
-            MessageView.Clear();
-            winVers.Clear();
-            foreach (BlueScreen bs in Program.bluescreens)
-            {
-                ListViewItem li = new ListViewItem();
-                li.ImageIndex = 0;
-                switch (bs.GetString("icon"))
-                {
-                    case "2D flag":
-                        li.ImageIndex = 0;
-                        break;
-                    case "3D flag":
-                        li.ImageIndex = 1;
-                        break;
-                    case "2D window":
-                        li.ImageIndex = 3;
-                        break;
-                    case "3D window":
-                        li.ImageIndex = 2;
-                        break;
-                }
-                li.Text = bs.GetString("os");
-                winVers.Items.Add(li);
-            }
-        }
-
-        private void buttonSave_Click(object sender, EventArgs e)
-        {
-            if (saveBsconfig.ShowDialog() == DialogResult.OK)
-            {
-                string filedata = "*** Blue screen simulator plus 2.0 ***";
-                foreach (BlueScreen bs in Program.bluescreens)
-                {
-                    filedata += "\n\n\n#" + bs.GetString("os") + "\n\n";
-                    filedata += "\n\n[string]";
-                    filedata += "\nfriendlyname=" + bs.GetString("friendlyname") + ";";
-                    filedata += "\ncode=" + bs.GetString("code") + ";";
-                    filedata += "\necode1=" + bs.GetString("ecode1") + ";";
-                    filedata += "\necode2=" + bs.GetString("ecode2") + ";";
-                    filedata += "\necode3=" + bs.GetString("ecode3") + ";";
-                    filedata += "\necode4=" + bs.GetString("ecode4") + ";";
-                    filedata += "\nemoticon=" + bs.GetString("emoticon").Replace("#", ":h:") + ";";
-                    filedata += "\nscreen_mode=" + bs.GetString("screen_mode") + ";";
-                    filedata += "\nqr_file=" + bs.GetString("qr_file").Replace("#", ":h:") + ";";
-                    filedata += "\nculprit=" + bs.GetString("culprit").Replace("#", ":h:") + ";";
-                    filedata += "\nicon=" + bs.GetString("icon") + ";";
-
-                    filedata += "\n\n[boolean]";
-                    filedata += "\n" + "windowed=" + bs.GetBool("windowed").ToString() + ";";
-                    filedata += "\n" + "autoclose=" + bs.GetBool("autoclose").ToString() + ";";
-                    filedata += "\n" + "show_description=" + bs.GetBool("show_description").ToString() + ";";
-                    filedata += "\n" + "show_file=" + bs.GetBool("show_file").ToString() + ";";
-                    filedata += "\n" + "watermark=" + bs.GetBool("watermark").ToString() + ";";
-                    filedata += "\n" + "server=" + bs.GetBool("server").ToString() + ";";
-                    filedata += "\n" + "qr=" + bs.GetBool("qr").ToString() + ";";
-                    filedata += "\n" + "insider=" + bs.GetBool("insider").ToString() + ";";
-                    filedata += "\n" + "acpi=" + bs.GetBool("acpi").ToString() + ";";
-                    filedata += "\n" + "amd=" + bs.GetBool("amd").ToString() + ";";
-                    filedata += "\n" + "stack_trace=" + bs.GetBool("stack_trace").ToString() + ";";
-                    filedata += "\n" + "blink=" + bs.GetBool("blink").ToString() + ";";
-                    filedata += "\n" + "font_support=" + bs.GetBool("font_support").ToString() + ";";
-                    filedata += "\n" + "blinkblink=" + bs.GetBool("blinkblink").ToString() + ";";
-                    filedata += "\n" + "winxplus=" + bs.GetBool("winxplus").ToString() + ";";
-                    filedata += "\n" + "extracodes=" + bs.GetBool("extracodes").ToString() + ";";
-
-                    filedata += "\n\n[integer]";
-                    filedata += "\n" + "windowed=" + bs.GetInt("blink_speed") + ";";
-                    filedata += "\n" + "timer=" + bs.GetInt("timer") + ";";
-                    filedata += "\n" + "qr_size=" + bs.GetInt("qr_size") + ";";
-
-
-                    filedata += "\n\n[theme]";
-                    filedata += "\nbg=" + RGB_String(bs.GetTheme(true)) + ";";
-                    filedata += "\nfg=" + RGB_String(bs.GetTheme(false)) + ";";
-                    filedata += "\nhbg=" + RGB_String(bs.GetTheme(true, true)) + ";";
-                    filedata += "\nhfg=" + RGB_String(bs.GetTheme(false, true)) + ";";
-
-                    filedata += "\n\n[title]";
-                    foreach (KeyValuePair<string, string> entry in bs.GetTitles())
-                    {
-                        filedata += "\n" + entry.Key + "=" + entry.Value.Replace("#", ":h:") + ";";
-                    }
-
-                    filedata += "\n\n[text]";
-                    foreach (KeyValuePair<string, string> entry in bs.GetTexts())
-                    {
-                        filedata += "\n" + entry.Key + "=" + entry.Value.Replace("#", ":h:") + ";";
-                    }
-
-                    filedata += "\n\n[format]";
-                    filedata += "\nfontfamily=" + bs.GetFont().FontFamily.Name + ";";
-                    filedata += "\nsize=" + bs.GetFont().Size.ToString() + ";";
-                    filedata += "\nstyle=" + bs.GetFont().Style.ToString() + ";";
-                }
-                File.WriteAllText(saveBsconfig.FileName, filedata);
-                MessageBox.Show("Blue screen configuration saved successfully", "Blue screen simulator 2.x configuration file creator", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-        }
-
-        private Color StringToRGB(string rgb)
-        {
-            string[] splitted_rgb = rgb.Split(',');
-            return Color.FromArgb(Convert.ToInt32(splitted_rgb[0]), Convert.ToInt32(splitted_rgb[1]), Convert.ToInt32(splitted_rgb[2]));
-        }
-
-        private string RGB_String(Color rgb)
-        {
-            return rgb.R.ToString() + "," + rgb.G.ToString() + "," + rgb.B.ToString();
+            MessageBox.Show("They have been moved to a new location. The new location is Settings > Simulator settings > Save/Load configurations", "About the save and load button", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

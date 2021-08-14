@@ -14,6 +14,7 @@ namespace UltimateBlueScreenSimulator
     public partial class WindowScreen : Form
     {
         public Bitmap bmp;
+        public bool primary = true;
         public WindowScreen()
         {
             InitializeComponent();
@@ -27,11 +28,19 @@ namespace UltimateBlueScreenSimulator
         private void WindowScreen_FormClosing(object sender, FormClosingEventArgs e)
         {
             this.Hide();
+            // Prevent closing when Alt + F4 is pressed
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                e.Cancel = Program.f1.lockout;
+            }
+            else
+            {
+                e.Cancel = false;
+            }
             if (!Program.f1.showcursor)
             {
                 Cursor.Show();
             }
-            pictureBox1.Image.Dispose();
         }
 
         private void WindowScreen_FormClosed(object sender, FormClosedEventArgs e)

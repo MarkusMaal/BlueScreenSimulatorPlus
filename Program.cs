@@ -99,6 +99,7 @@ namespace UltimateBlueScreenSimulator
 
         internal static bool verificate = false;
         public static bool hidden = false;
+        public static string multidisplaymode = "blank";
         private static ManagementObjectSearcher aa = new ManagementObjectSearcher("root\\CIMV2", "SELECT * FROM Win32_BaseBoard");
         public static List<BlueScreen> bluescreens;
 

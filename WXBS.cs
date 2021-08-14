@@ -22,7 +22,7 @@ namespace UltimateBlueScreenSimulator
         public bool w11 = false;
         private bool w8close = false;
         private int progress = 0;
-        BlueScreen me;
+        internal BlueScreen me = Program.bluescreens[0];
         public WXBS()
         {
             InitializeComponent();
@@ -35,6 +35,17 @@ namespace UltimateBlueScreenSimulator
 
         private void WXBS_FormClosing(object sender, FormClosingEventArgs e)
         {
+            // prevent closing with Alt + F4
+            // if Windows is shutting down, this will not prevent closing of
+            // WXBS
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                e.Cancel = Program.f1.lockout;
+            }
+            else
+            {
+                e.Cancel = false;
+            }
             if (!Program.f1.showcursor)
             {
                 Cursor.Show();
@@ -43,16 +54,6 @@ namespace UltimateBlueScreenSimulator
 
         private void WXBS_Load(object sender, EventArgs e)
         {
-            if (w8)
-            {
-                me = Program.bluescreens[7];
-            } else if (w11)
-            {
-                me = Program.bluescreens[9];
-            } else
-            {
-                me = Program.bluescreens[8];
-            }
             memCodes.Visible = me.GetBool("extracodes");
             Font textfont = me.GetFont();
             float textsize = textfont.Size;
