@@ -6,11 +6,13 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using SimulatorDatabase;
 
 namespace UltimateBlueScreenSimulator
 {
     public partial class IndexForm : Form
     {
+        internal BlueScreen me;
         public string c1 = "RRRRRRRRRRRRRRRR";
         public string c2 = "RRRRRRRRRRRRRRRR";
         public string c3 = "RRRRRRRRRRRRRRRR";
@@ -413,16 +415,20 @@ namespace UltimateBlueScreenSimulator
         private void Button25_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.OK;
-            Program.f1.c1 = c1;
-            Program.f1.c2 = c2;
-            Program.f1.c3 = c3;
-            Program.f1.c4 = c4;
+            me.SetCodes(c1, c2, c3, c4);
             this.Close();
         }
 
         private void IndexForm_Load(object sender, EventArgs e)
         {
+            if (me.GetString("os") == "Windows 3.1x")
+            {
+                MessageBox.Show("This operating system does not support error codes", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.DialogResult = DialogResult.Cancel;
+                this.Close();
+            }
             label6.Text = "0x" + c1 + ", " + "0x" + c2 + ", " + "0x" + c3 + ", " + "0x" + c4;
+            this.Text = "Error code generation (" + me.GetString("os") + ")";
             radioButton1.Checked = false;
             radioButton1.Checked = true;
         }

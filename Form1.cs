@@ -647,10 +647,11 @@ namespace UltimateBlueScreenSimulator
             }
             IndexForm iform = new IndexForm
             {
-                c1 = c1,
-                c2 = c2,
-                c3 = c3,
-                c4 = c4
+                me = me,
+                c1 = me.GetCodes()[0],
+                c2 = me.GetCodes()[1],
+                c3 = me.GetCodes()[2],
+                c4 = me.GetCodes()[3]
             };
             iform.Show();
         }

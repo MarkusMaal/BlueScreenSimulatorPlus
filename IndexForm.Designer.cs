@@ -139,7 +139,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 37F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 43F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 46F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 47F));
             this.tableLayoutPanel1.Controls.Add(this.textBox16, 16, 3);
             this.tableLayoutPanel1.Controls.Add(this.textBox15, 15, 3);
             this.tableLayoutPanel1.Controls.Add(this.textBox14, 14, 3);
@@ -224,11 +224,11 @@
             this.textBox16.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox16.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox16.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox16.Location = new System.Drawing.Point(624, 63);
+            this.textBox16.Location = new System.Drawing.Point(623, 63);
             this.textBox16.MaxLength = 1;
             this.textBox16.Name = "textBox16";
             this.textBox16.ReadOnly = true;
-            this.textBox16.Size = new System.Drawing.Size(41, 13);
+            this.textBox16.Size = new System.Drawing.Size(42, 13);
             this.textBox16.TabIndex = 65;
             this.textBox16.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textBox16.TextChanged += new System.EventHandler(this.TextBox16_TextChanged);
@@ -239,7 +239,7 @@
             this.textBox15.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox15.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox15.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox15.Location = new System.Drawing.Point(581, 63);
+            this.textBox15.Location = new System.Drawing.Point(580, 63);
             this.textBox15.MaxLength = 1;
             this.textBox15.Name = "textBox15";
             this.textBox15.ReadOnly = true;
@@ -254,7 +254,7 @@
             this.textBox14.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox14.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox14.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox14.Location = new System.Drawing.Point(541, 63);
+            this.textBox14.Location = new System.Drawing.Point(540, 63);
             this.textBox14.MaxLength = 1;
             this.textBox14.Name = "textBox14";
             this.textBox14.ReadOnly = true;
@@ -269,7 +269,7 @@
             this.textBox13.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox13.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox13.Location = new System.Drawing.Point(504, 63);
+            this.textBox13.Location = new System.Drawing.Point(503, 63);
             this.textBox13.MaxLength = 1;
             this.textBox13.Name = "textBox13";
             this.textBox13.ReadOnly = true;
@@ -282,10 +282,10 @@
             // button34
             // 
             this.button34.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button34.Location = new System.Drawing.Point(621, 40);
+            this.button34.Location = new System.Drawing.Point(620, 40);
             this.button34.Margin = new System.Windows.Forms.Padding(0);
             this.button34.Name = "button34";
-            this.button34.Size = new System.Drawing.Size(47, 20);
+            this.button34.Size = new System.Drawing.Size(48, 20);
             this.button34.TabIndex = 61;
             this.button34.Text = "Set";
             this.button34.UseVisualStyleBackColor = true;
@@ -294,7 +294,7 @@
             // button33
             // 
             this.button33.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button33.Location = new System.Drawing.Point(578, 40);
+            this.button33.Location = new System.Drawing.Point(577, 40);
             this.button33.Margin = new System.Windows.Forms.Padding(0);
             this.button33.Name = "button33";
             this.button33.Size = new System.Drawing.Size(43, 20);
@@ -306,7 +306,7 @@
             // button32
             // 
             this.button32.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button32.Location = new System.Drawing.Point(538, 40);
+            this.button32.Location = new System.Drawing.Point(537, 40);
             this.button32.Margin = new System.Windows.Forms.Padding(0);
             this.button32.Name = "button32";
             this.button32.Size = new System.Drawing.Size(40, 20);
@@ -318,7 +318,7 @@
             // button31
             // 
             this.button31.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button31.Location = new System.Drawing.Point(501, 40);
+            this.button31.Location = new System.Drawing.Point(500, 40);
             this.button31.Margin = new System.Windows.Forms.Padding(0);
             this.button31.Name = "button31";
             this.button31.Size = new System.Drawing.Size(37, 20);
@@ -330,10 +330,10 @@
             // button30
             // 
             this.button30.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button30.Location = new System.Drawing.Point(621, 21);
+            this.button30.Location = new System.Drawing.Point(620, 21);
             this.button30.Margin = new System.Windows.Forms.Padding(0);
             this.button30.Name = "button30";
-            this.button30.Size = new System.Drawing.Size(47, 19);
+            this.button30.Size = new System.Drawing.Size(48, 19);
             this.button30.TabIndex = 57;
             this.button30.Text = "Set";
             this.button30.UseVisualStyleBackColor = true;
@@ -342,7 +342,7 @@
             // button29
             // 
             this.button29.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button29.Location = new System.Drawing.Point(578, 21);
+            this.button29.Location = new System.Drawing.Point(577, 21);
             this.button29.Margin = new System.Windows.Forms.Padding(0);
             this.button29.Name = "button29";
             this.button29.Size = new System.Drawing.Size(43, 19);
@@ -354,7 +354,7 @@
             // button28
             // 
             this.button28.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button28.Location = new System.Drawing.Point(538, 21);
+            this.button28.Location = new System.Drawing.Point(537, 21);
             this.button28.Margin = new System.Windows.Forms.Padding(0);
             this.button28.Name = "button28";
             this.button28.Size = new System.Drawing.Size(40, 19);
@@ -366,7 +366,7 @@
             // button27
             // 
             this.button27.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button27.Location = new System.Drawing.Point(501, 21);
+            this.button27.Location = new System.Drawing.Point(500, 21);
             this.button27.Margin = new System.Windows.Forms.Padding(0);
             this.button27.Name = "button27";
             this.button27.Size = new System.Drawing.Size(37, 19);
@@ -379,9 +379,9 @@
             // 
             this.c1_16.AutoSize = true;
             this.c1_16.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.c1_16.Location = new System.Drawing.Point(624, 0);
+            this.c1_16.Location = new System.Drawing.Point(623, 0);
             this.c1_16.Name = "c1_16";
-            this.c1_16.Size = new System.Drawing.Size(41, 21);
+            this.c1_16.Size = new System.Drawing.Size(42, 21);
             this.c1_16.TabIndex = 53;
             this.c1_16.Text = "R";
             this.c1_16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -391,7 +391,7 @@
             // 
             this.c1_15.AutoSize = true;
             this.c1_15.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.c1_15.Location = new System.Drawing.Point(581, 0);
+            this.c1_15.Location = new System.Drawing.Point(580, 0);
             this.c1_15.Name = "c1_15";
             this.c1_15.Size = new System.Drawing.Size(37, 21);
             this.c1_15.TabIndex = 52;
@@ -403,7 +403,7 @@
             // 
             this.c1_14.AutoSize = true;
             this.c1_14.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.c1_14.Location = new System.Drawing.Point(541, 0);
+            this.c1_14.Location = new System.Drawing.Point(540, 0);
             this.c1_14.Name = "c1_14";
             this.c1_14.Size = new System.Drawing.Size(34, 21);
             this.c1_14.TabIndex = 15;
@@ -415,7 +415,7 @@
             // 
             this.c1_13.AutoSize = true;
             this.c1_13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.c1_13.Location = new System.Drawing.Point(504, 0);
+            this.c1_13.Location = new System.Drawing.Point(503, 0);
             this.c1_13.Name = "c1_13";
             this.c1_13.Size = new System.Drawing.Size(31, 21);
             this.c1_13.TabIndex = 15;
@@ -428,7 +428,7 @@
             this.textBox12.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox12.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox12.Location = new System.Drawing.Point(468, 63);
+            this.textBox12.Location = new System.Drawing.Point(467, 63);
             this.textBox12.MaxLength = 1;
             this.textBox12.Name = "textBox12";
             this.textBox12.ReadOnly = true;
@@ -443,7 +443,7 @@
             this.textBox11.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox11.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox11.Location = new System.Drawing.Point(432, 63);
+            this.textBox11.Location = new System.Drawing.Point(431, 63);
             this.textBox11.MaxLength = 1;
             this.textBox11.Name = "textBox11";
             this.textBox11.ReadOnly = true;
@@ -458,7 +458,7 @@
             this.textBox10.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox10.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox10.Location = new System.Drawing.Point(394, 63);
+            this.textBox10.Location = new System.Drawing.Point(393, 63);
             this.textBox10.MaxLength = 1;
             this.textBox10.Name = "textBox10";
             this.textBox10.ReadOnly = true;
@@ -473,7 +473,7 @@
             this.textBox9.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox9.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox9.Location = new System.Drawing.Point(362, 63);
+            this.textBox9.Location = new System.Drawing.Point(361, 63);
             this.textBox9.MaxLength = 1;
             this.textBox9.Name = "textBox9";
             this.textBox9.ReadOnly = true;
@@ -488,7 +488,7 @@
             this.textBox8.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox8.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox8.Location = new System.Drawing.Point(327, 63);
+            this.textBox8.Location = new System.Drawing.Point(326, 63);
             this.textBox8.MaxLength = 1;
             this.textBox8.Name = "textBox8";
             this.textBox8.ReadOnly = true;
@@ -503,7 +503,7 @@
             this.textBox7.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox7.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox7.Location = new System.Drawing.Point(295, 63);
+            this.textBox7.Location = new System.Drawing.Point(294, 63);
             this.textBox7.MaxLength = 1;
             this.textBox7.Name = "textBox7";
             this.textBox7.ReadOnly = true;
@@ -518,7 +518,7 @@
             this.textBox6.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox6.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox6.Location = new System.Drawing.Point(258, 63);
+            this.textBox6.Location = new System.Drawing.Point(257, 63);
             this.textBox6.MaxLength = 1;
             this.textBox6.Name = "textBox6";
             this.textBox6.ReadOnly = true;
@@ -533,7 +533,7 @@
             this.textBox5.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox5.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox5.Location = new System.Drawing.Point(219, 63);
+            this.textBox5.Location = new System.Drawing.Point(218, 63);
             this.textBox5.MaxLength = 1;
             this.textBox5.Name = "textBox5";
             this.textBox5.ReadOnly = true;
@@ -548,7 +548,7 @@
             this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox4.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox4.Location = new System.Drawing.Point(184, 63);
+            this.textBox4.Location = new System.Drawing.Point(183, 63);
             this.textBox4.MaxLength = 1;
             this.textBox4.Name = "textBox4";
             this.textBox4.ReadOnly = true;
@@ -563,7 +563,7 @@
             this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox3.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox3.Location = new System.Drawing.Point(147, 63);
+            this.textBox3.Location = new System.Drawing.Point(146, 63);
             this.textBox3.MaxLength = 1;
             this.textBox3.Name = "textBox3";
             this.textBox3.ReadOnly = true;
@@ -578,7 +578,7 @@
             this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox2.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox2.Location = new System.Drawing.Point(110, 63);
+            this.textBox2.Location = new System.Drawing.Point(109, 63);
             this.textBox2.MaxLength = 1;
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
@@ -597,7 +597,7 @@
             this.textBox1.MaxLength = 1;
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(31, 13);
+            this.textBox1.Size = new System.Drawing.Size(30, 13);
             this.textBox1.TabIndex = 2;
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textBox1.TextChanged += new System.EventHandler(this.TextBox1_TextChanged);
@@ -609,7 +609,7 @@
             this.button13.Location = new System.Drawing.Point(70, 40);
             this.button13.Margin = new System.Windows.Forms.Padding(0);
             this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(37, 20);
+            this.button13.Size = new System.Drawing.Size(36, 20);
             this.button13.TabIndex = 40;
             this.button13.Text = "Set";
             this.button13.UseVisualStyleBackColor = true;
@@ -618,7 +618,7 @@
             // button14
             // 
             this.button14.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button14.Location = new System.Drawing.Point(107, 40);
+            this.button14.Location = new System.Drawing.Point(106, 40);
             this.button14.Margin = new System.Windows.Forms.Padding(0);
             this.button14.Name = "button14";
             this.button14.Size = new System.Drawing.Size(37, 20);
@@ -630,7 +630,7 @@
             // button15
             // 
             this.button15.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button15.Location = new System.Drawing.Point(144, 40);
+            this.button15.Location = new System.Drawing.Point(143, 40);
             this.button15.Margin = new System.Windows.Forms.Padding(0);
             this.button15.Name = "button15";
             this.button15.Size = new System.Drawing.Size(37, 20);
@@ -642,7 +642,7 @@
             // button16
             // 
             this.button16.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button16.Location = new System.Drawing.Point(181, 40);
+            this.button16.Location = new System.Drawing.Point(180, 40);
             this.button16.Margin = new System.Windows.Forms.Padding(0);
             this.button16.Name = "button16";
             this.button16.Size = new System.Drawing.Size(35, 20);
@@ -654,7 +654,7 @@
             // button17
             // 
             this.button17.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button17.Location = new System.Drawing.Point(216, 40);
+            this.button17.Location = new System.Drawing.Point(215, 40);
             this.button17.Margin = new System.Windows.Forms.Padding(0);
             this.button17.Name = "button17";
             this.button17.Size = new System.Drawing.Size(39, 20);
@@ -666,7 +666,7 @@
             // button18
             // 
             this.button18.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button18.Location = new System.Drawing.Point(255, 40);
+            this.button18.Location = new System.Drawing.Point(254, 40);
             this.button18.Margin = new System.Windows.Forms.Padding(0);
             this.button18.Name = "button18";
             this.button18.Size = new System.Drawing.Size(37, 20);
@@ -678,7 +678,7 @@
             // button19
             // 
             this.button19.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button19.Location = new System.Drawing.Point(292, 40);
+            this.button19.Location = new System.Drawing.Point(291, 40);
             this.button19.Margin = new System.Windows.Forms.Padding(0);
             this.button19.Name = "button19";
             this.button19.Size = new System.Drawing.Size(32, 20);
@@ -690,7 +690,7 @@
             // button20
             // 
             this.button20.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button20.Location = new System.Drawing.Point(324, 40);
+            this.button20.Location = new System.Drawing.Point(323, 40);
             this.button20.Margin = new System.Windows.Forms.Padding(0);
             this.button20.Name = "button20";
             this.button20.Size = new System.Drawing.Size(35, 20);
@@ -702,7 +702,7 @@
             // button21
             // 
             this.button21.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button21.Location = new System.Drawing.Point(359, 40);
+            this.button21.Location = new System.Drawing.Point(358, 40);
             this.button21.Margin = new System.Windows.Forms.Padding(0);
             this.button21.Name = "button21";
             this.button21.Size = new System.Drawing.Size(32, 20);
@@ -714,7 +714,7 @@
             // button22
             // 
             this.button22.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button22.Location = new System.Drawing.Point(391, 40);
+            this.button22.Location = new System.Drawing.Point(390, 40);
             this.button22.Margin = new System.Windows.Forms.Padding(0);
             this.button22.Name = "button22";
             this.button22.Size = new System.Drawing.Size(38, 20);
@@ -726,7 +726,7 @@
             // button23
             // 
             this.button23.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button23.Location = new System.Drawing.Point(429, 40);
+            this.button23.Location = new System.Drawing.Point(428, 40);
             this.button23.Margin = new System.Windows.Forms.Padding(0);
             this.button23.Name = "button23";
             this.button23.Size = new System.Drawing.Size(36, 20);
@@ -738,7 +738,7 @@
             // button24
             // 
             this.button24.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button24.Location = new System.Drawing.Point(465, 40);
+            this.button24.Location = new System.Drawing.Point(464, 40);
             this.button24.Margin = new System.Windows.Forms.Padding(0);
             this.button24.Name = "button24";
             this.button24.Size = new System.Drawing.Size(36, 20);
@@ -750,7 +750,7 @@
             // button12
             // 
             this.button12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button12.Location = new System.Drawing.Point(465, 21);
+            this.button12.Location = new System.Drawing.Point(464, 21);
             this.button12.Margin = new System.Windows.Forms.Padding(0);
             this.button12.Name = "button12";
             this.button12.Size = new System.Drawing.Size(36, 19);
@@ -762,7 +762,7 @@
             // button11
             // 
             this.button11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button11.Location = new System.Drawing.Point(429, 21);
+            this.button11.Location = new System.Drawing.Point(428, 21);
             this.button11.Margin = new System.Windows.Forms.Padding(0);
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(36, 19);
@@ -774,7 +774,7 @@
             // button10
             // 
             this.button10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button10.Location = new System.Drawing.Point(391, 21);
+            this.button10.Location = new System.Drawing.Point(390, 21);
             this.button10.Margin = new System.Windows.Forms.Padding(0);
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(38, 19);
@@ -786,7 +786,7 @@
             // button9
             // 
             this.button9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button9.Location = new System.Drawing.Point(359, 21);
+            this.button9.Location = new System.Drawing.Point(358, 21);
             this.button9.Margin = new System.Windows.Forms.Padding(0);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(32, 19);
@@ -798,7 +798,7 @@
             // button8
             // 
             this.button8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button8.Location = new System.Drawing.Point(324, 21);
+            this.button8.Location = new System.Drawing.Point(323, 21);
             this.button8.Margin = new System.Windows.Forms.Padding(0);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(35, 19);
@@ -810,7 +810,7 @@
             // button7
             // 
             this.button7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button7.Location = new System.Drawing.Point(292, 21);
+            this.button7.Location = new System.Drawing.Point(291, 21);
             this.button7.Margin = new System.Windows.Forms.Padding(0);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(32, 19);
@@ -822,7 +822,7 @@
             // button6
             // 
             this.button6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button6.Location = new System.Drawing.Point(255, 21);
+            this.button6.Location = new System.Drawing.Point(254, 21);
             this.button6.Margin = new System.Windows.Forms.Padding(0);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(37, 19);
@@ -834,7 +834,7 @@
             // button5
             // 
             this.button5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button5.Location = new System.Drawing.Point(216, 21);
+            this.button5.Location = new System.Drawing.Point(215, 21);
             this.button5.Margin = new System.Windows.Forms.Padding(0);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(39, 19);
@@ -846,7 +846,7 @@
             // button4
             // 
             this.button4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button4.Location = new System.Drawing.Point(181, 21);
+            this.button4.Location = new System.Drawing.Point(180, 21);
             this.button4.Margin = new System.Windows.Forms.Padding(0);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(35, 19);
@@ -858,7 +858,7 @@
             // button3
             // 
             this.button3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button3.Location = new System.Drawing.Point(144, 21);
+            this.button3.Location = new System.Drawing.Point(143, 21);
             this.button3.Margin = new System.Windows.Forms.Padding(0);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(37, 19);
@@ -870,7 +870,7 @@
             // button2
             // 
             this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button2.Location = new System.Drawing.Point(107, 21);
+            this.button2.Location = new System.Drawing.Point(106, 21);
             this.button2.Margin = new System.Windows.Forms.Padding(0);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(37, 19);
@@ -885,7 +885,7 @@
             this.button1.Location = new System.Drawing.Point(70, 21);
             this.button1.Margin = new System.Windows.Forms.Padding(0);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(37, 19);
+            this.button1.Size = new System.Drawing.Size(36, 19);
             this.button1.TabIndex = 2;
             this.button1.Text = "Set";
             this.button1.UseVisualStyleBackColor = true;
@@ -928,7 +928,7 @@
             // 
             this.c1_12.AutoSize = true;
             this.c1_12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.c1_12.Location = new System.Drawing.Point(468, 0);
+            this.c1_12.Location = new System.Drawing.Point(467, 0);
             this.c1_12.Name = "c1_12";
             this.c1_12.Size = new System.Drawing.Size(30, 21);
             this.c1_12.TabIndex = 14;
@@ -940,7 +940,7 @@
             // 
             this.c1_11.AutoSize = true;
             this.c1_11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.c1_11.Location = new System.Drawing.Point(432, 0);
+            this.c1_11.Location = new System.Drawing.Point(431, 0);
             this.c1_11.Name = "c1_11";
             this.c1_11.Size = new System.Drawing.Size(30, 21);
             this.c1_11.TabIndex = 13;
@@ -952,7 +952,7 @@
             // 
             this.c1_10.AutoSize = true;
             this.c1_10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.c1_10.Location = new System.Drawing.Point(394, 0);
+            this.c1_10.Location = new System.Drawing.Point(393, 0);
             this.c1_10.Name = "c1_10";
             this.c1_10.Size = new System.Drawing.Size(32, 21);
             this.c1_10.TabIndex = 12;
@@ -964,7 +964,7 @@
             // 
             this.c1_9.AutoSize = true;
             this.c1_9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.c1_9.Location = new System.Drawing.Point(362, 0);
+            this.c1_9.Location = new System.Drawing.Point(361, 0);
             this.c1_9.Name = "c1_9";
             this.c1_9.Size = new System.Drawing.Size(26, 21);
             this.c1_9.TabIndex = 11;
@@ -976,7 +976,7 @@
             // 
             this.c1_8.AutoSize = true;
             this.c1_8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.c1_8.Location = new System.Drawing.Point(327, 0);
+            this.c1_8.Location = new System.Drawing.Point(326, 0);
             this.c1_8.Name = "c1_8";
             this.c1_8.Size = new System.Drawing.Size(29, 21);
             this.c1_8.TabIndex = 10;
@@ -988,7 +988,7 @@
             // 
             this.c1_7.AutoSize = true;
             this.c1_7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.c1_7.Location = new System.Drawing.Point(295, 0);
+            this.c1_7.Location = new System.Drawing.Point(294, 0);
             this.c1_7.Name = "c1_7";
             this.c1_7.Size = new System.Drawing.Size(26, 21);
             this.c1_7.TabIndex = 9;
@@ -1000,7 +1000,7 @@
             // 
             this.c1_6.AutoSize = true;
             this.c1_6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.c1_6.Location = new System.Drawing.Point(258, 0);
+            this.c1_6.Location = new System.Drawing.Point(257, 0);
             this.c1_6.Name = "c1_6";
             this.c1_6.Size = new System.Drawing.Size(31, 21);
             this.c1_6.TabIndex = 8;
@@ -1012,7 +1012,7 @@
             // 
             this.c1_5.AutoSize = true;
             this.c1_5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.c1_5.Location = new System.Drawing.Point(219, 0);
+            this.c1_5.Location = new System.Drawing.Point(218, 0);
             this.c1_5.Name = "c1_5";
             this.c1_5.Size = new System.Drawing.Size(33, 21);
             this.c1_5.TabIndex = 7;
@@ -1024,7 +1024,7 @@
             // 
             this.c1_4.AutoSize = true;
             this.c1_4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.c1_4.Location = new System.Drawing.Point(184, 0);
+            this.c1_4.Location = new System.Drawing.Point(183, 0);
             this.c1_4.Name = "c1_4";
             this.c1_4.Size = new System.Drawing.Size(29, 21);
             this.c1_4.TabIndex = 6;
@@ -1036,7 +1036,7 @@
             // 
             this.c1_3.AutoSize = true;
             this.c1_3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.c1_3.Location = new System.Drawing.Point(147, 0);
+            this.c1_3.Location = new System.Drawing.Point(146, 0);
             this.c1_3.Name = "c1_3";
             this.c1_3.Size = new System.Drawing.Size(31, 21);
             this.c1_3.TabIndex = 5;
@@ -1048,7 +1048,7 @@
             // 
             this.c1_2.AutoSize = true;
             this.c1_2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.c1_2.Location = new System.Drawing.Point(110, 0);
+            this.c1_2.Location = new System.Drawing.Point(109, 0);
             this.c1_2.Name = "c1_2";
             this.c1_2.Size = new System.Drawing.Size(31, 21);
             this.c1_2.TabIndex = 4;
@@ -1062,7 +1062,7 @@
             this.c1_1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.c1_1.Location = new System.Drawing.Point(73, 0);
             this.c1_1.Name = "c1_1";
-            this.c1_1.Size = new System.Drawing.Size(31, 21);
+            this.c1_1.Size = new System.Drawing.Size(30, 21);
             this.c1_1.TabIndex = 3;
             this.c1_1.Text = "R";
             this.c1_1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1201,7 +1201,7 @@
             this.Name = "IndexForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.Text = "Error code generation";
+            this.Text = "Error code generation (Unknown operating system)";
             this.Load += new System.EventHandler(this.IndexForm_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
