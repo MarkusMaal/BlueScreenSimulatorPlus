@@ -4,7 +4,6 @@
     {
         protected override void OnPaint(PaintEventArgs e)
         {
-            this.UseCompatibleTextRendering = true;
             e.Graphics.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SingleBitPerPixelGridFit;
             base.OnPaint(e);
         }

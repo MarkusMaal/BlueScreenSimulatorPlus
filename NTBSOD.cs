@@ -185,6 +185,7 @@ namespace UltimateBlueScreenSimulator
             {
                 Bitmap two = GetSymbol(word.Substring(i, 1), bg, fg);
                 bmpres = Merge(bmpres, two);
+                two.Dispose();
             }
             return bmpres;
         }
@@ -210,7 +211,7 @@ namespace UltimateBlueScreenSimulator
             try
             {
                 Bitmap src = Properties.Resources.rasterNT as Bitmap;
-               Bitmap target = new Bitmap(cropRect.Width, cropRect.Height);
+                Bitmap target = new Bitmap(cropRect.Width, cropRect.Height);
                 using (Graphics g = Graphics.FromImage(target))
                 {
                     g.DrawImage(src, new Rectangle(0, 0, target.Width, target.Height),
@@ -220,6 +221,8 @@ namespace UltimateBlueScreenSimulator
                 Bitmap tc = changecolor(bg, target, Color.FromArgb(0, 0, 0));
                 Bitmap t = changecolor(fg, tc, Color.FromArgb(255, 255, 255));
                 target = t;
+                //tc.Dispose();
+                //t.Dispose();
                 return target;
             }
             catch
@@ -238,6 +241,8 @@ namespace UltimateBlueScreenSimulator
                 grfx.DrawImage(bmp, 0, 0);
                 grfx.DrawImage(bmp2, ne.Width - 8, 0);
             }
+            bmp.Dispose();
+            bmp2.Dispose();
             return ne;
         }
         private Bitmap changecolor(Color gc, Bitmap bmp, Color incol)
@@ -271,31 +276,7 @@ namespace UltimateBlueScreenSimulator
                 {
                     try
                     {
-                        if (!ws.primary && Program.multidisplaymode == "blank")
-                        {
-                            continue;
-                        }
-                        if ((Program.multidisplaymode != "freeze") || ws.primary)
-                        {
-                            var frm = ActiveForm;
-                            using (var bmp = new Bitmap(frm.Width, frm.Height))
-                            {
-                                frm.DrawToBitmap(bmp, new Rectangle(0, 0, bmp.Width, bmp.Height));
-
-                                Bitmap newImage = new Bitmap(ws.Width, ws.Height);
-                                using (Graphics g = Graphics.FromImage(newImage))
-                                {
-                                    if (Program.f1.GMode == "HighQualityBicubic") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic; }
-                                    if (Program.f1.GMode == "HighQualityBilinear") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBilinear; }
-                                    if (Program.f1.GMode == "Bilinear") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.Bilinear; }
-                                    if (Program.f1.GMode == "Bicubic") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.Bicubic; }
-                                    if (Program.f1.GMode == "NearestNeighbour") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor; }
-                                    g.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
-                                    g.DrawImage(bmp, new Rectangle(0, 0, ws.Width, ws.Height));
-                                }
-                                ws.pictureBox1.Image = newImage;
-                            }
-                        }
+                        Program.dr.Draw(ws);
                     }
                     catch
                     {
@@ -326,6 +307,22 @@ namespace UltimateBlueScreenSimulator
             {
                 e.Cancel = false;
             }
+            foreach (Control c in this.tableLayoutPanel1.Controls)
+            {
+                if (c is PictureBox) { ((PictureBox)c).Image.Dispose(); c.Dispose(); }
+            }
+            foreach (Control c in this.flowLayoutPanel1.Controls)
+            {
+                if (c is PictureBox) { ((PictureBox)c).Image.Dispose(); c.Dispose(); }
+            }
+            foreach (Control c in this.flowLayoutPanel2.Controls)
+            {
+                if (c is PictureBox) { ((PictureBox)c).Image.Dispose(); c.Dispose(); }
+            }
+            foreach (Control c in this.flowLayoutPanel3.Controls)
+            {
+                if (c is PictureBox) { ((PictureBox)c).Image.Dispose(); c.Dispose(); }
+            }
             if (fullscreen)
             {
                 foreach (WindowScreen ws in wss)
@@ -352,6 +349,7 @@ namespace UltimateBlueScreenSimulator
                     Program.f1.Close();
                 }
             }
+            this.Dispose();
         }
     }
 }

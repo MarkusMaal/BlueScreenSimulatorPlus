@@ -55,6 +55,13 @@ namespace UltimateBlueScreenSimulator
                 Program.f1.showmsg = false;
             }
             Program.f1.Show();
+            this.pictureBox1.Image.Dispose();
+            this.pictureBox1.Dispose();
+            this.Dispose();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
         }
     }
 }

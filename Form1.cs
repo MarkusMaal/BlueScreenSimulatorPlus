@@ -107,6 +107,7 @@ namespace UltimateBlueScreenSimulator
             checkBox2.Enabled = true;
             ntPanel.Visible = false;
             memoryBox.Visible = false;
+            checkBox3.Visible = false;
             // set current bluescreen
             me = Program.bluescreens[Program.bluescreens.Count - 1 - windowVersion.SelectedIndex];
             // set control visibility for specific OS-es
@@ -149,6 +150,7 @@ namespace UltimateBlueScreenSimulator
                 acpiBox.Visible = true;
                 checkBox1.Visible = true;
                 autoBox.Visible = true;
+                checkBox3.Visible = true;
             }
             else if (me.GetString("os") == "Windows XP")
             {
@@ -156,6 +158,7 @@ namespace UltimateBlueScreenSimulator
                 winMode.Visible = true;
                 checkBox1.Visible = true;
                 autoBox.Visible = true;
+                checkBox3.Visible = true;
             }
             else if (me.GetString("os") == "Windows 2000")
             {
@@ -1142,6 +1145,11 @@ namespace UltimateBlueScreenSimulator
                 textBox2.Text = cf.listView1.SelectedItems[0].Text;
             }
             cf.Dispose();
+        }
+
+        private void checkBox3_CheckedChanged(object sender, EventArgs e)
+        {
+            me.SetBool("autoclose", checkBox3.Checked);
         }
     }
 }

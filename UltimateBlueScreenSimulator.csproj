@@ -37,6 +37,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Management">
@@ -167,6 +168,12 @@
     <Compile Include="UpdateInterface.Designer.cs">
       <DependentUpon>UpdateInterface.cs</DependentUpon>
     </Compile>
+    <Compile Include="vistabs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="vistabs.Designer.cs">
+      <DependentUpon>vistabs.cs</DependentUpon>
+    </Compile>
     <Compile Include="w2kbs.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -254,6 +261,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UpdateInterface.resx">
       <DependentUpon>UpdateInterface.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vistabs.resx">
+      <DependentUpon>vistabs.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="w2kbs.resx">
       <DependentUpon>w2kbs.cs</DependentUpon>

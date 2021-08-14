@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Windows.Documents;
 using System.Windows.Forms;
 using SimulatorDatabase;
 
@@ -38,8 +39,16 @@ namespace UltimateBlueScreenSimulator
             bg = me.GetTheme(true);
             fg = me.GetTheme(false);
             txt = me.GetTexts();
+            foreach (Control c in this.Controls)
+            {
+                if (c is AliasedLabel)
+                {
+                    c.BackColor = this.BackColor;
+                    c.ForeColor = this.ForeColor;
+                }
+            }
             if (Program.f1.enableeggs) { 
-                if (Program.f1.textBox2.Text.ToLower() == "tardis.sys")
+                if (me.GetString("culprit").ToLower() == "tardis.sys")
                 {
                     tardisFade.Enabled = true;
                 }
@@ -50,10 +59,11 @@ namespace UltimateBlueScreenSimulator
                 }
             }
             if (whatfail != "") {
-                label6.Text = "";
-                label7.Text = "";
                 label5.Text = "***  " + whatfail.ToUpper() + " - Address " + me.GenHex(8, "RRRRRRRR") + " base at " + me.GenHex(8, "RRRRRRRR") + ", DateStamp " + me.GenHex(8, "RRRRRRRR").ToLower();
                 errorCode.Text = "The problem seems to be caused by the following file: " + whatfail.ToUpper() + "\n\n" + errorCode.Text;
+                supportInfo.Location = new Point(supportInfo.Location.X, supportInfo.Location.Y + 24);
+                technicalCode.Location = new Point(label5.Location.X, technicalCode.Location.Y + 24);
+                label5.Location = new Point(label5.Location.X, label5.Location.Y + 24);
             }
             label1.Text = txt["A problem has been detected..."];
             supportInfo.Text = txt["Troubleshooting introduction"] + "\n\n" + txt["Troubleshooting"] + "\n\n" + txt["Technical information"];
@@ -75,21 +85,8 @@ namespace UltimateBlueScreenSimulator
                     c.Font = me.GetFont();
                 }
             }
-            if (w6mode == true) 
-            {
-                errorCode.Text = errorCode.Text.Replace("CRITICAL_OBJECT_TERMINATION", "A process or thread crucial to system operation has unexpectedly exited or been terminated.");
-                errorCode.Visible = me.GetBool("show_description");
-                if (whatfail == "") { label5.Text = "Collecting data for crash dump ..."; label6.Text = "Initializing disk for crash dump ..."; } else { label6.Visible = false; }
-                label7.Text = "Beginning dump of physical memory.\nDumping physical memory to disk:   0";
-                if (whatfail != "") { label7.Margin = new Padding(3, 15, 3, 0); }
-                errorCode.Margin = new Padding(3, 15, 3, 0);
-                supportInfo.Margin = new Padding(3, 15, 3, 0);
-                technicalCode.Margin = new Padding(3, 15, 3, 0);
-                supportInfo.Text = supportInfo.Text.Replace("\n\n\n", "\n\n");
-                label5.Margin = new Padding(3, 15, 3, 0);
-            }
             if (!fullscreen) { this.FormBorderStyle = FormBorderStyle.FixedSingle; this.ShowInTaskbar = true; this.ShowIcon = true; }
-            if (!errorCode.Visible && !label5.Visible && !label6.Visible)
+            if (!errorCode.Visible && !label5.Visible)
             {
                 supportInfo.Visible = false;
                 label1.Visible = false;
@@ -153,40 +150,18 @@ namespace UltimateBlueScreenSimulator
                 }
                 this.Hide();
             }
-            if (!errorCode.Visible)
+            errorCode.Visible = me.GetBool("show_description");
+            if (!errorCode.Visible && this.Visible)
             {
-                supportInfo.Location = new Point(supportInfo.Location.X, supportInfo.Location.Y - 39);
-                technicalCode.Location = new Point(technicalCode.Location.X, technicalCode.Location.Y - 39);
-                label5.Location = new Point(label5.Location.X, label5.Location.Y - 39);
-                if (!w6mode)
-                {
-                    label6.Visible = false;
-                    label7.Visible = false;
-                }
+                supportInfo.Location = new Point(supportInfo.Location.X, supportInfo.Location.Y + 39);
+                technicalCode.Location = new Point(technicalCode.Location.X, technicalCode.Location.Y + 39);
+                label5.Location = new Point(label5.Location.X, label5.Location.Y + 39);
             }
+            naturalclose = false;
         }
 
         private void Timer1_Tick(object sender, EventArgs e)
         {
-            if (w6mode)
-            {
-                string spaces = "";
-                for (int i = 0; i < (4 - (progress + 1).ToString().Length); i++)
-                {
-                    spaces += " ";
-                }
-                if (progress == 100)
-                {
-                    naturalclose = true;
-                    this.Close();
-                }
-                label7.Text = "Beginning dump of physical memory.\nDumping physical memory to disk:" + spaces + (progress + 1).ToString();
-                if ((progress + 1) == 100)
-                {
-                    label7.Text += "\nPhysical memory dump complite.\nContact your system admin or technical support group for further assistance.";
-                }
-                progress++;
-            }
             if (fullscreen)
             {
                 foreach (WindowScreen ws in wss)
@@ -198,27 +173,7 @@ namespace UltimateBlueScreenSimulator
                     }
                     try
                     {
-                        if (ws.primary || Program.multidisplaymode == "mirror")
-                        {
-                            var frm = Form.ActiveForm;
-                            using (var bmp = new Bitmap(frm.Width, frm.Height))
-                            {
-                                frm.DrawToBitmap(bmp, new Rectangle(0, 0, bmp.Width, bmp.Height));
-
-                                Bitmap newImage = new Bitmap(ws.Width, ws.Height);
-                                using (Graphics g = Graphics.FromImage(newImage))
-                                {
-                                    if (Program.f1.GMode == "HighQualityBicubic") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic; }
-                                    if (Program.f1.GMode == "HighQualityBilinear") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBilinear; }
-                                    if (Program.f1.GMode == "Bilinear") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.Bilinear; }
-                                    if (Program.f1.GMode == "Bicubic") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.Bicubic; }
-                                    if (Program.f1.GMode == "NearestNeighbour") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor; }
-                                    g.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
-                                    g.DrawImage(bmp, new Rectangle(0, 0, ws.Width, ws.Height));
-                                }
-                                ws.pictureBox1.Image = newImage;
-                            }
-                        }
+                        Program.dr.Draw(ws);
                     }
                     catch
                     {
@@ -232,8 +187,8 @@ namespace UltimateBlueScreenSimulator
             if (w6mode == false)
             {
                 if (fullscreen) { 
-                    naturalclose = true;
-                    this.Close();
+                    //naturalclose = true;
+                    //this.Close();
                 }
             }
         }
@@ -355,27 +310,7 @@ namespace UltimateBlueScreenSimulator
                 }
                 try
                 {
-                    if (ws.primary || Program.multidisplaymode == "mirror")
-                    {
-                        var frm = Form.ActiveForm;
-                        using (var bmp = new Bitmap(frm.Width, frm.Height))
-                        {
-                            frm.DrawToBitmap(bmp, new Rectangle(0, 0, bmp.Width, bmp.Height));
-
-                            Bitmap newImage = new Bitmap(ws.Width, ws.Height);
-                            using (Graphics g = Graphics.FromImage(newImage))
-                            {
-                                if (Program.f1.GMode == "HighQualityBicubic") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic; }
-                                if (Program.f1.GMode == "HighQualityBilinear") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBilinear; }
-                                if (Program.f1.GMode == "Bilinear") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.Bilinear; }
-                                if (Program.f1.GMode == "Bicubic") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.Bicubic; }
-                                if (Program.f1.GMode == "NearestNeighbour") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor; }
-                                g.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
-                                g.DrawImage(bmp, new Rectangle(0, 0, ws.Width, ws.Height));
-                            }
-                            ws.pictureBox1.Image = newImage;
-                        }
-                    }
+                    Program.dr.Draw(ws);
                 }
                 catch
                 {
@@ -470,27 +405,7 @@ namespace UltimateBlueScreenSimulator
             {
                 try
                 {
-                    if (ws.primary || Program.multidisplaymode == "mirror")
-                    {
-                        var frm = Form.ActiveForm;
-                        using (var bmp = new Bitmap(frm.Width, frm.Height))
-                        {
-                            frm.DrawToBitmap(bmp, new Rectangle(0, 0, bmp.Width, bmp.Height));
-
-                            Bitmap newImage = new Bitmap(ws.Width, ws.Height);
-                            using (Graphics g = Graphics.FromImage(newImage))
-                            {
-                                if (Program.f1.GMode == "HighQualityBicubic") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic; }
-                                if (Program.f1.GMode == "HighQualityBilinear") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBilinear; }
-                                if (Program.f1.GMode == "Bilinear") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.Bilinear; }
-                                if (Program.f1.GMode == "Bicubic") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.Bicubic; }
-                                if (Program.f1.GMode == "NearestNeighbour") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor; }
-                                g.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
-                                g.DrawImage(bmp, new Rectangle(0, 0, ws.Width, ws.Height));
-                            }
-                            ws.pictureBox1.Image = newImage;
-                        }
-                    }
+                    Program.dr.Draw(ws);
                 }
                 catch
                 {
@@ -498,6 +413,11 @@ namespace UltimateBlueScreenSimulator
                     this.naturalclose = true;
                 }
             }
+        }
+
+        private void supportInfo_Paint(object sender, PaintEventArgs e)
+        {
+            
         }
     }
 }

@@ -13,6 +13,41 @@ using System.Drawing;
 namespace SimulatorDatabase
 {
 
+    public class DrawRoutines
+    {
+        public void Draw(WindowScreen ws)
+        {
+            if (ws.primary || Program.multidisplaymode == "mirror")
+            {
+                var frm = Form.ActiveForm;
+                using (Bitmap bmp = new Bitmap(frm.Width, frm.Height))
+                {
+                    frm.DrawToBitmap(bmp, new Rectangle(0, 0, bmp.Width, bmp.Height));
+
+                    Bitmap newImage = new Bitmap(ws.Width, ws.Height);
+                    using (Graphics g = Graphics.FromImage(newImage))
+                    {
+                        if (Program.f1.GMode == "HighQualityBicubic") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic; }
+                        if (Program.f1.GMode == "HighQualityBilinear") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBilinear; }
+                        if (Program.f1.GMode == "Bilinear") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.Bilinear; }
+                        if (Program.f1.GMode == "Bicubic") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.Bicubic; }
+                        if (Program.f1.GMode == "NearestNeighbour") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor; }
+                        g.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
+                        g.DrawImage(bmp, new Rectangle(0, 0, ws.Width, ws.Height));
+                    }
+                    // dispose old images from memory to avoid memory leaks and potentially
+                    // actual crashes
+                    if (ws.pictureBox1.Image != null)
+                    {
+                        ws.pictureBox1.Image.Dispose();
+                    }
+                    ws.pictureBox1.Image = newImage;
+                    bmp.Dispose();
+                }
+            }
+        }
+    }
+
     //
     // Blue screen template class
     //
@@ -248,7 +283,7 @@ namespace SimulatorDatabase
                     SetupWin8(new WXBS());
                     break;
                 case "Windows Vista/7":
-                    SetupVista(new Xvsbs());
+                    SetupVista(new Vistabs());
                     break;
                 case "Windows XP":
                     SetupExperience(new Xvsbs());
@@ -343,7 +378,7 @@ namespace SimulatorDatabase
             bs.Show();
         }
 
-        private void SetupVista(Xvsbs bs)
+        private void SetupVista(Vistabs bs)
         {
             bs.BackColor = this.GetTheme(true);
             bs.ForeColor = this.GetTheme(false);
@@ -356,13 +391,10 @@ namespace SimulatorDatabase
                 //bs.errorCode.Visible = false;
                 bs.label1.Visible = false;
                 bs.label5.Visible = false;
-                bs.label6.Visible = false;
-                bs.label7.Visible = false;
             }
             bs.errorCode.Text = this.GetString("code").Split(' ')[0].ToString();
             bs.technicalCode.Text = "*** STOP: " + this.GetString("code").Split(' ')[1].ToString().Replace(")", "").Replace("(", "").ToString() + " (" + GenAddress(4, 16, false) + ")";
             bs.supportInfo.Text = this.GetTexts()["Technical support"] + "\n\n\nTechnical information:";
-            bs.w6mode = true;
             bs.me = this;
             bs.Show();
         }
@@ -660,13 +692,13 @@ namespace SimulatorDatabase
                 case "Windows XP":
                     this.icon = "3D flag";
                     PushText("A problem has been detected...", "A problem has been detected and Windows has been shut down to prevent damage\r\nto your computer.");
-                    PushText("Troubleshooting introduction", "If this is the first time you've seen this Stop error screen,\r\nrestart your computer.If this screen appears again, follow\r\nthese steps:");
+                    PushText("Troubleshooting introduction", "If this is the first time you've seen this Stop error screen,\r\nrestart your computer. If this screen appears again, follow\r\nthese steps:");
                     PushText("Troubleshooting", "Check to make sure any new hardware or software is properly installed.\r\nIf this is a new installation, ask your hardware or software manufacturer\r\nfor any Windows updates you might need.\r\n\r\nIf problems continue, disable or remove any newly installed hardware\r\nor software. Disable BIOS memory options such as caching or shadowing.\r\nIf you need to use Safe mode to remove or disable components, restart\r\nyour computer, press F8 to select Advanced Startup Options, and then\r\nselect Safe Mode.");
                     PushText("Technical information", "Technical information:");
                     PushText("Technical information formatting", "*** STOP: {0} ({1})");
                     PushText("Physical memory dump", "Beginning dump of physical memory\r\nPhysical memory dump complete.");
                     PushText("Technical support", "Contact your system administrator or technical support group for further\r\nassistance.");
-                    SetFont("Lucida Console", 10.4f, FontStyle.Regular);
+                    SetFont("Lucida Console", 9.7f, FontStyle.Regular);
                     SetString("friendlyname", "Windows XP (640x480, Standard)");
                     SetTheme(RGB(0, 0, 128), RGB(255, 255, 255));
                     break;

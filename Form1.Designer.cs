@@ -73,6 +73,7 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.timer3 = new System.Windows.Forms.Timer(this.components);
+            this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.flowLayoutPanel1.SuspendLayout();
             this.WXOptions.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
@@ -136,10 +137,11 @@
             this.flowLayoutPanel1.Controls.Add(this.waterBox);
             this.flowLayoutPanel1.Controls.Add(this.checkBox1);
             this.flowLayoutPanel1.Controls.Add(this.winMode);
+            this.flowLayoutPanel1.Controls.Add(this.checkBox3);
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(15, 70);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(472, 235);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(472, 220);
             this.flowLayoutPanel1.TabIndex = 3;
             // 
             // WXOptions
@@ -424,7 +426,7 @@
             // acpiBox
             // 
             this.acpiBox.AutoSize = true;
-            this.acpiBox.Location = new System.Drawing.Point(3, 213);
+            this.acpiBox.Location = new System.Drawing.Point(473, 3);
             this.acpiBox.Name = "acpiBox";
             this.acpiBox.Size = new System.Drawing.Size(124, 17);
             this.acpiBox.TabIndex = 8;
@@ -439,7 +441,7 @@
             this.waterBox.AutoSize = true;
             this.waterBox.Checked = true;
             this.waterBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.waterBox.Location = new System.Drawing.Point(473, 3);
+            this.waterBox.Location = new System.Drawing.Point(473, 26);
             this.waterBox.Name = "waterBox";
             this.waterBox.Size = new System.Drawing.Size(127, 17);
             this.waterBox.TabIndex = 4;
@@ -453,7 +455,7 @@
             this.checkBox1.AutoSize = true;
             this.checkBox1.Checked = true;
             this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Location = new System.Drawing.Point(473, 26);
+            this.checkBox1.Location = new System.Drawing.Point(473, 49);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(237, 17);
             this.checkBox1.TabIndex = 6;
@@ -466,7 +468,7 @@
             // winMode
             // 
             this.winMode.AutoSize = true;
-            this.winMode.Location = new System.Drawing.Point(473, 49);
+            this.winMode.Location = new System.Drawing.Point(473, 72);
             this.winMode.Name = "winMode";
             this.winMode.Size = new System.Drawing.Size(121, 17);
             this.winMode.TabIndex = 7;
@@ -478,7 +480,7 @@
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(416, 321);
+            this.button1.Location = new System.Drawing.Point(416, 306);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(68, 23);
             this.button1.TabIndex = 4;
@@ -491,7 +493,7 @@
             // button3
             // 
             this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.Location = new System.Drawing.Point(301, 321);
+            this.button3.Location = new System.Drawing.Point(301, 306);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(109, 23);
             this.button3.TabIndex = 9;
@@ -504,7 +506,7 @@
             // button4
             // 
             this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button4.Location = new System.Drawing.Point(240, 321);
+            this.button4.Location = new System.Drawing.Point(240, 306);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(55, 23);
             this.button4.TabIndex = 10;
@@ -519,7 +521,7 @@
             // button5
             // 
             this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button5.Location = new System.Drawing.Point(175, 321);
+            this.button5.Location = new System.Drawing.Point(175, 306);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(59, 23);
             this.button5.TabIndex = 11;
@@ -532,7 +534,7 @@
             // button6
             // 
             this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button6.Location = new System.Drawing.Point(90, 321);
+            this.button6.Location = new System.Drawing.Point(90, 306);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(79, 23);
             this.button6.TabIndex = 12;
@@ -546,7 +548,7 @@
             // button7
             // 
             this.button7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button7.Location = new System.Drawing.Point(15, 321);
+            this.button7.Location = new System.Drawing.Point(15, 306);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(69, 23);
             this.button7.TabIndex = 14;
@@ -562,7 +564,7 @@
             // 
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(115, 308);
+            this.label7.Location = new System.Drawing.Point(115, 293);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(150, 13);
             this.label7.TabIndex = 6;
@@ -572,7 +574,7 @@
             // 
             this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(15, 308);
+            this.label8.Location = new System.Drawing.Point(15, 293);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(96, 13);
             this.label8.TabIndex = 7;
@@ -581,7 +583,7 @@
             // label10
             // 
             this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label10.Location = new System.Drawing.Point(351, 308);
+            this.label10.Location = new System.Drawing.Point(351, 293);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(134, 13);
             this.label10.TabIndex = 8;
@@ -602,11 +604,26 @@
             this.timer3.Interval = 6000;
             this.timer3.Tick += new System.EventHandler(this.Timer3_Tick);
             // 
+            // checkBox3
+            // 
+            this.checkBox3.AutoSize = true;
+            this.checkBox3.Checked = true;
+            this.checkBox3.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox3.Location = new System.Drawing.Point(473, 95);
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.Size = new System.Drawing.Size(69, 17);
+            this.checkBox3.TabIndex = 13;
+            this.checkBox3.Text = "Dump [?]";
+            this.helpTip.SetToolTip(this.checkBox3, "Enable to display dumping process in Windows XP/Vista/7 bluescreens");
+            this.checkBox3.UseVisualStyleBackColor = true;
+            this.checkBox3.Visible = false;
+            this.checkBox3.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(499, 370);
+            this.ClientSize = new System.Drawing.Size(499, 355);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.button5);
@@ -695,6 +712,7 @@
         private System.Windows.Forms.CheckBox memoryBox;
         public System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Button button2;
+        internal System.Windows.Forms.CheckBox checkBox3;
     }
 }
 

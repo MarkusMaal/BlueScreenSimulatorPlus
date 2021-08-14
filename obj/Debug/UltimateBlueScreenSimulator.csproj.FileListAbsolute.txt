@@ -29,3 +29,4 @@ C:\Users\Külaline.PICASSO-W10.000\Source\Repos\BlueScreenSimulatorPlus\obj\Debu
 C:\Users\Külaline.PICASSO-W10.000\Source\Repos\BlueScreenSimulatorPlus\obj\Debug\UltimateBlueScreenSimulator.pdb
 C:\Users\Külaline.PICASSO-W10.000\Source\Repos\BlueScreenSimulatorPlus\obj\Debug\UltimateBlueScreenSimulator.ChooseFile.resources
 C:\Users\Külaline.PICASSO-W10.000\Source\Repos\BlueScreenSimulatorPlus\obj\Debug\UltimateBlueScreenSimulator.AddBluescreen.resources
+C:\Users\Külaline.PICASSO-W10.000\Source\Repos\BlueScreenSimulatorPlus\obj\Debug\UltimateBlueScreenSimulator.Vistabs.resources

@@ -207,7 +207,7 @@
             this.Name = "WXBS";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "WXBS";
+            this.Text = "Modern Windows blue screen simulator";
             this.TopMost = true;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.WXBS_FormClosing);

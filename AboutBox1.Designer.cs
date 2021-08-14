@@ -80,7 +80,6 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -714,7 +713,6 @@
             this.flowLayoutPanel3.Controls.Add(this.button3);
             this.flowLayoutPanel3.Controls.Add(this.button4);
             this.flowLayoutPanel3.Controls.Add(this.button5);
-            this.flowLayoutPanel3.Controls.Add(this.button6);
             this.flowLayoutPanel3.Location = new System.Drawing.Point(3, 3);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
             this.flowLayoutPanel3.Size = new System.Drawing.Size(534, 37);
@@ -752,18 +750,6 @@
             this.button5.Text = "System requirements";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.Button5_Click);
-            // 
-            // button6
-            // 
-            this.button6.AutoSize = true;
-            this.button6.Location = new System.Drawing.Point(390, 6);
-            this.button6.Margin = new System.Windows.Forms.Padding(2, 6, 3, 3);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(111, 23);
-            this.button6.TabIndex = 3;
-            this.button6.Text = "Disabling ClearType";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.Button6_Click);
             // 
             // textBox2
             // 
@@ -805,6 +791,7 @@
             this.textBox1.Size = new System.Drawing.Size(534, 352);
             this.textBox1.TabIndex = 0;
             this.textBox1.WordWrap = false;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // timer1
             // 
@@ -856,7 +843,6 @@
             this.flowLayoutPanel5.ResumeLayout(false);
             this.flowLayoutPanel5.PerformLayout();
             this.flowLayoutPanel3.ResumeLayout(false);
-            this.flowLayoutPanel3.PerformLayout();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
             this.ResumeLayout(false);
@@ -902,7 +888,6 @@
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;

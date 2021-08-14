@@ -91,11 +91,12 @@ namespace UltimateBlueScreenSimulator
         //Form creation
         public static Form1 f1;
         public static Splash spl;
+        public static DrawRoutines dr;
 
         private static bool bad = false;
 
         //Command line syntax
-        public static string cmds = "/? - Displays command line syntax\n/wv:xx - Set the specific Windows version (3.1/9x/CE/Millennium/2000/XP/NT/Vista/7/8/8.1/10)\n/h - Doesn't show main GUI. If no simulation is started or the simulation is finished, the program will close.\n/hwm - Hides watermark\n/c - Simulates a system crash\n/hackfile:xx - Loads a hack file (xx is the file name)\n\n/ntc:xx - Specific NT error code to display. Replace xx with the actual code\n/9xc:xx - Specific 9x/Me message to display (system/application/driver/busy/unresponsive)\n/ddesc - Disables error descriptions\n/dqr - Disables QR code on Windows 10 blue screen\n/srv - Displays Windows Server 2016 blue screen when wv is set to 10\n/dac - Disables autoclose feature (Modern blue screens only)\n/gs - Displays green screen when wv is set to 10\n/ap - Displays ACPI blue screen (Windows Vista/7 only)\n/file:xx - Displays the potential culprit file (replace xx with the actual file name)\n/amd - Displays \"AuthenticAMD\" instead of \"GenuineIntel\" on Windows NT blue screen\n/blink - Shows a blinking cursor (NT blue screen)\n/dstack - Does not display stack trace (NT blue screen)\n/win - Enables windowed mode\n/random - Randomizes the blue screen (does NOT randomize any custom attributes set)\n\n/desc - Forcibly enable error description\n/ac - Forcibly enable autoclose feature\n/dap - Forcibly disable ACPI error screen (Windows Vista/7)\n/damd - Forcibly display \"GenuineIntel\" on Windows NT blue screen\n/dblink - Forcibly disable blinking cursor on Windows NT blue screen\n/dgs - Forcibly disable green screen on Windows 10 blue screen\n/qr - Forcibly enable QR code on Windows 10 blue screen\n/dsrv - Forcibly disable server blue screen when version is set to Windows 10\n/stack - Forcible enable stack trace on Windows NT blue screen\n/dfile - Forcible disables potential culprit file\n\n/code:xxxxxxxxxxxxxxxx,xxxxxxxxxxxxxxxx,xxxxxxxxxxxxxxxx,xxxxxxxxxxxxxxxx - Method for displaying error codes (0 - null, R - random, 1-F - static)\n/clr - Clears the verification certificate from this computer, causing the first use message to pop up.\n/hidesplash - Hides the splash screen";
+        public static string cmds = "/? - Displays command line syntax\n/wv:xx - Set a specific configuration/os (e.g. \"Windows XP\")\n/h - Doesn't show main GUI. If no simulation is started or the simulation is finished, the program will close.\n/hwm - Hides watermark\n/c - Simulates a system crash\n/config:xx - Loads a configuration file (xx is the file name)\n\n/ntc:xx - Specific NT error code to display. Replace xx with the actual code\n/9xc:xx - Specific 9x/Me message to display (system/application/driver/busy/unresponsive)\n/ddesc - Disables error descriptions\n/dqr - Disables QR code on Windows 10 blue screen\n/srv - Displays Windows Server 2016 blue screen when wv is set to 10\n/dac - Disables autoclose feature (Modern blue screens only)\n/gs - Displays green screen when wv is set to 10\n/ap - Displays ACPI blue screen (Windows Vista/7 only)\n/file:xx - Displays the potential culprit file (replace xx with the actual file name)\n/amd - Displays \"AuthenticAMD\" instead of \"GenuineIntel\" on Windows NT blue screen\n/blink - Shows a blinking cursor (NT blue screen)\n/dstack - Does not display stack trace (NT blue screen)\n/win - Enables windowed mode\n/random - Randomizes the blue screen (does NOT randomize any custom attributes set)\n\n/desc - Forcibly enable error description\n/ac - Forcibly enable autoclose feature\n/dap - Forcibly disable ACPI error screen (Windows Vista/7)\n/damd - Forcibly display \"GenuineIntel\" on Windows NT blue screen\n/dblink - Forcibly disable blinking cursor on Windows NT blue screen\n/dgs - Forcibly disable green screen on Windows 10 blue screen\n/qr - Forcibly enable QR code on Windows 10 blue screen\n/dsrv - Forcibly disable server blue screen when version is set to Windows 10\n/stack - Forcible enable stack trace on Windows NT blue screen\n/dfile - Forcible disables potential culprit file\n\n/clr - Clears the verification certificate from this computer, causing the first use message to pop up.\n/hidesplash - Hides the splash screen";
 
         internal static bool verificate = false;
         public static bool hidden = false;
@@ -109,7 +110,7 @@ namespace UltimateBlueScreenSimulator
             //Application initialization
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
+            dr = new DrawRoutines();
             //If hidesplash flag is not set, display the splash screen
             if (!args.Contains("/hidesplash"))
             {
@@ -134,12 +135,9 @@ namespace UltimateBlueScreenSimulator
             //Clear verification certificate if clr flag is set
             if (args.Contains("/clr"))
             {
-                if (!args.Contains("/hidesplash"))
+                if ((!args.Contains("/hidesplash")) || (!args.Contains("/finalize_update")))
                 {
-                    if (!args.Contains("/finalize_update"))
-                    {
-                        spl.Close();
-                    }
+                    spl.Close();
                 }
                 File.Delete(Environment.GetEnvironmentVariable("USERPROFILE") + @"\bssp_firstlaunch.txt");
                 MessageBox.Show("Signature verification file deleted. The program will now close.", "Ultimate blue screen simulator plus", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -176,6 +174,10 @@ namespace UltimateBlueScreenSimulator
                         else if (element.StartsWith("ShowCursor="))
                         {
                             f1.showcursor = Convert.ToBoolean(element.Replace("ShowCursor=", ""));
+                        }
+                        else if (element.StartsWith("MultiMode="))
+                        {
+                            multidisplaymode = element.Replace("MultiMode=", "");
                         }
                         else if (element.StartsWith("Seecrets="))
                         {
@@ -265,7 +267,6 @@ namespace UltimateBlueScreenSimulator
                     {
                         if (f1.windowVersion.Items[i].ToString().ToLower().Contains(ecode.ToLower()))
                         {
-                            //f1.windowVersion.SelectedIndex = i;
                             f1.specificos = f1.windowVersion.Items[i].ToString();
                             done = true;
                         }
@@ -276,7 +277,7 @@ namespace UltimateBlueScreenSimulator
                     }
                 }
                 //this code loads hack file if specified in arguments
-                else if (argument.Contains("/hackfile:"))
+                else if (argument.Contains("/config:"))
                 {
                     string filename = argument.Split(':')[1];
                     if (File.Exists(filename))
@@ -286,15 +287,6 @@ namespace UltimateBlueScreenSimulator
                     {
                         f1.error = 24;
                     }
-                }
-                //this code sets error code mode if specified in arguments
-                else if (argument.Contains("/code:"))
-                {
-                    string[] codes = argument.Split(':')[1].Split(',');
-                    f1.c1 = codes[0].ToUpper();
-                    f1.c2 = codes[1].ToUpper();
-                    f1.c3 = codes[2].ToUpper();
-                    f1.c4 = codes[3].ToUpper();
                 }
             }
             //sets other optional flags
@@ -336,55 +328,6 @@ namespace UltimateBlueScreenSimulator
                         f1.error = 16;
                     }
                     f1.textBox2.Text = ecode;
-                }
-            }
-            //set NT error code if specified in arguments
-            foreach (string argument in args)
-            {
-                if (argument.StartsWith("/ntc:"))
-                {
-                    string ecode = argument.Split(':')[1];
-                    if (ecode == "")
-                    {
-                        f1.error = 17;
-                    }
-                    bool finished = false;
-                    for (int i = 0; i < f1.comboBox1.Items.Count; i++)
-                    {
-                        if (f1.comboBox1.Items[i].ToString().ToLower().Contains(ecode.ToLower()))
-                        {
-                            f1.comboBox1.SelectedIndex = i;
-                            finished = true;
-                        }
-                    }
-                    if (!finished)
-                    {
-                        f1.error = 13;
-                    }
-                }
-            }
-            //set 9x error type if specified in arguments
-            foreach (string argument in args)
-            {
-                if (argument.StartsWith("/9xc:"))
-                {
-                    string ecode = argument.Split(':')[1];
-                    if (ecode == "")
-                    {
-                        f1.error = 18;
-                    }
-                    bool finished = false;
-                    for (int i = 0; i < f1.comboBox2.Items.Count; i++)
-                    {
-                        if (f1.comboBox2.Items[i].ToString().ToLower().Contains(ecode.ToLower()))
-                        {
-                            f1.comboBox2.SelectedIndex = i;
-                        }
-                    }
-                    if (!finished)
-                    {
-                        f1.error = 14;
-                    }
                 }
             }
             //hide main interface if /h flag is set

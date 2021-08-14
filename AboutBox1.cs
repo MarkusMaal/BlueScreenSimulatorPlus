@@ -650,5 +650,10 @@ namespace UltimateBlueScreenSimulator
                 listBox1.Items.Add(bs.GetString("friendlyname"));
             }
         }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
