@@ -1,7 +1,8 @@
-# BlueScreenSimulatorPlus
+# BlueScreenSimulatorPlus (experimental branch)
 Open source code for BSSP. This is an enhanced blue screen simulator application for Windows. Use Visual Studio to recompile.
+This is an unfinished code for the next version of blue screen simulator plus.
 
-Codename: BlueSmith, Version 1.01, {} markus' software // {} markuse tarkvara
+Codename: BlueSmith, Version 2.0b, {} markus' software // {} markuse tarkvara
 
 The following section contains quick documentation for each file in the project.
   
