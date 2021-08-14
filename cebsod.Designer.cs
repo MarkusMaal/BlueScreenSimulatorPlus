@@ -30,12 +30,12 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(cebsod));
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.technicalCode = new System.Windows.Forms.Label();
-            this.timeOut = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.AliasedLabel();
+            this.label2 = new System.Windows.Forms.AliasedLabel();
+            this.technicalCode = new System.Windows.Forms.AliasedLabel();
+            this.timeOut = new System.Windows.Forms.AliasedLabel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.waterMarkText = new System.Windows.Forms.Label();
+            this.waterMarkText = new System.Windows.Forms.AliasedLabel();
             this.rainBowScreen = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
@@ -131,12 +131,15 @@
         }
 
         #endregion
-        public System.Windows.Forms.Label technicalCode;
+        public System.Windows.Forms.AliasedLabel technicalCode;
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label timeOut;
-        public System.Windows.Forms.Label waterMarkText;
+        private System.Windows.Forms.AliasedLabel label1;
+        private System.Windows.Forms.AliasedLabel label2;
+        private System.Windows.Forms.AliasedLabel timeOut;
+        public System.Windows.Forms.AliasedLabel waterMarkText;
         private System.Windows.Forms.Timer rainBowScreen;
+
+
     }
+
 }

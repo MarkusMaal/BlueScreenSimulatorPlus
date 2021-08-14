@@ -62,15 +62,13 @@ namespace UltimateBlueScreenSimulator
             if (!w6mode) { 
                 try
                 { 
-                    label5.Text = txt["Physical memory dump"].Split('\n')[0].Trim();
-                    label6.Text = txt["Physical memory dump"].Split('\n')[1].Trim();
-                    label7.Text = txt["Technical support"].Split('\n')[0].Trim() + "\n" + txt["Technical support"].Split('\n')[1].Trim();
+                    label5.Text = txt["Physical memory dump"].Split('\n')[0].Trim() + "\n" + txt["Physical memory dump"].Split('\n')[1].Trim() + "\n" + txt["Technical support"].Split('\n')[0].Trim() + "\n" + txt["Technical support"].Split('\n')[1].Trim();
                 }
                 catch
                 {
                 }
             }
-            foreach (Control c in this.flowLayoutPanel1.Controls)
+            foreach (Control c in this.Controls)
             {
                 if (c is Label)
                 {
@@ -154,6 +152,17 @@ namespace UltimateBlueScreenSimulator
                     }
                 }
                 this.Hide();
+            }
+            if (!errorCode.Visible)
+            {
+                supportInfo.Location = new Point(supportInfo.Location.X, supportInfo.Location.Y - 39);
+                technicalCode.Location = new Point(technicalCode.Location.X, technicalCode.Location.Y - 39);
+                label5.Location = new Point(label5.Location.X, label5.Location.Y - 39);
+                if (!w6mode)
+                {
+                    label6.Visible = false;
+                    label7.Visible = false;
+                }
             }
         }
 

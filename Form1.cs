@@ -106,7 +106,6 @@ namespace UltimateBlueScreenSimulator
             stackBox.Visible = false;
             checkBox2.Enabled = true;
             ntPanel.Visible = false;
-            xpNote.Visible = false;
             memoryBox.Visible = false;
             // set current bluescreen
             me = Program.bluescreens[Program.bluescreens.Count - 1 - windowVersion.SelectedIndex];
@@ -155,7 +154,6 @@ namespace UltimateBlueScreenSimulator
             {
                 errorCode.Visible = true;
                 winMode.Visible = true;
-                xpNote.Visible = true;
                 checkBox1.Visible = true;
                 autoBox.Visible = true;
             }
@@ -177,7 +175,6 @@ namespace UltimateBlueScreenSimulator
                 checkBox2.Checked = false;
                 checkBox2.Enabled = false;
                 textBox2.Enabled = false;
-                xpNote.Visible = true;
             }
             else if (me.GetString("os") == "Windows NT 3.x/4.0")
             {
@@ -229,7 +226,6 @@ namespace UltimateBlueScreenSimulator
             stackBox.Visible = false;
             checkBox2.Enabled = true;
             ntPanel.Visible = false;
-            xpNote.Visible = false;
             if (windowVersion.Items.Count > 0) { windowVersion.SelectedIndex = 0; }
             string winver = "";
             try

@@ -42,6 +42,8 @@
             this.qrBox = new System.Windows.Forms.CheckBox();
             this.memoryBox = new System.Windows.Forms.CheckBox();
             this.errorCode = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -58,7 +60,6 @@
             this.waterBox = new System.Windows.Forms.CheckBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.winMode = new System.Windows.Forms.CheckBox();
-            this.xpNote = new System.Windows.Forms.Label();
             this.helpTip = new System.Windows.Forms.ToolTip(this.components);
             this.button1 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -72,8 +73,6 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.timer3 = new System.Windows.Forms.Timer(this.components);
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
             this.flowLayoutPanel1.SuspendLayout();
             this.WXOptions.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
@@ -137,11 +136,10 @@
             this.flowLayoutPanel1.Controls.Add(this.waterBox);
             this.flowLayoutPanel1.Controls.Add(this.checkBox1);
             this.flowLayoutPanel1.Controls.Add(this.winMode);
-            this.flowLayoutPanel1.Controls.Add(this.xpNote);
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(15, 70);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(472, 242);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(472, 235);
             this.flowLayoutPanel1.TabIndex = 3;
             // 
             // WXOptions
@@ -251,6 +249,29 @@
             this.errorCode.Name = "errorCode";
             this.errorCode.Size = new System.Drawing.Size(467, 84);
             this.errorCode.TabIndex = 1;
+            // 
+            // button2
+            // 
+            this.button2.Enabled = false;
+            this.button2.Location = new System.Drawing.Point(401, 59);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(63, 20);
+            this.button2.TabIndex = 7;
+            this.button2.Text = "Choose";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click_1);
+            // 
+            // textBox2
+            // 
+            this.textBox2.Enabled = false;
+            this.textBox2.Location = new System.Drawing.Point(151, 59);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(244, 20);
+            this.textBox2.TabIndex = 6;
+            this.textBox2.Text = "vga.sys";
+            this.helpTip.SetToolTip(this.textBox2, "Specific file, that  may have caused the crash");
+            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            this.textBox2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Button7_KeyDown);
             // 
             // checkBox2
             // 
@@ -454,20 +475,10 @@
             this.winMode.UseVisualStyleBackColor = true;
             this.winMode.CheckedChanged += new System.EventHandler(this.winMode_CheckedChanged);
             // 
-            // xpNote
-            // 
-            this.xpNote.AutoSize = true;
-            this.xpNote.Location = new System.Drawing.Point(473, 69);
-            this.xpNote.Name = "xpNote";
-            this.xpNote.Size = new System.Drawing.Size(325, 13);
-            this.xpNote.TabIndex = 13;
-            this.xpNote.Text = "For more authentic experience, please disable ClearType smoothing";
-            this.xpNote.Visible = false;
-            // 
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(416, 328);
+            this.button1.Location = new System.Drawing.Point(416, 321);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(68, 23);
             this.button1.TabIndex = 4;
@@ -480,7 +491,7 @@
             // button3
             // 
             this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.Location = new System.Drawing.Point(301, 328);
+            this.button3.Location = new System.Drawing.Point(301, 321);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(109, 23);
             this.button3.TabIndex = 9;
@@ -493,7 +504,7 @@
             // button4
             // 
             this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button4.Location = new System.Drawing.Point(240, 328);
+            this.button4.Location = new System.Drawing.Point(240, 321);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(55, 23);
             this.button4.TabIndex = 10;
@@ -508,7 +519,7 @@
             // button5
             // 
             this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button5.Location = new System.Drawing.Point(175, 328);
+            this.button5.Location = new System.Drawing.Point(175, 321);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(59, 23);
             this.button5.TabIndex = 11;
@@ -521,7 +532,7 @@
             // button6
             // 
             this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button6.Location = new System.Drawing.Point(90, 328);
+            this.button6.Location = new System.Drawing.Point(90, 321);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(79, 23);
             this.button6.TabIndex = 12;
@@ -535,7 +546,7 @@
             // button7
             // 
             this.button7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button7.Location = new System.Drawing.Point(15, 328);
+            this.button7.Location = new System.Drawing.Point(15, 321);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(69, 23);
             this.button7.TabIndex = 14;
@@ -551,7 +562,7 @@
             // 
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(115, 315);
+            this.label7.Location = new System.Drawing.Point(115, 308);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(150, 13);
             this.label7.TabIndex = 6;
@@ -561,7 +572,7 @@
             // 
             this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(15, 315);
+            this.label8.Location = new System.Drawing.Point(15, 308);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(96, 13);
             this.label8.TabIndex = 7;
@@ -570,7 +581,7 @@
             // label10
             // 
             this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label10.Location = new System.Drawing.Point(351, 315);
+            this.label10.Location = new System.Drawing.Point(351, 308);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(134, 13);
             this.label10.TabIndex = 8;
@@ -591,34 +602,11 @@
             this.timer3.Interval = 6000;
             this.timer3.Tick += new System.EventHandler(this.Timer3_Tick);
             // 
-            // textBox2
-            // 
-            this.textBox2.Enabled = false;
-            this.textBox2.Location = new System.Drawing.Point(151, 59);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(244, 20);
-            this.textBox2.TabIndex = 6;
-            this.textBox2.Text = "vga.sys";
-            this.helpTip.SetToolTip(this.textBox2, "Specific file, that  may have caused the crash");
-            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
-            this.textBox2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Button7_KeyDown);
-            // 
-            // button2
-            // 
-            this.button2.Enabled = false;
-            this.button2.Location = new System.Drawing.Point(401, 59);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(63, 20);
-            this.button2.TabIndex = 7;
-            this.button2.Text = "Choose";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click_1);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(499, 377);
+            this.ClientSize = new System.Drawing.Size(499, 370);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.button5);
@@ -685,7 +673,6 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;
         public System.Windows.Forms.ComboBox windowVersion;
-        private System.Windows.Forms.Label xpNote;
         public System.Windows.Forms.Timer timer2;
         public System.Windows.Forms.CheckBox waterBox;
         internal System.Windows.Forms.Timer timer1;

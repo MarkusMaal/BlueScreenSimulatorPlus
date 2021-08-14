@@ -158,6 +158,9 @@
     <Compile Include="SupportEditor.Designer.cs">
       <DependentUpon>SupportEditor.cs</DependentUpon>
     </Compile>
+    <Compile Include="System\Windows\Forms\AliasedLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="UpdateInterface.cs">
       <SubType>Form</SubType>
     </Compile>
