@@ -82,12 +82,13 @@ mrxsmb.sys:Windows NT SMB Minirdr
 mrxsmb20.sys:Longhorn SMB 2.0 Redirector
 Msfs.SYS:Mailslot driver
 msgpioclx.sys:GPIO Class Extension Driver
-msisadrv.sys:ISA Driver  
-mslldp.sys:Microsoft Link-Layer Discovery Protocol Driver  
-msquic.sys:Windows QUIC Driver  
-msrpc.sys:Kernel Remote Procedure Call Provider  
-mssmbios.sys:System Management BIOS Driver 
-mup.sys:Multiple UNC Provider Driver  
+msisadrv.sys:ISA Driver
+mslldp.sys:Microsoft Link-Layer Discovery Protocol Driver
+msquic.sys:Windows QUIC Driver
+msrpc.sys:Kernel Remote Procedure Call Provider
+mssmbios.sys:System Management BIOS Driver
+mup.sys:Multiple UNC Provider Driver
+myfault.sys:Not my fault
 ndis.sys:Network Driver Interface Specification (NDIS)
 ndiscap.sys:Microsoft NDIS Packet Capture Filter Driver  
 ndistapi.sys:NDIS 3.0 connection wrapper driver  
@@ -140,7 +141,8 @@ storahci.sys:MS AHCI Storport Miniport Driver
 storport.sys:Microsoft Storage Port Driver 
 storqosflt.sys:Storage QoS Filter
 storvsp.sys:Storage vsp Driver
-swenum.sys:Plug and Play Software Device Enumerator  
+swenum.sys:Plug and Play Software Device Enumerator
+tardis.sys:Tardis
 tbs.sys:Export driver for kernel mode TPM API  
 tcpip.sys:TCP/IP driver 
 tcpipreg.sys:TCP/IP Registry Compatibility Driver

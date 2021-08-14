@@ -23,6 +23,8 @@ namespace UltimateBlueScreenSimulator
         private bool w8close = false;
         private int progress = 0;
         internal BlueScreen me = Program.bluescreens[0];
+        List<WindowScreen> wss = new List<WindowScreen>();
+        List<Bitmap> freezescreens = new List<Bitmap>();
         public WXBS()
         {
             InitializeComponent();
@@ -45,6 +47,14 @@ namespace UltimateBlueScreenSimulator
             else
             {
                 e.Cancel = false;
+            }
+            if (wss.Count > 0)
+            {
+                foreach (WindowScreen ws in wss)
+                {
+                    ws.Close();
+                    ws.Dispose();
+                }
             }
             if (!Program.f1.showcursor)
             {
@@ -175,6 +185,49 @@ namespace UltimateBlueScreenSimulator
             {
                 timer1.Enabled = true;
             }
+
+            if (Screen.AllScreens.Length > 1)
+            {
+                foreach (Screen s in Screen.AllScreens)
+                {
+                    if (!s.Primary)
+                    {
+                        if (Program.multidisplaymode != "none")
+                        {
+                            WindowScreen ws = new WindowScreen();
+                            ws.StartPosition = FormStartPosition.Manual;
+                            ws.Location = s.WorkingArea.Location;
+                            ws.Size = new Size(s.WorkingArea.Width, s.WorkingArea.Height);
+                            ws.primary = false;
+                            if (Program.multidisplaymode == "freeze")
+                            {
+                                timer2.Enabled = false;
+                                Bitmap screenshot = new Bitmap(s.Bounds.Width,
+                                    s.Bounds.Height,
+                                    System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+                                Graphics gfxScreenshot = Graphics.FromImage(screenshot);
+                                gfxScreenshot.CopyFromScreen(
+                                    s.Bounds.X,
+                                    s.Bounds.Y,
+                                    0,
+                                    0,
+                                    s.Bounds.Size,
+                                    CopyPixelOperation.SourceCopy
+                                    );
+                                freezescreens.Add(screenshot);
+                                    
+                            }
+                            wss.Add(ws);
+                        }
+                    }
+                }
+                for (int i = 0; i < wss.Count; i++)
+                {
+                    WindowScreen ws = wss[i];
+                    ws.Show();
+                    ws.pictureBox1.Image = freezescreens[i];
+                }
+            }
         }
 
         private void Timer1_Tick(object sender, EventArgs e)
@@ -256,6 +309,49 @@ namespace UltimateBlueScreenSimulator
                 {
                     Point locationOnForm = label2.FindForm().PointToClient(label2.Parent.PointToScreen(label2.Location));
                     panel1.Location = new Point(panel2.Width, locationOnForm.Y + 120);
+                }
+            }
+        }
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            if (!me.GetBool("windowed"))
+            {
+                foreach (WindowScreen ws in wss)
+                {
+                    if (ws.Visible == false)
+                    {
+                        this.Close();
+                    }
+                    try
+                    {
+                        if (!ws.primary && Program.multidisplaymode == "blank")
+                        {
+                            continue;
+                        }
+                        var frm = Form.ActiveForm;
+                        using (var bmp = new Bitmap(frm.Width, frm.Height))
+                        {
+                            frm.DrawToBitmap(bmp, new Rectangle(0, 0, bmp.Width, bmp.Height));
+
+                            Bitmap newImage = new Bitmap(ws.Width, ws.Height);
+                            using (Graphics g = Graphics.FromImage(newImage))
+                            {
+                                if (Program.f1.GMode == "HighQualityBicubic") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic; }
+                                if (Program.f1.GMode == "HighQualityBilinear") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBilinear; }
+                                if (Program.f1.GMode == "Bilinear") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.Bilinear; }
+                                if (Program.f1.GMode == "Bicubic") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.Bicubic; }
+                                if (Program.f1.GMode == "NearestNeighbour") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor; }
+                                g.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
+                                g.DrawImage(bmp, new Rectangle(0, 0, ws.Width, ws.Height));
+                            }
+                            ws.pictureBox1.Image = newImage;
+                        }
+                    }
+                    catch
+                    {
+                        this.Close();
+                    }
                 }
             }
         }
