@@ -93,18 +93,18 @@ namespace UltimateBlueScreenSimulator
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBox1.Enabled)
+            if (checkBox1.Checked)
             {
-                if (MessageBox.Show("Warning: This feature is mainly used for development purposes. Setting an incorrect value here, may lead your configuration to become unusable. Are you sure you want to continue anyway?", "Custom OS warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.OK)
+                if (MessageBox.Show("Warning: This feature is mainly used for development purposes. Setting an incorrect value here, may lead your configuration to become unusable. Are you sure you want to continue anyway?", "Custom OS warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                 {
-                    osBox.Enabled = checkBox1.Enabled;
+                    osBox.Enabled = checkBox1.Checked;
                 } else
                 {
-                    checkBox1.Enabled = false;
+                    checkBox1.Checked = false;
                 }
             } else
             {
-                osBox.Enabled = checkBox1.Enabled;
+                osBox.Enabled = checkBox1.Checked;
             }
         }
 

@@ -15,7 +15,8 @@ namespace UltimateBlueScreenSimulator
         public bool fullscreen = true;
         private bool naturalclose = false;
         public string whatfail = "";
-        WindowScreen ws = new WindowScreen();
+        List<WindowScreen> wss = new List<WindowScreen>();
+        List<Bitmap> freezescreens = new List<Bitmap>();
         internal BlueScreen me = Program.bluescreens[0];
         
         public w2kbs()
@@ -35,7 +36,15 @@ namespace UltimateBlueScreenSimulator
             }
             if (!naturalclose)
             {
-                ws.Close();
+                foreach (WindowScreen ws in wss)
+                {
+                    ws.Close();
+                    ws.Dispose();
+                }
+                foreach (Bitmap bmp in freezescreens)
+                {
+                    bmp.Dispose();
+                }
             }
         }
 
@@ -65,26 +74,95 @@ namespace UltimateBlueScreenSimulator
 
             if (fullscreen)
             {
-                var frm = Form.ActiveForm;
-                using (var bmp = new Bitmap(frm.Width, frm.Height))
+                if (Screen.AllScreens.Length > 1)
                 {
-                    frm.DrawToBitmap(bmp, new Rectangle(0, 0, bmp.Width, bmp.Height));
-
-                    Bitmap newImage = new Bitmap(ws.Width, ws.Height);
-                    using (Graphics g = Graphics.FromImage(newImage))
+                    foreach (Screen s in Screen.AllScreens)
                     {
-                        if (Program.f1.GMode == "HighQualityBicubic") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic; }
-                        if (Program.f1.GMode == "HighQualityBilinear") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBilinear; }
-                        if (Program.f1.GMode == "Bilinear") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.Bilinear; }
-                        if (Program.f1.GMode == "Bicubic") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.Bicubic; }
-                        if (Program.f1.GMode == "NearestNeighbour") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor; }
-                        g.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
-                        g.DrawImage(bmp, new Rectangle(0, 0, ws.Width, ws.Height));
+                        WindowScreen ws = new WindowScreen();
+                        if (!s.Primary)
+                        {
+                            if (Program.multidisplaymode != "none")
+                            {
+                                ws.StartPosition = FormStartPosition.Manual;
+                                ws.Location = s.WorkingArea.Location;
+                                ws.Size = new Size(s.WorkingArea.Width, s.WorkingArea.Height);
+                                ws.primary = false;
+
+                                if (Program.multidisplaymode == "freeze")
+                                {
+                                    Bitmap screenshot = new Bitmap(s.Bounds.Width,
+                                        s.Bounds.Height,
+                                        System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+                                    Graphics gfxScreenshot = Graphics.FromImage(screenshot);
+                                    gfxScreenshot.CopyFromScreen(
+                                        s.Bounds.X,
+                                        s.Bounds.Y,
+                                        0,
+                                        0,
+                                        s.Bounds.Size,
+                                        CopyPixelOperation.SourceCopy
+                                        );
+                                    freezescreens.Add(screenshot);
+
+                                }
+                            }
+                        }
+                        wss.Add(ws);
                     }
-                    ws.pictureBox1.Image = newImage;
+                }
+                else
+                {
+                    wss.Add(new WindowScreen());
+                }
+                for (int i = 0; i < wss.Count; i++)
+                {
+                    WindowScreen ws = wss[i];
+                    ws.Show();
+                    if (!ws.primary)
+                    {
+                        if (Program.multidisplaymode == "freeze")
+                        {
+                            ws.pictureBox1.Image = freezescreens[i - 1];
+                        }
+                    }
+                }
+                foreach (WindowScreen ws in wss) 
+                {
+                    if (ws.primary || Program.multidisplaymode == "mirror")
+                    {
+                        var frm = Form.ActiveForm;
+                        using (var bmp = new Bitmap(frm.Width, frm.Height))
+                        {
+                            frm.DrawToBitmap(bmp, new Rectangle(0, 0, bmp.Width, bmp.Height));
+
+                            Bitmap newImage = new Bitmap(ws.Width, ws.Height);
+                            using (Graphics g = Graphics.FromImage(newImage))
+                            {
+                                if (Program.f1.GMode == "HighQualityBicubic") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic; }
+                                if (Program.f1.GMode == "HighQualityBilinear") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBilinear; }
+                                if (Program.f1.GMode == "Bilinear") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.Bilinear; }
+                                if (Program.f1.GMode == "Bicubic") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.Bicubic; }
+                                if (Program.f1.GMode == "NearestNeighbour") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor; }
+                                g.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
+                                g.DrawImage(bmp, new Rectangle(0, 0, ws.Width, ws.Height));
+                            }
+                            ws.pictureBox1.Image = newImage;
+                        }
+                    }
                 }
                 this.TopMost = false;
-                ws.Show();
+                for (int i = 0; i < wss.Count; i++)
+                {
+                    WindowScreen ws = wss[i];
+                    ws.Show();
+                    if (!ws.primary)
+                    {
+                        if (Program.multidisplaymode == "freeze")
+                        {
+                            ws.pictureBox1.Image = freezescreens[i - 1];
+                        }
+                    }
+                }
                 this.Hide();
             }
         }
@@ -93,36 +171,42 @@ namespace UltimateBlueScreenSimulator
         {
             if (fullscreen)
             {
-                if (ws.Visible == false)
+                foreach (WindowScreen ws in wss)
                 {
-                    naturalclose = true;
-                    this.Close();
-                }
-                try
-                {
-                    var frm = Form.ActiveForm;
-                    using (var bmp = new Bitmap(frm.Width, frm.Height))
+                    if (ws.Visible == false)
                     {
-                        frm.DrawToBitmap(bmp, new Rectangle(0, 0, bmp.Width, bmp.Height));
-
-                        Bitmap newImage = new Bitmap(ws.Width, ws.Height);
-                        using (Graphics g = Graphics.FromImage(newImage))
-                        {
-                            if (Program.f1.GMode == "HighQualityBicubic") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic; }
-                            if (Program.f1.GMode == "HighQualityBilinear") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBilinear; }
-                            if (Program.f1.GMode == "Bilinear") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.Bilinear; }
-                            if (Program.f1.GMode == "Bicubic") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.Bicubic; }
-                            if (Program.f1.GMode == "NearestNeighbour") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor; }
-                            g.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
-                            g.DrawImage(bmp, new Rectangle(0, 0, ws.Width, ws.Height));
-                        }
-                        ws.pictureBox1.Image = newImage;
+                        naturalclose = true;
+                        this.Close();
                     }
-                }
-                catch
-                {
-                    naturalclose = true;
-                    this.Close();
+                    try
+                    {
+                        if (ws.primary || Program.multidisplaymode == "mirror")
+                        {
+                            var frm = Form.ActiveForm;
+                            using (var bmp = new Bitmap(frm.Width, frm.Height))
+                            {
+                                frm.DrawToBitmap(bmp, new Rectangle(0, 0, bmp.Width, bmp.Height));
+
+                                Bitmap newImage = new Bitmap(ws.Width, ws.Height);
+                                using (Graphics g = Graphics.FromImage(newImage))
+                                {
+                                    if (Program.f1.GMode == "HighQualityBicubic") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic; }
+                                    if (Program.f1.GMode == "HighQualityBilinear") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBilinear; }
+                                    if (Program.f1.GMode == "Bilinear") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.Bilinear; }
+                                    if (Program.f1.GMode == "Bicubic") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.Bicubic; }
+                                    if (Program.f1.GMode == "NearestNeighbour") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor; }
+                                    g.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
+                                    g.DrawImage(bmp, new Rectangle(0, 0, ws.Width, ws.Height));
+                                }
+                                ws.pictureBox1.Image = newImage;
+                            }
+                        }
+                    }
+                    catch
+                    {
+                        naturalclose = true;
+                        this.Close();
+                    }
                 }
             }
         }

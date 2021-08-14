@@ -318,7 +318,6 @@ namespace SimulatorDatabase
             bs.fullscreen = !this.GetBool("windowed");
             bs.waterMarkText.Visible = this.GetBool("watermark");
             if (this.GetBool("show_file")) { bs.whatfail = this.GetString("culprit"); }
-            MessageBox.Show(this.GetString("ecode1"));
             bs.errorCode.Text = "*** STOP: " + this.GetString("code").Split(' ')[1].ToString().Replace(")", "").Replace("(", "").ToString() + " (" +
                                 GenHex(8, this.GetString("ecode1")) + ", " +
                                 GenHex(8, this.GetString("ecode2")) + ", " +
@@ -651,8 +650,8 @@ namespace SimulatorDatabase
                     break;
                 case "Windows 2000":
                     PushText("Error code formatting", "*** STOP: {0} ({1})");
-                    PushText("Troubleshooting introduction", "If this is the first time you've seen this Stop error screen,\r\nrestart your computer.If this screen appears again, follow\r\nthese steps: ");
-                    PushText("Troubleshooting text", "Check for viruses on your computer. Remove any newly installed\r\nhard drives or hard drive controllers.Check your hard drive\r\nto make sure it is properly configured and terminated.\r\nRun CHKDSK / F to check for hard drive corruption, and then\r\n restart your computer.");
+                    PushText("Troubleshooting introduction", "If this is the first time you've seen this Stop error screen,\r\nrestart your computer. If this screen appears again, follow\r\nthese steps: ");
+                    PushText("Troubleshooting text", "Check for viruses on your computer. Remove any newly installed\r\nhard drives or hard drive controllers. Check your hard drive\r\nto make sure it is properly configured and terminated.\r\nRun CHKDSK / F to check for hard drive corruption, and then\r\nrestart your computer.");
                     PushText("Additional troubleshooting information", "Refer to your Getting Started manual for more information on\r\ntroubleshooting Stop errors.");
                     SetFont("Lucida Console", 8.0f, FontStyle.Bold);
                     SetString("friendlyname", "Windows 2000 Professional/Server Family (640x480, Standard)");

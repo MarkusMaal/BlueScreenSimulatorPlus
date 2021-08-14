@@ -225,7 +225,10 @@ namespace UltimateBlueScreenSimulator
                 {
                     WindowScreen ws = wss[i];
                     ws.Show();
-                    ws.pictureBox1.Image = freezescreens[i];
+                    if (Program.multidisplaymode == "freeze")
+                    {
+                        ws.pictureBox1.Image = freezescreens[i];
+                    }
                 }
             }
         }
