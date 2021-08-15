@@ -20,6 +20,10 @@ namespace SimulatorDatabase
             if (ws.primary || Program.multidisplaymode == "mirror")
             {
                 var frm = Form.ActiveForm;
+                if (frm is null)
+                {
+                    return;
+                }
                 using (Bitmap bmp = new Bitmap(frm.Width, frm.Height))
                 {
                     frm.DrawToBitmap(bmp, new Rectangle(0, 0, bmp.Width, bmp.Height));

@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Documents;
 using System.Windows.Forms;
 using SimulatorDatabase;
 
@@ -14,10 +9,8 @@ namespace UltimateBlueScreenSimulator
     public partial class Xvsbs : Form
     {
         public bool fullscreen = true;
-        public bool w6mode = false;
         public string whatfail = "";
         private bool naturalclose = false;
-        private int progress = 0;
         bool inr = false;
         bool ing = false;
         bool inb = false;
@@ -69,15 +62,15 @@ namespace UltimateBlueScreenSimulator
             supportInfo.Text = txt["Troubleshooting introduction"] + "\n\n" + txt["Troubleshooting"] + "\n\n" + txt["Technical information"];
             string[] esplit = technicalCode.Text.Replace("*** STOP: ", "").Replace(")", "").Replace(" (", "*").Split('*');
             technicalCode.Text = txt["Technical information formatting"].Replace("{0}", esplit[0]).Replace("{1}", esplit[1]);
-            if (!w6mode) { 
-                try
-                { 
-                    label5.Text = txt["Physical memory dump"].Split('\n')[0].Trim() + "\n" + txt["Physical memory dump"].Split('\n')[1].Trim() + "\n" + txt["Technical support"].Split('\n')[0].Trim() + "\n" + txt["Technical support"].Split('\n')[1].Trim();
-                }
-                catch
-                {
-                }
+
+            try
+            { 
+                label5.Text = txt["Physical memory dump"].Split('\n')[0].Trim() + "\n" + txt["Physical memory dump"].Split('\n')[1].Trim() + "\n" + txt["Technical support"].Split('\n')[0].Trim() + "\n" + txt["Technical support"].Split('\n')[1].Trim();
             }
+            catch
+            {
+                }
+
             foreach (Control c in this.Controls)
             {
                 if (c is Label)
@@ -91,10 +84,10 @@ namespace UltimateBlueScreenSimulator
                 supportInfo.Visible = false;
                 label1.Visible = false;
             }
-            if (!w6mode) { errorCode.Text = errorCode.Text.Replace("IRQL", "DRIVER_IRQL"); }
-            if (!w6mode) { errorCode.Text = errorCode.Text.Replace("MANUALLY_INITIATED_CRASH", "The end-user manually generated the crash dump."); }
-            if (!w6mode) { errorCode.Text = errorCode.Text.Replace("VIDEO_TDR_", "VIDEO_TDR_ERROR"); }
-            if (!w6mode) { technicalCode.Text = technicalCode.Text.Replace("STOP: ERROR", "STOP: 0x00000116"); }
+            errorCode.Text = errorCode.Text.Replace("IRQL", "DRIVER_IRQL");
+            errorCode.Text = errorCode.Text.Replace("MANUALLY_INITIATED_CRASH", "The end-user manually generated the crash dump.");
+            errorCode.Text = errorCode.Text.Replace("VIDEO_TDR_", "VIDEO_TDR_ERROR");
+            technicalCode.Text = technicalCode.Text.Replace("STOP: ERROR", "STOP: 0x00000116");
             if (fullscreen) { 
                 this.TopMost = false;
                 if (Screen.AllScreens.Length > 1) { 
@@ -184,13 +177,6 @@ namespace UltimateBlueScreenSimulator
             }
             if (tardisFade.Enabled == true) { return; }
             if (rainBowScreen.Enabled == true) { return; }
-            if (w6mode == false)
-            {
-                if (fullscreen) { 
-                    //naturalclose = true;
-                    //this.Close();
-                }
-            }
         }
 
         private void Xvsbs_FormClosing(object sender, FormClosingEventArgs e)
