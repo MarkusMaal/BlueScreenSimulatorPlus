@@ -34,7 +34,7 @@ namespace UltimateBlueScreenSimulator
             Program.bluescreens.Add(new BlueScreen("Windows 11"));
         }
 
-        private void button12_Click(object sender, EventArgs e)
+        private void Button12_Click(object sender, EventArgs e)
         {
             ReRe();
         }
@@ -46,21 +46,18 @@ namespace UltimateBlueScreenSimulator
             UpdateMessageView();
         }
 
-        private void winVers_ItemActivate(object sender, EventArgs e)
-        {
-
-        }
-        
         private ListViewItem GetColorListViewItem(string title, Color color)
         {
-            ListViewItem li = new ListViewItem();
-            li.ImageIndex = 6;
-            li.Text = title;
+            ListViewItem li = new ListViewItem
+            {
+                ImageIndex = 6,
+                Text = title
+            };
             li.SubItems.Add("RGB(" + color.R + ", " + color.G + ", " + color.B + ")");
             return li;
         }
 
-        private void winVers_SelectedIndexChanged(object sender, EventArgs e)
+        private void WinVers_SelectedIndexChanged(object sender, EventArgs e)
         {
             HideAllProps();
             MessageView.Clear();
@@ -77,62 +74,78 @@ namespace UltimateBlueScreenSimulator
             IDictionary<string, string> texts = me.GetTexts();
             if ((me.GetString("os") == "Windows 8/8.1") || me.GetBool("winxplus"))
             {
-                ListViewItem li = new ListViewItem();
-                li.Text = "String: Emoticon";
+                ListViewItem li = new ListViewItem
+                {
+                    Text = "String: Emoticon"
+                };
                 li.SubItems.Add(me.GetString("emoticon"));
                 li.ImageIndex = 4;
                 MessageView.Items.Add(li);
             }
             foreach (KeyValuePair<string, string> entry in titles)
             {
-                ListViewItem li = new ListViewItem();
-                li.Text = "Title: " + entry.Key;
+                ListViewItem li = new ListViewItem
+                {
+                    Text = "Title: " + entry.Key
+                };
                 li.SubItems.Add(entry.Value);
                 li.ImageIndex = 4;
                 MessageView.Items.Add(li);
             }
             foreach (KeyValuePair<string, string> entry in texts)
             {
-                ListViewItem li = new ListViewItem();
-                li.Text = "Text: " + entry.Key;
+                ListViewItem li = new ListViewItem
+                {
+                    Text = "Text: " + entry.Key
+                };
                 li.SubItems.Add(entry.Value);
                 li.ImageIndex = 4;
                 MessageView.Items.Add(li);
             }
             if (me.GetBool("font_support"))
             {
-                ListViewItem lsti = new ListViewItem();
-                lsti.Text = "Font";
+                ListViewItem lsti = new ListViewItem
+                {
+                    Text = "Font"
+                };
                 lsti.SubItems.Add(me.GetFont().FontFamily.Name + " " + me.GetFont().Size.ToString() + "pt");
                 lsti.ImageIndex = 5;
                 MessageView.Items.Add(lsti);
             }
             if (me.GetString("os") == "Windows CE")
             {
-                ListViewItem lsti = new ListViewItem();
-                lsti.Text = "Set restart timer";
+                ListViewItem lsti = new ListViewItem
+                {
+                    Text = "Set restart timer"
+                };
                 lsti.SubItems.Add(me.GetInt("timer").ToString() + " sec");
                 lsti.ImageIndex = 5;
                 MessageView.Items.Add(lsti);
             }
             if (me.GetBool("blinkblink"))
             {
-                ListViewItem lsti = new ListViewItem();
-                lsti.Text = "Blink speed";
+                ListViewItem lsti = new ListViewItem
+                {
+                    Text = "Blink speed"
+                };
                 lsti.SubItems.Add(me.GetInt("blink_speed").ToString() + "ms");
                 lsti.ImageIndex = 5;
                 MessageView.Items.Add(lsti);
             }
             if (me.GetBool("winxplus"))
             {
-                ListViewItem lsti = new ListViewItem();
-                lsti.Text = "QR code image";
+                ListViewItem lsti = new ListViewItem
+                {
+                    Text = "QR code image"
+                };
                 lsti.SubItems.Add(me.GetString("qr_file").Replace("local:0", "Default").Replace("local:1", "Transparent"));
                 lsti.ImageIndex = 5;
                 MessageView.Items.Add(lsti);
 
-                lsti = new ListViewItem();
-                lsti.Text = "QR code size";
+                lsti = new ListViewItem
+                {
+                    Text = "QR code size"
+                };
                 lsti.SubItems.Add(me.GetInt("qr_size").ToString());
                 lsti.ImageIndex = 5;
                 MessageView.Items.Add(lsti);
@@ -289,7 +302,7 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void TextBox1_TextChanged(object sender, EventArgs e)
         {
             if (stringProps.Visible)
             {
@@ -319,7 +332,7 @@ namespace UltimateBlueScreenSimulator
             HideAllProps();
         }
 
-        private void colorButton_Click(object sender, EventArgs e)
+        private void ColorButton_Click(object sender, EventArgs e)
         {
             if (colorChooser.ShowDialog() == DialogResult.OK)
             {
@@ -339,12 +352,12 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        private void trackBar1_Scroll(object sender, EventArgs e)
+        private void TrackBar1_Scroll(object sender, EventArgs e)
         {
             if (blinkingDash.Text == "_")
             {
@@ -359,17 +372,12 @@ namespace UltimateBlueScreenSimulator
             UpdateMessageView();
         }
 
-        private void blinkywinky_Tick(object sender, EventArgs e)
+        private void Blinkywinky_Tick(object sender, EventArgs e)
         {
             blinkingDash.Visible = !blinkingDash.Visible;
         }
 
-        private void blinkProps_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void fontChangeButton_Click(object sender, EventArgs e)
+        private void FontChangeButton_Click(object sender, EventArgs e)
         {
             if (fontChooser.ShowDialog() == DialogResult.OK)
             {
@@ -380,7 +388,7 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void timeoutBox_TextChanged(object sender, EventArgs e)
+        private void TimeoutBox_TextChanged(object sender, EventArgs e)
         {
             if (timeoutProps.Visible)
             {
@@ -397,12 +405,12 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void customRadioBtn_CheckedChanged(object sender, EventArgs e)
+        private void CustomRadioBtn_CheckedChanged(object sender, EventArgs e)
         {
             browseButton.Enabled = customRadioBtn.Checked;
         }
 
-        private void browseButton_Click(object sender, EventArgs e)
+        private void BrowseButton_Click(object sender, EventArgs e)
         {
             if (customQRBrowser.ShowDialog() == DialogResult.OK)
             {
@@ -413,7 +421,7 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void transparentRadioBtn_CheckedChanged(object sender, EventArgs e)
+        private void TransparentRadioBtn_CheckedChanged(object sender, EventArgs e)
         {
             if (qrProps.Visible && transparentRadioBtn.Checked)
             {
@@ -424,7 +432,7 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void defaultRadioBtn_CheckedChanged(object sender, EventArgs e)
+        private void DefaultRadioBtn_CheckedChanged(object sender, EventArgs e)
         {
             if (qrProps.Visible && defaultRadioBtn.Checked)
             {
@@ -435,7 +443,7 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void LinkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             MessageBox.Show("They have been moved to a new location. The new location is Settings > Simulator settings > Save/Load configurations", "About the save and load button", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }

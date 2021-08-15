@@ -1,6 +1,6 @@
 ﻿namespace UltimateBlueScreenSimulator
 {
-    partial class bsodhacks
+    partial class Bsodhacks
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(bsodhacks));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Bsodhacks));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.eightBSOD = new System.Windows.Forms.Label();

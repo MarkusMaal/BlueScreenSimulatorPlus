@@ -12,15 +12,15 @@ namespace UltimateBlueScreenSimulator
         public bool window = false;
         public string screenmode = "System error";
         internal BlueScreen me = Program.bluescreens[0];
-        List<WindowScreen> wss = new List<WindowScreen>();
-        List<Bitmap> freezescreens = new List<Bitmap>();
+        readonly List<WindowScreen> wss = new List<WindowScreen>();
+        readonly List<Bitmap> freezescreens = new List<Bitmap>();
         IDictionary<string, string> titles;
         IDictionary<string, string> texts;
         Color bg;
         Color fg;
         Color hlb;
         Color hlf;
-        string[] letters = { "?", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ":", ",", ".", "+", "*", "!", "_" , "-", "(", ")", "/", "\\", "'", " " };
+        readonly string[] letters = { "?", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ":", ",", ".", "+", "*", "!", "_" , "-", "(", ")", "/", "\\", "'", " " };
         public old_bluescreen()
         {
             InitializeComponent();
@@ -28,7 +28,7 @@ namespace UltimateBlueScreenSimulator
 
         private void Old_bluescreen_Load(object sender, EventArgs e)
         {
-            string prompt = "";
+            string prompt;
             titles = me.GetTitles();
             texts = me.GetTexts();
             if (screenmode == "No unresponsive programs")
@@ -200,6 +200,7 @@ namespace UltimateBlueScreenSimulator
             anyKeyMsg.Size = new Size(prompt.Length * 8, anyKeyMsg.Height);
             anyKeyMsg.Location = new Point((this.Width / 2) - (anyKeyMsg.Width / 2) - 16, anyKeyMsg.Location.Y);
             pictureBox2.Location = new Point(anyKeyMsg.Location.X + anyKeyMsg.Width + 8, pictureBox2.Location.Y);
+            Program.loadfinished = true;
             if (!window)
             { 
                 this.FormBorderStyle = FormBorderStyle.None;
@@ -295,8 +296,8 @@ namespace UltimateBlueScreenSimulator
                                      cropRect,
                                      GraphicsUnit.Pixel);
                 }
-                Bitmap tc = changecolor(bg, target, Color.FromArgb(0, 0, 0));
-                Bitmap t = changecolor(fg, tc, Color.FromArgb(255, 255, 255));
+                Bitmap tc = Changecolor(bg, target, Color.FromArgb(0, 0, 0));
+                Bitmap t = Changecolor(fg, tc, Color.FromArgb(255, 255, 255));
                 target = t;
                 return target;
             }
@@ -317,7 +318,7 @@ namespace UltimateBlueScreenSimulator
             }
             return ne;
         }
-        private Bitmap changecolor(Color gc, Bitmap bmp, Color incol)
+        private Bitmap Changecolor(Color gc, Bitmap bmp, Color incol)
         {
             Color black = incol;
             Color white = gc;

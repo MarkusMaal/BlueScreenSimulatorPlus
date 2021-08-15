@@ -90,7 +90,6 @@
             this.label4.TabIndex = 3;
             this.label4.Text = "If you do not have this disc, contact your system administrator or computer\r\nmanu" +
     "facturer for assistance.";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // label5
             // 
@@ -163,7 +162,7 @@
             // timer1
             // 
             this.timer1.Enabled = true;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
             // 
             // BootMgr
             // 

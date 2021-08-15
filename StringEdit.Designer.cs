@@ -144,7 +144,7 @@
             this.buttonOK.TabIndex = 5;
             this.buttonOK.Text = "&OK";
             this.buttonOK.UseVisualStyleBackColor = true;
-            this.buttonOK.Click += new System.EventHandler(this.button1_Click);
+            this.buttonOK.Click += new System.EventHandler(this.Button1_Click);
             // 
             // buttonReset
             // 
@@ -155,7 +155,7 @@
             this.buttonReset.TabIndex = 28;
             this.buttonReset.Text = "&Reset";
             this.buttonReset.UseVisualStyleBackColor = true;
-            this.buttonReset.Click += new System.EventHandler(this.button12_Click);
+            this.buttonReset.Click += new System.EventHandler(this.Button12_Click);
             // 
             // stringProps
             // 
@@ -173,7 +173,7 @@
             this.stringEditor.Name = "stringEditor";
             this.stringEditor.Size = new System.Drawing.Size(378, 158);
             this.stringEditor.TabIndex = 1;
-            this.stringEditor.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.stringEditor.TextChanged += new System.EventHandler(this.TextBox1_TextChanged);
             // 
             // colorProps
             // 
@@ -193,7 +193,7 @@
             this.colorButton.TabIndex = 3;
             this.colorButton.Text = "Change";
             this.colorButton.UseVisualStyleBackColor = true;
-            this.colorButton.Click += new System.EventHandler(this.colorButton_Click);
+            this.colorButton.Click += new System.EventHandler(this.ColorButton_Click);
             // 
             // colorPreview
             // 
@@ -239,7 +239,7 @@
             this.browseButton.TabIndex = 2;
             this.browseButton.Text = "Browse";
             this.browseButton.UseVisualStyleBackColor = true;
-            this.browseButton.Click += new System.EventHandler(this.browseButton_Click);
+            this.browseButton.Click += new System.EventHandler(this.BrowseButton_Click);
             // 
             // filenameLabel
             // 
@@ -271,7 +271,7 @@
             this.defaultRadioBtn.TabStop = true;
             this.defaultRadioBtn.Text = "Default";
             this.defaultRadioBtn.UseVisualStyleBackColor = true;
-            this.defaultRadioBtn.CheckedChanged += new System.EventHandler(this.defaultRadioBtn_CheckedChanged);
+            this.defaultRadioBtn.CheckedChanged += new System.EventHandler(this.DefaultRadioBtn_CheckedChanged);
             // 
             // transparentRadioBtn
             // 
@@ -282,7 +282,7 @@
             this.transparentRadioBtn.TabIndex = 1;
             this.transparentRadioBtn.Text = "Transparent";
             this.transparentRadioBtn.UseVisualStyleBackColor = true;
-            this.transparentRadioBtn.CheckedChanged += new System.EventHandler(this.transparentRadioBtn_CheckedChanged);
+            this.transparentRadioBtn.CheckedChanged += new System.EventHandler(this.TransparentRadioBtn_CheckedChanged);
             // 
             // customRadioBtn
             // 
@@ -293,7 +293,7 @@
             this.customRadioBtn.TabIndex = 2;
             this.customRadioBtn.Text = "Custom";
             this.customRadioBtn.UseVisualStyleBackColor = true;
-            this.customRadioBtn.CheckedChanged += new System.EventHandler(this.customRadioBtn_CheckedChanged);
+            this.customRadioBtn.CheckedChanged += new System.EventHandler(this.CustomRadioBtn_CheckedChanged);
             // 
             // timeoutProps
             // 
@@ -311,7 +311,7 @@
             this.timeoutBox.Name = "timeoutBox";
             this.timeoutBox.Size = new System.Drawing.Size(47, 20);
             this.timeoutBox.TabIndex = 1;
-            this.timeoutBox.TextChanged += new System.EventHandler(this.timeoutBox_TextChanged);
+            this.timeoutBox.TextChanged += new System.EventHandler(this.TimeoutBox_TextChanged);
             // 
             // secondsLabel
             // 
@@ -340,7 +340,7 @@
             this.fontChangeButton.TabIndex = 5;
             this.fontChangeButton.Text = "Change";
             this.fontChangeButton.UseVisualStyleBackColor = true;
-            this.fontChangeButton.Click += new System.EventHandler(this.fontChangeButton_Click);
+            this.fontChangeButton.Click += new System.EventHandler(this.FontChangeButton_Click);
             // 
             // fontPreview
             // 
@@ -361,7 +361,6 @@
             this.blinkProps.Size = new System.Drawing.Size(394, 71);
             this.blinkProps.TabIndex = 35;
             this.blinkProps.Visible = false;
-            this.blinkProps.Paint += new System.Windows.Forms.PaintEventHandler(this.blinkProps_Paint);
             // 
             // speedTrackbar
             // 
@@ -372,7 +371,7 @@
             this.speedTrackbar.Size = new System.Drawing.Size(380, 45);
             this.speedTrackbar.TabIndex = 5;
             this.speedTrackbar.Value = 100;
-            this.speedTrackbar.Scroll += new System.EventHandler(this.trackBar1_Scroll);
+            this.speedTrackbar.Scroll += new System.EventHandler(this.TrackBar1_Scroll);
             // 
             // blinkingDash
             // 
@@ -394,7 +393,7 @@
             // 
             // blinkywinky
             // 
-            this.blinkywinky.Tick += new System.EventHandler(this.blinkywinky_Tick);
+            this.blinkywinky.Tick += new System.EventHandler(this.Blinkywinky_Tick);
             // 
             // simpleToolTip
             // 
@@ -415,7 +414,7 @@
             this.linkLabel1.TabIndex = 35;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "Where are the save and load buttons?";
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel1_LinkClicked);
             // 
             // StringEdit
             // 

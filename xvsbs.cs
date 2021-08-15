@@ -20,8 +20,8 @@ namespace UltimateBlueScreenSimulator
         IDictionary<string, string> txt;
 
         string state = "0";
-        List<WindowScreen> wss = new List<WindowScreen>();
-        List<Bitmap> freezescreens = new List<Bitmap>();
+        readonly List<WindowScreen> wss = new List<WindowScreen>();
+        readonly List<Bitmap> freezescreens = new List<Bitmap>();
         public Xvsbs()
         {
             InitializeComponent();
@@ -88,6 +88,7 @@ namespace UltimateBlueScreenSimulator
             errorCode.Text = errorCode.Text.Replace("MANUALLY_INITIATED_CRASH", "The end-user manually generated the crash dump.");
             errorCode.Text = errorCode.Text.Replace("VIDEO_TDR_", "VIDEO_TDR_ERROR");
             technicalCode.Text = technicalCode.Text.Replace("STOP: ERROR", "STOP: 0x00000116");
+            Program.loadfinished = true;
             if (fullscreen) { 
                 this.TopMost = false;
                 if (Screen.AllScreens.Length > 1) { 
@@ -399,11 +400,6 @@ namespace UltimateBlueScreenSimulator
                     this.naturalclose = true;
                 }
             }
-        }
-
-        private void supportInfo_Paint(object sender, PaintEventArgs e)
-        {
-            
         }
     }
 }

@@ -19,8 +19,8 @@ namespace UltimateBlueScreenSimulator
         private bool w8close = false;
         private int progress = 0;
         internal BlueScreen me = Program.bluescreens[0];
-        List<WindowScreen> wss = new List<WindowScreen>();
-        List<Bitmap> freezescreens = new List<Bitmap>();
+        readonly List<WindowScreen> wss = new List<WindowScreen>();
+        readonly List<Bitmap> freezescreens = new List<Bitmap>();
         public WXBS()
         {
             InitializeComponent();
@@ -153,7 +153,7 @@ namespace UltimateBlueScreenSimulator
                 label4.Visible = false;
                 label5.Location = new Point(3, 0);
                 Point locationOnForm = flowLayoutPanel2.FindForm().PointToClient(flowLayoutPanel2.Parent.PointToScreen(flowLayoutPanel2.Location));
-                panel1.Location = new Point(panel2.Width, locationOnForm.Y);
+                panel1.Location = new Point(panel2.Width - 13, locationOnForm.Y);
             }
             if (qr == false)
             { 
@@ -174,56 +174,61 @@ namespace UltimateBlueScreenSimulator
                     timer1.Enabled = false;
                     label3.Visible = false;
                     Point locationOnForm = label2.FindForm().PointToClient(label2.Parent.PointToScreen(label2.Location));
-                    panel1.Location = new Point(panel2.Width, locationOnForm.Y + 120);
+                    panel1.Location = new Point(panel2.Width - 13, locationOnForm.Y + 120);
                 }
             }
             if (w8close == true)
             {
                 timer1.Enabled = true;
             }
-
-            if (Screen.AllScreens.Length > 1)
+            Program.loadfinished = true;
+            if (!me.GetBool("windowed"))
             {
-                foreach (Screen s in Screen.AllScreens)
+                if (Screen.AllScreens.Length > 1)
                 {
-                    if (!s.Primary)
+                    foreach (Screen s in Screen.AllScreens)
                     {
-                        if (Program.multidisplaymode != "none")
+                        if (!s.Primary)
                         {
-                            WindowScreen ws = new WindowScreen();
-                            ws.StartPosition = FormStartPosition.Manual;
-                            ws.Location = s.WorkingArea.Location;
-                            ws.Size = new Size(s.WorkingArea.Width, s.WorkingArea.Height);
-                            ws.primary = false;
-                            if (Program.multidisplaymode == "freeze")
+                            if (Program.multidisplaymode != "none")
                             {
-                                timer2.Enabled = false;
-                                Bitmap screenshot = new Bitmap(s.Bounds.Width,
-                                    s.Bounds.Height,
-                                    System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-                                Graphics gfxScreenshot = Graphics.FromImage(screenshot);
-                                gfxScreenshot.CopyFromScreen(
-                                    s.Bounds.X,
-                                    s.Bounds.Y,
-                                    0,
-                                    0,
-                                    s.Bounds.Size,
-                                    CopyPixelOperation.SourceCopy
-                                    );
-                                freezescreens.Add(screenshot);
-                                    
+                                WindowScreen ws = new WindowScreen
+                                {
+                                    StartPosition = FormStartPosition.Manual,
+                                    Location = s.WorkingArea.Location,
+                                    Size = new Size(s.WorkingArea.Width, s.WorkingArea.Height),
+                                    primary = false
+                                };
+                                if (Program.multidisplaymode == "freeze")
+                                {
+                                    timer2.Enabled = false;
+                                    Bitmap screenshot = new Bitmap(s.Bounds.Width,
+                                        s.Bounds.Height,
+                                        System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+                                    Graphics gfxScreenshot = Graphics.FromImage(screenshot);
+                                    gfxScreenshot.CopyFromScreen(
+                                        s.Bounds.X,
+                                        s.Bounds.Y,
+                                        0,
+                                        0,
+                                        s.Bounds.Size,
+                                        CopyPixelOperation.SourceCopy
+                                        );
+                                    freezescreens.Add(screenshot);
+
+                                }
+                                wss.Add(ws);
                             }
-                            wss.Add(ws);
                         }
                     }
-                }
-                for (int i = 0; i < wss.Count; i++)
-                {
-                    WindowScreen ws = wss[i];
-                    ws.Show();
-                    if (Program.multidisplaymode == "freeze")
+                    for (int i = 0; i < wss.Count; i++)
                     {
-                        ws.pictureBox1.Image = freezescreens[i];
+                        WindowScreen ws = wss[i];
+                        ws.Show();
+                        if (Program.multidisplaymode == "freeze")
+                        {
+                            ws.pictureBox1.Image = freezescreens[i];
+                        }
                     }
                 }
             }
@@ -267,7 +272,6 @@ namespace UltimateBlueScreenSimulator
                 MessageBox.Show(Program.f1.MsgBoxMessage, Program.f1.MsgBoxTitle, Program.f1.MsgBoxType, Program.f1.MsgBoxIcon);
                 Program.f1.showmsg = false;
             }
-            Program.f1.Show();
         }
 
         private void WXBS_Resize(object sender, EventArgs e)
@@ -289,7 +293,7 @@ namespace UltimateBlueScreenSimulator
             {
                 label5.Location = new Point(3, 0);
                 Point locationOnForm = flowLayoutPanel2.FindForm().PointToClient(flowLayoutPanel2.Parent.PointToScreen(flowLayoutPanel2.Location));
-                panel1.Location = new Point(panel2.Width, locationOnForm.Y);
+                panel1.Location = new Point(panel2.Width - 13, locationOnForm.Y);
             }
             if (qr == false)
             {
@@ -307,12 +311,12 @@ namespace UltimateBlueScreenSimulator
                 if (w8close == false)
                 {
                     Point locationOnForm = label2.FindForm().PointToClient(label2.Parent.PointToScreen(label2.Location));
-                    panel1.Location = new Point(panel2.Width, locationOnForm.Y + 120);
+                    panel1.Location = new Point(panel2.Width - 13, locationOnForm.Y + 120);
                 }
             }
         }
 
-        private void timer2_Tick(object sender, EventArgs e)
+        private void Timer2_Tick(object sender, EventArgs e)
         {
             if (!me.GetBool("windowed"))
             {

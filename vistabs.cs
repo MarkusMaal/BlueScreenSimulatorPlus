@@ -15,15 +15,14 @@ namespace UltimateBlueScreenSimulator
         bool inr = false;
         bool ing = false;
         bool inb = false;
-        string[] ecodes;
         internal BlueScreen me = Program.bluescreens[0];
         Color bg;
         Color fg;
         IDictionary<string, string> txt;
 
         string state = "0";
-        List<WindowScreen> wss = new List<WindowScreen>();
-        List<Bitmap> freezescreens = new List<Bitmap>();
+        readonly List<WindowScreen> wss = new List<WindowScreen>();
+        readonly List<Bitmap> freezescreens = new List<Bitmap>();
         public Vistabs()
         {
             InitializeComponent();
@@ -93,6 +92,7 @@ namespace UltimateBlueScreenSimulator
                 supportInfo.Visible = false;
                 label1.Visible = false;
             }
+            Program.loadfinished = true;
             if (fullscreen)
             {
                 this.TopMost = false;
@@ -456,16 +456,6 @@ namespace UltimateBlueScreenSimulator
                     this.naturalclose = true;
                 }
             }
-        }
-
-        private void supportInfo_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void errorCode_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

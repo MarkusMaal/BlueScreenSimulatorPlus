@@ -7,7 +7,7 @@ namespace UltimateBlueScreenSimulator
 {
     public partial class BootMgr : Form
     {
-        List<WindowScreen> wss = new List<WindowScreen>();
+        readonly List<WindowScreen> wss = new List<WindowScreen>();
         private bool naturalclose = false;
         public BootMgr()
         {
@@ -29,6 +29,7 @@ namespace UltimateBlueScreenSimulator
         private void BootMgr_Load(object sender, EventArgs e)
         {
             this.TopMost = false;
+            Program.loadfinished = true;
             if (Screen.AllScreens.Length > 1)
             {
                 foreach (Screen s in Screen.AllScreens)
@@ -54,7 +55,7 @@ namespace UltimateBlueScreenSimulator
             this.Hide();
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        private void Timer1_Tick(object sender, EventArgs e)
         {
             foreach (WindowScreen ws in wss)
             {
@@ -107,11 +108,6 @@ namespace UltimateBlueScreenSimulator
                 }
                 Cursor.Show();
             }
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

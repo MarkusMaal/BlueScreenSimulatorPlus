@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace UltimateBlueScreenSimulator
@@ -16,7 +12,6 @@ namespace UltimateBlueScreenSimulator
         int val = 1;
         int colored = 0;
         // int seed = 0;
-        bool drag;
         // Koodinimi: Vaarikas
         public ClickIt2()
         {
@@ -49,7 +44,7 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        public void rndgen()
+        public void Rndgen()
         {
             Random rnd = new Random();
             for (int val = 0; val < 100; ++val) ;
@@ -296,10 +291,10 @@ namespace UltimateBlueScreenSimulator
             //Random rnd = new Random();
             //seed = rnd.Next(-2147483648, 2147483647);
             comboBox1.SelectedIndex = 1;
-            rndgen();
+            Rndgen();
         }
 
-        private void button38_Click(object sender, EventArgs e)
+        private void Button38_Click(object sender, EventArgs e)
         {
             if (comboBox1.SelectedIndex == 0)
             {
@@ -315,7 +310,7 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void button38_MouseClick(object sender, MouseEventArgs e)
+        private void Button38_MouseClick(object sender, MouseEventArgs e)
         {
             dm = false;
             if (comboBox1.SelectedIndex == 0)
@@ -331,7 +326,7 @@ namespace UltimateBlueScreenSimulator
                 MessageBox.Show("How did you do this??? You are a genius!", "Congratulations", MessageBoxButtons.OK, MessageBoxIcon.Question);
             }
         }
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        private void CheckBox1_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBox1.Checked == false)
             {
@@ -364,7 +359,7 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (comboBox1.SelectedIndex == 0)
             {
@@ -534,10 +529,10 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void button41_Click(object sender, EventArgs e)
+        private void Button41_Click(object sender, EventArgs e)
         {
             string s = null;
-            string sc = null;
+            string sc;
             if (comboBox1.SelectedIndex == 0)
             {
 
@@ -574,7 +569,7 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void button42_Click(object sender, EventArgs e)
+        private void Button42_Click(object sender, EventArgs e)
         {
             try
             {
@@ -644,13 +639,11 @@ namespace UltimateBlueScreenSimulator
                     listBox1.SelectedIndex = 0;
                     Int64.TryParse(listBox1.SelectedItem.ToString(), out t);
                     listBox1.SelectedIndex = 1;
-                    int g = 0;
-                    Int32.TryParse(listBox1.SelectedItem.ToString(), out g);
+                    Int32.TryParse(listBox1.SelectedItem.ToString(), out int g);
                     if (g == 1) { checkBox1.Checked = true; }
                     if (g == 0) { checkBox1.Checked = false; }
                     listBox1.SelectedIndex = 2;
-                    int b = 0;
-                    Int32.TryParse(listBox1.SelectedItem.ToString(), out b);
+                    Int32.TryParse(listBox1.SelectedItem.ToString(), out int b);
                     if (b == 1) { comboBox1.SelectedIndex = 0; }
                     if (b == 2) { comboBox1.SelectedIndex = 1; }
                     if (b == 3) { comboBox1.SelectedIndex = 2; }
@@ -884,7 +877,7 @@ namespace UltimateBlueScreenSimulator
                 button42.PerformClick();
             }
         }
-        private void button38_MouseMove_1(object sender, MouseEventArgs e)
+        private void Button38_MouseMove_1(object sender, MouseEventArgs e)
         {
 
             if (dm == false)
@@ -929,13 +922,13 @@ namespace UltimateBlueScreenSimulator
                 button38.Visible = false;
                 button39.Visible = false;
                 button40.Visible = false;
-                rndgen();
+                Rndgen();
             }
             if (t == 2809)
             {
                 this.BackgroundImage = Properties.Resources.MarkusTegelane_element_brandpic;
             }
-            t = t + 1;
+            t++;
             if (t < 0)
             {
                 dm = true;
@@ -943,14 +936,14 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void textBox1_DoubleClick(object sender, EventArgs e)
+        private void TextBox1_DoubleClick(object sender, EventArgs e)
         {
             textBox1.Clear();
 
             textBox1.Paste();
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        private void Timer1_Tick(object sender, EventArgs e)
         {
             if (progressBar1.Value == progressBar1.Maximum)
             {
@@ -964,17 +957,7 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_DoubleClick(object sender, EventArgs e)
+        private void Label1_DoubleClick(object sender, EventArgs e)
         {
             try
             {
@@ -994,11 +977,6 @@ namespace UltimateBlueScreenSimulator
         private void Form1_Activated(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Normal;
-        }
-
-        private void label1_Resize(object sender, EventArgs e)
-        {
-
         }
 
         private void Form1_Resize(object sender, EventArgs e)
@@ -1202,21 +1180,21 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void comboBox1_HelpRequested(object sender, HelpEventArgs hlpevent)
+        private void ComboBox1_HelpRequested(object sender, HelpEventArgs hlpevent)
         {
             if (comboBox1.SelectedIndex == 0) { helpLabel1.Text = "Selle nupuga saate muuta mängu keelt"; }
             if (comboBox1.SelectedIndex == 1) { helpLabel1.Text = "You can change the language of the game using this button"; }
             if (comboBox1.SelectedIndex == 2) { helpLabel1.Text = "You can change the language of the game using this button"; }
         }
 
-        private void checkBox1_HelpRequested(object sender, HelpEventArgs hlpevent)
+        private void CheckBox1_HelpRequested(object sender, HelpEventArgs hlpevent)
         {
             if (comboBox1.SelectedIndex == 0) { helpLabel1.Text = "Selle märkeruudu abil saate lubada värvide muutumise iga proovikorra järel"; }
             if (comboBox1.SelectedIndex == 1) { helpLabel1.Text = "With this checkbox, you can enable the changing colors after every attempt"; }
             if (comboBox1.SelectedIndex == 2) { helpLabel1.Text = "With this checkbox, you can enable the changing colours after every attempt"; }
         }
 
-        private void button41_HelpRequested(object sender, HelpEventArgs hlpevent)
+        private void Button41_HelpRequested(object sender, HelpEventArgs hlpevent)
         {
             if (comboBox1.SelectedIndex == 0) { helpLabel1.Text = "See nupp võimaldab teil kopeerida mängu koodi \"lõikelauale\", tänu millele saate seda kuhugi mujale kleepida "; }
             if (comboBox1.SelectedIndex == 1) { helpLabel1.Text = "This buttons allows you to copy the game code to your \"clipboard\", which allows you to paste it somewere else"; }
@@ -1224,7 +1202,7 @@ namespace UltimateBlueScreenSimulator
 
         }
 
-        private void button42_HelpRequested(object sender, HelpEventArgs hlpevent)
+        private void Button42_HelpRequested(object sender, HelpEventArgs hlpevent)
         {
 
             if (comboBox1.SelectedIndex == 0) { helpLabel1.Text = "Võimaldab teil kasutada kleebitud koodi"; }
@@ -1233,7 +1211,7 @@ namespace UltimateBlueScreenSimulator
 
         }
 
-        private void textBox1_HelpRequested(object sender, HelpEventArgs hlpevent)
+        private void TextBox1_HelpRequested(object sender, HelpEventArgs hlpevent)
         {
 
             if (comboBox1.SelectedIndex == 0) { helpLabel1.Text = "Siia saate kleepida koodi, mis teile saadeti"; }
@@ -1242,7 +1220,7 @@ namespace UltimateBlueScreenSimulator
 
         }
 
-        private void button38_HelpRequested(object sender, HelpEventArgs hlpevent)
+        private void Button38_HelpRequested(object sender, HelpEventArgs hlpevent)
         {
 
             if (comboBox1.SelectedIndex == 0) { helpLabel1.Text = "Seda nuppu peate te peate klikkima"; }
@@ -1251,7 +1229,7 @@ namespace UltimateBlueScreenSimulator
 
         }
 
-        private void label1_HelpRequested(object sender, HelpEventArgs hlpevent)
+        private void Label1_HelpRequested(object sender, HelpEventArgs hlpevent)
         {
             if (comboBox1.SelectedIndex == 0) { helpLabel1.Text = "Siin näete enda proovikordi nupule vajutamiseks"; }
             if (comboBox1.SelectedIndex == 1) { helpLabel1.Text = "Here you can see the attempts you have made to press the button"; }
@@ -1259,28 +1237,18 @@ namespace UltimateBlueScreenSimulator
 
         }
 
-        private void helpLabel1_MouseMove(object sender, MouseEventArgs e)
+        private void HelpLabel1_MouseMove(object sender, MouseEventArgs e)
         {
             helpLabel1.Text = "";
         }
 
-        private void label2_MouseMove(object sender, MouseEventArgs e)
+        private void Label2_MouseMove(object sender, MouseEventArgs e)
         {
 
             helpLabel1.Text = "";
         }
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
+        private void PictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
             helpLabel1.Text = "";
             if (t == 666) { t = 667; }
@@ -1306,10 +1274,6 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void Form1_Click(object sender, EventArgs e)
         {
@@ -1324,16 +1288,6 @@ namespace UltimateBlueScreenSimulator
                     this.BackgroundImage = Properties.Resources.MarkusTegelane_element_brandpic;
                 }
             }
-        }
-
-        private void Form1_MouseDown(object sender, MouseEventArgs e)
-        {
-            drag = true;
-        }
-
-        private void Form1_MouseLeave(object sender, EventArgs e)
-        {
-            drag = false;
         }
     }
 }

@@ -6,6 +6,8 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using Microsoft.Win32;
 using SimulatorDatabase;
+using System.Threading;
+
 namespace UltimateBlueScreenSimulator
 {
     public partial class Form1 : Form
@@ -34,7 +36,7 @@ namespace UltimateBlueScreenSimulator
         public string appname = "notepad.exe";
         //timecatch determines whether or not the trigger is related to time
         public bool timecatch = true;
-        Splash spl2 = new Splash();
+        readonly Splash spl2 = new Splash();
         //determines whether or not to close after closing a blue screen
         public bool closecuzhidden = false;
 
@@ -80,6 +82,11 @@ namespace UltimateBlueScreenSimulator
 
         //this variable stores troubleshooting text for Windows XP/Vista/7 blue screens
         public string supporttext = "If this is the first time you've seen this Stop error screen,\nrestart your computer. If this screen appears again, follow\nthese steps:\n\nCheck to make sure any new hardware or software is properly installed.\nIf this is a new installation, ask your hardware or software manufacturer\nfor any Windows updates you might need.\n\nIf problems continue, disable or remove any newly installed hardware\nor software. Disable BIOS memory options such as caching or shadowing.\nIf you need to use Safe mode to remove or disable components, restart\nyour computer, press F8 to select Advanced Startup Options, and then\nselect Safe Mode.";
+
+
+        public static ThreadStart ts;
+        Thread bsod_starter;
+
         public Form1()
         {
             InitializeComponent();
@@ -313,8 +320,17 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
+        public void Crash()
+        {
+            ts = new ThreadStart(ShowBlueScreen);
+            bsod_starter = new Thread(ts);
+            bsod_starter.Start();
+        }
+
         private void Form1_Load(object sender, EventArgs e)
         {
+            ts = new ThreadStart(ShowBlueScreen);
+            bsod_starter = new Thread(ts);
             try
             {
                 System.IO.File.WriteAllText("test.log", "");
@@ -348,7 +364,7 @@ namespace UltimateBlueScreenSimulator
             {
                 this.Hide();
             }
-            if (timer1.Enabled)
+            if (bsod_starter.IsAlive)
             { 
                 if (Program.hidden)
                 {
@@ -366,116 +382,92 @@ namespace UltimateBlueScreenSimulator
             }
             if (error == 10)
             {
-                timer1.Enabled = false;
                 MessageBox.Show("A supported Windows version could not be identified.\n\n0x00A: PRODUCT_NAME_NOT_LISTED", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                timer1.Enabled = true;
                 error = 0;
             }
             if (error == 11)
             {
-                timer1.Enabled = false;
                 MessageBox.Show("Windows version could not be identified.\nAre you using a compatibility layer?\n\n0x00B: PRODUCT_NAME_MISSING", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                timer1.Enabled = true;
                 error = 0;
             }
             if (error == 12)
             {
-                timer1.Enabled = false;
                 MessageBox.Show("Cannot find the Windows version specified\n\n0x00C: WINVER_NOT_FOUND", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             if (error == 13)
             {
-                timer1.Enabled = false;
                 MessageBox.Show("Cannot find the error code specified\n\n0x00D: NTCODE_NOT_FOUND", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             if (error == 14)
             {
-                timer1.Enabled = false;
                 MessageBox.Show("Cannot find the error code specified\n\n0x00D: 9XCODE_NOT_FOUND", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             if (error == 15)
             {
-                timer1.Enabled = false;
                 MessageBox.Show("The syntax of the command is incorrect\n\n0x00E: BAD_SYNTAX", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             if (error == 16)
             {
-                timer1.Enabled = false;
                 MessageBox.Show("The syntax of the command is incorrect\n\n0x00F: BAD_SYNTAX", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             if (error == 17)
             {
-                timer1.Enabled = false;
                 MessageBox.Show("The syntax of the command is incorrect\n\n0x010: BAD_SYNTAX", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             if (error == 18)
             {
-                timer1.Enabled = false;
                 MessageBox.Show("The syntax of the command is incorrect\n\n0x011: BAD_SYNTAX", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             if (error == 19)
             {
-                timer1.Enabled = false;
                 MessageBox.Show("Internal database could not be loaded\n\n0x012: NT_DATABASE_MISSING", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             if (error == 20)
             {
-                timer1.Enabled = false;
                 MessageBox.Show("Internal database seems to be corrupted\n\n0x013: NT_DATABASE_CORRUPTED", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             if (error == 24)
             {
-                timer1.Enabled = false;
                 MessageBox.Show("Specified hack file does not exist\n\n0x014: HACK_FILE_NON_EXISTENT", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             if (error == 25)
             {
-                timer1.Enabled = false;
                 MessageBox.Show("Specified hack file is either corrupted or incompatible with this version of blue screen simulator plus.\n\n0x015: HACK_FILE_INCOMPATIBLE", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             if (error == 23)
             {
-                timer1.Enabled = false;
                 MessageBox.Show("The syntax of the command is incorrect\n\n0x016: COMMAND_ARGUMENT_INVALID", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             if (error == 9)
             {
-                timer1.Enabled = false;
                 MessageBox.Show("Specified file is either corrupted or incompatible with this version of blue screen simulator plus.\n\n0x009: RGB_VALUE_NEGATIVE", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else if (error == 8)
             {
-                timer1.Enabled = false;
                 MessageBox.Show("Specified file is either corrupted or incompatible with this version of blue screen simulator plus.\n\n0x008: RGB_OUT_OF_RANGE", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else if (error == 7)
             {
-                timer1.Enabled = false;
                 MessageBox.Show("Specified file is either corrupted or incompatible with this version of blue screen simulator plus.\n\n0x007: FACE_TOO_SHORT", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else if (error == 6)
             {
-                timer1.Enabled = false;
                 MessageBox.Show("Specified file is either corrupted or incompatible with this version of blue screen simulator plus.\n\n0x006: FACE_TOO_LONG", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else if (error == 5)
             {
-                timer1.Enabled = false;
                 MessageBox.Show("Specified file is either corrupted or incompatible with this version of blue screen simulator plus.\n\n0x005: MISSING_ATTRIBUTES", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else if (error == 2)
             {
-                timer1.Enabled = false;
                 MessageBox.Show("Specified file is either corrupted or not a valid blue screen simulator plus hack file.\n\n0x002: HEADER_MISSING", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else if (error == 3)
             {
-                timer1.Enabled = false;
                 MessageBox.Show("Specified file is either corrupted or incompatible with this version of blue screen simulator plus.\n\n0x003: INCOMPATIBLE_HACK", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             if (error == 4)
             {
-                timer1.Enabled = false;
                 MessageBox.Show("Specified file is either corrupt or does not exist.\n\n0x004: FILE_MISSING", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             if (error != 0) { this.Close(); }
@@ -485,28 +477,10 @@ namespace UltimateBlueScreenSimulator
         private void Button1_Click(object sender, EventArgs e)
         {
             //displays "Generating..." when a bluescreen is being generated
-            label10.Text = "Generating...";
-            timer1.Enabled = true;
-
-        }
-
-        //launches troubleshooting text editor
-        private void Button2_Click(object sender, EventArgs e)
-        {
-            SupportEditor se = new SupportEditor();
-            se.Show();
-        }
-
-        //generates the blue screen
-        private void Timer1_Tick(object sender, EventArgs e)
-        {
-            if (timer1.Interval != 60) { timer1.Interval = 60; }
-            //disables the timer immediately
-            //timer is used to give the computer time to draw a label, containing the text "Generating..."
-            timer1.Enabled = false;
+            //label10.Text = "Generating...";
             if (enableeggs == true)
             {
-                if (textBox2.Text.Contains("null"))
+                if (textBox2.Text.ToLower().Contains("null"))
                 {
                     foreach (Control c in this.Controls)
                     {
@@ -541,24 +515,30 @@ namespace UltimateBlueScreenSimulator
                     this.HelpButton = false;
                     this.ShowIcon = false;
                     this.ShowInTaskbar = false;
+                    return;
                 }
             }
-            //Windows 10 blue screen
-            //optional attributes
-            /* qrBox (bool) - if true, QR code will be displayed on the blue screen
-             * autoBox (bool) - if true, blue screen will close automatically
-             * greenBox (bool) - if true, displays Windows Insider Preview's green screen
-             * serverBox (bool) - if true, displays a server blue screen instead of a regular blue screen (without an emoticon)
-             * waterBox (bool) - if true, displays a watermark
-             * checkBox1 (bool) - if true, displays the error description
-             * checkBox2 (bool) - if true, shows a potential culprit file
-             * winMode (bool) - if true, the blue screen will display in a window
-             */
+            if (Program.loadfinished && this.Visible)
+            {
+                Program.loadfinished = false;
+                Gen g = new Gen();
+                g.Show();
+            }
+            Crash();
+        }
+
+        //launches troubleshooting text editor
+        private void Button2_Click(object sender, EventArgs e)
+        {
+            SupportEditor se = new SupportEditor();
+            se.Show();
+        }
+
+        public void ShowBlueScreen()
+        {
             if (windowVersion.Items.Count < 1)
             {
-                MessageBox.Show("Please select a Windows version, dummy!", "Error displaying blue screen", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                timer1.Enabled = false;
-                label10.Text = "";
+                MessageBox.Show("Please select a Windows version! Also, how in the world did you deselect a dropdown list?", "Error displaying blue screen", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             me.Show();
@@ -569,8 +549,7 @@ namespace UltimateBlueScreenSimulator
             catch
             {
             }
-            //removes "Generating..." text
-            label10.Text = "";
+            Thread.CurrentThread.Abort();
         }
 
         //search function
@@ -589,6 +568,10 @@ namespace UltimateBlueScreenSimulator
         //random function
         private void Button3_Click(object sender, EventArgs e)
         {
+            Program.loadfinished = false;
+            Gen g = new Gen();
+            g.Show();
+            Thread.Sleep(10);
             RandFunction();
             button1.PerformClick();
         }
@@ -716,8 +699,10 @@ namespace UltimateBlueScreenSimulator
                     return;
                 }
             }
-            StringEdit bh = new StringEdit();
-            bh.me = me;
+            StringEdit bh = new StringEdit
+            {
+                me = me
+            };
             bh.Show();
         }
 
@@ -729,9 +714,11 @@ namespace UltimateBlueScreenSimulator
 
         private void Form1_HelpButtonClicked(object sender, CancelEventArgs e)
         {
-            if (!abopen) { 
-                AboutBox1 a1 = new AboutBox1();
-                a1.Text = "Help and about";
+            if (!abopen) {
+                AboutBox1 a1 = new AboutBox1
+                {
+                    Text = "Help and about"
+                };
                 a1.Show();
             }
             else
@@ -754,7 +741,7 @@ namespace UltimateBlueScreenSimulator
                 int secs = time[2];
                 if ((hrs == 0) && (mins == 0) && (secs == 0))
                 {
-                    timer1.Enabled = true;
+                    bsod_starter.Start();
                     timer2.Enabled = false;
                 }
                 if (secs == 0)
@@ -787,8 +774,7 @@ namespace UltimateBlueScreenSimulator
                 }
                 if (getcatch)
                 {
-                    timer1.Interval = 5000;
-                    timer1.Enabled = true;
+                    bsod_starter.Start();
                     timer2.Enabled = false;
                 }
             }
@@ -982,9 +968,11 @@ namespace UltimateBlueScreenSimulator
             }
             if (!abopen)
             {
-                AboutBox1 ab1 = new AboutBox1();
-                ab1.Text = "Settings";
-                ab1.SettingTab = true;
+                AboutBox1 ab1 = new AboutBox1
+                {
+                    Text = "Settings",
+                    SettingTab = true
+                };
                 ab1.Show();
             }
             else
@@ -1067,27 +1055,27 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void autoBox_CheckedChanged(object sender, EventArgs e)
+        private void AutoBox_CheckedChanged(object sender, EventArgs e)
         {
             me.SetBool("autoclose", autoBox.Checked);
         }
 
-        private void serverBox_CheckedChanged(object sender, EventArgs e)
+        private void ServerBox_CheckedChanged(object sender, EventArgs e)
         {
             me.SetBool("server", serverBox.Checked);
         }
 
-        private void greenBox_CheckedChanged(object sender, EventArgs e)
+        private void GreenBox_CheckedChanged(object sender, EventArgs e)
         {
             me.SetBool("insider", greenBox.Checked);
         }
 
-        private void qrBox_CheckedChanged(object sender, EventArgs e)
+        private void QrBox_CheckedChanged(object sender, EventArgs e)
         {
             me.SetBool("qr", qrBox.Checked);
         }
 
-        private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
+        private void ComboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             try
             {
@@ -1099,62 +1087,58 @@ namespace UltimateBlueScreenSimulator
             catch { }
         }
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
+        private void TextBox2_TextChanged(object sender, EventArgs e)
         {
             me.SetString("culprit", textBox2.Text);
         }
 
-        private void amdBox_CheckedChanged(object sender, EventArgs e)
+        private void AmdBox_CheckedChanged(object sender, EventArgs e)
         {
             me.SetBool("amd", amdBox.Checked);
         }
 
-        private void stackBox_CheckedChanged(object sender, EventArgs e)
+        private void StackBox_CheckedChanged(object sender, EventArgs e)
         {
             me.SetBool("stack_trace", stackBox.Checked);
         }
 
-        private void blinkBox_CheckedChanged(object sender, EventArgs e)
+        private void BlinkBox_CheckedChanged(object sender, EventArgs e)
         {
             me.SetBool("blink", blinkBox.Checked);
         }
 
-        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        private void ComboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
             me.SetString("screen_mode", comboBox2.SelectedItem.ToString());
         }
 
-        private void acpiBox_CheckedChanged(object sender, EventArgs e)
+        private void AcpiBox_CheckedChanged(object sender, EventArgs e)
         {
             me.SetBool("acpi", acpiBox.Checked);
         }
 
-        private void waterBox_CheckedChanged(object sender, EventArgs e)
+        private void WaterBox_CheckedChanged(object sender, EventArgs e)
         {
             me.SetBool("watermark", waterBox.Checked);
         }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        private void CheckBox1_CheckedChanged(object sender, EventArgs e)
         {
             me.SetBool("show_description", checkBox1.Checked);
         }
 
-        private void winMode_CheckedChanged(object sender, EventArgs e)
+        private void WinMode_CheckedChanged(object sender, EventArgs e)
         {
             me.SetBool("windowed", winMode.Checked);
+            label7.Visible = !winMode.Checked;
         }
 
-        private void flowLayoutPanel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void memoryBox_CheckedChanged(object sender, EventArgs e)
+        private void MemoryBox_CheckedChanged(object sender, EventArgs e)
         {
             me.SetBool("extracodes", memoryBox.Checked);
         }
 
-        private void button2_Click_1(object sender, EventArgs e)
+        private void Button2_Click_1(object sender, EventArgs e)
         {
             ChooseFile cf = new ChooseFile();
             if (cf.ShowDialog() == DialogResult.OK)
@@ -1164,17 +1148,17 @@ namespace UltimateBlueScreenSimulator
             cf.Dispose();
         }
 
-        private void checkBox3_CheckedChanged(object sender, EventArgs e)
+        private void CheckBox3_CheckedChanged(object sender, EventArgs e)
         {
             me.SetBool("autoclose", checkBox3.Checked);
         }
 
-        private void playSndBox_CheckedChanged(object sender, EventArgs e)
+        private void PlaySndBox_CheckedChanged(object sender, EventArgs e)
         {
             me.SetBool("playsound", playSndBox.Checked);
         }
 
-        private void win1startup_CheckedChanged(object sender, EventArgs e)
+        private void Win1startup_CheckedChanged(object sender, EventArgs e)
         {
             if (win1startup.Checked)
             {
@@ -1182,7 +1166,7 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void win2startup_CheckedChanged(object sender, EventArgs e)
+        private void Win2startup_CheckedChanged(object sender, EventArgs e)
         {
             if (win2startup.Checked)
             {
@@ -1190,11 +1174,27 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void nostartup_CheckedChanged(object sender, EventArgs e)
+        private void Nostartup_CheckedChanged(object sender, EventArgs e)
         {
             if (nostartup.Checked)
             {
                 me.SetString("qr_file", "local:null");
+            }
+        }
+
+        private void Button8_Click(object sender, EventArgs e)
+        {
+            if (!abopen)
+            {
+                AboutBox1 a1 = new AboutBox1
+                {
+                    Text = "Help and about"
+                };
+                a1.Show();
+            }
+            else
+            {
+                MessageBox.Show("Help and about window is already open", "Cannot open help and about", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
     }

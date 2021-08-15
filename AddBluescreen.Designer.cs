@@ -66,7 +66,7 @@ namespace UltimateBlueScreenSimulator
             this.templatePicker.Name = "templatePicker";
             this.templatePicker.Size = new System.Drawing.Size(357, 21);
             this.templatePicker.TabIndex = 0;
-            this.templatePicker.SelectedIndexChanged += new System.EventHandler(this.templatePicker_SelectedIndexChanged);
+            this.templatePicker.SelectedIndexChanged += new System.EventHandler(this.TemplatePicker_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -137,7 +137,7 @@ namespace UltimateBlueScreenSimulator
             this.button1.TabIndex = 7;
             this.button1.Text = "&OK";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
             // button2
             // 
@@ -148,7 +148,7 @@ namespace UltimateBlueScreenSimulator
             this.button2.TabIndex = 8;
             this.button2.Text = "&Cancel";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.button2.Click += new System.EventHandler(this.Button2_Click);
             // 
             // label4
             // 
@@ -168,7 +168,7 @@ namespace UltimateBlueScreenSimulator
             this.checkBox1.TabIndex = 10;
             this.checkBox1.Text = "Specify your own OS (DANGEROUS!!!)";
             this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.CheckBox1_CheckedChanged);
             // 
             // AddBluescreen
             // 

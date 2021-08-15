@@ -129,7 +129,6 @@
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15.47988F));
             this.tableLayoutPanel.Size = new System.Drawing.Size(528, 346);
             this.tableLayoutPanel.TabIndex = 0;
-            this.tableLayoutPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel_Paint);
             // 
             // logoPictureBox
             // 
@@ -478,7 +477,7 @@
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(370, 21);
             this.comboBox2.TabIndex = 18;
-            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
+            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.ComboBox2_SelectedIndexChanged);
             // 
             // label9
             // 
@@ -514,7 +513,7 @@
             this.resetButton.Text = "Reset everything [?]";
             this.helpTip.SetToolTip(this.resetButton, "Reset all settings in this configuration");
             this.resetButton.UseVisualStyleBackColor = true;
-            this.resetButton.Click += new System.EventHandler(this.button7_Click);
+            this.resetButton.Click += new System.EventHandler(this.Button7_Click);
             // 
             // resetHackButton
             // 
@@ -526,7 +525,7 @@
             this.resetHackButton.Text = "Reset hacks [?]";
             this.helpTip.SetToolTip(this.resetHackButton, "Deletes any custom hacks for this configuration");
             this.resetHackButton.UseVisualStyleBackColor = true;
-            this.resetHackButton.Click += new System.EventHandler(this.resetHackButton_Click);
+            this.resetHackButton.Click += new System.EventHandler(this.ResetHackButton_Click);
             // 
             // addCfg
             // 
@@ -537,7 +536,7 @@
             this.addCfg.Text = "Add configuration [?]";
             this.helpTip.SetToolTip(this.addCfg, resources.GetString("addCfg.ToolTip"));
             this.addCfg.UseVisualStyleBackColor = true;
-            this.addCfg.Click += new System.EventHandler(this.button7_Click_1);
+            this.addCfg.Click += new System.EventHandler(this.Button7_Click_1);
             // 
             // removeCfg
             // 
@@ -550,7 +549,7 @@
             this.helpTip.SetToolTip(this.removeCfg, "Removes the configuration, meaning it will no longer be accessible in the main me" +
         "nu or any other part of the program.");
             this.removeCfg.UseVisualStyleBackColor = true;
-            this.removeCfg.Click += new System.EventHandler(this.button8_Click);
+            this.removeCfg.Click += new System.EventHandler(this.Button8_Click);
             // 
             // saveCfg
             // 
@@ -562,7 +561,7 @@
             this.helpTip.SetToolTip(this.saveCfg, "Allows you to save all of these configurations into a file, that can be loaded la" +
         "ter.");
             this.saveCfg.UseVisualStyleBackColor = true;
-            this.saveCfg.Click += new System.EventHandler(this.button7_Click_2);
+            this.saveCfg.Click += new System.EventHandler(this.Button7_Click_2);
             // 
             // loadCfg
             // 
@@ -573,7 +572,7 @@
             this.loadCfg.Text = "Load configurations [?]";
             this.helpTip.SetToolTip(this.loadCfg, "Allows you to load configurations from a file. BSSP 1.x files also supported.");
             this.loadCfg.UseVisualStyleBackColor = true;
-            this.loadCfg.Click += new System.EventHandler(this.loadCfg_Click);
+            this.loadCfg.Click += new System.EventHandler(this.LoadCfg_Click);
             // 
             // osName
             // 
@@ -596,8 +595,7 @@
             this.listBox1.ScrollAlwaysVisible = true;
             this.listBox1.Size = new System.Drawing.Size(200, 124);
             this.listBox1.TabIndex = 9;
-            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
-            this.listBox1.SelectedValueChanged += new System.EventHandler(this.listBox1_SelectedValueChanged);
+            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.ListBox1_SelectedIndexChanged);
             // 
             // checkBox3
             // 
@@ -791,7 +789,6 @@
             this.textBox1.Size = new System.Drawing.Size(534, 352);
             this.textBox1.TabIndex = 0;
             this.textBox1.WordWrap = false;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // timer1
             // 

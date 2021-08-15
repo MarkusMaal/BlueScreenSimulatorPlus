@@ -11,7 +11,7 @@ namespace UltimateBlueScreenSimulator
             InitializeComponent();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void Button2_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
             this.Close();
@@ -22,7 +22,7 @@ namespace UltimateBlueScreenSimulator
             templatePicker.SelectedIndex = 0;
         }
 
-        private void templatePicker_SelectedIndexChanged(object sender, EventArgs e)
+        private void TemplatePicker_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch (templatePicker.SelectedItem.ToString())
             {
@@ -61,7 +61,6 @@ namespace UltimateBlueScreenSimulator
                     friendlyBox.Text = "Windows XP (640x480, Standard)";
                     iconBox.SelectedIndex = 1;
                     break;
-                    break;
                 case "Windows Vista/7":
                     osBox.Text = "Windows Vista/7";
                     friendlyBox.Text = "Windows Vista/7 (640x480, ClearType)";
@@ -90,7 +89,7 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        private void CheckBox1_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBox1.Checked)
             {
@@ -107,7 +106,7 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
             BlueScreen my_config = new BlueScreen(osBox.Text);
             my_config.SetString("friendlyname", friendlyBox.Text);

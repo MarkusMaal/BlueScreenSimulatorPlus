@@ -114,13 +114,13 @@
             // 
             this.panel2.Location = new System.Drawing.Point(3, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(80, 212);
+            this.panel2.Size = new System.Drawing.Size(90, 212);
             this.panel2.TabIndex = 2;
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::UltimateBlueScreenSimulator.Properties.Resources.bsodqr;
-            this.pictureBox1.Location = new System.Drawing.Point(89, 3);
+            this.pictureBox1.Location = new System.Drawing.Point(99, 3);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(110, 110);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -139,7 +139,7 @@
             // label5
             // 
             this.label5.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.label5.Location = new System.Drawing.Point(3, 56);
+            this.label5.Location = new System.Drawing.Point(0, 56);
             this.label5.Margin = new System.Windows.Forms.Padding(3, 20, 3, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(1000, 133);
@@ -149,7 +149,7 @@
             // label4
             // 
             this.label4.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.label4.Location = new System.Drawing.Point(3, 0);
+            this.label4.Location = new System.Drawing.Point(0, 0);
             this.label4.Margin = new System.Windows.Forms.Padding(3, 20, 3, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(714, 36);
@@ -188,7 +188,7 @@
             // timer2
             // 
             this.timer2.Enabled = true;
-            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
+            this.timer2.Tick += new System.EventHandler(this.Timer2_Tick);
             // 
             // WXBS
             // 

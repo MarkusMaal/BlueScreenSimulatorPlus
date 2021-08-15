@@ -6,11 +6,11 @@ using System.IO;
 
 namespace UltimateBlueScreenSimulator
 {
-    public partial class bsodhacks : Form
+    public partial class Bsodhacks : Form
     {
         //this form is depricated
         //please see StringEdit.cs for new hacks window
-        public bsodhacks()
+        public Bsodhacks()
         {
             InitializeComponent();
         }
@@ -209,7 +209,7 @@ namespace UltimateBlueScreenSimulator
         {
             if (SaveHack.ShowDialog() == DialogResult.OK)
             {
-                string bscfg = "";
+                string bscfg;
                 bscfg = "*** Blue screen simulator plus 1.11 ***\nFACE " + eightBSOD.Text + "\n";
                 bscfg = bscfg + "MODERN " + eightBSOD.BackColor.R.ToString() + ":" + eightBSOD.BackColor.G.ToString() + ":" + eightBSOD.BackColor.B.ToString() + "," + eightBSOD.ForeColor.R.ToString() + ":" + eightBSOD.ForeColor.G.ToString() + ":" + eightBSOD.ForeColor.B.ToString() + "\n";
                 bscfg = bscfg + "W2K " + nt5bsod.BackColor.R.ToString() + ":" + nt5bsod.BackColor.G.ToString() + ":" + nt5bsod.BackColor.B.ToString() + "," + nt5bsod.ForeColor.R.ToString() + ":" + nt5bsod.ForeColor.G.ToString() + ":" + nt5bsod.ForeColor.B.ToString() + "\n";

@@ -6,7 +6,7 @@ using SimulatorDatabase;
 
 namespace UltimateBlueScreenSimulator
 {
-    public partial class cebsod : Form
+    public partial class Cebsod : Form
     {
         public bool fullscreen = true;
         private int progress = 30;
@@ -14,11 +14,11 @@ namespace UltimateBlueScreenSimulator
         bool ing = false;
         bool inb = false;
         internal BlueScreen me = Program.bluescreens[0];
-        List<WindowScreen> wss = new List<WindowScreen>();
-        List<Bitmap> freezescreens = new List<Bitmap>();
+        readonly List<WindowScreen> wss = new List<WindowScreen>();
+        readonly List<Bitmap> freezescreens = new List<Bitmap>();
 
         string state = "0";
-        public cebsod()
+        public Cebsod()
         {
             InitializeComponent();
         }
@@ -73,6 +73,7 @@ namespace UltimateBlueScreenSimulator
                     }
                 }
             }
+            Program.loadfinished = true;
             if (!fullscreen) { this.FormBorderStyle = FormBorderStyle.FixedSingle; }
             if (fullscreen)
             {
@@ -157,6 +158,7 @@ namespace UltimateBlueScreenSimulator
                 catch
                 {
                 }
+                Program.loadfinished = true;
             }
         }
 

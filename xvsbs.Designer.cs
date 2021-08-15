@@ -100,7 +100,6 @@ namespace UltimateBlueScreenSimulator
             this.supportInfo.Size = new System.Drawing.Size(591, 195);
             this.supportInfo.TabIndex = 10;
             this.supportInfo.Text = resources.GetString("supportInfo.Text");
-            this.supportInfo.Paint += new System.Windows.Forms.PaintEventHandler(this.supportInfo_Paint);
             // 
             // technicalCode
             // 

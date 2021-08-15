@@ -6,12 +6,11 @@ namespace UltimateBlueScreenSimulator
 {
     public partial class PrankMode : Form
     {
-        string releaseId = Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion", "ProductName", "").ToString();
+        readonly string releaseId = Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion", "ProductName", "").ToString();
 
         string MsgBoxMessage = "Enter a message here.";
         string MsgBoxTitle = "Enter a title here";
         string[] time = { "00", "05", "00" };
-        string appname = "notepad.exe";
         bool timecatch = true;
         MessageBoxIcon MsgBoxIcon = MessageBoxIcon.Exclamation;
         MessageBoxButtons MsgBoxType = MessageBoxButtons.OK;

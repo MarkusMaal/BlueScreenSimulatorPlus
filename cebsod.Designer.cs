@@ -1,6 +1,6 @@
 ﻿namespace UltimateBlueScreenSimulator
 {
-    partial class cebsod
+    partial class Cebsod
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(cebsod));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Cebsod));
             this.label1 = new System.Windows.Forms.AliasedLabel();
             this.label2 = new System.Windows.Forms.AliasedLabel();
             this.technicalCode = new System.Windows.Forms.AliasedLabel();

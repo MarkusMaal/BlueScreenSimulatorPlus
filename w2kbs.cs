@@ -1,25 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using SimulatorDatabase;
 
 namespace UltimateBlueScreenSimulator
 {
-    public partial class w2kbs : Form
+    public partial class W2kbs : Form
     {
         public bool fullscreen = true;
         private bool naturalclose = false;
         public string whatfail = "";
-        List<WindowScreen> wss = new List<WindowScreen>();
-        List<Bitmap> freezescreens = new List<Bitmap>();
+        readonly List<WindowScreen> wss = new List<WindowScreen>();
+        readonly List<Bitmap> freezescreens = new List<Bitmap>();
         internal BlueScreen me = Program.bluescreens[0];
         
-        public w2kbs()
+        public W2kbs()
         {
             InitializeComponent();
         }
@@ -72,6 +68,7 @@ namespace UltimateBlueScreenSimulator
             }
             errorCode.Text = errorCode.Text.Replace("IRQL", "DRIVER_IRQL");
 
+            Program.loadfinished = true;
             if (fullscreen)
             {
                 if (Screen.AllScreens.Length > 1)
@@ -180,11 +177,6 @@ namespace UltimateBlueScreenSimulator
                     Program.f1.Close();
                 }
             }
-        }
-
-        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }

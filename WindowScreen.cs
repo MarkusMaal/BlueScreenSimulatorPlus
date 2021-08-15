@@ -47,17 +47,12 @@ namespace UltimateBlueScreenSimulator
                 MessageBox.Show(Program.f1.MsgBoxMessage, Program.f1.MsgBoxTitle, Program.f1.MsgBoxType, Program.f1.MsgBoxIcon);
                 Program.f1.showmsg = false;
             }
-            Program.f1.Show();
             if ((pictureBox1 != null) && (pictureBox1.Image != null))
             { 
                 this.pictureBox1.Image.Dispose();
                 this.pictureBox1.Dispose();
             }
             this.Dispose();
-        }
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
         }
     }
 }

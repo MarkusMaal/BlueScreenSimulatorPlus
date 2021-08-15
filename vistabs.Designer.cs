@@ -84,7 +84,6 @@ namespace UltimateBlueScreenSimulator
             this.errorCode.Size = new System.Drawing.Size(336, 14);
             this.errorCode.TabIndex = 9;
             this.errorCode.Text = "The end-user manually generated the crash dump.";
-            this.errorCode.Click += new System.EventHandler(this.errorCode_Click);
             // 
             // supportInfo
             // 
@@ -99,7 +98,6 @@ namespace UltimateBlueScreenSimulator
             this.supportInfo.TabIndex = 10;
             this.supportInfo.Text = "You are not supposed to see this text under any condition. If you see this text, " +
     "please let the cops know immediately.";
-            this.supportInfo.Paint += new System.Windows.Forms.PaintEventHandler(this.supportInfo_Paint);
             // 
             // technicalCode
             // 

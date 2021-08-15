@@ -79,7 +79,7 @@ namespace UltimateBlueScreenSimulator
             // 
             this.timer1.Enabled = true;
             this.timer1.Interval = 10;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
             // 
             // tableLayoutPanel1
             // 
@@ -347,10 +347,9 @@ namespace UltimateBlueScreenSimulator
             this.MaximizeBox = false;
             this.Name = "win";
             this.Text = "Windows 1.x/2.x blue screen simulator";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.win_FormClosing);
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.win_FormClosed);
-            this.Load += new System.EventHandler(this.win_Load);
-            this.GiveFeedback += new System.Windows.Forms.GiveFeedbackEventHandler(this.win_GiveFeedback);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Win_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Win_FormClosed);
+            this.Load += new System.EventHandler(this.Win_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox19)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox18)).EndInit();

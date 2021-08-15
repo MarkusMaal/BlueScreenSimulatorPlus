@@ -93,6 +93,8 @@ namespace UltimateBlueScreenSimulator
         public static Splash spl;
         public static DrawRoutines dr;
 
+        public static bool loadfinished = true;
+
         private static bool bad = false;
 
         //Command line syntax
@@ -101,7 +103,7 @@ namespace UltimateBlueScreenSimulator
         internal static bool verificate = false;
         public static bool hidden = false;
         public static string multidisplaymode = "blank";
-        private static ManagementObjectSearcher aa = new ManagementObjectSearcher("root\\CIMV2", "SELECT * FROM Win32_BaseBoard");
+        readonly private static ManagementObjectSearcher aa = new ManagementObjectSearcher("root\\CIMV2", "SELECT * FROM Win32_BaseBoard");
         public static List<BlueScreen> bluescreens;
 
         [STAThread]
@@ -244,7 +246,7 @@ namespace UltimateBlueScreenSimulator
             //Simulate crash if /c flag is set
             if (args.Contains("/c"))
             {
-                f1.timer1.Enabled = true;
+                f1.Crash();
             }
             bool done = false;
             foreach (string argument in args)

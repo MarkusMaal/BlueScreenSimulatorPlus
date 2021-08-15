@@ -16,15 +16,17 @@ namespace UltimateBlueScreenSimulator
             {
                 if (line.Contains(":"))
                 {
-                    ListViewItem lvi = new ListViewItem();
-                    lvi.Text = line.Split(':')[0];
+                    ListViewItem lvi = new ListViewItem
+                    {
+                        Text = line.Split(':')[0]
+                    };
                     lvi.SubItems.Add(line.Split(':')[1]);
                     listView1.Items.Add(lvi);
                 }
             }
         }
 
-        private void listView1_ItemActivate(object sender, EventArgs e)
+        private void ListView1_ItemActivate(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.OK;
             this.Close();

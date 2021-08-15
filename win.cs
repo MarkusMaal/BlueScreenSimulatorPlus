@@ -16,15 +16,15 @@ namespace UltimateBlueScreenSimulator
     {
         public bool window = false;
         internal BlueScreen me = Program.bluescreens[0];
-        List<WindowScreen> wss = new List<WindowScreen>();
-        List<Bitmap> freezescreens = new List<Bitmap>();
+        readonly List<WindowScreen> wss = new List<WindowScreen>();
+        readonly List<Bitmap> freezescreens = new List<Bitmap>();
         ThreadStart t;
         Thread secondThread;
-        List<Bitmap> image = new List<Bitmap>();
+        readonly List<Bitmap> image = new List<Bitmap>();
         bool locked = true;
         bool displaying = false;
-        Random r = new Random();
-        SoundPlayer sp = new SoundPlayer();
+        readonly Random r = new Random();
+        readonly SoundPlayer sp = new SoundPlayer();
         Bitmap splash = Properties.Resources.win1_splash;
         public win()
         {
@@ -40,10 +40,10 @@ namespace UltimateBlueScreenSimulator
                     Thread.Sleep(2);
                 }
                 Color bg = me.GetTheme(true); Color fg = me.GetTheme(false);
-                Bitmap bmpres = GetSymbol("a", bg, fg);
+                Bitmap bmpres = GetSymbol(bg, fg);
                 for (int i = 0; i < new Random().Next(20, 77); i++)
                 {
-                    Bitmap two = GetSymbol("a", bg, fg);
+                    Bitmap two = GetSymbol(bg, fg);
                     bmpres = Merge(bmpres, two);
                 }
                 image.Add(bmpres);
@@ -52,7 +52,7 @@ namespace UltimateBlueScreenSimulator
                 displaying = true;
             }
         }
-        private Bitmap GetSymbol(string symbol, Color bg, Color fg)
+        private Bitmap GetSymbol(Color bg, Color fg)
         {
             int index = r.Next(0, 255);
             Rectangle cropRect = new Rectangle(index * 8, 0, 8, 12);
@@ -67,8 +67,8 @@ namespace UltimateBlueScreenSimulator
                                      cropRect,
                                      GraphicsUnit.Pixel);
                 }
-                Bitmap tc = changecolor(bg, target, Color.FromArgb(0, 0, 0));
-                Bitmap t = changecolor(fg, tc, Color.FromArgb(255, 255, 255));
+                Bitmap tc = Changecolor(bg, target, Color.FromArgb(0, 0, 0));
+                Bitmap t = Changecolor(fg, tc, Color.FromArgb(255, 255, 255));
                 target = t;
                 return target;
             }
@@ -88,7 +88,7 @@ namespace UltimateBlueScreenSimulator
             }
             return ne;
         }
-        private Bitmap changecolor(Color gc, Bitmap bmp, Color incol)
+        private Bitmap Changecolor(Color gc, Bitmap bmp, Color incol)
         {
             Color black = incol;
             Color white = gc;
@@ -116,7 +116,7 @@ namespace UltimateBlueScreenSimulator
             src.Dispose();
             return newBmp;
         }
-        private void win_Load(object sender, EventArgs e)
+        private void Win_Load(object sender, EventArgs e)
         {
             watermark.Visible = me.GetBool("watermark");
             if (me.GetString("qr_file") != "local:null")
@@ -133,7 +133,7 @@ namespace UltimateBlueScreenSimulator
                         splash = (Bitmap)Image.FromFile(me.GetString("qr_file"));
                         break;
                 }
-                splash = changecolor(me.GetTheme(false), changecolor(me.GetTheme(true), CreateNonIndexedImage(splash), Color.FromArgb(19, 19, 19)), Color.FromArgb(255, 255, 255));
+                splash = Changecolor(me.GetTheme(false), Changecolor(me.GetTheme(true), CreateNonIndexedImage(splash), Color.FromArgb(19, 19, 19)), Color.FromArgb(255, 255, 255));
                 int z = 1;
                 for (int y = 0; y < 224; y += 12)
                 {
@@ -153,6 +153,7 @@ namespace UltimateBlueScreenSimulator
                 sp.Stream = Properties.Resources.beep;
                 sp.PlayLooping();
             }
+            Program.loadfinished = true;
             if (!me.GetBool("windowed"))
             {
                 this.FormBorderStyle = FormBorderStyle.None;
@@ -220,7 +221,7 @@ namespace UltimateBlueScreenSimulator
             secondThread.Start();
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        private void Timer1_Tick(object sender, EventArgs e)
         {
             if (timer1.Interval != me.GetInt("blink_speed")) { timer1.Interval = me.GetInt("blink_speed"); }
             if (!window)
@@ -300,7 +301,7 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void win_FormClosed(object sender, FormClosedEventArgs e)
+        private void Win_FormClosed(object sender, FormClosedEventArgs e)
         {
             foreach (Control c in tableLayoutPanel1.Controls)
             {
@@ -309,12 +310,7 @@ namespace UltimateBlueScreenSimulator
             this.Dispose();
         }
 
-        private void win_GiveFeedback(object sender, GiveFeedbackEventArgs e)
-        {
-
-        }
-
-        private void win_FormClosing(object sender, FormClosingEventArgs e)
+        private void Win_FormClosing(object sender, FormClosingEventArgs e)
         {
             secondThread.Abort();
             foreach (WindowScreen ws in wss)

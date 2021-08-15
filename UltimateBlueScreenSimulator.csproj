@@ -114,6 +114,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Gen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Gen.Designer.cs">
+      <DependentUpon>Gen.cs</DependentUpon>
+    </Compile>
     <Compile Include="IndexForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -233,6 +239,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Gen.resx">
+      <DependentUpon>Gen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="IndexForm.resx">
       <DependentUpon>IndexForm.cs</DependentUpon>

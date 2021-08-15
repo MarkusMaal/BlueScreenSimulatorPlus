@@ -355,17 +355,7 @@ namespace UltimateBlueScreenSimulator
             textBox2.Size = new Size(flowLayoutPanel5.Width, Convert.ToInt32(flowLayoutPanel5.Height * 0.8010638));
         }
 
-        private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tableLayoutPanel_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void ListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (listBox1.SelectedIndices.Count > 0)
             {
@@ -379,7 +369,7 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void button7_Click(object sender, EventArgs e)
+        private void Button7_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Warning: This will remove any custom settings from this configuration. ANY UNSAVED CHANGES WILL BE LOST!!! Are you sure you want to continue?", "Reset bugcheck", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
@@ -396,7 +386,7 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void resetHackButton_Click(object sender, EventArgs e)
+        private void ResetHackButton_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Warning: This will remove any setting set under the 'hacks' menu. Other settings set in the main screen will remain the same. ANY UNSAVED CHANGES WILL BE LOST!!! Are you sure you want to continue?", "Reset hacks", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
@@ -409,7 +399,7 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void button8_Click(object sender, EventArgs e)
+        private void Button8_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Warning: This will remove this configuration from the repository. ANY UNSAVED CHANGES WILL BE LOST!!! Are you sure you want to do that?", "Delete bugcheck", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
@@ -422,7 +412,7 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void button7_Click_1(object sender, EventArgs e)
+        private void Button7_Click_1(object sender, EventArgs e)
         {
             if (new AddBluescreen().ShowDialog() == DialogResult.OK)
             {
@@ -435,7 +425,7 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        private void ComboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch (comboBox2.SelectedIndex)
             {
@@ -446,12 +436,7 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void listBox1_SelectedValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button7_Click_2(object sender, EventArgs e)
+        private void Button7_Click_2(object sender, EventArgs e)
         {
             if (saveBsconfig.ShowDialog() == DialogResult.OK)
             {
@@ -536,7 +521,7 @@ namespace UltimateBlueScreenSimulator
             return rgb.R.ToString() + "," + rgb.G.ToString() + "," + rgb.B.ToString();
         }
 
-        private void loadCfg_Click(object sender, EventArgs e)
+        private void LoadCfg_Click(object sender, EventArgs e)
         {
             if (loadBsconfig.ShowDialog() == DialogResult.OK)
             {
@@ -652,9 +637,5 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }

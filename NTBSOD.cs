@@ -16,11 +16,11 @@ namespace UltimateBlueScreenSimulator
         public string whatfail = "";
         public string processortype = "GenuineIntel";
         public string error = "User manually initiated crash (0xDEADDEAD)";
-        List<WindowScreen> wss = new List<WindowScreen>();
-        List<Bitmap> freezescreens = new List<Bitmap>();
+        readonly List<WindowScreen> wss = new List<WindowScreen>();
+        readonly List<Bitmap> freezescreens = new List<Bitmap>();
         internal BlueScreen me = Program.bluescreens[0];
         IDictionary<string, string> txt;
-        string[] letters = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ":", ",", ".", "+", "*", "(", ")", "[", "]", "{", "}", "/", "\\", "-", "_", " " };
+        readonly string[] letters = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ":", ",", ".", "+", "*", "(", ")", "[", "]", "{", "}", "/", "\\", "-", "_", " " };
         public NTBSOD()
         {
             InitializeComponent();
@@ -170,6 +170,7 @@ namespace UltimateBlueScreenSimulator
                 }
                 this.TopMost = false;
             }
+            Program.loadfinished = true;
         }
 
 
@@ -214,8 +215,8 @@ namespace UltimateBlueScreenSimulator
                                      cropRect,
                                      GraphicsUnit.Pixel);
                 }
-                Bitmap tc = changecolor(bg, target, Color.FromArgb(0, 0, 0));
-                Bitmap t = changecolor(fg, tc, Color.FromArgb(255, 255, 255));
+                Bitmap tc = Changecolor(bg, target, Color.FromArgb(0, 0, 0));
+                Bitmap t = Changecolor(fg, tc, Color.FromArgb(255, 255, 255));
                 target = t;
                 //tc.Dispose();
                 //t.Dispose();
@@ -241,7 +242,7 @@ namespace UltimateBlueScreenSimulator
             bmp2.Dispose();
             return ne;
         }
-        private Bitmap changecolor(Color gc, Bitmap bmp, Color incol)
+        private Bitmap Changecolor(Color gc, Bitmap bmp, Color incol)
         {
             Color black = incol;
             Color white = gc;
@@ -256,11 +257,6 @@ namespace UltimateBlueScreenSimulator
                 }
             }
             return img;
-        }
-
-        private void FlowLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
         }
 
         private void Timer1_Tick(object sender, EventArgs e)
@@ -303,21 +299,24 @@ namespace UltimateBlueScreenSimulator
             {
                 e.Cancel = false;
             }
-            foreach (Control c in this.tableLayoutPanel1.Controls)
+            if (stackTrace1_1.Image != null)
             {
-                if (c is PictureBox) { ((PictureBox)c).Image.Dispose(); c.Dispose(); }
-            }
-            foreach (Control c in this.flowLayoutPanel1.Controls)
-            {
-                if (c is PictureBox) { ((PictureBox)c).Image.Dispose(); c.Dispose(); }
-            }
-            foreach (Control c in this.flowLayoutPanel2.Controls)
-            {
-                if (c is PictureBox) { ((PictureBox)c).Image.Dispose(); c.Dispose(); }
-            }
-            foreach (Control c in this.flowLayoutPanel3.Controls)
-            {
-                if (c is PictureBox) { ((PictureBox)c).Image.Dispose(); c.Dispose(); }
+                foreach (Control c in this.tableLayoutPanel1.Controls)
+                {
+                    if (c is PictureBox box) { box.Image.Dispose(); c.Dispose(); }
+                }
+                foreach (Control c in this.flowLayoutPanel1.Controls)
+                {
+                    if (c is PictureBox box) { box.Image.Dispose(); c.Dispose(); }
+                }
+                foreach (Control c in this.flowLayoutPanel2.Controls)
+                {
+                    if (c is PictureBox box) { box.Image.Dispose(); c.Dispose(); }
+                }
+                foreach (Control c in this.flowLayoutPanel3.Controls)
+                {
+                    if (c is PictureBox box) { box.Image.Dispose(); c.Dispose(); }
+                }
             }
             if (fullscreen)
             {

@@ -105,8 +105,8 @@ namespace SimulatorDatabase
         // 3D window
         private string icon;
 
-        IDictionary<string, string> titles;
-        IDictionary<string, string> texts;
+        readonly IDictionary<string, string> titles;
+        readonly IDictionary<string, string> texts;
 
         public BlueScreen(string base_os)
         {
@@ -297,10 +297,10 @@ namespace SimulatorDatabase
                     SetupExperience(new Xvsbs());
                     break;
                 case "Windows 2000":
-                    Setup2k(new w2kbs());
+                    Setup2k(new W2kbs());
                     break;
                 case "Windows CE":
-                    SetupCE(new cebsod());
+                    SetupCE(new Cebsod());
                     break;
                 case "Windows NT 3.x/4.0":
                     SetupNT(new NTBSOD());
@@ -318,7 +318,7 @@ namespace SimulatorDatabase
             }
         }
 
-        private void SetupCE(cebsod bs)
+        private void SetupCE(Cebsod bs)
         {
             bs.BackColor = this.GetTheme(true);
             bs.ForeColor = this.GetTheme(false);
@@ -327,7 +327,7 @@ namespace SimulatorDatabase
             bs.waterMarkText.Visible = this.watermark;
             bs.technicalCode.Text = "*** STOP: 0x" + this.code.Split(' ')[1].ToString().Replace(")", "").Replace("(", "").ToString().Substring(4, 6) + " (" + this.code.Split(' ')[0].ToString().Replace("_", " ").ToLower() + ")";
             bs.me = this;
-            bs.Show();
+            bs.ShowDialog();
         }
 
         private void SetupNT(NTBSOD bs)
@@ -342,7 +342,7 @@ namespace SimulatorDatabase
             bs.blink = this.blink;
             bs.waterMarkText.Visible = this.watermark;
             bs.me = this;
-            bs.Show();
+            bs.ShowDialog();
         }
 
         private void Setup9x(old_bluescreen bs)
@@ -354,7 +354,7 @@ namespace SimulatorDatabase
             bs.errorCode = GenHex(2, GetString("ecode1")) + " : " + GenHex(4, GetString("ecode2")) + " : " + GenHex(6, GetString("ecode3"));
             bs.waterMarkText.Visible = this.GetBool("watermark");
             bs.me = this;
-            bs.Show();
+            bs.ShowDialog();
         }
         private void SetupWin(win bs)
         {
@@ -362,10 +362,10 @@ namespace SimulatorDatabase
             bs.ForeColor = this.GetTheme(false);
             bs.window = this.GetBool("windowed");
             bs.me = this;
-            bs.Show();
+            bs.ShowDialog();
         }
 
-        private void Setup2k(w2kbs bs)
+        private void Setup2k(W2kbs bs)
         {
             bs.BackColor = this.GetTheme(true);
             bs.ForeColor = this.GetTheme(false);
@@ -379,7 +379,7 @@ namespace SimulatorDatabase
                                 GenHex(8, this.GetString("ecode4")) +  ")";
             bs.errorCode.Text = bs.errorCode.Text + "\n" + this.GetString("code").Split(' ')[0].ToString();
             bs.me = this;
-            bs.Show();
+            bs.ShowDialog();
         }
 
         private void SetupExperience(Xvsbs bs)
@@ -394,7 +394,7 @@ namespace SimulatorDatabase
             bs.technicalCode.Text = "*** STOP: " + this.GetString("code").Split(' ')[1].ToString().Replace(")", "").Replace("(", "").ToString() + " (" + GenAddress(4, 8, false) + ")";
             bs.supportInfo.Text = this.GetTexts()["Technical support"] + "\n\n\nTechnical information:";
             bs.me = this;
-            bs.Show();
+            bs.ShowDialog();
         }
 
         private void SetupVista(Vistabs bs)
@@ -415,7 +415,7 @@ namespace SimulatorDatabase
             bs.technicalCode.Text = "*** STOP: " + this.GetString("code").Split(' ')[1].ToString().Replace(")", "").Replace("(", "").ToString() + " (" + GenAddress(4, 16, false) + ")";
             bs.supportInfo.Text = this.GetTexts()["Technical support"] + "\n\n\nTechnical information:";
             bs.me = this;
-            bs.Show();
+            bs.ShowDialog();
         }
 
         private void SetupWinXabove(WXBS bs, bool w11 = false)
@@ -444,7 +444,7 @@ namespace SimulatorDatabase
                 bs.code = GetString("code").Split(' ')[1].ToString().Replace(")", "").Replace("(", "").ToString();
             }
             bs.me = this;
-            bs.Show();
+            bs.ShowDialog();
         }
 
         private void SetupWin8(WXBS bs)
@@ -473,7 +473,7 @@ namespace SimulatorDatabase
                 bs.code = GetString("code").Split(' ')[1].ToString().Replace(")", "").Replace("(", "").ToString();
             }
             bs.me = this;
-            bs.Show();
+            bs.ShowDialog();
         }
 
         public string GetString(string name)
@@ -537,11 +537,6 @@ namespace SimulatorDatabase
             this.titles.Add(name, value);
         }
 
-        private void PopTitle()
-        {
-            this.titles.Remove(this.titles.Keys.Last());
-        }
-
         public void SetText(string name, string value)
         {
             this.texts[name] = value;
@@ -550,11 +545,6 @@ namespace SimulatorDatabase
         public void PushText(string name, string value)
         {
             this.texts.Add(name, value);
-        }
-
-        private void PopText()
-        {
-            this.texts.Remove(this.titles.Keys.Last());
         }
 
         // theming
@@ -746,7 +736,7 @@ namespace SimulatorDatabase
                     break;
                 case "Windows 8/8.1":
                     this.icon = "3D window";
-                    PushText("Information text with dump", "Your PC ran into a problem and needs to restart. We're just\r\ncollecting some error info, and then you can restart. ({0}%\r\n complete)");
+                    PushText("Information text with dump", "Your PC ran into a problem and needs to restart. We're just\r\ncollecting some error info, and then you can restart. ({0}%\r\ncomplete)");
                     PushText("Information text without dump", "Your PC ran into a problem that it couldn't\r\nhandle and now it needs to restart.");
                     PushText("Error code", "You can search for the error online: {0}");
                     SetFont("Segoe UI", 19.4f, FontStyle.Regular);
