@@ -57,8 +57,15 @@
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.acpiBox = new System.Windows.Forms.CheckBox();
-            this.waterBox = new System.Windows.Forms.CheckBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.winPanel = new System.Windows.Forms.Panel();
+            this.playSndBox = new System.Windows.Forms.CheckBox();
+            this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
+            this.win1startup = new System.Windows.Forms.RadioButton();
+            this.win2startup = new System.Windows.Forms.RadioButton();
+            this.nostartup = new System.Windows.Forms.RadioButton();
+            this.waterBox = new System.Windows.Forms.CheckBox();
             this.winMode = new System.Windows.Forms.CheckBox();
             this.helpTip = new System.Windows.Forms.ToolTip(this.components);
             this.button1 = new System.Windows.Forms.Button();
@@ -73,13 +80,14 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.timer3 = new System.Windows.Forms.Timer(this.components);
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.flowLayoutPanel1.SuspendLayout();
             this.WXOptions.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
             this.errorCode.SuspendLayout();
             this.ntPanel.SuspendLayout();
             this.nineXmessage.SuspendLayout();
+            this.winPanel.SuspendLayout();
+            this.flowLayoutPanel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -134,14 +142,15 @@
             this.flowLayoutPanel1.Controls.Add(this.ntPanel);
             this.flowLayoutPanel1.Controls.Add(this.nineXmessage);
             this.flowLayoutPanel1.Controls.Add(this.acpiBox);
-            this.flowLayoutPanel1.Controls.Add(this.waterBox);
             this.flowLayoutPanel1.Controls.Add(this.checkBox1);
-            this.flowLayoutPanel1.Controls.Add(this.winMode);
             this.flowLayoutPanel1.Controls.Add(this.checkBox3);
+            this.flowLayoutPanel1.Controls.Add(this.winPanel);
+            this.flowLayoutPanel1.Controls.Add(this.waterBox);
+            this.flowLayoutPanel1.Controls.Add(this.winMode);
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(15, 70);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(472, 220);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(472, 249);
             this.flowLayoutPanel1.TabIndex = 3;
             // 
             // WXOptions
@@ -426,7 +435,7 @@
             // acpiBox
             // 
             this.acpiBox.AutoSize = true;
-            this.acpiBox.Location = new System.Drawing.Point(473, 3);
+            this.acpiBox.Location = new System.Drawing.Point(3, 213);
             this.acpiBox.Name = "acpiBox";
             this.acpiBox.Size = new System.Drawing.Size(124, 17);
             this.acpiBox.TabIndex = 8;
@@ -436,26 +445,12 @@
             this.acpiBox.CheckedChanged += new System.EventHandler(this.acpiBox_CheckedChanged);
             this.acpiBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Button7_KeyDown);
             // 
-            // waterBox
-            // 
-            this.waterBox.AutoSize = true;
-            this.waterBox.Checked = true;
-            this.waterBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.waterBox.Location = new System.Drawing.Point(473, 26);
-            this.waterBox.Name = "waterBox";
-            this.waterBox.Size = new System.Drawing.Size(127, 17);
-            this.waterBox.TabIndex = 4;
-            this.waterBox.Text = "Display watermark [?]";
-            this.helpTip.SetToolTip(this.waterBox, "Displays a watermark to let the user know that this a blue screen simulator");
-            this.waterBox.UseVisualStyleBackColor = true;
-            this.waterBox.CheckedChanged += new System.EventHandler(this.waterBox_CheckedChanged);
-            // 
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
             this.checkBox1.Checked = true;
             this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Location = new System.Drawing.Point(473, 49);
+            this.checkBox1.Location = new System.Drawing.Point(473, 3);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(237, 17);
             this.checkBox1.TabIndex = 6;
@@ -465,13 +460,108 @@
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
+            // checkBox3
+            // 
+            this.checkBox3.AutoSize = true;
+            this.checkBox3.Checked = true;
+            this.checkBox3.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox3.Location = new System.Drawing.Point(473, 26);
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.Size = new System.Drawing.Size(69, 17);
+            this.checkBox3.TabIndex = 13;
+            this.checkBox3.Text = "Dump [?]";
+            this.helpTip.SetToolTip(this.checkBox3, "Enable to display dumping process in Windows XP/Vista/7 bluescreens");
+            this.checkBox3.UseVisualStyleBackColor = true;
+            this.checkBox3.Visible = false;
+            this.checkBox3.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
+            // 
+            // winPanel
+            // 
+            this.winPanel.Controls.Add(this.playSndBox);
+            this.winPanel.Controls.Add(this.flowLayoutPanel3);
+            this.winPanel.Location = new System.Drawing.Point(473, 49);
+            this.winPanel.Name = "winPanel";
+            this.winPanel.Size = new System.Drawing.Size(461, 56);
+            this.winPanel.TabIndex = 14;
+            // 
+            // playSndBox
+            // 
+            this.playSndBox.AutoSize = true;
+            this.playSndBox.Location = new System.Drawing.Point(2, 35);
+            this.playSndBox.Name = "playSndBox";
+            this.playSndBox.Size = new System.Drawing.Size(93, 17);
+            this.playSndBox.TabIndex = 4;
+            this.playSndBox.Text = "Play sound [?]";
+            this.helpTip.SetToolTip(this.playSndBox, "Plays constant beep noise while displaying the blue screen");
+            this.playSndBox.UseVisualStyleBackColor = true;
+            this.playSndBox.CheckedChanged += new System.EventHandler(this.playSndBox_CheckedChanged);
+            // 
+            // flowLayoutPanel3
+            // 
+            this.flowLayoutPanel3.Controls.Add(this.win1startup);
+            this.flowLayoutPanel3.Controls.Add(this.win2startup);
+            this.flowLayoutPanel3.Controls.Add(this.nostartup);
+            this.flowLayoutPanel3.Location = new System.Drawing.Point(0, 3);
+            this.flowLayoutPanel3.Name = "flowLayoutPanel3";
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(458, 26);
+            this.flowLayoutPanel3.TabIndex = 3;
+            // 
+            // win1startup
+            // 
+            this.win1startup.AutoSize = true;
+            this.win1startup.Checked = true;
+            this.win1startup.Location = new System.Drawing.Point(3, 3);
+            this.win1startup.Name = "win1startup";
+            this.win1startup.Size = new System.Drawing.Size(163, 17);
+            this.win1startup.TabIndex = 0;
+            this.win1startup.TabStop = true;
+            this.win1startup.Text = "Windows 1.01 startup screen";
+            this.win1startup.UseVisualStyleBackColor = true;
+            this.win1startup.CheckedChanged += new System.EventHandler(this.win1startup_CheckedChanged);
+            // 
+            // win2startup
+            // 
+            this.win2startup.AutoSize = true;
+            this.win2startup.Location = new System.Drawing.Point(172, 3);
+            this.win2startup.Name = "win2startup";
+            this.win2startup.Size = new System.Drawing.Size(163, 17);
+            this.win2startup.TabIndex = 1;
+            this.win2startup.Text = "Windows 2.03 startup screen";
+            this.win2startup.UseVisualStyleBackColor = true;
+            this.win2startup.CheckedChanged += new System.EventHandler(this.win2startup_CheckedChanged);
+            // 
+            // nostartup
+            // 
+            this.nostartup.AutoSize = true;
+            this.nostartup.Location = new System.Drawing.Point(341, 3);
+            this.nostartup.Name = "nostartup";
+            this.nostartup.Size = new System.Drawing.Size(109, 17);
+            this.nostartup.TabIndex = 2;
+            this.nostartup.Text = "No startup screen";
+            this.nostartup.UseVisualStyleBackColor = true;
+            this.nostartup.CheckedChanged += new System.EventHandler(this.nostartup_CheckedChanged);
+            // 
+            // waterBox
+            // 
+            this.waterBox.AutoSize = true;
+            this.waterBox.Checked = true;
+            this.waterBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.waterBox.Location = new System.Drawing.Point(473, 111);
+            this.waterBox.Name = "waterBox";
+            this.waterBox.Size = new System.Drawing.Size(127, 17);
+            this.waterBox.TabIndex = 16;
+            this.waterBox.Text = "Display watermark [?]";
+            this.helpTip.SetToolTip(this.waterBox, "Displays a watermark to let the user know that this a blue screen simulator");
+            this.waterBox.UseVisualStyleBackColor = true;
+            this.waterBox.CheckedChanged += new System.EventHandler(this.waterBox_CheckedChanged);
+            // 
             // winMode
             // 
             this.winMode.AutoSize = true;
-            this.winMode.Location = new System.Drawing.Point(473, 72);
+            this.winMode.Location = new System.Drawing.Point(473, 134);
             this.winMode.Name = "winMode";
             this.winMode.Size = new System.Drawing.Size(121, 17);
-            this.winMode.TabIndex = 7;
+            this.winMode.TabIndex = 17;
             this.winMode.Text = "Windowed mode [?]";
             this.helpTip.SetToolTip(this.winMode, "Does not full screen bluescreens, which results in better quality");
             this.winMode.UseVisualStyleBackColor = true;
@@ -480,7 +570,7 @@
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(416, 306);
+            this.button1.Location = new System.Drawing.Point(416, 335);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(68, 23);
             this.button1.TabIndex = 4;
@@ -493,7 +583,7 @@
             // button3
             // 
             this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.Location = new System.Drawing.Point(301, 306);
+            this.button3.Location = new System.Drawing.Point(301, 335);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(109, 23);
             this.button3.TabIndex = 9;
@@ -506,7 +596,7 @@
             // button4
             // 
             this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button4.Location = new System.Drawing.Point(240, 306);
+            this.button4.Location = new System.Drawing.Point(240, 335);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(55, 23);
             this.button4.TabIndex = 10;
@@ -521,7 +611,7 @@
             // button5
             // 
             this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button5.Location = new System.Drawing.Point(175, 306);
+            this.button5.Location = new System.Drawing.Point(175, 335);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(59, 23);
             this.button5.TabIndex = 11;
@@ -534,7 +624,7 @@
             // button6
             // 
             this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button6.Location = new System.Drawing.Point(90, 306);
+            this.button6.Location = new System.Drawing.Point(90, 335);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(79, 23);
             this.button6.TabIndex = 12;
@@ -548,7 +638,7 @@
             // button7
             // 
             this.button7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button7.Location = new System.Drawing.Point(15, 306);
+            this.button7.Location = new System.Drawing.Point(15, 335);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(69, 23);
             this.button7.TabIndex = 14;
@@ -564,7 +654,7 @@
             // 
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(115, 293);
+            this.label7.Location = new System.Drawing.Point(115, 322);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(150, 13);
             this.label7.TabIndex = 6;
@@ -574,7 +664,7 @@
             // 
             this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(15, 293);
+            this.label8.Location = new System.Drawing.Point(15, 322);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(96, 13);
             this.label8.TabIndex = 7;
@@ -583,7 +673,7 @@
             // label10
             // 
             this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label10.Location = new System.Drawing.Point(351, 293);
+            this.label10.Location = new System.Drawing.Point(351, 322);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(134, 13);
             this.label10.TabIndex = 8;
@@ -604,26 +694,11 @@
             this.timer3.Interval = 6000;
             this.timer3.Tick += new System.EventHandler(this.Timer3_Tick);
             // 
-            // checkBox3
-            // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Checked = true;
-            this.checkBox3.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox3.Location = new System.Drawing.Point(473, 95);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(69, 17);
-            this.checkBox3.TabIndex = 13;
-            this.checkBox3.Text = "Dump [?]";
-            this.helpTip.SetToolTip(this.checkBox3, "Enable to display dumping process in Windows XP/Vista/7 bluescreens");
-            this.checkBox3.UseVisualStyleBackColor = true;
-            this.checkBox3.Visible = false;
-            this.checkBox3.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(499, 355);
+            this.ClientSize = new System.Drawing.Size(499, 384);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.button5);
@@ -662,6 +737,10 @@
             this.ntPanel.PerformLayout();
             this.nineXmessage.ResumeLayout(false);
             this.nineXmessage.PerformLayout();
+            this.winPanel.ResumeLayout(false);
+            this.winPanel.PerformLayout();
+            this.flowLayoutPanel3.ResumeLayout(false);
+            this.flowLayoutPanel3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -691,7 +770,6 @@
         private System.Windows.Forms.Button button6;
         public System.Windows.Forms.ComboBox windowVersion;
         public System.Windows.Forms.Timer timer2;
-        public System.Windows.Forms.CheckBox waterBox;
         internal System.Windows.Forms.Timer timer1;
         internal System.Windows.Forms.CheckBox qrBox;
         internal System.Windows.Forms.CheckBox greenBox;
@@ -706,13 +784,20 @@
         internal System.Windows.Forms.TextBox textBox1;
         internal System.Windows.Forms.CheckBox checkBox2;
         internal System.Windows.Forms.CheckBox checkBox1;
-        internal System.Windows.Forms.CheckBox winMode;
         public System.Windows.Forms.Timer timer3;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.CheckBox memoryBox;
         public System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Button button2;
         internal System.Windows.Forms.CheckBox checkBox3;
+        private System.Windows.Forms.Panel winPanel;
+        private System.Windows.Forms.CheckBox playSndBox;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
+        private System.Windows.Forms.RadioButton win1startup;
+        private System.Windows.Forms.RadioButton win2startup;
+        private System.Windows.Forms.RadioButton nostartup;
+        public System.Windows.Forms.CheckBox waterBox;
+        internal System.Windows.Forms.CheckBox winMode;
     }
 }
 

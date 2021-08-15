@@ -26,14 +26,19 @@ namespace UltimateBlueScreenSimulator
         {
             switch (templatePicker.SelectedItem.ToString())
             {
+                case "Windows 1.x/2.x":
+                    osBox.Text = "Windows 1.x/2.x";
+                    friendlyBox.Text = "Windows 1.x/2.x (Text mode, Standard)";
+                    iconBox.SelectedIndex = 0;
+                    break;
                 case "Windows 3.1x":
                     osBox.Text = "Windows 3.1x";
-                    friendlyBox.Text = "Windows 3.1x (EGA text mode, Standard)";
+                    friendlyBox.Text = "Windows 3.1x (Text mode, Standard)";
                     iconBox.SelectedIndex = 0;
                     break;
                 case "Windows 9x/Me":
                     osBox.Text = "Windows 9x/Me";
-                    friendlyBox.Text = "Windows 9x/Millennium Edition (EGA text mode, Standard)";
+                    friendlyBox.Text = "Windows 9x/Millennium Edition (Text mode, Standard)";
                     iconBox.SelectedIndex = 0;
                     break;
                 case "Windows CE":
@@ -43,7 +48,7 @@ namespace UltimateBlueScreenSimulator
                     break;
                 case "Windows NT 3.x/4.0":
                     osBox.Text = "Windows NT 3.x/4.0";
-                    friendlyBox.Text = "Windows NT 4.0/3.x (VGA text mode, Standard)";
+                    friendlyBox.Text = "Windows NT 4.0/3.x (Text mode, Standard)";
                     iconBox.SelectedIndex = 0;
                     break;
                 case "Windows 2000":

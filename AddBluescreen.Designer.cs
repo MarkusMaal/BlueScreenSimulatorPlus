@@ -50,6 +50,7 @@ namespace UltimateBlueScreenSimulator
             this.templatePicker.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.templatePicker.FormattingEnabled = true;
             this.templatePicker.Items.AddRange(new object[] {
+            "Windows 1.x/2.x",
             "Windows 3.1x",
             "Windows 9x/Me",
             "Windows CE",

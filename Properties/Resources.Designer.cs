@@ -85,6 +85,15 @@ namespace UltimateBlueScreenSimulator.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream beep {
+            get {
+                return ResourceManager.GetStream("beep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap bsodbanner {
@@ -201,6 +210,26 @@ namespace UltimateBlueScreenSimulator.Properties {
         internal static System.Drawing.Bitmap current1 {
             get {
                 object obj = ResourceManager.GetObject("current1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap doscii {
+            get {
+                object obj = ResourceManager.GetObject("doscii", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap dummy {
+            get {
+                object obj = ResourceManager.GetObject("dummy", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -340,6 +369,26 @@ namespace UltimateBlueScreenSimulator.Properties {
         internal static System.Drawing.Bitmap verifile {
             get {
                 object obj = ResourceManager.GetObject("verifile", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap win1_splash {
+            get {
+                object obj = ResourceManager.GetObject("win1_splash", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap win2_splash {
+            get {
+                object obj = ResourceManager.GetObject("win2_splash", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

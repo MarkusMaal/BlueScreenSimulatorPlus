@@ -48,8 +48,11 @@ namespace UltimateBlueScreenSimulator
                 Program.f1.showmsg = false;
             }
             Program.f1.Show();
-            this.pictureBox1.Image.Dispose();
-            this.pictureBox1.Dispose();
+            if ((pictureBox1 != null) && (pictureBox1.Image != null))
+            { 
+                this.pictureBox1.Image.Dispose();
+                this.pictureBox1.Dispose();
+            }
             this.Dispose();
         }
 

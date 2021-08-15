@@ -489,6 +489,7 @@ namespace UltimateBlueScreenSimulator
                     filedata += "\n" + "blinkblink=" + bs.GetBool("blinkblink").ToString() + ";";
                     filedata += "\n" + "winxplus=" + bs.GetBool("winxplus").ToString() + ";";
                     filedata += "\n" + "extracodes=" + bs.GetBool("extracodes").ToString() + ";";
+                    filedata += "\n" + "playsound=" + bs.GetBool("playsound").ToString() + ";";
 
                     filedata += "\n\n[integer]";
                     filedata += "\n" + "windowed=" + bs.GetInt("blink_speed") + ";";
@@ -590,7 +591,7 @@ namespace UltimateBlueScreenSimulator
                                         case "integer":
                                             bs.SetInt(key, Convert.ToInt32(value));
                                             break;
-                                        case "bool":
+                                        case "boolean":
                                             bs.SetBool(key, Convert.ToBoolean(value));
                                             break;
                                         case "title":

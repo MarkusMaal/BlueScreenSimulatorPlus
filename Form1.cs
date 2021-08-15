@@ -103,6 +103,7 @@ namespace UltimateBlueScreenSimulator
             ntPanel.Visible = false;
             memoryBox.Visible = false;
             checkBox3.Visible = false;
+            winPanel.Visible = false;
             // set current bluescreen
             me = Program.bluescreens[Program.bluescreens.Count - 1 - windowVersion.SelectedIndex];
             // set control visibility for specific OS-es
@@ -186,6 +187,11 @@ namespace UltimateBlueScreenSimulator
             {
                 winMode.Visible = true;
             }
+            else if (me.GetString("os") == "Windows 1.x/2.x")
+            {
+                winMode.Visible = true;
+                winPanel.Visible = true;
+            }
             // load options for current bluescreen
             autoBox.Checked = me.GetBool("autoclose");
             serverBox.Checked = me.GetBool("server");
@@ -200,8 +206,24 @@ namespace UltimateBlueScreenSimulator
             stackBox.Checked = me.GetBool("stack_trace");
             blinkBox.Checked = me.GetBool("blink");
             acpiBox.Checked = me.GetBool("acpi");
+            playSndBox.Checked = me.GetBool("playsound");
             waterBox.Checked = me.GetBool("watermark");
             winMode.Checked = me.GetBool("windowed");
+            win1startup.Checked = false;
+            win2startup.Checked = false;
+            nostartup.Checked = false;
+            switch (me.GetString("qr_file"))
+            {
+                case "local:0":
+                    win1startup.Checked = true;
+                    break;
+                case "local:1":
+                    win2startup.Checked = true;
+                    break;
+                case "local:null":
+                    nostartup.Checked = true;
+                    break;
+            }
         }
 
         public void GetOS()
@@ -1145,6 +1167,35 @@ namespace UltimateBlueScreenSimulator
         private void checkBox3_CheckedChanged(object sender, EventArgs e)
         {
             me.SetBool("autoclose", checkBox3.Checked);
+        }
+
+        private void playSndBox_CheckedChanged(object sender, EventArgs e)
+        {
+            me.SetBool("playsound", playSndBox.Checked);
+        }
+
+        private void win1startup_CheckedChanged(object sender, EventArgs e)
+        {
+            if (win1startup.Checked)
+            {
+                me.SetString("qr_file", "local:0");
+            }
+        }
+
+        private void win2startup_CheckedChanged(object sender, EventArgs e)
+        {
+            if (win2startup.Checked)
+            {
+                me.SetString("qr_file", "local:1");
+            }
+        }
+
+        private void nostartup_CheckedChanged(object sender, EventArgs e)
+        {
+            if (nostartup.Checked)
+            {
+                me.SetString("qr_file", "local:null");
+            }
         }
     }
 }

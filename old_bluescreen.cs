@@ -20,7 +20,7 @@ namespace UltimateBlueScreenSimulator
         Color fg;
         Color hlb;
         Color hlf;
-        string[] letters = { "?", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ":", ",", ".", "+", "*", "!", "_" , "-", "(", ")", "/", "\\", " " };
+        string[] letters = { "?", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ":", ",", ".", "+", "*", "!", "_" , "-", "(", ")", "/", "\\", "'", " " };
         public old_bluescreen()
         {
             InitializeComponent();
@@ -261,7 +261,7 @@ namespace UltimateBlueScreenSimulator
                 this.Size = new Size(640, 320);
             }
         }
-        private Bitmap WriteWord (string word, Color bg, Color fg)
+        private Bitmap WriteWord(string word, Color bg, Color fg)
         {
             Bitmap bmpres;
             bmpres = GetSymbol(word.Substring(0, 1), bg, fg);
@@ -272,7 +272,7 @@ namespace UltimateBlueScreenSimulator
             }
             return bmpres;
         }
-        private Bitmap GetSymbol (string symbol, Color bg, Color fg)
+        private Bitmap GetSymbol(string symbol, Color bg, Color fg)
         {
             int index = 0;
             for (int i = 0; i < letters.Length; i++)

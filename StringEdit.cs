@@ -21,6 +21,7 @@ namespace UltimateBlueScreenSimulator
         public void ReRe()
         {
             Program.bluescreens.Clear();
+            Program.bluescreens.Add(new BlueScreen("Windows 1.x/2.x"));
             Program.bluescreens.Add(new BlueScreen("Windows 3.1x"));
             Program.bluescreens.Add(new BlueScreen("Windows 9x/Me"));
             Program.bluescreens.Add(new BlueScreen("Windows CE"));

@@ -90,6 +90,7 @@ namespace SimulatorDatabase
         private bool blinkblink;
         private bool winxplus;
         private bool extracodes;
+        private bool playsound;
 
         private int blink_speed;
         private int timer;
@@ -145,6 +146,7 @@ namespace SimulatorDatabase
             this.friendlyname = "";
             this.culprit = "";
             this.extracodes = false;
+            this.playsound = true;
             SetOSSpecificDefaults();
         }
 
@@ -169,6 +171,7 @@ namespace SimulatorDatabase
                 case "winxplus": return this.winxplus;
                 case "qr": return this.qr;
                 case "extracodes": return this.extracodes;
+                case "playsound": return this.playsound;
                 default: return false;
             }
         }
@@ -188,6 +191,7 @@ namespace SimulatorDatabase
                 case "stack_trace": this.stack_trace = value; break;
                 case "qr": this.qr = value; break;
                 case "autoclose": this.autoclose = value; break;
+                case "playsound": this.playsound= value; break;
                 case "extracodes": this.extracodes = value; break;
             }
         }
@@ -308,6 +312,9 @@ namespace SimulatorDatabase
                     this.screen_mode = "No unresponsive programs";
                     Setup9x(new old_bluescreen());
                     break;
+                case "Windows 1.x/2.x":
+                    SetupWin(new win());
+                    break;
             }
         }
 
@@ -346,6 +353,14 @@ namespace SimulatorDatabase
             bs.screenmode = this.GetString("screen_mode");
             bs.errorCode = GenHex(2, GetString("ecode1")) + " : " + GenHex(4, GetString("ecode2")) + " : " + GenHex(6, GetString("ecode3"));
             bs.waterMarkText.Visible = this.GetBool("watermark");
+            bs.me = this;
+            bs.Show();
+        }
+        private void SetupWin(win bs)
+        {
+            bs.BackColor = this.GetTheme(true);
+            bs.ForeColor = this.GetTheme(false);
+            bs.window = this.GetBool("windowed");
             bs.me = this;
             bs.Show();
         }
@@ -628,6 +643,16 @@ namespace SimulatorDatabase
         {
             switch (this.os)
             {
+                case "Windows 1.x/2.x":
+                    SetTheme(RGB(0, 0, 170), RGB(255, 255, 255));
+                    SetTheme(RGB(170, 170, 170), RGB(0, 0, 170), true);
+                    SetInt("blink_speed", 100);
+                    SetString("friendlyname", "Windows 1.x/2.x (Text mode, Standard)");
+                    SetBool("playsound", true);
+                    SetString("qr_file", "local:1");
+                    this.font_support = false;
+                    this.blinkblink = false;
+                    break;
                 case "Windows 3.1x":
                     SetTheme(RGB(0, 0, 170), RGB(255, 255, 255));
                     SetTheme(RGB(170, 170, 170), RGB(0, 0, 170), true);
@@ -635,7 +660,7 @@ namespace SimulatorDatabase
                     PushTitle("Main", "Windows");
                     PushText("No unresponsive programs", "Altough you can use CTRL+ALT+DEL to quit an application that has\r\nstopped responding to the system, there is no application in this\r\nstate.\r\nTo quit an application, use the application's quit or exit command,\r\nor choose the Close command from the Control menu.\r\n* Press any key to return to Windows\r\n* Press CTRL + ALT + DEL again to restart your computer.You will\r\nlose any unsaved information in all applications.");
                     PushText("Prompt", "Press any key to continue");
-                    SetString("friendlyname", "Windows 3.1 (EGA text mode, Standard)");
+                    SetString("friendlyname", "Windows 3.1 (Text mode, Standard)");
                     this.font_support = false;
                     this.blinkblink = true;
                     break;
@@ -652,7 +677,7 @@ namespace SimulatorDatabase
                     PushText("System is busy", "The system is busy waiting for the Close Program dialog box to be\r\ndisplayed. You can wait and see if it appears, or you can restart\r\nyour computer.\r\n\r\n* Press any key to return to Windows and wait.\r\n* Press CTRL + ALT + DEL again to restart your computer. You will\r\n  lose any unsaved information in programs that are running.");
                     PushText("System is unresponsive", "The system is either busy or has become unstable. You can wait and\r\nsee if it becomes available again, or you can restart your computer.\r\n\r\n* Press any key to return to Windows and wait.\r\n* Press CTRL + ALT + DEL again to restart your computer. You will\r\n  lose any unsaved information in programs that are running.");
                     PushText("Prompt", "Press any key to continue");
-                    SetString("friendlyname", "Windows 9x/Millennium Edition (EGA text mode, Standard)");
+                    SetString("friendlyname", "Windows 9x/Millennium Edition (Text mode, Standard)");
                     this.font_support = false;
                     this.blinkblink = true;
                     break;
@@ -680,7 +705,7 @@ namespace SimulatorDatabase
                     PushText("Memory address dump table", "{0} {1} {2} {3} {4} {5}           - {6}");
                     PushText("Troubleshooting text", "Restart and set the recovery options in the system control panel\r\nor the /CRASHDEBUG system start option.");
                     SetInt("blink_speed", 100);
-                    SetString("friendlyname", "Windows NT 4.0/3.x (VGA text mode, Standard)");
+                    SetString("friendlyname", "Windows NT 4.0/3.x (Text mode, Standard)");
                     this.font_support = false;
                     this.blinkblink = true;
                     break;
