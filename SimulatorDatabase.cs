@@ -107,9 +107,12 @@ namespace SimulatorDatabase
 
         readonly IDictionary<string, string> titles;
         readonly IDictionary<string, string> texts;
+        readonly IDictionary<string, string[]> codefiles;
+        private readonly Random r;
 
         public BlueScreen(string base_os)
         {
+            this.r = new Random();
             this.background = Color.FromArgb(0, 0, 0);
             this.foreground = Color.FromArgb(255, 255, 255);
             this.os = base_os;
@@ -136,6 +139,7 @@ namespace SimulatorDatabase
             this.blink_speed = 100;
             this.titles = new Dictionary<string, string>();
             this.texts = new Dictionary<string, string>();
+            this.codefiles = new Dictionary<string, string[]>();
             this.timer = 30;
             this.font = new Font("Lucida Console", 10.4f, FontStyle.Regular);
             this.qr_size = 110;
@@ -243,33 +247,71 @@ namespace SimulatorDatabase
             return output;
         }
 
+        public void PushFile(string name, string[] codes)
+        {
+            if (!codefiles.ContainsKey(name)) {
+                codefiles.Add(name, codes); 
+            }
+        }
+
+        public IDictionary<string, string[]> GetFiles()
+        {
+            return codefiles;
+        }
+
+        public void RenameFile(string key, string renamed)
+        {
+            string[] codes;
+            foreach (KeyValuePair<string, string[]> kvp in this.GetFiles())
+            {
+                if (key == kvp.Key)
+                {
+                    codes = kvp.Value;
+                    this.codefiles.Remove(key);
+                    this.PushFile(renamed, codes);
+                    break;
+                }
+            }
+        }
+
+        public void SetFile(string key, int subcode, string code)
+        {
+
+            foreach (KeyValuePair<string, string[]> kvp in this.GetFiles())
+            {
+                if (key == kvp.Key)
+                {
+                    string[] codearray = kvp.Value;
+                    codearray[subcode] = code;
+                    this.codefiles[key] = codearray;
+                    break;
+                }
+            }
+        }
 
 
         //GenFile generates a new file for use in Windows NT blue screen
         public string GenFile(bool lower = true)
         {
-            System.Threading.Thread.Sleep(20);
-            string filename = "hal.dll";
-            Random r = new Random();
-            int temp = r.Next(15);
-            if (temp == 0) { filename = "ntoskrnl.exe"; }
-            if (temp == 1) { filename = "hal.dll"; }
-            if (temp == 2) { filename = "atapi.sys"; }
-            if (temp == 3) { filename = "tcpip.sys"; }
-            if (temp == 4) { filename = "Cdrom.sys"; }
-            if (temp == 5) { filename = "vga.sys"; }
-            if (temp == 6) { filename = "Floppy.sys"; }
-            if (temp == 7) { filename = "mup.sys"; }
-            if (temp == 8) { filename = "Beep.sys"; }
-            if (temp == 9) { filename = "Ntfs.sys"; }
-            if (temp == 10) { filename = "netbios.sys"; }
-            if (temp == 11) { filename = "CLASS32.SYS"; }
-            if (temp == 12) { filename = "srv.sys"; }
-            if (temp == 13) { filename = "SCSIPORT.SYS"; }
-            if (temp == 14) { filename = "Disk.SYS"; }
-            if (temp == 15) { filename = "Null.SYS"; }
-            if (lower == false) { return filename.ToUpper(); }
-            return filename;
+            string[] files = UltimateBlueScreenSimulator.Properties.Resources.CULPRIT_FILES.Split('\n');
+            List<string> filenames = new List<string>();
+            foreach (string line in files)
+            {
+                filenames.Add(line.Split(':')[0]);
+            }
+            int temp = this.r.Next(filenames.Count - 1);
+            while (this.GetFiles().ContainsKey(filenames[temp]))
+            {
+                temp = this.r.Next(filenames.Count - 1);
+            }
+            if (!lower)
+            {
+                return filenames[temp];
+            }
+            else
+            {
+                return filenames[temp].ToLower();
+            }
         }
 
         public void Show()
@@ -696,6 +738,18 @@ namespace SimulatorDatabase
                     PushText("Troubleshooting text", "Restart and set the recovery options in the system control panel\r\nor the /CRASHDEBUG system start option.");
                     SetInt("blink_speed", 100);
                     SetString("friendlyname", "Windows NT 4.0/3.x (Text mode, Standard)");
+                    for (int n = 0; n < 40; n++)
+                    {
+                        string[] inspir = { "RRRRRRRR", "RRRRRRRR" };
+                        PushFile(GenFile(true), inspir);
+                        System.Threading.Thread.Sleep(10);
+                    }
+                    for (int n = 0; n < 4; n++)
+                    {
+                        string[] inspir = { "RRRRRRRR", "RRRRRRRR", "RRRRRRRR", "RRRRRRRR", "RRRRRRRR", "RRRRRRRR" };
+                        PushFile(GenFile(true), inspir);
+                        System.Threading.Thread.Sleep(10);
+                    }
                     this.font_support = false;
                     this.blinkblink = true;
                     break;

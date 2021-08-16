@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
@@ -54,47 +55,56 @@ namespace UltimateBlueScreenSimulator
             {
                 cpuID.Image = WriteWord(txt["CPUID formatting"].Replace("{0}", processortype).Trim(), me.GetTheme(true), me.GetTheme(false));
                 tableHeader.Image = WriteWord(txt["Stack trace heading"].Trim() + GenSpace(40 - txt["Stack trace heading"].Trim().Length) + txt["Stack trace heading"].Trim(), me.GetTheme(true), me.GetTheme(false));
+                int i = 0;
                 foreach (PictureBox ctrl in flowLayoutPanel2.Controls)
                 {
-                    string rnd1 = me.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
-                    string rnd2 = me.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
-                    ctrl.Image = WriteWord(txt["Stack trace table formatting"].Trim().Replace("{0}", rnd1).Replace("{1}", rnd2).Replace("{2}", me.GenFile()), me.GetTheme(true), me.GetTheme(false));
+                    if (me.GetFiles().Values.ElementAt(i).Length == 6)
+                    {
+                        break;
+                    }
+                    string file = me.GetFiles().Keys.ElementAt(i);
+                    string rnd1 = me.GenHex(8, me.GetFiles().Values.ElementAt(i)[0]).ToLower();
+                    string rnd2 = me.GenHex(8, me.GetFiles().Values.ElementAt(i)[1]).ToLower();
+                    ctrl.Image = WriteWord(txt["Stack trace table formatting"].Trim().Replace("{0}", rnd1).Replace("{1}", rnd2).Replace("{2}", file), me.GetTheme(true), me.GetTheme(false));
+                    i++;
                 }
                 foreach (PictureBox ctrl in flowLayoutPanel3.Controls)
                 {
-                    string rnd1 = me.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
-                    string rnd2 = me.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
-                    ctrl.Image = WriteWord(txt["Stack trace table formatting"].Trim().Replace("{0}", rnd1).Replace("{1}", rnd2).Replace("{2}", me.GenFile()), me.GetTheme(true), me.GetTheme(false));
+                    if (me.GetFiles().Values.ElementAt(i).Length == 6)
+                    {
+                        break;
+                    }
+                    string file = me.GetFiles().Keys.ElementAt(i);
+                    string rnd1 = me.GenHex(8, me.GetFiles().Values.ElementAt(i)[0]).ToLower();
+                    string rnd2 = me.GenHex(8, me.GetFiles().Values.ElementAt(i)[1]).ToLower();
+                    ctrl.Image = WriteWord(txt["Stack trace table formatting"].Trim().Replace("{0}", rnd1).Replace("{1}", rnd2).Replace("{2}", file), me.GetTheme(true), me.GetTheme(false));
+                    i++;
                 }
                 table2.Image = WriteWord(txt["Memory address dump heading"], me.GetTheme(true), me.GetTheme(false));
-                string r1 = me.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
-                string r2 = me.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
-                string r3 = me.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
-                string r4 = me.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
-                string r5 = me.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
-                string r6 = me.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
-                tablerow_1.Image = WriteWord(txt["Memory address dump table"].Replace("{0}", r1).Replace("{1}", r2).Replace("{2}", r3).Replace("{3}", r4).Replace("{4}", r5).Replace("{5}", r6).Replace("{6}", me.GenFile()), me.GetTheme(true), me.GetTheme(false));
-                r1 = me.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
-                r2 = me.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
-                r3 = me.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
-                r4 = me.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
-                r5 = me.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
-                r6 = me.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
-                tablerow_2.Image = WriteWord(txt["Memory address dump table"].Replace("{0}", r1).Replace("{1}", r2).Replace("{2}", r3).Replace("{3}", r4).Replace("{4}", r5).Replace("{5}", r6).Replace("{6}", me.GenFile()), me.GetTheme(true), me.GetTheme(false));
-                r1 = me.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
-                r2 = me.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
-                r3 = me.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
-                r4 = me.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
-                r5 = me.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
-                r6 = me.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
-                tablerow_3.Image = WriteWord(txt["Memory address dump table"].Replace("{0}", r1).Replace("{1}", r2).Replace("{2}", r3).Replace("{3}", r4).Replace("{4}", r5).Replace("{5}", r6).Replace("{6}", me.GenFile()), me.GetTheme(true), me.GetTheme(false));
-                r1 = me.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
-                r2 = me.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
-                r3 = me.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
-                r4 = me.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
-                r5 = me.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
-                r6 = me.GenHex(8, "RRRRRRRRRRRRRRRR").ToLower();
-                tablerow_4.Image = WriteWord(txt["Memory address dump table"].Replace("{0}", r1).Replace("{1}", r2).Replace("{2}", r3).Replace("{3}", r4).Replace("{4}", r5).Replace("{5}", r6).Replace("{6}", me.GenFile()), me.GetTheme(true), me.GetTheme(false));
+                i = 0;
+                foreach (KeyValuePair<string, string[]> kvp in me.GetFiles())
+                {
+                    if (kvp.Value.Length == 6)
+                    {
+                        break;
+                    }
+                    i++;
+                }
+                for (int n = 1; n < 5; n++)
+                {
+                    if (i < me.GetFiles().Count)
+                    {
+                        string file = me.GetFiles().Keys.ElementAt(i);
+                        string r1 = me.GenHex(8, me.GetFiles().Values.ElementAt(i)[0]).ToLower();
+                        string r2 = me.GenHex(8, me.GetFiles().Values.ElementAt(i)[1]).ToLower();
+                        string r3 = me.GenHex(8, me.GetFiles().Values.ElementAt(i)[2]).ToLower();
+                        string r4 = me.GenHex(8, me.GetFiles().Values.ElementAt(i)[3]).ToLower();
+                        string r5 = me.GenHex(8, me.GetFiles().Values.ElementAt(i)[4]).ToLower();
+                        string r6 = me.GenHex(8, me.GetFiles().Values.ElementAt(i)[5]).ToLower();
+                        ((PictureBox)flowLayoutPanel1.Controls["tablerow_" + n.ToString()]).Image = WriteWord(txt["Memory address dump table"].Replace("{0}", r1).Replace("{1}", r2).Replace("{2}", r3).Replace("{3}", r4).Replace("{4}", r5).Replace("{5}", r6).Replace("{6}", file), me.GetTheme(true), me.GetTheme(false));
+                        i++;
+                    }
+                }
                 Program.f1.label10.Text = "";
 
 
@@ -303,19 +313,19 @@ namespace UltimateBlueScreenSimulator
             {
                 foreach (Control c in this.tableLayoutPanel1.Controls)
                 {
-                    if (c is PictureBox box) { box.Image.Dispose(); c.Dispose(); }
+                    if (c is PictureBox box && box.Image != null) { box.Image.Dispose(); c.Dispose(); }
                 }
                 foreach (Control c in this.flowLayoutPanel1.Controls)
                 {
-                    if (c is PictureBox box) { box.Image.Dispose(); c.Dispose(); }
+                    if (c is PictureBox box && box.Image != null) { box.Image.Dispose(); c.Dispose(); }
                 }
                 foreach (Control c in this.flowLayoutPanel2.Controls)
                 {
-                    if (c is PictureBox box) { box.Image.Dispose(); c.Dispose(); }
+                    if (c is PictureBox box && box.Image != null) { box.Image.Dispose(); c.Dispose(); }
                 }
                 foreach (Control c in this.flowLayoutPanel3.Controls)
                 {
-                    if (c is PictureBox box) { box.Image.Dispose(); c.Dispose(); }
+                    if (c is PictureBox box && box.Image != null) { box.Image.Dispose(); c.Dispose(); }
                 }
             }
             if (fullscreen)
