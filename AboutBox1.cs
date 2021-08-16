@@ -20,7 +20,7 @@ namespace UltimateBlueScreenSimulator
             this.labelProductName.Text = "Blue screen simulator plus";
             this.labelVersion.Text = String.Format("Version {0}", AssemblyVersion);
             this.labelCopyright.Text = AssemblyCopyright;
-            this.labelCompanyName.Text = "Codename Bluesmith\nLanguage: C# (.NET framework, Windows Forms)\nCreated by: Markus Maal (TheMarkusGuy/MarkusTegelane)\n\nThis program can only be provided free of charge (if you had to pay for this, please ask for a refund). This program is provided as is, without a warranty.\n2019 Markuse tarkvara (Markus' software)";
+            this.labelCompanyName.Text = "Codename *Waffles*\nLanguage: C# (.NET framework, Windows Forms)\nCreated by: Markus Maal (TheMarkusGuy/MarkusTegelane)\n\nThis program can only be provided free of charge (if you had to pay for this, please ask for a refund). This program is provided as is, without a warranty.\n2019 Markuse tarkvara (Markus' software)";
         }
 
         #region Assembly Attribute Accessors
