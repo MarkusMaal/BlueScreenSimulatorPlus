@@ -30,14 +30,13 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StringEdit));
-            System.Windows.Forms.ListViewGroup listViewGroup3 = new System.Windows.Forms.ListViewGroup("Property name", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup4 = new System.Windows.Forms.ListViewGroup("Value", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("Property name", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("Value", System.Windows.Forms.HorizontalAlignment.Left);
             this.AllIcons = new System.Windows.Forms.ImageList(this.components);
             this.labelProps = new System.Windows.Forms.Label();
             this.MessageView = new System.Windows.Forms.ListView();
             this.specificProps = new System.Windows.Forms.Label();
             this.buttonOK = new System.Windows.Forms.Button();
-            this.buttonReset = new System.Windows.Forms.Button();
             this.stringProps = new System.Windows.Forms.Panel();
             this.stringEditor = new System.Windows.Forms.TextBox();
             this.colorProps = new System.Windows.Forms.Panel();
@@ -106,13 +105,13 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MessageView.FullRowSelect = true;
             this.MessageView.GridLines = true;
-            listViewGroup3.Header = "Property name";
-            listViewGroup3.Name = "listViewGroup1";
-            listViewGroup4.Header = "Value";
-            listViewGroup4.Name = "listViewGroup2";
+            listViewGroup1.Header = "Property name";
+            listViewGroup1.Name = "listViewGroup1";
+            listViewGroup2.Header = "Value";
+            listViewGroup2.Name = "listViewGroup2";
             this.MessageView.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup3,
-            listViewGroup4});
+            listViewGroup1,
+            listViewGroup2});
             this.MessageView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.MessageView.HideSelection = false;
             this.MessageView.LargeImageList = this.AllIcons;
@@ -145,17 +144,6 @@
             this.buttonOK.Text = "&OK";
             this.buttonOK.UseVisualStyleBackColor = true;
             this.buttonOK.Click += new System.EventHandler(this.Button1_Click);
-            // 
-            // buttonReset
-            // 
-            this.buttonReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonReset.Location = new System.Drawing.Point(527, 379);
-            this.buttonReset.Name = "buttonReset";
-            this.buttonReset.Size = new System.Drawing.Size(75, 23);
-            this.buttonReset.TabIndex = 28;
-            this.buttonReset.Text = "&Reset";
-            this.buttonReset.UseVisualStyleBackColor = true;
-            this.buttonReset.Click += new System.EventHandler(this.Button12_Click);
             // 
             // stringProps
             // 
@@ -423,7 +411,6 @@
             this.ClientSize = new System.Drawing.Size(695, 414);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.specificPropsFlowLayoutPanel);
-            this.Controls.Add(this.buttonReset);
             this.Controls.Add(this.buttonOK);
             this.Controls.Add(this.specificProps);
             this.Controls.Add(this.labelProps);
@@ -461,7 +448,6 @@
         private System.Windows.Forms.ImageList AllIcons;
         private System.Windows.Forms.Label specificProps;
         private System.Windows.Forms.Button buttonOK;
-        private System.Windows.Forms.Button buttonReset;
         private System.Windows.Forms.Panel stringProps;
         private System.Windows.Forms.TextBox stringEditor;
         private System.Windows.Forms.Panel colorProps;

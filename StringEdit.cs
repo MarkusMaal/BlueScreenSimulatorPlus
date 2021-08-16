@@ -18,27 +18,6 @@ namespace UltimateBlueScreenSimulator
             InitializeComponent();
         }
 
-        public void ReRe()
-        {
-            Program.bluescreens.Clear();
-            Program.bluescreens.Add(new BlueScreen("Windows 1.x/2.x"));
-            Program.bluescreens.Add(new BlueScreen("Windows 3.1x"));
-            Program.bluescreens.Add(new BlueScreen("Windows 9x/Me"));
-            Program.bluescreens.Add(new BlueScreen("Windows CE"));
-            Program.bluescreens.Add(new BlueScreen("Windows NT 3.x/4.0"));
-            Program.bluescreens.Add(new BlueScreen("Windows 2000"));
-            Program.bluescreens.Add(new BlueScreen("Windows XP"));
-            Program.bluescreens.Add(new BlueScreen("Windows Vista/7"));
-            Program.bluescreens.Add(new BlueScreen("Windows 8/8.1"));
-            Program.bluescreens.Add(new BlueScreen("Windows 10"));
-            Program.bluescreens.Add(new BlueScreen("Windows 11"));
-        }
-
-        private void Button12_Click(object sender, EventArgs e)
-        {
-            ReRe();
-        }
-
         private void StringEdit_Load(object sender, EventArgs e)
         {
             HideAllProps();

@@ -17,6 +17,7 @@ namespace SimulatorDatabase
     {
         public void Draw(WindowScreen ws)
         {
+            // for upscaling and multidisplay support
             if (ws.primary || Program.multidisplaymode == "mirror")
             {
                 var frm = Form.ActiveForm;
@@ -65,36 +66,7 @@ namespace SimulatorDatabase
 
         private string[] ecodes;
 
-        private string code;
-        private string emoticon;
-        private string screen_mode;
-        private string qr_file;
-        private string friendlyname;
-        private string culprit;
-
         private readonly string os;
-
-        private bool windowed;
-        private bool autoclose;
-        private bool show_description;
-        private bool show_file;
-        private bool watermark;
-        private bool server;
-        private bool qr;
-        private bool insider;
-        private bool acpi;
-        private bool amd;
-        private bool stack_trace;
-        private bool blink;
-        private bool font_support;
-        private bool blinkblink;
-        private bool winxplus;
-        private bool extracodes;
-        private bool playsound;
-
-        private int blink_speed;
-        private int timer;
-        private int qr_size;
 
         private Font font;
 
@@ -108,9 +80,14 @@ namespace SimulatorDatabase
         readonly IDictionary<string, string> titles;
         readonly IDictionary<string, string> texts;
         readonly IDictionary<string, string[]> codefiles;
+
+        readonly IDictionary<string, bool> bools;
+        readonly IDictionary<string, int> ints;
+        readonly IDictionary<string, string> strings;
+
         private readonly Random r;
 
-        public BlueScreen(string base_os)
+        public BlueScreen(string base_os, bool autosetup = true)
         {
             this.r = new Random();
             this.background = Color.FromArgb(0, 0, 0);
@@ -118,87 +95,204 @@ namespace SimulatorDatabase
             this.os = base_os;
             string[] codes_temp = { "RRRRRRRRRRRRRRRR", "RRRRRRRRRRRRRRRR", "RRRRRRRRRRRRRRRR", "RRRRRRRRRRRRRRRR" };
             this.ecodes = codes_temp;
-            this.code = "IRQL_NOT_LESS_OR_EQUAL (0x0000000A)";
-            this.emoticon = ":(";
-            this.screen_mode = "System error";
-            this.windowed = false;
-            this.autoclose = true;
-            this.watermark = true;
-            this.show_description = true;
-            this.show_file = false;
-            this.server = false;
-            this.qr = true;
-            this.insider = false;
-            this.acpi = false;
-            this.amd = false;
-            this.stack_trace = true;
-            this.blink = false;
             this.highlight_bg = Color.FromArgb(255, 255, 255);
             this.highlight_fg = Color.FromArgb(0, 0, 0);
             this.icon = "2D flag";
-            this.blink_speed = 100;
             this.titles = new Dictionary<string, string>();
             this.texts = new Dictionary<string, string>();
             this.codefiles = new Dictionary<string, string[]>();
-            this.timer = 30;
+            this.bools = new Dictionary<string, bool>();
+            this.ints = new Dictionary<string, int>();
+            this.strings = new Dictionary<string, string>();
             this.font = new Font("Lucida Console", 10.4f, FontStyle.Regular);
-            this.qr_size = 110;
-            this.qr_file = "local:0";
-            this.blinkblink = false;
-            this.font_support = true;
-            this.winxplus = false;
-            this.friendlyname = "";
-            this.culprit = "";
-            this.extracodes = false;
-            this.playsound = true;
-            SetOSSpecificDefaults();
+            if (autosetup) { SetOSSpecificDefaults(); }
         }
+
+        public IDictionary<string, bool> AllBools() { return this.bools; }
+        public IDictionary<string, int> AllInts() { return this.ints; }
+        public IDictionary<string, string> AllStrings() { return this.strings; }
 
         // blue screen properties
         public bool GetBool(string name)
         {
-            switch (name)
+            if (this.bools.ContainsKey(name))
             {
-                case "windowed": return this.windowed;
-                case "watermark": return this.watermark;
-                case "autoclose": return this.autoclose;
-                case "show_description": return this.show_description;
-                case "show_file": return this.show_file;
-                case "server": return this.server;
-                case "insider": return this.insider;
-                case "acpi": return this.acpi;
-                case "amd": return this.amd;
-                case "blink": return this.blink;
-                case "stack_trace": return this.stack_trace;
-                case "font_support": return this.font_support;
-                case "blinkblink": return this.blinkblink;
-                case "winxplus": return this.winxplus;
-                case "qr": return this.qr;
-                case "extracodes": return this.extracodes;
-                case "playsound": return this.playsound;
-                default: return false;
+                return this.bools[name];
+            } else
+            {
+                return false;
             }
         }
         public void SetBool(string name, bool value)
         {
-            switch (name)
+            if (this.bools.ContainsKey(name))
             {
-                case "windowed": this.windowed = value; break;
-                case "watermark": this.watermark = value; break;
-                case "show_description": this.show_description = value; break;
-                case "show_file": this.show_file = value; break;
-                case "server": this.server = value; break;
-                case "insider": this.insider = value; break;
-                case "acpi": this.acpi = value; break;
-                case "amd": this.amd = value; break;
-                case "blink": this.blink = value; break;
-                case "stack_trace": this.stack_trace = value; break;
-                case "qr": this.qr = value; break;
-                case "autoclose": this.autoclose = value; break;
-                case "playsound": this.playsound= value; break;
-                case "extracodes": this.extracodes = value; break;
+                this.bools[name] = value;
+            }
+            else
+            {
+                this.bools.Add(name, value);
             }
         }
+
+        public string GetString(string name)
+        {
+
+            switch (name)
+            {
+                case "os": return this.os;
+                case "icon": return this.icon;
+                case "ecode1": return this.ecodes[0];
+                case "ecode2": return this.ecodes[1];
+                case "ecode3": return this.ecodes[2];
+                case "ecode4": return this.ecodes[3];
+                default:
+                    if (this.strings.ContainsKey(name))
+                    {
+                        return strings[name];
+                    }
+                    else if (this.titles.ContainsKey(name))
+                    {
+                        return titles[name];
+                    }
+                    else if (this.texts.ContainsKey(name))
+                    {
+                        return texts[name];
+                    }
+                    else
+                    {
+                        return "";
+                    }
+            }
+        }
+
+        public void ClearAllTitleTexts()
+        {
+            this.titles.Clear();
+            this.texts.Clear();
+        }
+        public void SetString(string name, string value)
+        {
+            switch (name)
+            {
+                case "icon": this.icon = value; break;
+                default:
+                    if (this.strings.ContainsKey(name))
+                    {
+                        this.strings[name] = value;
+                    }
+                    else
+                    {
+                        this.strings.Add(name, value);
+                    }
+                    break;
+            }
+        }
+
+        public void SetTitle(string name, string value)
+        {
+            this.titles[name] = value;
+        }
+
+        public void PushTitle(string name, string value)
+        {
+            this.titles.Add(name, value);
+        }
+
+        public void SetText(string name, string value)
+        {
+            this.texts[name] = value;
+        }
+
+        public void PushText(string name, string value)
+        {
+            this.texts.Add(name, value);
+        }
+
+        // theming
+        public Color GetTheme(bool bg, bool highlight = false)
+        {
+            if (highlight)
+            {
+                if (bg) { return this.highlight_bg; } else { return this.highlight_fg; }
+            }
+            if (bg) { return this.background; } else { return this.foreground; }
+        }
+
+        public void SetTheme(Color bg, Color fg, bool highlight = false)
+        {
+            if (highlight)
+            {
+                this.highlight_bg = bg;
+                this.highlight_fg = fg;
+                return;
+            }
+            this.background = bg;
+            this.foreground = fg;
+        }
+
+        // error codes
+        public string[] GetCodes()
+        {
+            return this.ecodes;
+        }
+        public void SetCodes(string code1, string code2, string code3, string code4)
+        {
+            string[] code_temp = { code1, code2, code3, code4 };
+            this.ecodes = code_temp;
+        }
+
+        private Color RGB(int r, int g, int b)
+        {
+            return Color.FromArgb(r, g, b);
+        }
+
+        // integers
+        public int GetInt(string name)
+        {
+            if (this.ints.ContainsKey(name))
+            {
+                return this.ints[name];
+            }
+            else
+            {
+                return 1;
+            }
+        }
+        public void SetInt(string name, int value)
+        {
+            if (this.ints.ContainsKey(name))
+            {
+                this.ints[name] = value;
+            }
+            else
+            {
+                this.ints.Add(name, value);
+            }
+        }
+
+        public void SetFont(string font_family, float emsize, FontStyle style)
+        {
+            this.font = new Font(font_family, emsize, style);
+        }
+
+        public Font GetFont()
+        {
+            return this.font;
+        }
+
+        public IDictionary<string, string> GetTitles()
+        {
+            return this.titles;
+        }
+
+        public IDictionary<string, string> GetTexts()
+        {
+            return this.texts;
+        }
+
+
+
         //GenAddress uses the last function to generate multiple error address codes
         public string GenAddress(int count, int places, bool lower)
         {
@@ -257,6 +351,11 @@ namespace SimulatorDatabase
         public IDictionary<string, string[]> GetFiles()
         {
             return codefiles;
+        }
+
+        public void ClearFiles()
+        {
+            codefiles.Clear();
         }
 
         public void RenameFile(string key, string renamed)
@@ -351,7 +450,6 @@ namespace SimulatorDatabase
                     Setup9x(new old_bluescreen());
                     break;
                 case "Windows 3.1x":
-                    this.screen_mode = "No unresponsive programs";
                     Setup9x(new old_bluescreen());
                     break;
                 case "Windows 1.x/2.x":
@@ -365,9 +463,9 @@ namespace SimulatorDatabase
             bs.BackColor = this.GetTheme(true);
             bs.ForeColor = this.GetTheme(false);
             bs.Font = this.GetFont();
-            bs.fullscreen = !this.windowed;
-            bs.waterMarkText.Visible = this.watermark;
-            bs.technicalCode.Text = "*** STOP: 0x" + this.code.Split(' ')[1].ToString().Replace(")", "").Replace("(", "").ToString().Substring(4, 6) + " (" + this.code.Split(' ')[0].ToString().Replace("_", " ").ToLower() + ")";
+            bs.fullscreen = !GetBool("windowed");
+            bs.waterMarkText.Visible = GetBool("watermark");
+            bs.technicalCode.Text = "*** STOP: 0x" + GetString("code").Split(' ')[1].ToString().Replace(")", "").Replace("(", "").ToString().Substring(4, 6) + " (" + GetString("code").Split(' ')[0].ToString().Replace("_", " ").ToLower() + ")";
             bs.me = this;
             bs.ShowDialog();
         }
@@ -377,12 +475,12 @@ namespace SimulatorDatabase
             bs.BackColor = this.GetTheme(true);
             bs.ForeColor = this.GetTheme(false);
             if (GetBool("show_file")) { bs.whatfail = GetString("culprit"); }
-            bs.error = this.code.Substring(0, this.code.ToString().Length - 1);
-            bs.fullscreen = !this.windowed;
-            if (this.amd) { bs.processortype = "AuthenticAMD"; }
-            bs.stacktrace = this.stack_trace;
-            bs.blink = this.blink;
-            bs.waterMarkText.Visible = this.watermark;
+            bs.error = GetString("code").Substring(0, GetString("code").ToString().Length - 1);
+            bs.fullscreen = !GetBool("windowed");
+            if (GetBool("amd")) { bs.processortype = "AuthenticAMD"; }
+            bs.stacktrace = GetBool("stack_trace");
+            bs.blink = GetBool("blink");
+            bs.waterMarkText.Visible = GetBool("watermark");
             bs.me = this;
             bs.ShowDialog();
         }
@@ -465,10 +563,10 @@ namespace SimulatorDatabase
             bs.label1.Text = this.GetString("emoticon");
             bs.BackColor = this.GetTheme(true);
             bs.ForeColor = this.GetTheme(false);
-            bs.qr = this.qr;
-            bs.close = this.autoclose;
-            bs.green = this.insider;
-            bs.server = this.server;
+            bs.qr = GetBool("qr");
+            bs.close = GetBool("autoclose");
+            bs.green = GetBool("insider");
+            bs.server = GetBool("server");
             bs.w11 = w11;
             bs.memCodes.Text = "0x" + GenHex(16, GetString("ecode1")) + "\r\n0x" +
                                 GenHex(16, GetString("ecode2")) + "\r\n0x" +
@@ -518,161 +616,11 @@ namespace SimulatorDatabase
             bs.ShowDialog();
         }
 
-        public string GetString(string name)
-        {
-            switch (name)
-            {
-                case "os": return this.os;
-                case "emoticon": return this.emoticon;
-                case "qr_file": return this.qr_file;
-                case "screen_mode": return this.screen_mode;
-                case "friendlyname": return this.friendlyname;
-                case "code": return this.code;
-                case "icon": return this.icon;
-                case "culprit": return this.culprit;
-                case "ecode1": return this.ecodes[0];
-                case "ecode2": return this.ecodes[1];
-                case "ecode3": return this.ecodes[2];
-                case "ecode4": return this.ecodes[3];
-                default:
-                    if (this.titles.ContainsKey(name))
-                    {
-                        return titles[name];
-                    }
-                    else if (this.texts.ContainsKey(name))
-                    {
-                        return texts[name];
-                    }
-                    else
-                    {
-                        return "";
-                    }
-            }
-        }
-
-        public void ClearAllTitleTexts()
-        {
-            this.titles.Clear();
-            this.texts.Clear();
-        }
-        public void SetString(string name, string value)
-        {
-            switch (name)
-            {
-                case "emoticon": this.emoticon = value; break;
-                case "qr_file": this.qr_file = value; break;
-                case "screen_mode": this.screen_mode = value; break;
-                case "culprit": this.culprit = value; break;
-                case "friendlyname": this.friendlyname = value; break;
-                case "icon": this.icon = value; break;
-                case "code": this.code = value; break;
-            }
-        }
-
-        public void SetTitle(string name, string value)
-        {
-            this.titles[name] = value;
-        }
-
-        public void PushTitle(string name, string value)
-        {
-            this.titles.Add(name, value);
-        }
-
-        public void SetText(string name, string value)
-        {
-            this.texts[name] = value;
-        }
-
-        public void PushText(string name, string value)
-        {
-            this.texts.Add(name, value);
-        }
-
-        // theming
-        public Color GetTheme(bool bg, bool highlight = false)
-        {
-            if (highlight)
-            {
-                if (bg) { return this.highlight_bg; } else { return this.highlight_fg; }
-            }
-            if (bg) { return this.background; } else { return this.foreground; }
-        }
-
-        public void SetTheme(Color bg, Color fg, bool highlight = false)
-        {
-            if (highlight)
-            {
-                this.highlight_bg = bg;
-                this.highlight_fg = fg;
-                return;
-            }
-            this.background = bg;
-            this.foreground = fg;
-        }
-
-        // error codes
-        public string[] GetCodes()
-        {
-            return this.ecodes;
-        }
-        public void SetCodes(string code1, string code2, string code3, string code4)
-        {
-            string[] code_temp = { code1, code2, code3, code4 };
-            this.ecodes = code_temp;
-        }
-
-        private Color RGB(int r, int g, int b)
-        {
-            return Color.FromArgb(r, g, b);
-        }
-
-        // integers
-        public int GetInt(string name)
-        {
-            switch (name)
-            {
-                case "blink_speed": return this.blink_speed;
-                case "timer": return this.timer;
-                case "qr_size": return this.qr_size;
-                default: return 0;
-            }
-        }
-        public void SetInt(string name, int value)
-        {
-            switch (name)
-            {
-                case "blink_speed": this.blink_speed = value; break;
-                case "timer": this.timer = value; break;
-                case "qr_size": this.qr_size = value; break;
-            }
-        }
-
-        public void SetFont(string font_family, float emsize, FontStyle style)
-        {
-            this.font = new Font(font_family, emsize, style);
-        }
-
-        public Font GetFont()
-        {
-            return this.font;
-        }
-
-        public IDictionary<string, string> GetTitles()
-        {
-            return this.titles;
-        }
-
-        public IDictionary<string, string> GetTexts()
-        {
-            return this.texts;
-        }
-
-
 
         // default hacks for specific OS
         public void SetOSSpecificDefaults()
         {
+            SetBool("watermark", true);
             switch (this.os)
             {
                 case "Windows 1.x/2.x":
@@ -682,8 +630,9 @@ namespace SimulatorDatabase
                     SetString("friendlyname", "Windows 1.x/2.x (Text mode, Standard)");
                     SetBool("playsound", true);
                     SetString("qr_file", "local:1");
-                    this.font_support = false;
-                    this.blinkblink = false;
+                    SetBool("font_support", false);
+                    SetBool("blinkblink", false);
+                    SetString("qr_file", "local:1");
                     break;
                 case "Windows 3.1x":
                     SetTheme(RGB(0, 0, 170), RGB(255, 255, 255));
@@ -693,8 +642,9 @@ namespace SimulatorDatabase
                     PushText("No unresponsive programs", "Altough you can use CTRL+ALT+DEL to quit an application that has\r\nstopped responding to the system, there is no application in this\r\nstate.\r\nTo quit an application, use the application's quit or exit command,\r\nor choose the Close command from the Control menu.\r\n* Press any key to return to Windows\r\n* Press CTRL + ALT + DEL again to restart your computer.You will\r\nlose any unsaved information in all applications.");
                     PushText("Prompt", "Press any key to continue");
                     SetString("friendlyname", "Windows 3.1 (Text mode, Standard)");
-                    this.font_support = false;
-                    this.blinkblink = true;
+                    SetBool("font_support", false);
+                    SetBool("blinkblink", true);
+                    SetString("screen_mode", "No unresponsive programs");
                     break;
                 case "Windows 9x/Me":
                     SetTheme(RGB(0, 0, 170), RGB(255, 255, 255));
@@ -710,8 +660,9 @@ namespace SimulatorDatabase
                     PushText("System is unresponsive", "The system is either busy or has become unstable. You can wait and\r\nsee if it becomes available again, or you can restart your computer.\r\n\r\n* Press any key to return to Windows and wait.\r\n* Press CTRL + ALT + DEL again to restart your computer. You will\r\n  lose any unsaved information in programs that are running.");
                     PushText("Prompt", "Press any key to continue");
                     SetString("friendlyname", "Windows 9x/Millennium Edition (Text mode, Standard)");
-                    this.font_support = false;
-                    this.blinkblink = true;
+                    SetBool("font_support", false);
+                    SetBool("blinkblink", true);
+                    SetString("screen_mode", "System error");
                     break;
                 case "Windows CE":
                     this.icon = "3D flag";
@@ -724,6 +675,8 @@ namespace SimulatorDatabase
                     SetInt("timer", 30);
                     SetFont("Lucida Console", 10.4f, FontStyle.Regular);
                     SetString("friendlyname", "Windows CE 3.0 and later (750x400, Standard)");
+
+                    SetString("code", "IRQL_NOT_LESS_OR_EQUAL (0x0000000A)");
                     break;
                 case "Windows NT 3.x/4.0":
                     this.icon = "2D flag";
@@ -742,16 +695,17 @@ namespace SimulatorDatabase
                     {
                         string[] inspir = { "RRRRRRRR", "RRRRRRRR" };
                         PushFile(GenFile(true), inspir);
-                        System.Threading.Thread.Sleep(10);
                     }
                     for (int n = 0; n < 4; n++)
                     {
                         string[] inspir = { "RRRRRRRR", "RRRRRRRR", "RRRRRRRR", "RRRRRRRR", "RRRRRRRR", "RRRRRRRR" };
                         PushFile(GenFile(true), inspir);
-                        System.Threading.Thread.Sleep(10);
                     }
-                    this.font_support = false;
-                    this.blinkblink = true;
+                    SetBool("font_support", false);
+                    SetBool("blinkblink", true);
+
+                    SetString("code", "IRQL_NOT_LESS_OR_EQUAL (0x0000000A)");
+                    SetBool("stack_trace", true);
                     break;
                 case "Windows 2000":
                     PushText("Error code formatting", "*** STOP: {0} ({1})");
@@ -761,6 +715,10 @@ namespace SimulatorDatabase
                     SetFont("Lucida Console", 8.0f, FontStyle.Bold);
                     SetString("friendlyname", "Windows 2000 Professional/Server Family (640x480, Standard)");
                     SetTheme(RGB(0, 0, 128), RGB(255, 255, 255));
+
+                    SetString("code", "IRQL_NOT_LESS_OR_EQUAL (0x0000000A)");
+                    SetBool("show_description", true);
+                    SetBool("font_support", true);
                     break;
                 case "Windows XP":
                     this.icon = "3D flag";
@@ -774,6 +732,11 @@ namespace SimulatorDatabase
                     SetFont("Lucida Console", 9.7f, FontStyle.Regular);
                     SetString("friendlyname", "Windows XP (640x480, Standard)");
                     SetTheme(RGB(0, 0, 128), RGB(255, 255, 255));
+
+                    SetBool("autoclose", true);
+                    SetString("code", "IRQL_NOT_LESS_OR_EQUAL (0x0000000A)");
+                    SetBool("show_description", true);
+                    SetBool("font_support", true);
                     break;
                 case "Windows Vista/7":
                     this.icon = "3D flag";
@@ -787,18 +750,30 @@ namespace SimulatorDatabase
                     SetFont("Consolas", 9.4f, FontStyle.Regular);
                     SetString("friendlyname", "Windows Vista/7 (640x480, ClearType)");
                     SetTheme(RGB(0, 0, 128), RGB(255, 255, 255));
+
+                    SetBool("autoclose", true);
+                    SetString("code", "IRQL_NOT_LESS_OR_EQUAL (0x0000000A)");
+                    SetBool("show_description", true);
+                    SetBool("font_support", true);
                     break;
                 case "Windows 8/8.1":
                     this.icon = "3D window";
+                    SetString("emoticon", ":(");
                     PushText("Information text with dump", "Your PC ran into a problem and needs to restart. We're just\r\ncollecting some error info, and then you can restart. ({0}%\r\ncomplete)");
                     PushText("Information text without dump", "Your PC ran into a problem that it couldn't\r\nhandle and now it needs to restart.");
                     PushText("Error code", "You can search for the error online: {0}");
                     SetFont("Segoe UI", 19.4f, FontStyle.Regular);
                     SetTheme(RGB(16, 113, 170), RGB(255, 255, 255));
                     SetString("friendlyname", "Windows 8/8.1 (Native, ClearType)");
+
+                    SetBool("autoclose", true);
+                    SetString("code", "IRQL_NOT_LESS_OR_EQUAL (0x0000000A)");
+                    SetBool("show_description", true);
+                    SetBool("font_support", true);
                     break;
                 case "Windows 10":
                     this.icon = "3D window";
+                    SetString("emoticon", ":(");
                     PushText("Information text with dump", "Your PC ran into a problem and needs to restart. We're just\r\ncollecting some error info, and then we'll restart for you.");
                     PushText("Information text without dump", "Your PC ran into a problem and needs to restart. We're just\r\ncollecting some error info, and then you can restart.");
                     PushText("Additional information", "For more information about this issue and possible fixes, visit http://windows.com/stopcode");
@@ -810,10 +785,18 @@ namespace SimulatorDatabase
                     SetFont("Segoe UI", 19.4f, FontStyle.Regular);
                     SetTheme(RGB(16, 113, 170), RGB(255, 255, 255));
                     SetString("friendlyname", "Windows 10 (Native, ClearType)");
-                    this.winxplus = true;
+
+                    SetBool("winxplus", true);
+                    SetBool("autoclose", true);
+                    SetBool("qr", true);
+                    SetString("qr_file", "local:0");
+                    SetString("code", "IRQL_NOT_LESS_OR_EQUAL (0x0000000A)");
+                    SetBool("show_description", true);
+                    SetBool("font_support", true);
                     break;
                 case "Windows 11":
                     this.icon = "2D window";
+                    SetString("emoticon", ":(");
                     PushText("Information text with dump", "Your PC ran into a problem and needs to restart. We're just\r\ncollecting some error info, and then we'll restart for you.");
                     PushText("Information text without dump", "Your PC ran into a problem and needs to restart. We're just\r\ncollecting some error info, and then you can restart.");
                     PushText("Additional information", "For more information about this issue and possible fixes, visit http://windows.com/stopcode");
@@ -825,7 +808,14 @@ namespace SimulatorDatabase
                     SetFont("Segoe UI", 19.4f, FontStyle.Regular);
                     SetTheme(RGB(0, 0, 0), RGB(255, 255, 255));
                     SetString("friendlyname", "Windows 11 (Native, ClearType)");
-                    this.winxplus = true;
+
+                    SetBool("winxplus", true);
+                    SetBool("autoclose", true);
+                    SetBool("qr", true);
+                    SetString("qr_file", "local:0");
+                    SetString("code", "IRQL_NOT_LESS_OR_EQUAL (0x0000000A)");
+                    SetBool("show_description", true);
+                    SetBool("font_support", true);
                     break;
             }
         }

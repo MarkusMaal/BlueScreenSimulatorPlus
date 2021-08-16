@@ -149,7 +149,7 @@ namespace UltimateBlueScreenSimulator
             //Initialize forms
             f1 = new Form1();
             bluescreens = new List<BlueScreen>();
-            new StringEdit().ReRe();
+            ReRe();
 
             //Load application configuration if it exists
             if (File.Exists("settings.cfg"))
@@ -356,7 +356,7 @@ namespace UltimateBlueScreenSimulator
         /// </summary>
         /// <param name="args">key array</param>
         /// <returns>boolean</returns>
-        //undocumented code
+        // Verifile
         internal static bool Verikey(string[] args)
         {
 
@@ -530,6 +530,22 @@ namespace UltimateBlueScreenSimulator
                     return "";
                 }
             }
+        }
+        
+        static public void ReRe()
+        {
+            Program.bluescreens.Clear();
+            Program.bluescreens.Add(new BlueScreen("Windows 1.x/2.x"));
+            Program.bluescreens.Add(new BlueScreen("Windows 3.1x"));
+            Program.bluescreens.Add(new BlueScreen("Windows 9x/Me"));
+            Program.bluescreens.Add(new BlueScreen("Windows CE"));
+            Program.bluescreens.Add(new BlueScreen("Windows NT 3.x/4.0"));
+            Program.bluescreens.Add(new BlueScreen("Windows 2000"));
+            Program.bluescreens.Add(new BlueScreen("Windows XP"));
+            Program.bluescreens.Add(new BlueScreen("Windows Vista/7"));
+            Program.bluescreens.Add(new BlueScreen("Windows 8/8.1"));
+            Program.bluescreens.Add(new BlueScreen("Windows 10"));
+            Program.bluescreens.Add(new BlueScreen("Windows 11"));
         }
     }
 }

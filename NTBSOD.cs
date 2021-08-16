@@ -58,6 +58,10 @@ namespace UltimateBlueScreenSimulator
                 int i = 0;
                 foreach (PictureBox ctrl in flowLayoutPanel2.Controls)
                 {
+                    if (me.GetFiles().Count < i + 1)
+                    {
+                        break;
+                    }
                     if (me.GetFiles().Values.ElementAt(i).Length == 6)
                     {
                         break;
@@ -70,6 +74,10 @@ namespace UltimateBlueScreenSimulator
                 }
                 foreach (PictureBox ctrl in flowLayoutPanel3.Controls)
                 {
+                    if (me.GetFiles().Count < i + 1)
+                    {
+                        break;
+                    }
                     if (me.GetFiles().Values.ElementAt(i).Length == 6)
                     {
                         break;
@@ -84,6 +92,10 @@ namespace UltimateBlueScreenSimulator
                 i = 0;
                 foreach (KeyValuePair<string, string[]> kvp in me.GetFiles())
                 {
+                    if (me.GetFiles().Count < i + 1)
+                    {
+                        break;
+                    }
                     if (kvp.Value.Length == 6)
                     {
                         break;
@@ -92,6 +104,10 @@ namespace UltimateBlueScreenSimulator
                 }
                 for (int n = 1; n < 5; n++)
                 {
+                    if (me.GetFiles().Count < i + 1)
+                    {
+                        break;
+                    }
                     if (i < me.GetFiles().Count)
                     {
                         string file = me.GetFiles().Keys.ElementAt(i);
@@ -120,8 +136,11 @@ namespace UltimateBlueScreenSimulator
                 tablerow_3.Visible = false;
                 tablerow_4.Visible = false;
             }
-            pictureBox1.Image = WriteWord(txt["Troubleshooting text"].Split('\n')[0].Trim(), me.GetTheme(true), me.GetTheme(false));
-            pictureBox2.Image = WriteWord(txt["Troubleshooting text"].Split('\n')[1].Trim(), me.GetTheme(true), me.GetTheme(false));
+            try
+            {
+                pictureBox1.Image = WriteWord(txt["Troubleshooting text"].Split('\n')[0].Trim(), me.GetTheme(true), me.GetTheme(false));
+                pictureBox2.Image = WriteWord(txt["Troubleshooting text"].Split('\n')[1].Trim(), me.GetTheme(true), me.GetTheme(false));
+            } catch { }
 
             if (!fullscreen) { this.FormBorderStyle = FormBorderStyle.FixedSingle; }
             if (fullscreen)
