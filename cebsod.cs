@@ -49,116 +49,126 @@ namespace UltimateBlueScreenSimulator
 
         private void Cebsod_Load(object sender, EventArgs e)
         {
-            if (Program.f1.enableeggs)
+            try
             {
-                if (Program.bluescreens[2].GetTheme(true) == Program.bluescreens[2].GetTheme(false))
+                if (Program.f1.enableeggs)
                 {
-                    this.BackColor = Color.FromArgb(255, 0, 0);
-                    rainBowScreen.Enabled = true;
-                }
-            }
-            try { progress = me.GetInt("timer"); }catch { progress = 30; }
-            timeOut.Text = me.GetTexts()["Restart message"].Replace("{0}", progress.ToString());
-            string[] codez = technicalCode.Text.Replace("*** STOP: ", "").Replace(" (", "-").Replace(")", "").Split('-');
-            technicalCode.Text = me.GetTexts()["Technical information formatting"].Replace("{0}", codez[0].ToString()).Replace("{1}", codez[1]).ToString();
-            label2.Text = me.GetTexts()["Technical information"];
-            label1.Text = me.GetTexts()["A problem has occurred..."] + "\n" + me.GetTexts()["CTRL+ALT+DEL message"];
-            foreach (Control c in this.Controls)
-            {
-                if (c is Label)
-                {
-                    if (c.Name != "waterMarkText")
-                    { 
-                        c.Font = me.GetFont();
-                    }
-                }
-            }
-            Program.loadfinished = true;
-            if (!fullscreen) { this.FormBorderStyle = FormBorderStyle.FixedSingle; }
-            if (fullscreen)
-            {
-                this.TopMost = false;
-                if (Screen.AllScreens.Length > 1)
-                {
-                    foreach (Screen s in Screen.AllScreens)
+                    if (Program.bluescreens[2].GetTheme(true) == Program.bluescreens[2].GetTheme(false))
                     {
-                        WindowScreen ws = new WindowScreen();
-                        if (!s.Primary)
-                        {
-                            if (Program.multidisplaymode != "none")
-                            {
-                                ws.StartPosition = FormStartPosition.Manual;
-                                ws.Location = s.WorkingArea.Location;
-                                ws.Size = new Size(s.WorkingArea.Width, s.WorkingArea.Height);
-                                ws.primary = false;
-
-                                if (Program.multidisplaymode == "freeze")
-                                {
-                                    Bitmap screenshot = new Bitmap(s.Bounds.Width,
-                                        s.Bounds.Height,
-                                        System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-                                    Graphics gfxScreenshot = Graphics.FromImage(screenshot);
-                                    gfxScreenshot.CopyFromScreen(
-                                        s.Bounds.X,
-                                        s.Bounds.Y,
-                                        0,
-                                        0,
-                                        s.Bounds.Size,
-                                        CopyPixelOperation.SourceCopy
-                                        );
-                                    freezescreens.Add(screenshot);
-
-                                }
-                            }
-                        }
-                        wss.Add(ws);
+                        this.BackColor = Color.FromArgb(255, 0, 0);
+                        rainBowScreen.Enabled = true;
                     }
                 }
-                else
+                try { progress = me.GetInt("timer"); } catch { progress = 30; }
+                timeOut.Text = me.GetTexts()["Restart message"].Replace("{0}", progress.ToString());
+                string[] codez = technicalCode.Text.Replace("*** STOP: ", "").Replace(" (", "-").Replace(")", "").Split('-');
+                technicalCode.Text = me.GetTexts()["Technical information formatting"].Replace("{0}", codez[0].ToString()).Replace("{1}", codez[1]).ToString();
+                label2.Text = me.GetTexts()["Technical information"];
+                label1.Text = me.GetTexts()["A problem has occurred..."] + "\n" + me.GetTexts()["CTRL+ALT+DEL message"];
+                foreach (Control c in this.Controls)
                 {
-                    wss.Add(new WindowScreen());
-                }
-                for (int i = 0; i < wss.Count; i++)
-                {
-                    WindowScreen ws = wss[i];
-                    ws.Show();
-                    if (!ws.primary)
+                    if (c is Label)
                     {
-                        if (Program.multidisplaymode == "freeze")
+                        if (c.Name != "waterMarkText")
                         {
-                            ws.pictureBox1.Image = freezescreens[i - 1];
+                            c.Font = me.GetFont();
                         }
                     }
-                }
-                try
-                {
-                    foreach (WindowScreen ws in wss) { 
-                        var frm = Form.ActiveForm;
-                        if (ws.primary || Program.multidisplaymode == "mirror") { 
-                            using (var bmp = new Bitmap(frm.Width, frm.Height))
-                            {
-                                frm.DrawToBitmap(bmp, new Rectangle(0, 0, bmp.Width, bmp.Height));
-
-                                Bitmap newImage = new Bitmap(ws.Width, ws.Height);
-                                using (Graphics g = Graphics.FromImage(newImage))
-                                {
-                                    if (Program.f1.GMode == "HighQualityBicubic") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic; }
-                                    if (Program.f1.GMode == "HighQualityBilinear") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBilinear; }
-                                    if (Program.f1.GMode == "Bilinear") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.Bilinear; }
-                                    if (Program.f1.GMode == "Bicubic") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.Bicubic; }
-                                    if (Program.f1.GMode == "NearestNeighbour") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor; }
-                                    g.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
-                                    g.DrawImage(bmp, new Rectangle(0, 0, ws.Width, ws.Height));
-                                }
-                                ws.pictureBox1.Image = newImage;
-                            }
-                        }
-                    }
-                }
-                catch
-                {
                 }
                 Program.loadfinished = true;
+                if (!fullscreen) { this.FormBorderStyle = FormBorderStyle.FixedSingle; }
+                if (fullscreen)
+                {
+                    this.TopMost = false;
+                    if (Screen.AllScreens.Length > 1)
+                    {
+                        foreach (Screen s in Screen.AllScreens)
+                        {
+                            WindowScreen ws = new WindowScreen();
+                            if (!s.Primary)
+                            {
+                                if (Program.multidisplaymode != "none")
+                                {
+                                    ws.StartPosition = FormStartPosition.Manual;
+                                    ws.Location = s.WorkingArea.Location;
+                                    ws.Size = new Size(s.WorkingArea.Width, s.WorkingArea.Height);
+                                    ws.primary = false;
+
+                                    if (Program.multidisplaymode == "freeze")
+                                    {
+                                        Bitmap screenshot = new Bitmap(s.Bounds.Width,
+                                            s.Bounds.Height,
+                                            System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+                                        Graphics gfxScreenshot = Graphics.FromImage(screenshot);
+                                        gfxScreenshot.CopyFromScreen(
+                                            s.Bounds.X,
+                                            s.Bounds.Y,
+                                            0,
+                                            0,
+                                            s.Bounds.Size,
+                                            CopyPixelOperation.SourceCopy
+                                            );
+                                        freezescreens.Add(screenshot);
+
+                                    }
+                                }
+                            }
+                            wss.Add(ws);
+                        }
+                    }
+                    else
+                    {
+                        wss.Add(new WindowScreen());
+                    }
+                    for (int i = 0; i < wss.Count; i++)
+                    {
+                        WindowScreen ws = wss[i];
+                        ws.Show();
+                        if (!ws.primary)
+                        {
+                            if (Program.multidisplaymode == "freeze")
+                            {
+                                ws.pictureBox1.Image = freezescreens[i - 1];
+                            }
+                        }
+                    }
+                    try
+                    {
+                        foreach (WindowScreen ws in wss)
+                        {
+                            var frm = Form.ActiveForm;
+                            if (ws.primary || Program.multidisplaymode == "mirror")
+                            {
+                                using (var bmp = new Bitmap(frm.Width, frm.Height))
+                                {
+                                    frm.DrawToBitmap(bmp, new Rectangle(0, 0, bmp.Width, bmp.Height));
+
+                                    Bitmap newImage = new Bitmap(ws.Width, ws.Height);
+                                    using (Graphics g = Graphics.FromImage(newImage))
+                                    {
+                                        if (Program.f1.GMode == "HighQualityBicubic") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic; }
+                                        if (Program.f1.GMode == "HighQualityBilinear") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBilinear; }
+                                        if (Program.f1.GMode == "Bilinear") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.Bilinear; }
+                                        if (Program.f1.GMode == "Bicubic") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.Bicubic; }
+                                        if (Program.f1.GMode == "NearestNeighbour") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor; }
+                                        g.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
+                                        g.DrawImage(bmp, new Rectangle(0, 0, ws.Width, ws.Height));
+                                    }
+                                    ws.pictureBox1.Image = newImage;
+                                }
+                            }
+                        }
+                    }
+                    catch
+                    {
+                    }
+                    Program.loadfinished = true;
+                }
+            } catch (Exception ex)
+            {
+                Program.loadfinished = true;
+                MessageBox.Show("A blue screen couldn't be displayed due to an error\n\n" + ex.Message + "\n\n" + ex.StackTrace, "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
             }
         }
 

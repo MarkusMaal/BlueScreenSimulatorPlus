@@ -79,6 +79,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.timer3 = new System.Windows.Forms.Timer(this.components);
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.flowLayoutPanel1.SuspendLayout();
             this.WXOptions.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
@@ -119,6 +120,7 @@
             this.windowVersion.Size = new System.Drawing.Size(397, 21);
             this.windowVersion.TabIndex = 1;
             this.windowVersion.SelectedIndexChanged += new System.EventHandler(this.ComboBox1_SelectedIndexChanged);
+            this.windowVersion.DropDownClosed += new System.EventHandler(this.windowVersion_DropDownClosed);
             this.windowVersion.Click += new System.EventHandler(this.WindowVersion_Click);
             this.windowVersion.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Button7_KeyDown);
             // 
@@ -689,11 +691,24 @@
             this.timer3.Interval = 6000;
             this.timer3.Tick += new System.EventHandler(this.Timer3_Tick);
             // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(14, 23);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(44, 13);
+            this.linkLabel1.TabIndex = 16;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "Change";
+            this.linkLabel1.Visible = false;
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(499, 358);
+            this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.button8);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.button6);
@@ -792,6 +807,7 @@
         public System.Windows.Forms.CheckBox waterBox;
         internal System.Windows.Forms.CheckBox winMode;
         private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.LinkLabel linkLabel1;
     }
 }
 

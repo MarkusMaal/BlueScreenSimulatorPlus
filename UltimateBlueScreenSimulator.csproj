@@ -108,6 +108,12 @@
     <Compile Include="ClickIt2.Designer.cs">
       <DependentUpon>ClickIt2.cs</DependentUpon>
     </Compile>
+    <Compile Include="DictEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DictEdit.Designer.cs">
+      <DependentUpon>DictEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -237,6 +243,9 @@
     <EmbeddedResource Include="ClickIt2.resx">
       <DependentUpon>ClickIt2.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DictEdit.resx">
+      <DependentUpon>DictEdit.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -325,6 +334,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="bsodgen_npJ_icon.ico" />
+    <None Include="Resources\round_corners.png" />
     <None Include="Resources\rasters3.bmp" />
     <None Include="Resources\doscii.png" />
     <None Include="Resources\win2_splash.bmp" />

@@ -66,7 +66,7 @@ namespace SimulatorDatabase
 
         private string[] ecodes;
 
-        private readonly string os;
+        private string os;
 
         private Font font;
 
@@ -176,6 +176,7 @@ namespace SimulatorDatabase
             switch (name)
             {
                 case "icon": this.icon = value; break;
+                case "os": this.os = value; break;
                 default:
                     if (this.strings.ContainsKey(name))
                     {
@@ -460,100 +461,148 @@ namespace SimulatorDatabase
 
         private void SetupCE(Cebsod bs)
         {
-            bs.BackColor = this.GetTheme(true);
-            bs.ForeColor = this.GetTheme(false);
-            bs.Font = this.GetFont();
-            bs.fullscreen = !GetBool("windowed");
-            bs.waterMarkText.Visible = GetBool("watermark");
-            bs.technicalCode.Text = "*** STOP: 0x" + GetString("code").Split(' ')[1].ToString().Replace(")", "").Replace("(", "").ToString().Substring(4, 6) + " (" + GetString("code").Split(' ')[0].ToString().Replace("_", " ").ToLower() + ")";
+            try
+            {
+                bs.BackColor = this.GetTheme(true);
+                bs.ForeColor = this.GetTheme(false);
+                bs.Font = this.GetFont();
+                bs.fullscreen = !GetBool("windowed");
+                bs.waterMarkText.Visible = GetBool("watermark");
+                bs.technicalCode.Text = "*** STOP: 0x" + GetString("code").Split(' ')[1].ToString().Replace(")", "").Replace("(", "").ToString().Substring(4, 6) + " (" + GetString("code").Split(' ')[0].ToString().Replace("_", " ").ToLower() + ")";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "A non-critical error has occoured", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
             bs.me = this;
             bs.ShowDialog();
         }
 
         private void SetupNT(NTBSOD bs)
         {
-            bs.BackColor = this.GetTheme(true);
-            bs.ForeColor = this.GetTheme(false);
-            if (GetBool("show_file")) { bs.whatfail = GetString("culprit"); }
-            bs.error = GetString("code").Substring(0, GetString("code").ToString().Length - 1);
-            bs.fullscreen = !GetBool("windowed");
-            if (GetBool("amd")) { bs.processortype = "AuthenticAMD"; }
-            bs.stacktrace = GetBool("stack_trace");
-            bs.blink = GetBool("blink");
-            bs.waterMarkText.Visible = GetBool("watermark");
+            try
+            {
+                bs.BackColor = this.GetTheme(true);
+                bs.ForeColor = this.GetTheme(false);
+                if (GetBool("show_file")) { bs.whatfail = GetString("culprit"); }
+                bs.error = GetString("code").Substring(0, GetString("code").ToString().Length - 1);
+                bs.fullscreen = !GetBool("windowed");
+                if (GetBool("amd")) { bs.processortype = "AuthenticAMD"; }
+                bs.stacktrace = GetBool("stack_trace");
+                bs.blink = GetBool("blink");
+                bs.waterMarkText.Visible = GetBool("watermark");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "A non-critical error has occoured", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
             bs.me = this;
             bs.ShowDialog();
         }
 
         private void Setup9x(old_bluescreen bs)
         {
-            bs.BackColor = this.GetTheme(true);
-            bs.ForeColor = this.GetTheme(false);
-            bs.window = this.GetBool("windowed");
-            bs.screenmode = this.GetString("screen_mode");
-            bs.errorCode = GenHex(2, GetString("ecode1")) + " : " + GenHex(4, GetString("ecode2")) + " : " + GenHex(6, GetString("ecode3"));
-            bs.waterMarkText.Visible = this.GetBool("watermark");
+            try
+            {
+                bs.BackColor = this.GetTheme(true);
+                bs.ForeColor = this.GetTheme(false);
+                bs.window = this.GetBool("windowed");
+                bs.screenmode = this.GetString("screen_mode");
+                bs.errorCode = GenHex(2, GetString("ecode1")) + " : " + GenHex(4, GetString("ecode2")) + " : " + GenHex(6, GetString("ecode3"));
+                bs.waterMarkText.Visible = this.GetBool("watermark");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "A non-critical error has occoured", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
             bs.me = this;
             bs.ShowDialog();
         }
         private void SetupWin(win bs)
         {
-            bs.BackColor = this.GetTheme(true);
-            bs.ForeColor = this.GetTheme(false);
-            bs.window = this.GetBool("windowed");
+            try
+            {
+                bs.BackColor = this.GetTheme(true);
+                bs.ForeColor = this.GetTheme(false);
+                bs.window = this.GetBool("windowed");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "A non-critical error has occoured", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
             bs.me = this;
             bs.ShowDialog();
         }
 
         private void Setup2k(W2kbs bs)
         {
-            bs.BackColor = this.GetTheme(true);
-            bs.ForeColor = this.GetTheme(false);
-            bs.fullscreen = !this.GetBool("windowed");
-            bs.waterMarkText.Visible = this.GetBool("watermark");
-            if (this.GetBool("show_file")) { bs.whatfail = this.GetString("culprit"); }
-            bs.errorCode.Text = "*** STOP: " + this.GetString("code").Split(' ')[1].ToString().Replace(")", "").Replace("(", "").ToString() + " (" +
-                                GenHex(8, this.GetString("ecode1")) + ", " +
-                                GenHex(8, this.GetString("ecode2")) + ", " +
-                                GenHex(8, this.GetString("ecode3")) + ", " +
-                                GenHex(8, this.GetString("ecode4")) +  ")";
-            bs.errorCode.Text = bs.errorCode.Text + "\n" + this.GetString("code").Split(' ')[0].ToString();
+            try
+            {
+                bs.BackColor = this.GetTheme(true);
+                bs.ForeColor = this.GetTheme(false);
+                bs.fullscreen = !this.GetBool("windowed");
+                bs.waterMarkText.Visible = this.GetBool("watermark");
+                if (this.GetBool("show_file")) { bs.whatfail = this.GetString("culprit"); }
+                bs.errorCode.Text = "*** STOP: " + this.GetString("code").Split(' ')[1].ToString().Replace(")", "").Replace("(", "").ToString() + " (" +
+                                    GenHex(8, this.GetString("ecode1")) + ", " +
+                                    GenHex(8, this.GetString("ecode2")) + ", " +
+                                    GenHex(8, this.GetString("ecode3")) + ", " +
+                                    GenHex(8, this.GetString("ecode4")) +  ")";
+                bs.errorCode.Text = bs.errorCode.Text + "\n" + this.GetString("code").Split(' ')[0].ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "A non-critical error has occoured", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
             bs.me = this;
             bs.ShowDialog();
         }
 
         private void SetupExperience(Xvsbs bs)
         {
-            bs.BackColor = this.GetTheme(true);
-            bs.ForeColor = this.GetTheme(false);
-            bs.fullscreen = !this.GetBool("windowed");
-            bs.errorCode.Visible = this.GetBool("show_details");
-            bs.waterMarkText.Visible = this.GetBool("watermark");
-            if (this.GetBool("show_file")) { bs.whatfail = this.GetString("culprit"); }
-            bs.errorCode.Text = this.GetString("code").Split(' ')[0].ToString();
-            bs.technicalCode.Text = "*** STOP: " + this.GetString("code").Split(' ')[1].ToString().Replace(")", "").Replace("(", "").ToString() + " (" + GenAddress(4, 8, false) + ")";
-            bs.supportInfo.Text = this.GetTexts()["Technical support"] + "\n\n\nTechnical information:";
+            try
+            {
+                bs.BackColor = this.GetTheme(true);
+                bs.ForeColor = this.GetTheme(false);
+                bs.fullscreen = !this.GetBool("windowed");
+                bs.errorCode.Visible = this.GetBool("show_details");
+                bs.waterMarkText.Visible = this.GetBool("watermark");
+                if (this.GetBool("show_file")) { bs.whatfail = this.GetString("culprit"); }
+                bs.errorCode.Text = this.GetString("code").Split(' ')[0].ToString();
+                bs.technicalCode.Text = "*** STOP: " + this.GetString("code").Split(' ')[1].ToString().Replace(")", "").Replace("(", "").ToString() + " (" + GenAddress(4, 8, false) + ")";
+                bs.supportInfo.Text = this.GetTexts()["Technical support"] + "\n\n\nTechnical information:";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "A non-critical error has occoured", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
             bs.me = this;
             bs.ShowDialog();
         }
 
         private void SetupVista(Vistabs bs)
         {
-            bs.BackColor = this.GetTheme(true);
-            bs.ForeColor = this.GetTheme(false);
-            bs.fullscreen = !this.GetBool("windowed");
-            bs.errorCode.Visible = this.GetBool("show_details");
-            bs.waterMarkText.Visible = this.GetBool("watermark");
-            if (this.GetBool("show_file")) { bs.whatfail = this.GetString("culprit"); }
-            if (this.GetBool("acpi"))
+            try
+            { 
+                bs.BackColor = this.GetTheme(true);
+                bs.ForeColor = this.GetTheme(false);
+                bs.fullscreen = !this.GetBool("windowed");
+                bs.errorCode.Visible = this.GetBool("show_details");
+                bs.waterMarkText.Visible = this.GetBool("watermark");
+                if (this.GetBool("show_file")) { bs.whatfail = this.GetString("culprit"); }
+                if (this.GetBool("acpi"))
+                {
+                    //bs.errorCode.Visible = false;
+                    bs.label1.Visible = false;
+                    bs.label5.Visible = false;
+                }
+                bs.errorCode.Text = this.GetString("code").Split(' ')[0].ToString();
+                bs.technicalCode.Text = "*** STOP: " + this.GetString("code").Split(' ')[1].ToString().Replace(")", "").Replace("(", "").ToString() + " (" + GenAddress(4, 16, false) + ")";
+                bs.supportInfo.Text = this.GetTexts()["Technical support"] + "\n\n\nTechnical information:";
+            } catch (Exception ex)
             {
-                //bs.errorCode.Visible = false;
-                bs.label1.Visible = false;
-                bs.label5.Visible = false;
+                MessageBox.Show(ex.Message, "A non-critical error has occoured", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            bs.errorCode.Text = this.GetString("code").Split(' ')[0].ToString();
-            bs.technicalCode.Text = "*** STOP: " + this.GetString("code").Split(' ')[1].ToString().Replace(")", "").Replace("(", "").ToString() + " (" + GenAddress(4, 16, false) + ")";
-            bs.supportInfo.Text = this.GetTexts()["Technical support"] + "\n\n\nTechnical information:";
             bs.me = this;
             bs.ShowDialog();
         }
@@ -575,13 +624,19 @@ namespace SimulatorDatabase
             bs.waterMarkText.Visible = GetBool("watermark");
             if (GetBool("show_file")) { bs.whatfail = GetString("culprit"); }
             if (GetBool("windowed")) { bs.WindowState = FormWindowState.Normal; bs.FormBorderStyle = FormBorderStyle.Sizable; }
-            if (GetBool("show_description"))
+            try
             {
-                bs.code = GetString("code").Split(' ')[0].ToString();
-            }
-            else
+                if (GetBool("show_description"))
+                {
+                    bs.code = GetString("code").Split(' ')[0].ToString();
+                }
+                else
+                {
+                    bs.code = GetString("code").Split(' ')[1].ToString().Replace(")", "").Replace("(", "").ToString();
+                }
+            } catch (Exception ex)
             {
-                bs.code = GetString("code").Split(' ')[1].ToString().Replace(")", "").Replace("(", "").ToString();
+                MessageBox.Show(ex.Message, "A non-critical error has occoured", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             bs.me = this;
             bs.ShowDialog();
@@ -604,13 +659,20 @@ namespace SimulatorDatabase
             bs.waterMarkText.Visible = GetBool("watermark");
             if (GetBool("show_file")) { bs.whatfail = GetString("culprit"); }
             if (GetBool("windowed")) { bs.WindowState = FormWindowState.Normal; bs.FormBorderStyle = FormBorderStyle.Sizable; }
-            if (GetBool("show_description"))
+            try
             {
-                bs.code = GetString("code").Split(' ')[0].ToString();
+                if (GetBool("show_description"))
+                {
+                    bs.code = GetString("code").Split(' ')[0].ToString();
+                }
+                else
+                {
+                    bs.code = GetString("code").Split(' ')[1].ToString().Replace(")", "").Replace("(", "").ToString();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                bs.code = GetString("code").Split(' ')[1].ToString().Replace(")", "").Replace("(", "").ToString();
+                MessageBox.Show(ex.Message, "A non-critical error has occoured", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             bs.me = this;
             bs.ShowDialog();

@@ -118,107 +118,115 @@ namespace UltimateBlueScreenSimulator
         }
         private void Win_Load(object sender, EventArgs e)
         {
-            watermark.Visible = me.GetBool("watermark");
-            if (me.GetString("qr_file") != "local:null")
+            try
             {
-                switch (me.GetString("qr_file"))
+                watermark.Visible = me.GetBool("watermark");
+                if (me.GetString("qr_file") != "local:null")
                 {
-                    case "local:0":
-                        splash = Properties.Resources.win1_splash;
-                        break;
-                    case "local:1":
-                        splash = Properties.Resources.win2_splash;
-                        break;
-                    default:
-                        splash = (Bitmap)Image.FromFile(me.GetString("qr_file"));
-                        break;
-                }
-                splash = Changecolor(me.GetTheme(false), Changecolor(me.GetTheme(true), CreateNonIndexedImage(splash), Color.FromArgb(19, 19, 19)), Color.FromArgb(255, 255, 255));
-                int z = 1;
-                for (int y = 0; y < 224; y += 12)
-                {
-                    Bitmap bmp = new Bitmap(pictureBox1.Width, 12);
-
-                    Rectangle cropRect = new Rectangle(0, y, pictureBox1.Width, 12);
-                    using (Graphics g = Graphics.FromImage(bmp))
+                    switch (me.GetString("qr_file"))
                     {
-                        g.DrawImage(splash, new Rectangle(0, 0, bmp.Width, bmp.Height), cropRect, GraphicsUnit.Pixel);
+                        case "local:0":
+                            splash = Properties.Resources.win1_splash;
+                            break;
+                        case "local:1":
+                            splash = Properties.Resources.win2_splash;
+                            break;
+                        default:
+                            splash = (Bitmap)Image.FromFile(me.GetString("qr_file"));
+                            break;
                     }
-                    ((PictureBox)tableLayoutPanel1.Controls["pictureBox" + z.ToString()]).Image = bmp;
-                    z++;
-                }
-            }
-            if (me.GetBool("playsound"))
-            {
-                sp.Stream = Properties.Resources.beep;
-                sp.PlayLooping();
-            }
-            Program.loadfinished = true;
-            if (!me.GetBool("windowed"))
-            {
-                this.FormBorderStyle = FormBorderStyle.None;
-                this.TopMost = false;
-
-                if (Screen.AllScreens.Length > 1)
-                {
-                    foreach (Screen s in Screen.AllScreens)
+                    splash = Changecolor(me.GetTheme(false), Changecolor(me.GetTheme(true), CreateNonIndexedImage(splash), Color.FromArgb(19, 19, 19)), Color.FromArgb(255, 255, 255));
+                    int z = 1;
+                    for (int y = 0; y < 224; y += 12)
                     {
-                        WindowScreen ws = new WindowScreen();
-                        if (!s.Primary)
+                        Bitmap bmp = new Bitmap(pictureBox1.Width, 12);
+
+                        Rectangle cropRect = new Rectangle(0, y, pictureBox1.Width, 12);
+                        using (Graphics g = Graphics.FromImage(bmp))
                         {
-                            if (Program.multidisplaymode != "none")
+                            g.DrawImage(splash, new Rectangle(0, 0, bmp.Width, bmp.Height), cropRect, GraphicsUnit.Pixel);
+                        }
+                        ((PictureBox)tableLayoutPanel1.Controls["pictureBox" + z.ToString()]).Image = bmp;
+                        z++;
+                    }
+                }
+                if (me.GetBool("playsound"))
+                {
+                    sp.Stream = Properties.Resources.beep;
+                    sp.PlayLooping();
+                }
+                Program.loadfinished = true;
+                if (!me.GetBool("windowed"))
+                {
+                    this.FormBorderStyle = FormBorderStyle.None;
+                    this.TopMost = false;
+
+                    if (Screen.AllScreens.Length > 1)
+                    {
+                        foreach (Screen s in Screen.AllScreens)
+                        {
+                            WindowScreen ws = new WindowScreen();
+                            if (!s.Primary)
                             {
-                                ws.StartPosition = FormStartPosition.Manual;
-                                ws.Location = s.WorkingArea.Location;
-                                ws.Size = new Size(s.WorkingArea.Width, s.WorkingArea.Height);
-                                ws.primary = false;
-
-                                if (Program.multidisplaymode == "freeze")
+                                if (Program.multidisplaymode != "none")
                                 {
-                                    Bitmap screenshot = new Bitmap(s.Bounds.Width,
-                                        s.Bounds.Height,
-                                        System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-                                    Graphics gfxScreenshot = Graphics.FromImage(screenshot);
-                                    gfxScreenshot.CopyFromScreen(
-                                        s.Bounds.X,
-                                        s.Bounds.Y,
-                                        0,
-                                        0,
-                                        s.Bounds.Size,
-                                        CopyPixelOperation.SourceCopy
-                                        );
-                                    freezescreens.Add(screenshot);
+                                    ws.StartPosition = FormStartPosition.Manual;
+                                    ws.Location = s.WorkingArea.Location;
+                                    ws.Size = new Size(s.WorkingArea.Width, s.WorkingArea.Height);
+                                    ws.primary = false;
 
+                                    if (Program.multidisplaymode == "freeze")
+                                    {
+                                        Bitmap screenshot = new Bitmap(s.Bounds.Width,
+                                            s.Bounds.Height,
+                                            System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+                                        Graphics gfxScreenshot = Graphics.FromImage(screenshot);
+                                        gfxScreenshot.CopyFromScreen(
+                                            s.Bounds.X,
+                                            s.Bounds.Y,
+                                            0,
+                                            0,
+                                            s.Bounds.Size,
+                                            CopyPixelOperation.SourceCopy
+                                            );
+                                        freezescreens.Add(screenshot);
+
+                                    }
                                 }
                             }
+                            wss.Add(ws);
                         }
-                        wss.Add(ws);
+                    }
+                    else
+                    {
+                        wss.Add(new WindowScreen());
+                    }
+                    for (int i = 0; i < wss.Count; i++)
+                    {
+                        WindowScreen ws = wss[i];
+                        ws.Show();
+                        if (!ws.primary)
+                        {
+                            if (Program.multidisplaymode == "freeze")
+                            {
+                                ws.pictureBox1.Image = freezescreens[i - 1];
+                            }
+                        }
                     }
                 }
                 else
                 {
-                    wss.Add(new WindowScreen());
+                    //this.Size = new Size(640, 320);
                 }
-                for (int i = 0; i < wss.Count; i++)
-                {
-                    WindowScreen ws = wss[i];
-                    ws.Show();
-                    if (!ws.primary)
-                    {
-                        if (Program.multidisplaymode == "freeze")
-                        {
-                            ws.pictureBox1.Image = freezescreens[i - 1];
-                        }
-                    }
-                }
-            }
-            else
+                t = new ThreadStart(WriteWord);
+                secondThread = new Thread(t);
+                secondThread.Start();
+            } catch (Exception ex)
             {
-                //this.Size = new Size(640, 320);
+                Program.loadfinished = true;
+                MessageBox.Show("A blue screen couldn't be displayed due to an error\n\n" + ex.Message + "\n\n" + ex.StackTrace, "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
             }
-            t = new ThreadStart(WriteWord);
-            secondThread = new Thread(t);
-            secondThread.Start();
         }
 
         private void Timer1_Tick(object sender, EventArgs e)
@@ -312,27 +320,38 @@ namespace UltimateBlueScreenSimulator
 
         private void Win_FormClosing(object sender, FormClosingEventArgs e)
         {
-            secondThread.Abort();
-            foreach (WindowScreen ws in wss)
+            try
             {
-                ws.Close();
-            }
-            foreach (Image img in freezescreens)
-            {
-                img.Dispose();
-            }
-            foreach (Image img in image)
-            {
-                img.Dispose();
-            }
-            splash.Dispose();
+                if (secondThread != null)
+                {
+                    secondThread.Abort();
+                }
+                foreach (WindowScreen ws in wss)
+                {
+                    ws.Close();
+                }
+                foreach (Image img in freezescreens)
+                {
+                    img.Dispose();
+                }
+                foreach (Image img in image)
+                {
+                    img.Dispose();
+                }
+                splash.Dispose();
 
-            if (me.GetBool("playsound"))
+                if (me.GetBool("playsound"))
+                {
+                    sp.Stop();
+                    sp.Dispose();
+                }
+                this.Dispose();
+            } catch (Exception ex)
             {
-                sp.Stop();
-                sp.Dispose();
+                Program.loadfinished = true;
+                MessageBox.Show("An error has occoured.\n\n" + ex.Message + "\n\n" + ex.StackTrace, "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
             }
-            this.Dispose();
         }
     }
 }

@@ -46,101 +46,109 @@ namespace UltimateBlueScreenSimulator
 
         private void W2kbs_Load(object sender, EventArgs e)
         {
-            string[] esplit = errorCode.Text.Split('\n')[0].Replace("*** STOP: ", "").Replace(")", "").Replace(" (", "*").Split('*');
+            try
+            {
+                string[] esplit = errorCode.Text.Split('\n')[0].Replace("*** STOP: ", "").Replace(")", "").Replace(" (", "*").Split('*');
 
-            errorCode.Text = me.GetTexts()["Error code formatting"].Replace("{0}", esplit[0]).Replace("{1}", esplit[1]) + "\n" + errorCode.Text.Split('\n')[1];
-            label2.Text = me.GetTexts()["Troubleshooting introduction"];
-            supportInfo.Text = me.GetTexts()["Troubleshooting text"];
-            downMessage.Text = me.GetTexts()["Additional troubleshooting information"];
-            errorCode.Font = me.GetFont();
-            label2.Font = me.GetFont();
-            supportInfo.Font = me.GetFont();
-            downMessage.Font = me.GetFont();
-            if (!fullscreen) { this.FormBorderStyle = FormBorderStyle.FixedSingle; this.ShowInTaskbar = true; this.ShowIcon = true; }
-            if (Program.f1.supporttext == "")
-            {
-                supportInfo.Visible = false;
-                errorCode.Visible = false;
-            }
-            if (whatfail != "")
-            {
-                errorCode.Text += "\n\n*** Address " + me.GenHex(8, "RRRRRRRR") + " base at " + me.GenHex(8, "RRRRRRRR")  + ", DateStamp " + me.GenHex(8, "RRRRRRRR").ToLower() + " - " + whatfail.ToLower();
-            }
-            errorCode.Text = errorCode.Text.Replace("IRQL", "DRIVER_IRQL");
-
-            Program.loadfinished = true;
-            if (fullscreen)
-            {
-                if (Screen.AllScreens.Length > 1)
+                errorCode.Text = me.GetTexts()["Error code formatting"].Replace("{0}", esplit[0]).Replace("{1}", esplit[1]) + "\n" + errorCode.Text.Split('\n')[1];
+                label2.Text = me.GetTexts()["Troubleshooting introduction"];
+                supportInfo.Text = me.GetTexts()["Troubleshooting text"];
+                downMessage.Text = me.GetTexts()["Additional troubleshooting information"];
+                errorCode.Font = me.GetFont();
+                label2.Font = me.GetFont();
+                supportInfo.Font = me.GetFont();
+                downMessage.Font = me.GetFont();
+                if (!fullscreen) { this.FormBorderStyle = FormBorderStyle.FixedSingle; this.ShowInTaskbar = true; this.ShowIcon = true; }
+                if (Program.f1.supporttext == "")
                 {
-                    foreach (Screen s in Screen.AllScreens)
+                    supportInfo.Visible = false;
+                    errorCode.Visible = false;
+                }
+                if (whatfail != "")
+                {
+                    errorCode.Text += "\n\n*** Address " + me.GenHex(8, "RRRRRRRR") + " base at " + me.GenHex(8, "RRRRRRRR") + ", DateStamp " + me.GenHex(8, "RRRRRRRR").ToLower() + " - " + whatfail.ToLower();
+                }
+                errorCode.Text = errorCode.Text.Replace("IRQL", "DRIVER_IRQL");
+
+                Program.loadfinished = true;
+                if (fullscreen)
+                {
+                    if (Screen.AllScreens.Length > 1)
                     {
-                        WindowScreen ws = new WindowScreen();
-                        if (!s.Primary)
+                        foreach (Screen s in Screen.AllScreens)
                         {
-                            if (Program.multidisplaymode != "none")
+                            WindowScreen ws = new WindowScreen();
+                            if (!s.Primary)
                             {
-                                ws.StartPosition = FormStartPosition.Manual;
-                                ws.Location = s.WorkingArea.Location;
-                                ws.Size = new Size(s.WorkingArea.Width, s.WorkingArea.Height);
-                                ws.primary = false;
-
-                                if (Program.multidisplaymode == "freeze")
+                                if (Program.multidisplaymode != "none")
                                 {
-                                    Bitmap screenshot = new Bitmap(s.Bounds.Width,
-                                        s.Bounds.Height,
-                                        System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-                                    Graphics gfxScreenshot = Graphics.FromImage(screenshot);
-                                    gfxScreenshot.CopyFromScreen(
-                                        s.Bounds.X,
-                                        s.Bounds.Y,
-                                        0,
-                                        0,
-                                        s.Bounds.Size,
-                                        CopyPixelOperation.SourceCopy
-                                        );
-                                    freezescreens.Add(screenshot);
+                                    ws.StartPosition = FormStartPosition.Manual;
+                                    ws.Location = s.WorkingArea.Location;
+                                    ws.Size = new Size(s.WorkingArea.Width, s.WorkingArea.Height);
+                                    ws.primary = false;
 
+                                    if (Program.multidisplaymode == "freeze")
+                                    {
+                                        Bitmap screenshot = new Bitmap(s.Bounds.Width,
+                                            s.Bounds.Height,
+                                            System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+                                        Graphics gfxScreenshot = Graphics.FromImage(screenshot);
+                                        gfxScreenshot.CopyFromScreen(
+                                            s.Bounds.X,
+                                            s.Bounds.Y,
+                                            0,
+                                            0,
+                                            s.Bounds.Size,
+                                            CopyPixelOperation.SourceCopy
+                                            );
+                                        freezescreens.Add(screenshot);
+
+                                    }
                                 }
                             }
+                            wss.Add(ws);
                         }
-                        wss.Add(ws);
                     }
-                }
-                else
-                {
-                    wss.Add(new WindowScreen());
-                }
-                for (int i = 0; i < wss.Count; i++)
-                {
-                    WindowScreen ws = wss[i];
-                    ws.Show();
-                    if (!ws.primary)
+                    else
                     {
-                        if (Program.multidisplaymode == "freeze")
-                        {
-                            ws.pictureBox1.Image = freezescreens[i - 1];
-                        }
+                        wss.Add(new WindowScreen());
                     }
-                }
-                foreach (WindowScreen ws in wss)
-                {
-                    Program.dr.Draw(ws);
-                }
-                this.TopMost = false;
-                for (int i = 0; i < wss.Count; i++)
-                {
-                    WindowScreen ws = wss[i];
-                    ws.Show();
-                    if (!ws.primary)
+                    for (int i = 0; i < wss.Count; i++)
                     {
-                        if (Program.multidisplaymode == "freeze")
+                        WindowScreen ws = wss[i];
+                        ws.Show();
+                        if (!ws.primary)
                         {
-                            ws.pictureBox1.Image = freezescreens[i - 1];
+                            if (Program.multidisplaymode == "freeze")
+                            {
+                                ws.pictureBox1.Image = freezescreens[i - 1];
+                            }
                         }
                     }
+                    foreach (WindowScreen ws in wss)
+                    {
+                        Program.dr.Draw(ws);
+                    }
+                    this.TopMost = false;
+                    for (int i = 0; i < wss.Count; i++)
+                    {
+                        WindowScreen ws = wss[i];
+                        ws.Show();
+                        if (!ws.primary)
+                        {
+                            if (Program.multidisplaymode == "freeze")
+                            {
+                                ws.pictureBox1.Image = freezescreens[i - 1];
+                            }
+                        }
+                    }
+                    this.Hide();
                 }
-                this.Hide();
+            } catch (Exception ex)
+            {
+                Program.loadfinished = true;
+                MessageBox.Show("A blue screen couldn't be displayed due to an error\n\n" + ex.Message + "\n\n" + ex.StackTrace, "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
             }
         }
 

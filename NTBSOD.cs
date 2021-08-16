@@ -39,167 +39,177 @@ namespace UltimateBlueScreenSimulator
 
         private void NTBSOD_Load(object sender, EventArgs e)
         {
-            txt = me.GetTexts();
-            pictureBox3.BackColor = me.GetTheme(true, true);
-            if (!blink) { pictureBox3.Visible = false; }
-
-            errorCode.Image = WriteWord(txt["Error code formatting"].Replace("{0}",error.Split(' ')[1].Replace(")", "").Replace("(", "").Replace(" ", "").ToString()).Replace("{1}", me.GenAddress(4, 8, false)).Trim(), me.GetTheme(true), me.GetTheme(false));
-            if (whatfail == "")
-            {
-                errorDescription.Image = WriteWord(error.Split(' ')[0].ToString(), me.GetTheme(true), me.GetTheme(false));
-            } else
-            {
-                errorDescription.Image = WriteWord(error.Split(' ')[0].ToString() + "*** Address " + me.GenHex(8, "RRRRRRRR").ToLower() + " has base at " + me.GenHex(8, "RRRRRRRR").ToLower() + " - " + whatfail.ToLower(), me.GetTheme(true), me.GetTheme(false));
-            }
-            if (stacktrace)
-            {
-                cpuID.Image = WriteWord(txt["CPUID formatting"].Replace("{0}", processortype).Trim(), me.GetTheme(true), me.GetTheme(false));
-                tableHeader.Image = WriteWord(txt["Stack trace heading"].Trim() + GenSpace(40 - txt["Stack trace heading"].Trim().Length) + txt["Stack trace heading"].Trim(), me.GetTheme(true), me.GetTheme(false));
-                int i = 0;
-                foreach (PictureBox ctrl in flowLayoutPanel2.Controls)
-                {
-                    if (me.GetFiles().Count < i + 1)
-                    {
-                        break;
-                    }
-                    if (me.GetFiles().Values.ElementAt(i).Length == 6)
-                    {
-                        break;
-                    }
-                    string file = me.GetFiles().Keys.ElementAt(i);
-                    string rnd1 = me.GenHex(8, me.GetFiles().Values.ElementAt(i)[0]).ToLower();
-                    string rnd2 = me.GenHex(8, me.GetFiles().Values.ElementAt(i)[1]).ToLower();
-                    ctrl.Image = WriteWord(txt["Stack trace table formatting"].Trim().Replace("{0}", rnd1).Replace("{1}", rnd2).Replace("{2}", file), me.GetTheme(true), me.GetTheme(false));
-                    i++;
-                }
-                foreach (PictureBox ctrl in flowLayoutPanel3.Controls)
-                {
-                    if (me.GetFiles().Count < i + 1)
-                    {
-                        break;
-                    }
-                    if (me.GetFiles().Values.ElementAt(i).Length == 6)
-                    {
-                        break;
-                    }
-                    string file = me.GetFiles().Keys.ElementAt(i);
-                    string rnd1 = me.GenHex(8, me.GetFiles().Values.ElementAt(i)[0]).ToLower();
-                    string rnd2 = me.GenHex(8, me.GetFiles().Values.ElementAt(i)[1]).ToLower();
-                    ctrl.Image = WriteWord(txt["Stack trace table formatting"].Trim().Replace("{0}", rnd1).Replace("{1}", rnd2).Replace("{2}", file), me.GetTheme(true), me.GetTheme(false));
-                    i++;
-                }
-                table2.Image = WriteWord(txt["Memory address dump heading"], me.GetTheme(true), me.GetTheme(false));
-                i = 0;
-                foreach (KeyValuePair<string, string[]> kvp in me.GetFiles())
-                {
-                    if (me.GetFiles().Count < i + 1)
-                    {
-                        break;
-                    }
-                    if (kvp.Value.Length == 6)
-                    {
-                        break;
-                    }
-                    i++;
-                }
-                for (int n = 1; n < 5; n++)
-                {
-                    if (me.GetFiles().Count < i + 1)
-                    {
-                        break;
-                    }
-                    if (i < me.GetFiles().Count)
-                    {
-                        string file = me.GetFiles().Keys.ElementAt(i);
-                        string r1 = me.GenHex(8, me.GetFiles().Values.ElementAt(i)[0]).ToLower();
-                        string r2 = me.GenHex(8, me.GetFiles().Values.ElementAt(i)[1]).ToLower();
-                        string r3 = me.GenHex(8, me.GetFiles().Values.ElementAt(i)[2]).ToLower();
-                        string r4 = me.GenHex(8, me.GetFiles().Values.ElementAt(i)[3]).ToLower();
-                        string r5 = me.GenHex(8, me.GetFiles().Values.ElementAt(i)[4]).ToLower();
-                        string r6 = me.GenHex(8, me.GetFiles().Values.ElementAt(i)[5]).ToLower();
-                        ((PictureBox)flowLayoutPanel1.Controls["tablerow_" + n.ToString()]).Image = WriteWord(txt["Memory address dump table"].Replace("{0}", r1).Replace("{1}", r2).Replace("{2}", r3).Replace("{3}", r4).Replace("{4}", r5).Replace("{5}", r6).Replace("{6}", file), me.GetTheme(true), me.GetTheme(false));
-                        i++;
-                    }
-                }
-                Program.f1.label10.Text = "";
-
-
-            }
-            else
-            {
-                cpuID.Visible = false;
-                tableLayoutPanel1.Visible = false;
-                tableHeader.Visible = false;
-                table2.Visible = false;
-                tablerow_1.Visible = false;
-                tablerow_2.Visible = false;
-                tablerow_3.Visible = false;
-                tablerow_4.Visible = false;
-            }
             try
             {
-                pictureBox1.Image = WriteWord(txt["Troubleshooting text"].Split('\n')[0].Trim(), me.GetTheme(true), me.GetTheme(false));
-                pictureBox2.Image = WriteWord(txt["Troubleshooting text"].Split('\n')[1].Trim(), me.GetTheme(true), me.GetTheme(false));
-            } catch { }
+                txt = me.GetTexts();
+                pictureBox3.BackColor = me.GetTheme(true, true);
+                if (!blink) { pictureBox3.Visible = false; }
 
-            if (!fullscreen) { this.FormBorderStyle = FormBorderStyle.FixedSingle; }
-            if (fullscreen)
-            {
-                if (Screen.AllScreens.Length > 1)
+                errorCode.Image = WriteWord(txt["Error code formatting"].Replace("{0}", error.Split(' ')[1].Replace(")", "").Replace("(", "").Replace(" ", "").ToString()).Replace("{1}", me.GenAddress(4, 8, false)).Trim(), me.GetTheme(true), me.GetTheme(false));
+                if (whatfail == "")
                 {
-                    foreach (Screen s in Screen.AllScreens)
-                    {
-                        WindowScreen ws = new WindowScreen();
-                        if (!s.Primary)
-                        {
-                            if (Program.multidisplaymode != "none")
-                            {
-                                ws.StartPosition = FormStartPosition.Manual;
-                                ws.Location = s.WorkingArea.Location;
-                                ws.Size = new Size(s.WorkingArea.Width, s.WorkingArea.Height);
-                                ws.primary = false;
-
-                                if (Program.multidisplaymode == "freeze")
-                                {
-                                    Bitmap screenshot = new Bitmap(s.Bounds.Width,
-                                        s.Bounds.Height,
-                                        System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-                                    Graphics gfxScreenshot = Graphics.FromImage(screenshot);
-                                    gfxScreenshot.CopyFromScreen(
-                                        s.Bounds.X,
-                                        s.Bounds.Y,
-                                        0,
-                                        0,
-                                        s.Bounds.Size,
-                                        CopyPixelOperation.SourceCopy
-                                        );
-                                    freezescreens.Add(screenshot);
-
-                                }
-                            }
-                        }
-                        wss.Add(ws);
-                    }
+                    errorDescription.Image = WriteWord(error.Split(' ')[0].ToString(), me.GetTheme(true), me.GetTheme(false));
                 }
                 else
                 {
-                    wss.Add(new WindowScreen());
+                    errorDescription.Image = WriteWord(error.Split(' ')[0].ToString() + "*** Address " + me.GenHex(8, "RRRRRRRR").ToLower() + " has base at " + me.GenHex(8, "RRRRRRRR").ToLower() + " - " + whatfail.ToLower(), me.GetTheme(true), me.GetTheme(false));
                 }
-                for (int i = 0; i < wss.Count; i++)
+                if (stacktrace)
                 {
-                    WindowScreen ws = wss[i];
-                    ws.Show();
-                    if (!ws.primary)
+                    cpuID.Image = WriteWord(txt["CPUID formatting"].Replace("{0}", processortype).Trim(), me.GetTheme(true), me.GetTheme(false));
+                    tableHeader.Image = WriteWord(txt["Stack trace heading"].Trim() + GenSpace(40 - txt["Stack trace heading"].Trim().Length) + txt["Stack trace heading"].Trim(), me.GetTheme(true), me.GetTheme(false));
+                    int i = 0;
+                    foreach (PictureBox ctrl in flowLayoutPanel2.Controls)
                     {
-                        if (Program.multidisplaymode == "freeze")
+                        if (me.GetFiles().Count < i + 1)
                         {
-                            ws.pictureBox1.Image = freezescreens[i - 1];
+                            break;
+                        }
+                        if (me.GetFiles().Values.ElementAt(i).Length == 6)
+                        {
+                            break;
+                        }
+                        string file = me.GetFiles().Keys.ElementAt(i);
+                        string rnd1 = me.GenHex(8, me.GetFiles().Values.ElementAt(i)[0]).ToLower();
+                        string rnd2 = me.GenHex(8, me.GetFiles().Values.ElementAt(i)[1]).ToLower();
+                        ctrl.Image = WriteWord(txt["Stack trace table formatting"].Trim().Replace("{0}", rnd1).Replace("{1}", rnd2).Replace("{2}", file), me.GetTheme(true), me.GetTheme(false));
+                        i++;
+                    }
+                    foreach (PictureBox ctrl in flowLayoutPanel3.Controls)
+                    {
+                        if (me.GetFiles().Count < i + 1)
+                        {
+                            break;
+                        }
+                        if (me.GetFiles().Values.ElementAt(i).Length == 6)
+                        {
+                            break;
+                        }
+                        string file = me.GetFiles().Keys.ElementAt(i);
+                        string rnd1 = me.GenHex(8, me.GetFiles().Values.ElementAt(i)[0]).ToLower();
+                        string rnd2 = me.GenHex(8, me.GetFiles().Values.ElementAt(i)[1]).ToLower();
+                        ctrl.Image = WriteWord(txt["Stack trace table formatting"].Trim().Replace("{0}", rnd1).Replace("{1}", rnd2).Replace("{2}", file), me.GetTheme(true), me.GetTheme(false));
+                        i++;
+                    }
+                    table2.Image = WriteWord(txt["Memory address dump heading"], me.GetTheme(true), me.GetTheme(false));
+                    i = 0;
+                    foreach (KeyValuePair<string, string[]> kvp in me.GetFiles())
+                    {
+                        if (me.GetFiles().Count < i + 1)
+                        {
+                            break;
+                        }
+                        if (kvp.Value.Length == 6)
+                        {
+                            break;
+                        }
+                        i++;
+                    }
+                    for (int n = 1; n < 5; n++)
+                    {
+                        if (me.GetFiles().Count < i + 1)
+                        {
+                            break;
+                        }
+                        if (i < me.GetFiles().Count)
+                        {
+                            string file = me.GetFiles().Keys.ElementAt(i);
+                            string r1 = me.GenHex(8, me.GetFiles().Values.ElementAt(i)[0]).ToLower();
+                            string r2 = me.GenHex(8, me.GetFiles().Values.ElementAt(i)[1]).ToLower();
+                            string r3 = me.GenHex(8, me.GetFiles().Values.ElementAt(i)[2]).ToLower();
+                            string r4 = me.GenHex(8, me.GetFiles().Values.ElementAt(i)[3]).ToLower();
+                            string r5 = me.GenHex(8, me.GetFiles().Values.ElementAt(i)[4]).ToLower();
+                            string r6 = me.GenHex(8, me.GetFiles().Values.ElementAt(i)[5]).ToLower();
+                            ((PictureBox)flowLayoutPanel1.Controls["tablerow_" + n.ToString()]).Image = WriteWord(txt["Memory address dump table"].Replace("{0}", r1).Replace("{1}", r2).Replace("{2}", r3).Replace("{3}", r4).Replace("{4}", r5).Replace("{5}", r6).Replace("{6}", file), me.GetTheme(true), me.GetTheme(false));
+                            i++;
                         }
                     }
+                    Program.f1.label10.Text = "";
+
+
                 }
-                this.TopMost = false;
+                else
+                {
+                    cpuID.Visible = false;
+                    tableLayoutPanel1.Visible = false;
+                    tableHeader.Visible = false;
+                    table2.Visible = false;
+                    tablerow_1.Visible = false;
+                    tablerow_2.Visible = false;
+                    tablerow_3.Visible = false;
+                    tablerow_4.Visible = false;
+                }
+                try
+                {
+                    pictureBox1.Image = WriteWord(txt["Troubleshooting text"].Split('\n')[0].Trim(), me.GetTheme(true), me.GetTheme(false));
+                    pictureBox2.Image = WriteWord(txt["Troubleshooting text"].Split('\n')[1].Trim(), me.GetTheme(true), me.GetTheme(false));
+                }
+                catch { }
+
+                if (!fullscreen) { this.FormBorderStyle = FormBorderStyle.FixedSingle; }
+                if (fullscreen)
+                {
+                    if (Screen.AllScreens.Length > 1)
+                    {
+                        foreach (Screen s in Screen.AllScreens)
+                        {
+                            WindowScreen ws = new WindowScreen();
+                            if (!s.Primary)
+                            {
+                                if (Program.multidisplaymode != "none")
+                                {
+                                    ws.StartPosition = FormStartPosition.Manual;
+                                    ws.Location = s.WorkingArea.Location;
+                                    ws.Size = new Size(s.WorkingArea.Width, s.WorkingArea.Height);
+                                    ws.primary = false;
+
+                                    if (Program.multidisplaymode == "freeze")
+                                    {
+                                        Bitmap screenshot = new Bitmap(s.Bounds.Width,
+                                            s.Bounds.Height,
+                                            System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+                                        Graphics gfxScreenshot = Graphics.FromImage(screenshot);
+                                        gfxScreenshot.CopyFromScreen(
+                                            s.Bounds.X,
+                                            s.Bounds.Y,
+                                            0,
+                                            0,
+                                            s.Bounds.Size,
+                                            CopyPixelOperation.SourceCopy
+                                            );
+                                        freezescreens.Add(screenshot);
+
+                                    }
+                                }
+                            }
+                            wss.Add(ws);
+                        }
+                    }
+                    else
+                    {
+                        wss.Add(new WindowScreen());
+                    }
+                    for (int i = 0; i < wss.Count; i++)
+                    {
+                        WindowScreen ws = wss[i];
+                        ws.Show();
+                        if (!ws.primary)
+                        {
+                            if (Program.multidisplaymode == "freeze")
+                            {
+                                ws.pictureBox1.Image = freezescreens[i - 1];
+                            }
+                        }
+                    }
+                    this.TopMost = false;
+                }
+                Program.loadfinished = true;
+            } catch (Exception ex)
+            {
+                Program.loadfinished = true;
+                MessageBox.Show("A blue screen couldn't be displayed due to an error\n\n" + ex.Message + "\n\n" + ex.StackTrace, "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
             }
-            Program.loadfinished = true;
         }
 
 

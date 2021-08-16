@@ -29,129 +29,141 @@ namespace UltimateBlueScreenSimulator
 
         private void Xvsbs_Load(object sender, EventArgs e)
         {
-            bg = me.GetTheme(true);
-            fg = me.GetTheme(false);
-            txt = me.GetTexts();
-            foreach (Control c in this.Controls)
-            {
-                if (c is AliasedLabel)
-                {
-                    c.BackColor = this.BackColor;
-                    c.ForeColor = this.ForeColor;
-                }
-            }
-            if (Program.f1.enableeggs) { 
-                if (me.GetString("culprit").ToLower() == "tardis.sys")
-                {
-                    tardisFade.Enabled = true;
-                }
-                if (bg == fg)
-                {
-                    this.BackColor = Color.FromArgb(255, 0, 0);
-                    rainBowScreen.Enabled = true;
-                }
-            }
-            if (whatfail != "") {
-                label5.Text = "***  " + whatfail.ToUpper() + " - Address " + me.GenHex(8, "RRRRRRRR") + " base at " + me.GenHex(8, "RRRRRRRR") + ", DateStamp " + me.GenHex(8, "RRRRRRRR").ToLower();
-                errorCode.Text = "The problem seems to be caused by the following file: " + whatfail.ToUpper() + "\n\n" + errorCode.Text;
-                supportInfo.Location = new Point(supportInfo.Location.X, supportInfo.Location.Y + 24);
-                technicalCode.Location = new Point(label5.Location.X, technicalCode.Location.Y + 24);
-                label5.Location = new Point(label5.Location.X, label5.Location.Y + 24);
-            }
-            label1.Text = txt["A problem has been detected..."];
-            supportInfo.Text = txt["Troubleshooting introduction"] + "\n\n" + txt["Troubleshooting"] + "\n\n" + txt["Technical information"];
-            string[] esplit = technicalCode.Text.Replace("*** STOP: ", "").Replace(")", "").Replace(" (", "*").Split('*');
-            technicalCode.Text = txt["Technical information formatting"].Replace("{0}", esplit[0]).Replace("{1}", esplit[1]);
-
             try
-            { 
-                label5.Text = txt["Physical memory dump"].Split('\n')[0].Trim() + "\n" + txt["Physical memory dump"].Split('\n')[1].Trim() + "\n" + txt["Technical support"].Split('\n')[0].Trim() + "\n" + txt["Technical support"].Split('\n')[1].Trim();
-            }
-            catch
             {
-                }
-
-            foreach (Control c in this.Controls)
-            {
-                if (c is Label)
+                bg = me.GetTheme(true);
+                fg = me.GetTheme(false);
+                txt = me.GetTexts();
+                foreach (Control c in this.Controls)
                 {
-                    c.Font = me.GetFont();
-                }
-            }
-            if (!fullscreen) { this.FormBorderStyle = FormBorderStyle.FixedSingle; this.ShowInTaskbar = true; this.ShowIcon = true; }
-            if (!errorCode.Visible && !label5.Visible)
-            {
-                supportInfo.Visible = false;
-                label1.Visible = false;
-            }
-            errorCode.Text = errorCode.Text.Replace("IRQL", "DRIVER_IRQL");
-            errorCode.Text = errorCode.Text.Replace("MANUALLY_INITIATED_CRASH", "The end-user manually generated the crash dump.");
-            errorCode.Text = errorCode.Text.Replace("VIDEO_TDR_", "VIDEO_TDR_ERROR");
-            technicalCode.Text = technicalCode.Text.Replace("STOP: ERROR", "STOP: 0x00000116");
-            Program.loadfinished = true;
-            if (fullscreen) { 
-                this.TopMost = false;
-                if (Screen.AllScreens.Length > 1) { 
-                    foreach (Screen s in Screen.AllScreens)
+                    if (c is AliasedLabel)
                     {
-                        WindowScreen ws = new WindowScreen();
-                        if (!s.Primary)
+                        c.BackColor = this.BackColor;
+                        c.ForeColor = this.ForeColor;
+                    }
+                }
+                if (Program.f1.enableeggs)
+                {
+                    if (me.GetString("culprit").ToLower() == "tardis.sys")
+                    {
+                        tardisFade.Enabled = true;
+                    }
+                    if (bg == fg)
+                    {
+                        this.BackColor = Color.FromArgb(255, 0, 0);
+                        rainBowScreen.Enabled = true;
+                    }
+                }
+                if (whatfail != "")
+                {
+                    label5.Text = "***  " + whatfail.ToUpper() + " - Address " + me.GenHex(8, "RRRRRRRR") + " base at " + me.GenHex(8, "RRRRRRRR") + ", DateStamp " + me.GenHex(8, "RRRRRRRR").ToLower();
+                    errorCode.Text = "The problem seems to be caused by the following file: " + whatfail.ToUpper() + "\n\n" + errorCode.Text;
+                    supportInfo.Location = new Point(supportInfo.Location.X, supportInfo.Location.Y + 24);
+                    technicalCode.Location = new Point(label5.Location.X, technicalCode.Location.Y + 24);
+                    label5.Location = new Point(label5.Location.X, label5.Location.Y + 24);
+                }
+                label1.Text = txt["A problem has been detected..."];
+                supportInfo.Text = txt["Troubleshooting introduction"] + "\n\n" + txt["Troubleshooting"] + "\n\n" + txt["Technical information"];
+                string[] esplit = technicalCode.Text.Replace("*** STOP: ", "").Replace(")", "").Replace(" (", "*").Split('*');
+                technicalCode.Text = txt["Technical information formatting"].Replace("{0}", esplit[0]).Replace("{1}", esplit[1]);
+
+                try
+                {
+                    label5.Text = txt["Physical memory dump"].Split('\n')[0].Trim() + "\n" + txt["Physical memory dump"].Split('\n')[1].Trim() + "\n" + txt["Technical support"].Split('\n')[0].Trim() + "\n" + txt["Technical support"].Split('\n')[1].Trim();
+                }
+                catch
+                {
+                }
+
+                foreach (Control c in this.Controls)
+                {
+                    if (c is Label)
+                    {
+                        c.Font = me.GetFont();
+                    }
+                }
+                if (!fullscreen) { this.FormBorderStyle = FormBorderStyle.FixedSingle; this.ShowInTaskbar = true; this.ShowIcon = true; }
+                if (!errorCode.Visible && !label5.Visible)
+                {
+                    supportInfo.Visible = false;
+                    label1.Visible = false;
+                }
+                errorCode.Text = errorCode.Text.Replace("IRQL", "DRIVER_IRQL");
+                errorCode.Text = errorCode.Text.Replace("MANUALLY_INITIATED_CRASH", "The end-user manually generated the crash dump.");
+                errorCode.Text = errorCode.Text.Replace("VIDEO_TDR_", "VIDEO_TDR_ERROR");
+                technicalCode.Text = technicalCode.Text.Replace("STOP: ERROR", "STOP: 0x00000116");
+                Program.loadfinished = true;
+                if (fullscreen)
+                {
+                    this.TopMost = false;
+                    if (Screen.AllScreens.Length > 1)
+                    {
+                        foreach (Screen s in Screen.AllScreens)
                         {
-                            if (Program.multidisplaymode != "none")
+                            WindowScreen ws = new WindowScreen();
+                            if (!s.Primary)
                             {
-                                ws.StartPosition = FormStartPosition.Manual;
-                                ws.Location = s.WorkingArea.Location;
-                                ws.Size = new Size(s.WorkingArea.Width, s.WorkingArea.Height);
-                                ws.primary = false;
-
-                                if (Program.multidisplaymode == "freeze")
+                                if (Program.multidisplaymode != "none")
                                 {
-                                    Bitmap screenshot = new Bitmap(s.Bounds.Width,
-                                        s.Bounds.Height,
-                                        System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-                                    Graphics gfxScreenshot = Graphics.FromImage(screenshot);
-                                    gfxScreenshot.CopyFromScreen(
-                                        s.Bounds.X,
-                                        s.Bounds.Y,
-                                        0,
-                                        0,
-                                        s.Bounds.Size,
-                                        CopyPixelOperation.SourceCopy
-                                        );
-                                    freezescreens.Add(screenshot);
+                                    ws.StartPosition = FormStartPosition.Manual;
+                                    ws.Location = s.WorkingArea.Location;
+                                    ws.Size = new Size(s.WorkingArea.Width, s.WorkingArea.Height);
+                                    ws.primary = false;
 
+                                    if (Program.multidisplaymode == "freeze")
+                                    {
+                                        Bitmap screenshot = new Bitmap(s.Bounds.Width,
+                                            s.Bounds.Height,
+                                            System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+                                        Graphics gfxScreenshot = Graphics.FromImage(screenshot);
+                                        gfxScreenshot.CopyFromScreen(
+                                            s.Bounds.X,
+                                            s.Bounds.Y,
+                                            0,
+                                            0,
+                                            s.Bounds.Size,
+                                            CopyPixelOperation.SourceCopy
+                                            );
+                                        freezescreens.Add(screenshot);
+
+                                    }
                                 }
                             }
+                            wss.Add(ws);
                         }
-                        wss.Add(ws);
                     }
-                }
-                else
-                {
-                    wss.Add(new WindowScreen());
-                }
-                for (int i = 0; i < wss.Count; i++)
-                {
-                    WindowScreen ws = wss[i];
-                    ws.Show();
-                    if (!ws.primary)
+                    else
                     {
-                        if (Program.multidisplaymode == "freeze")
+                        wss.Add(new WindowScreen());
+                    }
+                    for (int i = 0; i < wss.Count; i++)
+                    {
+                        WindowScreen ws = wss[i];
+                        ws.Show();
+                        if (!ws.primary)
                         {
-                            ws.pictureBox1.Image = freezescreens[i - 1];
+                            if (Program.multidisplaymode == "freeze")
+                            {
+                                ws.pictureBox1.Image = freezescreens[i - 1];
+                            }
                         }
                     }
+                    this.Hide();
                 }
-                this.Hide();
-            }
-            errorCode.Visible = me.GetBool("show_description");
-            if (!errorCode.Visible && this.Visible)
+                errorCode.Visible = me.GetBool("show_description");
+                if (!errorCode.Visible && this.Visible)
+                {
+                    supportInfo.Location = new Point(supportInfo.Location.X, supportInfo.Location.Y + 39);
+                    technicalCode.Location = new Point(technicalCode.Location.X, technicalCode.Location.Y + 39);
+                    label5.Location = new Point(label5.Location.X, label5.Location.Y + 39);
+                }
+                naturalclose = false;
+            } catch (Exception ex)
             {
-                supportInfo.Location = new Point(supportInfo.Location.X, supportInfo.Location.Y + 39);
-                technicalCode.Location = new Point(technicalCode.Location.X, technicalCode.Location.Y + 39);
-                label5.Location = new Point(label5.Location.X, label5.Location.Y + 39);
+                Program.loadfinished = true;
+                MessageBox.Show("A blue screen couldn't be displayed due to an error\n\n" + ex.Message + "\n\n" + ex.StackTrace, "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
             }
-            naturalclose = false;
         }
 
         private void Timer1_Tick(object sender, EventArgs e)

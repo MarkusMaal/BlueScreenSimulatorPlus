@@ -6,6 +6,7 @@ namespace UltimateBlueScreenSimulator
 {
     public partial class AddBluescreen : Form
     {
+        string base_os = "Windows 1.x/2.x";
         public AddBluescreen()
         {
             InitializeComponent();
@@ -87,6 +88,7 @@ namespace UltimateBlueScreenSimulator
                     iconBox.SelectedIndex = 2;
                     break;
             }
+            base_os = osBox.Text;
         }
 
         private void CheckBox1_CheckedChanged(object sender, EventArgs e)
@@ -108,9 +110,10 @@ namespace UltimateBlueScreenSimulator
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            BlueScreen my_config = new BlueScreen(osBox.Text);
+            BlueScreen my_config = new BlueScreen(base_os);
             my_config.SetString("friendlyname", friendlyBox.Text);
             my_config.SetString("icon", iconBox.SelectedItem.ToString());
+            my_config.SetString("os", osBox.Text);
             Program.bluescreens.Add(my_config);
             this.DialogResult = DialogResult.OK;
             this.Close();

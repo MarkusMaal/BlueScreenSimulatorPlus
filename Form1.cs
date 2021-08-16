@@ -12,7 +12,7 @@ namespace UltimateBlueScreenSimulator
 {
     public partial class Form1 : Form
     {
-        BlueScreen me;
+        internal BlueScreen me;
         //these variables deal with error codes
         public string c1 = "RRRRRRRRRRRRRRRR";
         public string c2 = "RRRRRRRRRRRRRRRR";
@@ -83,6 +83,7 @@ namespace UltimateBlueScreenSimulator
         //this variable stores troubleshooting text for Windows XP/Vista/7 blue screens
         public string supporttext = "If this is the first time you've seen this Stop error screen,\nrestart your computer. If this screen appears again, follow\nthese steps:\n\nCheck to make sure any new hardware or software is properly installed.\nIf this is a new installation, ask your hardware or software manufacturer\nfor any Windows updates you might need.\n\nIf problems continue, disable or remove any newly installed hardware\nor software. Disable BIOS memory options such as caching or shadowing.\nIf you need to use Safe mode to remove or disable components, restart\nyour computer, press F8 to select Advanced Startup Options, and then\nselect Safe Mode.";
 
+        internal bool displayone = false;
 
         public static ThreadStart ts;
         Thread bsod_starter;
@@ -94,6 +95,19 @@ namespace UltimateBlueScreenSimulator
 
         private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (linkLabel1.Visible)
+            {
+                linkLabel1.Visible = false;
+                label1.Text = "Select preset:";
+                windowVersion.Visible = true;
+            }
+            if (windowVersion.Items.Count == 1)
+            {
+                linkLabel1.Visible = true;
+                label1.Text = "Selected preset: " + windowVersion.SelectedItem.ToString();
+                linkLabel1.Location = new Point(label1.Location.X + label1.Width, linkLabel1.Location.Y);
+                windowVersion.Visible = false;
+            }
             //hide all controls
             WXOptions.Visible = false;
             errorCode.Visible = false;
@@ -342,7 +356,22 @@ namespace UltimateBlueScreenSimulator
                 fileio = false;
                 autoupdate = false;
             }
-            GetOS();
+            if (displayone)
+            {
+                windowVersion.Items.Clear();
+                for (int i = Program.bluescreens.Count - 1; i >= 0; i--)
+                {
+                    windowVersion.Items.Add(Program.bluescreens[i].GetString("friendlyname"));
+                }
+                windowVersion.SelectedItem = me.GetString("friendlyname");
+                windowVersion.Visible = false;
+                label1.Text = "Selected preset: " + windowVersion.SelectedItem.ToString();
+                linkLabel1.Location = new Point(label1.Location.X + label1.Width, linkLabel1.Location.Y);
+                linkLabel1.Visible = true;
+            } else
+            {
+                GetOS();
+            }
             if (autoupdate == true)
             { 
                 UpdateInterface ui = new UpdateInterface();
@@ -538,7 +567,14 @@ namespace UltimateBlueScreenSimulator
         {
             if (windowVersion.Items.Count < 1)
             {
-                MessageBox.Show("Please select a Windows version! Also, how in the world did you deselect a dropdown list?", "Error displaying blue screen", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Program.loadfinished = true;
+                if (enableeggs)
+                {
+                    MessageBox.Show("Please select a Windows version! Also, how in the world did you deselect a dropdown list?", "Error displaying blue screen", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                } else
+                {
+                    MessageBox.Show("No configuration selected", "Error displaying blue screen", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
                 return;
             }
             me.Show();
@@ -890,14 +926,13 @@ namespace UltimateBlueScreenSimulator
         {
             try
             {
-                string settingcontent = "UpdateClose=" + postponeupdate.ToString() + "\nHashVerify=" + hashverify.ToString() + "\nAutoUpdate=" + autoupdate.ToString() + "\nShowCursor=" + showcursor.ToString() + "\nScaleMode=" + GMode + "\nSeecrets=" + enableeggs.ToString();
-                settingcontent += "\nVersions=\"";
-                foreach (string element in windowVersion.Items)
+                try
                 {
-                    settingcontent += "\n" + element;
+                    System.IO.File.WriteAllText("settings.cfg", "UpdateClose=" + postponeupdate.ToString() + "\nHashVerify=" + hashverify.ToString() + "\nAutoUpdate=" + autoupdate.ToString() + "\nShowCursor=" + showcursor.ToString() + "\nScaleMode=" + GMode + "\nMultiMode=" + Program.multidisplaymode.ToString() + "\nSeecrets=" + enableeggs.ToString());
+                } catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
                 }
-                settingcontent += "\"";
-                System.IO.File.WriteAllText("settings.cfg", settingcontent);
                 if (realpostpone)
                 {
                     UpdateInterface ui = new UpdateInterface();
@@ -1195,6 +1230,28 @@ namespace UltimateBlueScreenSimulator
             else
             {
                 MessageBox.Show("Help and about window is already open", "Cannot open help and about", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            linkLabel1.Visible = false;
+            windowVersion.Visible = true;
+            label1.Text = "Select preset:";
+        }
+
+        private void windowVersion_DropDownClosed(object sender, EventArgs e)
+        {
+            if (windowVersion.Items.Count == 0)
+            {
+                if (enableeggs)
+                {
+                    windowVersion.Visible = false;
+                    linkLabel1.Visible = false;
+                    label1.Visible = false;
+                    waterBox.Visible = false;
+                    MessageBox.Show("How did we get here?", "What have you done?", MessageBoxButtons.OK, MessageBoxIcon.Question);
+                }
             }
         }
     }

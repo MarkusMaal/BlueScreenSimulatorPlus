@@ -56,6 +56,9 @@
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.button8 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.flowLayoutPanel6 = new System.Windows.Forms.FlowLayoutPanel();
@@ -442,6 +445,9 @@
             // 
             // tabPage5
             // 
+            this.tabPage5.Controls.Add(this.button8);
+            this.tabPage5.Controls.Add(this.button7);
+            this.tabPage5.Controls.Add(this.button6);
             this.tabPage5.Controls.Add(this.comboBox2);
             this.tabPage5.Controls.Add(this.label9);
             this.tabPage5.Controls.Add(this.flowLayoutPanel6);
@@ -461,6 +467,39 @@
             this.tabPage5.Text = "Simulator settings";
             this.tabPage5.UseVisualStyleBackColor = true;
             this.tabPage5.Click += new System.EventHandler(this.TabPage5_Click);
+            // 
+            // button8
+            // 
+            this.button8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button8.Location = new System.Drawing.Point(226, 3);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(97, 46);
+            this.button8.TabIndex = 21;
+            this.button8.Text = "[DEV] Nuke All (DANGEROUS!!)";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click_1);
+            // 
+            // button7
+            // 
+            this.button7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button7.Location = new System.Drawing.Point(328, 3);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(97, 46);
+            this.button7.TabIndex = 20;
+            this.button7.Text = "[DEV] New All";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click_3);
+            // 
+            // button6
+            // 
+            this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button6.Location = new System.Drawing.Point(431, 3);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(90, 46);
+            this.button6.TabIndex = 19;
+            this.button6.Text = "[DEV] DictEdit";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click_1);
             // 
             // comboBox2
             // 
@@ -796,12 +835,13 @@
             // 
             // saveBsconfig
             // 
-            this.saveBsconfig.Filter = "Bluescreen simulator 2.x configuration files|*.bs2cfg";
+            this.saveBsconfig.Filter = "Bluescreen simulator 2.x configuration files|*.bs2cfg;*.bs2";
             // 
             // loadBsconfig
             // 
-            this.loadBsconfig.Filter = "Bluescreen simulator 2.x configuration files|*.bs2cfg|Blue screen simulator 1.x c" +
-    "onfiguration files|*.bscfg";
+            this.loadBsconfig.Filter = "All bluescreen simulator plus configuration files|*.bscfg;*.bs2cfg;*.bsc;*.bs2|Bl" +
+    "uescreen simulator 2.x configuration files|*.bs2cfg;*.bs2|Blue screen simulator " +
+    "1.x configuration files|*.bscfg;*.bsc";
             this.loadBsconfig.Title = "Load bluescreen configuration";
             // 
             // AboutBox1
@@ -904,7 +944,10 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button saveCfg;
         private System.Windows.Forms.SaveFileDialog saveBsconfig;
-        private System.Windows.Forms.Button loadCfg;
-        private System.Windows.Forms.OpenFileDialog loadBsconfig;
+        internal System.Windows.Forms.OpenFileDialog loadBsconfig;
+        internal System.Windows.Forms.Button loadCfg;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button button8;
     }
 }

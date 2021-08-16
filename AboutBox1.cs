@@ -403,8 +403,14 @@ namespace UltimateBlueScreenSimulator
         {
             if (MessageBox.Show("Warning: This will remove this configuration from the repository. ANY UNSAVED CHANGES WILL BE LOST!!! Are you sure you want to do that?", "Delete bugcheck", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
+                
                 Program.bluescreens.Remove(Program.bluescreens[listBox1.SelectedIndex]);
-                tabControl1.SelectedIndex = 0;
+                listBox1.ClearSelected();
+                listBox1.Items.Clear();
+                foreach (BlueScreen bs in Program.bluescreens)
+                {
+                    listBox1.Items.Add(bs.GetString("friendlyname"));
+                }
                 MessageBox.Show("Config removed successfully", "Configuration deletion", MessageBoxButtons.OK, MessageBoxIcon.Information);
             } else
             {
@@ -540,6 +546,7 @@ namespace UltimateBlueScreenSimulator
         {
             try
             {
+                // remove versions that aren't supported by 1.x files
                 Program.bluescreens.Clear();
                 Program.bluescreens.Add(new BlueScreen("Windows 3.1x"));
                 Program.bluescreens.Add(new BlueScreen("Windows 9x/Me"));
@@ -561,7 +568,7 @@ namespace UltimateBlueScreenSimulator
                     else if (fileline.StartsWith("MODERN "))
                     {
                         Program.bluescreens[7].SetTheme(Color.FromArgb(Convert.ToInt32(fileline.Replace("MODERN ", "").Split(',')[0].ToString().Split(':')[0].ToString()), Convert.ToInt32(fileline.Replace("MODERN ", "").Split(',')[0].ToString().Split(':')[1].ToString()), Convert.ToInt32(fileline.Replace("MODERN ", "").Split(',')[0].ToString().Split(':')[2].ToString())), Color.FromArgb(Convert.ToInt32(fileline.Replace("MODERN ", "").Split(',')[1].ToString().Split(':')[0].ToString()), Convert.ToInt32(fileline.Replace("MODERN ", "").Split(',')[1].ToString().Split(':')[1].ToString()), Convert.ToInt32(fileline.Replace("MODERN ", "").Split(',')[1].ToString().Split(':')[2].ToString())));
-                        Program.bluescreens[8].SetTheme(Program.bluescreens[8].GetTheme(true), Program.bluescreens[8].GetTheme(false));
+                        Program.bluescreens[8].SetTheme(Program.bluescreens[7].GetTheme(true), Program.bluescreens[7].GetTheme(false));
                     }
                     else if (fileline.StartsWith("W2K "))
                     {
@@ -670,8 +677,8 @@ namespace UltimateBlueScreenSimulator
                 catch { }
 
                 // Windows 3.1/9x
-                Program.bluescreens[0].SetTitle("Windows", stringlist[0].Replace("\n", Environment.NewLine));
-                Program.bluescreens[1].SetTitle("Windows", stringlist[0].Replace("\n", Environment.NewLine));
+                Program.bluescreens[0].SetTitle("Main", stringlist[0].Replace("\n", Environment.NewLine));
+                Program.bluescreens[1].SetTitle("Main", stringlist[0].Replace("\n", Environment.NewLine));
                 Program.bluescreens[1].SetTitle("System is busy", stringlist[1].Replace("\n", Environment.NewLine));
                 Program.bluescreens[1].SetTitle("Warning", stringlist[2].Replace("\n", Environment.NewLine));
                 Program.bluescreens[1].SetText("System error", stringlist[3].Replace("\n", Environment.NewLine));
@@ -748,120 +755,125 @@ namespace UltimateBlueScreenSimulator
                 }
                 else
                 {
-                    MessageBox.Show("An error occurred while trying to load configuration file\n\nException: " + ex.Message + "\nStack trace:" + ex.StackTrace.ToString(), "Hack may be corrupted or incompatible", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("An error occurred while trying to load configuration file\n\nException: " + ex.Message + "\nStack trace:" + ex.StackTrace.ToString(), "Configuration file may be corrupted or incompatible", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        public void LoadConfig()
+        {
+            string filedata = File.ReadAllText(loadBsconfig.FileName);
+            string version = filedata.Split('\n')[0];
+            if (version.StartsWith("*** Blue screen simulator plus 1."))
+            {
+                LegacyLoad(File.ReadAllLines(loadBsconfig.FileName));
+            }
+            else if (version.StartsWith("*** Blue screen simulator plus 2."))
+            {
+                string[] primary_section_tokens = filedata.Split('#');
+                Program.bluescreens.Clear();
+                foreach (string section in primary_section_tokens)
+                {
+                    string[] subsection_tokens = section.Split('[');
+                    if (section.StartsWith("*")) { continue; }
+                    string os_name = subsection_tokens[0].Replace("\n", "");
+                    if (os_name == "") { continue; }
+                    BlueScreen bs = new BlueScreen(os_name, false);
+                    bs.ClearAllTitleTexts();
+                    bs.ClearFiles();
+                    foreach (string subsection in subsection_tokens)
+                    {
+                        if (subsection.IndexOf("]") > 0)
+                        {
+                            string type = subsection.Substring(0, subsection.IndexOf("]"));
+                            string subsection_withoutheading = subsection.Substring(type.Length + 1);
+                            string[] entries = subsection_withoutheading.Split(';');
+                            Color theme_bg = Color.Black;
+                            Color theme_fg = Color.White;
+                            Color theme_hbg = Color.White;
+                            Color theme_hfg = Color.Black;
+                            string fontfamily = "";
+                            float size = 1.0f;
+                            FontStyle style = FontStyle.Regular;
+                            foreach (string entry in entries)
+                            {
+                                if (entry.Replace("\n", "") != "")
+                                {
+                                    string key = entry.Split('=')[0].Replace("\n", "");
+                                    string value = entry.Substring(entry.IndexOf("=") + 1);
+                                    switch (type)
+                                    {
+                                        case "string":
+                                            bs.SetString(key, value.Replace("::", ":/:/:").Replace(":h:", "#").Replace(":sc:", ";").Replace(":sb:", "[").Replace(":eb:", "]").Replace(":/:/:", ":"));
+                                            break;
+                                        case "integer":
+                                            bs.SetInt(key, Convert.ToInt32(value));
+                                            break;
+                                        case "boolean":
+                                            bs.SetBool(key, Convert.ToBoolean(value));
+                                            break;
+                                        case "title":
+                                            bs.PushTitle(key, value.Replace("::", ":/:/:").Replace(":h:", "#").Replace(":sc:", ";").Replace(":sb:", "[").Replace(":eb:", "]").Replace(":/:/:", ":"));
+                                            break;
+                                        case "nt_codes":
+                                            bs.PushFile(key, value.Split(','));
+                                            break;
+                                        case "text":
+                                            bs.PushText(key, value.Replace("::", ":/:/:").Replace(":h:", "#").Replace(":sc:", ";").Replace(":sb:", "[").Replace(":eb:", "]").Replace(":/:/:", ":"));
+                                            break;
+                                        case "theme":
+                                            switch (key)
+                                            {
+                                                case "bg":
+                                                    theme_bg = StringToRGB(value);
+                                                    bs.SetTheme(theme_bg, theme_fg);
+                                                    break;
+                                                case "fg":
+                                                    theme_fg = StringToRGB(value);
+                                                    bs.SetTheme(theme_bg, theme_fg);
+                                                    break;
+                                                case "hbg":
+                                                    theme_hbg = StringToRGB(value);
+                                                    bs.SetTheme(theme_hbg, theme_hfg, true);
+                                                    break;
+                                                case "hfg":
+                                                    theme_hfg = StringToRGB(value);
+                                                    bs.SetTheme(theme_hbg, theme_hfg, true);
+                                                    break;
+                                            }
+                                            break;
+                                        case "format":
+                                            switch (key)
+                                            {
+                                                case "fontfamily":
+                                                    fontfamily = value;
+                                                    break;
+                                                case "size":
+                                                    size = (float)Convert.ToDouble(value);
+                                                    break;
+                                                case "style":
+                                                    style = (FontStyle)Enum.Parse(typeof(FontStyle), value);
+                                                    break;
+                                            }
+                                            break;
+                                    }
+                                }
+                            }
+                            bs.SetFont(fontfamily, size, style);
+                        }
+                    }
+                    Program.bluescreens.Add(bs);
                 }
             }
         }
 
         private void LoadCfg_Click(object sender, EventArgs e)
         {
-            if (loadBsconfig.ShowDialog() == DialogResult.OK)
+            if ((loadBsconfig.FileName != "")||(loadBsconfig.ShowDialog() == DialogResult.OK))
             {
-                string filedata = File.ReadAllText(loadBsconfig.FileName);
-                string version = filedata.Split('\n')[0];
-                if (version.StartsWith("*** Blue screen simulator plus 1."))
-                {
-                    MessageBox.Show("This configuration file is not compatible with this development build of blue screen simulator plus 2.0.", "Cannot open configuration file", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    LegacyLoad(File.ReadAllLines(loadBsconfig.FileName));
-                }
-                else if (version.StartsWith("*** Blue screen simulator plus 2."))
-                {
-                    string[] primary_section_tokens = filedata.Split('#');
-                    Program.bluescreens.Clear();
-                    foreach (string section in primary_section_tokens)
-                    {
-                        string[] subsection_tokens = section.Split('[');
-                        if (section.StartsWith("*")) { continue; }
-                        string os_name = subsection_tokens[0].Replace("\n", "");
-                        if (os_name == "") { continue; }
-                        BlueScreen bs = new BlueScreen(os_name, false);
-                        bs.ClearAllTitleTexts();
-                        bs.ClearFiles();
-                        foreach (string subsection in subsection_tokens)
-                        {
-                            if (subsection.IndexOf("]") > 0)
-                            {
-                                string type = subsection.Substring(0, subsection.IndexOf("]"));
-                                string subsection_withoutheading = subsection.Substring(type.Length + 1);
-                                string[] entries = subsection_withoutheading.Split(';');
-                                Color theme_bg = Color.Black;
-                                Color theme_fg = Color.White;
-                                Color theme_hbg = Color.White;
-                                Color theme_hfg = Color.Black;
-                                string fontfamily = "";
-                                float size = 1.0f;
-                                FontStyle style = FontStyle.Regular;
-                                foreach (string entry in entries)
-                                {
-                                    if (entry.Replace("\n", "") != "")
-                                    {
-                                        string key = entry.Split('=')[0].Replace("\n", "");
-                                        string value = entry.Substring(entry.IndexOf("=") + 1);
-                                        switch (type)
-                                        {
-                                            case "string":
-                                                bs.SetString(key, value.Replace("::", ":/:/:").Replace(":h:", "#").Replace(":sc:", ";").Replace(":sb:", "[").Replace(":eb:", "]").Replace(":/:/:", ":"));
-                                                break;
-                                            case "integer":
-                                                bs.SetInt(key, Convert.ToInt32(value));
-                                                break;
-                                            case "boolean":
-                                                bs.SetBool(key, Convert.ToBoolean(value));
-                                                break;
-                                            case "title":
-                                                bs.PushTitle(key, value.Replace("::", ":/:/:").Replace(":h:", "#").Replace(":sc:", ";").Replace(":sb:", "[").Replace(":eb:", "]").Replace(":/:/:", ":"));
-                                                break;
-                                            case "nt_codes":
-                                                bs.PushFile(key, value.Split(','));
-                                                break;
-                                            case "text":
-                                                bs.PushText(key, value.Replace("::", ":/:/:").Replace(":h:", "#").Replace(":sc:", ";").Replace(":sb:", "[").Replace(":eb:", "]").Replace(":/:/:", ":"));
-                                                break;
-                                            case "theme":
-                                                switch (key)
-                                                {
-                                                    case "bg":
-                                                        theme_bg = StringToRGB(value);
-                                                        bs.SetTheme(theme_bg, theme_fg);
-                                                        break;
-                                                    case "fg":
-                                                        theme_fg = StringToRGB(value);
-                                                        bs.SetTheme(theme_bg, theme_fg);
-                                                        break;
-                                                    case "hbg":
-                                                        theme_hbg = StringToRGB(value);
-                                                        bs.SetTheme(theme_hbg, theme_hfg, true);
-                                                        break;
-                                                    case "hfg":
-                                                        theme_hfg = StringToRGB(value);
-                                                        bs.SetTheme(theme_hbg, theme_hfg, true);
-                                                        break;
-                                                }
-                                                break;
-                                            case "format":
-                                                switch (key)
-                                                {
-                                                    case "fontfamily":
-                                                        fontfamily = value;
-                                                        break;
-                                                    case "size":
-                                                        size = (float)Convert.ToDouble(value);
-                                                        break;
-                                                    case "style":
-                                                        style = (FontStyle)Enum.Parse(typeof(FontStyle), value);
-                                                        break;
-                                                }
-                                                break;
-                                        }
-                                    }
-                                }
-                                bs.SetFont(fontfamily, size, style);
-                            }
-                        }
-                        Program.bluescreens.Add(bs);
-                    }
-                }
+                LoadConfig();
             }
+            loadBsconfig.FileName = "";
             listBox1.ClearSelected();
             listBox1.Items.Clear();
             foreach (BlueScreen bs in Program.bluescreens)
@@ -870,5 +882,40 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
+        private void button7_Click_3(object sender, EventArgs e)
+        {
+            Program.bluescreens.Clear();
+            Program.ReRe();
+            listBox1.ClearSelected();
+            listBox1.Items.Clear();
+            foreach (BlueScreen bs in Program.bluescreens)
+            {
+                listBox1.Items.Add(bs.GetString("friendlyname"));
+            }
+        }
+
+        private void button6_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                DictEdit de = new DictEdit();
+                de.me = Program.bluescreens[listBox1.SelectedIndex];
+                de.Show();
+            } catch
+            {
+                MessageBox.Show("please select a configuration");
+            }
+        }
+
+        private void button8_Click_1(object sender, EventArgs e)
+        {
+            Program.bluescreens.Clear();
+            listBox1.ClearSelected();
+            listBox1.Items.Clear();
+            foreach (BlueScreen bs in Program.bluescreens)
+            {
+                listBox1.Items.Add(bs.GetString("friendlyname"));
+            }
+        }
     }
 }

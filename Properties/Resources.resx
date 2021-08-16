@@ -118,80 +118,52 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="rasterNT" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\rasterNT.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="rasters" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\rasters.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="corner_bl" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\corner_bl.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="msoftware" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\msoftware.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="corner_tl" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\corner_tl.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="_default" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Release\default.bscfg;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-16</value>
-    <comment>This file contains default hack settings</comment>
-  </data>
-  <data name="rasters2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\rasters2.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="verifile" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\verifile.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="pending" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\pending.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="bsodqr_transparent" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\bsodqr_transparent.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="current" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\current.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="corner_tr" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\corner_tr.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="failure" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\failure.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="final" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\bin\Release\final.bat;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1257</value>
     <comment>Batch script, deletes temporary update files</comment>
   </data>
-  <data name="corner_br1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\corner_br1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="rasters3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\rasters3.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="NTERRORDATABASE" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\NTERRORDATABASE.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1257</value>
-    <comment>Contains all Windows NT error codes</comment>
+  <data name="msoftware" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\msoftware.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="corner_br" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\corner_br.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="_default" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\bin\Release\default.bscfg;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-16</value>
+    <comment>This file contains default hack settings</comment>
   </data>
-  <data name="CULPRIT_FILES" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\CULPRIT_FILES.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1257</value>
+  <data name="failure" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\failure.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="current1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\current1.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="success" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\success.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="corner_br1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\corner_br1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="rasterNT" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\rasterNT.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="MarkusTegelane_element_brandpic" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\MarkusTegelane_element_brandpic.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="bsodbanner" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\bsodbanner.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="bsodqr" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\bsodqr.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="success" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\success.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="dummy" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\dummy.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CULPRIT_FILES" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CULPRIT_FILES.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1257</value>
+  </data>
+  <data name="corner_tl" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\corner_tl.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bsodqr" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bsodqr.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="beep" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\untitled.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -199,13 +171,44 @@
   <data name="doscii" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\doscii.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="rasters3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\rasters3.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="current" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\current.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="corner_tr" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\corner_tr.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bsodbanner" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bsodbanner.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pending" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pending.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="verifile" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\verifile.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NTERRORDATABASE" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\NTERRORDATABASE.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1257</value>
+    <comment>Contains all Windows NT error codes</comment>
+  </data>
+  <data name="rasters2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\rasters2.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="win1_splash" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\win1_splash.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="corner_br" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\corner_br.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="win2_splash" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\win2_splash.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="corner_bl" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\corner_bl.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bsodqr_transparent" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bsodqr_transparent.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="round_corners" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\round_corners.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

@@ -98,7 +98,7 @@ namespace UltimateBlueScreenSimulator
         private static bool bad = false;
 
         //Command line syntax
-        public static string cmds = "/? - Displays command line syntax\n/wv:xx - Set a specific configuration/os (e.g. \"Windows XP\")\n/h - Doesn't show main GUI. If no simulation is started or the simulation is finished, the program will close.\n/hwm - Hides watermark\n/c - Simulates a system crash\n/config:xx - Loads a configuration file (xx is the file name)\n\n/ntc:xx - Specific NT error code to display. Replace xx with the actual code\n/9xc:xx - Specific 9x/Me message to display (system/application/driver/busy/unresponsive)\n/ddesc - Disables error descriptions\n/dqr - Disables QR code on Windows 10 blue screen\n/srv - Displays Windows Server 2016 blue screen when wv is set to 10\n/dac - Disables autoclose feature (Modern blue screens only)\n/gs - Displays green screen when wv is set to 10\n/ap - Displays ACPI blue screen (Windows Vista/7 only)\n/file:xx - Displays the potential culprit file (replace xx with the actual file name)\n/amd - Displays \"AuthenticAMD\" instead of \"GenuineIntel\" on Windows NT blue screen\n/blink - Shows a blinking cursor (NT blue screen)\n/dstack - Does not display stack trace (NT blue screen)\n/win - Enables windowed mode\n/random - Randomizes the blue screen (does NOT randomize any custom attributes set)\n\n/desc - Forcibly enable error description\n/ac - Forcibly enable autoclose feature\n/dap - Forcibly disable ACPI error screen (Windows Vista/7)\n/damd - Forcibly display \"GenuineIntel\" on Windows NT blue screen\n/dblink - Forcibly disable blinking cursor on Windows NT blue screen\n/dgs - Forcibly disable green screen on Windows 10 blue screen\n/qr - Forcibly enable QR code on Windows 10 blue screen\n/dsrv - Forcibly disable server blue screen when version is set to Windows 10\n/stack - Forcible enable stack trace on Windows NT blue screen\n/dfile - Forcible disables potential culprit file\n\n/clr - Clears the verification certificate from this computer, causing the first use message to pop up.\n/hidesplash - Hides the splash screen";
+        public static string cmds = "/? - Displays command line syntax\n/wv:xx - Set a specific configuration/os (e.g. \"XP\")\n/h - Doesn't show main GUI. If no simulation is started or the simulation is finished, the program will close.\n/hwm - Hides watermark\n/c - Simulates a system crash\n/config:xx - Loads a configuration file (xx is the file name)\n\n/ntc:xx - Specific NT error code to display. Replace xx with the actual code\n/9xc:xx - Specific 9x/Me message to display (system/application/driver/busy/unresponsive)\n/ddesc - Disables error descriptions\n/dqr - Disables QR code on Windows 10 blue screen\n/srv - Displays Windows Server 2016 blue screen when wv is set to 10\n/dac - Disables autoclose feature (Modern blue screens only)\n/gs - Displays green screen when wv is set to 10\n/ap - Displays ACPI blue screen (Windows Vista/7 only)\n/file:xx - Displays the potential culprit file (replace xx with the actual file name)\n/amd - Displays \"AuthenticAMD\" instead of \"GenuineIntel\" on Windows NT blue screen\n/blink - Shows a blinking cursor (NT blue screen)\n/dstack - Does not display stack trace (NT blue screen)\n/win - Enables windowed mode\n/random - Randomizes the blue screen (does NOT randomize any custom attributes set)\n\n/desc - Forcibly enable error description\n/ac - Forcibly enable autoclose feature\n/dap - Forcibly disable ACPI error screen (Windows Vista/7)\n/damd - Forcibly display \"GenuineIntel\" on Windows NT blue screen\n/dblink - Forcibly disable blinking cursor on Windows NT blue screen\n/dgs - Forcibly disable green screen on Windows 10 blue screen\n/qr - Forcibly enable QR code on Windows 10 blue screen\n/dsrv - Forcibly disable server blue screen when version is set to Windows 10\n/stack - Forcible enable stack trace on Windows NT blue screen\n/dfile - Forcible disables potential culprit file\n\n/clr - Clears the verification certificate from this computer, causing the first use message to pop up.\n/hidesplash - Hides the splash screen";
 
         internal static bool verificate = false;
         public static bool hidden = false;
@@ -121,6 +121,10 @@ namespace UltimateBlueScreenSimulator
                     hidden = true;
                     spl = new Splash();
                     spl.ShowDialog();
+                    if (args.Contains("/preview_splash"))
+                    {
+                        return;
+                    }
                 }
                 else
                 {
@@ -157,7 +161,6 @@ namespace UltimateBlueScreenSimulator
                 try
                 {
                     string[] fc = File.ReadAllText("settings.cfg").Split('\n');
-                    string[] comboitems = File.ReadAllText("settings.cfg").Split('\"')[1].Split('\n');
                     foreach (string element in fc)
                     {
                         //Other configurations
@@ -191,9 +194,11 @@ namespace UltimateBlueScreenSimulator
                         }
                     }
                 }
-                catch
+                catch (Exception ex)
                 {
+
                     //Configuration seems to be corrupted, if this part is executed...
+                    MessageBox.Show(ex.Message);
                 }
             }
 
@@ -257,6 +262,26 @@ namespace UltimateBlueScreenSimulator
                     f1.error = 23;
                     break;
                 }
+                //this code loads hack file if specified in arguments
+                if (argument.Contains("/config:"))
+                {
+                    string filename = argument.Split(':')[1];
+                    if (File.Exists(filename))
+                    {
+                        if (filename != "")
+                        {
+                            AboutBox1 abb = new AboutBox1();
+                            abb.loadBsconfig.FileName = filename;
+                            abb.LoadConfig();
+                            abb.Close();
+                            abb.Dispose();
+                        }
+                    }
+                    else
+                    {
+                        f1.error = 24;
+                    }
+                }
                 //select Windows version using /wv argument
                 if (argument.Contains("/wv"))
                 {
@@ -265,53 +290,166 @@ namespace UltimateBlueScreenSimulator
                     {
                         f1.error = 15;
                     }
-                    for (int i = 0; i < f1.windowVersion.Items.Count; i++)
+                    int i = 0;
+                    foreach (BlueScreen bs in bluescreens)
                     {
-                        if (f1.windowVersion.Items[i].ToString().ToLower().Contains(ecode.ToLower()))
+                        if (bs.GetString("friendlyname").ToLower().Contains(ecode.ToLower()) || bs.GetString("os").ToLower().Contains(ecode.ToLower()))
                         {
-                            f1.specificos = f1.windowVersion.Items[i].ToString();
+                            f1.me = bs;
+                            f1.displayone = true;
+                            f1.comboBox1.SelectedIndex = i;
                             done = true;
+                            break;
                         }
+                        i++;
                     }
                     if (!done)
                     {
                         f1.error = 12;
                     }
                 }
-                //this code loads hack file if specified in arguments
-                else if (argument.Contains("/config:"))
-                {
-                    string filename = argument.Split(':')[1];
-                    if (File.Exists(filename))
-                    { 
-                        if (filename != "") { /*bh.LoadHack(filename);*/ }
-                    } else
-                    {
-                        f1.error = 24;
-                    }
-                }
             }
             //sets other optional flags
-            if (args.Contains("/ddesc")) { f1.checkBox1.Checked = false; }
-            if (args.Contains("/desc")) { f1.checkBox1.Checked = true; }
-            if (args.Contains("/dac")) { f1.autoBox.Checked = false; }
-            if (args.Contains("/ac")) { f1.autoBox.Checked = true; }
-            if (args.Contains("/ap")) { f1.acpiBox.Checked = true; }
-            if (args.Contains("/dap")) { f1.acpiBox.Checked = false; }
-            if (args.Contains("/amd")) { f1.amdBox.Checked = true; }
-            if (args.Contains("/damd")) { f1.amdBox.Checked = false; }
-            if (args.Contains("/blink")) { f1.blinkBox.Checked = true; }
-            if (args.Contains("/dblink")) { f1.blinkBox.Checked = false; }
-            if (args.Contains("/gs")) { f1.greenBox.Checked = true; }
-            if (args.Contains("/dgs")) { f1.greenBox.Checked = false; }
-            if (args.Contains("/qr")) { f1.qrBox.Checked = true; }
-            if (args.Contains("/dqr")) { f1.qrBox.Checked = false; }
-            if (args.Contains("/srv")) { f1.serverBox.Checked = true; }
-            if (args.Contains("/dsrv")) { f1.serverBox.Checked = false; }
-            if (args.Contains("/stack")) { f1.stackBox.Checked = true; }
-            if (args.Contains("/dstack")) { f1.stackBox.Checked = false; }
-            if (args.Contains("/win")) { f1.winMode.Checked = true; }
-            if (args.Contains("/dfile")) { f1.textBox2.Text = ""; f1.checkBox2.Checked = false; }
+            if (args.Contains("/ddesc")) { 
+                foreach (BlueScreen bs in bluescreens)
+                {
+                    bs.SetBool("show_description", false);
+                }
+            }
+            if (args.Contains("/desc"))
+            {
+                foreach (BlueScreen bs in bluescreens)
+                {
+                    bs.SetBool("show_description", true);
+                }
+            }
+            if (args.Contains("/dac"))
+            {
+                foreach (BlueScreen bs in bluescreens)
+                {
+                    bs.SetBool("autoclose", false);
+                }
+            }
+            if (args.Contains("/ac"))
+            {
+                foreach (BlueScreen bs in bluescreens)
+                {
+                    bs.SetBool("autoclose", true);
+                }
+            }
+            if (args.Contains("/ap"))
+            {
+                foreach (BlueScreen bs in bluescreens)
+                {
+                    bs.SetBool("acpi", true);
+                }
+            }
+            if (args.Contains("/dap"))
+            {
+                foreach (BlueScreen bs in bluescreens)
+                {
+                    bs.SetBool("acpi", false);
+                }
+            }
+            if (args.Contains("/amd"))
+            {
+                foreach (BlueScreen bs in bluescreens)
+                {
+                    bs.SetBool("amd", true);
+                }
+            }
+            if (args.Contains("/damd"))
+            {
+                foreach (BlueScreen bs in bluescreens)
+                {
+                    bs.SetBool("amd", false);
+                }
+            }
+            if (args.Contains("/blink"))
+            {
+                foreach (BlueScreen bs in bluescreens)
+                {
+                    bs.SetBool("blink", true);
+                }
+            }
+            if (args.Contains("/dblink"))
+            {
+                foreach (BlueScreen bs in bluescreens)
+                {
+                    bs.SetBool("blink", false);
+                }
+            }
+            if (args.Contains("/gs"))
+            {
+                foreach (BlueScreen bs in bluescreens)
+                {
+                    bs.SetBool("insider", true);
+                }
+            }
+            if (args.Contains("/dgs"))
+            {
+                foreach (BlueScreen bs in bluescreens)
+                {
+                    bs.SetBool("insider", false);
+                }
+            }
+            if (args.Contains("/qr"))
+            {
+                foreach (BlueScreen bs in bluescreens)
+                {
+                    bs.SetBool("qr", true);
+                }
+            }
+            if (args.Contains("/dqr"))
+            {
+                foreach (BlueScreen bs in bluescreens)
+                {
+                    bs.SetBool("qr", false);
+                }
+            }
+            if (args.Contains("/srv"))
+            {
+                foreach (BlueScreen bs in bluescreens)
+                {
+                    bs.SetBool("server", true);
+                }
+            }
+            if (args.Contains("/dsrv"))
+            {
+                foreach (BlueScreen bs in bluescreens)
+                {
+                    bs.SetBool("server", false);
+                }
+            }
+            if (args.Contains("/stack"))
+            {
+                foreach (BlueScreen bs in bluescreens)
+                {
+                    bs.SetBool("stack_trace", true);
+                }
+            }
+            if (args.Contains("/dstack"))
+            {
+                foreach (BlueScreen bs in bluescreens)
+                {
+                    bs.SetBool("stack_trace", false);
+                }
+            }
+            if (args.Contains("/win"))
+            {
+                foreach (BlueScreen bs in bluescreens)
+                {
+                    bs.SetBool("windowed", true);
+                }
+            }
+            if (args.Contains("/dfile"))
+            {
+                foreach (BlueScreen bs in bluescreens)
+                {
+                    bs.SetBool("show_file", false);
+                    bs.SetString("culprit", "");
+                }
+            }
             //displays help
             if (args.Contains("/?"))
             {
@@ -325,6 +463,10 @@ namespace UltimateBlueScreenSimulator
                 {
                     f1.checkBox2.Checked = true;
                     string ecode = argument.Split(':')[1].ToString();
+                    foreach (BlueScreen bs in bluescreens)
+                    {
+                        bs.SetString("culprit", ecode);
+                    }
                     if (ecode == "")
                     {
                         f1.error = 16;
@@ -344,7 +486,13 @@ namespace UltimateBlueScreenSimulator
                     f1.error = 1;
                 }
             }
-            if (args.Contains("/hwm")) { f1.waterBox.Checked = false; }
+            if (args.Contains("/hwm"))
+            {
+                foreach (BlueScreen bs in bluescreens)
+                {
+                    bs.SetBool("watermark", false);
+                }
+            }
 
             //run application
             Application.Run(f1);
