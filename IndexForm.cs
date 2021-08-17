@@ -14,6 +14,7 @@ namespace UltimateBlueScreenSimulator
         public string c4 = "RRRRRRRRRRRRRRRR";
 
         int nt_id = 0;
+
         string ncodes = "";
 
         public IndexForm()
@@ -699,22 +700,28 @@ namespace UltimateBlueScreenSimulator
         private void SetCharAt(int index, string value)
         {
             ncodes = ncodes.Substring(0, index) + value + ncodes.Substring(index + 1);
+            int backup = nt_id + 1;
             UpdateCode();
             WriteValue();
+            SwitchBlock(backup);
         }
 
         private void button19_Click_1(object sender, EventArgs e)
         {
             ncodes = "00000000";
+            int backup = nt_id + 1;
             UpdateCode();
             WriteValue();
+            SwitchBlock(backup);
         }
 
         private void button18_Click_1(object sender, EventArgs e)
         {
             ncodes = "RRRRRRRR";
+            int backup = nt_id + 1;
             UpdateCode();
             WriteValue();
+            SwitchBlock(backup);
         }
 
         private void ntr1_Click(object sender, EventArgs e) { SetCharAt(0, "R"); }

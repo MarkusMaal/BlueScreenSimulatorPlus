@@ -120,6 +120,7 @@ namespace UltimateBlueScreenSimulator
         {
             try
             {
+                Program.load_progress = 101;
                 watermark.Visible = me.GetBool("watermark");
                 if (me.GetString("qr_file") != "local:null")
                 {
@@ -227,6 +228,7 @@ namespace UltimateBlueScreenSimulator
                 MessageBox.Show("A blue screen couldn't be displayed due to an error\n\n" + ex.Message + "\n\n" + ex.StackTrace, "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.Close();
             }
+            Program.load_progress = 100;
         }
 
         private void Timer1_Tick(object sender, EventArgs e)

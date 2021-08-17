@@ -12,6 +12,7 @@ namespace UltimateBlueScreenSimulator
     {
         //If this flag is set, then help tabs are hidden and setting tabs are visible
         public bool SettingTab = false;
+        public int tab_id = 0;
         public AboutBox1()
         {
             InitializeComponent();
@@ -127,6 +128,7 @@ namespace UltimateBlueScreenSimulator
                 if (Program.f1.GMode == "NearestNeighbour") { comboBox1.SelectedIndex = 2; }
                 checkBox2.Checked = !Program.f1.showcursor;
             }
+            tabControl1.SelectedIndex = tab_id;
         }
 
         private void TabPage5_Click(object sender, EventArgs e)

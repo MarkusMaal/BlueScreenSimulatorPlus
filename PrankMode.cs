@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using Microsoft.Win32;
+using SimulatorDatabase;
 
 namespace UltimateBlueScreenSimulator
 {
@@ -11,6 +13,9 @@ namespace UltimateBlueScreenSimulator
         string MsgBoxMessage = "Enter a message here.";
         string MsgBoxTitle = "Enter a title here";
         string[] time = { "00", "05", "00" };
+        List<USBDeviceInfo> currentDevs = new List<USBDeviceInfo>();
+        List<USBDeviceInfo> prevDevs = new List<USBDeviceInfo>();
+        string[] devinfo = { };
         bool timecatch = true;
         MessageBoxIcon MsgBoxIcon = MessageBoxIcon.Exclamation;
         MessageBoxButtons MsgBoxType = MessageBoxButtons.OK;
@@ -23,7 +28,8 @@ namespace UltimateBlueScreenSimulator
         {
 
             string winver = releaseId;
-            bool contain = false;
+            MessageBox.Show(releaseId);
+            int contain = -1;
             if (radioButton1.Checked == true)
             {
                 Program.f1.winMode.Checked = false;
@@ -34,7 +40,7 @@ namespace UltimateBlueScreenSimulator
                     {
                         if (Program.f1.windowVersion.Items[i].ToString().Contains("Windows 10"))
                         {
-                            contain = true;
+                            contain = i;
                         }
                     }
                 }
@@ -45,7 +51,7 @@ namespace UltimateBlueScreenSimulator
                     {
                         if (Program.f1.windowVersion.Items[i].ToString().Contains("Windows 8"))
                         {
-                            contain = true;
+                            contain = i;
                         }
                     }
                 }
@@ -56,7 +62,7 @@ namespace UltimateBlueScreenSimulator
                     {
                         if (Program.f1.windowVersion.Items[i].ToString().Contains("Windows Vista"))
                         {
-                            contain = true;
+                            contain = i;
                         }
                     }
                 }
@@ -67,7 +73,7 @@ namespace UltimateBlueScreenSimulator
                     {
                         if (Program.f1.windowVersion.Items[i].ToString().Contains("Windows XP"))
                         {
-                            contain = true;
+                            contain = i;
                         }
                     }
                 }
@@ -78,7 +84,7 @@ namespace UltimateBlueScreenSimulator
                     {
                         if (Program.f1.windowVersion.Items[i].ToString().Contains("Windows 2000"))
                         {
-                            contain = true;
+                            contain = i;
                         }
                     }
                 }
@@ -89,7 +95,7 @@ namespace UltimateBlueScreenSimulator
                     {
                         if (Program.f1.windowVersion.Items[i].ToString().Contains("Windows 9x"))
                         {
-                            contain = true;
+                            contain = i;
                         }
                     }
                 }
@@ -100,7 +106,7 @@ namespace UltimateBlueScreenSimulator
                     {
                         if (Program.f1.windowVersion.Items[i].ToString().Contains("Windows NT"))
                         {
-                            contain = true;
+                            contain = i;
                         }
                     }
                 }
@@ -111,11 +117,11 @@ namespace UltimateBlueScreenSimulator
                     {
                         if (Program.f1.windowVersion.Items[i].ToString().Contains("Windows 3.1"))
                         {
-                            contain = true;
+                            contain = i;
                         }
                     }
                 }
-                if (!contain)
+                if (contain == -1)
                 {
                     radioButton1.Checked = false;
                     radioButton1.Enabled = false;
@@ -304,11 +310,13 @@ namespace UltimateBlueScreenSimulator
                     {
                         if (winver.Contains(Program.bluescreens[i].GetString("os")))
                         {
-                            Program.f1.windowVersion.SelectedIndex = i;
+                            Program.f1.me = Program.bluescreens[i];
+                            Program.f1.windowVersion.SelectedIndex = Program.f1.windowVersion.Items.Count - 1 - i;
                         }
                     }
                 }
                 //this code handles blue screen triggers and final message, if exists
+                string[] emptydev = { };
                 if (radioButton3.Checked == true)
                 {
                     Program.f1.timecatch = timecatch;
@@ -317,10 +325,19 @@ namespace UltimateBlueScreenSimulator
                     int secs = Convert.ToInt32(time[2].Replace("00", "0").Replace("01", "1").Replace("02", "2").Replace("03", "3").Replace("04", "4").Replace("05", "5").Replace("06", "6").Replace("07", "7").Replace("08", "8").Replace("09", "9"));
                     int[] timex = { hrs, mins, secs };
                     Program.f1.time = timex;
-                } else
+                    Program.f1.usb_device = emptydev;
+                    Program.f1.timer2.Interval = 1000;
+                } else if (radioButton4.Checked)
                 {
                     Program.f1.timecatch = false;
                     Program.f1.appname = textBox1.Text;
+                    Program.f1.usb_device = emptydev;
+                    Program.f1.timer2.Interval = 1000;
+                } else
+                {
+                    Program.f1.timecatch = false;
+                    Program.f1.usb_device = devinfo;
+                    Program.f1.timer2.Interval = 100;
                 }
                 if (checkBox2.Checked == true)
                 {
@@ -359,6 +376,65 @@ namespace UltimateBlueScreenSimulator
         private void RadioButton2_CheckedChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void radioButton16_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton16.Checked == true)
+            {
+                panel5.Visible = true;
+                if (devinfo.Length == 0)
+                {
+                    currentDevs = USBDeviceInfo.GetUSBDevices();
+                    prevDevs = USBDeviceInfo.GetUSBDevices();
+                    timer1.Enabled = true;
+                    button4.Enabled = false;
+                } else
+                {
+                    button4.Enabled = true;
+                }
+            }
+            else
+            {
+                panel5.Visible = false;
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            string[] dinfo = { };
+            label9.Text = "No trigger device\r\n(Unplug and) plug in desired trigger device";
+            devinfo = dinfo;
+            currentDevs = USBDeviceInfo.GetUSBDevices();
+            prevDevs = USBDeviceInfo.GetUSBDevices();
+            button4.Enabled = false;
+            timer1.Enabled = true;
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            prevDevs = currentDevs;
+            currentDevs = USBDeviceInfo.GetUSBDevices();
+            if ((currentDevs != prevDevs) && (currentDevs.Count >= prevDevs.Count))
+            {
+                for (int i = 0; i < currentDevs.Count; i++)
+                {
+                    if (!prevDevs.Contains(currentDevs[i]))
+                    {
+                        string[] usbinfo = { currentDevs[i].DeviceID, currentDevs[i].PnpDeviceID, currentDevs[i].Description };
+                        devinfo = usbinfo;
+                        label9.Text = "Trigger device: " + devinfo[2] + "(Device ID: " + devinfo[0] + ")";
+                        timer1.Enabled = false;
+                        button4.Enabled = true;
+                        break;
+                    }
+                }
+            }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(" - A standard user account doesn't have access to all devices plugged into the computer. Sometimes, certain devices are only detected when the program is started as an administrator.\r\n - Try a different USB port, such as the one on your case. USB hubs might not update the device properly sometimes.\r\n - Try a different trigger device", "Device troubleshooting", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

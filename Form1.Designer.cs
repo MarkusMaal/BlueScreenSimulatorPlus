@@ -72,14 +72,32 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.timer3 = new System.Windows.Forms.Timer(this.components);
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.simulatorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.advancedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.blueScreenHacksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.codeCustomizationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.specialToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.prankModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.commandLineSyntaxToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.quickHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.autoUpdateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.simulatorSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.simulateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
+            this.waitPopup = new System.Windows.Forms.Timer(this.components);
             this.flowLayoutPanel1.SuspendLayout();
             this.WXOptions.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
@@ -88,12 +106,14 @@
             this.nineXmessage.SuspendLayout();
             this.winPanel.SuspendLayout();
             this.flowLayoutPanel3.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
+            this.flowLayoutPanel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 23);
+            this.label1.Location = new System.Drawing.Point(12, 31);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(72, 13);
             this.label1.TabIndex = 0;
@@ -115,7 +135,7 @@
             "Windows Vista/7 BOOTMGR (1024x768, ClearType)",
             "Windows Vista/7 BOOTMGR (1024x768, ClearType)",
             "Windows XP (640x480, Standard)"});
-            this.windowVersion.Location = new System.Drawing.Point(90, 19);
+            this.windowVersion.Location = new System.Drawing.Point(90, 27);
             this.windowVersion.Name = "windowVersion";
             this.windowVersion.Size = new System.Drawing.Size(397, 21);
             this.windowVersion.TabIndex = 1;
@@ -127,7 +147,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 49);
+            this.label2.Location = new System.Drawing.Point(12, 57);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(99, 13);
             this.label2.TabIndex = 2;
@@ -148,10 +168,11 @@
             this.flowLayoutPanel1.Controls.Add(this.winPanel);
             this.flowLayoutPanel1.Controls.Add(this.waterBox);
             this.flowLayoutPanel1.Controls.Add(this.winMode);
+            this.flowLayoutPanel1.Controls.Add(this.flowLayoutPanel4);
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(15, 65);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(15, 73);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(472, 223);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(472, 289);
             this.flowLayoutPanel1.TabIndex = 3;
             // 
             // WXOptions
@@ -435,7 +456,7 @@
             // acpiBox
             // 
             this.acpiBox.AutoSize = true;
-            this.acpiBox.Location = new System.Drawing.Point(473, 3);
+            this.acpiBox.Location = new System.Drawing.Point(3, 213);
             this.acpiBox.Name = "acpiBox";
             this.acpiBox.Size = new System.Drawing.Size(124, 17);
             this.acpiBox.TabIndex = 8;
@@ -450,7 +471,7 @@
             this.checkBox1.AutoSize = true;
             this.checkBox1.Checked = true;
             this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Location = new System.Drawing.Point(473, 26);
+            this.checkBox1.Location = new System.Drawing.Point(3, 236);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(237, 17);
             this.checkBox1.TabIndex = 6;
@@ -465,7 +486,7 @@
             this.checkBox3.AutoSize = true;
             this.checkBox3.Checked = true;
             this.checkBox3.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox3.Location = new System.Drawing.Point(473, 49);
+            this.checkBox3.Location = new System.Drawing.Point(3, 259);
             this.checkBox3.Name = "checkBox3";
             this.checkBox3.Size = new System.Drawing.Size(69, 17);
             this.checkBox3.TabIndex = 13;
@@ -479,7 +500,7 @@
             // 
             this.winPanel.Controls.Add(this.playSndBox);
             this.winPanel.Controls.Add(this.flowLayoutPanel3);
-            this.winPanel.Location = new System.Drawing.Point(473, 72);
+            this.winPanel.Location = new System.Drawing.Point(473, 3);
             this.winPanel.Name = "winPanel";
             this.winPanel.Size = new System.Drawing.Size(461, 56);
             this.winPanel.TabIndex = 14;
@@ -546,7 +567,7 @@
             this.waterBox.AutoSize = true;
             this.waterBox.Checked = true;
             this.waterBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.waterBox.Location = new System.Drawing.Point(473, 134);
+            this.waterBox.Location = new System.Drawing.Point(473, 65);
             this.waterBox.Name = "waterBox";
             this.waterBox.Size = new System.Drawing.Size(127, 17);
             this.waterBox.TabIndex = 16;
@@ -558,7 +579,7 @@
             // winMode
             // 
             this.winMode.AutoSize = true;
-            this.winMode.Location = new System.Drawing.Point(473, 157);
+            this.winMode.Location = new System.Drawing.Point(473, 88);
             this.winMode.Name = "winMode";
             this.winMode.Size = new System.Drawing.Size(121, 17);
             this.winMode.TabIndex = 17;
@@ -570,7 +591,7 @@
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(416, 313);
+            this.button1.Location = new System.Drawing.Point(418, 387);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(68, 23);
             this.button1.TabIndex = 4;
@@ -583,11 +604,11 @@
             // button3
             // 
             this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.Location = new System.Drawing.Point(385, 313);
+            this.button3.Location = new System.Drawing.Point(301, 387);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(25, 23);
+            this.button3.Size = new System.Drawing.Size(111, 23);
             this.button3.TabIndex = 9;
-            this.button3.Text = "?";
+            this.button3.Text = "I\'m feeling unlucky";
             this.helpTip.SetToolTip(this.button3, "This will generate a random blue screen");
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.Button3_Click);
@@ -596,11 +617,11 @@
             // button4
             // 
             this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button4.Location = new System.Drawing.Point(324, 313);
+            this.button4.Location = new System.Drawing.Point(122, 3);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(55, 23);
+            this.button4.Size = new System.Drawing.Size(113, 23);
             this.button4.TabIndex = 10;
-            this.button4.Text = "Codes";
+            this.button4.Text = "Error code editor";
             this.helpTip.SetToolTip(this.button4, "Allows you to configure how memory codes are being displayed on blue screens. Whe" +
         "n the screen uses less than 16 digits, the first digits will be used (e.g. first" +
         " 8 digits)");
@@ -611,36 +632,23 @@
             // button5
             // 
             this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button5.Location = new System.Drawing.Point(259, 313);
+            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.button5.Location = new System.Drawing.Point(3, 3);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(59, 23);
+            this.button5.Size = new System.Drawing.Size(113, 23);
             this.button5.TabIndex = 11;
-            this.button5.Text = "Hacks";
+            this.button5.Text = "Additional options";
             this.helpTip.SetToolTip(this.button5, "Experimental features to mess with in blue screens");
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.Button5_Click);
             this.button5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Button7_KeyDown);
             // 
-            // button6
-            // 
-            this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button6.Location = new System.Drawing.Point(174, 313);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(79, 23);
-            this.button6.TabIndex = 12;
-            this.button6.Text = "Prank mode";
-            this.helpTip.SetToolTip(this.button6, "Useful tools for pranking people\r\nNote: This option should NOT be used maliciousl" +
-        "y (ie as a way of stealing productivity)");
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.Button6_Click);
-            this.button6.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Button7_KeyDown);
-            // 
             // button7
             // 
             this.button7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button7.Location = new System.Drawing.Point(15, 313);
+            this.button7.Location = new System.Drawing.Point(15, 387);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(60, 23);
+            this.button7.Size = new System.Drawing.Size(69, 23);
             this.button7.TabIndex = 14;
             this.button7.Text = "Settings";
             this.helpTip.SetToolTip(this.button7, "Configure blue screen simulator\'s settings and allows you to check for updates.\r\n" +
@@ -650,23 +658,11 @@
             this.button7.Click += new System.EventHandler(this.Button7_Click_1);
             this.button7.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Button7_KeyDown);
             // 
-            // button8
-            // 
-            this.button8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button8.Location = new System.Drawing.Point(80, 313);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(88, 23);
-            this.button8.TabIndex = 15;
-            this.button8.Text = "About and help";
-            this.helpTip.SetToolTip(this.button8, "About and help");
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.Button8_Click);
-            // 
             // label7
             // 
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(15, 297);
+            this.label7.Location = new System.Drawing.Point(15, 371);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(150, 13);
             this.label7.TabIndex = 6;
@@ -675,7 +671,7 @@
             // label10
             // 
             this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label10.Location = new System.Drawing.Point(351, 291);
+            this.label10.Location = new System.Drawing.Point(351, 365);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(134, 13);
             this.label10.TabIndex = 8;
@@ -694,7 +690,7 @@
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(14, 23);
+            this.linkLabel1.Location = new System.Drawing.Point(14, 31);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(44, 13);
             this.linkLabel1.TabIndex = 16;
@@ -703,17 +699,187 @@
             this.linkLabel1.Visible = false;
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.AutoSize = false;
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.simulatorToolStripMenuItem,
+            this.specialToolStripMenuItem,
+            this.advancedToolStripMenuItem,
+            this.helpToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(0);
+            this.menuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this.menuStrip1.Size = new System.Drawing.Size(499, 22);
+            this.menuStrip1.TabIndex = 17;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // simulatorToolStripMenuItem
+            // 
+            this.simulatorToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.simulateToolStripMenuItem,
+            this.settingsToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.exitToolStripMenuItem});
+            this.simulatorToolStripMenuItem.Name = "simulatorToolStripMenuItem";
+            this.simulatorToolStripMenuItem.Padding = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.simulatorToolStripMenuItem.Size = new System.Drawing.Size(66, 22);
+            this.simulatorToolStripMenuItem.Text = "Common";
+            this.simulatorToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.simulatorToolStripMenuItem.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
+            // 
+            // settingsToolStripMenuItem
+            // 
+            this.settingsToolStripMenuItem.AutoSize = false;
+            this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.autoUpdateToolStripMenuItem,
+            this.simulatorSettingsToolStripMenuItem});
+            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(180, 21);
+            this.settingsToolStripMenuItem.Text = "Settings";
+            // 
+            // advancedToolStripMenuItem
+            // 
+            this.advancedToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.blueScreenHacksToolStripMenuItem,
+            this.codeCustomizationToolStripMenuItem});
+            this.advancedToolStripMenuItem.Name = "advancedToolStripMenuItem";
+            this.advancedToolStripMenuItem.Padding = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.advancedToolStripMenuItem.Size = new System.Drawing.Size(68, 22);
+            this.advancedToolStripMenuItem.Text = "Advanced";
+            this.advancedToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.advancedToolStripMenuItem.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
+            // 
+            // blueScreenHacksToolStripMenuItem
+            // 
+            this.blueScreenHacksToolStripMenuItem.Name = "blueScreenHacksToolStripMenuItem";
+            this.blueScreenHacksToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.blueScreenHacksToolStripMenuItem.Text = "Advanced options";
+            this.blueScreenHacksToolStripMenuItem.Click += new System.EventHandler(this.blueScreenHacksToolStripMenuItem_Click);
+            // 
+            // codeCustomizationToolStripMenuItem
+            // 
+            this.codeCustomizationToolStripMenuItem.Name = "codeCustomizationToolStripMenuItem";
+            this.codeCustomizationToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.codeCustomizationToolStripMenuItem.Text = "Code customization";
+            this.codeCustomizationToolStripMenuItem.Click += new System.EventHandler(this.codeCustomizationToolStripMenuItem_Click);
+            // 
+            // specialToolStripMenuItem
+            // 
+            this.specialToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.prankModeToolStripMenuItem});
+            this.specialToolStripMenuItem.Name = "specialToolStripMenuItem";
+            this.specialToolStripMenuItem.Padding = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.specialToolStripMenuItem.Size = new System.Drawing.Size(52, 22);
+            this.specialToolStripMenuItem.Text = "Special";
+            this.specialToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.specialToolStripMenuItem.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
+            // 
+            // prankModeToolStripMenuItem
+            // 
+            this.prankModeToolStripMenuItem.Name = "prankModeToolStripMenuItem";
+            this.prankModeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.prankModeToolStripMenuItem.Text = "Prank mode";
+            this.prankModeToolStripMenuItem.Click += new System.EventHandler(this.prankModeToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.AutoSize = false;
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 3);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.AutoSize = false;
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 21);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.commandLineSyntaxToolStripMenuItem,
+            this.quickHelpToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.aboutToolStripMenuItem});
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Padding = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(40, 22);
+            this.helpToolStripMenuItem.Text = "Help";
+            this.helpToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.helpToolStripMenuItem.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
+            // 
+            // commandLineSyntaxToolStripMenuItem
+            // 
+            this.commandLineSyntaxToolStripMenuItem.Name = "commandLineSyntaxToolStripMenuItem";
+            this.commandLineSyntaxToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.commandLineSyntaxToolStripMenuItem.Text = "Command line syntax";
+            this.commandLineSyntaxToolStripMenuItem.Click += new System.EventHandler(this.commandLineSyntaxToolStripMenuItem_Click);
+            // 
+            // quickHelpToolStripMenuItem
+            // 
+            this.quickHelpToolStripMenuItem.Name = "quickHelpToolStripMenuItem";
+            this.quickHelpToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.quickHelpToolStripMenuItem.Text = "Quick help";
+            this.quickHelpToolStripMenuItem.Click += new System.EventHandler(this.quickHelpToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(187, 6);
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            // 
+            // autoUpdateToolStripMenuItem
+            // 
+            this.autoUpdateToolStripMenuItem.Name = "autoUpdateToolStripMenuItem";
+            this.autoUpdateToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.autoUpdateToolStripMenuItem.Text = "AutoUpdate";
+            this.autoUpdateToolStripMenuItem.Click += new System.EventHandler(this.autoUpdateToolStripMenuItem_Click);
+            // 
+            // simulatorSettingsToolStripMenuItem
+            // 
+            this.simulatorSettingsToolStripMenuItem.Name = "simulatorSettingsToolStripMenuItem";
+            this.simulatorSettingsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.simulatorSettingsToolStripMenuItem.Text = "Simulator settings";
+            this.simulatorSettingsToolStripMenuItem.Click += new System.EventHandler(this.simulatorSettingsToolStripMenuItem_Click);
+            // 
+            // simulateToolStripMenuItem
+            // 
+            this.simulateToolStripMenuItem.AutoSize = false;
+            this.simulateToolStripMenuItem.Name = "simulateToolStripMenuItem";
+            this.simulateToolStripMenuItem.Size = new System.Drawing.Size(180, 21);
+            this.simulateToolStripMenuItem.Text = "Simulate";
+            this.simulateToolStripMenuItem.Click += new System.EventHandler(this.simulateToolStripMenuItem_Click);
+            // 
+            // flowLayoutPanel4
+            // 
+            this.flowLayoutPanel4.Controls.Add(this.button5);
+            this.flowLayoutPanel4.Controls.Add(this.button4);
+            this.flowLayoutPanel4.Location = new System.Drawing.Point(473, 111);
+            this.flowLayoutPanel4.Name = "flowLayoutPanel4";
+            this.flowLayoutPanel4.Size = new System.Drawing.Size(467, 30);
+            this.flowLayoutPanel4.TabIndex = 18;
+            // 
+            // waitPopup
+            // 
+            this.waitPopup.Tick += new System.EventHandler(this.waitPopup_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(499, 358);
+            this.ClientSize = new System.Drawing.Size(499, 424);
             this.Controls.Add(this.linkLabel1);
-            this.Controls.Add(this.button8);
             this.Controls.Add(this.button7);
-            this.Controls.Add(this.button6);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label7);
@@ -722,9 +888,11 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.windowVersion);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.HelpButton = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(550, 9999);
             this.MinimizeBox = false;
@@ -751,6 +919,9 @@
             this.winPanel.PerformLayout();
             this.flowLayoutPanel3.ResumeLayout(false);
             this.flowLayoutPanel3.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
+            this.flowLayoutPanel4.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -776,7 +947,6 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
         public System.Windows.Forms.ComboBox windowVersion;
         public System.Windows.Forms.Timer timer2;
         internal System.Windows.Forms.CheckBox qrBox;
@@ -806,8 +976,27 @@
         private System.Windows.Forms.RadioButton nostartup;
         public System.Windows.Forms.CheckBox waterBox;
         internal System.Windows.Forms.CheckBox winMode;
-        private System.Windows.Forms.Button button8;
         private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem simulatorToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem specialToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem prankModeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem advancedToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem blueScreenHacksToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem codeCustomizationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem commandLineSyntaxToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem quickHelpToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem autoUpdateToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem simulatorSettingsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem simulateToolStripMenuItem;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel4;
+        private System.Windows.Forms.Timer waitPopup;
     }
 }
 

@@ -131,11 +131,11 @@ namespace UltimateBlueScreenSimulator
             this.waterMarkText.AutoSize = true;
             this.waterMarkText.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.waterMarkText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.waterMarkText.Location = new System.Drawing.Point(536, 456);
+            this.waterMarkText.Location = new System.Drawing.Point(477, 456);
             this.waterMarkText.Name = "waterMarkText";
-            this.waterMarkText.Size = new System.Drawing.Size(92, 15);
+            this.waterMarkText.Size = new System.Drawing.Size(151, 15);
             this.waterMarkText.TabIndex = 7;
-            this.waterMarkText.Text = "more things tbd";
+            this.waterMarkText.Text = "blue screen simulator plus";
             // 
             // Vistabs
             // 
@@ -147,8 +147,8 @@ namespace UltimateBlueScreenSimulator
             this.Controls.Add(this.errorCode);
             this.Controls.Add(this.supportInfo);
             this.Controls.Add(this.technicalCode);
-            this.Controls.Add(this.label5);
             this.Controls.Add(this.waterMarkText);
+            this.Controls.Add(this.label5);
             this.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;

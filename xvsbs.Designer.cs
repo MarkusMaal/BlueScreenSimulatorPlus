@@ -132,7 +132,7 @@ namespace UltimateBlueScreenSimulator
             this.waterMarkText.AutoSize = true;
             this.waterMarkText.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.waterMarkText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.waterMarkText.Location = new System.Drawing.Point(-4, -3);
+            this.waterMarkText.Location = new System.Drawing.Point(-1, 0);
             this.waterMarkText.Name = "waterMarkText";
             this.waterMarkText.Size = new System.Drawing.Size(148, 15);
             this.waterMarkText.TabIndex = 7;

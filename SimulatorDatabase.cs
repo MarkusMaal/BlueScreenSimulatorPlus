@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows.Forms;
 using UltimateBlueScreenSimulator;
 using System.Drawing;
+using System.Management;
 
 //
 // This namespace contains classes that are shared between forms that specify
@@ -50,6 +51,40 @@ namespace SimulatorDatabase
                     bmp.Dispose();
                 }
             }
+        }
+    }
+
+    struct USBDeviceInfo
+    {
+        public USBDeviceInfo(string deviceID, string pnpDeviceID, string description)
+        {
+            this.DeviceID = deviceID;
+            this.PnpDeviceID = pnpDeviceID;
+            this.Description = description;
+        }
+        public string DeviceID { get; private set; }
+        public string PnpDeviceID { get; private set; }
+        public string Description { get; private set; }
+
+        public static List<USBDeviceInfo> GetUSBDevices()
+        {
+            List<USBDeviceInfo> devices = new List<USBDeviceInfo>();
+
+            ManagementObjectCollection collection;
+            using (var searcher = new ManagementObjectSearcher(@"Select * From Win32_USBHub"))
+                collection = searcher.Get();
+
+            foreach (var device in collection)
+            {
+                devices.Add(new USBDeviceInfo(
+                (string)device.GetPropertyValue("DeviceID"),
+                (string)device.GetPropertyValue("PNPDeviceID"),
+                (string)device.GetPropertyValue("Description")
+                ));
+            }
+
+            collection.Dispose();
+            return devices;
         }
     }
 
@@ -118,7 +153,8 @@ namespace SimulatorDatabase
             if (this.bools.ContainsKey(name))
             {
                 return this.bools[name];
-            } else
+            }
+            else
             {
                 return false;
             }
@@ -344,8 +380,9 @@ namespace SimulatorDatabase
 
         public void PushFile(string name, string[] codes)
         {
-            if (!codefiles.ContainsKey(name)) {
-                codefiles.Add(name, codes); 
+            if (!codefiles.ContainsKey(name))
+            {
+                codefiles.Add(name, codes);
             }
         }
 
@@ -420,8 +457,8 @@ namespace SimulatorDatabase
             {
                 case "BOOTMGR":
                     BootMgr bm = new BootMgr();
-                    bm.Show();
-                    //bm.Dispose();
+                    bm.ShowDialog();
+                    System.Threading.Thread.CurrentThread.Abort();
                     break;
                 case "Windows 11":
                     SetupWinXabove(new WXBS(), true);
@@ -476,6 +513,7 @@ namespace SimulatorDatabase
             }
             bs.me = this;
             bs.ShowDialog();
+            System.Threading.Thread.CurrentThread.Abort();
         }
 
         private void SetupNT(NTBSOD bs)
@@ -498,6 +536,7 @@ namespace SimulatorDatabase
             }
             bs.me = this;
             bs.ShowDialog();
+            System.Threading.Thread.CurrentThread.Abort();
         }
 
         private void Setup9x(old_bluescreen bs)
@@ -517,6 +556,7 @@ namespace SimulatorDatabase
             }
             bs.me = this;
             bs.ShowDialog();
+            System.Threading.Thread.CurrentThread.Abort();
         }
         private void SetupWin(win bs)
         {
@@ -532,6 +572,7 @@ namespace SimulatorDatabase
             }
             bs.me = this;
             bs.ShowDialog();
+            System.Threading.Thread.CurrentThread.Abort();
         }
 
         private void Setup2k(W2kbs bs)
@@ -547,7 +588,7 @@ namespace SimulatorDatabase
                                     GenHex(8, this.GetString("ecode1")) + ", " +
                                     GenHex(8, this.GetString("ecode2")) + ", " +
                                     GenHex(8, this.GetString("ecode3")) + ", " +
-                                    GenHex(8, this.GetString("ecode4")) +  ")";
+                                    GenHex(8, this.GetString("ecode4")) + ")";
                 bs.errorCode.Text = bs.errorCode.Text + "\n" + this.GetString("code").Split(' ')[0].ToString();
             }
             catch (Exception ex)
@@ -556,6 +597,7 @@ namespace SimulatorDatabase
             }
             bs.me = this;
             bs.ShowDialog();
+            System.Threading.Thread.CurrentThread.Abort();
         }
 
         private void SetupExperience(Xvsbs bs)
@@ -578,12 +620,13 @@ namespace SimulatorDatabase
             }
             bs.me = this;
             bs.ShowDialog();
+            System.Threading.Thread.CurrentThread.Abort();
         }
 
         private void SetupVista(Vistabs bs)
         {
             try
-            { 
+            {
                 bs.BackColor = this.GetTheme(true);
                 bs.ForeColor = this.GetTheme(false);
                 bs.fullscreen = !this.GetBool("windowed");
@@ -599,12 +642,14 @@ namespace SimulatorDatabase
                 bs.errorCode.Text = this.GetString("code").Split(' ')[0].ToString();
                 bs.technicalCode.Text = "*** STOP: " + this.GetString("code").Split(' ')[1].ToString().Replace(")", "").Replace("(", "").ToString() + " (" + GenAddress(4, 16, false) + ")";
                 bs.supportInfo.Text = this.GetTexts()["Technical support"] + "\n\n\nTechnical information:";
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "A non-critical error has occoured", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             bs.me = this;
             bs.ShowDialog();
+            System.Threading.Thread.CurrentThread.Abort();
         }
 
         private void SetupWinXabove(WXBS bs, bool w11 = false)
@@ -634,12 +679,14 @@ namespace SimulatorDatabase
                 {
                     bs.code = GetString("code").Split(' ')[1].ToString().Replace(")", "").Replace("(", "").ToString();
                 }
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "A non-critical error has occoured", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             bs.me = this;
             bs.ShowDialog();
+            System.Threading.Thread.CurrentThread.Abort();
         }
 
         private void SetupWin8(WXBS bs)
@@ -676,6 +723,7 @@ namespace SimulatorDatabase
             }
             bs.me = this;
             bs.ShowDialog();
+            System.Threading.Thread.CurrentThread.Abort();
         }
 
 

@@ -30,10 +30,24 @@ namespace UltimateBlueScreenSimulator
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+            this.Text = Program.load_message;
             if (Program.loadfinished)
             {
                 this.Dispose();
                 this.Close();
+            }
+            if (Program.load_progress < 100)
+            {
+                progressBar1.Style = ProgressBarStyle.Continuous;
+                progressBar1.Value = Program.load_progress;
+            }
+            else if (Program.load_progress > 100)
+            {
+                progressBar1.Value = progressBar1.Maximum;
+            }
+            else
+            {
+                progressBar1.Style = ProgressBarStyle.Marquee;
             }
         }
     }

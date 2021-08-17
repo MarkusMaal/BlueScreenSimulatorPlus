@@ -44,8 +44,10 @@ namespace UltimateBlueScreenSimulator
                 txt = me.GetTexts();
                 pictureBox3.BackColor = me.GetTheme(true, true);
                 if (!blink) { pictureBox3.Visible = false; }
-
+                Program.load_progress = 2;
+                Program.load_message = "Processing error code";
                 errorCode.Image = WriteWord(txt["Error code formatting"].Replace("{0}", error.Split(' ')[1].Replace(")", "").Replace("(", "").Replace(" ", "").ToString()).Replace("{1}", me.GenAddress(4, 8, false)).Trim(), me.GetTheme(true), me.GetTheme(false));
+                Program.load_progress = 10;
                 if (whatfail == "")
                 {
                     errorDescription.Image = WriteWord(error.Split(' ')[0].ToString(), me.GetTheme(true), me.GetTheme(false));
@@ -54,13 +56,21 @@ namespace UltimateBlueScreenSimulator
                 {
                     errorDescription.Image = WriteWord(error.Split(' ')[0].ToString() + "*** Address " + me.GenHex(8, "RRRRRRRR").ToLower() + " has base at " + me.GenHex(8, "RRRRRRRR").ToLower() + " - " + whatfail.ToLower(), me.GetTheme(true), me.GetTheme(false));
                 }
+
+                Program.load_progress = 15;
                 if (stacktrace)
                 {
+                    Program.load_message = "Processing CPUID";
                     cpuID.Image = WriteWord(txt["CPUID formatting"].Replace("{0}", processortype).Trim(), me.GetTheme(true), me.GetTheme(false));
+                    Program.load_message = "Processing stack trace heading";
                     tableHeader.Image = WriteWord(txt["Stack trace heading"].Trim() + GenSpace(40 - txt["Stack trace heading"].Trim().Length) + txt["Stack trace heading"].Trim(), me.GetTheme(true), me.GetTheme(false));
                     int i = 0;
+
+                    Program.load_progress += 5;
                     foreach (PictureBox ctrl in flowLayoutPanel2.Controls)
                     {
+
+                        Program.load_message = "Processing table (column 1, row " + (i + 1).ToString() + ")";
                         if (me.GetFiles().Count < i + 1)
                         {
                             break;
@@ -74,9 +84,12 @@ namespace UltimateBlueScreenSimulator
                         string rnd2 = me.GenHex(8, me.GetFiles().Values.ElementAt(i)[1]).ToLower();
                         ctrl.Image = WriteWord(txt["Stack trace table formatting"].Trim().Replace("{0}", rnd1).Replace("{1}", rnd2).Replace("{2}", file), me.GetTheme(true), me.GetTheme(false));
                         i++;
+                        Program.load_progress += 1;
                     }
+                    int firstcol = i;
                     foreach (PictureBox ctrl in flowLayoutPanel3.Controls)
                     {
+                        Program.load_message = "Processing table (column 2, row " + (i - firstcol + 1).ToString() + ")";
                         if (me.GetFiles().Count < i + 1)
                         {
                             break;
@@ -90,8 +103,11 @@ namespace UltimateBlueScreenSimulator
                         string rnd2 = me.GenHex(8, me.GetFiles().Values.ElementAt(i)[1]).ToLower();
                         ctrl.Image = WriteWord(txt["Stack trace table formatting"].Trim().Replace("{0}", rnd1).Replace("{1}", rnd2).Replace("{2}", file), me.GetTheme(true), me.GetTheme(false));
                         i++;
+                        Program.load_progress += 1;
                     }
+                    Program.load_message = "Processing memory address dump heading";
                     table2.Image = WriteWord(txt["Memory address dump heading"], me.GetTheme(true), me.GetTheme(false));
+                    Program.load_progress = 90;
                     i = 0;
                     foreach (KeyValuePair<string, string[]> kvp in me.GetFiles())
                     {
@@ -107,6 +123,8 @@ namespace UltimateBlueScreenSimulator
                     }
                     for (int n = 1; n < 5; n++)
                     {
+
+                        Program.load_message = "Processing table (row " + n.ToString() + ")";
                         if (me.GetFiles().Count < i + 1)
                         {
                             break;
@@ -122,8 +140,11 @@ namespace UltimateBlueScreenSimulator
                             string r6 = me.GenHex(8, me.GetFiles().Values.ElementAt(i)[5]).ToLower();
                             ((PictureBox)flowLayoutPanel1.Controls["tablerow_" + n.ToString()]).Image = WriteWord(txt["Memory address dump table"].Replace("{0}", r1).Replace("{1}", r2).Replace("{2}", r3).Replace("{3}", r4).Replace("{4}", r5).Replace("{5}", r6).Replace("{6}", file), me.GetTheme(true), me.GetTheme(false));
                             i++;
+                            Program.load_progress += 6;
                         }
                     }
+                    Program.load_progress = 100;
+                    Program.load_message = "";
                     Program.f1.label10.Text = "";
 
 

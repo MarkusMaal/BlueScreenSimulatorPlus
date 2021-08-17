@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PrankMode));
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -68,6 +69,12 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
+            this.radioButton16 = new System.Windows.Forms.RadioButton();
+            this.label9 = new System.Windows.Forms.Label();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.button4 = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.button5 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.flowLayoutPanel3.SuspendLayout();
@@ -75,6 +82,7 @@
             this.panel4.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
+            this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -131,6 +139,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.radioButton16);
             this.panel2.Controls.Add(this.flowLayoutPanel3);
             this.panel2.Controls.Add(this.radioButton4);
             this.panel2.Controls.Add(this.radioButton3);
@@ -143,6 +152,7 @@
             // 
             this.flowLayoutPanel3.Controls.Add(this.panel3);
             this.flowLayoutPanel3.Controls.Add(this.panel4);
+            this.flowLayoutPanel3.Controls.Add(this.panel5);
             this.flowLayoutPanel3.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel3.Location = new System.Drawing.Point(3, 26);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
@@ -184,7 +194,7 @@
             this.panel4.Controls.Add(this.textBox1);
             this.panel4.Location = new System.Drawing.Point(182, 3);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(434, 45);
+            this.panel4.Size = new System.Drawing.Size(286, 45);
             this.panel4.TabIndex = 7;
             this.panel4.Visible = false;
             // 
@@ -202,18 +212,18 @@
             this.textBox1.Enabled = false;
             this.textBox1.Location = new System.Drawing.Point(6, 20);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(419, 20);
+            this.textBox1.Size = new System.Drawing.Size(193, 20);
             this.textBox1.TabIndex = 2;
             this.textBox1.Text = "notepad.exe";
             // 
             // radioButton4
             // 
             this.radioButton4.AutoSize = true;
-            this.radioButton4.Location = new System.Drawing.Point(241, 3);
+            this.radioButton4.Location = new System.Drawing.Point(60, 3);
             this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(257, 17);
+            this.radioButton4.Size = new System.Drawing.Size(77, 17);
             this.radioButton4.TabIndex = 1;
-            this.radioButton4.Text = "Start the prank, when a specific application starts";
+            this.radioButton4.Text = "Application";
             this.radioButton4.UseVisualStyleBackColor = true;
             this.radioButton4.CheckedChanged += new System.EventHandler(this.RadioButton4_CheckedChanged);
             // 
@@ -223,10 +233,10 @@
             this.radioButton3.Checked = true;
             this.radioButton3.Location = new System.Drawing.Point(3, 3);
             this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(232, 17);
+            this.radioButton3.Size = new System.Drawing.Size(51, 17);
             this.radioButton3.TabIndex = 0;
             this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "Start the prank, after a certain period of time";
+            this.radioButton3.Text = "Timer";
             this.radioButton3.UseVisualStyleBackColor = true;
             this.radioButton3.CheckedChanged += new System.EventHandler(this.RadioButton3_CheckedChanged);
             // 
@@ -476,7 +486,7 @@
             // button2
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Location = new System.Drawing.Point(453, 429);
+            this.button2.Location = new System.Drawing.Point(455, 429);
             this.button2.Name = "button2";
             this.button2.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.button2.Size = new System.Drawing.Size(75, 23);
@@ -488,7 +498,7 @@
             // button3
             // 
             this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.Location = new System.Drawing.Point(372, 429);
+            this.button3.Location = new System.Drawing.Point(374, 429);
             this.button3.Name = "button3";
             this.button3.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.button3.Size = new System.Drawing.Size(75, 23);
@@ -497,11 +507,66 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.Button3_Click);
             // 
+            // radioButton16
+            // 
+            this.radioButton16.AutoSize = true;
+            this.radioButton16.Location = new System.Drawing.Point(143, 3);
+            this.radioButton16.Name = "radioButton16";
+            this.radioButton16.Size = new System.Drawing.Size(82, 17);
+            this.radioButton16.TabIndex = 7;
+            this.radioButton16.Text = "USB device";
+            this.radioButton16.UseVisualStyleBackColor = true;
+            this.radioButton16.CheckedChanged += new System.EventHandler(this.radioButton16_CheckedChanged);
+            // 
+            // label9
+            // 
+            this.label9.Location = new System.Drawing.Point(3, 1);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(327, 32);
+            this.label9.TabIndex = 8;
+            this.label9.Text = "No trigger device\r\n(Unplug and) plug in desired trigger device";
+            // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.button5);
+            this.panel5.Controls.Add(this.button4);
+            this.panel5.Controls.Add(this.label9);
+            this.panel5.Location = new System.Drawing.Point(474, 3);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(333, 52);
+            this.panel5.TabIndex = 9;
+            this.panel5.Visible = false;
+            // 
+            // button4
+            // 
+            this.button4.Enabled = false;
+            this.button4.Location = new System.Drawing.Point(6, 29);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 20);
+            this.button4.TabIndex = 9;
+            this.button4.Text = "Reset";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(87, 29);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(141, 20);
+            this.button5.TabIndex = 10;
+            this.button5.Text = "My device isn\'t detected";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
             // PrankMode
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(536, 464);
+            this.ClientSize = new System.Drawing.Size(538, 464);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
@@ -539,6 +604,7 @@
             this.flowLayoutPanel1.PerformLayout();
             this.flowLayoutPanel2.ResumeLayout(false);
             this.flowLayoutPanel2.PerformLayout();
+            this.panel5.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -585,5 +651,11 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.RadioButton radioButton15;
+        private System.Windows.Forms.RadioButton radioButton16;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Button button5;
     }
 }

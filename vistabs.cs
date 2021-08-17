@@ -84,7 +84,7 @@ namespace UltimateBlueScreenSimulator
                 technicalCode.Text = txt["Technical information formatting"].Replace("{0}", esplit[0]).Replace("{1}", esplit[1]);
                 foreach (Control c in this.Controls)
                 {
-                    if (c is Label)
+                    if (c is Label && (c.Name != "waterMarkText"))
                     {
                         c.Font = me.GetFont();
                     }

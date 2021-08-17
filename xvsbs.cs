@@ -77,7 +77,7 @@ namespace UltimateBlueScreenSimulator
 
                 foreach (Control c in this.Controls)
                 {
-                    if (c is Label)
+                    if (c is Label && (c.Name != "waterMarkText"))
                     {
                         c.Font = me.GetFont();
                     }

@@ -7,6 +7,7 @@ using System.Diagnostics;
 using Microsoft.Win32;
 using SimulatorDatabase;
 using System.Threading;
+using System.Collections.Generic;
 
 namespace UltimateBlueScreenSimulator
 {
@@ -36,6 +37,9 @@ namespace UltimateBlueScreenSimulator
         public string appname = "notepad.exe";
         //timecatch determines whether or not the trigger is related to time
         public bool timecatch = true;
+        //trigger device for prank mode
+        public string[] usb_device = { };
+
         readonly Splash spl2 = new Splash();
         //determines whether or not to close after closing a blue screen
         public bool closecuzhidden = false;
@@ -742,12 +746,6 @@ namespace UltimateBlueScreenSimulator
             bh.Show();
         }
 
-        private void Button6_Click(object sender, EventArgs e)
-        {
-            PrankMode pm = new PrankMode();
-            pm.Show();
-        }
-
         private void Form1_HelpButtonClicked(object sender, CancelEventArgs e)
         {
             if (!abopen) {
@@ -770,6 +768,7 @@ namespace UltimateBlueScreenSimulator
 
         private void Timer2_Tick(object sender, EventArgs e)
         {
+
             if (timecatch)
             {
                 int hrs = time[0];
@@ -778,6 +777,7 @@ namespace UltimateBlueScreenSimulator
                 if ((hrs == 0) && (mins == 0) && (secs == 0))
                 {
                     bsod_starter.Start();
+                    waitPopup.Enabled = true;
                     timer2.Enabled = false;
                 }
                 if (secs == 0)
@@ -801,6 +801,19 @@ namespace UltimateBlueScreenSimulator
                 }
                 int[] timex = { hrs, mins, secs };
                 time = timex;
+            } else if (usb_device.Length > 0)
+            {
+                foreach (USBDeviceInfo usb in USBDeviceInfo.GetUSBDevices())
+                {
+                    string usbinfo = usb.DeviceID;
+                    if ((usbinfo == usb_device[0]))
+                    {
+                        bsod_starter.Start();
+                        waitPopup.Enabled = true;
+                        timer2.Enabled = false;
+                        break;
+                    }
+                }
             } else
             {
                 bool getcatch = false;
@@ -811,6 +824,7 @@ namespace UltimateBlueScreenSimulator
                 if (getcatch)
                 {
                     bsod_starter.Start();
+                    waitPopup.Enabled = true;
                     timer2.Enabled = false;
                 }
             }
@@ -1252,6 +1266,124 @@ namespace UltimateBlueScreenSimulator
                     waterBox.Visible = false;
                     MessageBox.Show("How did we get here?", "What have you done?", MessageBoxButtons.OK, MessageBoxIcon.Question);
                 }
+            }
+        }
+
+        private void prankModeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PrankMode pm = new PrankMode();
+            pm.Show();
+        }
+
+        private void blueScreenHacksToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            button5.PerformClick();
+        }
+
+        private void codeCustomizationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            button4.PerformClick();
+        }
+
+        private void simulateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (Program.loadfinished && this.Visible)
+            {
+                Program.loadfinished = false;
+                Gen g = new Gen();
+                g.Show();
+            }
+            Crash();
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!abopen)
+            {
+                AboutBox1 ab1 = new AboutBox1
+                {
+                    Text = "Help and about",
+                    SettingTab = false
+                };
+                ab1.Show();
+            }
+            else
+            {
+                MessageBox.Show("The window is already open", "Cannot open window", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void quickHelpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!abopen)
+            {
+                AboutBox1 ab1 = new AboutBox1
+                {
+                    Text = "Help and about",
+                    SettingTab = false,
+                    tab_id = 1
+                };
+                ab1.Show();
+            }
+            else
+            {
+                MessageBox.Show("The window is already open", "Cannot open window", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void commandLineSyntaxToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!abopen)
+            {
+                AboutBox1 ab1 = new AboutBox1
+                {
+                    Text = "Help and about",
+                    SettingTab = false,
+                    tab_id = 2
+                };
+                ab1.Show();
+            }
+            else
+            {
+                MessageBox.Show("The window is already open", "Cannot open window", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void autoUpdateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            button7.PerformClick();
+        }
+
+        private void simulatorSettingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!abopen)
+            {
+                AboutBox1 ab1 = new AboutBox1
+                {
+                    Text = "Settings",
+                    SettingTab = true,
+                    tab_id = 1
+                };
+                ab1.Show();
+            }
+            else
+            {
+                MessageBox.Show("Settings window is already open", "Cannot open settings", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void waitPopup_Tick(object sender, EventArgs e)
+        {
+            if (!bsod_starter.IsAlive)
+            {
+                waitPopup.Enabled = false;
+                this.WindowState = FormWindowState.Normal;
+                this.Show();
             }
         }
     }
