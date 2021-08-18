@@ -21,7 +21,7 @@ namespace UltimateBlueScreenSimulator
                         Text = line.Split(':')[0]
                     };
                     lvi.SubItems.Add(line.Split(':')[1]);
-                    listView1.Items.Add(lvi);
+                    fileBrowser.Items.Add(lvi);
                 }
             }
         }

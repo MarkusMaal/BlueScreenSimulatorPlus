@@ -30,7 +30,7 @@ namespace UltimateBlueScreenSimulator
             string winver = releaseId;
             MessageBox.Show(releaseId);
             int contain = -1;
-            if (radioButton1.Checked == true)
+            if (bestMatchRadio.Checked == true)
             {
                 Program.f1.winMode.Checked = false;
                 //this code identifies Windows 10
@@ -123,10 +123,10 @@ namespace UltimateBlueScreenSimulator
                 }
                 if (contain == -1)
                 {
-                    radioButton1.Checked = false;
-                    radioButton1.Enabled = false;
-                    radioButton2.Checked = true;
-                    radioButton2.Enabled = false;
+                    bestMatchRadio.Checked = false;
+                    bestMatchRadio.Enabled = false;
+                    matchAllRadio.Checked = true;
+                    matchAllRadio.Enabled = false;
                     MessageBox.Show("Due to blue screen simulator plus configuration or the specific version of Windows you are using, it is not possible to use a bluescreen similar to one that your Windows version uses. If this is what you want to do, please enable your Windows version in BSSP settings or settings file. If this message still pops up, then use a different Windows version.", "Unable to autodetect Windows version", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
             }
@@ -134,65 +134,65 @@ namespace UltimateBlueScreenSimulator
 
         private void RadioButton3_CheckedChanged(object sender, EventArgs e)
         {
-            if (radioButton3.Checked == true)
+            if (timeRadio.Checked == true)
             {
-                panel3.Visible = true;
-                maskedTextBox1.Enabled = true;
+                timePanel.Visible = true;
+                timerBox.Enabled = true;
                 timecatch = true;
             } else
             {
-                panel3.Visible = false;
-                maskedTextBox1.Enabled = false;
+                timePanel.Visible = false;
+                timerBox.Enabled = false;
                 timecatch = false;
             }
         }
 
         private void RadioButton4_CheckedChanged(object sender, EventArgs e)
         {
-            if (radioButton4.Checked == true)
+            if (appRadio.Checked == true)
             {
-                panel4.Visible = true;
-                textBox1.Enabled = true;
+                appPanel.Visible = true;
+                triggerAppBox.Enabled = true;
             }
             else
             {
-                panel4.Visible = false;
-                textBox1.Enabled = false;
+                appPanel.Visible = false;
+                triggerAppBox.Enabled = false;
             }
         }
 
         private void CheckBox2_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBox2.Checked == true)
+            if (friendlyMessageBox.Checked == true)
             {
-                textBox2.Enabled = true;
-                textBox3.Enabled = true;
-                flowLayoutPanel1.Enabled = true;
-                flowLayoutPanel2.Enabled = true;
-                button1.Enabled = true;
+                friendlyMessageContentsBox.Enabled = true;
+                friendlyMessageTitleBox.Enabled = true;
+                friendlyMessageIconPanel.Enabled = true;
+                friendlyMessageButtonsPanel.Enabled = true;
+                previewFriendlyMessageButton.Enabled = true;
             } else
             {
-                textBox2.Enabled = false;
-                textBox3.Enabled = false;
-                flowLayoutPanel1.Enabled = false;
-                flowLayoutPanel2.Enabled = false;
-                button1.Enabled = false;
+                friendlyMessageContentsBox.Enabled = false;
+                friendlyMessageTitleBox.Enabled = false;
+                friendlyMessageIconPanel.Enabled = false;
+                friendlyMessageButtonsPanel.Enabled = false;
+                previewFriendlyMessageButton.Enabled = false;
             }
         }
 
         private void TextBox2_TextChanged(object sender, EventArgs e)
         {
-            MsgBoxMessage = textBox2.Text;
+            MsgBoxMessage = friendlyMessageContentsBox.Text;
         }
 
         private void TextBox3_TextChanged(object sender, EventArgs e)
         {
-            MsgBoxTitle = textBox3.Text;
+            MsgBoxTitle = friendlyMessageTitleBox.Text;
         }
 
         private void RadioButton5_CheckedChanged(object sender, EventArgs e)
         {
-            if (radioButton5.Checked == true)
+            if (errorRadio.Checked == true)
             {
                 MsgBoxIcon = MessageBoxIcon.Error;
             }
@@ -200,7 +200,7 @@ namespace UltimateBlueScreenSimulator
 
         private void RadioButton6_CheckedChanged(object sender, EventArgs e)
         {
-            if (radioButton6.Checked == true)
+            if (warningRadio.Checked == true)
             {
                 MsgBoxIcon = MessageBoxIcon.Exclamation;
             }
@@ -208,7 +208,7 @@ namespace UltimateBlueScreenSimulator
 
         private void RadioButton7_CheckedChanged(object sender, EventArgs e)
         {
-            if (radioButton7.Checked == true)
+            if (questionRadio.Checked == true)
             {
                 MsgBoxIcon = MessageBoxIcon.Question;
             }
@@ -216,7 +216,7 @@ namespace UltimateBlueScreenSimulator
 
         private void RadioButton8_CheckedChanged(object sender, EventArgs e)
         {
-            if (radioButton8.Checked == true)
+            if (infoRadio.Checked == true)
             {
                 MsgBoxIcon = MessageBoxIcon.Information;
             }
@@ -224,7 +224,7 @@ namespace UltimateBlueScreenSimulator
 
         private void RadioButton9_CheckedChanged(object sender, EventArgs e)
         {
-            if (radioButton9.Checked == true)
+            if (noneRadio.Checked == true)
             {
                 MsgBoxIcon = MessageBoxIcon.None;
             }
@@ -232,7 +232,7 @@ namespace UltimateBlueScreenSimulator
 
         private void RadioButton10_CheckedChanged(object sender, EventArgs e)
         {
-            if (radioButton10.Checked == true)
+            if (okRadio.Checked == true)
             {
                 MsgBoxType = MessageBoxButtons.OK;
             }
@@ -240,7 +240,7 @@ namespace UltimateBlueScreenSimulator
 
         private void RadioButton11_CheckedChanged(object sender, EventArgs e)
         {
-            if (radioButton11.Checked == true)
+            if (okCancelRadio.Checked == true)
             {
                 MsgBoxType = MessageBoxButtons.OKCancel;
             }
@@ -248,7 +248,7 @@ namespace UltimateBlueScreenSimulator
 
         private void RadioButton12_CheckedChanged(object sender, EventArgs e)
         {
-            if (radioButton12.Checked == true)
+            if (retryIgnoreAboutRadio.Checked == true)
             {
                 MsgBoxType = MessageBoxButtons.AbortRetryIgnore;
             }
@@ -256,7 +256,7 @@ namespace UltimateBlueScreenSimulator
 
         private void RadioButton13_CheckedChanged(object sender, EventArgs e)
         {
-            if (radioButton13.Checked == true)
+            if (yesNoRadio.Checked == true)
             {
                 MsgBoxType = MessageBoxButtons.YesNo;
             }
@@ -264,7 +264,7 @@ namespace UltimateBlueScreenSimulator
 
         private void RadioButton14_CheckedChanged(object sender, EventArgs e)
         {
-            if (radioButton14.Checked == true)
+            if (yesNoCancelRadio.Checked == true)
             {
                 MsgBoxType = MessageBoxButtons.YesNoCancel;
             }
@@ -277,14 +277,14 @@ namespace UltimateBlueScreenSimulator
 
         private void RadioButton2_Click(object sender, EventArgs e)
         {
-            if (radioButton1.Enabled == true)
+            if (bestMatchRadio.Enabled == true)
             { 
-                if (radioButton2.Checked == true)
+                if (matchAllRadio.Checked == true)
                 {
                     if (MessageBox.Show("This option may not look legitimate. Are you sure you'd like to continue?", "This prank may not look legitimate", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.No)
                     {
-                        radioButton2.Checked = false;
-                        radioButton1.Checked = true;
+                        matchAllRadio.Checked = false;
+                        bestMatchRadio.Checked = true;
                     }
                 }
             }
@@ -303,7 +303,7 @@ namespace UltimateBlueScreenSimulator
                 //this gets the Windows product name
                 string winver = releaseId;
                 //this makes sure that the blue screen type matches the OS
-                if (radioButton1.Checked == true)
+                if (bestMatchRadio.Checked == true)
                 {
                     Program.f1.winMode.Checked = false;
                     for (int i = 0; i < Program.bluescreens.Count; i++)
@@ -317,7 +317,7 @@ namespace UltimateBlueScreenSimulator
                 }
                 //this code handles blue screen triggers and final message, if exists
                 string[] emptydev = { };
-                if (radioButton3.Checked == true)
+                if (timeRadio.Checked == true)
                 {
                     Program.f1.timecatch = timecatch;
                     int hrs = Convert.ToInt32(time[0].Replace("00", "0").Replace("01", "1").Replace("02", "2").Replace("03", "3").Replace("04", "4").Replace("05", "5").Replace("06", "6").Replace("07", "7").Replace("08", "8").Replace("09", "9"));
@@ -326,20 +326,20 @@ namespace UltimateBlueScreenSimulator
                     int[] timex = { hrs, mins, secs };
                     Program.f1.time = timex;
                     Program.f1.usb_device = emptydev;
-                    Program.f1.timer2.Interval = 1000;
-                } else if (radioButton4.Checked)
+                    Program.f1.prankModeTimer.Interval = 1000;
+                } else if (appRadio.Checked)
                 {
                     Program.f1.timecatch = false;
-                    Program.f1.appname = textBox1.Text;
+                    Program.f1.appname = triggerAppBox.Text;
                     Program.f1.usb_device = emptydev;
-                    Program.f1.timer2.Interval = 1000;
+                    Program.f1.prankModeTimer.Interval = 1000;
                 } else
                 {
                     Program.f1.timecatch = false;
                     Program.f1.usb_device = devinfo;
-                    Program.f1.timer2.Interval = 100;
+                    Program.f1.prankModeTimer.Interval = 100;
                 }
-                if (checkBox2.Checked == true)
+                if (friendlyMessageBox.Checked == true)
                 {
                     Program.f1.showmsg = true;
                     Program.f1.MsgBoxIcon = MsgBoxIcon;
@@ -349,15 +349,15 @@ namespace UltimateBlueScreenSimulator
                 }
                 Program.f1.Hide();
                 Program.f1.waterBox.Checked = false;
-                Program.f1.timer2.Enabled = true;
-                Program.f1.lockout = !checkBox1.Checked;
+                Program.f1.prankModeTimer.Enabled = true;
+                Program.f1.lockout = !letCloseBox.Checked;
                 this.Close();
             }
         }
      
         private void MaskedTextBox1_TextChanged(object sender, EventArgs e)
         {
-            time = maskedTextBox1.Text.Split(':');
+            time = timerBox.Text.Split(':');
         }
 
         private void RadioButton1_CheckedChanged(object sender, EventArgs e)
@@ -367,7 +367,7 @@ namespace UltimateBlueScreenSimulator
 
         private void RadioButton15_CheckedChanged(object sender, EventArgs e)
         {
-            if (radioButton15.Checked == true)
+            if (retryCancelRadio.Checked == true)
             {
                 MsgBoxType = MessageBoxButtons.RetryCancel;
             }
@@ -380,35 +380,35 @@ namespace UltimateBlueScreenSimulator
 
         private void radioButton16_CheckedChanged(object sender, EventArgs e)
         {
-            if (radioButton16.Checked == true)
+            if (usbRadio.Checked == true)
             {
-                panel5.Visible = true;
+                usbPanel.Visible = true;
                 if (devinfo.Length == 0)
                 {
                     currentDevs = USBDeviceInfo.GetUSBDevices();
                     prevDevs = USBDeviceInfo.GetUSBDevices();
-                    timer1.Enabled = true;
-                    button4.Enabled = false;
+                    usbFinder.Enabled = true;
+                    resetDeviceButton.Enabled = false;
                 } else
                 {
-                    button4.Enabled = true;
+                    resetDeviceButton.Enabled = true;
                 }
             }
             else
             {
-                panel5.Visible = false;
+                usbPanel.Visible = false;
             }
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
             string[] dinfo = { };
-            label9.Text = "No trigger device\r\n(Unplug and) plug in desired trigger device";
+            deviceInfoLabel.Text = "No trigger device\r\n(Unplug and) plug in desired trigger device";
             devinfo = dinfo;
             currentDevs = USBDeviceInfo.GetUSBDevices();
             prevDevs = USBDeviceInfo.GetUSBDevices();
-            button4.Enabled = false;
-            timer1.Enabled = true;
+            resetDeviceButton.Enabled = false;
+            usbFinder.Enabled = true;
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -423,9 +423,9 @@ namespace UltimateBlueScreenSimulator
                     {
                         string[] usbinfo = { currentDevs[i].DeviceID, currentDevs[i].PnpDeviceID, currentDevs[i].Description };
                         devinfo = usbinfo;
-                        label9.Text = "Trigger device: " + devinfo[2] + "(Device ID: " + devinfo[0] + ")";
-                        timer1.Enabled = false;
-                        button4.Enabled = true;
+                        deviceInfoLabel.Text = "Trigger device: " + devinfo[2] + "(Device ID: " + devinfo[0] + ")";
+                        usbFinder.Enabled = false;
+                        resetDeviceButton.Enabled = true;
                         break;
                     }
                 }

@@ -87,7 +87,7 @@
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.helpTip = new System.Windows.Forms.ToolTip(this.components);
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.updateCheckerTimer = new System.Windows.Forms.Timer(this.components);
             this.saveBsconfig = new System.Windows.Forms.SaveFileDialog();
             this.loadBsconfig = new System.Windows.Forms.OpenFileDialog();
             this.tableLayoutPanel.SuspendLayout();
@@ -829,9 +829,9 @@
             this.textBox1.TabIndex = 0;
             this.textBox1.WordWrap = false;
             // 
-            // timer1
+            // updateCheckerTimer
             // 
-            this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
+            this.updateCheckerTimer.Tick += new System.EventHandler(this.Timer1_Tick);
             // 
             // saveBsconfig
             // 
@@ -925,7 +925,7 @@
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Timer updateCheckerTimer;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.CheckBox checkBox3;

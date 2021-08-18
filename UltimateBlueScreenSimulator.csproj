@@ -72,12 +72,6 @@
     <Compile Include="BootMgr.Designer.cs">
       <DependentUpon>BootMgr.cs</DependentUpon>
     </Compile>
-    <Compile Include="bsodhacks.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="bsodhacks.Designer.cs">
-      <DependentUpon>bsodhacks.cs</DependentUpon>
-    </Compile>
     <Compile Include="BTS.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -114,11 +108,11 @@
     <Compile Include="DictEdit.Designer.cs">
       <DependentUpon>DictEdit.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form1.cs">
+    <Compile Include="Main.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Main.Designer.cs">
+      <DependentUpon>Main.cs</DependentUpon>
     </Compile>
     <Compile Include="Gen.cs">
       <SubType>Form</SubType>
@@ -225,9 +219,6 @@
     <EmbeddedResource Include="BootMgr.resx">
       <DependentUpon>BootMgr.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="bsodhacks.resx">
-      <DependentUpon>bsodhacks.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="BTS.resx">
       <DependentUpon>BTS.cs</DependentUpon>
     </EmbeddedResource>
@@ -246,8 +237,8 @@
     <EmbeddedResource Include="DictEdit.resx">
       <DependentUpon>DictEdit.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="Main.resx">
+      <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Gen.resx">
       <DependentUpon>Gen.cs</DependentUpon>

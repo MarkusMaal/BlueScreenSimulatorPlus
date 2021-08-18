@@ -62,49 +62,51 @@ namespace UltimateBlueScreenSimulator
         {
             try
             {
+                this.Icon = me.GetIcon();
+                this.Text = me.GetString("friendlyname");
                 memCodes.Visible = me.GetBool("extracodes");
                 Font textfont = me.GetFont();
                 float textsize = textfont.Size;
                 Font emotifont = new Font(me.GetFont().FontFamily, textsize * 5f, me.GetFont().Style);
                 Font modernDetailFont = new Font(me.GetFont().FontFamily, textsize * 0.55f, me.GetFont().Style);
-                label1.Font = emotifont;
-                label2.Font = textfont;
-                label3.Font = textfont;
-                label4.Font = modernDetailFont;
-                label5.Font = modernDetailFont;
-                label2.Text = me.GetTexts()["Information text with dump"];
+                emoticonLabel.Font = emotifont;
+                yourPCranLabel.Font = textfont;
+                progressIndicator.Font = textfont;
+                supportInfo.Font = modernDetailFont;
+                errorCode.Font = modernDetailFont;
+                yourPCranLabel.Text = me.GetTexts()["Information text with dump"];
 
-                pictureBox1.Size = new Size(me.GetInt("qr_size"), me.GetInt("qr_size"));
+                qrCode.Size = new Size(me.GetInt("qr_size"), me.GetInt("qr_size"));
 
-                if (me.GetString("qr_file") == "local:1") { pictureBox1.Image = Properties.Resources.bsodqr_transparent; }
-                else if (me.GetString("qr_file") == "local:0") { pictureBox1.Image = Properties.Resources.bsodqr; }
-                else { try { pictureBox1.Image = Image.FromFile(me.GetString("qr_file")); } catch { pictureBox1.Image = Properties.Resources.bsodqr; } }
+                if (me.GetString("qr_file") == "local:1") { qrCode.Image = Properties.Resources.bsodqr_transparent; }
+                else if (me.GetString("qr_file") == "local:0") { qrCode.Image = Properties.Resources.bsodqr; }
+                else { try { qrCode.Image = Image.FromFile(me.GetString("qr_file")); } catch { qrCode.Image = Properties.Resources.bsodqr; } }
                 if (w8 == true)
                 {
-                    label2.Text = me.GetTexts()["Information text with dump"].Replace("{0}", "0");
+                    yourPCranLabel.Text = me.GetTexts()["Information text with dump"].Replace("{0}", "0");
                     if (close == true) { close = false; w8close = true; }
 
                 }
                 else
                 {
-                    label3.Text = me.GetTexts()["Progress"].Replace("{0}", "0");
-                    label4.Text = me.GetTexts()["Additional information"];
+                    progressIndicator.Text = me.GetTexts()["Progress"].Replace("{0}", "0");
+                    supportInfo.Text = me.GetTexts()["Additional information"];
                 }
                 if (!w8close)
                 {
                     if (close == false)
                     {
-                        label2.Text = me.GetTexts()["Information text without dump"];
+                        yourPCranLabel.Text = me.GetTexts()["Information text without dump"];
                     }
                     if (green)
                     {
                         this.BackColor = Color.FromArgb(47, 121, 42);
-                        label2.Text = label2.Text.Replace("PC", "Windows Insider Build");
+                        yourPCranLabel.Text = yourPCranLabel.Text.Replace("PC", "Windows Insider Build");
                     }
                     if (server)
                     {
-                        label1.Visible = false;
-                        label2.Margin = new Padding(label2.Margin.Left, 80, 0, 0);
+                        emoticonLabel.Visible = false;
+                        yourPCranLabel.Margin = new Padding(yourPCranLabel.Margin.Left, 80, 0, 0);
                     }
                 }
                 try { waterMarkText.ForeColor = Color.FromArgb(this.BackColor.R + 60, this.BackColor.G + 60, this.BackColor.B + 60); } catch { }
@@ -115,51 +117,51 @@ namespace UltimateBlueScreenSimulator
                         Cursor.Hide();
                     }
                 }
-                label1.Padding = new Padding(0, Convert.ToInt32(this.Height * 0.12), 0, 0);
-                panel2.Width = Convert.ToInt32(this.Width * 0.09) - 10;
-                label2.Padding = new Padding(panel2.Width - 3, 0, 0, 0);
-                label3.Padding = label2.Padding;
-                label1.Margin = new Padding(Convert.ToInt32(panel2.Width * 0.8), 0, 0, 0);
-                flowLayoutPanel2.Width = this.Width - 10;
+                emoticonLabel.Padding = new Padding(0, Convert.ToInt32(this.Height * 0.12), 0, 0);
+                qrMargin.Width = Convert.ToInt32(this.Width * 0.09) - 10;
+                yourPCranLabel.Padding = new Padding(qrMargin.Width - 3, 0, 0, 0);
+                progressIndicator.Padding = yourPCranLabel.Padding;
+                emoticonLabel.Margin = new Padding(Convert.ToInt32(qrMargin.Width * 0.8), 0, 0, 0);
+                horizontalFlowPanel.Width = this.Width - 10;
                 if (w8 == false)
                 {
                     if (whatfail == "")
                     {
-                        label5.Text = me.GetTexts()["Error code"].Replace("{0}", code);
+                        errorCode.Text = me.GetTexts()["Error code"].Replace("{0}", code);
                     }
                     else
                     {
-                        label5.Location = new Point(3, 36);
-                        label5.Text = me.GetTexts()["Error code"].Replace("{0}", code + "\n\n" + me.GetTexts()["Culprit file"].Replace("{0}", whatfail.ToLower()));
+                        errorCode.Location = new Point(3, 36);
+                        errorCode.Text = me.GetTexts()["Error code"].Replace("{0}", code + "\n\n" + me.GetTexts()["Culprit file"].Replace("{0}", whatfail.ToLower()));
                     }
                 }
                 if (w8 == true)
                 {
-                    label3.Visible = false;
+                    progressIndicator.Visible = false;
                     if (whatfail == "")
                     {
-                        label5.Text = me.GetTexts()["Error code"].Replace("{0}", code);
+                        errorCode.Text = me.GetTexts()["Error code"].Replace("{0}", code);
                     }
                     else
                     {
-                        label5.Text = me.GetTexts()["Error code"].Replace("{0}", code + " (" + whatfail.ToLower() + ")");
+                        errorCode.Text = me.GetTexts()["Error code"].Replace("{0}", code + " (" + whatfail.ToLower() + ")");
                     }
                 }
                 if (qr == true)
                 {
-                    pictureBox1.Visible = true;
-                    label4.Visible = true;
-                    label5.Location = new Point(3, 56);
-                    Point locationOnForm = pictureBox1.FindForm().PointToClient(pictureBox1.Parent.PointToScreen(pictureBox1.Location));
-                    panel1.Location = new Point(panel2.Width + pictureBox1.Width + 20, locationOnForm.Y);
+                    qrCode.Visible = true;
+                    supportInfo.Visible = true;
+                    errorCode.Location = new Point(3, 56);
+                    Point locationOnForm = qrCode.FindForm().PointToClient(qrCode.Parent.PointToScreen(qrCode.Location));
+                    supportContainer.Location = new Point(qrMargin.Width + qrCode.Width + 20, locationOnForm.Y);
                 }
                 else
                 {
-                    pictureBox1.Visible = false;
-                    label4.Visible = false;
-                    label5.Location = new Point(3, 0);
-                    Point locationOnForm = flowLayoutPanel2.FindForm().PointToClient(flowLayoutPanel2.Parent.PointToScreen(flowLayoutPanel2.Location));
-                    panel1.Location = new Point(panel2.Width - 13, locationOnForm.Y);
+                    qrCode.Visible = false;
+                    supportInfo.Visible = false;
+                    errorCode.Location = new Point(3, 0);
+                    Point locationOnForm = horizontalFlowPanel.FindForm().PointToClient(horizontalFlowPanel.Parent.PointToScreen(horizontalFlowPanel.Location));
+                    supportContainer.Location = new Point(qrMargin.Width - 13, locationOnForm.Y);
                 }
                 if (qr == false)
                 {
@@ -167,8 +169,8 @@ namespace UltimateBlueScreenSimulator
                     {
                         if (w8)
                         {
-                            Point locationOnForm = label2.FindForm().PointToClient(label2.Parent.PointToScreen(label2.Location));
-                            panel1.Location = new Point(panel1.Location.X, locationOnForm.Y + 150);
+                            Point locationOnForm = yourPCranLabel.FindForm().PointToClient(yourPCranLabel.Parent.PointToScreen(yourPCranLabel.Location));
+                            supportContainer.Location = new Point(supportContainer.Location.X, locationOnForm.Y + 150);
                         }
                     }
                 }
@@ -176,16 +178,16 @@ namespace UltimateBlueScreenSimulator
                 {
                     if (w8close == false)
                     {
-                        label2.Text = me.GetTexts()["Information text without dump"];
-                        timer1.Enabled = false;
-                        label3.Visible = false;
-                        Point locationOnForm = label2.FindForm().PointToClient(label2.Parent.PointToScreen(label2.Location));
-                        panel1.Location = new Point(panel2.Width - 13, locationOnForm.Y + 120);
+                        yourPCranLabel.Text = me.GetTexts()["Information text without dump"];
+                        progressUpdater.Enabled = false;
+                        progressIndicator.Visible = false;
+                        Point locationOnForm = yourPCranLabel.FindForm().PointToClient(yourPCranLabel.Parent.PointToScreen(yourPCranLabel.Location));
+                        supportContainer.Location = new Point(qrMargin.Width - 13, locationOnForm.Y + 120);
                     }
                 }
                 if (w8close == true)
                 {
-                    timer1.Enabled = true;
+                    progressUpdater.Enabled = true;
                 }
                 Program.loadfinished = true;
                 if (!me.GetBool("windowed"))
@@ -207,7 +209,7 @@ namespace UltimateBlueScreenSimulator
                                     };
                                     if (Program.multidisplaymode == "freeze")
                                     {
-                                        timer2.Enabled = false;
+                                        screenUpdater.Enabled = false;
                                         Bitmap screenshot = new Bitmap(s.Bounds.Width,
                                             s.Bounds.Height,
                                             System.Drawing.Imaging.PixelFormat.Format32bppArgb);
@@ -233,7 +235,7 @@ namespace UltimateBlueScreenSimulator
                             ws.Show();
                             if (Program.multidisplaymode == "freeze")
                             {
-                                ws.pictureBox1.Image = freezescreens[i];
+                                ws.screenDisplay.Image = freezescreens[i];
                             }
                         }
                     }
@@ -254,30 +256,30 @@ namespace UltimateBlueScreenSimulator
                 {
                     if (progress >= 100)
                     {
-                        timer1.Enabled = false;
+                        progressUpdater.Enabled = false;
                         if (close == true) { this.Close(); }
-                        label3.Text = me.GetTexts()["Progress"].Replace("{0}", "100");
+                        progressIndicator.Text = me.GetTexts()["Progress"].Replace("{0}", "100");
                     }
                     progress += 1;
-                    if (progress > 60) { timer1.Interval = 300; }
-                    label3.Text = me.GetTexts()["Progress"].Replace("{0}", progress.ToString());
+                    if (progress > 60) { progressUpdater.Interval = 300; }
+                    progressIndicator.Text = me.GetTexts()["Progress"].Replace("{0}", progress.ToString());
                 }
                 else
                 {
                     if (progress >= 100)
                     {
-                        label2.Text = label2.Text.Replace(progress.ToString() + "%", "100%");
-                        timer1.Enabled = false;
+                        yourPCranLabel.Text = yourPCranLabel.Text.Replace(progress.ToString() + "%", "100%");
+                        progressUpdater.Enabled = false;
                        this.Close();
                     }
                     string oldprogress = progress.ToString();
                     progress += 1;
-                    if (progress > 60) { timer1.Interval = 300; }
-                    label2.Text = label2.Text.Replace(oldprogress + "%", progress.ToString() + "%");
+                    if (progress > 60) { progressUpdater.Interval = 300; }
+                    yourPCranLabel.Text = yourPCranLabel.Text.Replace(oldprogress + "%", progress.ToString() + "%");
                 }
             } catch (Exception ex)
             {
-                timer1.Enabled = false;
+                progressUpdater.Enabled = false;
                 MessageBox.Show("An error has occoured.\n\n" + ex.Message + "\n\n" + ex.StackTrace.ToString(), "E R R O R", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -297,24 +299,24 @@ namespace UltimateBlueScreenSimulator
 
         private void WXBS_Resize(object sender, EventArgs e)
         {
-            label1.Padding = new Padding(0, Convert.ToInt32(this.Height * 0.12), 0, 0);
-            panel2.Width = Convert.ToInt32(this.Width * 0.09) - 10;
-            label2.Padding = new Padding(panel2.Width - 3, 0, 0, 0);
-            label3.Padding = label2.Padding;
-            label1.Margin = new Padding(Convert.ToInt32(panel2.Width * 0.77), 0, 0, 0);
-            flowLayoutPanel2.Width = this.Width - 10;
+            emoticonLabel.Padding = new Padding(0, Convert.ToInt32(this.Height * 0.12), 0, 0);
+            qrMargin.Width = Convert.ToInt32(this.Width * 0.09) - 10;
+            yourPCranLabel.Padding = new Padding(qrMargin.Width - 3, 0, 0, 0);
+            progressIndicator.Padding = yourPCranLabel.Padding;
+            emoticonLabel.Margin = new Padding(Convert.ToInt32(qrMargin.Width * 0.77), 0, 0, 0);
+            horizontalFlowPanel.Width = this.Width - 10;
 
             if (qr == true)
             {
-                label5.Location = new Point(3, 56);
-                Point locationOnForm = pictureBox1.FindForm().PointToClient(pictureBox1.Parent.PointToScreen(pictureBox1.Location));
-                panel1.Location = new Point(panel2.Width + pictureBox1.Width + 20, locationOnForm.Y);
+                errorCode.Location = new Point(3, 56);
+                Point locationOnForm = qrCode.FindForm().PointToClient(qrCode.Parent.PointToScreen(qrCode.Location));
+                supportContainer.Location = new Point(qrMargin.Width + qrCode.Width + 20, locationOnForm.Y);
             }
             else
             {
-                label5.Location = new Point(3, 0);
-                Point locationOnForm = flowLayoutPanel2.FindForm().PointToClient(flowLayoutPanel2.Parent.PointToScreen(flowLayoutPanel2.Location));
-                panel1.Location = new Point(panel2.Width - 13, locationOnForm.Y);
+                errorCode.Location = new Point(3, 0);
+                Point locationOnForm = horizontalFlowPanel.FindForm().PointToClient(horizontalFlowPanel.Parent.PointToScreen(horizontalFlowPanel.Location));
+                supportContainer.Location = new Point(qrMargin.Width - 13, locationOnForm.Y);
             }
             if (qr == false)
             {
@@ -322,8 +324,8 @@ namespace UltimateBlueScreenSimulator
                 {
                     if (w8)
                     {
-                        Point locationOnForm = label2.FindForm().PointToClient(label2.Parent.PointToScreen(label2.Location));
-                        panel1.Location = new Point(panel1.Location.X, locationOnForm.Y + 150);
+                        Point locationOnForm = yourPCranLabel.FindForm().PointToClient(yourPCranLabel.Parent.PointToScreen(yourPCranLabel.Location));
+                        supportContainer.Location = new Point(supportContainer.Location.X, locationOnForm.Y + 150);
                     }
                 }
             }
@@ -331,8 +333,8 @@ namespace UltimateBlueScreenSimulator
             {
                 if (w8close == false)
                 {
-                    Point locationOnForm = label2.FindForm().PointToClient(label2.Parent.PointToScreen(label2.Location));
-                    panel1.Location = new Point(panel2.Width - 13, locationOnForm.Y + 120);
+                    Point locationOnForm = yourPCranLabel.FindForm().PointToClient(yourPCranLabel.Parent.PointToScreen(yourPCranLabel.Location));
+                    supportContainer.Location = new Point(qrMargin.Width - 13, locationOnForm.Y + 120);
                 }
             }
         }

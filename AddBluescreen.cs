@@ -93,18 +93,18 @@ namespace UltimateBlueScreenSimulator
 
         private void CheckBox1_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBox1.Checked)
+            if (specifyOsBox.Checked)
             {
                 if (MessageBox.Show("Warning: This feature is mainly used for development purposes. Setting an incorrect value here, may lead your configuration to become unusable. Are you sure you want to continue anyway?", "Custom OS warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                 {
-                    osBox.Enabled = checkBox1.Checked;
+                    osBox.Enabled = specifyOsBox.Checked;
                 } else
                 {
-                    checkBox1.Checked = false;
+                    specifyOsBox.Checked = false;
                 }
             } else
             {
-                osBox.Enabled = checkBox1.Checked;
+                osBox.Enabled = specifyOsBox.Checked;
             }
         }
 
@@ -117,6 +117,37 @@ namespace UltimateBlueScreenSimulator
             Program.bluescreens.Add(my_config);
             this.DialogResult = DialogResult.OK;
             this.Close();
+        }
+
+        private void osBox_TextChanged(object sender, EventArgs e)
+        {
+            if (Program.f1.enableeggs)
+            {
+                if (osBox.Text.Contains("Linux"))
+                {
+                    osBox.Text = osBox.Text.Replace("Linux", "Windows");
+                }
+                if (osBox.Text.Contains("Mac"))
+                {
+                    osBox.Text = osBox.Text.Replace("Mac", "Windows");
+                }
+                if (osBox.Text.Contains("BSD"))
+                {
+                    osBox.Text = osBox.Text.Replace("BSD", "Windows");
+                }
+                if (osBox.Text.Contains("FreeDOS"))
+                {
+                    osBox.Text = osBox.Text.Replace("FreeDOS", "MS-DOS");
+                }
+                if (osBox.Text.Contains("TempleOS"))
+                {
+                    osBox.Text = osBox.Text.Replace("TempleOS", "Windows");
+                }
+                if (osBox.Text.Contains("ReactOS"))
+                {
+                    osBox.Text = osBox.Text.Replace("ReactOS", "Windows");
+                }
+            }
         }
     }
 }

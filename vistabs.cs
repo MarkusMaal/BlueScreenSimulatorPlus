@@ -36,6 +36,7 @@ namespace UltimateBlueScreenSimulator
         {
             try
             {
+                this.Icon = me.GetIcon();
                 this.Text = me.GetString("friendlyname");
                 h1 = me.GenHex(8, me.GetFiles().ElementAt(0).Value[0]);
                 h2 = me.GenHex(8, me.GetFiles().ElementAt(0).Value[1]);
@@ -70,12 +71,12 @@ namespace UltimateBlueScreenSimulator
                     HeightInPixels = points * g.DpiX / 72;
                 }
                 errorCode.Visible = me.GetBool("show_description");
-                label5.Text = txt["Collecting data for crash dump"]; label5.Text += "\n" + txt["Initializing crash dump"];
-                label5.Text += "\n" + txt["Begin dump"] + "\n" + txt["Physical memory dump"] + "   0";
+                dumpText.Text = txt["Collecting data for crash dump"]; dumpText.Text += "\n" + txt["Initializing crash dump"];
+                dumpText.Text += "\n" + txt["Begin dump"] + "\n" + txt["Physical memory dump"] + "   0";
                 if (whatfail != "")
                 {
                     errorCode.Text = txt["Culprit file"] + whatfail.ToUpper() + "\n\n" + errorCode.Text;
-                    label5.Margin = new Padding(3, 15, 3, 0);
+                    dumpText.Margin = new Padding(3, 15, 3, 0);
                 }
                 supportInfo.Location = new Point(supportInfo.Location.X, errorCode.Location.Y + errorCode.Size.Height + (2 * (int)HeightInPixels));
                 technicalCode.Location = new Point(technicalCode.Location.X, supportInfo.Location.Y + supportInfo.Size.Height + (int)HeightInPixels);
@@ -83,10 +84,10 @@ namespace UltimateBlueScreenSimulator
                 supportInfo.Margin = new Padding(3, 15, 3, 0);
                 technicalCode.Margin = new Padding(3, 15, 3, 0);
                 supportInfo.Text = supportInfo.Text.Replace("\n\n\n", "\n\n");
-                label5.Margin = new Padding(3, 15, 3, 0);
+                dumpText.Margin = new Padding(3, 15, 3, 0);
 
 
-                label1.Text = txt["A problem has been detected..."];
+                introductionText.Text = txt["A problem has been detected..."];
                 supportInfo.Text = txt["Troubleshooting introduction"] + "\n\n" + txt["Troubleshooting"] + "\n\n" + txt["Technical information"];
                 string[] esplit = technicalCode.Text.Replace("*** STOP: ", "").Replace(")", "").Replace(" (", "*").Split('*');
                 technicalCode.Text = txt["Technical information formatting"].Replace("{0}", esplit[0]).Replace("{1}", esplit[1]);
@@ -102,13 +103,18 @@ namespace UltimateBlueScreenSimulator
                     technicalCode.Text += "\r\n\r\n" + txt["Culprit file memory address"].Replace("{0}", whatfail.ToUpper()).Replace("{1}", h1).Replace("{2}", h1).Replace("{3}", h3.ToLower());
                 }
                 technicalCode.Size = new Size(technicalCode.Size.Width, (int)((technicalCode.Text.Split('\n').Length + 2) * HeightInPixels));
-                label5.Location = new Point(label5.Location.X, technicalCode.Location.Y + technicalCode.Size.Height);
+                dumpText.Location = new Point(dumpText.Location.X, technicalCode.Location.Y + technicalCode.Size.Height);
                 if (!fullscreen) { this.FormBorderStyle = FormBorderStyle.FixedSingle; this.ShowInTaskbar = true; this.ShowIcon = true; }
-                if (!errorCode.Visible && !label5.Visible)
+                if (!errorCode.Visible && !dumpText.Visible)
                 {
                     supportInfo.Visible = false;
-                    label1.Visible = false;
+                    introductionText.Visible = false;
                 }
+                int[] colors = { this.BackColor.R + 50, this.BackColor.G + 50, this.BackColor.B + 50 };
+                if (colors[0] > 255) { colors[0] -= 255; }
+                if (colors[1] > 255) { colors[1] -= 255; }
+                if (colors[2] > 255) { colors[2] -= 255; }
+                waterMarkText.ForeColor = Color.FromArgb(colors[0], colors[1], colors[2]);
                 Program.loadfinished = true;
                 if (fullscreen)
                 {
@@ -161,7 +167,7 @@ namespace UltimateBlueScreenSimulator
                         {
                             if (Program.multidisplaymode == "freeze")
                             {
-                                ws.pictureBox1.Image = freezescreens[i - 1];
+                                ws.screenDisplay.Image = freezescreens[i - 1];
                             }
                         }
                     }
@@ -173,9 +179,17 @@ namespace UltimateBlueScreenSimulator
                 {
                     supportInfo.Location = new Point(supportInfo.Location.X, supportInfo.Location.Y + 39);
                     technicalCode.Location = new Point(technicalCode.Location.X, technicalCode.Location.Y + 39);
-                    label5.Location = new Point(label5.Location.X, label5.Location.Y + 39);
+                    dumpText.Location = new Point(dumpText.Location.X, dumpText.Location.Y + 39);
                 }
                 naturalclose = false;
+                if (me.GetBool("acpi"))
+                {
+                    supportInfo.Text = technicalCode.Text;
+                    errorCode.Visible = false;
+                    technicalCode.Visible = false;
+                    dumpText.Visible = false;
+                    introductionText.Visible = false;
+                }
             } catch (Exception ex)
             {
                 Program.loadfinished = true;
@@ -193,7 +207,7 @@ namespace UltimateBlueScreenSimulator
                     string labeltxt = "";
                     if (whatfail != "")
                     {
-                        labeltxt = label5.Text.Split('\n')[0].Replace("Collecting data for crash dump ...", "") + "\n\n";
+                        labeltxt = dumpText.Text.Split('\n')[0].Replace("Collecting data for crash dump ...", "") + "\n\n";
                     }
                     if (!labeltxt.Contains(me.GetTexts()["Collecting data for crash dump"]))
                     {
@@ -206,21 +220,21 @@ namespace UltimateBlueScreenSimulator
                     for (int i = 0; i < spaces; i++) { ntext += " "; }
                     ntext += progress.ToString();
                     labeltxt += "\n" + me.GetTexts()["Begin dump"] + "\n" + me.GetTexts()["Physical memory dump"].Replace("{0}", " " + ntext);
-                    label5.Text = labeltxt;
+                    dumpText.Text = labeltxt;
                     if (progress == 100)
                     {
-                        label5.Text += "\n" + me.GetTexts()["End dump"] + "\n" + me.GetTexts()["Technical support"];
+                        dumpText.Text += "\n" + me.GetTexts()["End dump"] + "\n" + me.GetTexts()["Technical support"];
                     }
                     float HeightInPixels;
                     using (Graphics g = this.CreateGraphics())
                     {
-                        var points = label5.Font.SizeInPoints;
+                        var points = dumpText.Font.SizeInPoints;
                         HeightInPixels = points * g.DpiX / 72;
                     }
-                    if (label5.Location.Y + (int)(HeightInPixels * label5.Text.Split('\n').Length + 2) > this.ClientSize.Height)
+                    if (dumpText.Location.Y + (int)(HeightInPixels * dumpText.Text.Split('\n').Length + 2) > this.ClientSize.Height)
                     {
                         int delta = 0;
-                        while (label5.Location.Y + (int)(HeightInPixels * (label5.Text.Split('\n').Length + 2)) - delta >= this.ClientSize.Height)
+                        while (dumpText.Location.Y + (int)(HeightInPixels * (dumpText.Text.Split('\n').Length + 2)) - delta >= this.ClientSize.Height)
                         {
                             delta += 1;
                         }
@@ -368,6 +382,10 @@ namespace UltimateBlueScreenSimulator
                 b += 1;
             }
             this.BackColor = Color.FromArgb(r, gr, b);
+            foreach (Control c in this.Controls)
+            {
+                c.BackColor = this.BackColor;
+            }
             foreach (WindowScreen ws in wss)
             {
                 if (!ws.Visible)
@@ -470,7 +488,20 @@ namespace UltimateBlueScreenSimulator
                 gr += 1;
             }
             this.BackColor = Color.FromArgb(r, gr, b);
-
+            foreach (Control c in this.Controls)
+            {
+                c.BackColor = this.BackColor;
+                int[] colorsa = { this.BackColor.R - 100, this.BackColor.G - 100, this.BackColor.B - 100 };
+                if (colorsa[0] < 0) { colorsa[0] += 255; }
+                if (colorsa[1] < 0) { colorsa[1] += 255; }
+                if (colorsa[2] < 0) { colorsa[2] += 255; }
+                c.ForeColor = Color.FromArgb(colorsa[0], colorsa[1], colorsa[2]);
+            }
+            int[] colors = { this.BackColor.R + 20, this.BackColor.G + 20, this.BackColor.B + 20 };
+            if (colors[0] > 255) { colors[0] -= 255; }
+            if (colors[1] > 255) { colors[1] -= 255; }
+            if (colors[2] > 255) { colors[2] -= 255; }
+            waterMarkText.ForeColor = Color.FromArgb(colors[0], colors[1], colors[2]);
             foreach (WindowScreen ws in wss)
             {
                 try

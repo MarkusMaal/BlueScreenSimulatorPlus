@@ -30,35 +30,37 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Cebsod));
-            this.label1 = new System.Windows.Forms.AliasedLabel();
-            this.label2 = new System.Windows.Forms.AliasedLabel();
+            this.infoLabel = new System.Windows.Forms.AliasedLabel();
+            this.techinfoLabel = new System.Windows.Forms.AliasedLabel();
             this.technicalCode = new System.Windows.Forms.AliasedLabel();
             this.timeOut = new System.Windows.Forms.AliasedLabel();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.screenUpdater = new System.Windows.Forms.Timer(this.components);
             this.waterMarkText = new System.Windows.Forms.AliasedLabel();
             this.rainBowScreen = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
-            // label1
+            // infoLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Lucida Console", 10.4F);
-            this.label1.Location = new System.Drawing.Point(-2, 10);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(663, 42);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "A problem has occurred and Windows CE has been shut down to prevent damage to you" +
+            this.infoLabel.AutoSize = true;
+            this.infoLabel.Font = new System.Drawing.Font("Lucida Console", 10.4F);
+            this.infoLabel.Location = new System.Drawing.Point(-2, 10);
+            this.infoLabel.Name = "infoLabel";
+            this.infoLabel.Size = new System.Drawing.Size(719, 47);
+            this.infoLabel.TabIndex = 1;
+            this.infoLabel.Text = "A problem has occurred and Windows CE has been shut down to prevent damage to you" +
     "r\r\ncomputer.\r\nIf you will try to restart your computer, press Ctrl+Alt+Delete.";
+            this.infoLabel.UseCompatibleTextRendering = true;
             // 
-            // label2
+            // techinfoLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Lucida Console", 10.4F);
-            this.label2.Location = new System.Drawing.Point(-2, 69);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(183, 14);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Technical information:";
+            this.techinfoLabel.AutoSize = true;
+            this.techinfoLabel.Font = new System.Drawing.Font("Lucida Console", 10.4F);
+            this.techinfoLabel.Location = new System.Drawing.Point(-2, 69);
+            this.techinfoLabel.Name = "techinfoLabel";
+            this.techinfoLabel.Size = new System.Drawing.Size(194, 19);
+            this.techinfoLabel.TabIndex = 2;
+            this.techinfoLabel.Text = "Technical information:";
+            this.techinfoLabel.UseCompatibleTextRendering = true;
             // 
             // technicalCode
             // 
@@ -66,9 +68,10 @@
             this.technicalCode.Font = new System.Drawing.Font("Lucida Console", 10.4F);
             this.technicalCode.Location = new System.Drawing.Point(-2, 101);
             this.technicalCode.Name = "technicalCode";
-            this.technicalCode.Size = new System.Drawing.Size(407, 14);
+            this.technicalCode.Size = new System.Drawing.Size(435, 19);
             this.technicalCode.TabIndex = 3;
             this.technicalCode.Text = "*** STOP: 0xADDEAD (user manually initiated crash)";
+            this.technicalCode.UseCompatibleTextRendering = true;
             // 
             // timeOut
             // 
@@ -76,15 +79,16 @@
             this.timeOut.Font = new System.Drawing.Font("Lucida Console", 10.4F);
             this.timeOut.Location = new System.Drawing.Point(-2, 138);
             this.timeOut.Name = "timeOut";
-            this.timeOut.Size = new System.Drawing.Size(319, 28);
+            this.timeOut.Size = new System.Drawing.Size(349, 33);
             this.timeOut.TabIndex = 4;
             this.timeOut.Text = "The computer will restart automatically\r\nafter 30 seconds.";
+            this.timeOut.UseCompatibleTextRendering = true;
             // 
-            // timer1
+            // screenUpdater
             // 
-            this.timer1.Enabled = true;
-            this.timer1.Interval = 1000;
-            this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
+            this.screenUpdater.Enabled = true;
+            this.screenUpdater.Interval = 1000;
+            this.screenUpdater.Tick += new System.EventHandler(this.Timer1_Tick);
             // 
             // waterMarkText
             // 
@@ -103,7 +107,7 @@
             this.rainBowScreen.Interval = 10;
             this.rainBowScreen.Tick += new System.EventHandler(this.RainBowScreen_Tick);
             // 
-            // cebsod
+            // Cebsod
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -112,15 +116,15 @@
             this.Controls.Add(this.waterMarkText);
             this.Controls.Add(this.timeOut);
             this.Controls.Add(this.technicalCode);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.techinfoLabel);
+            this.Controls.Add(this.infoLabel);
             this.Font = new System.Drawing.Font("Lucida Console", 10.4F);
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
-            this.Name = "cebsod";
+            this.Name = "Cebsod";
             this.Text = "Windows CE 5 blue screen simulator";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Cebsod_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Cebsod_FormClosed);
@@ -132,9 +136,9 @@
 
         #endregion
         public System.Windows.Forms.AliasedLabel technicalCode;
-        private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.AliasedLabel label1;
-        private System.Windows.Forms.AliasedLabel label2;
+        private System.Windows.Forms.Timer screenUpdater;
+        private System.Windows.Forms.AliasedLabel infoLabel;
+        private System.Windows.Forms.AliasedLabel techinfoLabel;
         private System.Windows.Forms.AliasedLabel timeOut;
         public System.Windows.Forms.AliasedLabel waterMarkText;
         private System.Windows.Forms.Timer rainBowScreen;

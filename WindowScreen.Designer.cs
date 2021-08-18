@@ -28,19 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WindowScreen));
+            this.screenDisplay = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.screenDisplay)).BeginInit();
             this.SuspendLayout();
             // 
-            // pictureBox1
+            // screenDisplay
             // 
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(800, 450);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.screenDisplay.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.screenDisplay.Location = new System.Drawing.Point(0, 0);
+            this.screenDisplay.Name = "screenDisplay";
+            this.screenDisplay.Size = new System.Drawing.Size(800, 450);
+            this.screenDisplay.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.screenDisplay.TabIndex = 0;
+            this.screenDisplay.TabStop = false;
             // 
             // WindowScreen
             // 
@@ -48,25 +49,25 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.screenDisplay);
             this.ForeColor = System.Drawing.Color.LightGray;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "WindowScreen";
-            this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.Text = "WindowScreen";
+            this.Text = "BSSP fullscreen display";
             this.TopMost = true;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.WindowScreen_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.WindowScreen_FormClosed);
             this.Load += new System.EventHandler(this.WindowScreen_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.screenDisplay)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        public System.Windows.Forms.PictureBox pictureBox1;
+        public System.Windows.Forms.PictureBox screenDisplay;
     }
 }

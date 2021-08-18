@@ -43,11 +43,11 @@ namespace SimulatorDatabase
                     }
                     // dispose old images from memory to avoid memory leaks and potentially
                     // actual crashes
-                    if (ws.pictureBox1.Image != null)
+                    if (ws.screenDisplay.Image != null)
                     {
-                        ws.pictureBox1.Image.Dispose();
+                        ws.screenDisplay.Image.Dispose();
                     }
-                    ws.pictureBox1.Image = newImage;
+                    ws.screenDisplay.Image = newImage;
                     bmp.Dispose();
                 }
             }
@@ -318,6 +318,24 @@ namespace SimulatorDatabase
             return this.font;
         }
 
+        public Icon GetIcon()
+        {
+            ImageList windowsIcons = new StringEdit().AllIcons;
+            switch (GetString("icon"))
+            {
+                case "2D flag":
+                    return Icon.FromHandle(((Bitmap)windowsIcons.Images[0]).GetHicon());
+                case "3D flag":
+                    return Icon.FromHandle(((Bitmap)windowsIcons.Images[1]).GetHicon());
+                case "3D window":
+                    return Icon.FromHandle(((Bitmap)windowsIcons.Images[2]).GetHicon());
+                case "2D window":
+                    return Icon.FromHandle(((Bitmap)windowsIcons.Images[3]).GetHicon());
+                default:
+                    return Icon.FromHandle(((Bitmap)windowsIcons.Images[0]).GetHicon());
+            }
+        }
+
         public IDictionary<string, string> GetTitles()
         {
             return this.titles;
@@ -457,6 +475,7 @@ namespace SimulatorDatabase
             {
                 case "BOOTMGR":
                     BootMgr bm = new BootMgr();
+                    bm.me = this;
                     bm.ShowDialog();
                     System.Threading.Thread.CurrentThread.Abort();
                     break;
@@ -636,8 +655,7 @@ namespace SimulatorDatabase
                 if (this.GetBool("acpi"))
                 {
                     //bs.errorCode.Visible = false;
-                    bs.label1.Visible = false;
-                    bs.label5.Visible = false;
+                    bs.dumpText.Visible = false;
                 }
                 bs.errorCode.Text = this.GetString("code").Split(' ')[0].ToString();
                 bs.technicalCode.Text = "*** STOP: " + this.GetString("code").Split(' ')[1].ToString().Replace(")", "").Replace("(", "").ToString() + " (" + GenAddress(4, 16, false) + ")";
@@ -654,7 +672,7 @@ namespace SimulatorDatabase
 
         private void SetupWinXabove(WXBS bs, bool w11 = false)
         {
-            bs.label1.Text = this.GetString("emoticon");
+            bs.emoticonLabel.Text = this.GetString("emoticon");
             bs.BackColor = this.GetTheme(true);
             bs.ForeColor = this.GetTheme(false);
             bs.qr = GetBool("qr");
@@ -691,7 +709,7 @@ namespace SimulatorDatabase
 
         private void SetupWin8(WXBS bs)
         {
-            bs.label1.Text = this.GetString("emoticon");
+            bs.emoticonLabel.Text = this.GetString("emoticon");
             bs.BackColor = this.GetTheme(true);
             bs.ForeColor = this.GetTheme(false);
             bs.qr = false;
@@ -733,6 +751,21 @@ namespace SimulatorDatabase
             SetBool("watermark", true);
             switch (this.os)
             {
+                case "BOOTMGR":
+                    SetTheme(RGB(0, 0, 0), RGB(192, 192, 192));
+                    SetTheme(RGB(0, 0, 0), RGB(255, 255, 255), true);
+                    SetFont("Consolas", 16.0f, FontStyle.Regular);
+                    PushTitle("Main", "Windows Boot Manager");
+                    PushText("Troubleshooting introduction", "Windows failed to start. A recent hardware or software change might be the\r\ncause.To fix the problem:");
+                    PushText("Troubleshooting", "1. Insert your Windows installation disc and restart your computer.\r\n2. Choose your language settings, and then click \"Next.\"\r\n3. Click \"Repair your computer.\"");
+                    PushText("Troubleshooting without disc", "If you do not have this disc, contact your system administrator or computer\r\nmanufacturer for assistance.");
+                    PushText("Error description", "The boot selection failed because a required device is\r\ninaccessible.");
+                    PushText("Info", "Info:");
+                    PushText("Status", "Status:");
+                    PushText("Continue", "ENTER=Continue");
+                    PushText("Exit", "ESC=Exit");
+                    SetString("code", "0x0000000e");
+                    break;
                 case "Windows 1.x/2.x":
                     SetTheme(RGB(0, 0, 170), RGB(255, 255, 255));
                     SetTheme(RGB(170, 170, 170), RGB(0, 0, 170), true);
@@ -820,7 +853,7 @@ namespace SimulatorDatabase
                 case "Windows 2000":
                     PushText("Error code formatting", "*** STOP: {0} ({1})");
                     PushText("Troubleshooting introduction", "If this is the first time you've seen this Stop error screen,\r\nrestart your computer. If this screen appears again, follow\r\nthese steps: ");
-                    PushText("Troubleshooting text", "Check for viruses on your computer. Remove any newly installed\r\nhard drives or hard drive controllers. Check your hard drive\r\nto make sure it is properly configured and terminated.\r\nRun CHKDSK / F to check for hard drive corruption, and then\r\nrestart your computer.");
+                    PushText("Troubleshooting text", "Check for viruses on your computer. Remove any newly installed\r\nhard drives or hard drive controllers. Check your hard drive\r\nto make sure it is properly configured and terminated.\r\nRun CHKDSK /F to check for hard drive corruption, and then\r\nrestart your computer.");
                     PushText("Additional troubleshooting information", "Refer to your Getting Started manual for more information on\r\ntroubleshooting Stop errors.");
                     SetFont("Lucida Console", 8.0f, FontStyle.Bold);
                     SetString("friendlyname", "Windows 2000 Professional/Server Family (640x480, Standard)");
@@ -837,6 +870,7 @@ namespace SimulatorDatabase
                     PushText("Troubleshooting", "Check to make sure any new hardware or software is properly installed.\r\nIf this is a new installation, ask your hardware or software manufacturer\r\nfor any Windows updates you might need.\r\n\r\nIf problems continue, disable or remove any newly installed hardware\r\nor software. Disable BIOS memory options such as caching or shadowing.\r\nIf you need to use Safe mode to remove or disable components, restart\r\nyour computer, press F8 to select Advanced Startup Options, and then\r\nselect Safe Mode.");
                     PushText("Technical information", "Technical information:");
                     PushText("Technical information formatting", "*** STOP: {0} ({1})");
+                    PushText("Culprit file", "The problem seems to be caused by the following file: ");
                     PushText("Physical memory dump", "Beginning dump of physical memory\r\nPhysical memory dump complete.");
                     PushText("Technical support", "Contact your system administrator or technical support group for further\r\nassistance.");
                     SetFont("Lucida Console", 9.7f, FontStyle.Regular);
@@ -927,7 +961,7 @@ namespace SimulatorDatabase
                     PushText("Progress", "{0}% complete");
                     SetInt("qr_size", 110);
                     SetString("qr_file", "local:0");
-                    SetFont("Segoe UI", 19.4f, FontStyle.Regular);
+                    SetFont("Segoe UI Light", 19.4f, FontStyle.Regular);
                     SetTheme(RGB(0, 0, 0), RGB(255, 255, 255));
                     SetString("friendlyname", "Windows 11 (Native, ClearType)");
 

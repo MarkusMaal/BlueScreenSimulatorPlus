@@ -40,6 +40,11 @@ namespace UltimateBlueScreenSimulator
                     Thread.Sleep(2);
                 }
                 Color bg = me.GetTheme(true); Color fg = me.GetTheme(false);
+                if (this.BackColor == this.ForeColor)
+                {
+                    bg = Color.FromArgb(r.Next(0, 255), r.Next(0, 255), r.Next(0, 255));
+                    fg = Color.FromArgb(r.Next(0, 255), r.Next(0, 255), r.Next(0, 255));
+                }
                 Bitmap bmpres = GetSymbol(bg, fg);
                 for (int i = 0; i < new Random().Next(20, 77); i++)
                 {
@@ -120,6 +125,8 @@ namespace UltimateBlueScreenSimulator
         {
             try
             {
+                this.Icon = me.GetIcon();
+                this.Text = me.GetString("friendlyname");
                 Program.load_progress = 101;
                 watermark.Visible = me.GetBool("watermark");
                 if (me.GetString("qr_file") != "local:null")
@@ -136,7 +143,16 @@ namespace UltimateBlueScreenSimulator
                             splash = (Bitmap)Image.FromFile(me.GetString("qr_file"));
                             break;
                     }
-                    splash = Changecolor(me.GetTheme(false), Changecolor(me.GetTheme(true), CreateNonIndexedImage(splash), Color.FromArgb(19, 19, 19)), Color.FromArgb(255, 255, 255));
+
+                    if (this.BackColor == this.ForeColor)
+                    {
+                        Color bg = Color.FromArgb(r.Next(0, 255), r.Next(0, 255), r.Next(0, 255));
+                        Color fg = Color.FromArgb(r.Next(0, 255), r.Next(0, 255), r.Next(0, 255));
+                        splash = Changecolor(fg, Changecolor(bg, CreateNonIndexedImage(splash), Color.FromArgb(19, 19, 19)), Color.FromArgb(255, 255, 255));
+                    } else
+                    {
+                        splash = Changecolor(me.GetTheme(false), Changecolor(me.GetTheme(true), CreateNonIndexedImage(splash), Color.FromArgb(19, 19, 19)), Color.FromArgb(255, 255, 255));
+                    }
                     int z = 1;
                     for (int y = 0; y < 224; y += 12)
                     {
@@ -156,6 +172,11 @@ namespace UltimateBlueScreenSimulator
                     sp.Stream = Properties.Resources.beep;
                     sp.PlayLooping();
                 }
+                int[] colors = { this.BackColor.R + 50, this.BackColor.G + 50, this.BackColor.B + 50 };
+                if (colors[0] > 255) { colors[0] -= 255; }
+                if (colors[1] > 255) { colors[1] -= 255; }
+                if (colors[2] > 255) { colors[2] -= 255; }
+                watermark.ForeColor = Color.FromArgb(colors[0], colors[1], colors[2]);
                 Program.loadfinished = true;
                 if (!me.GetBool("windowed"))
                 {
@@ -210,7 +231,7 @@ namespace UltimateBlueScreenSimulator
                         {
                             if (Program.multidisplaymode == "freeze")
                             {
-                                ws.pictureBox1.Image = freezescreens[i - 1];
+                                ws.screenDisplay.Image = freezescreens[i - 1];
                             }
                         }
                     }

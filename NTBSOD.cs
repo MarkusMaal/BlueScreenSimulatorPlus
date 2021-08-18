@@ -19,6 +19,7 @@ namespace UltimateBlueScreenSimulator
         public string error = "User manually initiated crash (0xDEADDEAD)";
         readonly List<WindowScreen> wss = new List<WindowScreen>();
         readonly List<Bitmap> freezescreens = new List<Bitmap>();
+        readonly Random r = new Random();
         internal BlueScreen me = Program.bluescreens[0];
         IDictionary<string, string> txt;
         readonly string[] letters = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ":", ",", ".", "+", "*", "(", ")", "[", "]", "{", "}", "/", "\\", "-", "_", " " };
@@ -41,9 +42,11 @@ namespace UltimateBlueScreenSimulator
         {
             try
             {
+                this.Icon = me.GetIcon();
+                this.Text = me.GetString("friendlyname");
                 txt = me.GetTexts();
-                pictureBox3.BackColor = me.GetTheme(true, true);
-                if (!blink) { pictureBox3.Visible = false; }
+                blinkyThing.BackColor = me.GetTheme(false);
+                if (!blink) { blinkyThing.Visible = false; }
                 Program.load_progress = 2;
                 Program.load_message = "Processing error code";
                 errorCode.Image = WriteWord(txt["Error code formatting"].Replace("{0}", error.Split(' ')[1].Replace(")", "").Replace("(", "").Replace(" ", "").ToString()).Replace("{1}", me.GenAddress(4, 8, false)).Trim(), me.GetTheme(true), me.GetTheme(false));
@@ -138,7 +141,7 @@ namespace UltimateBlueScreenSimulator
                             string r4 = me.GenHex(8, me.GetFiles().Values.ElementAt(i)[3]).ToLower();
                             string r5 = me.GenHex(8, me.GetFiles().Values.ElementAt(i)[4]).ToLower();
                             string r6 = me.GenHex(8, me.GetFiles().Values.ElementAt(i)[5]).ToLower();
-                            ((PictureBox)flowLayoutPanel1.Controls["tablerow_" + n.ToString()]).Image = WriteWord(txt["Memory address dump table"].Replace("{0}", r1).Replace("{1}", r2).Replace("{2}", r3).Replace("{3}", r4).Replace("{4}", r5).Replace("{5}", r6).Replace("{6}", file), me.GetTheme(true), me.GetTheme(false));
+                            ((PictureBox)ntContainer.Controls["tablerow_" + n.ToString()]).Image = WriteWord(txt["Memory address dump table"].Replace("{0}", r1).Replace("{1}", r2).Replace("{2}", r3).Replace("{3}", r4).Replace("{4}", r5).Replace("{5}", r6).Replace("{6}", file), me.GetTheme(true), me.GetTheme(false));
                             i++;
                             Program.load_progress += 6;
                         }
@@ -162,8 +165,8 @@ namespace UltimateBlueScreenSimulator
                 }
                 try
                 {
-                    pictureBox1.Image = WriteWord(txt["Troubleshooting text"].Split('\n')[0].Trim(), me.GetTheme(true), me.GetTheme(false));
-                    pictureBox2.Image = WriteWord(txt["Troubleshooting text"].Split('\n')[1].Trim(), me.GetTheme(true), me.GetTheme(false));
+                    troubleShoot1.Image = WriteWord(txt["Troubleshooting text"].Split('\n')[0].Trim(), me.GetTheme(true), me.GetTheme(false));
+                    troubleShoot2.Image = WriteWord(txt["Troubleshooting text"].Split('\n')[1].Trim(), me.GetTheme(true), me.GetTheme(false));
                 }
                 catch { }
 
@@ -218,12 +221,17 @@ namespace UltimateBlueScreenSimulator
                         {
                             if (Program.multidisplaymode == "freeze")
                             {
-                                ws.pictureBox1.Image = freezescreens[i - 1];
+                                ws.screenDisplay.Image = freezescreens[i - 1];
                             }
                         }
                     }
                     this.TopMost = false;
                 }
+                int[] colors = { this.BackColor.R + 50, this.BackColor.G + 50, this.BackColor.B + 50 };
+                if (colors[0] > 255) { colors[0] -= 255; }
+                if (colors[1] > 255) { colors[1] -= 255; }
+                if (colors[2] > 255) { colors[2] -= 255; }
+                waterMarkText.ForeColor = Color.FromArgb(colors[0], colors[1], colors[2]);
                 Program.loadfinished = true;
             } catch (Exception ex)
             {
@@ -321,7 +329,7 @@ namespace UltimateBlueScreenSimulator
 
         private void Timer1_Tick(object sender, EventArgs e)
         {
-            if (timer1.Interval != me.GetInt("blink_speed")) { timer1.Interval = me.GetInt("blink_speed"); }
+            if (screenUpdater.Interval != me.GetInt("blink_speed")) { screenUpdater.Interval = me.GetInt("blink_speed"); }
             if (fullscreen)
             {
                 foreach (WindowScreen ws in wss)
@@ -338,13 +346,13 @@ namespace UltimateBlueScreenSimulator
             }
             if (blink)
             {
-                if (pictureBox3.Visible == false)
+                if (blinkyThing.Visible == false)
                 {
-                    pictureBox3.Visible = true;
+                    blinkyThing.Visible = true;
                 }
                 else
                 {
-                    pictureBox3.Visible = false;
+                    blinkyThing.Visible = false;
                 }
             }
         }
@@ -365,7 +373,7 @@ namespace UltimateBlueScreenSimulator
                 {
                     if (c is PictureBox box && box.Image != null) { box.Image.Dispose(); c.Dispose(); }
                 }
-                foreach (Control c in this.flowLayoutPanel1.Controls)
+                foreach (Control c in this.ntContainer.Controls)
                 {
                     if (c is PictureBox box && box.Image != null) { box.Image.Dispose(); c.Dispose(); }
                 }

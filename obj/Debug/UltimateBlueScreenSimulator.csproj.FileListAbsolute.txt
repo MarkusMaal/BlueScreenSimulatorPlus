@@ -1,12 +1,10 @@
 C:\Users\Külaline.PICASSO-W10.000\Source\Repos\BlueScreenSimulatorPlus\obj\Debug\UltimateBlueScreenSimulator.csproj.AssemblyReference.cache
 C:\Users\Külaline.PICASSO-W10.000\Source\Repos\BlueScreenSimulatorPlus\obj\Debug\UltimateBlueScreenSimulator.AboutBox1.resources
 C:\Users\Külaline.PICASSO-W10.000\Source\Repos\BlueScreenSimulatorPlus\obj\Debug\UltimateBlueScreenSimulator.BootMgr.resources
-C:\Users\Külaline.PICASSO-W10.000\Source\Repos\BlueScreenSimulatorPlus\obj\Debug\UltimateBlueScreenSimulator.bsodhacks.resources
 C:\Users\Külaline.PICASSO-W10.000\Source\Repos\BlueScreenSimulatorPlus\obj\Debug\UltimateBlueScreenSimulator.BTS.resources
 C:\Users\Külaline.PICASSO-W10.000\Source\Repos\BlueScreenSimulatorPlus\obj\Debug\UltimateBlueScreenSimulator.cebsod.resources
 C:\Users\Külaline.PICASSO-W10.000\Source\Repos\BlueScreenSimulatorPlus\obj\Debug\UltimateBlueScreenSimulator.ClickIt.resources
 C:\Users\Külaline.PICASSO-W10.000\Source\Repos\BlueScreenSimulatorPlus\obj\Debug\UltimateBlueScreenSimulator.ClickIt2.resources
-C:\Users\Külaline.PICASSO-W10.000\Source\Repos\BlueScreenSimulatorPlus\obj\Debug\UltimateBlueScreenSimulator.Form1.resources
 C:\Users\Külaline.PICASSO-W10.000\Source\Repos\BlueScreenSimulatorPlus\obj\Debug\UltimateBlueScreenSimulator.IndexForm.resources
 C:\Users\Külaline.PICASSO-W10.000\Source\Repos\BlueScreenSimulatorPlus\obj\Debug\UltimateBlueScreenSimulator.NTBSOD.resources
 C:\Users\Külaline.PICASSO-W10.000\Source\Repos\BlueScreenSimulatorPlus\obj\Debug\UltimateBlueScreenSimulator.old_bluescreen.resources
@@ -33,3 +31,4 @@ C:\Users\Külaline.PICASSO-W10.000\Source\Repos\BlueScreenSimulatorPlus\obj\Debu
 C:\Users\Külaline.PICASSO-W10.000\Source\Repos\BlueScreenSimulatorPlus\obj\Debug\UltimateBlueScreenSimulator.win.resources
 C:\Users\Külaline.PICASSO-W10.000\Source\Repos\BlueScreenSimulatorPlus\obj\Debug\UltimateBlueScreenSimulator.Gen.resources
 C:\Users\Külaline.PICASSO-W10.000\Source\Repos\BlueScreenSimulatorPlus\obj\Debug\UltimateBlueScreenSimulator.DictEdit.resources
+C:\Users\Külaline.PICASSO-W10.000\Source\Repos\BlueScreenSimulatorPlus\obj\Debug\UltimateBlueScreenSimulator.Main.resources

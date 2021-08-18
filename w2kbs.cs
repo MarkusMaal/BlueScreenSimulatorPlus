@@ -14,7 +14,11 @@ namespace UltimateBlueScreenSimulator
         readonly List<WindowScreen> wss = new List<WindowScreen>();
         readonly List<Bitmap> freezescreens = new List<Bitmap>();
         internal BlueScreen me = Program.bluescreens[0];
-        
+        string state = "0";
+        bool inr = false;
+        bool ing = false;
+        bool inb = false;
+
         public W2kbs()
         {
             InitializeComponent();
@@ -48,14 +52,24 @@ namespace UltimateBlueScreenSimulator
         {
             try
             {
+                if (Program.f1.enableeggs)
+                {
+                    if (this.BackColor == this.ForeColor)
+                    {
+                        this.BackColor = Color.Red;
+                        rainBowScreen.Enabled = true;
+                    }
+                }
+                this.Icon = me.GetIcon();
+                this.Text = me.GetString("friendlyname");
                 string[] esplit = errorCode.Text.Split('\n')[0].Replace("*** STOP: ", "").Replace(")", "").Replace(" (", "*").Split('*');
 
                 errorCode.Text = me.GetTexts()["Error code formatting"].Replace("{0}", esplit[0]).Replace("{1}", esplit[1]) + "\n" + errorCode.Text.Split('\n')[1];
-                label2.Text = me.GetTexts()["Troubleshooting introduction"];
+                upMessage.Text = me.GetTexts()["Troubleshooting introduction"];
                 supportInfo.Text = me.GetTexts()["Troubleshooting text"];
                 downMessage.Text = me.GetTexts()["Additional troubleshooting information"];
                 errorCode.Font = me.GetFont();
-                label2.Font = me.GetFont();
+                upMessage.Font = me.GetFont();
                 supportInfo.Font = me.GetFont();
                 downMessage.Font = me.GetFont();
                 if (!fullscreen) { this.FormBorderStyle = FormBorderStyle.FixedSingle; this.ShowInTaskbar = true; this.ShowIcon = true; }
@@ -70,6 +84,11 @@ namespace UltimateBlueScreenSimulator
                 }
                 errorCode.Text = errorCode.Text.Replace("IRQL", "DRIVER_IRQL");
 
+                int[] colors = { this.BackColor.R + 50, this.BackColor.G + 50, this.BackColor.B + 50 };
+                if (colors[0] > 255) { colors[0] -= 255; }
+                if (colors[1] > 255) { colors[1] -= 255; }
+                if (colors[2] > 255) { colors[2] -= 255; }
+                waterMarkText.ForeColor = Color.FromArgb(colors[0], colors[1], colors[2]);
                 Program.loadfinished = true;
                 if (fullscreen)
                 {
@@ -121,7 +140,7 @@ namespace UltimateBlueScreenSimulator
                         {
                             if (Program.multidisplaymode == "freeze")
                             {
-                                ws.pictureBox1.Image = freezescreens[i - 1];
+                                ws.screenDisplay.Image = freezescreens[i - 1];
                             }
                         }
                     }
@@ -138,7 +157,7 @@ namespace UltimateBlueScreenSimulator
                         {
                             if (Program.multidisplaymode == "freeze")
                             {
-                                ws.pictureBox1.Image = freezescreens[i - 1];
+                                ws.screenDisplay.Image = freezescreens[i - 1];
                             }
                         }
                     }
@@ -183,6 +202,114 @@ namespace UltimateBlueScreenSimulator
                 if (Program.f1.closecuzhidden == true)
                 {
                     Program.f1.Close();
+                }
+            }
+        }
+
+        private void rainBowScreen_Tick(object sender, EventArgs e)
+        {
+            int r = this.BackColor.R;
+            int gr = this.BackColor.G;
+            int b = this.BackColor.B;
+            if (state == "1")
+            {
+                if (inr == false)
+                {
+                    gr += 1;
+                    if (gr == 255)
+                    {
+                        inr = true;
+                        b += 1;
+                        r -= 1;
+                        state = "2";
+                    }
+                }
+            }
+            else if (state == "3")
+            {
+                r += 1;
+                if (r > 255)
+                {
+                    r = 255;
+                }
+                if (ing == true)
+                {
+                    gr -= 1;
+                    if (gr == 0)
+                    {
+                        ing = false;
+                    }
+                }
+                if ((r == 255) && (gr == 0))
+                {
+                    inb = true;
+                    state = "4";
+                }
+            }
+            else if (state == "2")
+            {
+                b += 1;
+                if (b > 255)
+                {
+                    b = 255;
+                }
+                if (inr == true)
+                {
+                    r -= 1;
+                    if (r == 0)
+                    {
+                        inr = false;
+                    }
+                }
+                if ((r == 0) && (b == 255))
+                {
+                    ing = true;
+                    r = 1;
+                    state = "3";
+                }
+            }
+            else if (state == "4")
+            {
+                state = "4";
+                if (inb == true)
+                {
+                    b -= 1;
+                    if (b == 0)
+                    {
+                        state = "0";
+                        inb = false;
+                    }
+                }
+            }
+            else if ((r == 255) && (gr == 0) && (b == 0))
+            {
+                state = "1";
+                gr += 1;
+            }
+            this.BackColor = Color.FromArgb(r, gr, b);
+            foreach (Control c in this.Controls)
+            {
+                int[] colorsa = { this.BackColor.R - 100, this.BackColor.G - 100, this.BackColor.B - 100 };
+                if (colorsa[0] < 0) { colorsa[0] += 255; }
+                if (colorsa[1] < 0) { colorsa[1] += 255; }
+                if (colorsa[2] < 0) { colorsa[2] += 255; }
+                c.ForeColor = Color.FromArgb(colorsa[0], colorsa[1], colorsa[2]);
+            }
+            int[] colors = { this.BackColor.R + 20, this.BackColor.G + 20, this.BackColor.B + 20 };
+            if (colors[0] > 255) { colors[0] -= 255; }
+            if (colors[1] > 255) { colors[1] -= 255; }
+            if (colors[2] > 255) { colors[2] -= 255; }
+            waterMarkText.ForeColor = Color.FromArgb(colors[0], colors[1], colors[2]);
+            foreach (WindowScreen ws in wss)
+            {
+                try
+                {
+                    Program.dr.Draw(ws);
+                }
+                catch
+                {
+                    ws.Close();
+                    this.naturalclose = true;
                 }
             }
         }

@@ -40,7 +40,8 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.screenUpdater = new System.Windows.Forms.Timer(this.components);
+            this.waterMarkText = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -159,10 +160,20 @@
             this.label10.TabIndex = 9;
             this.label10.Text = "The boot selection failed because a required device is\r\ninaccessible.";
             // 
-            // timer1
+            // screenUpdater
             // 
-            this.timer1.Enabled = true;
-            this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
+            this.screenUpdater.Enabled = true;
+            this.screenUpdater.Tick += new System.EventHandler(this.Timer1_Tick);
+            // 
+            // waterMarkText
+            // 
+            this.waterMarkText.AutoSize = true;
+            this.waterMarkText.ForeColor = System.Drawing.Color.DimGray;
+            this.waterMarkText.Location = new System.Drawing.Point(853, 709);
+            this.waterMarkText.Name = "waterMarkText";
+            this.waterMarkText.Size = new System.Drawing.Size(128, 13);
+            this.waterMarkText.TabIndex = 10;
+            this.waterMarkText.Text = "blue screen simulator plus";
             // 
             // BootMgr
             // 
@@ -170,6 +181,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(1024, 768);
+            this.Controls.Add(this.waterMarkText);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
@@ -188,6 +200,7 @@
             this.Load += new System.EventHandler(this.BootMgr_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BootMgr_KeyDown);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -203,6 +216,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Timer screenUpdater;
+        private System.Windows.Forms.Label waterMarkText;
     }
 }

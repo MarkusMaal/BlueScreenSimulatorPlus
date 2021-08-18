@@ -37,10 +37,10 @@ namespace UltimateBlueScreenSimulator
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.iconBox = new System.Windows.Forms.ComboBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.okButton = new System.Windows.Forms.Button();
+            this.cancelButton = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.specifyOsBox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // templatePicker
@@ -86,6 +86,7 @@ namespace UltimateBlueScreenSimulator
             this.osBox.Name = "osBox";
             this.osBox.Size = new System.Drawing.Size(282, 20);
             this.osBox.TabIndex = 2;
+            this.osBox.TextChanged += new System.EventHandler(this.osBox_TextChanged);
             // 
             // friendlyBox
             // 
@@ -128,28 +129,28 @@ namespace UltimateBlueScreenSimulator
             this.iconBox.Size = new System.Drawing.Size(99, 21);
             this.iconBox.TabIndex = 6;
             // 
-            // button1
+            // okButton
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(297, 182);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "&OK";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.Button1_Click);
+            this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.okButton.Location = new System.Drawing.Point(297, 182);
+            this.okButton.Name = "okButton";
+            this.okButton.Size = new System.Drawing.Size(75, 23);
+            this.okButton.TabIndex = 7;
+            this.okButton.Text = "&OK";
+            this.okButton.UseVisualStyleBackColor = true;
+            this.okButton.Click += new System.EventHandler(this.Button1_Click);
             // 
-            // button2
+            // cancelButton
             // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button2.Location = new System.Drawing.Point(216, 182);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 8;
-            this.button2.Text = "&Cancel";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.Button2_Click);
+            this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.cancelButton.Location = new System.Drawing.Point(216, 182);
+            this.cancelButton.Name = "cancelButton";
+            this.cancelButton.Size = new System.Drawing.Size(75, 23);
+            this.cancelButton.TabIndex = 8;
+            this.cancelButton.Text = "&Cancel";
+            this.cancelButton.UseVisualStyleBackColor = true;
+            this.cancelButton.Click += new System.EventHandler(this.Button2_Click);
             // 
             // label4
             // 
@@ -160,27 +161,27 @@ namespace UltimateBlueScreenSimulator
             this.label4.TabIndex = 9;
             this.label4.Text = "Template:";
             // 
-            // checkBox1
+            // specifyOsBox
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(12, 148);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(212, 17);
-            this.checkBox1.TabIndex = 10;
-            this.checkBox1.Text = "Specify your own OS (DANGEROUS!!!)";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.CheckBox1_CheckedChanged);
+            this.specifyOsBox.AutoSize = true;
+            this.specifyOsBox.Location = new System.Drawing.Point(12, 148);
+            this.specifyOsBox.Name = "specifyOsBox";
+            this.specifyOsBox.Size = new System.Drawing.Size(212, 17);
+            this.specifyOsBox.TabIndex = 10;
+            this.specifyOsBox.Text = "Specify your own OS (DANGEROUS!!!)";
+            this.specifyOsBox.UseVisualStyleBackColor = true;
+            this.specifyOsBox.CheckedChanged += new System.EventHandler(this.CheckBox1_CheckedChanged);
             // 
             // AddBluescreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.button2;
+            this.CancelButton = this.cancelButton;
             this.ClientSize = new System.Drawing.Size(381, 217);
-            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.specifyOsBox);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.cancelButton);
+            this.Controls.Add(this.okButton);
             this.Controls.Add(this.iconBox);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.friendlyBox);
@@ -207,9 +208,9 @@ namespace UltimateBlueScreenSimulator
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox iconBox;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button okButton;
+        private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox specifyOsBox;
     }
 }

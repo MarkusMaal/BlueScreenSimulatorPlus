@@ -65,7 +65,7 @@
             this.fontChooser = new System.Windows.Forms.FontDialog();
             this.simpleToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.customQRBrowser = new System.Windows.Forms.OpenFileDialog();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.whereTheButtonsLink = new System.Windows.Forms.LinkLabel();
             this.stringProps.SuspendLayout();
             this.colorProps.SuspendLayout();
             this.specificPropsFlowLayoutPanel.SuspendLayout();
@@ -392,24 +392,24 @@
             // 
             this.customQRBrowser.Filter = "Raster images|*.jpg;*.jpeg;*.jpe;*.png;*.bmp;*.gif;*.tif;*.tiff";
             // 
-            // linkLabel1
+            // whereTheButtonsLink
             // 
-            this.linkLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(12, 385);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(189, 13);
-            this.linkLabel1.TabIndex = 35;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Where are the save and load buttons?";
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel1_LinkClicked);
+            this.whereTheButtonsLink.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.whereTheButtonsLink.AutoSize = true;
+            this.whereTheButtonsLink.Location = new System.Drawing.Point(12, 385);
+            this.whereTheButtonsLink.Name = "whereTheButtonsLink";
+            this.whereTheButtonsLink.Size = new System.Drawing.Size(189, 13);
+            this.whereTheButtonsLink.TabIndex = 35;
+            this.whereTheButtonsLink.TabStop = true;
+            this.whereTheButtonsLink.Text = "Where are the save and load buttons?";
+            this.whereTheButtonsLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel1_LinkClicked);
             // 
             // StringEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(695, 414);
-            this.Controls.Add(this.linkLabel1);
+            this.Controls.Add(this.whereTheButtonsLink);
             this.Controls.Add(this.specificPropsFlowLayoutPanel);
             this.Controls.Add(this.buttonOK);
             this.Controls.Add(this.specificProps);
@@ -445,7 +445,6 @@
         #endregion
         private System.Windows.Forms.Label labelProps;
         private System.Windows.Forms.ListView MessageView;
-        private System.Windows.Forms.ImageList AllIcons;
         private System.Windows.Forms.Label specificProps;
         private System.Windows.Forms.Button buttonOK;
         private System.Windows.Forms.Panel stringProps;
@@ -476,6 +475,7 @@
         private System.Windows.Forms.RadioButton transparentRadioBtn;
         private System.Windows.Forms.RadioButton customRadioBtn;
         private System.Windows.Forms.OpenFileDialog customQRBrowser;
-        private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.LinkLabel whereTheButtonsLink;
+        internal System.Windows.Forms.ImageList AllIcons;
     }
 }

@@ -21,7 +21,7 @@ namespace UltimateBlueScreenSimulator
 
         private void Timer1_Tick(object sender, EventArgs e)
         {
-            timer1.Enabled = false;
+            veriFileTimer.Enabled = false;
             Program.verificate = true;
             if (!File.Exists(Environment.GetEnvironmentVariable("USERPROFILE") + @"\bssp_firstlaunch.txt")) { Program.verificate = false; }
             if (Program.verificate == true)

@@ -29,48 +29,48 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.splashEmoticon = new System.Windows.Forms.Label();
+            this.splashPlus = new System.Windows.Forms.Label();
+            this.appNameLabel = new System.Windows.Forms.Label();
             this.SplashText = new System.Windows.Forms.Label();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.label4 = new System.Windows.Forms.Label();
+            this.veriFileTimer = new System.Windows.Forms.Timer(this.components);
+            this.appMarketedVersionLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // label1
+            // splashEmoticon
             // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 105F);
-            this.label1.Location = new System.Drawing.Point(3, -38);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(158, 203);
-            this.label1.TabIndex = 0;
-            this.label1.Text = ":)";
-            this.label1.UseWaitCursor = true;
+            this.splashEmoticon.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.splashEmoticon.BackColor = System.Drawing.Color.Transparent;
+            this.splashEmoticon.Font = new System.Drawing.Font("Segoe UI", 105F);
+            this.splashEmoticon.Location = new System.Drawing.Point(3, -38);
+            this.splashEmoticon.Name = "splashEmoticon";
+            this.splashEmoticon.Size = new System.Drawing.Size(158, 203);
+            this.splashEmoticon.TabIndex = 0;
+            this.splashEmoticon.Text = ":)";
+            this.splashEmoticon.UseWaitCursor = true;
             // 
-            // label2
+            // splashPlus
             // 
-            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 32F);
-            this.label2.ForeColor = System.Drawing.Color.Lime;
-            this.label2.Location = new System.Drawing.Point(98, -10);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(79, 64);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "+";
-            this.label2.UseWaitCursor = true;
+            this.splashPlus.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.splashPlus.Font = new System.Drawing.Font("Segoe UI", 32F);
+            this.splashPlus.ForeColor = System.Drawing.Color.Lime;
+            this.splashPlus.Location = new System.Drawing.Point(98, -10);
+            this.splashPlus.Name = "splashPlus";
+            this.splashPlus.Size = new System.Drawing.Size(79, 64);
+            this.splashPlus.TabIndex = 1;
+            this.splashPlus.Text = "+";
+            this.splashPlus.UseWaitCursor = true;
             // 
-            // label3
+            // appNameLabel
             // 
-            this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 16F);
-            this.label3.Location = new System.Drawing.Point(116, 54);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(279, 38);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Blue screen simulator plus";
-            this.label3.UseWaitCursor = true;
+            this.appNameLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.appNameLabel.Font = new System.Drawing.Font("Segoe UI", 16F);
+            this.appNameLabel.Location = new System.Drawing.Point(116, 54);
+            this.appNameLabel.Name = "appNameLabel";
+            this.appNameLabel.Size = new System.Drawing.Size(279, 38);
+            this.appNameLabel.TabIndex = 2;
+            this.appNameLabel.Text = "Blue screen simulator plus";
+            this.appNameLabel.UseWaitCursor = true;
             // 
             // SplashText
             // 
@@ -85,24 +85,24 @@
             this.SplashText.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.SplashText.UseWaitCursor = true;
             // 
-            // timer1
+            // veriFileTimer
             // 
-            this.timer1.Enabled = true;
-            this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
+            this.veriFileTimer.Enabled = true;
+            this.veriFileTimer.Tick += new System.EventHandler(this.Timer1_Tick);
             // 
-            // label4
+            // appMarketedVersionLabel
             // 
-            this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 24F);
-            this.label4.ForeColor = System.Drawing.Color.Blue;
-            this.label4.Location = new System.Drawing.Point(374, 42);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(61, 64);
-            this.label4.TabIndex = 4;
-            this.label4.Text = "2.0";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            this.label4.UseWaitCursor = true;
+            this.appMarketedVersionLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.appMarketedVersionLabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.appMarketedVersionLabel.Font = new System.Drawing.Font("Segoe UI", 24F);
+            this.appMarketedVersionLabel.ForeColor = System.Drawing.Color.Blue;
+            this.appMarketedVersionLabel.Location = new System.Drawing.Point(374, 42);
+            this.appMarketedVersionLabel.Name = "appMarketedVersionLabel";
+            this.appMarketedVersionLabel.Size = new System.Drawing.Size(61, 64);
+            this.appMarketedVersionLabel.TabIndex = 4;
+            this.appMarketedVersionLabel.Text = "2.0";
+            this.appMarketedVersionLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.appMarketedVersionLabel.UseWaitCursor = true;
             // 
             // Splash
             // 
@@ -112,11 +112,11 @@
             this.BackColor = System.Drawing.Color.Black;
             this.BackgroundImage = global::UltimateBlueScreenSimulator.Properties.Resources.round_corners;
             this.ClientSize = new System.Drawing.Size(471, 149);
-            this.Controls.Add(this.label4);
+            this.Controls.Add(this.appMarketedVersionLabel);
             this.Controls.Add(this.SplashText);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.appNameLabel);
+            this.Controls.Add(this.splashPlus);
+            this.Controls.Add(this.splashEmoticon);
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Splash";
@@ -132,11 +132,11 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label splashEmoticon;
+        private System.Windows.Forms.Label splashPlus;
+        private System.Windows.Forms.Label appNameLabel;
         internal System.Windows.Forms.Label SplashText;
-        internal System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.Label label4;
+        internal System.Windows.Forms.Timer veriFileTimer;
+        private System.Windows.Forms.Label appMarketedVersionLabel;
     }
 }

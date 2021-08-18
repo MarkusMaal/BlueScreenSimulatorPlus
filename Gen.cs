@@ -38,16 +38,16 @@ namespace UltimateBlueScreenSimulator
             }
             if (Program.load_progress < 100)
             {
-                progressBar1.Style = ProgressBarStyle.Continuous;
-                progressBar1.Value = Program.load_progress;
+                genProgressBar.Style = ProgressBarStyle.Continuous;
+                genProgressBar.Value = Program.load_progress;
             }
             else if (Program.load_progress > 100)
             {
-                progressBar1.Value = progressBar1.Maximum;
+                genProgressBar.Value = genProgressBar.Maximum;
             }
             else
             {
-                progressBar1.Style = ProgressBarStyle.Marquee;
+                genProgressBar.Style = ProgressBarStyle.Marquee;
             }
         }
     }

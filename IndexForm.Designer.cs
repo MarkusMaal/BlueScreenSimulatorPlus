@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(IndexForm));
-            this.label1 = new System.Windows.Forms.Label();
+            this.methodTitleLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.textBox16 = new System.Windows.Forms.TextBox();
             this.textBox15 = new System.Windows.Forms.TextBox();
@@ -83,9 +83,9 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.fixedRow = new System.Windows.Forms.Label();
+            this.nullRow = new System.Windows.Forms.Label();
+            this.randomRow = new System.Windows.Forms.Label();
             this.c1_12 = new System.Windows.Forms.Label();
             this.c1_11 = new System.Windows.Forms.Label();
             this.c1_10 = new System.Windows.Forms.Label();
@@ -98,30 +98,30 @@
             this.c1_3 = new System.Windows.Forms.Label();
             this.c1_2 = new System.Windows.Forms.Label();
             this.c1_1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
-            this.button25 = new System.Windows.Forms.Button();
-            this.button26 = new System.Windows.Forms.Button();
-            this.button35 = new System.Windows.Forms.Button();
-            this.button36 = new System.Windows.Forms.Button();
+            this.codeSelection = new System.Windows.Forms.Label();
+            this.methodLabel = new System.Windows.Forms.Label();
+            this.chooseCode1 = new System.Windows.Forms.RadioButton();
+            this.chooseCode2 = new System.Windows.Forms.RadioButton();
+            this.chooseCode4 = new System.Windows.Forms.RadioButton();
+            this.chooseCode3 = new System.Windows.Forms.RadioButton();
+            this.okButton = new System.Windows.Forms.Button();
+            this.cancelButton = new System.Windows.Forms.Button();
+            this.nullButton = new System.Windows.Forms.Button();
+            this.randomButton = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button24 = new System.Windows.Forms.Button();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.ntOKButton = new System.Windows.Forms.Button();
+            this.ntCodeChooser = new System.Windows.Forms.FlowLayoutPanel();
             this.code1label = new System.Windows.Forms.Button();
             this.code2label = new System.Windows.Forms.Button();
             this.button20 = new System.Windows.Forms.Button();
             this.button21 = new System.Windows.Forms.Button();
             this.button22 = new System.Windows.Forms.Button();
             this.button23 = new System.Windows.Forms.Button();
-            this.button18 = new System.Windows.Forms.Button();
-            this.button19 = new System.Windows.Forms.Button();
-            this.label12 = new System.Windows.Forms.Label();
-            this.button17 = new System.Windows.Forms.Button();
-            this.textBox17 = new System.Windows.Forms.TextBox();
+            this.ntRandomButton = new System.Windows.Forms.Button();
+            this.ntNullButton = new System.Windows.Forms.Button();
+            this.fileLabel = new System.Windows.Forms.Label();
+            this.chooseFileButton = new System.Windows.Forms.Button();
+            this.fileBox = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.ntt8 = new System.Windows.Forms.TextBox();
             this.ntt7 = new System.Windows.Forms.TextBox();
@@ -154,26 +154,26 @@
             this.ntc3 = new System.Windows.Forms.Label();
             this.ntc2 = new System.Windows.Forms.Label();
             this.ntc1 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
+            this.fixedLabel = new System.Windows.Forms.Label();
+            this.nullLabel = new System.Windows.Forms.Label();
+            this.randomLabel = new System.Windows.Forms.Label();
+            this.codeLabel = new System.Windows.Forms.Label();
             this.ntr1 = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.ntEntryChooser = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
+            this.ntCodeChooser.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // label1
+            // methodTitleLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(217, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "The following error code method will be used";
+            this.methodTitleLabel.AutoSize = true;
+            this.methodTitleLabel.Location = new System.Drawing.Point(12, 9);
+            this.methodTitleLabel.Name = "methodTitleLabel";
+            this.methodTitleLabel.Size = new System.Drawing.Size(217, 13);
+            this.methodTitleLabel.TabIndex = 0;
+            this.methodTitleLabel.Text = "The following error code method will be used";
             // 
             // tableLayoutPanel1
             // 
@@ -247,9 +247,9 @@
             this.tableLayoutPanel1.Controls.Add(this.button3, 3, 1);
             this.tableLayoutPanel1.Controls.Add(this.button2, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.button1, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label5, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.label4, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.label3, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.fixedRow, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.nullRow, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.randomRow, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.c1_12, 12, 0);
             this.tableLayoutPanel1.Controls.Add(this.c1_11, 11, 0);
             this.tableLayoutPanel1.Controls.Add(this.c1_10, 10, 0);
@@ -262,7 +262,7 @@
             this.tableLayoutPanel1.Controls.Add(this.c1_3, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.c1_2, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.c1_1, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.label2, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.codeSelection, 0, 0);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(15, 104);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 4;
@@ -660,6 +660,7 @@
             // 
             // null1
             // 
+            this.null1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.null1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.null1.Location = new System.Drawing.Point(70, 40);
             this.null1.Margin = new System.Windows.Forms.Padding(0);
@@ -946,38 +947,38 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
-            // label5
+            // fixedRow
             // 
-            this.label5.AutoSize = true;
-            this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label5.Location = new System.Drawing.Point(3, 60);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(64, 21);
-            this.label5.TabIndex = 17;
-            this.label5.Text = "Fixed (0-F)";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.fixedRow.AutoSize = true;
+            this.fixedRow.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.fixedRow.Location = new System.Drawing.Point(3, 60);
+            this.fixedRow.Name = "fixedRow";
+            this.fixedRow.Size = new System.Drawing.Size(64, 21);
+            this.fixedRow.TabIndex = 17;
+            this.fixedRow.Text = "Fixed (0-F)";
+            this.fixedRow.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label4
+            // nullRow
             // 
-            this.label4.AutoSize = true;
-            this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label4.Location = new System.Drawing.Point(3, 40);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(64, 20);
-            this.label4.TabIndex = 2;
-            this.label4.Text = "Null (0)";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.nullRow.AutoSize = true;
+            this.nullRow.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.nullRow.Location = new System.Drawing.Point(3, 40);
+            this.nullRow.Name = "nullRow";
+            this.nullRow.Size = new System.Drawing.Size(64, 20);
+            this.nullRow.TabIndex = 2;
+            this.nullRow.Text = "Null (0)";
+            this.nullRow.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label3
+            // randomRow
             // 
-            this.label3.AutoSize = true;
-            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Location = new System.Drawing.Point(3, 21);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(64, 19);
-            this.label3.TabIndex = 15;
-            this.label3.Text = "Random (R)";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.randomRow.AutoSize = true;
+            this.randomRow.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.randomRow.Location = new System.Drawing.Point(3, 21);
+            this.randomRow.Name = "randomRow";
+            this.randomRow.Size = new System.Drawing.Size(64, 19);
+            this.randomRow.TabIndex = 15;
+            this.randomRow.Text = "Random (R)";
+            this.randomRow.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // c1_12
             // 
@@ -1123,127 +1124,128 @@
             this.c1_1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.c1_1.TextChanged += new System.EventHandler(this.C1_1_TextChanged);
             // 
-            // label2
+            // codeSelection
             // 
-            this.label2.AutoSize = true;
-            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Location = new System.Drawing.Point(3, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(64, 21);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Code 1";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.codeSelection.AutoSize = true;
+            this.codeSelection.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.codeSelection.Location = new System.Drawing.Point(3, 0);
+            this.codeSelection.Name = "codeSelection";
+            this.codeSelection.Size = new System.Drawing.Size(64, 21);
+            this.codeSelection.TabIndex = 2;
+            this.codeSelection.Text = "Code 1";
+            this.codeSelection.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label6
+            // methodLabel
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(12, 31);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(453, 13);
-            this.label6.TabIndex = 2;
-            this.label6.Text = "0xRRRRRRRRRRRR, 0xRRRRRRRRRRRR, 0xRRRRRRRRRRRR, 0xRRRRRRRRRRRR";
+            this.methodLabel.AutoSize = true;
+            this.methodLabel.Location = new System.Drawing.Point(12, 31);
+            this.methodLabel.Name = "methodLabel";
+            this.methodLabel.Size = new System.Drawing.Size(453, 13);
+            this.methodLabel.TabIndex = 2;
+            this.methodLabel.Text = "0xRRRRRRRRRRRR, 0xRRRRRRRRRRRR, 0xRRRRRRRRRRRR, 0xRRRRRRRRRRRR";
             // 
-            // radioButton1
+            // chooseCode1
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Checked = true;
-            this.radioButton1.Location = new System.Drawing.Point(12, 60);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(59, 17);
-            this.radioButton1.TabIndex = 0;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Code 1";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            this.radioButton1.CheckedChanged += new System.EventHandler(this.RadioButton1_CheckedChanged);
+            this.chooseCode1.AutoSize = true;
+            this.chooseCode1.Checked = true;
+            this.chooseCode1.Location = new System.Drawing.Point(12, 60);
+            this.chooseCode1.Name = "chooseCode1";
+            this.chooseCode1.Size = new System.Drawing.Size(59, 17);
+            this.chooseCode1.TabIndex = 0;
+            this.chooseCode1.TabStop = true;
+            this.chooseCode1.Text = "Code 1";
+            this.chooseCode1.UseVisualStyleBackColor = true;
+            this.chooseCode1.CheckedChanged += new System.EventHandler(this.RadioButton1_CheckedChanged);
             // 
-            // radioButton2
+            // chooseCode2
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(77, 60);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(59, 17);
-            this.radioButton2.TabIndex = 1;
-            this.radioButton2.Text = "Code 2";
-            this.radioButton2.UseVisualStyleBackColor = true;
-            this.radioButton2.CheckedChanged += new System.EventHandler(this.RadioButton2_CheckedChanged);
+            this.chooseCode2.AutoSize = true;
+            this.chooseCode2.Location = new System.Drawing.Point(77, 60);
+            this.chooseCode2.Name = "chooseCode2";
+            this.chooseCode2.Size = new System.Drawing.Size(59, 17);
+            this.chooseCode2.TabIndex = 1;
+            this.chooseCode2.Text = "Code 2";
+            this.chooseCode2.UseVisualStyleBackColor = true;
+            this.chooseCode2.CheckedChanged += new System.EventHandler(this.RadioButton2_CheckedChanged);
             // 
-            // radioButton3
+            // chooseCode4
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(207, 60);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(59, 17);
-            this.radioButton3.TabIndex = 3;
-            this.radioButton3.Text = "Code 4";
-            this.radioButton3.UseVisualStyleBackColor = true;
-            this.radioButton3.CheckedChanged += new System.EventHandler(this.RadioButton3_CheckedChanged);
+            this.chooseCode4.AutoSize = true;
+            this.chooseCode4.Location = new System.Drawing.Point(207, 60);
+            this.chooseCode4.Name = "chooseCode4";
+            this.chooseCode4.Size = new System.Drawing.Size(59, 17);
+            this.chooseCode4.TabIndex = 3;
+            this.chooseCode4.Text = "Code 4";
+            this.chooseCode4.UseVisualStyleBackColor = true;
+            this.chooseCode4.CheckedChanged += new System.EventHandler(this.RadioButton3_CheckedChanged);
             // 
-            // radioButton4
+            // chooseCode3
             // 
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.Location = new System.Drawing.Point(142, 60);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(59, 17);
-            this.radioButton4.TabIndex = 2;
-            this.radioButton4.Text = "Code 3";
-            this.radioButton4.UseVisualStyleBackColor = true;
-            this.radioButton4.CheckedChanged += new System.EventHandler(this.RadioButton4_CheckedChanged);
+            this.chooseCode3.AutoSize = true;
+            this.chooseCode3.Location = new System.Drawing.Point(142, 60);
+            this.chooseCode3.Name = "chooseCode3";
+            this.chooseCode3.Size = new System.Drawing.Size(59, 17);
+            this.chooseCode3.TabIndex = 2;
+            this.chooseCode3.Text = "Code 3";
+            this.chooseCode3.UseVisualStyleBackColor = true;
+            this.chooseCode3.CheckedChanged += new System.EventHandler(this.RadioButton4_CheckedChanged);
             // 
-            // button25
+            // okButton
             // 
-            this.button25.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button25.Location = new System.Drawing.Point(626, 170);
-            this.button25.Name = "button25";
-            this.button25.Size = new System.Drawing.Size(75, 23);
-            this.button25.TabIndex = 5;
-            this.button25.Text = "&OK";
-            this.button25.UseVisualStyleBackColor = true;
-            this.button25.Click += new System.EventHandler(this.Button25_Click);
+            this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.okButton.Location = new System.Drawing.Point(626, 170);
+            this.okButton.Name = "okButton";
+            this.okButton.Size = new System.Drawing.Size(75, 23);
+            this.okButton.TabIndex = 5;
+            this.okButton.Text = "&OK";
+            this.okButton.UseVisualStyleBackColor = true;
+            this.okButton.Click += new System.EventHandler(this.Button25_Click);
             // 
-            // button26
+            // cancelButton
             // 
-            this.button26.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button26.Location = new System.Drawing.Point(545, 170);
-            this.button26.Name = "button26";
-            this.button26.Size = new System.Drawing.Size(75, 23);
-            this.button26.TabIndex = 4;
-            this.button26.Text = "&Cancel";
-            this.button26.UseVisualStyleBackColor = true;
-            this.button26.Click += new System.EventHandler(this.Button26_Click);
+            this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.cancelButton.Location = new System.Drawing.Point(545, 170);
+            this.cancelButton.Name = "cancelButton";
+            this.cancelButton.Size = new System.Drawing.Size(75, 23);
+            this.cancelButton.TabIndex = 4;
+            this.cancelButton.Text = "&Cancel";
+            this.cancelButton.UseVisualStyleBackColor = true;
+            this.cancelButton.Click += new System.EventHandler(this.Button26_Click);
             // 
-            // button35
+            // nullButton
             // 
-            this.button35.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button35.Location = new System.Drawing.Point(524, 57);
-            this.button35.Name = "button35";
-            this.button35.Size = new System.Drawing.Size(72, 23);
-            this.button35.TabIndex = 6;
-            this.button35.Text = "Null code";
-            this.button35.UseVisualStyleBackColor = true;
-            this.button35.Click += new System.EventHandler(this.Button35_Click);
+            this.nullButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.nullButton.Location = new System.Drawing.Point(524, 57);
+            this.nullButton.Name = "nullButton";
+            this.nullButton.Size = new System.Drawing.Size(72, 23);
+            this.nullButton.TabIndex = 6;
+            this.nullButton.Text = "Null code";
+            this.nullButton.UseVisualStyleBackColor = true;
+            this.nullButton.Click += new System.EventHandler(this.Button35_Click);
             // 
-            // button36
+            // randomButton
             // 
-            this.button36.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button36.Location = new System.Drawing.Point(605, 57);
-            this.button36.Name = "button36";
-            this.button36.Size = new System.Drawing.Size(86, 23);
-            this.button36.TabIndex = 7;
-            this.button36.Text = "Random code";
-            this.button36.UseVisualStyleBackColor = true;
-            this.button36.Click += new System.EventHandler(this.Button36_Click);
+            this.randomButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.randomButton.Location = new System.Drawing.Point(605, 57);
+            this.randomButton.Name = "randomButton";
+            this.randomButton.Size = new System.Drawing.Size(86, 23);
+            this.randomButton.TabIndex = 7;
+            this.randomButton.Text = "Random code";
+            this.randomButton.UseVisualStyleBackColor = true;
+            this.randomButton.Click += new System.EventHandler(this.Button36_Click);
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.button24);
-            this.panel1.Controls.Add(this.flowLayoutPanel1);
-            this.panel1.Controls.Add(this.button18);
-            this.panel1.Controls.Add(this.button19);
-            this.panel1.Controls.Add(this.label12);
-            this.panel1.Controls.Add(this.button17);
-            this.panel1.Controls.Add(this.textBox17);
+            this.panel1.Controls.Add(this.ntOKButton);
+            this.panel1.Controls.Add(this.ntCodeChooser);
+            this.panel1.Controls.Add(this.ntRandomButton);
+            this.panel1.Controls.Add(this.ntNullButton);
+            this.panel1.Controls.Add(this.fileLabel);
+            this.panel1.Controls.Add(this.chooseFileButton);
+            this.panel1.Controls.Add(this.fileBox);
             this.panel1.Controls.Add(this.tableLayoutPanel2);
-            this.panel1.Controls.Add(this.comboBox1);
+            this.panel1.Controls.Add(this.ntEntryChooser);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
@@ -1251,30 +1253,30 @@
             this.panel1.TabIndex = 8;
             this.panel1.Visible = false;
             // 
-            // button24
+            // ntOKButton
             // 
-            this.button24.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button24.Location = new System.Drawing.Point(631, 174);
-            this.button24.Name = "button24";
-            this.button24.Size = new System.Drawing.Size(75, 23);
-            this.button24.TabIndex = 14;
-            this.button24.Text = "&OK";
-            this.button24.UseVisualStyleBackColor = true;
-            this.button24.Click += new System.EventHandler(this.button24_Click_1);
+            this.ntOKButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ntOKButton.Location = new System.Drawing.Point(631, 174);
+            this.ntOKButton.Name = "ntOKButton";
+            this.ntOKButton.Size = new System.Drawing.Size(75, 23);
+            this.ntOKButton.TabIndex = 14;
+            this.ntOKButton.Text = "&OK";
+            this.ntOKButton.UseVisualStyleBackColor = true;
+            this.ntOKButton.Click += new System.EventHandler(this.button24_Click_1);
             // 
-            // flowLayoutPanel1
+            // ntCodeChooser
             // 
-            this.flowLayoutPanel1.Controls.Add(this.code1label);
-            this.flowLayoutPanel1.Controls.Add(this.code2label);
-            this.flowLayoutPanel1.Controls.Add(this.button20);
-            this.flowLayoutPanel1.Controls.Add(this.button21);
-            this.flowLayoutPanel1.Controls.Add(this.button22);
-            this.flowLayoutPanel1.Controls.Add(this.button23);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(424, 65);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(255, 27);
-            this.flowLayoutPanel1.TabIndex = 13;
-            this.flowLayoutPanel1.WrapContents = false;
+            this.ntCodeChooser.Controls.Add(this.code1label);
+            this.ntCodeChooser.Controls.Add(this.code2label);
+            this.ntCodeChooser.Controls.Add(this.button20);
+            this.ntCodeChooser.Controls.Add(this.button21);
+            this.ntCodeChooser.Controls.Add(this.button22);
+            this.ntCodeChooser.Controls.Add(this.button23);
+            this.ntCodeChooser.Location = new System.Drawing.Point(424, 65);
+            this.ntCodeChooser.Name = "ntCodeChooser";
+            this.ntCodeChooser.Size = new System.Drawing.Size(255, 27);
+            this.ntCodeChooser.TabIndex = 13;
+            this.ntCodeChooser.WrapContents = false;
             // 
             // code1label
             // 
@@ -1337,55 +1339,55 @@
             this.button23.UseVisualStyleBackColor = true;
             this.button23.Click += new System.EventHandler(this.button23_Click_1);
             // 
-            // button18
+            // ntRandomButton
             // 
-            this.button18.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button18.Location = new System.Drawing.Point(530, 115);
-            this.button18.Name = "button18";
-            this.button18.Size = new System.Drawing.Size(86, 23);
-            this.button18.TabIndex = 9;
-            this.button18.Text = "Random code";
-            this.button18.UseVisualStyleBackColor = true;
-            this.button18.Click += new System.EventHandler(this.button18_Click_1);
+            this.ntRandomButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ntRandomButton.Location = new System.Drawing.Point(530, 115);
+            this.ntRandomButton.Name = "ntRandomButton";
+            this.ntRandomButton.Size = new System.Drawing.Size(86, 23);
+            this.ntRandomButton.TabIndex = 9;
+            this.ntRandomButton.Text = "Random code";
+            this.ntRandomButton.UseVisualStyleBackColor = true;
+            this.ntRandomButton.Click += new System.EventHandler(this.button18_Click_1);
             // 
-            // button19
+            // ntNullButton
             // 
-            this.button19.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button19.Location = new System.Drawing.Point(620, 115);
-            this.button19.Name = "button19";
-            this.button19.Size = new System.Drawing.Size(86, 23);
-            this.button19.TabIndex = 8;
-            this.button19.Text = "Null code";
-            this.button19.UseVisualStyleBackColor = true;
-            this.button19.Click += new System.EventHandler(this.button19_Click_1);
+            this.ntNullButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ntNullButton.Location = new System.Drawing.Point(620, 115);
+            this.ntNullButton.Name = "ntNullButton";
+            this.ntNullButton.Size = new System.Drawing.Size(86, 23);
+            this.ntNullButton.TabIndex = 8;
+            this.ntNullButton.Text = "Null code";
+            this.ntNullButton.UseVisualStyleBackColor = true;
+            this.ntNullButton.Click += new System.EventHandler(this.button19_Click_1);
             // 
-            // label12
+            // fileLabel
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(421, 43);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(26, 13);
-            this.label12.TabIndex = 5;
-            this.label12.Text = "File:";
+            this.fileLabel.AutoSize = true;
+            this.fileLabel.Location = new System.Drawing.Point(421, 43);
+            this.fileLabel.Name = "fileLabel";
+            this.fileLabel.Size = new System.Drawing.Size(26, 13);
+            this.fileLabel.TabIndex = 5;
+            this.fileLabel.Text = "File:";
             // 
-            // button17
+            // chooseFileButton
             // 
-            this.button17.Location = new System.Drawing.Point(624, 38);
-            this.button17.Name = "button17";
-            this.button17.Size = new System.Drawing.Size(55, 23);
-            this.button17.TabIndex = 4;
-            this.button17.Text = "Choose";
-            this.button17.UseVisualStyleBackColor = true;
-            this.button17.Click += new System.EventHandler(this.button17_Click_1);
+            this.chooseFileButton.Location = new System.Drawing.Point(624, 38);
+            this.chooseFileButton.Name = "chooseFileButton";
+            this.chooseFileButton.Size = new System.Drawing.Size(55, 23);
+            this.chooseFileButton.TabIndex = 4;
+            this.chooseFileButton.Text = "Choose";
+            this.chooseFileButton.UseVisualStyleBackColor = true;
+            this.chooseFileButton.Click += new System.EventHandler(this.button17_Click_1);
             // 
-            // textBox17
+            // fileBox
             // 
-            this.textBox17.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.textBox17.Location = new System.Drawing.Point(453, 39);
-            this.textBox17.Name = "textBox17";
-            this.textBox17.Size = new System.Drawing.Size(165, 21);
-            this.textBox17.TabIndex = 3;
-            this.textBox17.TextChanged += new System.EventHandler(this.textBox17_TextChanged);
+            this.fileBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.fileBox.Location = new System.Drawing.Point(453, 39);
+            this.fileBox.Name = "fileBox";
+            this.fileBox.Size = new System.Drawing.Size(165, 21);
+            this.fileBox.TabIndex = 3;
+            this.fileBox.TextChanged += new System.EventHandler(this.textBox17_TextChanged);
             // 
             // tableLayoutPanel2
             // 
@@ -1430,10 +1432,10 @@
             this.tableLayoutPanel2.Controls.Add(this.ntc3, 3, 0);
             this.tableLayoutPanel2.Controls.Add(this.ntc2, 2, 0);
             this.tableLayoutPanel2.Controls.Add(this.ntc1, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.label11, 0, 3);
-            this.tableLayoutPanel2.Controls.Add(this.label10, 0, 2);
-            this.tableLayoutPanel2.Controls.Add(this.label9, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.label8, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.fixedLabel, 0, 3);
+            this.tableLayoutPanel2.Controls.Add(this.nullLabel, 0, 2);
+            this.tableLayoutPanel2.Controls.Add(this.randomLabel, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.codeLabel, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.ntr1, 1, 1);
             this.tableLayoutPanel2.Location = new System.Drawing.Point(17, 43);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
@@ -1887,49 +1889,49 @@
             this.ntc1.Text = "R";
             this.ntc1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label11
+            // fixedLabel
             // 
-            this.label11.AutoSize = true;
-            this.label11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label11.Location = new System.Drawing.Point(3, 70);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(74, 26);
-            this.label11.TabIndex = 3;
-            this.label11.Text = "Fixed (0-F)";
-            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.fixedLabel.AutoSize = true;
+            this.fixedLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.fixedLabel.Location = new System.Drawing.Point(3, 70);
+            this.fixedLabel.Name = "fixedLabel";
+            this.fixedLabel.Size = new System.Drawing.Size(74, 26);
+            this.fixedLabel.TabIndex = 3;
+            this.fixedLabel.Text = "Fixed (0-F)";
+            this.fixedLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label10
+            // nullLabel
             // 
-            this.label10.AutoSize = true;
-            this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label10.Location = new System.Drawing.Point(3, 45);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(74, 25);
-            this.label10.TabIndex = 3;
-            this.label10.Text = "Null (0)";
-            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.nullLabel.AutoSize = true;
+            this.nullLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.nullLabel.Location = new System.Drawing.Point(3, 45);
+            this.nullLabel.Name = "nullLabel";
+            this.nullLabel.Size = new System.Drawing.Size(74, 25);
+            this.nullLabel.TabIndex = 3;
+            this.nullLabel.Text = "Null (0)";
+            this.nullLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label9
+            // randomLabel
             // 
-            this.label9.AutoSize = true;
-            this.label9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label9.Location = new System.Drawing.Point(3, 20);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(74, 25);
-            this.label9.TabIndex = 3;
-            this.label9.Text = "Random (R)";
-            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.randomLabel.AutoSize = true;
+            this.randomLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.randomLabel.Location = new System.Drawing.Point(3, 20);
+            this.randomLabel.Name = "randomLabel";
+            this.randomLabel.Size = new System.Drawing.Size(74, 25);
+            this.randomLabel.TabIndex = 3;
+            this.randomLabel.Text = "Random (R)";
+            this.randomLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label8
+            // codeLabel
             // 
-            this.label8.AutoSize = true;
-            this.label8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label8.Location = new System.Drawing.Point(3, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(74, 20);
-            this.label8.TabIndex = 3;
-            this.label8.Text = "Code 1";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.codeLabel.AutoSize = true;
+            this.codeLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.codeLabel.Location = new System.Drawing.Point(3, 0);
+            this.codeLabel.Name = "codeLabel";
+            this.codeLabel.Size = new System.Drawing.Size(74, 20);
+            this.codeLabel.TabIndex = 3;
+            this.codeLabel.Text = "Code 1";
+            this.codeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ntr1
             // 
@@ -1946,35 +1948,36 @@
             this.ntr1.UseVisualStyleBackColor = true;
             this.ntr1.Click += new System.EventHandler(this.ntr1_Click);
             // 
-            // comboBox1
+            // ntEntryChooser
             // 
-            this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.ntEntryChooser.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(19, 16);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(687, 21);
-            this.comboBox1.TabIndex = 1;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.ntEntryChooser.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ntEntryChooser.FormattingEnabled = true;
+            this.ntEntryChooser.Location = new System.Drawing.Point(19, 16);
+            this.ntEntryChooser.Name = "ntEntryChooser";
+            this.ntEntryChooser.Size = new System.Drawing.Size(687, 21);
+            this.ntEntryChooser.TabIndex = 1;
+            this.ntEntryChooser.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // IndexForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.cancelButton;
             this.ClientSize = new System.Drawing.Size(716, 205);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.button36);
-            this.Controls.Add(this.button35);
-            this.Controls.Add(this.button26);
-            this.Controls.Add(this.button25);
-            this.Controls.Add(this.radioButton3);
-            this.Controls.Add(this.radioButton4);
-            this.Controls.Add(this.radioButton2);
-            this.Controls.Add(this.radioButton1);
-            this.Controls.Add(this.label6);
+            this.Controls.Add(this.randomButton);
+            this.Controls.Add(this.nullButton);
+            this.Controls.Add(this.cancelButton);
+            this.Controls.Add(this.okButton);
+            this.Controls.Add(this.chooseCode4);
+            this.Controls.Add(this.chooseCode3);
+            this.Controls.Add(this.chooseCode2);
+            this.Controls.Add(this.chooseCode1);
+            this.Controls.Add(this.methodLabel);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.methodTitleLabel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -1988,7 +1991,7 @@
             this.tableLayoutPanel1.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.flowLayoutPanel1.ResumeLayout(false);
+            this.ntCodeChooser.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
             this.ResumeLayout(false);
@@ -1998,7 +2001,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label methodTitleLabel;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TextBox textBox12;
         private System.Windows.Forms.TextBox textBox11;
@@ -2036,9 +2039,9 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label fixedRow;
+        private System.Windows.Forms.Label nullRow;
+        private System.Windows.Forms.Label randomRow;
         private System.Windows.Forms.Label c1_12;
         private System.Windows.Forms.Label c1_11;
         private System.Windows.Forms.Label c1_10;
@@ -2051,14 +2054,14 @@
         private System.Windows.Forms.Label c1_3;
         private System.Windows.Forms.Label c1_2;
         private System.Windows.Forms.Label c1_1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton3;
-        private System.Windows.Forms.RadioButton radioButton4;
-        private System.Windows.Forms.Button button25;
-        private System.Windows.Forms.Button button26;
+        private System.Windows.Forms.Label codeSelection;
+        private System.Windows.Forms.Label methodLabel;
+        private System.Windows.Forms.RadioButton chooseCode1;
+        private System.Windows.Forms.RadioButton chooseCode2;
+        private System.Windows.Forms.RadioButton chooseCode4;
+        private System.Windows.Forms.RadioButton chooseCode3;
+        private System.Windows.Forms.Button okButton;
+        private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.Button button16;
         private System.Windows.Forms.Button button15;
         private System.Windows.Forms.Button button14;
@@ -2075,18 +2078,18 @@
         private System.Windows.Forms.Button null15;
         private System.Windows.Forms.Button null14;
         private System.Windows.Forms.Button null13;
-        private System.Windows.Forms.Button button35;
-        private System.Windows.Forms.Button button36;
+        private System.Windows.Forms.Button nullButton;
+        private System.Windows.Forms.Button randomButton;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox ntEntryChooser;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Button button17;
-        private System.Windows.Forms.TextBox textBox17;
+        private System.Windows.Forms.Label fixedLabel;
+        private System.Windows.Forms.Label nullLabel;
+        private System.Windows.Forms.Label randomLabel;
+        private System.Windows.Forms.Label codeLabel;
+        private System.Windows.Forms.Label fileLabel;
+        private System.Windows.Forms.Button chooseFileButton;
+        private System.Windows.Forms.TextBox fileBox;
         private System.Windows.Forms.Label ntc8;
         private System.Windows.Forms.Label ntc7;
         private System.Windows.Forms.Label ntc6;
@@ -2095,8 +2098,8 @@
         private System.Windows.Forms.Label ntc3;
         private System.Windows.Forms.Label ntc2;
         private System.Windows.Forms.Label ntc1;
-        private System.Windows.Forms.Button button18;
-        private System.Windows.Forms.Button button19;
+        private System.Windows.Forms.Button ntRandomButton;
+        private System.Windows.Forms.Button ntNullButton;
         private System.Windows.Forms.TextBox ntt8;
         private System.Windows.Forms.TextBox ntt7;
         private System.Windows.Forms.TextBox ntt6;
@@ -2121,13 +2124,13 @@
         private System.Windows.Forms.Button ntr3;
         private System.Windows.Forms.Button ntr2;
         private System.Windows.Forms.Button ntr1;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.FlowLayoutPanel ntCodeChooser;
         private System.Windows.Forms.Button code1label;
         private System.Windows.Forms.Button code2label;
         private System.Windows.Forms.Button button20;
         private System.Windows.Forms.Button button21;
         private System.Windows.Forms.Button button22;
         private System.Windows.Forms.Button button23;
-        private System.Windows.Forms.Button button24;
+        private System.Windows.Forms.Button ntOKButton;
     }
 }

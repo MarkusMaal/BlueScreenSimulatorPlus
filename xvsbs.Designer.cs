@@ -36,11 +36,11 @@ namespace UltimateBlueScreenSimulator
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.tardisFade = new System.Windows.Forms.Timer(this.components);
             this.rainBowScreen = new System.Windows.Forms.Timer(this.components);
-            this.label1 = new System.Windows.Forms.AliasedLabel();
+            this.introductionText = new System.Windows.Forms.AliasedLabel();
             this.errorCode = new System.Windows.Forms.AliasedLabel();
             this.supportInfo = new System.Windows.Forms.AliasedLabel();
             this.technicalCode = new System.Windows.Forms.AliasedLabel();
-            this.label5 = new System.Windows.Forms.AliasedLabel();
+            this.dumpLabel = new System.Windows.Forms.AliasedLabel();
             this.waterMarkText = new System.Windows.Forms.AliasedLabel();
             this.SuspendLayout();
             // 
@@ -60,18 +60,19 @@ namespace UltimateBlueScreenSimulator
             this.rainBowScreen.Interval = 10;
             this.rainBowScreen.Tick += new System.EventHandler(this.RainBowScreen_Tick);
             // 
-            // label1
+            // introductionText
             // 
-            this.label1.BackColor = this.BackColor;
-            this.label1.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.label1.Font = new System.Drawing.Font("Lucida Console", 9.7F);
-            this.label1.ForeColor = this.ForeColor;
-            this.label1.Location = new System.Drawing.Point(-1, 15);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(641, 28);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "A problem has been detected and Windows has been shut down to prevent damage\nto y" +
+            this.introductionText.BackColor = this.BackColor;
+            this.introductionText.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.introductionText.Font = new System.Drawing.Font("Lucida Console", 9.7F);
+            this.introductionText.ForeColor = this.ForeColor;
+            this.introductionText.Location = new System.Drawing.Point(-1, 15);
+            this.introductionText.Name = "introductionText";
+            this.introductionText.Size = new System.Drawing.Size(641, 28);
+            this.introductionText.TabIndex = 8;
+            this.introductionText.Text = "A problem has been detected and Windows has been shut down to prevent damage\nto y" +
     "our computer.";
+            this.introductionText.UseCompatibleTextRendering = true;
             // 
             // errorCode
             // 
@@ -83,9 +84,10 @@ namespace UltimateBlueScreenSimulator
             this.errorCode.Location = new System.Drawing.Point(-1, 58);
             this.errorCode.Margin = new System.Windows.Forms.Padding(3, 20, 3, 0);
             this.errorCode.Name = "errorCode";
-            this.errorCode.Size = new System.Drawing.Size(383, 13);
+            this.errorCode.Size = new System.Drawing.Size(382, 18);
             this.errorCode.TabIndex = 9;
             this.errorCode.Text = "The end-user manually generated the crash dump.";
+            this.errorCode.UseCompatibleTextRendering = true;
             // 
             // supportInfo
             // 
@@ -97,9 +99,10 @@ namespace UltimateBlueScreenSimulator
             this.supportInfo.Location = new System.Drawing.Point(-1, 90);
             this.supportInfo.Margin = new System.Windows.Forms.Padding(3, 20, 3, 0);
             this.supportInfo.Name = "supportInfo";
-            this.supportInfo.Size = new System.Drawing.Size(591, 195);
+            this.supportInfo.Size = new System.Drawing.Size(602, 200);
             this.supportInfo.TabIndex = 10;
             this.supportInfo.Text = resources.GetString("supportInfo.Text");
+            this.supportInfo.UseCompatibleTextRendering = true;
             // 
             // technicalCode
             // 
@@ -111,20 +114,21 @@ namespace UltimateBlueScreenSimulator
             this.technicalCode.Location = new System.Drawing.Point(-1, 312);
             this.technicalCode.Margin = new System.Windows.Forms.Padding(3, 20, 3, 0);
             this.technicalCode.Name = "technicalCode";
-            this.technicalCode.Size = new System.Drawing.Size(559, 13);
+            this.technicalCode.Size = new System.Drawing.Size(559, 18);
             this.technicalCode.TabIndex = 11;
             this.technicalCode.Text = "*** STOP: 0xDEADDEAD (0x00000000, 0x00000000, 0x00000000, 0x00000000)";
+            this.technicalCode.UseCompatibleTextRendering = true;
             // 
-            // label5
+            // dumpLabel
             // 
-            this.label5.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.label5.Font = new System.Drawing.Font("Lucida Console", 9.7F);
-            this.label5.Location = new System.Drawing.Point(-1, 354);
-            this.label5.Margin = new System.Windows.Forms.Padding(3, 20, 3, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(641, 88);
-            this.label5.TabIndex = 12;
-            this.label5.Text = "Beginning dump of physical memory";
+            this.dumpLabel.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.dumpLabel.Font = new System.Drawing.Font("Lucida Console", 9.7F);
+            this.dumpLabel.Location = new System.Drawing.Point(-1, 354);
+            this.dumpLabel.Margin = new System.Windows.Forms.Padding(3, 20, 3, 0);
+            this.dumpLabel.Name = "dumpLabel";
+            this.dumpLabel.Size = new System.Drawing.Size(641, 88);
+            this.dumpLabel.TabIndex = 12;
+            this.dumpLabel.UseCompatibleTextRendering = true;
             // 
             // waterMarkText
             // 
@@ -144,11 +148,11 @@ namespace UltimateBlueScreenSimulator
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Navy;
             this.ClientSize = new System.Drawing.Size(640, 480);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.introductionText);
             this.Controls.Add(this.errorCode);
             this.Controls.Add(this.supportInfo);
             this.Controls.Add(this.technicalCode);
-            this.Controls.Add(this.label5);
+            this.Controls.Add(this.dumpLabel);
             this.Controls.Add(this.waterMarkText);
             this.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
             this.ForeColor = System.Drawing.Color.White;
@@ -173,11 +177,11 @@ namespace UltimateBlueScreenSimulator
         public System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Timer tardisFade;
         private System.Windows.Forms.Timer rainBowScreen;
-        public AliasedLabel label1;
+        public AliasedLabel introductionText;
         public AliasedLabel errorCode;
         public AliasedLabel supportInfo;
         public AliasedLabel technicalCode;
-        public AliasedLabel label5;
+        public AliasedLabel dumpLabel;
     }
 
 }

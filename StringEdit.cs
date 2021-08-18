@@ -131,7 +131,7 @@ namespace UltimateBlueScreenSimulator
             }
             MessageView.Items.Add(GetColorListViewItem("Background color", me.GetTheme(true)));
             MessageView.Items.Add(GetColorListViewItem("Foreground color", me.GetTheme(false)));
-            if ((me.GetString("os") == "Windows 3.1x") || (me.GetString("os") == "Windows 9x/Me"))
+            if ((me.GetString("os") == "Windows 3.1x") || (me.GetString("os") == "Windows 9x/Me") || (me.GetString("os") == "BOOTMGR"))
             {
                 MessageView.Items.Add(GetColorListViewItem("Highlight background", me.GetTheme(true, true)));
                 MessageView.Items.Add(GetColorListViewItem("Highlight foreground", me.GetTheme(false, true)));

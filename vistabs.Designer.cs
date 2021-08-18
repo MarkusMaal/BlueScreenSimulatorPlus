@@ -31,22 +31,22 @@ namespace UltimateBlueScreenSimulator
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Vistabs));
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.screenUpdater = new System.Windows.Forms.Timer(this.components);
             this.tardisFade = new System.Windows.Forms.Timer(this.components);
             this.rainBowScreen = new System.Windows.Forms.Timer(this.components);
-            this.label1 = new System.Windows.Forms.AliasedLabel();
+            this.introductionText = new System.Windows.Forms.AliasedLabel();
             this.errorCode = new System.Windows.Forms.AliasedLabel();
             this.supportInfo = new System.Windows.Forms.AliasedLabel();
             this.technicalCode = new System.Windows.Forms.AliasedLabel();
             this.waterMarkText = new System.Windows.Forms.AliasedLabel();
-            this.label5 = new System.Windows.Forms.AliasedLabel();
+            this.dumpText = new System.Windows.Forms.AliasedLabel();
             this.SuspendLayout();
             // 
-            // timer1
+            // screenUpdater
             // 
-            this.timer1.Enabled = true;
-            this.timer1.Interval = 25;
-            this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
+            this.screenUpdater.Enabled = true;
+            this.screenUpdater.Interval = 25;
+            this.screenUpdater.Tick += new System.EventHandler(this.Timer1_Tick);
             // 
             // tardisFade
             // 
@@ -58,17 +58,17 @@ namespace UltimateBlueScreenSimulator
             this.rainBowScreen.Interval = 10;
             this.rainBowScreen.Tick += new System.EventHandler(this.RainBowScreen_Tick);
             // 
-            // label1
+            // introductionText
             // 
-            this.label1.BackColor = System.Drawing.Color.Navy;
-            this.label1.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.label1.Font = new System.Drawing.Font("Consolas", 9F);
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(-1, 15);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(641, 28);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "A problem has been detected and Windows has been shut down to prevent damage\nto y" +
+            this.introductionText.BackColor = System.Drawing.Color.Navy;
+            this.introductionText.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.introductionText.Font = new System.Drawing.Font("Consolas", 9F);
+            this.introductionText.ForeColor = System.Drawing.Color.White;
+            this.introductionText.Location = new System.Drawing.Point(-1, 15);
+            this.introductionText.Name = "introductionText";
+            this.introductionText.Size = new System.Drawing.Size(641, 28);
+            this.introductionText.TabIndex = 8;
+            this.introductionText.Text = "A problem has been detected and Windows has been shut down to prevent damage\nto y" +
     "our computer.";
             // 
             // errorCode
@@ -114,29 +114,29 @@ namespace UltimateBlueScreenSimulator
             // 
             // waterMarkText
             // 
-            this.waterMarkText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.waterMarkText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.waterMarkText.AutoSize = true;
             this.waterMarkText.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.waterMarkText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.waterMarkText.Location = new System.Drawing.Point(477, 456);
+            this.waterMarkText.Location = new System.Drawing.Point(489, 0);
             this.waterMarkText.Name = "waterMarkText";
             this.waterMarkText.Size = new System.Drawing.Size(151, 15);
             this.waterMarkText.TabIndex = 7;
             this.waterMarkText.Text = "blue screen simulator plus";
             // 
-            // label5
+            // dumpText
             // 
-            this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.Color.Navy;
-            this.label5.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.label5.Font = new System.Drawing.Font("Consolas", 9F);
-            this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(-1, 373);
-            this.label5.Margin = new System.Windows.Forms.Padding(3, 20, 3, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(84, 14);
-            this.label5.TabIndex = 12;
-            this.label5.Text = "Sample Text";
+            this.dumpText.AutoSize = true;
+            this.dumpText.BackColor = System.Drawing.Color.Navy;
+            this.dumpText.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.dumpText.Font = new System.Drawing.Font("Consolas", 9F);
+            this.dumpText.ForeColor = System.Drawing.Color.White;
+            this.dumpText.Location = new System.Drawing.Point(-1, 373);
+            this.dumpText.Margin = new System.Windows.Forms.Padding(3, 20, 3, 0);
+            this.dumpText.Name = "dumpText";
+            this.dumpText.Size = new System.Drawing.Size(84, 14);
+            this.dumpText.TabIndex = 12;
+            this.dumpText.Text = "Sample Text";
             // 
             // Vistabs
             // 
@@ -145,8 +145,8 @@ namespace UltimateBlueScreenSimulator
             this.BackColor = System.Drawing.Color.Navy;
             this.ClientSize = new System.Drawing.Size(640, 480);
             this.Controls.Add(this.technicalCode);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.dumpText);
+            this.Controls.Add(this.introductionText);
             this.Controls.Add(this.errorCode);
             this.Controls.Add(this.supportInfo);
             this.Controls.Add(this.waterMarkText);
@@ -169,15 +169,15 @@ namespace UltimateBlueScreenSimulator
         }
 
         #endregion
-        public System.Windows.Forms.Timer timer1;
+        public System.Windows.Forms.Timer screenUpdater;
         private System.Windows.Forms.Timer tardisFade;
         private System.Windows.Forms.Timer rainBowScreen;
         public System.Windows.Forms.AliasedLabel waterMarkText;
-        public System.Windows.Forms.AliasedLabel label1;
+        public System.Windows.Forms.AliasedLabel introductionText;
         public System.Windows.Forms.AliasedLabel errorCode;
         public System.Windows.Forms.AliasedLabel supportInfo;
         public System.Windows.Forms.AliasedLabel technicalCode;
-        public System.Windows.Forms.AliasedLabel label5;
+        public System.Windows.Forms.AliasedLabel dumpText;
     }
 
 }

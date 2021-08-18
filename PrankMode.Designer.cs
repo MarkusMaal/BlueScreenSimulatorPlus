@@ -30,560 +30,562 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PrankMode));
-            this.label1 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.label2 = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.radioButton5 = new System.Windows.Forms.RadioButton();
-            this.radioButton6 = new System.Windows.Forms.RadioButton();
-            this.radioButton7 = new System.Windows.Forms.RadioButton();
-            this.radioButton8 = new System.Windows.Forms.RadioButton();
-            this.radioButton9 = new System.Windows.Forms.RadioButton();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
-            this.radioButton10 = new System.Windows.Forms.RadioButton();
-            this.radioButton11 = new System.Windows.Forms.RadioButton();
-            this.radioButton12 = new System.Windows.Forms.RadioButton();
-            this.radioButton15 = new System.Windows.Forms.RadioButton();
-            this.radioButton13 = new System.Windows.Forms.RadioButton();
-            this.radioButton14 = new System.Windows.Forms.RadioButton();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.radioButton16 = new System.Windows.Forms.RadioButton();
-            this.label9 = new System.Windows.Forms.Label();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.button4 = new System.Windows.Forms.Button();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.button5 = new System.Windows.Forms.Button();
-            this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.flowLayoutPanel3.SuspendLayout();
-            this.panel3.SuspendLayout();
-            this.panel4.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
-            this.flowLayoutPanel2.SuspendLayout();
-            this.panel5.SuspendLayout();
+            this.bluescreenTypeLabel = new System.Windows.Forms.Label();
+            this.bluescreenTypePanel = new System.Windows.Forms.Panel();
+            this.matchAllRadio = new System.Windows.Forms.RadioButton();
+            this.bestMatchRadio = new System.Windows.Forms.RadioButton();
+            this.triggerLabel = new System.Windows.Forms.Label();
+            this.triggerPanel = new System.Windows.Forms.Panel();
+            this.usbRadio = new System.Windows.Forms.RadioButton();
+            this.triggerFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.timePanel = new System.Windows.Forms.Panel();
+            this.timerBox = new System.Windows.Forms.MaskedTextBox();
+            this.timeFormatLabel = new System.Windows.Forms.Label();
+            this.appPanel = new System.Windows.Forms.Panel();
+            this.triggerAppLabel = new System.Windows.Forms.Label();
+            this.triggerAppBox = new System.Windows.Forms.TextBox();
+            this.usbPanel = new System.Windows.Forms.Panel();
+            this.whyNoDeviceButton = new System.Windows.Forms.Button();
+            this.resetDeviceButton = new System.Windows.Forms.Button();
+            this.deviceInfoLabel = new System.Windows.Forms.Label();
+            this.appRadio = new System.Windows.Forms.RadioButton();
+            this.timeRadio = new System.Windows.Forms.RadioButton();
+            this.letCloseBox = new System.Windows.Forms.CheckBox();
+            this.miscLabel = new System.Windows.Forms.Label();
+            this.friendlyMessageBox = new System.Windows.Forms.CheckBox();
+            this.friendlyMessageContentsBox = new System.Windows.Forms.TextBox();
+            this.friendlyMessageTitleLabel = new System.Windows.Forms.Label();
+            this.friendlyMessageTitleBox = new System.Windows.Forms.TextBox();
+            this.friendlyMessageIconPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.errorRadio = new System.Windows.Forms.RadioButton();
+            this.warningRadio = new System.Windows.Forms.RadioButton();
+            this.questionRadio = new System.Windows.Forms.RadioButton();
+            this.infoRadio = new System.Windows.Forms.RadioButton();
+            this.noneRadio = new System.Windows.Forms.RadioButton();
+            this.friendlyMessageIconLabel = new System.Windows.Forms.Label();
+            this.friendlyMessageButtonsLabel = new System.Windows.Forms.Label();
+            this.friendlyMessageButtonsPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.okRadio = new System.Windows.Forms.RadioButton();
+            this.okCancelRadio = new System.Windows.Forms.RadioButton();
+            this.retryIgnoreAboutRadio = new System.Windows.Forms.RadioButton();
+            this.retryCancelRadio = new System.Windows.Forms.RadioButton();
+            this.yesNoRadio = new System.Windows.Forms.RadioButton();
+            this.yesNoCancelRadio = new System.Windows.Forms.RadioButton();
+            this.previewFriendlyMessageButton = new System.Windows.Forms.Button();
+            this.okButton = new System.Windows.Forms.Button();
+            this.cancelButton = new System.Windows.Forms.Button();
+            this.usbFinder = new System.Windows.Forms.Timer(this.components);
+            this.bluescreenTypePanel.SuspendLayout();
+            this.triggerPanel.SuspendLayout();
+            this.triggerFlowPanel.SuspendLayout();
+            this.timePanel.SuspendLayout();
+            this.appPanel.SuspendLayout();
+            this.usbPanel.SuspendLayout();
+            this.friendlyMessageIconPanel.SuspendLayout();
+            this.friendlyMessageButtonsPanel.SuspendLayout();
             this.SuspendLayout();
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 21);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(97, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Bluescreen options";
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.radioButton2);
-            this.panel1.Controls.Add(this.radioButton1);
-            this.panel1.Location = new System.Drawing.Point(12, 37);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(519, 56);
-            this.panel1.TabIndex = 1;
-            // 
-            // radioButton2
-            // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(3, 30);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(143, 17);
-            this.radioButton2.TabIndex = 1;
-            this.radioButton2.Text = "Match all current settings";
-            this.radioButton2.UseVisualStyleBackColor = true;
-            this.radioButton2.CheckedChanged += new System.EventHandler(this.RadioButton2_CheckedChanged);
-            this.radioButton2.Click += new System.EventHandler(this.RadioButton2_Click);
-            // 
-            // radioButton1
-            // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Checked = true;
-            this.radioButton1.Location = new System.Drawing.Point(3, 7);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(368, 17);
-            this.radioButton1.TabIndex = 0;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Use a bluescreen type that matches this system, but match other settings";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            this.radioButton1.CheckedChanged += new System.EventHandler(this.RadioButton1_CheckedChanged);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 96);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(77, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Trigger options";
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.radioButton16);
-            this.panel2.Controls.Add(this.flowLayoutPanel3);
-            this.panel2.Controls.Add(this.radioButton4);
-            this.panel2.Controls.Add(this.radioButton3);
-            this.panel2.Location = new System.Drawing.Point(12, 112);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(519, 81);
-            this.panel2.TabIndex = 3;
-            // 
-            // flowLayoutPanel3
-            // 
-            this.flowLayoutPanel3.Controls.Add(this.panel3);
-            this.flowLayoutPanel3.Controls.Add(this.panel4);
-            this.flowLayoutPanel3.Controls.Add(this.panel5);
-            this.flowLayoutPanel3.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel3.Location = new System.Drawing.Point(3, 26);
-            this.flowLayoutPanel3.Name = "flowLayoutPanel3";
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(513, 52);
-            this.flowLayoutPanel3.TabIndex = 6;
-            // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.maskedTextBox1);
-            this.panel3.Controls.Add(this.label4);
-            this.panel3.Location = new System.Drawing.Point(3, 3);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(173, 33);
-            this.panel3.TabIndex = 7;
-            // 
-            // maskedTextBox1
-            // 
-            this.maskedTextBox1.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Overwrite;
-            this.maskedTextBox1.Location = new System.Drawing.Point(3, 5);
-            this.maskedTextBox1.Mask = "##:##:##";
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.Size = new System.Drawing.Size(53, 20);
-            this.maskedTextBox1.TabIndex = 4;
-            this.maskedTextBox1.Text = "000500";
-            this.maskedTextBox1.TextChanged += new System.EventHandler(this.MaskedTextBox1_TextChanged);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(62, 8);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(108, 13);
-            this.label4.TabIndex = 5;
-            this.label4.Text = "(format hrs:mins:secs)";
-            // 
-            // panel4
-            // 
-            this.panel4.Controls.Add(this.label3);
-            this.panel4.Controls.Add(this.textBox1);
-            this.panel4.Location = new System.Drawing.Point(182, 3);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(286, 45);
-            this.panel4.TabIndex = 7;
-            this.panel4.Visible = false;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(3, 4);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(272, 13);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "Process name (ie notepad.exe, iexplore.exe, sol.exe etc)";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(6, 20);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(193, 20);
-            this.textBox1.TabIndex = 2;
-            this.textBox1.Text = "notepad.exe";
-            // 
-            // radioButton4
-            // 
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.Location = new System.Drawing.Point(60, 3);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(77, 17);
-            this.radioButton4.TabIndex = 1;
-            this.radioButton4.Text = "Application";
-            this.radioButton4.UseVisualStyleBackColor = true;
-            this.radioButton4.CheckedChanged += new System.EventHandler(this.RadioButton4_CheckedChanged);
-            // 
-            // radioButton3
-            // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Checked = true;
-            this.radioButton3.Location = new System.Drawing.Point(3, 3);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(51, 17);
-            this.radioButton3.TabIndex = 0;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "Timer";
-            this.radioButton3.UseVisualStyleBackColor = true;
-            this.radioButton3.CheckedChanged += new System.EventHandler(this.RadioButton3_CheckedChanged);
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Checked = true;
-            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Location = new System.Drawing.Point(12, 212);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(277, 17);
-            this.checkBox1.TabIndex = 4;
-            this.checkBox1.Text = "Allow the user to close the blue screen using ALT+F4";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 196);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(109, 13);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "Miscelaneous options";
-            // 
-            // checkBox2
-            // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(12, 235);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(277, 17);
-            this.checkBox2.TabIndex = 6;
-            this.checkBox2.Text = "Show a message after the bluescreen is being closed";
-            this.checkBox2.UseVisualStyleBackColor = true;
-            this.checkBox2.CheckedChanged += new System.EventHandler(this.CheckBox2_CheckedChanged);
-            // 
-            // textBox2
-            // 
-            this.textBox2.Enabled = false;
-            this.textBox2.Location = new System.Drawing.Point(12, 258);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(519, 45);
-            this.textBox2.TabIndex = 7;
-            this.textBox2.Text = "Enter a message here.";
-            this.textBox2.TextChanged += new System.EventHandler(this.TextBox2_TextChanged);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(12, 309);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(69, 13);
-            this.label6.TabIndex = 9;
-            this.label6.Text = "Message title";
-            // 
-            // textBox3
-            // 
-            this.textBox3.Enabled = false;
-            this.textBox3.Location = new System.Drawing.Point(87, 306);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(444, 20);
-            this.textBox3.TabIndex = 10;
-            this.textBox3.Text = "Enter a title here";
-            this.textBox3.TextChanged += new System.EventHandler(this.TextBox3_TextChanged);
-            // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.Controls.Add(this.radioButton5);
-            this.flowLayoutPanel1.Controls.Add(this.radioButton6);
-            this.flowLayoutPanel1.Controls.Add(this.radioButton7);
-            this.flowLayoutPanel1.Controls.Add(this.radioButton8);
-            this.flowLayoutPanel1.Controls.Add(this.radioButton9);
-            this.flowLayoutPanel1.Enabled = false;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(12, 345);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(519, 26);
-            this.flowLayoutPanel1.TabIndex = 11;
-            // 
-            // radioButton5
-            // 
-            this.radioButton5.AutoSize = true;
-            this.radioButton5.Location = new System.Drawing.Point(3, 3);
-            this.radioButton5.Name = "radioButton5";
-            this.radioButton5.Size = new System.Drawing.Size(108, 17);
-            this.radioButton5.TabIndex = 0;
-            this.radioButton5.Text = "Error/Critical Stop";
-            this.radioButton5.UseVisualStyleBackColor = true;
-            this.radioButton5.CheckedChanged += new System.EventHandler(this.RadioButton5_CheckedChanged);
-            // 
-            // radioButton6
-            // 
-            this.radioButton6.AutoSize = true;
-            this.radioButton6.Checked = true;
-            this.radioButton6.Location = new System.Drawing.Point(117, 3);
-            this.radioButton6.Name = "radioButton6";
-            this.radioButton6.Size = new System.Drawing.Size(127, 17);
-            this.radioButton6.TabIndex = 1;
-            this.radioButton6.TabStop = true;
-            this.radioButton6.Text = "Warning/Exclamation";
-            this.radioButton6.UseVisualStyleBackColor = true;
-            this.radioButton6.CheckedChanged += new System.EventHandler(this.RadioButton6_CheckedChanged);
-            // 
-            // radioButton7
-            // 
-            this.radioButton7.AutoSize = true;
-            this.radioButton7.Location = new System.Drawing.Point(250, 3);
-            this.radioButton7.Name = "radioButton7";
-            this.radioButton7.Size = new System.Drawing.Size(94, 17);
-            this.radioButton7.TabIndex = 2;
-            this.radioButton7.Text = "Question/Help";
-            this.radioButton7.UseVisualStyleBackColor = true;
-            this.radioButton7.CheckedChanged += new System.EventHandler(this.RadioButton7_CheckedChanged);
-            // 
-            // radioButton8
-            // 
-            this.radioButton8.AutoSize = true;
-            this.radioButton8.Location = new System.Drawing.Point(350, 3);
-            this.radioButton8.Name = "radioButton8";
-            this.radioButton8.Size = new System.Drawing.Size(77, 17);
-            this.radioButton8.TabIndex = 3;
-            this.radioButton8.Text = "Information";
-            this.radioButton8.UseVisualStyleBackColor = true;
-            this.radioButton8.CheckedChanged += new System.EventHandler(this.RadioButton8_CheckedChanged);
-            // 
-            // radioButton9
-            // 
-            this.radioButton9.AutoSize = true;
-            this.radioButton9.Location = new System.Drawing.Point(433, 3);
-            this.radioButton9.Name = "radioButton9";
-            this.radioButton9.Size = new System.Drawing.Size(62, 17);
-            this.radioButton9.TabIndex = 4;
-            this.radioButton9.Text = "No icon";
-            this.radioButton9.UseVisualStyleBackColor = true;
-            this.radioButton9.CheckedChanged += new System.EventHandler(this.RadioButton9_CheckedChanged);
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(12, 329);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(73, 13);
-            this.label7.TabIndex = 12;
-            this.label7.Text = "Message icon";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(12, 373);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(88, 13);
-            this.label8.TabIndex = 14;
-            this.label8.Text = "Message buttons";
-            // 
-            // flowLayoutPanel2
-            // 
-            this.flowLayoutPanel2.Controls.Add(this.radioButton10);
-            this.flowLayoutPanel2.Controls.Add(this.radioButton11);
-            this.flowLayoutPanel2.Controls.Add(this.radioButton12);
-            this.flowLayoutPanel2.Controls.Add(this.radioButton15);
-            this.flowLayoutPanel2.Controls.Add(this.radioButton13);
-            this.flowLayoutPanel2.Controls.Add(this.radioButton14);
-            this.flowLayoutPanel2.Enabled = false;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(12, 389);
-            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(519, 26);
-            this.flowLayoutPanel2.TabIndex = 13;
-            // 
-            // radioButton10
-            // 
-            this.radioButton10.AutoSize = true;
-            this.radioButton10.Checked = true;
-            this.radioButton10.Location = new System.Drawing.Point(3, 3);
-            this.radioButton10.Name = "radioButton10";
-            this.radioButton10.Size = new System.Drawing.Size(40, 17);
-            this.radioButton10.TabIndex = 0;
-            this.radioButton10.TabStop = true;
-            this.radioButton10.Text = "OK";
-            this.radioButton10.UseVisualStyleBackColor = true;
-            this.radioButton10.CheckedChanged += new System.EventHandler(this.RadioButton10_CheckedChanged);
-            // 
-            // radioButton11
-            // 
-            this.radioButton11.AutoSize = true;
-            this.radioButton11.Location = new System.Drawing.Point(49, 3);
-            this.radioButton11.Name = "radioButton11";
-            this.radioButton11.Size = new System.Drawing.Size(78, 17);
-            this.radioButton11.TabIndex = 1;
-            this.radioButton11.Text = "OK/Cancel";
-            this.radioButton11.UseVisualStyleBackColor = true;
-            this.radioButton11.CheckedChanged += new System.EventHandler(this.RadioButton11_CheckedChanged);
-            // 
-            // radioButton12
-            // 
-            this.radioButton12.AutoSize = true;
-            this.radioButton12.Location = new System.Drawing.Point(133, 3);
-            this.radioButton12.Name = "radioButton12";
-            this.radioButton12.Size = new System.Drawing.Size(115, 17);
-            this.radioButton12.TabIndex = 2;
-            this.radioButton12.Text = "Retry/Ignore/Abort";
-            this.radioButton12.UseVisualStyleBackColor = true;
-            this.radioButton12.CheckedChanged += new System.EventHandler(this.RadioButton12_CheckedChanged);
-            // 
-            // radioButton15
-            // 
-            this.radioButton15.AutoSize = true;
-            this.radioButton15.Location = new System.Drawing.Point(254, 3);
-            this.radioButton15.Name = "radioButton15";
-            this.radioButton15.Size = new System.Drawing.Size(88, 17);
-            this.radioButton15.TabIndex = 5;
-            this.radioButton15.Text = "Retry/Cancel";
-            this.radioButton15.UseVisualStyleBackColor = true;
-            this.radioButton15.CheckedChanged += new System.EventHandler(this.RadioButton15_CheckedChanged);
-            // 
-            // radioButton13
-            // 
-            this.radioButton13.AutoSize = true;
-            this.radioButton13.Location = new System.Drawing.Point(348, 3);
-            this.radioButton13.Name = "radioButton13";
-            this.radioButton13.Size = new System.Drawing.Size(62, 17);
-            this.radioButton13.TabIndex = 3;
-            this.radioButton13.Text = "Yes/No";
-            this.radioButton13.UseVisualStyleBackColor = true;
-            this.radioButton13.CheckedChanged += new System.EventHandler(this.RadioButton13_CheckedChanged);
-            // 
-            // radioButton14
-            // 
-            this.radioButton14.AutoSize = true;
-            this.radioButton14.Location = new System.Drawing.Point(416, 3);
-            this.radioButton14.Name = "radioButton14";
-            this.radioButton14.Size = new System.Drawing.Size(100, 17);
-            this.radioButton14.TabIndex = 4;
-            this.radioButton14.Text = "Yes/No/Cancel";
-            this.radioButton14.UseVisualStyleBackColor = true;
-            this.radioButton14.CheckedChanged += new System.EventHandler(this.RadioButton14_CheckedChanged);
-            // 
-            // button1
-            // 
-            this.button1.Enabled = false;
-            this.button1.Location = new System.Drawing.Point(424, 229);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(107, 23);
-            this.button1.TabIndex = 15;
-            this.button1.Text = "Preview message";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.Button1_Click);
-            // 
-            // button2
-            // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Location = new System.Drawing.Point(455, 429);
-            this.button2.Name = "button2";
-            this.button2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 16;
-            this.button2.Text = "OK";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.Button2_Click);
-            // 
-            // button3
-            // 
-            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.Location = new System.Drawing.Point(374, 429);
-            this.button3.Name = "button3";
-            this.button3.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 17;
-            this.button3.Text = "Cancel";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.Button3_Click);
-            // 
-            // radioButton16
-            // 
-            this.radioButton16.AutoSize = true;
-            this.radioButton16.Location = new System.Drawing.Point(143, 3);
-            this.radioButton16.Name = "radioButton16";
-            this.radioButton16.Size = new System.Drawing.Size(82, 17);
-            this.radioButton16.TabIndex = 7;
-            this.radioButton16.Text = "USB device";
-            this.radioButton16.UseVisualStyleBackColor = true;
-            this.radioButton16.CheckedChanged += new System.EventHandler(this.radioButton16_CheckedChanged);
-            // 
-            // label9
-            // 
-            this.label9.Location = new System.Drawing.Point(3, 1);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(327, 32);
-            this.label9.TabIndex = 8;
-            this.label9.Text = "No trigger device\r\n(Unplug and) plug in desired trigger device";
-            // 
-            // panel5
-            // 
-            this.panel5.Controls.Add(this.button5);
-            this.panel5.Controls.Add(this.button4);
-            this.panel5.Controls.Add(this.label9);
-            this.panel5.Location = new System.Drawing.Point(474, 3);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(333, 52);
-            this.panel5.TabIndex = 9;
-            this.panel5.Visible = false;
-            // 
-            // button4
-            // 
-            this.button4.Enabled = false;
-            this.button4.Location = new System.Drawing.Point(6, 29);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 20);
-            this.button4.TabIndex = 9;
-            this.button4.Text = "Reset";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
-            // timer1
-            // 
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(87, 29);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(141, 20);
-            this.button5.TabIndex = 10;
-            this.button5.Text = "My device isn\'t detected";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // bluescreenTypeLabel
+            // 
+            this.bluescreenTypeLabel.AutoSize = true;
+            this.bluescreenTypeLabel.Location = new System.Drawing.Point(12, 21);
+            this.bluescreenTypeLabel.Name = "bluescreenTypeLabel";
+            this.bluescreenTypeLabel.Size = new System.Drawing.Size(97, 13);
+            this.bluescreenTypeLabel.TabIndex = 0;
+            this.bluescreenTypeLabel.Text = "Bluescreen options";
+            // 
+            // bluescreenTypePanel
+            // 
+            this.bluescreenTypePanel.Controls.Add(this.matchAllRadio);
+            this.bluescreenTypePanel.Controls.Add(this.bestMatchRadio);
+            this.bluescreenTypePanel.Location = new System.Drawing.Point(12, 37);
+            this.bluescreenTypePanel.Name = "bluescreenTypePanel";
+            this.bluescreenTypePanel.Size = new System.Drawing.Size(519, 56);
+            this.bluescreenTypePanel.TabIndex = 1;
+            // 
+            // matchAllRadio
+            // 
+            this.matchAllRadio.AutoSize = true;
+            this.matchAllRadio.Location = new System.Drawing.Point(3, 30);
+            this.matchAllRadio.Name = "matchAllRadio";
+            this.matchAllRadio.Size = new System.Drawing.Size(143, 17);
+            this.matchAllRadio.TabIndex = 1;
+            this.matchAllRadio.Text = "Match all current settings";
+            this.matchAllRadio.UseVisualStyleBackColor = true;
+            this.matchAllRadio.CheckedChanged += new System.EventHandler(this.RadioButton2_CheckedChanged);
+            this.matchAllRadio.Click += new System.EventHandler(this.RadioButton2_Click);
+            // 
+            // bestMatchRadio
+            // 
+            this.bestMatchRadio.AutoSize = true;
+            this.bestMatchRadio.Checked = true;
+            this.bestMatchRadio.Location = new System.Drawing.Point(3, 7);
+            this.bestMatchRadio.Name = "bestMatchRadio";
+            this.bestMatchRadio.Size = new System.Drawing.Size(368, 17);
+            this.bestMatchRadio.TabIndex = 0;
+            this.bestMatchRadio.TabStop = true;
+            this.bestMatchRadio.Text = "Use a bluescreen type that matches this system, but match other settings";
+            this.bestMatchRadio.UseVisualStyleBackColor = true;
+            this.bestMatchRadio.CheckedChanged += new System.EventHandler(this.RadioButton1_CheckedChanged);
+            // 
+            // triggerLabel
+            // 
+            this.triggerLabel.AutoSize = true;
+            this.triggerLabel.Location = new System.Drawing.Point(12, 96);
+            this.triggerLabel.Name = "triggerLabel";
+            this.triggerLabel.Size = new System.Drawing.Size(77, 13);
+            this.triggerLabel.TabIndex = 2;
+            this.triggerLabel.Text = "Trigger options";
+            // 
+            // triggerPanel
+            // 
+            this.triggerPanel.Controls.Add(this.usbRadio);
+            this.triggerPanel.Controls.Add(this.triggerFlowPanel);
+            this.triggerPanel.Controls.Add(this.appRadio);
+            this.triggerPanel.Controls.Add(this.timeRadio);
+            this.triggerPanel.Location = new System.Drawing.Point(12, 112);
+            this.triggerPanel.Name = "triggerPanel";
+            this.triggerPanel.Size = new System.Drawing.Size(519, 81);
+            this.triggerPanel.TabIndex = 3;
+            // 
+            // usbRadio
+            // 
+            this.usbRadio.AutoSize = true;
+            this.usbRadio.Location = new System.Drawing.Point(143, 3);
+            this.usbRadio.Name = "usbRadio";
+            this.usbRadio.Size = new System.Drawing.Size(82, 17);
+            this.usbRadio.TabIndex = 7;
+            this.usbRadio.Text = "USB device";
+            this.usbRadio.UseVisualStyleBackColor = true;
+            this.usbRadio.CheckedChanged += new System.EventHandler(this.radioButton16_CheckedChanged);
+            // 
+            // triggerFlowPanel
+            // 
+            this.triggerFlowPanel.Controls.Add(this.timePanel);
+            this.triggerFlowPanel.Controls.Add(this.appPanel);
+            this.triggerFlowPanel.Controls.Add(this.usbPanel);
+            this.triggerFlowPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.triggerFlowPanel.Location = new System.Drawing.Point(3, 26);
+            this.triggerFlowPanel.Name = "triggerFlowPanel";
+            this.triggerFlowPanel.Size = new System.Drawing.Size(513, 52);
+            this.triggerFlowPanel.TabIndex = 6;
+            // 
+            // timePanel
+            // 
+            this.timePanel.Controls.Add(this.timerBox);
+            this.timePanel.Controls.Add(this.timeFormatLabel);
+            this.timePanel.Location = new System.Drawing.Point(3, 3);
+            this.timePanel.Name = "timePanel";
+            this.timePanel.Size = new System.Drawing.Size(173, 33);
+            this.timePanel.TabIndex = 7;
+            // 
+            // timerBox
+            // 
+            this.timerBox.InsertKeyMode = System.Windows.Forms.InsertKeyMode.Overwrite;
+            this.timerBox.Location = new System.Drawing.Point(3, 5);
+            this.timerBox.Mask = "##:##:##";
+            this.timerBox.Name = "timerBox";
+            this.timerBox.Size = new System.Drawing.Size(53, 20);
+            this.timerBox.TabIndex = 4;
+            this.timerBox.Text = "000500";
+            this.timerBox.TextChanged += new System.EventHandler(this.MaskedTextBox1_TextChanged);
+            // 
+            // timeFormatLabel
+            // 
+            this.timeFormatLabel.AutoSize = true;
+            this.timeFormatLabel.Location = new System.Drawing.Point(62, 8);
+            this.timeFormatLabel.Name = "timeFormatLabel";
+            this.timeFormatLabel.Size = new System.Drawing.Size(108, 13);
+            this.timeFormatLabel.TabIndex = 5;
+            this.timeFormatLabel.Text = "(format hrs:mins:secs)";
+            // 
+            // appPanel
+            // 
+            this.appPanel.Controls.Add(this.triggerAppLabel);
+            this.appPanel.Controls.Add(this.triggerAppBox);
+            this.appPanel.Location = new System.Drawing.Point(182, 3);
+            this.appPanel.Name = "appPanel";
+            this.appPanel.Size = new System.Drawing.Size(286, 45);
+            this.appPanel.TabIndex = 7;
+            this.appPanel.Visible = false;
+            // 
+            // triggerAppLabel
+            // 
+            this.triggerAppLabel.AutoSize = true;
+            this.triggerAppLabel.Location = new System.Drawing.Point(3, 4);
+            this.triggerAppLabel.Name = "triggerAppLabel";
+            this.triggerAppLabel.Size = new System.Drawing.Size(272, 13);
+            this.triggerAppLabel.TabIndex = 3;
+            this.triggerAppLabel.Text = "Process name (ie notepad.exe, iexplore.exe, sol.exe etc)";
+            // 
+            // triggerAppBox
+            // 
+            this.triggerAppBox.Enabled = false;
+            this.triggerAppBox.Location = new System.Drawing.Point(6, 20);
+            this.triggerAppBox.Name = "triggerAppBox";
+            this.triggerAppBox.Size = new System.Drawing.Size(193, 20);
+            this.triggerAppBox.TabIndex = 2;
+            this.triggerAppBox.Text = "notepad.exe";
+            // 
+            // usbPanel
+            // 
+            this.usbPanel.Controls.Add(this.whyNoDeviceButton);
+            this.usbPanel.Controls.Add(this.resetDeviceButton);
+            this.usbPanel.Controls.Add(this.deviceInfoLabel);
+            this.usbPanel.Location = new System.Drawing.Point(474, 3);
+            this.usbPanel.Name = "usbPanel";
+            this.usbPanel.Size = new System.Drawing.Size(333, 52);
+            this.usbPanel.TabIndex = 9;
+            this.usbPanel.Visible = false;
+            // 
+            // whyNoDeviceButton
+            // 
+            this.whyNoDeviceButton.Location = new System.Drawing.Point(87, 29);
+            this.whyNoDeviceButton.Name = "whyNoDeviceButton";
+            this.whyNoDeviceButton.Size = new System.Drawing.Size(141, 20);
+            this.whyNoDeviceButton.TabIndex = 10;
+            this.whyNoDeviceButton.Text = "My device isn\'t detected";
+            this.whyNoDeviceButton.UseVisualStyleBackColor = true;
+            this.whyNoDeviceButton.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // resetDeviceButton
+            // 
+            this.resetDeviceButton.Enabled = false;
+            this.resetDeviceButton.Location = new System.Drawing.Point(6, 29);
+            this.resetDeviceButton.Name = "resetDeviceButton";
+            this.resetDeviceButton.Size = new System.Drawing.Size(75, 20);
+            this.resetDeviceButton.TabIndex = 9;
+            this.resetDeviceButton.Text = "Reset";
+            this.resetDeviceButton.UseVisualStyleBackColor = true;
+            this.resetDeviceButton.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // deviceInfoLabel
+            // 
+            this.deviceInfoLabel.Location = new System.Drawing.Point(3, 1);
+            this.deviceInfoLabel.Name = "deviceInfoLabel";
+            this.deviceInfoLabel.Size = new System.Drawing.Size(327, 32);
+            this.deviceInfoLabel.TabIndex = 8;
+            this.deviceInfoLabel.Text = "No trigger device\r\n(Unplug and) plug in desired trigger device";
+            // 
+            // appRadio
+            // 
+            this.appRadio.AutoSize = true;
+            this.appRadio.Location = new System.Drawing.Point(60, 3);
+            this.appRadio.Name = "appRadio";
+            this.appRadio.Size = new System.Drawing.Size(77, 17);
+            this.appRadio.TabIndex = 1;
+            this.appRadio.Text = "Application";
+            this.appRadio.UseVisualStyleBackColor = true;
+            this.appRadio.CheckedChanged += new System.EventHandler(this.RadioButton4_CheckedChanged);
+            // 
+            // timeRadio
+            // 
+            this.timeRadio.AutoSize = true;
+            this.timeRadio.Checked = true;
+            this.timeRadio.Location = new System.Drawing.Point(3, 3);
+            this.timeRadio.Name = "timeRadio";
+            this.timeRadio.Size = new System.Drawing.Size(51, 17);
+            this.timeRadio.TabIndex = 0;
+            this.timeRadio.TabStop = true;
+            this.timeRadio.Text = "Timer";
+            this.timeRadio.UseVisualStyleBackColor = true;
+            this.timeRadio.CheckedChanged += new System.EventHandler(this.RadioButton3_CheckedChanged);
+            // 
+            // letCloseBox
+            // 
+            this.letCloseBox.AutoSize = true;
+            this.letCloseBox.Checked = true;
+            this.letCloseBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.letCloseBox.Location = new System.Drawing.Point(12, 212);
+            this.letCloseBox.Name = "letCloseBox";
+            this.letCloseBox.Size = new System.Drawing.Size(277, 17);
+            this.letCloseBox.TabIndex = 4;
+            this.letCloseBox.Text = "Allow the user to close the blue screen using ALT+F4";
+            this.letCloseBox.UseVisualStyleBackColor = true;
+            // 
+            // miscLabel
+            // 
+            this.miscLabel.AutoSize = true;
+            this.miscLabel.Location = new System.Drawing.Point(12, 196);
+            this.miscLabel.Name = "miscLabel";
+            this.miscLabel.Size = new System.Drawing.Size(109, 13);
+            this.miscLabel.TabIndex = 5;
+            this.miscLabel.Text = "Miscelaneous options";
+            // 
+            // friendlyMessageBox
+            // 
+            this.friendlyMessageBox.AutoSize = true;
+            this.friendlyMessageBox.Location = new System.Drawing.Point(12, 235);
+            this.friendlyMessageBox.Name = "friendlyMessageBox";
+            this.friendlyMessageBox.Size = new System.Drawing.Size(277, 17);
+            this.friendlyMessageBox.TabIndex = 6;
+            this.friendlyMessageBox.Text = "Show a message after the bluescreen is being closed";
+            this.friendlyMessageBox.UseVisualStyleBackColor = true;
+            this.friendlyMessageBox.CheckedChanged += new System.EventHandler(this.CheckBox2_CheckedChanged);
+            // 
+            // friendlyMessageContentsBox
+            // 
+            this.friendlyMessageContentsBox.Enabled = false;
+            this.friendlyMessageContentsBox.Location = new System.Drawing.Point(12, 258);
+            this.friendlyMessageContentsBox.Multiline = true;
+            this.friendlyMessageContentsBox.Name = "friendlyMessageContentsBox";
+            this.friendlyMessageContentsBox.Size = new System.Drawing.Size(519, 45);
+            this.friendlyMessageContentsBox.TabIndex = 7;
+            this.friendlyMessageContentsBox.Text = "Enter a message here.";
+            this.friendlyMessageContentsBox.TextChanged += new System.EventHandler(this.TextBox2_TextChanged);
+            // 
+            // friendlyMessageTitleLabel
+            // 
+            this.friendlyMessageTitleLabel.AutoSize = true;
+            this.friendlyMessageTitleLabel.Location = new System.Drawing.Point(12, 309);
+            this.friendlyMessageTitleLabel.Name = "friendlyMessageTitleLabel";
+            this.friendlyMessageTitleLabel.Size = new System.Drawing.Size(69, 13);
+            this.friendlyMessageTitleLabel.TabIndex = 9;
+            this.friendlyMessageTitleLabel.Text = "Message title";
+            // 
+            // friendlyMessageTitleBox
+            // 
+            this.friendlyMessageTitleBox.Enabled = false;
+            this.friendlyMessageTitleBox.Location = new System.Drawing.Point(87, 306);
+            this.friendlyMessageTitleBox.Name = "friendlyMessageTitleBox";
+            this.friendlyMessageTitleBox.Size = new System.Drawing.Size(444, 20);
+            this.friendlyMessageTitleBox.TabIndex = 10;
+            this.friendlyMessageTitleBox.Text = "Enter a title here";
+            this.friendlyMessageTitleBox.TextChanged += new System.EventHandler(this.TextBox3_TextChanged);
+            // 
+            // friendlyMessageIconPanel
+            // 
+            this.friendlyMessageIconPanel.Controls.Add(this.errorRadio);
+            this.friendlyMessageIconPanel.Controls.Add(this.warningRadio);
+            this.friendlyMessageIconPanel.Controls.Add(this.questionRadio);
+            this.friendlyMessageIconPanel.Controls.Add(this.infoRadio);
+            this.friendlyMessageIconPanel.Controls.Add(this.noneRadio);
+            this.friendlyMessageIconPanel.Enabled = false;
+            this.friendlyMessageIconPanel.Location = new System.Drawing.Point(12, 345);
+            this.friendlyMessageIconPanel.Name = "friendlyMessageIconPanel";
+            this.friendlyMessageIconPanel.Size = new System.Drawing.Size(519, 26);
+            this.friendlyMessageIconPanel.TabIndex = 11;
+            // 
+            // errorRadio
+            // 
+            this.errorRadio.AutoSize = true;
+            this.errorRadio.Location = new System.Drawing.Point(3, 3);
+            this.errorRadio.Name = "errorRadio";
+            this.errorRadio.Size = new System.Drawing.Size(108, 17);
+            this.errorRadio.TabIndex = 0;
+            this.errorRadio.Text = "Error/Critical Stop";
+            this.errorRadio.UseVisualStyleBackColor = true;
+            this.errorRadio.CheckedChanged += new System.EventHandler(this.RadioButton5_CheckedChanged);
+            // 
+            // warningRadio
+            // 
+            this.warningRadio.AutoSize = true;
+            this.warningRadio.Checked = true;
+            this.warningRadio.Location = new System.Drawing.Point(117, 3);
+            this.warningRadio.Name = "warningRadio";
+            this.warningRadio.Size = new System.Drawing.Size(127, 17);
+            this.warningRadio.TabIndex = 1;
+            this.warningRadio.TabStop = true;
+            this.warningRadio.Text = "Warning/Exclamation";
+            this.warningRadio.UseVisualStyleBackColor = true;
+            this.warningRadio.CheckedChanged += new System.EventHandler(this.RadioButton6_CheckedChanged);
+            // 
+            // questionRadio
+            // 
+            this.questionRadio.AutoSize = true;
+            this.questionRadio.Location = new System.Drawing.Point(250, 3);
+            this.questionRadio.Name = "questionRadio";
+            this.questionRadio.Size = new System.Drawing.Size(94, 17);
+            this.questionRadio.TabIndex = 2;
+            this.questionRadio.Text = "Question/Help";
+            this.questionRadio.UseVisualStyleBackColor = true;
+            this.questionRadio.CheckedChanged += new System.EventHandler(this.RadioButton7_CheckedChanged);
+            // 
+            // infoRadio
+            // 
+            this.infoRadio.AutoSize = true;
+            this.infoRadio.Location = new System.Drawing.Point(350, 3);
+            this.infoRadio.Name = "infoRadio";
+            this.infoRadio.Size = new System.Drawing.Size(77, 17);
+            this.infoRadio.TabIndex = 3;
+            this.infoRadio.Text = "Information";
+            this.infoRadio.UseVisualStyleBackColor = true;
+            this.infoRadio.CheckedChanged += new System.EventHandler(this.RadioButton8_CheckedChanged);
+            // 
+            // noneRadio
+            // 
+            this.noneRadio.AutoSize = true;
+            this.noneRadio.Location = new System.Drawing.Point(433, 3);
+            this.noneRadio.Name = "noneRadio";
+            this.noneRadio.Size = new System.Drawing.Size(62, 17);
+            this.noneRadio.TabIndex = 4;
+            this.noneRadio.Text = "No icon";
+            this.noneRadio.UseVisualStyleBackColor = true;
+            this.noneRadio.CheckedChanged += new System.EventHandler(this.RadioButton9_CheckedChanged);
+            // 
+            // friendlyMessageIconLabel
+            // 
+            this.friendlyMessageIconLabel.AutoSize = true;
+            this.friendlyMessageIconLabel.Location = new System.Drawing.Point(12, 329);
+            this.friendlyMessageIconLabel.Name = "friendlyMessageIconLabel";
+            this.friendlyMessageIconLabel.Size = new System.Drawing.Size(73, 13);
+            this.friendlyMessageIconLabel.TabIndex = 12;
+            this.friendlyMessageIconLabel.Text = "Message icon";
+            // 
+            // friendlyMessageButtonsLabel
+            // 
+            this.friendlyMessageButtonsLabel.AutoSize = true;
+            this.friendlyMessageButtonsLabel.Location = new System.Drawing.Point(12, 373);
+            this.friendlyMessageButtonsLabel.Name = "friendlyMessageButtonsLabel";
+            this.friendlyMessageButtonsLabel.Size = new System.Drawing.Size(88, 13);
+            this.friendlyMessageButtonsLabel.TabIndex = 14;
+            this.friendlyMessageButtonsLabel.Text = "Message buttons";
+            // 
+            // friendlyMessageButtonsPanel
+            // 
+            this.friendlyMessageButtonsPanel.Controls.Add(this.okRadio);
+            this.friendlyMessageButtonsPanel.Controls.Add(this.okCancelRadio);
+            this.friendlyMessageButtonsPanel.Controls.Add(this.retryIgnoreAboutRadio);
+            this.friendlyMessageButtonsPanel.Controls.Add(this.retryCancelRadio);
+            this.friendlyMessageButtonsPanel.Controls.Add(this.yesNoRadio);
+            this.friendlyMessageButtonsPanel.Controls.Add(this.yesNoCancelRadio);
+            this.friendlyMessageButtonsPanel.Enabled = false;
+            this.friendlyMessageButtonsPanel.Location = new System.Drawing.Point(12, 389);
+            this.friendlyMessageButtonsPanel.Name = "friendlyMessageButtonsPanel";
+            this.friendlyMessageButtonsPanel.Size = new System.Drawing.Size(519, 26);
+            this.friendlyMessageButtonsPanel.TabIndex = 13;
+            // 
+            // okRadio
+            // 
+            this.okRadio.AutoSize = true;
+            this.okRadio.Checked = true;
+            this.okRadio.Location = new System.Drawing.Point(3, 3);
+            this.okRadio.Name = "okRadio";
+            this.okRadio.Size = new System.Drawing.Size(40, 17);
+            this.okRadio.TabIndex = 0;
+            this.okRadio.TabStop = true;
+            this.okRadio.Text = "OK";
+            this.okRadio.UseVisualStyleBackColor = true;
+            this.okRadio.CheckedChanged += new System.EventHandler(this.RadioButton10_CheckedChanged);
+            // 
+            // okCancelRadio
+            // 
+            this.okCancelRadio.AutoSize = true;
+            this.okCancelRadio.Location = new System.Drawing.Point(49, 3);
+            this.okCancelRadio.Name = "okCancelRadio";
+            this.okCancelRadio.Size = new System.Drawing.Size(78, 17);
+            this.okCancelRadio.TabIndex = 1;
+            this.okCancelRadio.Text = "OK/Cancel";
+            this.okCancelRadio.UseVisualStyleBackColor = true;
+            this.okCancelRadio.CheckedChanged += new System.EventHandler(this.RadioButton11_CheckedChanged);
+            // 
+            // retryIgnoreAboutRadio
+            // 
+            this.retryIgnoreAboutRadio.AutoSize = true;
+            this.retryIgnoreAboutRadio.Location = new System.Drawing.Point(133, 3);
+            this.retryIgnoreAboutRadio.Name = "retryIgnoreAboutRadio";
+            this.retryIgnoreAboutRadio.Size = new System.Drawing.Size(115, 17);
+            this.retryIgnoreAboutRadio.TabIndex = 2;
+            this.retryIgnoreAboutRadio.Text = "Retry/Ignore/Abort";
+            this.retryIgnoreAboutRadio.UseVisualStyleBackColor = true;
+            this.retryIgnoreAboutRadio.CheckedChanged += new System.EventHandler(this.RadioButton12_CheckedChanged);
+            // 
+            // retryCancelRadio
+            // 
+            this.retryCancelRadio.AutoSize = true;
+            this.retryCancelRadio.Location = new System.Drawing.Point(254, 3);
+            this.retryCancelRadio.Name = "retryCancelRadio";
+            this.retryCancelRadio.Size = new System.Drawing.Size(88, 17);
+            this.retryCancelRadio.TabIndex = 5;
+            this.retryCancelRadio.Text = "Retry/Cancel";
+            this.retryCancelRadio.UseVisualStyleBackColor = true;
+            this.retryCancelRadio.CheckedChanged += new System.EventHandler(this.RadioButton15_CheckedChanged);
+            // 
+            // yesNoRadio
+            // 
+            this.yesNoRadio.AutoSize = true;
+            this.yesNoRadio.Location = new System.Drawing.Point(348, 3);
+            this.yesNoRadio.Name = "yesNoRadio";
+            this.yesNoRadio.Size = new System.Drawing.Size(62, 17);
+            this.yesNoRadio.TabIndex = 3;
+            this.yesNoRadio.Text = "Yes/No";
+            this.yesNoRadio.UseVisualStyleBackColor = true;
+            this.yesNoRadio.CheckedChanged += new System.EventHandler(this.RadioButton13_CheckedChanged);
+            // 
+            // yesNoCancelRadio
+            // 
+            this.yesNoCancelRadio.AutoSize = true;
+            this.yesNoCancelRadio.Location = new System.Drawing.Point(416, 3);
+            this.yesNoCancelRadio.Name = "yesNoCancelRadio";
+            this.yesNoCancelRadio.Size = new System.Drawing.Size(100, 17);
+            this.yesNoCancelRadio.TabIndex = 4;
+            this.yesNoCancelRadio.Text = "Yes/No/Cancel";
+            this.yesNoCancelRadio.UseVisualStyleBackColor = true;
+            this.yesNoCancelRadio.CheckedChanged += new System.EventHandler(this.RadioButton14_CheckedChanged);
+            // 
+            // previewFriendlyMessageButton
+            // 
+            this.previewFriendlyMessageButton.Enabled = false;
+            this.previewFriendlyMessageButton.Location = new System.Drawing.Point(424, 229);
+            this.previewFriendlyMessageButton.Name = "previewFriendlyMessageButton";
+            this.previewFriendlyMessageButton.Size = new System.Drawing.Size(107, 23);
+            this.previewFriendlyMessageButton.TabIndex = 15;
+            this.previewFriendlyMessageButton.Text = "Preview message";
+            this.previewFriendlyMessageButton.UseVisualStyleBackColor = true;
+            this.previewFriendlyMessageButton.Click += new System.EventHandler(this.Button1_Click);
+            // 
+            // okButton
+            // 
+            this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.okButton.Location = new System.Drawing.Point(455, 429);
+            this.okButton.Name = "okButton";
+            this.okButton.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.okButton.Size = new System.Drawing.Size(75, 23);
+            this.okButton.TabIndex = 16;
+            this.okButton.Text = "OK";
+            this.okButton.UseVisualStyleBackColor = true;
+            this.okButton.Click += new System.EventHandler(this.Button2_Click);
+            // 
+            // cancelButton
+            // 
+            this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.cancelButton.Location = new System.Drawing.Point(374, 429);
+            this.cancelButton.Name = "cancelButton";
+            this.cancelButton.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.cancelButton.Size = new System.Drawing.Size(75, 23);
+            this.cancelButton.TabIndex = 17;
+            this.cancelButton.Text = "Cancel";
+            this.cancelButton.UseVisualStyleBackColor = true;
+            this.cancelButton.Click += new System.EventHandler(this.Button3_Click);
+            // 
+            // usbFinder
+            // 
+            this.usbFinder.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // PrankMode
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.cancelButton;
             this.ClientSize = new System.Drawing.Size(538, 464);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.flowLayoutPanel1);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.checkBox2);
-            this.Controls.Add(this.flowLayoutPanel2);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.checkBox1);
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.cancelButton);
+            this.Controls.Add(this.okButton);
+            this.Controls.Add(this.previewFriendlyMessageButton);
+            this.Controls.Add(this.friendlyMessageIconLabel);
+            this.Controls.Add(this.friendlyMessageIconPanel);
+            this.Controls.Add(this.friendlyMessageTitleBox);
+            this.Controls.Add(this.friendlyMessageTitleLabel);
+            this.Controls.Add(this.friendlyMessageContentsBox);
+            this.Controls.Add(this.friendlyMessageButtonsLabel);
+            this.Controls.Add(this.friendlyMessageBox);
+            this.Controls.Add(this.friendlyMessageButtonsPanel);
+            this.Controls.Add(this.miscLabel);
+            this.Controls.Add(this.letCloseBox);
+            this.Controls.Add(this.triggerPanel);
+            this.Controls.Add(this.triggerLabel);
+            this.Controls.Add(this.bluescreenTypePanel);
+            this.Controls.Add(this.bluescreenTypeLabel);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.HelpButton = true;
@@ -591,20 +593,20 @@
             this.Name = "PrankMode";
             this.Text = "Prank mode";
             this.Load += new System.EventHandler(this.PrankMode_Load);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
-            this.flowLayoutPanel3.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
-            this.flowLayoutPanel1.ResumeLayout(false);
-            this.flowLayoutPanel1.PerformLayout();
-            this.flowLayoutPanel2.ResumeLayout(false);
-            this.flowLayoutPanel2.PerformLayout();
-            this.panel5.ResumeLayout(false);
+            this.bluescreenTypePanel.ResumeLayout(false);
+            this.bluescreenTypePanel.PerformLayout();
+            this.triggerPanel.ResumeLayout(false);
+            this.triggerPanel.PerformLayout();
+            this.triggerFlowPanel.ResumeLayout(false);
+            this.timePanel.ResumeLayout(false);
+            this.timePanel.PerformLayout();
+            this.appPanel.ResumeLayout(false);
+            this.appPanel.PerformLayout();
+            this.usbPanel.ResumeLayout(false);
+            this.friendlyMessageIconPanel.ResumeLayout(false);
+            this.friendlyMessageIconPanel.PerformLayout();
+            this.friendlyMessageButtonsPanel.ResumeLayout(false);
+            this.friendlyMessageButtonsPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -612,50 +614,50 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.RadioButton radioButton4;
-        private System.Windows.Forms.RadioButton radioButton3;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.RadioButton radioButton5;
-        private System.Windows.Forms.RadioButton radioButton6;
-        private System.Windows.Forms.RadioButton radioButton7;
-        private System.Windows.Forms.RadioButton radioButton8;
-        private System.Windows.Forms.RadioButton radioButton9;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
-        private System.Windows.Forms.RadioButton radioButton10;
-        private System.Windows.Forms.RadioButton radioButton11;
-        private System.Windows.Forms.RadioButton radioButton12;
-        private System.Windows.Forms.RadioButton radioButton13;
-        private System.Windows.Forms.RadioButton radioButton14;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.RadioButton radioButton15;
-        private System.Windows.Forms.RadioButton radioButton16;
-        private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Label bluescreenTypeLabel;
+        private System.Windows.Forms.Panel bluescreenTypePanel;
+        private System.Windows.Forms.RadioButton matchAllRadio;
+        private System.Windows.Forms.RadioButton bestMatchRadio;
+        private System.Windows.Forms.Label triggerLabel;
+        private System.Windows.Forms.Panel triggerPanel;
+        private System.Windows.Forms.Label timeFormatLabel;
+        private System.Windows.Forms.MaskedTextBox timerBox;
+        private System.Windows.Forms.Label triggerAppLabel;
+        private System.Windows.Forms.TextBox triggerAppBox;
+        private System.Windows.Forms.RadioButton appRadio;
+        private System.Windows.Forms.RadioButton timeRadio;
+        private System.Windows.Forms.CheckBox letCloseBox;
+        private System.Windows.Forms.Label miscLabel;
+        private System.Windows.Forms.CheckBox friendlyMessageBox;
+        private System.Windows.Forms.TextBox friendlyMessageContentsBox;
+        private System.Windows.Forms.Label friendlyMessageTitleLabel;
+        private System.Windows.Forms.TextBox friendlyMessageTitleBox;
+        private System.Windows.Forms.FlowLayoutPanel friendlyMessageIconPanel;
+        private System.Windows.Forms.RadioButton errorRadio;
+        private System.Windows.Forms.RadioButton warningRadio;
+        private System.Windows.Forms.RadioButton questionRadio;
+        private System.Windows.Forms.RadioButton infoRadio;
+        private System.Windows.Forms.RadioButton noneRadio;
+        private System.Windows.Forms.Label friendlyMessageIconLabel;
+        private System.Windows.Forms.Label friendlyMessageButtonsLabel;
+        private System.Windows.Forms.FlowLayoutPanel friendlyMessageButtonsPanel;
+        private System.Windows.Forms.RadioButton okRadio;
+        private System.Windows.Forms.RadioButton okCancelRadio;
+        private System.Windows.Forms.RadioButton retryIgnoreAboutRadio;
+        private System.Windows.Forms.RadioButton yesNoRadio;
+        private System.Windows.Forms.RadioButton yesNoCancelRadio;
+        private System.Windows.Forms.FlowLayoutPanel triggerFlowPanel;
+        private System.Windows.Forms.Panel timePanel;
+        private System.Windows.Forms.Panel appPanel;
+        private System.Windows.Forms.Button previewFriendlyMessageButton;
+        private System.Windows.Forms.Button okButton;
+        private System.Windows.Forms.Button cancelButton;
+        private System.Windows.Forms.RadioButton retryCancelRadio;
+        private System.Windows.Forms.RadioButton usbRadio;
+        private System.Windows.Forms.Panel usbPanel;
+        private System.Windows.Forms.Button resetDeviceButton;
+        private System.Windows.Forms.Label deviceInfoLabel;
+        private System.Windows.Forms.Timer usbFinder;
+        private System.Windows.Forms.Button whyNoDeviceButton;
     }
 }

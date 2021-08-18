@@ -107,7 +107,7 @@ namespace UltimateBlueScreenSimulator
         /// The main entry point for the application.
         /// </summary>
         //Form creation
-        public static Form1 f1;
+        public static Main f1;
         public static Splash spl;
         public static DrawRoutines dr;
 
@@ -171,7 +171,7 @@ namespace UltimateBlueScreenSimulator
             }
 
             //Initialize forms
-            f1 = new Form1();
+            f1 = new Main();
             bluescreens = new List<BlueScreen>();
             ReRe();
 

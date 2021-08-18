@@ -32,6 +32,8 @@ namespace UltimateBlueScreenSimulator
         {
             try
             {
+                this.Icon = me.GetIcon();
+                this.Text = me.GetString("friendlyname");
                 bg = me.GetTheme(true);
                 fg = me.GetTheme(false);
                 txt = me.GetTexts();
@@ -60,14 +62,14 @@ namespace UltimateBlueScreenSimulator
 
                     if (me.GetBool("extrafile"))
                     {
-                        label5.Text = "***  " + whatfail.ToUpper() + " - Address " + me.GenHex(8, me.GetFiles().ElementAt(0).Value[0]) + " base at " + me.GenHex(8, me.GetFiles().ElementAt(0).Value[1]) + ", DateStamp " + me.GenHex(8, me.GetFiles().ElementAt(0).Value[2]).ToLower() + "\r\n\r\n\r\n";
+                        dumpLabel.Text = "***  " + whatfail.ToUpper() + " - Address " + me.GenHex(8, me.GetFiles().ElementAt(0).Value[0]) + " base at " + me.GenHex(8, me.GetFiles().ElementAt(0).Value[1]) + ", DateStamp " + me.GenHex(8, me.GetFiles().ElementAt(0).Value[2]).ToLower() + "\r\n\r\n\r\n";
                     }
-                    errorCode.Text = "The problem seems to be caused by the following file: " + whatfail.ToUpper() + "\n\n" + errorCode.Text;
+                    errorCode.Text = txt["Culprit file"] + whatfail.ToUpper() + "\n\n" + errorCode.Text;
                     supportInfo.Location = new Point(supportInfo.Location.X, supportInfo.Location.Y + 24);
-                    technicalCode.Location = new Point(label5.Location.X, technicalCode.Location.Y + 24);
-                    label5.Location = new Point(label5.Location.X, label5.Location.Y + 24);
+                    technicalCode.Location = new Point(dumpLabel.Location.X, technicalCode.Location.Y + 24);
+                    dumpLabel.Location = new Point(dumpLabel.Location.X, dumpLabel.Location.Y + 24);
                 }
-                label1.Text = txt["A problem has been detected..."];
+                introductionText.Text = txt["A problem has been detected..."];
                 supportInfo.Text = txt["Troubleshooting introduction"] + "\n\n" + txt["Troubleshooting"] + "\n\n" + txt["Technical information"];
                 string[] esplit = technicalCode.Text.Replace("*** STOP: ", "").Replace(")", "").Replace(" (", "*").Split('*');
                 technicalCode.Text = txt["Technical information formatting"].Replace("{0}", esplit[0]).Replace("{1}", esplit[1]);
@@ -76,7 +78,7 @@ namespace UltimateBlueScreenSimulator
                 {
                     if (me.GetBool("autoclose"))
                     {
-                        label5.Text += txt["Physical memory dump"].Split('\n')[0].Trim() + "\n" + txt["Physical memory dump"].Split('\n')[1].Trim() + "\n" + txt["Technical support"].Split('\n')[0].Trim() + "\n" + txt["Technical support"].Split('\n')[1].Trim();
+                        dumpLabel.Text = txt["Physical memory dump"].Split('\n')[0].Trim();
                     }
                 }
                 catch
@@ -91,15 +93,20 @@ namespace UltimateBlueScreenSimulator
                     }
                 }
                 if (!fullscreen) { this.FormBorderStyle = FormBorderStyle.FixedSingle; this.ShowInTaskbar = true; this.ShowIcon = true; }
-                if (!errorCode.Visible && !label5.Visible)
+                if (!errorCode.Visible && !dumpLabel.Visible)
                 {
                     supportInfo.Visible = false;
-                    label1.Visible = false;
+                    introductionText.Visible = false;
                 }
                 errorCode.Text = errorCode.Text.Replace("IRQL", "DRIVER_IRQL");
                 errorCode.Text = errorCode.Text.Replace("MANUALLY_INITIATED_CRASH", "The end-user manually generated the crash dump.");
                 errorCode.Text = errorCode.Text.Replace("VIDEO_TDR_", "VIDEO_TDR_ERROR");
                 technicalCode.Text = technicalCode.Text.Replace("STOP: ERROR", "STOP: 0x00000116");
+                int[] colors = { this.BackColor.R + 50, this.BackColor.G + 50, this.BackColor.B + 50 };
+                if (colors[0] > 255) { colors[0] -= 255; }
+                if (colors[1] > 255) { colors[1] -= 255; }
+                if (colors[2] > 255) { colors[2] -= 255; }
+                waterMarkText.ForeColor = Color.FromArgb(colors[0], colors[1], colors[2]);
                 Program.loadfinished = true;
                 if (fullscreen)
                 {
@@ -152,7 +159,7 @@ namespace UltimateBlueScreenSimulator
                         {
                             if (Program.multidisplaymode == "freeze")
                             {
-                                ws.pictureBox1.Image = freezescreens[i - 1];
+                                ws.screenDisplay.Image = freezescreens[i - 1];
                             }
                         }
                     }
@@ -163,9 +170,10 @@ namespace UltimateBlueScreenSimulator
                 {
                     supportInfo.Location = new Point(supportInfo.Location.X, supportInfo.Location.Y + 39);
                     technicalCode.Location = new Point(technicalCode.Location.X, technicalCode.Location.Y + 39);
-                    label5.Location = new Point(label5.Location.X, label5.Location.Y + 39);
+                    dumpLabel.Location = new Point(dumpLabel.Location.X, dumpLabel.Location.Y + 39);
                 }
                 naturalclose = false;
+                dumpLabel.Visible = me.GetBool("autoclose");
             } catch (Exception ex)
             {
                 Program.loadfinished = true;
@@ -198,6 +206,11 @@ namespace UltimateBlueScreenSimulator
             }
             if (tardisFade.Enabled == true) { return; }
             if (rainBowScreen.Enabled == true) { return; }
+
+            if (me.GetBool("autoclose") && !dumpLabel.Text.Contains(txt["Physical memory dump"].Split('\n')[1].Trim()))
+            {
+                dumpLabel.Text += "\n" + txt["Physical memory dump"].Split('\n')[1].Trim() + "\n" + txt["Technical support"].Split('\n')[0].Trim() + "\n" + txt["Technical support"].Split('\n')[1].Trim();
+            }
         }
 
         private void Xvsbs_FormClosing(object sender, FormClosingEventArgs e)
@@ -308,6 +321,10 @@ namespace UltimateBlueScreenSimulator
                 b += 1;
             }
             this.BackColor = Color.FromArgb(r, gr, b);
+            foreach (Control c in this.Controls)
+            {
+                c.BackColor = this.BackColor;
+            }
             foreach (WindowScreen ws in wss)
             {
                 if (!ws.Visible)
@@ -407,7 +424,20 @@ namespace UltimateBlueScreenSimulator
                 gr += 1;
             }
             this.BackColor = Color.FromArgb(r, gr, b);
-
+            foreach (Control c in this.Controls)
+            {
+                c.BackColor = this.BackColor;
+                int[] colorsa = { this.BackColor.R - 100, this.BackColor.G - 100, this.BackColor.B - 100 };
+                if (colorsa[0] < 0) { colorsa[0] += 255; }
+                if (colorsa[1] < 0) { colorsa[1] += 255; }
+                if (colorsa[2] < 0) { colorsa[2] += 255; }
+                c.ForeColor = Color.FromArgb(colorsa[0], colorsa[1], colorsa[2]);
+            }
+            int[] colors = { this.BackColor.R + 20, this.BackColor.G + 20, this.BackColor.B + 20 };
+            if (colors[0] > 255) { colors[0] -= 255; }
+            if (colors[1] > 255) { colors[1] -= 255; }
+            if (colors[2] > 255) { colors[2] -= 255; }
+            waterMarkText.ForeColor = Color.FromArgb(colors[0], colors[1], colors[2]);
             foreach (WindowScreen ws in wss)
             {
                 try

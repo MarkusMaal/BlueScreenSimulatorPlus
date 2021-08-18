@@ -25,18 +25,18 @@ namespace UltimateBlueScreenSimulator
 
         private void RadioButton1_CheckedChanged(object sender, EventArgs e)
         {
-            if (radioButton1.Checked == true)
+            if (chooseCode1.Checked == true)
             {
-                label2.Text = "Code 1";
+                codeSelection.Text = "Code 1";
                 SetupCodes(c1);
             }
         }
 
         private void RadioButton2_CheckedChanged(object sender, EventArgs e)
         {
-            if (radioButton2.Checked == true)
+            if (chooseCode2.Checked == true)
             {
-                label2.Text = "Code 2";
+                codeSelection.Text = "Code 2";
                 SetupCodes(c2);
             }
         }
@@ -55,18 +55,18 @@ namespace UltimateBlueScreenSimulator
         }
         private void RadioButton4_CheckedChanged(object sender, EventArgs e)
         {
-            if (radioButton4.Checked == true)
+            if (chooseCode3.Checked == true)
             {
-                label2.Text = "Code 3";
+                codeSelection.Text = "Code 3";
                 SetupCodes(c3);
             }
         }
 
         private void RadioButton3_CheckedChanged(object sender, EventArgs e)
         {
-            if (radioButton3.Checked == true)
+            if (chooseCode4.Checked == true)
             {
-                label2.Text = "Code 4";
+                codeSelection.Text = "Code 4";
                 SetupCodes(c4);
             }
         }
@@ -90,23 +90,23 @@ namespace UltimateBlueScreenSimulator
 
         private void C1_1_TextChanged(object sender, EventArgs e)
         {
-            if (label2.Text == "Code 1")
+            if (codeSelection.Text == "Code 1")
             {
                 c1 = c1_1.Text + c1_2.Text + c1_3.Text + c1_4.Text + c1_5.Text + c1_6.Text + c1_7.Text + c1_8.Text + c1_9.Text + c1_10.Text + c1_11.Text + c1_12.Text + c1_13.Text + c1_14.Text + c1_15.Text + c1_16.Text;
             }
-            else if (label2.Text == "Code 2")
+            else if (codeSelection.Text == "Code 2")
             {
                 c2 = c1_1.Text + c1_2.Text + c1_3.Text + c1_4.Text + c1_5.Text + c1_6.Text + c1_7.Text + c1_8.Text + c1_9.Text + c1_10.Text + c1_11.Text + c1_12.Text + c1_13.Text + c1_14.Text + c1_15.Text + c1_16.Text;
             }
-            else if (label2.Text == "Code 3")
+            else if (codeSelection.Text == "Code 3")
             {
                 c3 = c1_1.Text + c1_2.Text + c1_3.Text + c1_4.Text + c1_5.Text + c1_6.Text + c1_7.Text + c1_8.Text + c1_9.Text + c1_10.Text + c1_11.Text + c1_12.Text + c1_13.Text + c1_14.Text + c1_15.Text + c1_16.Text;
             }
-            else if (label2.Text == "Code 4")
+            else if (codeSelection.Text == "Code 4")
             {
                 c4 = c1_1.Text + c1_2.Text + c1_3.Text + c1_4.Text + c1_5.Text + c1_6.Text + c1_7.Text + c1_8.Text + c1_9.Text + c1_10.Text + c1_11.Text + c1_12.Text + c1_13.Text + c1_14.Text + c1_15.Text + c1_16.Text;
             }
-            label6.Text = DispCodes(c1, c2, c3, c4);
+            methodLabel.Text = DispCodes(c1, c2, c3, c4);
         }
 
         private void Button2_Click(object sender, EventArgs e)
@@ -421,7 +421,7 @@ namespace UltimateBlueScreenSimulator
 
         private void ReAdd(string keyname = "")
         {
-            comboBox1.Items.Clear();
+            ntEntryChooser.Items.Clear();
             foreach (KeyValuePair<string, string[]> ntvalue in me.GetFiles())
             {
                 string item_string = ntvalue.Key + " - ";
@@ -429,21 +429,21 @@ namespace UltimateBlueScreenSimulator
                 {
                     item_string += code + ", ";
                 }
-                comboBox1.Items.Add(item_string.Substring(0, item_string.Length - 2));
+                ntEntryChooser.Items.Add(item_string.Substring(0, item_string.Length - 2));
             }
             if (keyname == "")
             {
-                comboBox1.SelectedIndex = 0;
+                ntEntryChooser.SelectedIndex = 0;
             }
             else
             {
-                for (int i = 0; i < comboBox1.Items.Count; i++)
+                for (int i = 0; i < ntEntryChooser.Items.Count; i++)
                 {
-                    string filename = comboBox1.Items[i].ToString().Split('-')[0];
+                    string filename = ntEntryChooser.Items[i].ToString().Split('-')[0];
                     filename = filename.Substring(0, filename.Length - 1);
                     if (filename == keyname)
                     {
-                        comboBox1.SelectedIndex = i;
+                        ntEntryChooser.SelectedIndex = i;
                         break;
                     }
                 }
@@ -470,7 +470,7 @@ namespace UltimateBlueScreenSimulator
             {
                 foreach (Control c in this.Controls) { c.Visible = false; }
                 panel1.Visible = true;
-                button25.Visible = true;
+                okButton.Visible = true;
                 ReAdd();
             }
             else
@@ -481,7 +481,7 @@ namespace UltimateBlueScreenSimulator
                     this.Close();
                 }
             }
-            label6.Text = DispCodes(c1, c2, c3, c4);
+            methodLabel.Text = DispCodes(c1, c2, c3, c4);
             if (!nt_edit)
             {
                 this.Text = "Error code generation - " + me.GetString("friendlyname");
@@ -490,8 +490,8 @@ namespace UltimateBlueScreenSimulator
             {
                 this.Text = "Windows NT advanced options - " + me.GetString("friendlyname");
             }
-            radioButton1.Checked = false;
-            radioButton1.Checked = true;
+            chooseCode1.Checked = false;
+            chooseCode1.Checked = true;
         }
 
         private string DispCodes(string c1, string c2, string c3, string c4)
@@ -655,15 +655,15 @@ namespace UltimateBlueScreenSimulator
             ChooseFile cf = new ChooseFile();
             if (cf.ShowDialog() == DialogResult.OK)
             {
-                textBox17.Text = cf.listView1.SelectedItems[0].Text;
+                fileBox.Text = cf.fileBrowser.SelectedItems[0].Text;
             }
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string filename = comboBox1.SelectedItem.ToString().Split('-')[0];
+            string filename = ntEntryChooser.SelectedItem.ToString().Split('-')[0];
             filename = filename.Substring(0, filename.Length - 1);
-            textBox17.Text = filename;
+            fileBox.Text = filename;
             SwitchBlock(1);
         }
 
@@ -672,17 +672,17 @@ namespace UltimateBlueScreenSimulator
         {
             if (me.GetString("os") != "Windows NT 3.x/4.0")
             {
-                me.SetString("culprit", textBox17.Text);
+                me.SetString("culprit", fileBox.Text);
             }
             foreach (KeyValuePair<string, string[]> kvp in me.GetFiles())
             {
-                string filename = comboBox1.SelectedItem.ToString().Split('-')[0];
+                string filename = ntEntryChooser.SelectedItem.ToString().Split('-')[0];
                 filename = filename.Substring(0, filename.Length - 1);
                 if (kvp.Key == filename)
                 {
-                    me.RenameFile(filename, textBox17.Text);
-                    comboBox1.Items.Clear();
-                    ReAdd(textBox17.Text);
+                    me.RenameFile(filename, fileBox.Text);
+                    ntEntryChooser.Items.Clear();
+                    ReAdd(fileBox.Text);
                     break;
                 }
             }
@@ -691,13 +691,13 @@ namespace UltimateBlueScreenSimulator
         void SwitchBlock(int id)
         {
             nt_id = id - 1;
-            ncodes = me.GetFiles()[textBox17.Text][nt_id];
-            foreach (Control c in flowLayoutPanel1.Controls)
+            ncodes = me.GetFiles()[fileBox.Text][nt_id];
+            foreach (Control c in ntCodeChooser.Controls)
             {
                 c.Enabled = (c.Text != id.ToString());
-                c.Visible = (Convert.ToInt32(c.Text) <= me.GetFiles()[textBox17.Text].Length);
+                c.Visible = (Convert.ToInt32(c.Text) <= me.GetFiles()[fileBox.Text].Length);
             }
-            label8.Text = "Code " + id.ToString();
+            codeLabel.Text = "Code " + id.ToString();
             UpdateCode();
         }
 
@@ -711,8 +711,8 @@ namespace UltimateBlueScreenSimulator
 
         void WriteValue()
         {
-            me.SetFile(textBox17.Text, nt_id, ncodes);
-            ReAdd(textBox17.Text);
+            me.SetFile(fileBox.Text, nt_id, ncodes);
+            ReAdd(fileBox.Text);
         }
 
         private void code1label_Click(object sender, EventArgs e) { SwitchBlock(1); }

@@ -16,6 +16,8 @@ namespace UltimateBlueScreenSimulator
         private void WindowScreen_Load(object sender, EventArgs e)
         {
             if (!Program.f1.showcursor) { Cursor.Hide(); }
+            if (this.primary) { this.Text += " (primary)"; }
+            else { this.Text += " (secondary)"; }
         }
 
         private void WindowScreen_FormClosing(object sender, FormClosingEventArgs e)
@@ -47,10 +49,10 @@ namespace UltimateBlueScreenSimulator
                 MessageBox.Show(Program.f1.MsgBoxMessage, Program.f1.MsgBoxTitle, Program.f1.MsgBoxType, Program.f1.MsgBoxIcon);
                 Program.f1.showmsg = false;
             }
-            if ((pictureBox1 != null) && (pictureBox1.Image != null))
+            if ((screenDisplay != null) && (screenDisplay.Image != null))
             { 
-                this.pictureBox1.Image.Dispose();
-                this.pictureBox1.Dispose();
+                this.screenDisplay.Image.Dispose();
+                this.screenDisplay.Dispose();
             }
             this.Dispose();
         }

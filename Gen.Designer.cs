@@ -30,30 +30,30 @@ namespace UltimateBlueScreenSimulator
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.label1 = new System.Windows.Forms.Label();
+            this.genProgressBar = new System.Windows.Forms.ProgressBar();
+            this.genLabel = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
-            // progressBar1
+            // genProgressBar
             // 
-            this.progressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.genProgressBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.progressBar1.Location = new System.Drawing.Point(12, 29);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(250, 11);
-            this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
-            this.progressBar1.TabIndex = 0;
+            this.genProgressBar.Location = new System.Drawing.Point(12, 29);
+            this.genProgressBar.Name = "genProgressBar";
+            this.genProgressBar.Size = new System.Drawing.Size(250, 11);
+            this.genProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
+            this.genProgressBar.TabIndex = 0;
             // 
-            // label1
+            // genLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label1.Location = new System.Drawing.Point(8, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(169, 17);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Generating blue screen...";
+            this.genLabel.AutoSize = true;
+            this.genLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.genLabel.Location = new System.Drawing.Point(8, 9);
+            this.genLabel.Name = "genLabel";
+            this.genLabel.Size = new System.Drawing.Size(169, 17);
+            this.genLabel.TabIndex = 1;
+            this.genLabel.Text = "Generating blue screen...";
             // 
             // timer1
             // 
@@ -64,12 +64,13 @@ namespace UltimateBlueScreenSimulator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(274, 52);
-            this.ControlBox = false;
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.progressBar1);
+            this.ClientSize = new System.Drawing.Size(270, 48);
+            this.Controls.Add(this.genLabel);
+            this.Controls.Add(this.genProgressBar);
             this.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Gen";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
@@ -82,8 +83,8 @@ namespace UltimateBlueScreenSimulator
 
         #endregion
 
-        private System.Windows.Forms.ProgressBar progressBar1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ProgressBar genProgressBar;
+        private System.Windows.Forms.Label genLabel;
         private System.Windows.Forms.Timer timer1;
     }
 }

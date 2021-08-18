@@ -30,6 +30,8 @@ namespace UltimateBlueScreenSimulator
         {
             try
             {
+                this.Icon = me.GetIcon();
+                this.Text = me.GetString("friendlyname");
                 string prompt;
                 titles = me.GetTitles();
                 texts = me.GetTexts();
@@ -52,15 +54,15 @@ namespace UltimateBlueScreenSimulator
                     prompt = texts["Prompt"];
                 }
 
-                panel1.BackColor = me.GetTheme(true, true);
-                pictureBox2.BackColor = me.GetTheme(true, true);
+                titleBorder.BackColor = me.GetTheme(true, true);
+                blinkingColor.BackColor = me.GetTheme(true, true);
                 if (screenmode == "System error")
                 {
-                    pictureBox1.Image = WriteWord(titles["Main"], hlb, hlf);
-                    pictureBox1.Size = new Size(8 * titles["Main"].Length, pictureBox1.Height);
-                    panel1.Size = new Size(pictureBox1.Width + 20, panel1.Height);
-                    panel1.Location = new Point((this.Width / 2) - (panel1.Width / 2) - 8, panel1.Location.Y);
-                    pictureBox1.Location = new Point(10, 2);
+                    titleText.Image = WriteWord(titles["Main"], hlb, hlf);
+                    titleText.Size = new Size(8 * titles["Main"].Length, titleText.Height);
+                    titleBorder.Size = new Size(titleText.Width + 20, titleBorder.Height);
+                    titleBorder.Location = new Point((this.Width / 2) - (titleBorder.Width / 2) - 8, titleBorder.Location.Y);
+                    titleText.Location = new Point(10, 2);
 
                     try { line1.Image = WriteWord(texts["System error"].Split('\n')[0].Replace("{0}", errorCode).Substring(0, texts["System error"].Split('\n')[0].Replace("{0}", errorCode).Length - 1), bg, fg); } catch { }
                     try { line2.Image = WriteWord(texts["System error"].Split('\n')[1].Replace("{0}", errorCode).Substring(0, texts["System error"].Split('\n')[1].Replace("{0}", errorCode).Length - 1), bg, fg); } catch { }
@@ -73,11 +75,11 @@ namespace UltimateBlueScreenSimulator
                 }
                 else if (screenmode == "Application error")
                 {
-                    pictureBox1.Image = WriteWord(titles["Main"], hlb, hlf);
-                    pictureBox1.Size = new Size(8 * titles["Main"].Length, pictureBox1.Height);
-                    panel1.Size = new Size(pictureBox1.Width + 20, panel1.Height);
-                    panel1.Location = new Point((this.Width / 2) - (panel1.Width / 2) - 8, panel1.Location.Y);
-                    pictureBox1.Location = new Point(10, 2);
+                    titleText.Image = WriteWord(titles["Main"], hlb, hlf);
+                    titleText.Size = new Size(8 * titles["Main"].Length, titleText.Height);
+                    titleBorder.Size = new Size(titleText.Width + 20, titleBorder.Height);
+                    titleBorder.Location = new Point((this.Width / 2) - (titleBorder.Width / 2) - 8, titleBorder.Location.Y);
+                    titleText.Location = new Point(10, 2);
 
                     try { line1.Image = WriteWord(texts["Application error"].Split('\n')[0].Substring(0, texts["Application error"].Split('\n')[0].Length - 1).Replace("{0}", errorCode.ToString().Split(':')[1].ToString().Replace(" ", "").ToString()).Replace("{1}", errorCode.ToString().Split(':')[2].ToString().Replace(" ", "").ToString()), bg, fg); } catch { }
                     try { line2.Image = WriteWord(texts["Application error"].Split('\n')[1].Substring(0, texts["Application error"].Split('\n')[1].Length - 1).Replace("{0}", errorCode.ToString().Split(':')[1].ToString().Replace(" ", "").ToString()).Replace("{1}", errorCode.ToString().Split(':')[2].ToString().Replace(" ", "").ToString()), bg, fg); } catch { }
@@ -93,17 +95,17 @@ namespace UltimateBlueScreenSimulator
                               line6.Image = WriteWord("   lose any unsaved information in all applications.", bg, fg);*/
                     line7.Visible = false;
                     line8.Visible = false;
-                    panel2.Location = new Point(panel2.Location.X, panel2.Location.Y + 20);
+                    simplePanel.Location = new Point(simplePanel.Location.X, simplePanel.Location.Y + 20);
                     anyKeyMsg.Location = new Point(anyKeyMsg.Location.X, anyKeyMsg.Location.Y - 30);
-                    pictureBox2.Location = new Point(pictureBox2.Location.X, pictureBox2.Location.Y - 30);
+                    blinkingColor.Location = new Point(blinkingColor.Location.X, blinkingColor.Location.Y - 30);
                 }
                 else if (screenmode == "Driver error")
                 {
-                    pictureBox1.Image = WriteWord(titles["Main"], hlb, hlf);
-                    pictureBox1.Size = new Size(8 * titles["Main"].Length, pictureBox1.Height);
-                    panel1.Size = new Size(pictureBox1.Width + 20, panel1.Height);
-                    panel1.Location = new Point((this.Width / 2) - (panel1.Width / 2) - 8, panel1.Location.Y);
-                    pictureBox1.Location = new Point(10, 2);
+                    titleText.Image = WriteWord(titles["Main"], hlb, hlf);
+                    titleText.Size = new Size(8 * titles["Main"].Length, titleText.Height);
+                    titleBorder.Size = new Size(titleText.Width + 20, titleBorder.Height);
+                    titleBorder.Location = new Point((this.Width / 2) - (titleBorder.Width / 2) - 8, titleBorder.Location.Y);
+                    titleText.Location = new Point(10, 2);
 
                     try { line1.Image = WriteWord(texts["Driver error"].Split('\n')[0].Substring(0, texts["Driver error"].Split('\n')[0].Length - 1).Replace("{2}", Program.bluescreens[3].GenHex(8, "RRRRRRRR")).Replace("{0}", errorCode.ToString().Split(':')[1].ToString().Replace(" ", "").ToString()).Replace("{1}", errorCode.ToString().Split(':')[2].ToString().Replace(" ", "").ToString()), bg, fg); } catch { }
                     try { line2.Image = WriteWord(texts["Driver error"].Split('\n')[1].Substring(0, texts["Driver error"].Split('\n')[1].Length - 1).Replace("{2}", Program.bluescreens[3].GenHex(8, "RRRRRRRR")).Replace("{0}", errorCode.ToString().Split(':')[1].ToString().Replace(" ", "").ToString()).Replace("{1}", errorCode.ToString().Split(':')[2].ToString().Replace(" ", "").ToString()), bg, fg); } catch { }
@@ -118,17 +120,17 @@ namespace UltimateBlueScreenSimulator
                     line6.Image = WriteWord("   lose any unsaved information in all applications.", bg, fg);*/
                     line7.Visible = false;
                     line8.Visible = false;
-                    panel2.Location = new Point(panel2.Location.X, panel2.Location.Y + 20);
+                    simplePanel.Location = new Point(simplePanel.Location.X, simplePanel.Location.Y + 20);
                     anyKeyMsg.Location = new Point(anyKeyMsg.Location.X, anyKeyMsg.Location.Y - 30);
-                    pictureBox2.Location = new Point(pictureBox2.Location.X, pictureBox2.Location.Y - 30);
+                    blinkingColor.Location = new Point(blinkingColor.Location.X, blinkingColor.Location.Y - 30);
                 }
                 else if (screenmode == "System is unresponsive (Warning)")
                 {
-                    pictureBox1.Image = WriteWord(titles["Warning"], hlb, hlf);
-                    pictureBox1.Size = new Size(8 * titles["Warning"].Length, pictureBox1.Height);
-                    panel1.Size = new Size(pictureBox1.Width + 20, panel1.Height);
-                    panel1.Location = new Point((this.Width / 2) - (panel1.Width / 2) - 8, panel1.Location.Y);
-                    pictureBox1.Location = new Point(10, 2);
+                    titleText.Image = WriteWord(titles["Warning"], hlb, hlf);
+                    titleText.Size = new Size(8 * titles["Warning"].Length, titleText.Height);
+                    titleBorder.Size = new Size(titleText.Width + 20, titleBorder.Height);
+                    titleBorder.Location = new Point((this.Width / 2) - (titleBorder.Width / 2) - 8, titleBorder.Location.Y);
+                    titleText.Location = new Point(10, 2);
                     try { line1.Image = WriteWord(texts["System is unresponsive"].Split('\n')[0].Substring(0, texts["System is unresponsive"].Split('\n')[0].Length - 1), bg, fg); } catch { }
                     try { line2.Image = WriteWord(texts["System is unresponsive"].Split('\n')[1].Substring(0, texts["System is unresponsive"].Split('\n')[1].Length - 1), bg, fg); } catch { }
                     try { line3.Image = WriteWord(texts["System is unresponsive"].Split('\n')[2].Substring(0, texts["System is unresponsive"].Split('\n')[2].Length - 1), bg, fg); } catch { }
@@ -142,17 +144,17 @@ namespace UltimateBlueScreenSimulator
                     line6.Image = WriteWord("   lose any unsaved information in programs that are running.", bg, fg);*/
                     line7.Visible = false;
                     line8.Visible = false;
-                    panel2.Location = new Point(panel2.Location.X, panel2.Location.Y + 20);
+                    simplePanel.Location = new Point(simplePanel.Location.X, simplePanel.Location.Y + 20);
                     anyKeyMsg.Location = new Point(anyKeyMsg.Location.X, anyKeyMsg.Location.Y - 30);
-                    pictureBox2.Location = new Point(pictureBox2.Location.X, pictureBox2.Location.Y - 30);
+                    blinkingColor.Location = new Point(blinkingColor.Location.X, blinkingColor.Location.Y - 30);
                 }
                 else if (screenmode == "System is busy")
                 {
-                    pictureBox1.Image = WriteWord(titles["System is busy"], hlb, hlf);
-                    pictureBox1.Size = new Size(8 * titles["System is busy"].Length, pictureBox1.Height);
-                    panel1.Size = new Size(pictureBox1.Width + 20, panel1.Height);
-                    panel1.Location = new Point((this.Width / 2) - (panel1.Width / 2) - 8, panel1.Location.Y);
-                    pictureBox1.Location = new Point(10, 2);
+                    titleText.Image = WriteWord(titles["System is busy"], hlb, hlf);
+                    titleText.Size = new Size(8 * titles["System is busy"].Length, titleText.Height);
+                    titleBorder.Size = new Size(titleText.Width + 20, titleBorder.Height);
+                    titleBorder.Location = new Point((this.Width / 2) - (titleBorder.Width / 2) - 8, titleBorder.Location.Y);
+                    titleText.Location = new Point(10, 2);
                     try { line1.Image = WriteWord(texts["System is busy"].Split('\n')[0].Substring(0, texts["System is busy"].Split('\n')[0].Length - 1), bg, fg); } catch { }
                     try { line2.Image = WriteWord(texts["System is busy"].Split('\n')[1].Substring(0, texts["System is busy"].Split('\n')[1].Length - 1), bg, fg); } catch { }
                     try { line3.Image = WriteWord(texts["System is busy"].Split('\n')[2].Substring(0, texts["System is busy"].Split('\n')[2].Length - 1), bg, fg); } catch { }
@@ -168,20 +170,20 @@ namespace UltimateBlueScreenSimulator
                     line6.Image = WriteWord("*  Press CTRL+ALT+DEL again to restart your computer. You will", bg, fg);
                     line7.Image = WriteWord("   lose any unsaved information in programs that are running.", bg, fg);*/
                     line8.Visible = false;
-                    pictureBox1.Size = new Size(pictureBox1.Width + 70, pictureBox1.Height);
-                    pictureBox1.Location = new Point(10, 2);
-                    panel2.Location = new Point(panel2.Location.X, panel2.Location.Y + 10);
+                    titleText.Size = new Size(titleText.Width + 70, titleText.Height);
+                    titleText.Location = new Point(10, 2);
+                    simplePanel.Location = new Point(simplePanel.Location.X, simplePanel.Location.Y + 10);
                     anyKeyMsg.Location = new Point(anyKeyMsg.Location.X, anyKeyMsg.Location.Y - 10);
-                    pictureBox2.Location = new Point(pictureBox2.Location.X, pictureBox2.Location.Y - 10);
+                    blinkingColor.Location = new Point(blinkingColor.Location.X, blinkingColor.Location.Y - 10);
 
                 }
                 else if (screenmode == "No unresponsive programs")
                 {
-                    pictureBox1.Image = WriteWord(titles["Main"], hlb, hlf);
-                    pictureBox1.Size = new Size(8 * titles["Main"].Length, pictureBox1.Height);
-                    panel1.Size = new Size(pictureBox1.Width + 20, panel1.Height);
-                    panel1.Location = new Point((this.Width / 2) - (panel1.Width / 2) - 8, panel1.Location.Y);
-                    pictureBox1.Location = new Point(10, 2);
+                    titleText.Image = WriteWord(titles["Main"], hlb, hlf);
+                    titleText.Size = new Size(8 * titles["Main"].Length, titleText.Height);
+                    titleBorder.Size = new Size(titleText.Width + 20, titleBorder.Height);
+                    titleBorder.Location = new Point((this.Width / 2) - (titleBorder.Width / 2) - 8, titleBorder.Location.Y);
+                    titleText.Location = new Point(10, 2);
                     try { line1.Image = WriteWord(texts["No unresponsive programs"].Split('\n')[0].Substring(0, texts["No unresponsive programs"].Split('\n')[0].Length - 1), bg, fg); } catch { }
                     try { line2.Image = WriteWord(texts["No unresponsive programs"].Split('\n')[1].Substring(0, texts["No unresponsive programs"].Split('\n')[1].Length - 1), bg, fg); } catch { }
                     try { line3.Image = WriteWord(texts["No unresponsive programs"].Split('\n')[2].Substring(0, texts["No unresponsive programs"].Split('\n')[2].Length - 1), bg, fg); } catch { }
@@ -195,14 +197,14 @@ namespace UltimateBlueScreenSimulator
                     line6.Location = new Point(line6.Location.X, line6.Location.Y + 26);
                     line7.Location = new Point(line7.Location.X, line7.Location.Y + 26);
                     line8.Location = new Point(line8.Location.X, line8.Location.Y + 26);
-                    panel2.Location = new Point(panel2.Location.X, panel2.Location.Y - 15);
+                    simplePanel.Location = new Point(simplePanel.Location.X, simplePanel.Location.Y - 15);
                     anyKeyMsg.Location = new Point(anyKeyMsg.Location.X, anyKeyMsg.Location.Y + 26);
-                    pictureBox2.Location = new Point(pictureBox2.Location.X, pictureBox2.Location.Y + 26);
+                    blinkingColor.Location = new Point(blinkingColor.Location.X, blinkingColor.Location.Y + 26);
                 }
                 anyKeyMsg.Image = WriteWord(prompt, bg, fg);
                 anyKeyMsg.Size = new Size(prompt.Length * 8, anyKeyMsg.Height);
                 anyKeyMsg.Location = new Point((this.Width / 2) - (anyKeyMsg.Width / 2) - 16, anyKeyMsg.Location.Y);
-                pictureBox2.Location = new Point(anyKeyMsg.Location.X + anyKeyMsg.Width + 8, pictureBox2.Location.Y);
+                blinkingColor.Location = new Point(anyKeyMsg.Location.X + anyKeyMsg.Width + 8, blinkingColor.Location.Y);
                 Program.loadfinished = true;
                 if (!window)
                 {
@@ -257,7 +259,7 @@ namespace UltimateBlueScreenSimulator
                         {
                             if (Program.multidisplaymode == "freeze")
                             {
-                                ws.pictureBox1.Image = freezescreens[i - 1];
+                                ws.screenDisplay.Image = freezescreens[i - 1];
                             }
                         }
                     }
@@ -266,6 +268,11 @@ namespace UltimateBlueScreenSimulator
                 {
                     this.Size = new Size(640, 320);
                 }
+                int[] colors = { this.BackColor.R + 50, this.BackColor.R + 50, this.BackColor.B + 50 };
+                if (colors[0] > 255) { colors[0] -= 255; }
+                if (colors[1] > 255) { colors[1] -= 255; }
+                if (colors[2] > 255) { colors[2] -= 255; }
+                waterMarkText.ForeColor = Color.FromArgb(colors[0], colors[1], colors[2]);
             } catch (Exception ex)
             {
                 Program.loadfinished = true;
@@ -371,13 +378,13 @@ namespace UltimateBlueScreenSimulator
                     }
                 }
             }
-            if (pictureBox2.Visible == false)
+            if (blinkingColor.Visible == false)
             {
-                pictureBox2.Visible = true;
+                blinkingColor.Visible = true;
                 return;
             } else
             {
-                pictureBox2.Visible = false;
+                blinkingColor.Visible = false;
                 return;
             }
         }

@@ -251,17 +251,17 @@ namespace UltimateBlueScreenSimulator
             ui.DownloadFile("markustegelane.tk/app/bssp_version.txt", "vercheck.txt");
             button2.Enabled = false;
             button2.Text = "Checking for updates...";
-            timer1.Enabled = true;
-            Program.f1.timer3.Interval = 5998;
-            Program.f1.timer3.Enabled = true;
+            updateCheckerTimer.Enabled = true;
+            Program.f1.updateCheckerTimer.Interval = 5998;
+            Program.f1.updateCheckerTimer.Enabled = true;
         }
 
         private void Timer1_Tick(object sender, EventArgs e)
         {
             //Checks if check for updates has finished
-            if (!Program.f1.timer3.Enabled)
+            if (!Program.f1.updateCheckerTimer.Enabled)
             {
-                timer1.Enabled = false;
+                updateCheckerTimer.Enabled = false;
                 button2.Enabled = true;
                 button2.Text = "Check for updates";
             }

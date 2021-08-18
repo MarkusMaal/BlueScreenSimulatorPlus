@@ -51,9 +51,11 @@ namespace UltimateBlueScreenSimulator
         {
             try
             {
+                this.Icon = me.GetIcon();
+                this.Text = me.GetString("friendlyname");
                 if (Program.f1.enableeggs)
                 {
-                    if (Program.bluescreens[2].GetTheme(true) == Program.bluescreens[2].GetTheme(false))
+                    if (this.BackColor == this.ForeColor)
                     {
                         this.BackColor = Color.FromArgb(255, 0, 0);
                         rainBowScreen.Enabled = true;
@@ -63,8 +65,8 @@ namespace UltimateBlueScreenSimulator
                 timeOut.Text = me.GetTexts()["Restart message"].Replace("{0}", progress.ToString());
                 string[] codez = technicalCode.Text.Replace("*** STOP: ", "").Replace(" (", "-").Replace(")", "").Split('-');
                 technicalCode.Text = me.GetTexts()["Technical information formatting"].Replace("{0}", codez[0].ToString()).Replace("{1}", codez[1]).ToString();
-                label2.Text = me.GetTexts()["Technical information"];
-                label1.Text = me.GetTexts()["A problem has occurred..."] + "\n" + me.GetTexts()["CTRL+ALT+DEL message"];
+                techinfoLabel.Text = me.GetTexts()["Technical information"];
+                infoLabel.Text = me.GetTexts()["A problem has occurred..."] + "\n" + me.GetTexts()["CTRL+ALT+DEL message"];
                 foreach (Control c in this.Controls)
                 {
                     if (c is Label)
@@ -128,7 +130,7 @@ namespace UltimateBlueScreenSimulator
                         {
                             if (Program.multidisplaymode == "freeze")
                             {
-                                ws.pictureBox1.Image = freezescreens[i - 1];
+                                ws.screenDisplay.Image = freezescreens[i - 1];
                             }
                         }
                     }
@@ -154,7 +156,7 @@ namespace UltimateBlueScreenSimulator
                                         g.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
                                         g.DrawImage(bmp, new Rectangle(0, 0, ws.Width, ws.Height));
                                     }
-                                    ws.pictureBox1.Image = newImage;
+                                    ws.screenDisplay.Image = newImage;
                                 }
                             }
                         }
@@ -170,6 +172,11 @@ namespace UltimateBlueScreenSimulator
                 MessageBox.Show("A blue screen couldn't be displayed due to an error\n\n" + ex.Message + "\n\n" + ex.StackTrace, "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.Close();
             }
+            int[] colors = { this.BackColor.R + 50, this.BackColor.G + 50, this.BackColor.B + 50 };
+            if (colors[0] > 255) { colors[0] -= 255; }
+            if (colors[1] > 255) { colors[1] -= 255; }
+            if (colors[2] > 255) { colors[2] -= 255; }
+            waterMarkText.ForeColor = Color.FromArgb(colors[0], colors[1], colors[2]);
         }
 
         private void Cebsod_FormClosing(object sender, FormClosingEventArgs e)
@@ -289,6 +296,19 @@ namespace UltimateBlueScreenSimulator
                 gr += 1;
             }
             this.BackColor = Color.FromArgb(r, gr, b);
+            foreach (Control c in this.Controls)
+            {
+                int[] colorsa = { this.BackColor.R - 100, this.BackColor.G - 100, this.BackColor.B - 100 };
+                if (colorsa[0] < 0) { colorsa[0] += 255; }
+                if (colorsa[1] < 0) { colorsa[1] += 255; }
+                if (colorsa[2] < 0) { colorsa[2] += 255; }
+                c.ForeColor = Color.FromArgb(colorsa[0], colorsa[1], colorsa[2]);
+            }
+            int[] colors = { this.BackColor.R + 20, this.BackColor.G + 20, this.BackColor.B + 20 };
+            if (colors[0] > 255) { colors[0] -= 255; }
+            if (colors[1] > 255) { colors[1] -= 255; }
+            if (colors[2] > 255) { colors[2] -= 255; }
+            waterMarkText.ForeColor = Color.FromArgb(colors[0], colors[1], colors[2]);
             try
             {
                 foreach (WindowScreen ws in wss)
