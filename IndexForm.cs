@@ -12,6 +12,7 @@ namespace UltimateBlueScreenSimulator
         public string c2 = "RRRRRRRRRRRRRRRR";
         public string c3 = "RRRRRRRRRRRRRRRR";
         public string c4 = "RRRRRRRRRRRRRRRR";
+        public bool nt_edit = false;
 
         int nt_id = 0;
 
@@ -452,23 +453,43 @@ namespace UltimateBlueScreenSimulator
 
         private void IndexForm_Load(object sender, EventArgs e)
         {
-            if (me.GetString("os") == "Windows 3.1x")
+            List<string> blacklist = new List<string>();
+            List<string> whitelist = new List<string>();
+            string[] bl = { "Windows 3.1x", "Windows 1.x/2.x", "Windows CE" };
+            string[] wl = { "Windows NT 3.x/4.0", "Windows Vista/7", "Windows XP" };
+            blacklist.AddRange(bl);
+            whitelist.AddRange(wl);
+            if (blacklist.Contains(me.GetString("os")))
             {
                 MessageBox.Show("This operating system does not support error codes", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.DialogResult = DialogResult.Cancel;
                 this.Close();
+                return;
             }
-            if (me.GetString("os") == "Windows NT 3.x/4.0")
+            if (whitelist.Contains(me.GetString("os"))&& (nt_edit))
             {
+                foreach (Control c in this.Controls) { c.Visible = false; }
                 panel1.Visible = true;
-                this.Size = new System.Drawing.Size(734, 452);
+                button25.Visible = true;
                 ReAdd();
-            } else
+            }
+            else
             {
-                this.Size = new System.Drawing.Size(734, 270);
+                if (nt_edit)
+                {
+                    MessageBox.Show("This operating system does not support advanced NT options", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    this.Close();
+                }
             }
             label6.Text = DispCodes(c1, c2, c3, c4);
-            this.Text = "Error code generation (" + me.GetString("os") + ")";
+            if (!nt_edit)
+            {
+                this.Text = "Error code generation - " + me.GetString("friendlyname");
+            }
+            else
+            {
+                this.Text = "Windows NT advanced options - " + me.GetString("friendlyname");
+            }
             radioButton1.Checked = false;
             radioButton1.Checked = true;
         }
@@ -649,6 +670,10 @@ namespace UltimateBlueScreenSimulator
 
         private void textBox17_TextChanged(object sender, EventArgs e)
         {
+            if (me.GetString("os") != "Windows NT 3.x/4.0")
+            {
+                me.SetString("culprit", textBox17.Text);
+            }
             foreach (KeyValuePair<string, string[]> kvp in me.GetFiles())
             {
                 string filename = comboBox1.SelectedItem.ToString().Split('-')[0];
@@ -782,6 +807,11 @@ namespace UltimateBlueScreenSimulator
                 case Keys.E: SetCustom('E'); break;
                 case Keys.F: SetCustom('F'); break;
             }
+        }
+
+        private void button24_Click_1(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

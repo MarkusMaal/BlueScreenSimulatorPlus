@@ -268,7 +268,7 @@ namespace UltimateBlueScreenSimulator
                     {
                         label2.Text = label2.Text.Replace(progress.ToString() + "%", "100%");
                         timer1.Enabled = false;
-                        if (w8close == true) { this.Close(); }
+                       this.Close();
                     }
                     string oldprogress = progress.ToString();
                     progress += 1;

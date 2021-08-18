@@ -67,11 +67,12 @@
             this.nostartup = new System.Windows.Forms.RadioButton();
             this.waterBox = new System.Windows.Forms.CheckBox();
             this.winMode = new System.Windows.Forms.CheckBox();
+            this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             this.helpTip = new System.Windows.Forms.ToolTip(this.components);
             this.button1 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -80,24 +81,25 @@
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.simulatorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.simulateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.advancedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.blueScreenHacksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.codeCustomizationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.specialToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.prankModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.autoUpdateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.simulatorSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.advancedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.blueScreenHacksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.prankModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.codeCustomizationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.commandLineSyntaxToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quickHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.autoUpdateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.simulatorSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.simulateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
             this.waitPopup = new System.Windows.Forms.Timer(this.components);
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.advancedNTOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addInfFile = new System.Windows.Forms.CheckBox();
             this.flowLayoutPanel1.SuspendLayout();
             this.WXOptions.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
@@ -106,8 +108,8 @@
             this.nineXmessage.SuspendLayout();
             this.winPanel.SuspendLayout();
             this.flowLayoutPanel3.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
             this.flowLayoutPanel4.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -172,7 +174,7 @@
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(15, 73);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(472, 289);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(472, 280);
             this.flowLayoutPanel1.TabIndex = 3;
             // 
             // WXOptions
@@ -276,10 +278,11 @@
             this.errorCode.Controls.Add(this.label5);
             this.errorCode.Controls.Add(this.comboBox1);
             this.errorCode.Controls.Add(this.label3);
+            this.errorCode.Controls.Add(this.addInfFile);
             this.errorCode.Location = new System.Drawing.Point(0, 59);
             this.errorCode.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.errorCode.Name = "errorCode";
-            this.errorCode.Size = new System.Drawing.Size(467, 84);
+            this.errorCode.Size = new System.Drawing.Size(467, 105);
             this.errorCode.TabIndex = 1;
             // 
             // button2
@@ -366,7 +369,7 @@
             this.ntPanel.Controls.Add(this.blinkBox);
             this.ntPanel.Controls.Add(this.amdBox);
             this.ntPanel.Controls.Add(this.stackBox);
-            this.ntPanel.Location = new System.Drawing.Point(0, 149);
+            this.ntPanel.Location = new System.Drawing.Point(0, 170);
             this.ntPanel.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.ntPanel.Name = "ntPanel";
             this.ntPanel.Size = new System.Drawing.Size(467, 27);
@@ -418,7 +421,7 @@
             // 
             this.nineXmessage.Controls.Add(this.comboBox2);
             this.nineXmessage.Controls.Add(this.label4);
-            this.nineXmessage.Location = new System.Drawing.Point(0, 182);
+            this.nineXmessage.Location = new System.Drawing.Point(0, 203);
             this.nineXmessage.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.nineXmessage.Name = "nineXmessage";
             this.nineXmessage.Size = new System.Drawing.Size(467, 25);
@@ -456,7 +459,7 @@
             // acpiBox
             // 
             this.acpiBox.AutoSize = true;
-            this.acpiBox.Location = new System.Drawing.Point(3, 213);
+            this.acpiBox.Location = new System.Drawing.Point(3, 234);
             this.acpiBox.Name = "acpiBox";
             this.acpiBox.Size = new System.Drawing.Size(124, 17);
             this.acpiBox.TabIndex = 8;
@@ -471,7 +474,7 @@
             this.checkBox1.AutoSize = true;
             this.checkBox1.Checked = true;
             this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Location = new System.Drawing.Point(3, 236);
+            this.checkBox1.Location = new System.Drawing.Point(3, 257);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(237, 17);
             this.checkBox1.TabIndex = 6;
@@ -486,7 +489,7 @@
             this.checkBox3.AutoSize = true;
             this.checkBox3.Checked = true;
             this.checkBox3.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox3.Location = new System.Drawing.Point(3, 259);
+            this.checkBox3.Location = new System.Drawing.Point(473, 3);
             this.checkBox3.Name = "checkBox3";
             this.checkBox3.Size = new System.Drawing.Size(69, 17);
             this.checkBox3.TabIndex = 13;
@@ -500,7 +503,7 @@
             // 
             this.winPanel.Controls.Add(this.playSndBox);
             this.winPanel.Controls.Add(this.flowLayoutPanel3);
-            this.winPanel.Location = new System.Drawing.Point(473, 3);
+            this.winPanel.Location = new System.Drawing.Point(473, 26);
             this.winPanel.Name = "winPanel";
             this.winPanel.Size = new System.Drawing.Size(461, 56);
             this.winPanel.TabIndex = 14;
@@ -567,7 +570,7 @@
             this.waterBox.AutoSize = true;
             this.waterBox.Checked = true;
             this.waterBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.waterBox.Location = new System.Drawing.Point(473, 65);
+            this.waterBox.Location = new System.Drawing.Point(473, 88);
             this.waterBox.Name = "waterBox";
             this.waterBox.Size = new System.Drawing.Size(127, 17);
             this.waterBox.TabIndex = 16;
@@ -579,7 +582,7 @@
             // winMode
             // 
             this.winMode.AutoSize = true;
-            this.winMode.Location = new System.Drawing.Point(473, 88);
+            this.winMode.Location = new System.Drawing.Point(473, 111);
             this.winMode.Name = "winMode";
             this.winMode.Size = new System.Drawing.Size(121, 17);
             this.winMode.TabIndex = 17;
@@ -588,31 +591,28 @@
             this.winMode.UseVisualStyleBackColor = true;
             this.winMode.CheckedChanged += new System.EventHandler(this.WinMode_CheckedChanged);
             // 
-            // button1
+            // flowLayoutPanel4
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(418, 387);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(68, 23);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Simulate";
-            this.helpTip.SetToolTip(this.button1, "Starts the simulation");
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.Button1_Click);
-            this.button1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Button7_KeyDown);
+            this.flowLayoutPanel4.Controls.Add(this.button5);
+            this.flowLayoutPanel4.Controls.Add(this.button4);
+            this.flowLayoutPanel4.Location = new System.Drawing.Point(473, 134);
+            this.flowLayoutPanel4.Name = "flowLayoutPanel4";
+            this.flowLayoutPanel4.Size = new System.Drawing.Size(467, 30);
+            this.flowLayoutPanel4.TabIndex = 18;
             // 
-            // button3
+            // button5
             // 
-            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.Location = new System.Drawing.Point(301, 387);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(111, 23);
-            this.button3.TabIndex = 9;
-            this.button3.Text = "I\'m feeling unlucky";
-            this.helpTip.SetToolTip(this.button3, "This will generate a random blue screen");
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.Button3_Click);
-            this.button3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Button7_KeyDown);
+            this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.button5.Location = new System.Drawing.Point(3, 3);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(113, 23);
+            this.button5.TabIndex = 11;
+            this.button5.Text = "Additional options";
+            this.helpTip.SetToolTip(this.button5, "Experimental features to mess with in blue screens");
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.Button5_Click);
+            this.button5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Button7_KeyDown);
             // 
             // button4
             // 
@@ -629,24 +629,36 @@
             this.button4.Click += new System.EventHandler(this.Button4_Click);
             this.button4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Button7_KeyDown);
             // 
-            // button5
+            // button1
             // 
-            this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.button5.Location = new System.Drawing.Point(3, 3);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(113, 23);
-            this.button5.TabIndex = 11;
-            this.button5.Text = "Additional options";
-            this.helpTip.SetToolTip(this.button5, "Experimental features to mess with in blue screens");
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.Button5_Click);
-            this.button5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Button7_KeyDown);
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.Location = new System.Drawing.Point(418, 378);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(68, 23);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "Simulate";
+            this.helpTip.SetToolTip(this.button1, "Starts the simulation");
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
+            this.button1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Button7_KeyDown);
+            // 
+            // button3
+            // 
+            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button3.Location = new System.Drawing.Point(301, 378);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(111, 23);
+            this.button3.TabIndex = 9;
+            this.button3.Text = "I\'m feeling unlucky";
+            this.helpTip.SetToolTip(this.button3, "This will generate a random blue screen");
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.Button3_Click);
+            this.button3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Button7_KeyDown);
             // 
             // button7
             // 
             this.button7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button7.Location = new System.Drawing.Point(15, 387);
+            this.button7.Location = new System.Drawing.Point(15, 378);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(69, 23);
             this.button7.TabIndex = 14;
@@ -662,7 +674,7 @@
             // 
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(15, 371);
+            this.label7.Location = new System.Drawing.Point(15, 362);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(150, 13);
             this.label7.TabIndex = 6;
@@ -671,7 +683,7 @@
             // label10
             // 
             this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label10.Location = new System.Drawing.Point(351, 365);
+            this.label10.Location = new System.Drawing.Point(351, 356);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(134, 13);
             this.label10.TabIndex = 8;
@@ -704,7 +716,6 @@
             this.menuStrip1.AutoSize = false;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.simulatorToolStripMenuItem,
-            this.specialToolStripMenuItem,
             this.advancedToolStripMenuItem,
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
@@ -722,12 +733,21 @@
             this.settingsToolStripMenuItem,
             this.toolStripSeparator1,
             this.exitToolStripMenuItem});
+            this.simulatorToolStripMenuItem.Margin = new System.Windows.Forms.Padding(5, 0, 0, 0);
             this.simulatorToolStripMenuItem.Name = "simulatorToolStripMenuItem";
             this.simulatorToolStripMenuItem.Padding = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.simulatorToolStripMenuItem.Size = new System.Drawing.Size(66, 22);
             this.simulatorToolStripMenuItem.Text = "Common";
             this.simulatorToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.simulatorToolStripMenuItem.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
+            // 
+            // simulateToolStripMenuItem
+            // 
+            this.simulateToolStripMenuItem.AutoSize = false;
+            this.simulateToolStripMenuItem.Name = "simulateToolStripMenuItem";
+            this.simulateToolStripMenuItem.Size = new System.Drawing.Size(180, 21);
+            this.simulateToolStripMenuItem.Text = "Simulate";
+            this.simulateToolStripMenuItem.Click += new System.EventHandler(this.simulateToolStripMenuItem_Click);
             // 
             // settingsToolStripMenuItem
             // 
@@ -739,49 +759,19 @@
             this.settingsToolStripMenuItem.Size = new System.Drawing.Size(180, 21);
             this.settingsToolStripMenuItem.Text = "Settings";
             // 
-            // advancedToolStripMenuItem
+            // autoUpdateToolStripMenuItem
             // 
-            this.advancedToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.blueScreenHacksToolStripMenuItem,
-            this.codeCustomizationToolStripMenuItem});
-            this.advancedToolStripMenuItem.Name = "advancedToolStripMenuItem";
-            this.advancedToolStripMenuItem.Padding = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.advancedToolStripMenuItem.Size = new System.Drawing.Size(68, 22);
-            this.advancedToolStripMenuItem.Text = "Advanced";
-            this.advancedToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.advancedToolStripMenuItem.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
+            this.autoUpdateToolStripMenuItem.Name = "autoUpdateToolStripMenuItem";
+            this.autoUpdateToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.autoUpdateToolStripMenuItem.Text = "AutoUpdate";
+            this.autoUpdateToolStripMenuItem.Click += new System.EventHandler(this.autoUpdateToolStripMenuItem_Click);
             // 
-            // blueScreenHacksToolStripMenuItem
+            // simulatorSettingsToolStripMenuItem
             // 
-            this.blueScreenHacksToolStripMenuItem.Name = "blueScreenHacksToolStripMenuItem";
-            this.blueScreenHacksToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.blueScreenHacksToolStripMenuItem.Text = "Advanced options";
-            this.blueScreenHacksToolStripMenuItem.Click += new System.EventHandler(this.blueScreenHacksToolStripMenuItem_Click);
-            // 
-            // codeCustomizationToolStripMenuItem
-            // 
-            this.codeCustomizationToolStripMenuItem.Name = "codeCustomizationToolStripMenuItem";
-            this.codeCustomizationToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.codeCustomizationToolStripMenuItem.Text = "Code customization";
-            this.codeCustomizationToolStripMenuItem.Click += new System.EventHandler(this.codeCustomizationToolStripMenuItem_Click);
-            // 
-            // specialToolStripMenuItem
-            // 
-            this.specialToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.prankModeToolStripMenuItem});
-            this.specialToolStripMenuItem.Name = "specialToolStripMenuItem";
-            this.specialToolStripMenuItem.Padding = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.specialToolStripMenuItem.Size = new System.Drawing.Size(52, 22);
-            this.specialToolStripMenuItem.Text = "Special";
-            this.specialToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.specialToolStripMenuItem.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
-            // 
-            // prankModeToolStripMenuItem
-            // 
-            this.prankModeToolStripMenuItem.Name = "prankModeToolStripMenuItem";
-            this.prankModeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.prankModeToolStripMenuItem.Text = "Prank mode";
-            this.prankModeToolStripMenuItem.Click += new System.EventHandler(this.prankModeToolStripMenuItem_Click);
+            this.simulatorSettingsToolStripMenuItem.Name = "simulatorSettingsToolStripMenuItem";
+            this.simulatorSettingsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.simulatorSettingsToolStripMenuItem.Text = "Simulator settings";
+            this.simulatorSettingsToolStripMenuItem.Click += new System.EventHandler(this.simulatorSettingsToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
@@ -797,6 +787,42 @@
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 21);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
+            // advancedToolStripMenuItem
+            // 
+            this.advancedToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.blueScreenHacksToolStripMenuItem,
+            this.codeCustomizationToolStripMenuItem,
+            this.advancedNTOptionsToolStripMenuItem,
+            this.toolStripSeparator3,
+            this.prankModeToolStripMenuItem});
+            this.advancedToolStripMenuItem.Name = "advancedToolStripMenuItem";
+            this.advancedToolStripMenuItem.Padding = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.advancedToolStripMenuItem.Size = new System.Drawing.Size(68, 22);
+            this.advancedToolStripMenuItem.Text = "Advanced";
+            this.advancedToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.advancedToolStripMenuItem.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
+            // 
+            // blueScreenHacksToolStripMenuItem
+            // 
+            this.blueScreenHacksToolStripMenuItem.Name = "blueScreenHacksToolStripMenuItem";
+            this.blueScreenHacksToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.blueScreenHacksToolStripMenuItem.Text = "Advanced options";
+            this.blueScreenHacksToolStripMenuItem.Click += new System.EventHandler(this.blueScreenHacksToolStripMenuItem_Click);
+            // 
+            // prankModeToolStripMenuItem
+            // 
+            this.prankModeToolStripMenuItem.Name = "prankModeToolStripMenuItem";
+            this.prankModeToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.prankModeToolStripMenuItem.Text = "Prank mode";
+            this.prankModeToolStripMenuItem.Click += new System.EventHandler(this.prankModeToolStripMenuItem_Click);
+            // 
+            // codeCustomizationToolStripMenuItem
+            // 
+            this.codeCustomizationToolStripMenuItem.Name = "codeCustomizationToolStripMenuItem";
+            this.codeCustomizationToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.codeCustomizationToolStripMenuItem.Text = "Code customization";
+            this.codeCustomizationToolStripMenuItem.Click += new System.EventHandler(this.codeCustomizationToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -822,6 +848,7 @@
             // quickHelpToolStripMenuItem
             // 
             this.quickHelpToolStripMenuItem.Name = "quickHelpToolStripMenuItem";
+            this.quickHelpToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1;
             this.quickHelpToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.quickHelpToolStripMenuItem.Text = "Quick help";
             this.quickHelpToolStripMenuItem.Click += new System.EventHandler(this.quickHelpToolStripMenuItem_Click);
@@ -838,46 +865,40 @@
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
-            // autoUpdateToolStripMenuItem
-            // 
-            this.autoUpdateToolStripMenuItem.Name = "autoUpdateToolStripMenuItem";
-            this.autoUpdateToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.autoUpdateToolStripMenuItem.Text = "AutoUpdate";
-            this.autoUpdateToolStripMenuItem.Click += new System.EventHandler(this.autoUpdateToolStripMenuItem_Click);
-            // 
-            // simulatorSettingsToolStripMenuItem
-            // 
-            this.simulatorSettingsToolStripMenuItem.Name = "simulatorSettingsToolStripMenuItem";
-            this.simulatorSettingsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.simulatorSettingsToolStripMenuItem.Text = "Simulator settings";
-            this.simulatorSettingsToolStripMenuItem.Click += new System.EventHandler(this.simulatorSettingsToolStripMenuItem_Click);
-            // 
-            // simulateToolStripMenuItem
-            // 
-            this.simulateToolStripMenuItem.AutoSize = false;
-            this.simulateToolStripMenuItem.Name = "simulateToolStripMenuItem";
-            this.simulateToolStripMenuItem.Size = new System.Drawing.Size(180, 21);
-            this.simulateToolStripMenuItem.Text = "Simulate";
-            this.simulateToolStripMenuItem.Click += new System.EventHandler(this.simulateToolStripMenuItem_Click);
-            // 
-            // flowLayoutPanel4
-            // 
-            this.flowLayoutPanel4.Controls.Add(this.button5);
-            this.flowLayoutPanel4.Controls.Add(this.button4);
-            this.flowLayoutPanel4.Location = new System.Drawing.Point(473, 111);
-            this.flowLayoutPanel4.Name = "flowLayoutPanel4";
-            this.flowLayoutPanel4.Size = new System.Drawing.Size(467, 30);
-            this.flowLayoutPanel4.TabIndex = 18;
-            // 
             // waitPopup
             // 
             this.waitPopup.Tick += new System.EventHandler(this.waitPopup_Tick);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(185, 6);
+            // 
+            // advancedNTOptionsToolStripMenuItem
+            // 
+            this.advancedNTOptionsToolStripMenuItem.Name = "advancedNTOptionsToolStripMenuItem";
+            this.advancedNTOptionsToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.advancedNTOptionsToolStripMenuItem.Text = "Advanced NT options";
+            this.advancedNTOptionsToolStripMenuItem.Click += new System.EventHandler(this.advancedNTOptionsToolStripMenuItem_Click);
+            // 
+            // addInfFile
+            // 
+            this.addInfFile.AutoSize = true;
+            this.addInfFile.Enabled = false;
+            this.addInfFile.Location = new System.Drawing.Point(2, 84);
+            this.addInfFile.Name = "addInfFile";
+            this.addInfFile.Size = new System.Drawing.Size(234, 17);
+            this.addInfFile.TabIndex = 19;
+            this.addInfFile.Text = "Show additional information about the file [?]\r\n";
+            this.helpTip.SetToolTip(this.addInfFile, "Display additional information below the stop code");
+            this.addInfFile.UseVisualStyleBackColor = true;
+            this.addInfFile.CheckedChanged += new System.EventHandler(this.addInfFile_CheckedChanged);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(499, 424);
+            this.ClientSize = new System.Drawing.Size(499, 415);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.button3);
@@ -919,9 +940,9 @@
             this.winPanel.PerformLayout();
             this.flowLayoutPanel3.ResumeLayout(false);
             this.flowLayoutPanel3.PerformLayout();
+            this.flowLayoutPanel4.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.flowLayoutPanel4.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -982,8 +1003,6 @@
         private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem specialToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem prankModeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem advancedToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem blueScreenHacksToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem codeCustomizationToolStripMenuItem;
@@ -997,6 +1016,10 @@
         private System.Windows.Forms.ToolStripMenuItem simulateToolStripMenuItem;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel4;
         private System.Windows.Forms.Timer waitPopup;
+        private System.Windows.Forms.ToolStripMenuItem prankModeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripMenuItem advancedNTOptionsToolStripMenuItem;
+        internal System.Windows.Forms.CheckBox addInfFile;
     }
 }
 

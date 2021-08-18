@@ -38,14 +38,14 @@ namespace UltimateBlueScreenSimulator
             this.errorCode = new System.Windows.Forms.AliasedLabel();
             this.supportInfo = new System.Windows.Forms.AliasedLabel();
             this.technicalCode = new System.Windows.Forms.AliasedLabel();
-            this.label5 = new System.Windows.Forms.AliasedLabel();
             this.waterMarkText = new System.Windows.Forms.AliasedLabel();
+            this.label5 = new System.Windows.Forms.AliasedLabel();
             this.SuspendLayout();
             // 
             // timer1
             // 
             this.timer1.Enabled = true;
-            this.timer1.Interval = 500;
+            this.timer1.Interval = 25;
             this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
             // 
             // tardisFade
@@ -108,22 +108,9 @@ namespace UltimateBlueScreenSimulator
             this.technicalCode.Location = new System.Drawing.Point(-1, 331);
             this.technicalCode.Margin = new System.Windows.Forms.Padding(3, 20, 3, 0);
             this.technicalCode.Name = "technicalCode";
-            this.technicalCode.Size = new System.Drawing.Size(641, 41);
+            this.technicalCode.Size = new System.Drawing.Size(641, 34);
             this.technicalCode.TabIndex = 11;
             this.technicalCode.Text = "*** STOP: 0xDEADDEAD (0x00000000, 0x00000000, 0x00000000, 0x00000000)";
-            // 
-            // label5
-            // 
-            this.label5.BackColor = System.Drawing.Color.Navy;
-            this.label5.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.label5.Font = new System.Drawing.Font("Consolas", 9F);
-            this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(-1, 373);
-            this.label5.Margin = new System.Windows.Forms.Padding(3, 20, 3, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(641, 256);
-            this.label5.TabIndex = 12;
-            this.label5.Text = "Sample Text";
             // 
             // waterMarkText
             // 
@@ -137,18 +124,32 @@ namespace UltimateBlueScreenSimulator
             this.waterMarkText.TabIndex = 7;
             this.waterMarkText.Text = "blue screen simulator plus";
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.Navy;
+            this.label5.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.label5.Font = new System.Drawing.Font("Consolas", 9F);
+            this.label5.ForeColor = System.Drawing.Color.White;
+            this.label5.Location = new System.Drawing.Point(-1, 373);
+            this.label5.Margin = new System.Windows.Forms.Padding(3, 20, 3, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(84, 14);
+            this.label5.TabIndex = 12;
+            this.label5.Text = "Sample Text";
+            // 
             // Vistabs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Navy;
             this.ClientSize = new System.Drawing.Size(640, 480);
+            this.Controls.Add(this.technicalCode);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.errorCode);
             this.Controls.Add(this.supportInfo);
-            this.Controls.Add(this.technicalCode);
             this.Controls.Add(this.waterMarkText);
-            this.Controls.Add(this.label5);
             this.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;

@@ -129,6 +129,7 @@ namespace UltimateBlueScreenSimulator
             memoryBox.Visible = false;
             checkBox3.Visible = false;
             winPanel.Visible = false;
+            addInfFile.Enabled = false;
             // set current bluescreen
             me = Program.bluescreens[Program.bluescreens.Count - 1 - windowVersion.SelectedIndex];
             // set control visibility for specific OS-es
@@ -172,6 +173,7 @@ namespace UltimateBlueScreenSimulator
                 checkBox1.Visible = true;
                 autoBox.Visible = true;
                 checkBox3.Visible = true;
+                addInfFile.Enabled = true;
             }
             else if (me.GetString("os") == "Windows XP")
             {
@@ -180,6 +182,7 @@ namespace UltimateBlueScreenSimulator
                 checkBox1.Visible = true;
                 autoBox.Visible = true;
                 checkBox3.Visible = true;
+                addInfFile.Enabled = true;
             }
             else if (me.GetString("os") == "Windows 2000")
             {
@@ -1139,6 +1142,10 @@ namespace UltimateBlueScreenSimulator
         private void TextBox2_TextChanged(object sender, EventArgs e)
         {
             me.SetString("culprit", textBox2.Text);
+            if ((me.GetString("os") == "Windows XP") || (me.GetString("os") == "Windows Vista/7"))
+            {
+                me.RenameFile(me.GetFiles().ElementAt(0).Key, textBox2.Text);
+            }
         }
 
         private void AmdBox_CheckedChanged(object sender, EventArgs e)
@@ -1384,6 +1391,26 @@ namespace UltimateBlueScreenSimulator
                 waitPopup.Enabled = false;
                 this.WindowState = FormWindowState.Normal;
                 this.Show();
+            }
+        }
+
+        private void advancedNTOptionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int backup = windowVersion.SelectedIndex;
+            IndexForm iform = new IndexForm();
+            iform.nt_edit = true;
+            iform.me = me;
+            iform.ShowDialog();
+            iform.Dispose();
+            windowVersion.SelectedIndex = 0;
+            windowVersion.SelectedIndex = backup;
+        }
+
+        private void addInfFile_CheckedChanged(object sender, EventArgs e)
+        {
+            if (addInfFile.Enabled)
+            {
+                me.SetBool("extrafile", addInfFile.Checked);
             }
         }
     }

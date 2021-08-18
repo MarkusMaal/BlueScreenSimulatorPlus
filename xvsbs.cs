@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using SimulatorDatabase;
 
@@ -56,7 +57,11 @@ namespace UltimateBlueScreenSimulator
                 }
                 if (whatfail != "")
                 {
-                    label5.Text = "***  " + whatfail.ToUpper() + " - Address " + me.GenHex(8, "RRRRRRRR") + " base at " + me.GenHex(8, "RRRRRRRR") + ", DateStamp " + me.GenHex(8, "RRRRRRRR").ToLower();
+
+                    if (me.GetBool("extrafile"))
+                    {
+                        label5.Text = "***  " + whatfail.ToUpper() + " - Address " + me.GenHex(8, me.GetFiles().ElementAt(0).Value[0]) + " base at " + me.GenHex(8, me.GetFiles().ElementAt(0).Value[1]) + ", DateStamp " + me.GenHex(8, me.GetFiles().ElementAt(0).Value[2]).ToLower() + "\r\n\r\n\r\n";
+                    }
                     errorCode.Text = "The problem seems to be caused by the following file: " + whatfail.ToUpper() + "\n\n" + errorCode.Text;
                     supportInfo.Location = new Point(supportInfo.Location.X, supportInfo.Location.Y + 24);
                     technicalCode.Location = new Point(label5.Location.X, technicalCode.Location.Y + 24);
@@ -69,7 +74,10 @@ namespace UltimateBlueScreenSimulator
 
                 try
                 {
-                    label5.Text = txt["Physical memory dump"].Split('\n')[0].Trim() + "\n" + txt["Physical memory dump"].Split('\n')[1].Trim() + "\n" + txt["Technical support"].Split('\n')[0].Trim() + "\n" + txt["Technical support"].Split('\n')[1].Trim();
+                    if (me.GetBool("autoclose"))
+                    {
+                        label5.Text += txt["Physical memory dump"].Split('\n')[0].Trim() + "\n" + txt["Physical memory dump"].Split('\n')[1].Trim() + "\n" + txt["Technical support"].Split('\n')[0].Trim() + "\n" + txt["Technical support"].Split('\n')[1].Trim();
+                    }
                 }
                 catch
                 {

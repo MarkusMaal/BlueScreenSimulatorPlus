@@ -803,13 +803,13 @@ namespace SimulatorDatabase
                     SetString("friendlyname", "Windows NT 4.0/3.x (Text mode, Standard)");
                     for (int n = 0; n < 40; n++)
                     {
-                        string[] inspir = { "RRRRRRRR", "RRRRRRRR" };
-                        PushFile(GenFile(true), inspir);
+                        string[] inspirn = { "RRRRRRRR", "RRRRRRRR" };
+                        PushFile(GenFile(true), inspirn);
                     }
                     for (int n = 0; n < 4; n++)
                     {
-                        string[] inspir = { "RRRRRRRR", "RRRRRRRR", "RRRRRRRR", "RRRRRRRR", "RRRRRRRR", "RRRRRRRR" };
-                        PushFile(GenFile(true), inspir);
+                        string[] inspirn = { "RRRRRRRR", "RRRRRRRR", "RRRRRRRR", "RRRRRRRR", "RRRRRRRR", "RRRRRRRR" };
+                        PushFile(GenFile(true), inspirn);
                     }
                     SetBool("font_support", false);
                     SetBool("blinkblink", true);
@@ -841,6 +841,9 @@ namespace SimulatorDatabase
                     PushText("Technical support", "Contact your system administrator or technical support group for further\r\nassistance.");
                     SetFont("Lucida Console", 9.7f, FontStyle.Regular);
                     SetString("friendlyname", "Windows XP (640x480, Standard)");
+                    string[] inspirb = { "RRRRRRRR", "RRRRRRRR", "RRRRRRRR" };
+                    SetString("culprit", GenFile(true));
+                    PushFile(GetString("culprit"), inspirb);
                     SetTheme(RGB(0, 0, 128), RGB(255, 255, 255));
 
                     SetBool("autoclose", true);
@@ -855,7 +858,13 @@ namespace SimulatorDatabase
                     PushText("Troubleshooting", "Check to make sure any new hardware or software is properly installed.\r\nIf this is a new installation, ask your hardware or software manufacturer\r\nfor any Windows updates you might need.\r\n\r\nIf problems continue, disable or remove any newly installed hardware\r\nor software. Disable BIOS memory options such as caching or shadowing.\r\nIf you need to use Safe mode to remove or disable components, restart\r\nyour computer, press F8 to select Advanced Startup Options, and then\r\nselect Safe Mode.");
                     PushText("Technical information", "Technical information:");
                     PushText("Technical information formatting", "*** STOP: {0} ({1})");
+                    PushText("Collecting data for crash dump", "Collecting data for crash dump ...");
+                    PushText("Initializing crash dump", "Initializing disk for crash dump ...");
+                    PushText("Begin dump", "Beginning dump of physical memory.");
+                    PushText("End dump", "Physical memory dump complete.");
                     PushText("Physical memory dump", "Dumping physical memory to disk:{0}");
+                    PushText("Culprit file", "The problem seems to be caused by the following file: ");
+                    PushText("Culprit file memory address", "***  {0} - Address {1} base at {2}, DateStamp {3}");
                     PushText("Technical support", "Contact your system admin or technical support group for further assistance.");
                     SetFont("Consolas", 9.4f, FontStyle.Regular);
                     SetString("friendlyname", "Windows Vista/7 (640x480, ClearType)");
@@ -863,6 +872,9 @@ namespace SimulatorDatabase
 
                     SetBool("autoclose", true);
                     SetString("code", "IRQL_NOT_LESS_OR_EQUAL (0x0000000A)");
+                    string[] inspir = { "RRRRRRRR", "RRRRRRRR", "RRRRRRRR" };
+                    SetString("culprit", GenFile(true));
+                    PushFile(GetString("culprit"), inspir);
                     SetBool("show_description", true);
                     SetBool("font_support", true);
                     break;
@@ -907,8 +919,8 @@ namespace SimulatorDatabase
                 case "Windows 11":
                     this.icon = "2D window";
                     SetString("emoticon", ":(");
-                    PushText("Information text with dump", "Your PC ran into a problem and needs to restart. We're just\r\ncollecting some error info, and then we'll restart for you.");
-                    PushText("Information text without dump", "Your PC ran into a problem and needs to restart. We're just\r\ncollecting some error info, and then you can restart.");
+                    PushText("Information text with dump", "Your device ran into a problem and needs to restart. We're just\r\ncollecting some error info, and then we'll restart for you.");
+                    PushText("Information text without dump", "Your device ran into a problem and needs to restart. We're just\r\ncollecting some error info, and then you can restart.");
                     PushText("Additional information", "For more information about this issue and possible fixes, visit http://windows.com/stopcode");
                     PushText("Culprit file", "What failed: {0}");
                     PushText("Error code", "If you call a support person, give them this info:\r\n\r\nStop code: {0}");

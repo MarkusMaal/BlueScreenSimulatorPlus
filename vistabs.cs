@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using SimulatorDatabase;
 
@@ -16,6 +17,9 @@ namespace UltimateBlueScreenSimulator
         bool ing = false;
         bool inb = false;
         internal BlueScreen me = Program.bluescreens[0];
+        string h1;
+        string h2;
+        string h3;
         Color bg;
         Color fg;
         IDictionary<string, string> txt;
@@ -32,6 +36,10 @@ namespace UltimateBlueScreenSimulator
         {
             try
             {
+                this.Text = me.GetString("friendlyname");
+                h1 = me.GenHex(8, me.GetFiles().ElementAt(0).Value[0]);
+                h2 = me.GenHex(8, me.GetFiles().ElementAt(0).Value[1]);
+                h3 = me.GenHex(8, me.GetFiles().ElementAt(0).Value[2]);
                 bg = me.GetTheme(true);
                 fg = me.GetTheme(false);
                 txt = me.GetTexts();
@@ -55,22 +63,22 @@ namespace UltimateBlueScreenSimulator
                         rainBowScreen.Enabled = true;
                     }
                 }
-                if ((whatfail != "") && me.GetBool("show_description"))
+                float HeightInPixels;
+                using (Graphics g = this.CreateGraphics())
                 {
-                    supportInfo.Location = new Point(supportInfo.Location.X, supportInfo.Location.Y + 36);
-                    technicalCode.Location = new Point(technicalCode.Location.X, technicalCode.Location.Y + 36);
-                    label5.Location = new Point(label5.Location.X, label5.Location.Y + 36);
+                    var points = me.GetFont().SizeInPoints;
+                    HeightInPixels = points * g.DpiX / 72;
                 }
                 errorCode.Visible = me.GetBool("show_description");
-                label5.Text = "Collecting data for crash dump ..."; label5.Text += "\nInitializing disk for crash dump ...";
-                label5.Text += "\nBeginning dump of physical memory.\nDumping physical memory to disk:   0";
+                label5.Text = txt["Collecting data for crash dump"]; label5.Text += "\n" + txt["Initializing crash dump"];
+                label5.Text += "\n" + txt["Begin dump"] + "\n" + txt["Physical memory dump"] + "   0";
                 if (whatfail != "")
                 {
-
-                    label5.Text = "***  " + whatfail.ToUpper() + " - Address " + me.GenHex(8, "RRRRRRRR") + " base at " + me.GenHex(8, "RRRRRRRR") + ", DateStamp " + me.GenHex(8, "RRRRRRRR").ToLower();
-                    errorCode.Text = "The problem seems to be caused by the following file: " + whatfail.ToUpper() + "\n\n" + errorCode.Text;
+                    errorCode.Text = txt["Culprit file"] + whatfail.ToUpper() + "\n\n" + errorCode.Text;
                     label5.Margin = new Padding(3, 15, 3, 0);
                 }
+                supportInfo.Location = new Point(supportInfo.Location.X, errorCode.Location.Y + errorCode.Size.Height + (2 * (int)HeightInPixels));
+                technicalCode.Location = new Point(technicalCode.Location.X, supportInfo.Location.Y + supportInfo.Size.Height + (int)HeightInPixels);
                 errorCode.Margin = new Padding(3, 15, 3, 0);
                 supportInfo.Margin = new Padding(3, 15, 3, 0);
                 technicalCode.Margin = new Padding(3, 15, 3, 0);
@@ -89,6 +97,12 @@ namespace UltimateBlueScreenSimulator
                         c.Font = me.GetFont();
                     }
                 }
+                if (me.GetBool("extrafile") && (me.GetBool("show_file")))
+                {
+                    technicalCode.Text += "\r\n\r\n" + txt["Culprit file memory address"].Replace("{0}", whatfail.ToUpper()).Replace("{1}", h1).Replace("{2}", h1).Replace("{3}", h3.ToLower());
+                }
+                technicalCode.Size = new Size(technicalCode.Size.Width, (int)((technicalCode.Text.Split('\n').Length + 2) * HeightInPixels));
+                label5.Location = new Point(label5.Location.X, technicalCode.Location.Y + technicalCode.Size.Height);
                 if (!fullscreen) { this.FormBorderStyle = FormBorderStyle.FixedSingle; this.ShowInTaskbar = true; this.ShowIcon = true; }
                 if (!errorCode.Visible && !label5.Visible)
                 {
@@ -179,39 +193,43 @@ namespace UltimateBlueScreenSimulator
                     string labeltxt = "";
                     if (whatfail != "")
                     {
-                        labeltxt = label5.Text.Split('\n')[0] + "\n\n";
+                        labeltxt = label5.Text.Split('\n')[0].Replace("Collecting data for crash dump ...", "") + "\n\n";
                     }
-                    labeltxt += "Collecting data for crash dump ..."; labeltxt += "\nInitializing disk for crash dump ...";
+                    if (!labeltxt.Contains(me.GetTexts()["Collecting data for crash dump"]))
+                    {
+                        labeltxt += me.GetTexts()["Collecting data for crash dump"];
+                    }
+                    labeltxt += "\n" + me.GetTexts()["Initializing crash dump"];
                     progress++;
-                    labeltxt += "\nBeginning dump of physical memory.\nDumping physical memory to disk: ";
+                    string ntext = "";
                     int spaces = 3 - progress.ToString().Length;
-                    for (int i = 0; i < spaces; i++) { labeltxt += " "; }
-                    labeltxt += progress.ToString();
+                    for (int i = 0; i < spaces; i++) { ntext += " "; }
+                    ntext += progress.ToString();
+                    labeltxt += "\n" + me.GetTexts()["Begin dump"] + "\n" + me.GetTexts()["Physical memory dump"].Replace("{0}", " " + ntext);
                     label5.Text = labeltxt;
                     if (progress == 100)
                     {
-                        if (label1.Location.Y == -8)
-                        {
-                            foreach (Control c in this.Controls)
-                            {
-                                if (c is Label)
-                                {
-                                    c.Location = new Point(c.Location.X, c.Location.Y - 28);
-                                }
-                            }
-                            label5.Text += "\nPhysical memory dump complete.\nContact your system admin or technical support group for further assistance.";
-                        }
+                        label5.Text += "\n" + me.GetTexts()["End dump"] + "\n" + me.GetTexts()["Technical support"];
                     }
-                    if (label1.Location.Y == 15)
+                    float HeightInPixels;
+                    using (Graphics g = this.CreateGraphics())
                     {
-                        if ((whatfail != "") && (me.GetBool("show_description")))
+                        var points = label5.Font.SizeInPoints;
+                        HeightInPixels = points * g.DpiX / 72;
+                    }
+                    if (label5.Location.Y + (int)(HeightInPixels * label5.Text.Split('\n').Length + 2) > this.ClientSize.Height)
+                    {
+                        int delta = 0;
+                        while (label5.Location.Y + (int)(HeightInPixels * (label5.Text.Split('\n').Length + 2)) - delta >= this.ClientSize.Height)
                         {
-                            foreach (Control c in this.Controls)
+                            delta += 1;
+                        }
+                        //delta += errorCode.Height;
+                        foreach (Control c in this.Controls)
+                        {
+                            if (c.Name != "waterMarkText")
                             {
-                                if (c is Label)
-                                {
-                                    c.Location = new Point(c.Location.X, c.Location.Y - 21);
-                                }
+                                c.Location = new Point(c.Location.X, c.Location.Y - delta);
                             }
                         }
                     }
