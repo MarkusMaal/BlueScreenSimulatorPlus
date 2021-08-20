@@ -58,7 +58,7 @@ namespace UltimateBlueScreenSimulator
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
-            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
+            this.listView1.SelectedIndexChanged += new System.EventHandler(this.ListView1_SelectedIndexChanged);
             // 
             // comboBox1
             // 
@@ -74,7 +74,7 @@ namespace UltimateBlueScreenSimulator
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(554, 21);
             this.comboBox1.TabIndex = 1;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.ComboBox1_SelectedIndexChanged);
             // 
             // columnHeader1
             // 
@@ -104,7 +104,7 @@ namespace UltimateBlueScreenSimulator
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(281, 208);
             this.textBox1.TabIndex = 3;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.textBox1.TextChanged += new System.EventHandler(this.TextBox1_TextChanged);
             // 
             // radioButton1
             // 
@@ -117,7 +117,7 @@ namespace UltimateBlueScreenSimulator
             this.radioButton1.TabStop = true;
             this.radioButton1.Text = "Edit";
             this.radioButton1.UseVisualStyleBackColor = true;
-            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            this.radioButton1.CheckedChanged += new System.EventHandler(this.RadioButton1_CheckedChanged);
             // 
             // radioButton2
             // 
@@ -128,7 +128,7 @@ namespace UltimateBlueScreenSimulator
             this.radioButton2.TabIndex = 5;
             this.radioButton2.Text = "Add";
             this.radioButton2.UseVisualStyleBackColor = true;
-            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
+            this.radioButton2.CheckedChanged += new System.EventHandler(this.RadioButton2_CheckedChanged);
             // 
             // textBox2
             // 
@@ -137,8 +137,8 @@ namespace UltimateBlueScreenSimulator
             this.textBox2.Size = new System.Drawing.Size(264, 20);
             this.textBox2.TabIndex = 6;
             this.textBox2.Visible = false;
-            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
-            this.textBox2.VisibleChanged += new System.EventHandler(this.textBox2_VisibleChanged);
+            this.textBox2.TextChanged += new System.EventHandler(this.TextBox2_TextChanged);
+            this.textBox2.VisibleChanged += new System.EventHandler(this.TextBox2_VisibleChanged);
             // 
             // label2
             // 

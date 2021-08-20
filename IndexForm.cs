@@ -475,32 +475,31 @@ namespace UltimateBlueScreenSimulator
             SwitchBlock(backup);
         }
 
-        private void ntr1_Click(object sender, EventArgs e) { SetCharAt(0, "R"); }
-        private void ntr2_Click(object sender, EventArgs e) { SetCharAt(1, "R"); }
-        private void ntr3_Click(object sender, EventArgs e) { SetCharAt(2, "R"); }
-        private void ntr4_Click(object sender, EventArgs e) { SetCharAt(3, "R"); }
-        private void ntr5_Click(object sender, EventArgs e) { SetCharAt(4, "R"); }
-        private void ntr6_Click(object sender, EventArgs e) { SetCharAt(5, "R"); }
-        private void ntr7_Click(object sender, EventArgs e) { SetCharAt(6, "R"); }
-        private void ntr8_Click(object sender, EventArgs e) { SetCharAt(7, "R"); }
+        private void Ntr1_Click(object sender, EventArgs e) { SetCharAt(0, "R"); }
+        private void Ntr2_Click(object sender, EventArgs e) { SetCharAt(1, "R"); }
+        private void Ntr3_Click(object sender, EventArgs e) { SetCharAt(2, "R"); }
+        private void Ntr4_Click(object sender, EventArgs e) { SetCharAt(3, "R"); }
+        private void Ntr5_Click(object sender, EventArgs e) { SetCharAt(4, "R"); }
+        private void Ntr6_Click(object sender, EventArgs e) { SetCharAt(5, "R"); }
+        private void Ntr7_Click(object sender, EventArgs e) { SetCharAt(6, "R"); }
+        private void Ntr8_Click(object sender, EventArgs e) { SetCharAt(7, "R"); }
 
-        private void ntn1_Click(object sender, EventArgs e) { SetCharAt(0, "0"); }
-        private void ntn2_Click(object sender, EventArgs e) { SetCharAt(1, "0"); }
-        private void ntn3_Click(object sender, EventArgs e) { SetCharAt(2, "0"); }
-        private void ntn4_Click(object sender, EventArgs e) { SetCharAt(3, "0"); }
-        private void ntn5_Click(object sender, EventArgs e) { SetCharAt(4, "0"); }
-        private void ntn6_Click(object sender, EventArgs e) { SetCharAt(5, "0"); }
-        private void ntn7_Click(object sender, EventArgs e) { SetCharAt(6, "0"); }
-        private void ntn8_Click(object sender, EventArgs e) { SetCharAt(7, "0"); }
+        private void Ntn1_Click(object sender, EventArgs e) { SetCharAt(0, "0"); }
+        private void Ntn2_Click(object sender, EventArgs e) { SetCharAt(1, "0"); }
+        private void Ntn3_Click(object sender, EventArgs e) { SetCharAt(2, "0"); }
+        private void Ntn4_Click(object sender, EventArgs e) { SetCharAt(3, "0"); }
+        private void Ntn5_Click(object sender, EventArgs e) { SetCharAt(4, "0"); }
+        private void Ntn6_Click(object sender, EventArgs e) { SetCharAt(5, "0"); }
+        private void Ntn7_Click(object sender, EventArgs e) { SetCharAt(6, "0"); }
+        private void Ntn8_Click(object sender, EventArgs e) { SetCharAt(7, "0"); }
 
 
         private void SetCustom(char letter)
         {
             foreach (Control c in tableLayoutPanel2.Controls)
             {
-                if (c is TextBox)
+                if (c is TextBox tb)
                 {
-                    TextBox tb = (TextBox)c;
                     if (tb.Focused)
                     {
                         int id = Convert.ToInt32(tb.Name.Replace("ntt", ""));

@@ -294,6 +294,7 @@
             // 
             // customServerButton
             // 
+            this.customServerButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.customServerButton.Location = new System.Drawing.Point(441, 245);
             this.customServerButton.Name = "customServerButton";
             this.customServerButton.Size = new System.Drawing.Size(74, 23);
@@ -302,10 +303,11 @@
             this.helpTip.SetToolTip(this.customServerButton, "This is the last option. If the both servers are down, you can use another server" +
         ", which you can find on my blog if both links are down for some reason.");
             this.customServerButton.UseVisualStyleBackColor = true;
-            this.customServerButton.Click += new System.EventHandler(this.button1_Click);
+            this.customServerButton.Click += new System.EventHandler(this.Button1_Click);
             // 
             // primaryServerButton
             // 
+            this.primaryServerButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.primaryServerButton.Location = new System.Drawing.Point(291, 245);
             this.primaryServerButton.Name = "primaryServerButton";
             this.primaryServerButton.Size = new System.Drawing.Size(71, 23);
@@ -317,6 +319,7 @@
             // 
             // backupServerButton
             // 
+            this.backupServerButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.backupServerButton.Location = new System.Drawing.Point(365, 245);
             this.backupServerButton.Name = "backupServerButton";
             this.backupServerButton.Size = new System.Drawing.Size(74, 23);
@@ -328,6 +331,8 @@
             // 
             // primaryServerBox
             // 
+            this.primaryServerBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.primaryServerBox.Enabled = false;
             this.primaryServerBox.Location = new System.Drawing.Point(20, 272);
             this.primaryServerBox.Name = "primaryServerBox";

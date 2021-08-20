@@ -47,6 +47,7 @@
             this.hashWait = new System.Windows.Forms.Timer(this.components);
             this.installWait = new System.Windows.Forms.Timer(this.components);
             this.cleanWait = new System.Windows.Forms.Timer(this.components);
+            this.blinkBlink = new System.Windows.Forms.Timer(this.components);
             this.updateStepsPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TempStatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Launchstatus)).BeginInit();
@@ -60,9 +61,9 @@
             this.updateHeading.Font = new System.Drawing.Font("Segoe UI", 13F);
             this.updateHeading.Location = new System.Drawing.Point(12, 9);
             this.updateHeading.Name = "updateHeading";
-            this.updateHeading.Size = new System.Drawing.Size(431, 25);
+            this.updateHeading.Size = new System.Drawing.Size(194, 25);
             this.updateHeading.TabIndex = 0;
-            this.updateHeading.Text = "Please wait while we download and install the update";
+            this.updateHeading.Text = "Updating, please wait...";
             // 
             // updateDescriptionLabel
             // 
@@ -70,10 +71,9 @@
             this.updateDescriptionLabel.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.updateDescriptionLabel.Location = new System.Drawing.Point(14, 34);
             this.updateDescriptionLabel.Name = "updateDescriptionLabel";
-            this.updateDescriptionLabel.Size = new System.Drawing.Size(359, 30);
+            this.updateDescriptionLabel.Size = new System.Drawing.Size(359, 15);
             this.updateDescriptionLabel.TabIndex = 1;
-            this.updateDescriptionLabel.Text = "During the update progress, the program may restart several times.\r\nThe following" +
-    " steps will be taken to ensure a successful update:";
+            this.updateDescriptionLabel.Text = "During the update progress, the program may restart several times.";
             // 
             // updateStepsPanel
             // 
@@ -90,7 +90,7 @@
             this.updateStepsPanel.Controls.Add(this.hashCheckLabel, 1, 1);
             this.updateStepsPanel.Controls.Add(this.installAndLaunchLabel, 1, 2);
             this.updateStepsPanel.Controls.Add(this.delTempLabel, 1, 3);
-            this.updateStepsPanel.Location = new System.Drawing.Point(17, 77);
+            this.updateStepsPanel.Location = new System.Drawing.Point(17, 63);
             this.updateStepsPanel.Name = "updateStepsPanel";
             this.updateStepsPanel.RowCount = 4;
             this.updateStepsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -192,7 +192,7 @@
             // 
             this.updateProgress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.updateProgress.Location = new System.Drawing.Point(17, 161);
+            this.updateProgress.Location = new System.Drawing.Point(17, 155);
             this.updateProgress.Name = "updateProgress";
             this.updateProgress.Size = new System.Drawing.Size(460, 20);
             this.updateProgress.TabIndex = 3;
@@ -200,7 +200,8 @@
             // warningLabel
             // 
             this.warningLabel.AutoSize = true;
-            this.warningLabel.Location = new System.Drawing.Point(14, 201);
+            this.warningLabel.ForeColor = System.Drawing.Color.Red;
+            this.warningLabel.Location = new System.Drawing.Point(14, 202);
             this.warningLabel.Name = "warningLabel";
             this.warningLabel.Size = new System.Drawing.Size(434, 13);
             this.warningLabel.TabIndex = 4;
@@ -230,6 +231,12 @@
             // 
             this.cleanWait.Interval = 500;
             this.cleanWait.Tick += new System.EventHandler(this.CleanWait_Tick);
+            // 
+            // blinkBlink
+            // 
+            this.blinkBlink.Enabled = true;
+            this.blinkBlink.Interval = 1000;
+            this.blinkBlink.Tick += new System.EventHandler(this.BlinkBlink_Tick);
             // 
             // UpdateInterface
             // 
@@ -280,5 +287,6 @@
         private System.Windows.Forms.Timer hashWait;
         private System.Windows.Forms.Timer installWait;
         private System.Windows.Forms.Timer cleanWait;
+        private System.Windows.Forms.Timer blinkBlink;
     }
 }

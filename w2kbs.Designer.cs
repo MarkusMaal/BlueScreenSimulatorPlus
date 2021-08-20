@@ -123,7 +123,7 @@
             // rainBowScreen
             // 
             this.rainBowScreen.Interval = 10;
-            this.rainBowScreen.Tick += new System.EventHandler(this.rainBowScreen_Tick);
+            this.rainBowScreen.Tick += new System.EventHandler(this.RainBowScreen_Tick);
             // 
             // W2kbs
             // 

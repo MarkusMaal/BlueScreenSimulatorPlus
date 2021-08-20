@@ -440,7 +440,7 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void screenUpdater_Tick(object sender, EventArgs e)
+        private void ScreenUpdater_Tick(object sender, EventArgs e)
         {
             if (fullscreen)
             {

@@ -7,8 +7,7 @@ using System.Diagnostics;
 using Microsoft.Win32;
 using SimulatorDatabase;
 using System.Threading;
-using System.Collections.Generic;
-
+using System.Net.NetworkInformation;
 namespace UltimateBlueScreenSimulator
 {
     public partial class Main : Form
@@ -367,6 +366,38 @@ namespace UltimateBlueScreenSimulator
             bsod_starter.Start();
         }
 
+        public bool DoWeHaveInternet(long minimumSpeed)
+        {
+            if (!NetworkInterface.GetIsNetworkAvailable())
+                return false;
+
+            foreach (NetworkInterface ni in NetworkInterface.GetAllNetworkInterfaces())
+            {
+                // discard because of standard reasons
+                if ((ni.OperationalStatus != OperationalStatus.Up) ||
+                    (ni.NetworkInterfaceType == NetworkInterfaceType.Loopback) ||
+                    (ni.NetworkInterfaceType == NetworkInterfaceType.Tunnel))
+                    continue;
+
+                // this allow to filter modems, serial, etc.
+                // I use 10000000 as a minimum speed for most cases
+                if (ni.Speed < minimumSpeed)
+                    continue;
+
+                // discard virtual cards (virtual box, virtual pc, etc.)
+                if ((ni.Description.IndexOf("virtual", StringComparison.OrdinalIgnoreCase) >= 0) ||
+                    (ni.Name.IndexOf("virtual", StringComparison.OrdinalIgnoreCase) >= 0))
+                    continue;
+
+                // discard "Microsoft Loopback Adapter", it will not show as NetworkInterfaceType.Loopback but as Ethernet Card.
+                if (ni.Description.Equals("Microsoft Loopback Adapter", StringComparison.OrdinalIgnoreCase))
+                    continue;
+
+                return true;
+            }
+            return false;
+        }
+
         private void Initialize(object sender, EventArgs e)
         {
             ts = new ThreadStart(ShowBlueScreen);
@@ -398,7 +429,7 @@ namespace UltimateBlueScreenSimulator
             {
                 GetOS();
             }
-            if (autoupdate == true)
+            if ((autoupdate == true) && DoWeHaveInternet(1000))
             { 
                 UpdateInterface ui = new UpdateInterface();
                 ui.DownloadFile(Program.update_server + "/bssp_version.txt", "vercheck.txt");
@@ -1265,14 +1296,14 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void LinkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             linkLabel1.Visible = false;
             windowVersion.Visible = true;
             label1.Text = "Select preset:";
         }
 
-        private void windowVersion_DropDownClosed(object sender, EventArgs e)
+        private void WindowVersion_DropDownClosed(object sender, EventArgs e)
         {
             if (windowVersion.Items.Count == 0)
             {
@@ -1287,23 +1318,23 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void prankModeToolStripMenuItem_Click(object sender, EventArgs e)
+        private void PrankModeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             PrankMode pm = new PrankMode();
             pm.Show();
         }
 
-        private void blueScreenHacksToolStripMenuItem_Click(object sender, EventArgs e)
+        private void BlueScreenHacksToolStripMenuItem_Click(object sender, EventArgs e)
         {
             advOptionsButton.PerformClick();
         }
 
-        private void codeCustomizationToolStripMenuItem_Click(object sender, EventArgs e)
+        private void CodeCustomizationToolStripMenuItem_Click(object sender, EventArgs e)
         {
             eCodeEditButton.PerformClick();
         }
 
-        private void simulateToolStripMenuItem_Click(object sender, EventArgs e)
+        private void SimulateToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (Program.loadfinished && this.Visible)
             {
@@ -1314,12 +1345,12 @@ namespace UltimateBlueScreenSimulator
             Crash();
         }
 
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (!abopen)
             {
@@ -1336,7 +1367,7 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void quickHelpToolStripMenuItem_Click(object sender, EventArgs e)
+        private void QuickHelpToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (!abopen)
             {
@@ -1354,7 +1385,7 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void commandLineSyntaxToolStripMenuItem_Click(object sender, EventArgs e)
+        private void CommandLineSyntaxToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (!abopen)
             {
@@ -1372,12 +1403,12 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void autoUpdateToolStripMenuItem_Click(object sender, EventArgs e)
+        private void AutoUpdateToolStripMenuItem_Click(object sender, EventArgs e)
         {
             button7.PerformClick();
         }
 
-        private void simulatorSettingsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void SimulatorSettingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (!abopen)
             {
@@ -1395,7 +1426,7 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void waitPopup_Tick(object sender, EventArgs e)
+        private void WaitPopup_Tick(object sender, EventArgs e)
         {
             if (!bsod_starter.IsAlive)
             {
@@ -1405,19 +1436,21 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void advancedNTOptionsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void AdvancedNTOptionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             int backup = windowVersion.SelectedIndex;
-            IndexForm iform = new IndexForm();
-            iform.nt_edit = true;
-            iform.me = me;
+            IndexForm iform = new IndexForm
+            {
+                nt_edit = true,
+                me = me
+            };
             iform.ShowDialog();
             iform.Dispose();
             windowVersion.SelectedIndex = 0;
             windowVersion.SelectedIndex = backup;
         }
 
-        private void addInfFile_CheckedChanged(object sender, EventArgs e)
+        private void AddInfFile_CheckedChanged(object sender, EventArgs e)
         {
             if (addInfFile.Enabled)
             {
@@ -1425,7 +1458,7 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void advNTButton_Click(object sender, EventArgs e)
+        private void AdvNTButton_Click(object sender, EventArgs e)
         {
             advancedNTOptionsToolStripMenuItem.PerformClick();
         }

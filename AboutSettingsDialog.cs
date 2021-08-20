@@ -242,13 +242,23 @@ namespace UltimateBlueScreenSimulator
         private void CheckForUpdates(object sender, EventArgs e)
         {
             //This code starts the check for updates
-            UpdateInterface ui = new UpdateInterface();
-            ui.DownloadFile(Program.update_server + "/bssp_version.txt", "vercheck.txt");
-            updateCheckButton.Enabled = false;
-            updateCheckButton.Text = "Checking for updates...";
-            updateCheckerTimer.Enabled = true;
-            Program.f1.updateCheckerTimer.Interval = 5998;
-            Program.f1.updateCheckerTimer.Enabled = true;
+            if (Program.f1.DoWeHaveInternet(1000))
+            {
+                if (File.Exists("vercheck.txt"))
+                {
+                    File.Delete("vercheck.txt");
+                }
+                UpdateInterface ui = new UpdateInterface();
+                ui.DownloadFile(Program.update_server + "/bssp_version.txt", "vercheck.txt");
+                updateCheckButton.Enabled = false;
+                updateCheckButton.Text = "Checking for updates...";
+                updateCheckerTimer.Enabled = true;
+                Program.f1.updateCheckerTimer.Interval = 5998;
+                Program.f1.updateCheckerTimer.Enabled = true;
+            } else
+            {
+                MessageBox.Show("No internet connection available", "Couldn't check for updates", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void UpdateTimer_Tick(object sender, EventArgs e)
@@ -895,8 +905,10 @@ namespace UltimateBlueScreenSimulator
         {
             try
             {
-                DictEdit de = new DictEdit();
-                de.me = Program.bluescreens[configList.SelectedIndex];
+                DictEdit de = new DictEdit
+                {
+                    me = Program.bluescreens[configList.SelectedIndex]
+                };
                 de.Show();
             } catch
             {
@@ -932,7 +944,7 @@ namespace UltimateBlueScreenSimulator
             primaryServerBox.Text = "http://web-markustegelane.000webhostapp.com/app";
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
             primaryServerBox.Enabled = true;
         }

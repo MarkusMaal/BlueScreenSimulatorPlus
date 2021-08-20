@@ -45,7 +45,7 @@
             this.charSetA.Image = global::UltimateBlueScreenSimulator.Properties.Resources.rasterNT;
             this.charSetA.Location = new System.Drawing.Point(12, 24);
             this.charSetA.Name = "charSetA";
-            this.charSetA.Size = new System.Drawing.Size(665, 17);
+            this.charSetA.Size = new System.Drawing.Size(635, 17);
             this.charSetA.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.charSetA.TabIndex = 0;
             this.charSetA.TabStop = false;
@@ -58,7 +58,7 @@
             this.charSetB.Image = global::UltimateBlueScreenSimulator.Properties.Resources.rasters3;
             this.charSetB.Location = new System.Drawing.Point(12, 47);
             this.charSetB.Name = "charSetB";
-            this.charSetB.Size = new System.Drawing.Size(665, 17);
+            this.charSetB.Size = new System.Drawing.Size(635, 17);
             this.charSetB.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.charSetB.TabIndex = 1;
             this.charSetB.TabStop = false;
@@ -68,7 +68,7 @@
             // 
             this.closeButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.closeButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.closeButton.Location = new System.Drawing.Point(305, 111);
+            this.closeButton.Location = new System.Drawing.Point(290, 111);
             this.closeButton.Name = "closeButton";
             this.closeButton.Size = new System.Drawing.Size(75, 23);
             this.closeButton.TabIndex = 2;
@@ -83,7 +83,7 @@
             this.charSetC.Image = global::UltimateBlueScreenSimulator.Properties.Resources.doscii;
             this.charSetC.Location = new System.Drawing.Point(14, 65);
             this.charSetC.Name = "charSetC";
-            this.charSetC.Size = new System.Drawing.Size(665, 10);
+            this.charSetC.Size = new System.Drawing.Size(635, 10);
             this.charSetC.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.charSetC.TabIndex = 3;
             this.charSetC.TabStop = false;
@@ -94,7 +94,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.closeButton;
-            this.ClientSize = new System.Drawing.Size(692, 146);
+            this.ClientSize = new System.Drawing.Size(662, 146);
             this.Controls.Add(this.charSetC);
             this.Controls.Add(this.closeButton);
             this.Controls.Add(this.charSetB);

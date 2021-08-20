@@ -474,8 +474,10 @@ namespace SimulatorDatabase
             switch (this.os)
             {
                 case "BOOTMGR":
-                    BootMgr bm = new BootMgr();
-                    bm.me = this;
+                    BootMgr bm = new BootMgr
+                    {
+                        me = this
+                    };
                     bm.ShowDialog();
                     System.Threading.Thread.CurrentThread.Abort();
                     break;
@@ -504,10 +506,10 @@ namespace SimulatorDatabase
                     SetupNT(new NTBSOD());
                     break;
                 case "Windows 9x/Me":
-                    Setup9x(new old_bluescreen());
+                    Setup9x(new Old_bluescreen());
                     break;
                 case "Windows 3.1x":
-                    Setup9x(new old_bluescreen());
+                    Setup9x(new Old_bluescreen());
                     break;
                 case "Windows 1.x/2.x":
                     SetupWin(new win());
@@ -558,7 +560,7 @@ namespace SimulatorDatabase
             System.Threading.Thread.CurrentThread.Abort();
         }
 
-        private void Setup9x(old_bluescreen bs)
+        private void Setup9x(Old_bluescreen bs)
         {
             try
             {

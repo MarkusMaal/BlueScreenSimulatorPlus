@@ -28,13 +28,23 @@ namespace UltimateBlueScreenSimulator
         {
 
             string winver = releaseId;
-            MessageBox.Show(releaseId);
             int contain = -1;
             if (bestMatchRadio.Checked == true)
             {
                 Program.f1.winMode.Checked = false;
+                //this code identifies Windows 11
+                if (winver.Contains("Windows 11"))
+                {
+                    for (int i = 0; i < Program.f1.windowVersion.Items.Count; i++)
+                    {
+                        if (Program.f1.windowVersion.Items[i].ToString().Contains("Windows 11"))
+                        {
+                            contain = i;
+                        }
+                    }
+                }
                 //this code identifies Windows 10
-                if (winver.Contains("Windows 10"))
+                else if (winver.Contains("Windows 10"))
                 {
                     for (int i = 0; i < Program.f1.windowVersion.Items.Count; i++)
                     {
@@ -373,12 +383,7 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void RadioButton2_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void radioButton16_CheckedChanged(object sender, EventArgs e)
+        private void RadioButton16_CheckedChanged(object sender, EventArgs e)
         {
             if (usbRadio.Checked == true)
             {
@@ -400,7 +405,7 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void Button4_Click(object sender, EventArgs e)
         {
             string[] dinfo = { };
             deviceInfoLabel.Text = "No trigger device\r\n(Unplug and) plug in desired trigger device";
@@ -411,7 +416,7 @@ namespace UltimateBlueScreenSimulator
             usbFinder.Enabled = true;
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        private void Timer1_Tick(object sender, EventArgs e)
         {
             prevDevs = currentDevs;
             currentDevs = USBDeviceInfo.GetUSBDevices();
@@ -432,9 +437,20 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private void Button5_Click(object sender, EventArgs e)
         {
             MessageBox.Show(" - A standard user account doesn't have access to all devices plugged into the computer. Sometimes, certain devices are only detected when the program is started as an administrator.\r\n - Try a different USB port, such as the one on your case. USB hubs might not update the device properly sometimes.\r\n - Try a different trigger device", "Device troubleshooting", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void LetCloseBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!letCloseBox.Checked)
+            {
+                if (MessageBox.Show("Warning: This feature is experimental and WILL NOT work with all error screens. If you are unable to close the blue screen, use task manager to end it. Do you still want to continue?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                {
+                    letCloseBox.Checked = false;
+                }
+            }
         }
     }
 }

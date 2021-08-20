@@ -147,7 +147,7 @@ namespace UltimateBlueScreenSimulator
             // 
             this.screenUpdater.Enabled = true;
             this.screenUpdater.Interval = 500;
-            this.screenUpdater.Tick += new System.EventHandler(this.screenUpdater_Tick);
+            this.screenUpdater.Tick += new System.EventHandler(this.ScreenUpdater_Tick);
             // 
             // Xvsbs
             // 

@@ -1,6 +1,6 @@
 ﻿namespace UltimateBlueScreenSimulator
 {
-    partial class old_bluescreen
+    partial class Old_bluescreen
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(old_bluescreen));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Old_bluescreen));
             this.titleBorder = new System.Windows.Forms.Panel();
             this.titleText = new System.Windows.Forms.PictureBox();
             this.screenUpdater = new System.Windows.Forms.Timer(this.components);

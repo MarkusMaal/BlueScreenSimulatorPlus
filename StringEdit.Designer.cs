@@ -119,7 +119,7 @@
             this.MessageView.MultiSelect = false;
             this.MessageView.Name = "MessageView";
             this.MessageView.ShowGroups = false;
-            this.MessageView.Size = new System.Drawing.Size(254, 324);
+            this.MessageView.Size = new System.Drawing.Size(256, 299);
             this.MessageView.SmallImageList = this.AllIcons;
             this.MessageView.TabIndex = 2;
             this.MessageView.UseCompatibleStateImageBehavior = false;
@@ -129,7 +129,7 @@
             // specificProps
             // 
             this.specificProps.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.specificProps.Location = new System.Drawing.Point(271, 20);
+            this.specificProps.Location = new System.Drawing.Point(273, 20);
             this.specificProps.Name = "specificProps";
             this.specificProps.Size = new System.Drawing.Size(383, 13);
             this.specificProps.TabIndex = 4;
@@ -137,7 +137,7 @@
             // buttonOK
             // 
             this.buttonOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonOK.Location = new System.Drawing.Point(608, 379);
+            this.buttonOK.Location = new System.Drawing.Point(610, 354);
             this.buttonOK.Name = "buttonOK";
             this.buttonOK.Size = new System.Drawing.Size(75, 23);
             this.buttonOK.TabIndex = 5;
@@ -202,9 +202,9 @@
             this.specificPropsFlowLayoutPanel.Controls.Add(this.blinkProps);
             this.specificPropsFlowLayoutPanel.Controls.Add(this.colorProps);
             this.specificPropsFlowLayoutPanel.Controls.Add(this.stringProps);
-            this.specificPropsFlowLayoutPanel.Location = new System.Drawing.Point(274, 39);
+            this.specificPropsFlowLayoutPanel.Location = new System.Drawing.Point(276, 39);
             this.specificPropsFlowLayoutPanel.Name = "specificPropsFlowLayoutPanel";
-            this.specificPropsFlowLayoutPanel.Size = new System.Drawing.Size(404, 325);
+            this.specificPropsFlowLayoutPanel.Size = new System.Drawing.Size(404, 300);
             this.specificPropsFlowLayoutPanel.TabIndex = 34;
             // 
             // qrProps
@@ -396,7 +396,7 @@
             // 
             this.whereTheButtonsLink.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.whereTheButtonsLink.AutoSize = true;
-            this.whereTheButtonsLink.Location = new System.Drawing.Point(12, 385);
+            this.whereTheButtonsLink.Location = new System.Drawing.Point(12, 360);
             this.whereTheButtonsLink.Name = "whereTheButtonsLink";
             this.whereTheButtonsLink.Size = new System.Drawing.Size(189, 13);
             this.whereTheButtonsLink.TabIndex = 35;
@@ -408,7 +408,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(695, 414);
+            this.ClientSize = new System.Drawing.Size(697, 389);
             this.Controls.Add(this.whereTheButtonsLink);
             this.Controls.Add(this.specificPropsFlowLayoutPanel);
             this.Controls.Add(this.buttonOK);

@@ -208,7 +208,7 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void rainBowScreen_Tick(object sender, EventArgs e)
+        private void RainBowScreen_Tick(object sender, EventArgs e)
         {
             int r = this.BackColor.R;
             int gr = this.BackColor.G;

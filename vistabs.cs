@@ -100,7 +100,7 @@ namespace UltimateBlueScreenSimulator
                 }
                 if (me.GetBool("extrafile") && (me.GetBool("show_file")))
                 {
-                    technicalCode.Text += "\r\n\r\n" + txt["Culprit file memory address"].Replace("{0}", whatfail.ToUpper()).Replace("{1}", h1).Replace("{2}", h1).Replace("{3}", h3.ToLower());
+                    technicalCode.Text += "\r\n\r\n" + txt["Culprit file memory address"].Replace("{0}", whatfail.ToUpper()).Replace("{1}", h1).Replace("{2}", h2).Replace("{3}", h3.ToLower());
                 }
                 technicalCode.Size = new Size(technicalCode.Size.Width, (int)((technicalCode.Text.Split('\n').Length + 2) * HeightInPixels));
                 dumpText.Location = new Point(dumpText.Location.X, technicalCode.Location.Y + technicalCode.Size.Height);

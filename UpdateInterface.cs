@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO;
@@ -17,7 +13,7 @@ namespace UltimateBlueScreenSimulator
     {
         public bool finalize = false;
         WebClient webClient;               // Our WebClient that will be doing the downloading for us
-        Stopwatch sw = new Stopwatch();    // The stopwatch which we will be using to calculate the download speed
+        readonly Stopwatch sw = new Stopwatch();    // The stopwatch which we will be using to calculate the download speed
         string GoodHash = "6ABA5BC55589EE8D64E30B36596E5517";
 
         public UpdateInterface()
@@ -60,6 +56,10 @@ namespace UltimateBlueScreenSimulator
                 {
                     MessageBox.Show(ex.Message);
                 }
+            }
+            if (location.EndsWith(".txt"))
+            {
+                File.SetAttributes(location, FileAttributes.Hidden);
             }
         }
 
@@ -209,6 +209,17 @@ namespace UltimateBlueScreenSimulator
             p.StartInfo.WorkingDirectory = Environment.CurrentDirectory;
             p.Start();
             this.Close();
+        }
+
+        private void BlinkBlink_Tick(object sender, EventArgs e)
+        {
+            if (warningLabel.ForeColor == SystemColors.ControlText)
+            {
+                warningLabel.ForeColor = Color.Red;
+            } else
+            {
+                warningLabel.ForeColor = SystemColors.ControlText;
+            }
         }
     }
 }

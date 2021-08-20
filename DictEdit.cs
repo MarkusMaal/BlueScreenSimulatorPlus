@@ -19,7 +19,7 @@ namespace UltimateBlueScreenSimulator
             InitializeComponent();
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             label3.Visible = ((textBox2.Text == "os") && textBox2.Visible && (comboBox1.SelectedItem.ToString() == "strings"));
             Reload();
@@ -33,8 +33,10 @@ namespace UltimateBlueScreenSimulator
                 case "ints":
                     foreach (KeyValuePair<string, int> kvp in me.AllInts())
                     {
-                        ListViewItem li = new ListViewItem();
-                        li.Text = kvp.Key;
+                        ListViewItem li = new ListViewItem
+                        {
+                            Text = kvp.Key
+                        };
                         li.SubItems.Add(kvp.Value.ToString());
                         listView1.Items.Add(li);
                     }
@@ -42,8 +44,10 @@ namespace UltimateBlueScreenSimulator
                 case "strings":
                     foreach (KeyValuePair<string, string> kvp in me.AllStrings())
                     {
-                        ListViewItem li = new ListViewItem();
-                        li.Text = kvp.Key;
+                        ListViewItem li = new ListViewItem
+                        {
+                            Text = kvp.Key
+                        };
                         li.SubItems.Add(kvp.Value);
                         listView1.Items.Add(li);
                     }
@@ -51,8 +55,10 @@ namespace UltimateBlueScreenSimulator
                 case "bools":
                     foreach (KeyValuePair<string, bool> kvp in me.AllBools())
                     {
-                        ListViewItem li = new ListViewItem();
-                        li.Text = kvp.Key;
+                        ListViewItem li = new ListViewItem
+                        {
+                            Text = kvp.Key
+                        };
                         li.SubItems.Add(kvp.Value.ToString());
                         listView1.Items.Add(li);
                     }
@@ -60,7 +66,7 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        private void ListView1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (listView1.SelectedIndices.Count > 0)
             
@@ -81,7 +87,7 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void TextBox1_TextChanged(object sender, EventArgs e)
         {
             if (textBox1.Focused)
             {
@@ -107,7 +113,7 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        private void RadioButton2_CheckedChanged(object sender, EventArgs e)
         {
             if (radioButton2.Checked)
             {
@@ -119,7 +125,7 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        private void RadioButton1_CheckedChanged(object sender, EventArgs e)
         {
             if (radioButton1.Checked)
             {
@@ -131,7 +137,7 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
+        private void TextBox2_TextChanged(object sender, EventArgs e)
         {
             key = textBox2.Text;
             label3.Visible = ((textBox2.Text == "os") && textBox2.Visible && (comboBox1.SelectedItem.ToString() == "strings"));
@@ -142,7 +148,7 @@ namespace UltimateBlueScreenSimulator
             comboBox1.SelectedIndex = 0;
         }
 
-        private void textBox2_VisibleChanged(object sender, EventArgs e)
+        private void TextBox2_VisibleChanged(object sender, EventArgs e)
         {
             label3.Visible = ((textBox2.Text == "os") && textBox2.Visible && (comboBox1.SelectedItem.ToString() == "strings"));
         }

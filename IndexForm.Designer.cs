@@ -177,6 +177,9 @@
             // 
             // tableLayoutPanel1
             // 
+            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.ColumnCount = 17;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 65.54622F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 34.45378F));
@@ -270,7 +273,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 47.82609F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(676, 81);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(657, 82);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // textBox16
@@ -278,7 +281,7 @@
             this.textBox16.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox16.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox16.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox16.Location = new System.Drawing.Point(621, 63);
+            this.textBox16.Location = new System.Drawing.Point(602, 64);
             this.textBox16.MaxLength = 1;
             this.textBox16.Name = "textBox16";
             this.textBox16.ReadOnly = true;
@@ -293,7 +296,7 @@
             this.textBox15.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox15.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox15.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox15.Location = new System.Drawing.Point(578, 63);
+            this.textBox15.Location = new System.Drawing.Point(559, 64);
             this.textBox15.MaxLength = 1;
             this.textBox15.Name = "textBox15";
             this.textBox15.ReadOnly = true;
@@ -308,7 +311,7 @@
             this.textBox14.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox14.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox14.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox14.Location = new System.Drawing.Point(538, 63);
+            this.textBox14.Location = new System.Drawing.Point(519, 64);
             this.textBox14.MaxLength = 1;
             this.textBox14.Name = "textBox14";
             this.textBox14.ReadOnly = true;
@@ -323,7 +326,7 @@
             this.textBox13.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox13.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox13.Location = new System.Drawing.Point(501, 63);
+            this.textBox13.Location = new System.Drawing.Point(482, 64);
             this.textBox13.MaxLength = 1;
             this.textBox13.Name = "textBox13";
             this.textBox13.ReadOnly = true;
@@ -336,7 +339,7 @@
             // null16
             // 
             this.null16.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.null16.Location = new System.Drawing.Point(618, 40);
+            this.null16.Location = new System.Drawing.Point(599, 41);
             this.null16.Margin = new System.Windows.Forms.Padding(0);
             this.null16.Name = "null16";
             this.null16.Size = new System.Drawing.Size(58, 20);
@@ -348,7 +351,7 @@
             // null15
             // 
             this.null15.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.null15.Location = new System.Drawing.Point(575, 40);
+            this.null15.Location = new System.Drawing.Point(556, 41);
             this.null15.Margin = new System.Windows.Forms.Padding(0);
             this.null15.Name = "null15";
             this.null15.Size = new System.Drawing.Size(43, 20);
@@ -360,7 +363,7 @@
             // null14
             // 
             this.null14.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.null14.Location = new System.Drawing.Point(535, 40);
+            this.null14.Location = new System.Drawing.Point(516, 41);
             this.null14.Margin = new System.Windows.Forms.Padding(0);
             this.null14.Name = "null14";
             this.null14.Size = new System.Drawing.Size(40, 20);
@@ -372,7 +375,7 @@
             // null13
             // 
             this.null13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.null13.Location = new System.Drawing.Point(498, 40);
+            this.null13.Location = new System.Drawing.Point(479, 41);
             this.null13.Margin = new System.Windows.Forms.Padding(0);
             this.null13.Name = "null13";
             this.null13.Size = new System.Drawing.Size(37, 20);
@@ -384,10 +387,10 @@
             // button16
             // 
             this.button16.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button16.Location = new System.Drawing.Point(618, 21);
+            this.button16.Location = new System.Drawing.Point(599, 21);
             this.button16.Margin = new System.Windows.Forms.Padding(0);
             this.button16.Name = "button16";
-            this.button16.Size = new System.Drawing.Size(58, 19);
+            this.button16.Size = new System.Drawing.Size(58, 20);
             this.button16.TabIndex = 57;
             this.button16.Text = "Set";
             this.button16.UseVisualStyleBackColor = true;
@@ -396,10 +399,10 @@
             // button15
             // 
             this.button15.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button15.Location = new System.Drawing.Point(575, 21);
+            this.button15.Location = new System.Drawing.Point(556, 21);
             this.button15.Margin = new System.Windows.Forms.Padding(0);
             this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(43, 19);
+            this.button15.Size = new System.Drawing.Size(43, 20);
             this.button15.TabIndex = 56;
             this.button15.Text = "Set";
             this.button15.UseVisualStyleBackColor = true;
@@ -408,10 +411,10 @@
             // button14
             // 
             this.button14.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button14.Location = new System.Drawing.Point(535, 21);
+            this.button14.Location = new System.Drawing.Point(516, 21);
             this.button14.Margin = new System.Windows.Forms.Padding(0);
             this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(40, 19);
+            this.button14.Size = new System.Drawing.Size(40, 20);
             this.button14.TabIndex = 55;
             this.button14.Text = "Set";
             this.button14.UseVisualStyleBackColor = true;
@@ -420,10 +423,10 @@
             // button13
             // 
             this.button13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button13.Location = new System.Drawing.Point(498, 21);
+            this.button13.Location = new System.Drawing.Point(479, 21);
             this.button13.Margin = new System.Windows.Forms.Padding(0);
             this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(37, 19);
+            this.button13.Size = new System.Drawing.Size(37, 20);
             this.button13.TabIndex = 54;
             this.button13.Text = "Set";
             this.button13.UseVisualStyleBackColor = true;
@@ -433,7 +436,7 @@
             // 
             this.c1_16.AutoSize = true;
             this.c1_16.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.c1_16.Location = new System.Drawing.Point(621, 0);
+            this.c1_16.Location = new System.Drawing.Point(602, 0);
             this.c1_16.Name = "c1_16";
             this.c1_16.Size = new System.Drawing.Size(52, 21);
             this.c1_16.TabIndex = 53;
@@ -445,7 +448,7 @@
             // 
             this.c1_15.AutoSize = true;
             this.c1_15.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.c1_15.Location = new System.Drawing.Point(578, 0);
+            this.c1_15.Location = new System.Drawing.Point(559, 0);
             this.c1_15.Name = "c1_15";
             this.c1_15.Size = new System.Drawing.Size(37, 21);
             this.c1_15.TabIndex = 52;
@@ -457,7 +460,7 @@
             // 
             this.c1_14.AutoSize = true;
             this.c1_14.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.c1_14.Location = new System.Drawing.Point(538, 0);
+            this.c1_14.Location = new System.Drawing.Point(519, 0);
             this.c1_14.Name = "c1_14";
             this.c1_14.Size = new System.Drawing.Size(34, 21);
             this.c1_14.TabIndex = 15;
@@ -469,7 +472,7 @@
             // 
             this.c1_13.AutoSize = true;
             this.c1_13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.c1_13.Location = new System.Drawing.Point(501, 0);
+            this.c1_13.Location = new System.Drawing.Point(482, 0);
             this.c1_13.Name = "c1_13";
             this.c1_13.Size = new System.Drawing.Size(31, 21);
             this.c1_13.TabIndex = 15;
@@ -482,7 +485,7 @@
             this.textBox12.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox12.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox12.Location = new System.Drawing.Point(465, 63);
+            this.textBox12.Location = new System.Drawing.Point(446, 64);
             this.textBox12.MaxLength = 1;
             this.textBox12.Name = "textBox12";
             this.textBox12.ReadOnly = true;
@@ -497,7 +500,7 @@
             this.textBox11.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox11.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox11.Location = new System.Drawing.Point(429, 63);
+            this.textBox11.Location = new System.Drawing.Point(410, 64);
             this.textBox11.MaxLength = 1;
             this.textBox11.Name = "textBox11";
             this.textBox11.ReadOnly = true;
@@ -512,7 +515,7 @@
             this.textBox10.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox10.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox10.Location = new System.Drawing.Point(391, 63);
+            this.textBox10.Location = new System.Drawing.Point(372, 64);
             this.textBox10.MaxLength = 1;
             this.textBox10.Name = "textBox10";
             this.textBox10.ReadOnly = true;
@@ -527,7 +530,7 @@
             this.textBox9.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox9.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox9.Location = new System.Drawing.Point(359, 63);
+            this.textBox9.Location = new System.Drawing.Point(340, 64);
             this.textBox9.MaxLength = 1;
             this.textBox9.Name = "textBox9";
             this.textBox9.ReadOnly = true;
@@ -542,7 +545,7 @@
             this.textBox8.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox8.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox8.Location = new System.Drawing.Point(324, 63);
+            this.textBox8.Location = new System.Drawing.Point(305, 64);
             this.textBox8.MaxLength = 1;
             this.textBox8.Name = "textBox8";
             this.textBox8.ReadOnly = true;
@@ -557,7 +560,7 @@
             this.textBox7.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox7.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox7.Location = new System.Drawing.Point(292, 63);
+            this.textBox7.Location = new System.Drawing.Point(273, 64);
             this.textBox7.MaxLength = 1;
             this.textBox7.Name = "textBox7";
             this.textBox7.ReadOnly = true;
@@ -572,7 +575,7 @@
             this.textBox6.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox6.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox6.Location = new System.Drawing.Point(255, 63);
+            this.textBox6.Location = new System.Drawing.Point(236, 64);
             this.textBox6.MaxLength = 1;
             this.textBox6.Name = "textBox6";
             this.textBox6.ReadOnly = true;
@@ -587,7 +590,7 @@
             this.textBox5.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox5.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox5.Location = new System.Drawing.Point(216, 63);
+            this.textBox5.Location = new System.Drawing.Point(197, 64);
             this.textBox5.MaxLength = 1;
             this.textBox5.Name = "textBox5";
             this.textBox5.ReadOnly = true;
@@ -603,7 +606,7 @@
             this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox4.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox4.Location = new System.Drawing.Point(181, 63);
+            this.textBox4.Location = new System.Drawing.Point(162, 64);
             this.textBox4.MaxLength = 1;
             this.textBox4.Name = "textBox4";
             this.textBox4.ReadOnly = true;
@@ -619,7 +622,7 @@
             this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox3.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox3.Location = new System.Drawing.Point(144, 63);
+            this.textBox3.Location = new System.Drawing.Point(125, 64);
             this.textBox3.MaxLength = 1;
             this.textBox3.Name = "textBox3";
             this.textBox3.ReadOnly = true;
@@ -635,7 +638,7 @@
             this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox2.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox2.Location = new System.Drawing.Point(107, 63);
+            this.textBox2.Location = new System.Drawing.Point(88, 64);
             this.textBox2.MaxLength = 1;
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
@@ -651,11 +654,11 @@
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox1.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox1.Location = new System.Drawing.Point(71, 63);
+            this.textBox1.Location = new System.Drawing.Point(59, 64);
             this.textBox1.MaxLength = 1;
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(30, 13);
+            this.textBox1.Size = new System.Drawing.Size(23, 13);
             this.textBox1.TabIndex = 2;
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textBox1.Click += new System.EventHandler(this.SetText1);
@@ -666,10 +669,10 @@
             // 
             this.null1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.null1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.null1.Location = new System.Drawing.Point(68, 40);
+            this.null1.Location = new System.Drawing.Point(56, 41);
             this.null1.Margin = new System.Windows.Forms.Padding(0);
             this.null1.Name = "null1";
-            this.null1.Size = new System.Drawing.Size(36, 20);
+            this.null1.Size = new System.Drawing.Size(29, 20);
             this.null1.TabIndex = 40;
             this.null1.Text = "Set";
             this.null1.UseVisualStyleBackColor = true;
@@ -678,7 +681,7 @@
             // null2
             // 
             this.null2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.null2.Location = new System.Drawing.Point(104, 40);
+            this.null2.Location = new System.Drawing.Point(85, 41);
             this.null2.Margin = new System.Windows.Forms.Padding(0);
             this.null2.Name = "null2";
             this.null2.Size = new System.Drawing.Size(37, 20);
@@ -690,7 +693,7 @@
             // null3
             // 
             this.null3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.null3.Location = new System.Drawing.Point(141, 40);
+            this.null3.Location = new System.Drawing.Point(122, 41);
             this.null3.Margin = new System.Windows.Forms.Padding(0);
             this.null3.Name = "null3";
             this.null3.Size = new System.Drawing.Size(37, 20);
@@ -702,7 +705,7 @@
             // null4
             // 
             this.null4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.null4.Location = new System.Drawing.Point(178, 40);
+            this.null4.Location = new System.Drawing.Point(159, 41);
             this.null4.Margin = new System.Windows.Forms.Padding(0);
             this.null4.Name = "null4";
             this.null4.Size = new System.Drawing.Size(35, 20);
@@ -714,7 +717,7 @@
             // null5
             // 
             this.null5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.null5.Location = new System.Drawing.Point(213, 40);
+            this.null5.Location = new System.Drawing.Point(194, 41);
             this.null5.Margin = new System.Windows.Forms.Padding(0);
             this.null5.Name = "null5";
             this.null5.Size = new System.Drawing.Size(39, 20);
@@ -726,7 +729,7 @@
             // null6
             // 
             this.null6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.null6.Location = new System.Drawing.Point(252, 40);
+            this.null6.Location = new System.Drawing.Point(233, 41);
             this.null6.Margin = new System.Windows.Forms.Padding(0);
             this.null6.Name = "null6";
             this.null6.Size = new System.Drawing.Size(37, 20);
@@ -738,7 +741,7 @@
             // null7
             // 
             this.null7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.null7.Location = new System.Drawing.Point(289, 40);
+            this.null7.Location = new System.Drawing.Point(270, 41);
             this.null7.Margin = new System.Windows.Forms.Padding(0);
             this.null7.Name = "null7";
             this.null7.Size = new System.Drawing.Size(32, 20);
@@ -750,7 +753,7 @@
             // null8
             // 
             this.null8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.null8.Location = new System.Drawing.Point(321, 40);
+            this.null8.Location = new System.Drawing.Point(302, 41);
             this.null8.Margin = new System.Windows.Forms.Padding(0);
             this.null8.Name = "null8";
             this.null8.Size = new System.Drawing.Size(35, 20);
@@ -762,7 +765,7 @@
             // null9
             // 
             this.null9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.null9.Location = new System.Drawing.Point(356, 40);
+            this.null9.Location = new System.Drawing.Point(337, 41);
             this.null9.Margin = new System.Windows.Forms.Padding(0);
             this.null9.Name = "null9";
             this.null9.Size = new System.Drawing.Size(32, 20);
@@ -774,7 +777,7 @@
             // null10
             // 
             this.null10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.null10.Location = new System.Drawing.Point(388, 40);
+            this.null10.Location = new System.Drawing.Point(369, 41);
             this.null10.Margin = new System.Windows.Forms.Padding(0);
             this.null10.Name = "null10";
             this.null10.Size = new System.Drawing.Size(38, 20);
@@ -786,7 +789,7 @@
             // null11
             // 
             this.null11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.null11.Location = new System.Drawing.Point(426, 40);
+            this.null11.Location = new System.Drawing.Point(407, 41);
             this.null11.Margin = new System.Windows.Forms.Padding(0);
             this.null11.Name = "null11";
             this.null11.Size = new System.Drawing.Size(36, 20);
@@ -798,7 +801,7 @@
             // null12
             // 
             this.null12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.null12.Location = new System.Drawing.Point(462, 40);
+            this.null12.Location = new System.Drawing.Point(443, 41);
             this.null12.Margin = new System.Windows.Forms.Padding(0);
             this.null12.Name = "null12";
             this.null12.Size = new System.Drawing.Size(36, 20);
@@ -810,10 +813,10 @@
             // button12
             // 
             this.button12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button12.Location = new System.Drawing.Point(462, 21);
+            this.button12.Location = new System.Drawing.Point(443, 21);
             this.button12.Margin = new System.Windows.Forms.Padding(0);
             this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(36, 19);
+            this.button12.Size = new System.Drawing.Size(36, 20);
             this.button12.TabIndex = 28;
             this.button12.Text = "Set";
             this.button12.UseVisualStyleBackColor = true;
@@ -822,10 +825,10 @@
             // button11
             // 
             this.button11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button11.Location = new System.Drawing.Point(426, 21);
+            this.button11.Location = new System.Drawing.Point(407, 21);
             this.button11.Margin = new System.Windows.Forms.Padding(0);
             this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(36, 19);
+            this.button11.Size = new System.Drawing.Size(36, 20);
             this.button11.TabIndex = 27;
             this.button11.Text = "Set";
             this.button11.UseVisualStyleBackColor = true;
@@ -834,10 +837,10 @@
             // button10
             // 
             this.button10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button10.Location = new System.Drawing.Point(388, 21);
+            this.button10.Location = new System.Drawing.Point(369, 21);
             this.button10.Margin = new System.Windows.Forms.Padding(0);
             this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(38, 19);
+            this.button10.Size = new System.Drawing.Size(38, 20);
             this.button10.TabIndex = 26;
             this.button10.Text = "Set";
             this.button10.UseVisualStyleBackColor = true;
@@ -846,10 +849,10 @@
             // button9
             // 
             this.button9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button9.Location = new System.Drawing.Point(356, 21);
+            this.button9.Location = new System.Drawing.Point(337, 21);
             this.button9.Margin = new System.Windows.Forms.Padding(0);
             this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(32, 19);
+            this.button9.Size = new System.Drawing.Size(32, 20);
             this.button9.TabIndex = 25;
             this.button9.Text = "Set";
             this.button9.UseVisualStyleBackColor = true;
@@ -858,10 +861,10 @@
             // button8
             // 
             this.button8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button8.Location = new System.Drawing.Point(321, 21);
+            this.button8.Location = new System.Drawing.Point(302, 21);
             this.button8.Margin = new System.Windows.Forms.Padding(0);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(35, 19);
+            this.button8.Size = new System.Drawing.Size(35, 20);
             this.button8.TabIndex = 24;
             this.button8.Text = "Set";
             this.button8.UseVisualStyleBackColor = true;
@@ -870,10 +873,10 @@
             // button7
             // 
             this.button7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button7.Location = new System.Drawing.Point(289, 21);
+            this.button7.Location = new System.Drawing.Point(270, 21);
             this.button7.Margin = new System.Windows.Forms.Padding(0);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(32, 19);
+            this.button7.Size = new System.Drawing.Size(32, 20);
             this.button7.TabIndex = 23;
             this.button7.Text = "Set";
             this.button7.UseVisualStyleBackColor = true;
@@ -882,10 +885,10 @@
             // button6
             // 
             this.button6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button6.Location = new System.Drawing.Point(252, 21);
+            this.button6.Location = new System.Drawing.Point(233, 21);
             this.button6.Margin = new System.Windows.Forms.Padding(0);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(37, 19);
+            this.button6.Size = new System.Drawing.Size(37, 20);
             this.button6.TabIndex = 22;
             this.button6.Text = "Set";
             this.button6.UseVisualStyleBackColor = true;
@@ -894,10 +897,10 @@
             // button5
             // 
             this.button5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button5.Location = new System.Drawing.Point(213, 21);
+            this.button5.Location = new System.Drawing.Point(194, 21);
             this.button5.Margin = new System.Windows.Forms.Padding(0);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(39, 19);
+            this.button5.Size = new System.Drawing.Size(39, 20);
             this.button5.TabIndex = 21;
             this.button5.Text = "Set";
             this.button5.UseVisualStyleBackColor = true;
@@ -906,10 +909,10 @@
             // button4
             // 
             this.button4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button4.Location = new System.Drawing.Point(178, 21);
+            this.button4.Location = new System.Drawing.Point(159, 21);
             this.button4.Margin = new System.Windows.Forms.Padding(0);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(35, 19);
+            this.button4.Size = new System.Drawing.Size(35, 20);
             this.button4.TabIndex = 20;
             this.button4.Text = "Set";
             this.button4.UseVisualStyleBackColor = true;
@@ -918,10 +921,10 @@
             // button3
             // 
             this.button3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button3.Location = new System.Drawing.Point(141, 21);
+            this.button3.Location = new System.Drawing.Point(122, 21);
             this.button3.Margin = new System.Windows.Forms.Padding(0);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(37, 19);
+            this.button3.Size = new System.Drawing.Size(37, 20);
             this.button3.TabIndex = 19;
             this.button3.Text = "Set";
             this.button3.UseVisualStyleBackColor = true;
@@ -930,10 +933,10 @@
             // button2
             // 
             this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button2.Location = new System.Drawing.Point(104, 21);
+            this.button2.Location = new System.Drawing.Point(85, 21);
             this.button2.Margin = new System.Windows.Forms.Padding(0);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(37, 19);
+            this.button2.Size = new System.Drawing.Size(37, 20);
             this.button2.TabIndex = 18;
             this.button2.Text = "Set";
             this.button2.UseVisualStyleBackColor = true;
@@ -942,10 +945,10 @@
             // button1
             // 
             this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button1.Location = new System.Drawing.Point(68, 21);
+            this.button1.Location = new System.Drawing.Point(56, 21);
             this.button1.Margin = new System.Windows.Forms.Padding(0);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(36, 19);
+            this.button1.Size = new System.Drawing.Size(29, 20);
             this.button1.TabIndex = 2;
             this.button1.Text = "Set";
             this.button1.UseVisualStyleBackColor = true;
@@ -955,9 +958,9 @@
             // 
             this.fixedRow.AutoSize = true;
             this.fixedRow.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fixedRow.Location = new System.Drawing.Point(3, 60);
+            this.fixedRow.Location = new System.Drawing.Point(3, 61);
             this.fixedRow.Name = "fixedRow";
-            this.fixedRow.Size = new System.Drawing.Size(62, 21);
+            this.fixedRow.Size = new System.Drawing.Size(50, 21);
             this.fixedRow.TabIndex = 17;
             this.fixedRow.Text = "Fixed (0-F)";
             this.fixedRow.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -966,9 +969,9 @@
             // 
             this.nullRow.AutoSize = true;
             this.nullRow.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.nullRow.Location = new System.Drawing.Point(3, 40);
+            this.nullRow.Location = new System.Drawing.Point(3, 41);
             this.nullRow.Name = "nullRow";
-            this.nullRow.Size = new System.Drawing.Size(62, 20);
+            this.nullRow.Size = new System.Drawing.Size(50, 20);
             this.nullRow.TabIndex = 2;
             this.nullRow.Text = "Null (0)";
             this.nullRow.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -979,7 +982,7 @@
             this.randomRow.Dock = System.Windows.Forms.DockStyle.Fill;
             this.randomRow.Location = new System.Drawing.Point(3, 21);
             this.randomRow.Name = "randomRow";
-            this.randomRow.Size = new System.Drawing.Size(62, 19);
+            this.randomRow.Size = new System.Drawing.Size(50, 20);
             this.randomRow.TabIndex = 15;
             this.randomRow.Text = "Random (R)";
             this.randomRow.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -988,7 +991,7 @@
             // 
             this.c1_12.AutoSize = true;
             this.c1_12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.c1_12.Location = new System.Drawing.Point(465, 0);
+            this.c1_12.Location = new System.Drawing.Point(446, 0);
             this.c1_12.Name = "c1_12";
             this.c1_12.Size = new System.Drawing.Size(30, 21);
             this.c1_12.TabIndex = 14;
@@ -1000,7 +1003,7 @@
             // 
             this.c1_11.AutoSize = true;
             this.c1_11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.c1_11.Location = new System.Drawing.Point(429, 0);
+            this.c1_11.Location = new System.Drawing.Point(410, 0);
             this.c1_11.Name = "c1_11";
             this.c1_11.Size = new System.Drawing.Size(30, 21);
             this.c1_11.TabIndex = 13;
@@ -1012,7 +1015,7 @@
             // 
             this.c1_10.AutoSize = true;
             this.c1_10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.c1_10.Location = new System.Drawing.Point(391, 0);
+            this.c1_10.Location = new System.Drawing.Point(372, 0);
             this.c1_10.Name = "c1_10";
             this.c1_10.Size = new System.Drawing.Size(32, 21);
             this.c1_10.TabIndex = 12;
@@ -1024,7 +1027,7 @@
             // 
             this.c1_9.AutoSize = true;
             this.c1_9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.c1_9.Location = new System.Drawing.Point(359, 0);
+            this.c1_9.Location = new System.Drawing.Point(340, 0);
             this.c1_9.Name = "c1_9";
             this.c1_9.Size = new System.Drawing.Size(26, 21);
             this.c1_9.TabIndex = 11;
@@ -1036,7 +1039,7 @@
             // 
             this.c1_8.AutoSize = true;
             this.c1_8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.c1_8.Location = new System.Drawing.Point(324, 0);
+            this.c1_8.Location = new System.Drawing.Point(305, 0);
             this.c1_8.Name = "c1_8";
             this.c1_8.Size = new System.Drawing.Size(29, 21);
             this.c1_8.TabIndex = 10;
@@ -1048,7 +1051,7 @@
             // 
             this.c1_7.AutoSize = true;
             this.c1_7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.c1_7.Location = new System.Drawing.Point(292, 0);
+            this.c1_7.Location = new System.Drawing.Point(273, 0);
             this.c1_7.Name = "c1_7";
             this.c1_7.Size = new System.Drawing.Size(26, 21);
             this.c1_7.TabIndex = 9;
@@ -1060,7 +1063,7 @@
             // 
             this.c1_6.AutoSize = true;
             this.c1_6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.c1_6.Location = new System.Drawing.Point(255, 0);
+            this.c1_6.Location = new System.Drawing.Point(236, 0);
             this.c1_6.Name = "c1_6";
             this.c1_6.Size = new System.Drawing.Size(31, 21);
             this.c1_6.TabIndex = 8;
@@ -1072,7 +1075,7 @@
             // 
             this.c1_5.AutoSize = true;
             this.c1_5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.c1_5.Location = new System.Drawing.Point(216, 0);
+            this.c1_5.Location = new System.Drawing.Point(197, 0);
             this.c1_5.Name = "c1_5";
             this.c1_5.Size = new System.Drawing.Size(33, 21);
             this.c1_5.TabIndex = 7;
@@ -1084,7 +1087,7 @@
             // 
             this.c1_4.AutoSize = true;
             this.c1_4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.c1_4.Location = new System.Drawing.Point(181, 0);
+            this.c1_4.Location = new System.Drawing.Point(162, 0);
             this.c1_4.Name = "c1_4";
             this.c1_4.Size = new System.Drawing.Size(29, 21);
             this.c1_4.TabIndex = 6;
@@ -1096,7 +1099,7 @@
             // 
             this.c1_3.AutoSize = true;
             this.c1_3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.c1_3.Location = new System.Drawing.Point(144, 0);
+            this.c1_3.Location = new System.Drawing.Point(125, 0);
             this.c1_3.Name = "c1_3";
             this.c1_3.Size = new System.Drawing.Size(31, 21);
             this.c1_3.TabIndex = 5;
@@ -1108,7 +1111,7 @@
             // 
             this.c1_2.AutoSize = true;
             this.c1_2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.c1_2.Location = new System.Drawing.Point(107, 0);
+            this.c1_2.Location = new System.Drawing.Point(88, 0);
             this.c1_2.Name = "c1_2";
             this.c1_2.Size = new System.Drawing.Size(31, 21);
             this.c1_2.TabIndex = 4;
@@ -1120,9 +1123,9 @@
             // 
             this.c1_1.AutoSize = true;
             this.c1_1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.c1_1.Location = new System.Drawing.Point(71, 0);
+            this.c1_1.Location = new System.Drawing.Point(59, 0);
             this.c1_1.Name = "c1_1";
-            this.c1_1.Size = new System.Drawing.Size(30, 21);
+            this.c1_1.Size = new System.Drawing.Size(23, 21);
             this.c1_1.TabIndex = 3;
             this.c1_1.Text = "R";
             this.c1_1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1134,7 +1137,7 @@
             this.codeSelection.Dock = System.Windows.Forms.DockStyle.Fill;
             this.codeSelection.Location = new System.Drawing.Point(3, 0);
             this.codeSelection.Name = "codeSelection";
-            this.codeSelection.Size = new System.Drawing.Size(62, 21);
+            this.codeSelection.Size = new System.Drawing.Size(50, 21);
             this.codeSelection.TabIndex = 2;
             this.codeSelection.Text = "Code 1";
             this.codeSelection.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1197,7 +1200,7 @@
             // okButton
             // 
             this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.okButton.Location = new System.Drawing.Point(626, 170);
+            this.okButton.Location = new System.Drawing.Point(594, 190);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(75, 23);
             this.okButton.TabIndex = 5;
@@ -1209,7 +1212,7 @@
             // 
             this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancelButton.Location = new System.Drawing.Point(545, 170);
+            this.cancelButton.Location = new System.Drawing.Point(513, 190);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 4;
@@ -1220,7 +1223,7 @@
             // nullButton
             // 
             this.nullButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.nullButton.Location = new System.Drawing.Point(524, 57);
+            this.nullButton.Location = new System.Drawing.Point(492, 57);
             this.nullButton.Name = "nullButton";
             this.nullButton.Size = new System.Drawing.Size(72, 23);
             this.nullButton.TabIndex = 6;
@@ -1231,7 +1234,7 @@
             // randomButton
             // 
             this.randomButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.randomButton.Location = new System.Drawing.Point(605, 57);
+            this.randomButton.Location = new System.Drawing.Point(573, 57);
             this.randomButton.Name = "randomButton";
             this.randomButton.Size = new System.Drawing.Size(86, 23);
             this.randomButton.TabIndex = 7;
@@ -1253,14 +1256,14 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(716, 205);
+            this.panel1.Size = new System.Drawing.Size(684, 225);
             this.panel1.TabIndex = 8;
             this.panel1.Visible = false;
             // 
             // ntOKButton
             // 
             this.ntOKButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ntOKButton.Location = new System.Drawing.Point(631, 174);
+            this.ntOKButton.Location = new System.Drawing.Point(599, 194);
             this.ntOKButton.Name = "ntOKButton";
             this.ntOKButton.Size = new System.Drawing.Size(75, 23);
             this.ntOKButton.TabIndex = 14;
@@ -1270,6 +1273,8 @@
             // 
             // ntCodeChooser
             // 
+            this.ntCodeChooser.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ntCodeChooser.Controls.Add(this.code1label);
             this.ntCodeChooser.Controls.Add(this.code2label);
             this.ntCodeChooser.Controls.Add(this.button20);
@@ -1278,7 +1283,7 @@
             this.ntCodeChooser.Controls.Add(this.button23);
             this.ntCodeChooser.Location = new System.Drawing.Point(424, 65);
             this.ntCodeChooser.Name = "ntCodeChooser";
-            this.ntCodeChooser.Size = new System.Drawing.Size(255, 27);
+            this.ntCodeChooser.Size = new System.Drawing.Size(250, 27);
             this.ntCodeChooser.TabIndex = 13;
             this.ntCodeChooser.WrapContents = false;
             // 
@@ -1346,7 +1351,7 @@
             // ntRandomButton
             // 
             this.ntRandomButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ntRandomButton.Location = new System.Drawing.Point(530, 115);
+            this.ntRandomButton.Location = new System.Drawing.Point(498, 115);
             this.ntRandomButton.Name = "ntRandomButton";
             this.ntRandomButton.Size = new System.Drawing.Size(86, 23);
             this.ntRandomButton.TabIndex = 9;
@@ -1357,7 +1362,7 @@
             // ntNullButton
             // 
             this.ntNullButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ntNullButton.Location = new System.Drawing.Point(620, 115);
+            this.ntNullButton.Location = new System.Drawing.Point(588, 115);
             this.ntNullButton.Name = "ntNullButton";
             this.ntNullButton.Size = new System.Drawing.Size(86, 23);
             this.ntNullButton.TabIndex = 8;
@@ -1376,7 +1381,8 @@
             // 
             // chooseFileButton
             // 
-            this.chooseFileButton.Location = new System.Drawing.Point(624, 38);
+            this.chooseFileButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chooseFileButton.Location = new System.Drawing.Point(619, 38);
             this.chooseFileButton.Name = "chooseFileButton";
             this.chooseFileButton.Size = new System.Drawing.Size(55, 23);
             this.chooseFileButton.TabIndex = 4;
@@ -1386,10 +1392,12 @@
             // 
             // fileBox
             // 
+            this.fileBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.fileBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.fileBox.Location = new System.Drawing.Point(453, 39);
             this.fileBox.Name = "fileBox";
-            this.fileBox.Size = new System.Drawing.Size(165, 21);
+            this.fileBox.Size = new System.Drawing.Size(160, 21);
             this.fileBox.TabIndex = 3;
             this.fileBox.TextChanged += new System.EventHandler(this.FileRenamer);
             // 
@@ -1593,7 +1601,7 @@
             this.ntn8.TabIndex = 26;
             this.ntn8.Text = "Set";
             this.ntn8.UseVisualStyleBackColor = true;
-            this.ntn8.Click += new System.EventHandler(this.ntn8_Click);
+            this.ntn8.Click += new System.EventHandler(this.Ntn8_Click);
             // 
             // ntn7
             // 
@@ -1608,7 +1616,7 @@
             this.ntn7.TabIndex = 25;
             this.ntn7.Text = "Set";
             this.ntn7.UseVisualStyleBackColor = true;
-            this.ntn7.Click += new System.EventHandler(this.ntn7_Click);
+            this.ntn7.Click += new System.EventHandler(this.Ntn7_Click);
             // 
             // ntn6
             // 
@@ -1623,7 +1631,7 @@
             this.ntn6.TabIndex = 24;
             this.ntn6.Text = "Set";
             this.ntn6.UseVisualStyleBackColor = true;
-            this.ntn6.Click += new System.EventHandler(this.ntn6_Click);
+            this.ntn6.Click += new System.EventHandler(this.Ntn6_Click);
             // 
             // ntn5
             // 
@@ -1638,7 +1646,7 @@
             this.ntn5.TabIndex = 23;
             this.ntn5.Text = "Set";
             this.ntn5.UseVisualStyleBackColor = true;
-            this.ntn5.Click += new System.EventHandler(this.ntn5_Click);
+            this.ntn5.Click += new System.EventHandler(this.Ntn5_Click);
             // 
             // ntn4
             // 
@@ -1653,7 +1661,7 @@
             this.ntn4.TabIndex = 22;
             this.ntn4.Text = "Set";
             this.ntn4.UseVisualStyleBackColor = true;
-            this.ntn4.Click += new System.EventHandler(this.ntn4_Click);
+            this.ntn4.Click += new System.EventHandler(this.Ntn4_Click);
             // 
             // ntn3
             // 
@@ -1668,7 +1676,7 @@
             this.ntn3.TabIndex = 21;
             this.ntn3.Text = "Set";
             this.ntn3.UseVisualStyleBackColor = true;
-            this.ntn3.Click += new System.EventHandler(this.ntn3_Click);
+            this.ntn3.Click += new System.EventHandler(this.Ntn3_Click);
             // 
             // ntn2
             // 
@@ -1683,7 +1691,7 @@
             this.ntn2.TabIndex = 20;
             this.ntn2.Text = "Set";
             this.ntn2.UseVisualStyleBackColor = true;
-            this.ntn2.Click += new System.EventHandler(this.ntn2_Click);
+            this.ntn2.Click += new System.EventHandler(this.Ntn2_Click);
             // 
             // ntn1
             // 
@@ -1698,7 +1706,7 @@
             this.ntn1.TabIndex = 19;
             this.ntn1.Text = "Set";
             this.ntn1.UseVisualStyleBackColor = true;
-            this.ntn1.Click += new System.EventHandler(this.ntn1_Click);
+            this.ntn1.Click += new System.EventHandler(this.Ntn1_Click);
             // 
             // ntr8
             // 
@@ -1713,7 +1721,7 @@
             this.ntr8.TabIndex = 18;
             this.ntr8.Text = "Set";
             this.ntr8.UseVisualStyleBackColor = true;
-            this.ntr8.Click += new System.EventHandler(this.ntr8_Click);
+            this.ntr8.Click += new System.EventHandler(this.Ntr8_Click);
             // 
             // ntr7
             // 
@@ -1728,7 +1736,7 @@
             this.ntr7.TabIndex = 17;
             this.ntr7.Text = "Set";
             this.ntr7.UseVisualStyleBackColor = true;
-            this.ntr7.Click += new System.EventHandler(this.ntr7_Click);
+            this.ntr7.Click += new System.EventHandler(this.Ntr7_Click);
             // 
             // ntr6
             // 
@@ -1743,7 +1751,7 @@
             this.ntr6.TabIndex = 16;
             this.ntr6.Text = "Set";
             this.ntr6.UseVisualStyleBackColor = true;
-            this.ntr6.Click += new System.EventHandler(this.ntr6_Click);
+            this.ntr6.Click += new System.EventHandler(this.Ntr6_Click);
             // 
             // ntr5
             // 
@@ -1758,7 +1766,7 @@
             this.ntr5.TabIndex = 15;
             this.ntr5.Text = "Set";
             this.ntr5.UseVisualStyleBackColor = true;
-            this.ntr5.Click += new System.EventHandler(this.ntr5_Click);
+            this.ntr5.Click += new System.EventHandler(this.Ntr5_Click);
             // 
             // ntr4
             // 
@@ -1773,7 +1781,7 @@
             this.ntr4.TabIndex = 14;
             this.ntr4.Text = "Set";
             this.ntr4.UseVisualStyleBackColor = true;
-            this.ntr4.Click += new System.EventHandler(this.ntr4_Click);
+            this.ntr4.Click += new System.EventHandler(this.Ntr4_Click);
             // 
             // ntr3
             // 
@@ -1788,7 +1796,7 @@
             this.ntr3.TabIndex = 13;
             this.ntr3.Text = "Set";
             this.ntr3.UseVisualStyleBackColor = true;
-            this.ntr3.Click += new System.EventHandler(this.ntr3_Click);
+            this.ntr3.Click += new System.EventHandler(this.Ntr3_Click);
             // 
             // ntr2
             // 
@@ -1803,7 +1811,7 @@
             this.ntr2.TabIndex = 12;
             this.ntr2.Text = "Set";
             this.ntr2.UseVisualStyleBackColor = true;
-            this.ntr2.Click += new System.EventHandler(this.ntr2_Click);
+            this.ntr2.Click += new System.EventHandler(this.Ntr2_Click);
             // 
             // ntc8
             // 
@@ -1950,7 +1958,7 @@
             this.ntr1.TabIndex = 11;
             this.ntr1.Text = "Set";
             this.ntr1.UseVisualStyleBackColor = true;
-            this.ntr1.Click += new System.EventHandler(this.ntr1_Click);
+            this.ntr1.Click += new System.EventHandler(this.Ntr1_Click);
             // 
             // ntEntryChooser
             // 
@@ -1960,7 +1968,7 @@
             this.ntEntryChooser.FormattingEnabled = true;
             this.ntEntryChooser.Location = new System.Drawing.Point(19, 16);
             this.ntEntryChooser.Name = "ntEntryChooser";
-            this.ntEntryChooser.Size = new System.Drawing.Size(687, 21);
+            this.ntEntryChooser.Size = new System.Drawing.Size(655, 21);
             this.ntEntryChooser.TabIndex = 1;
             this.ntEntryChooser.SelectedIndexChanged += new System.EventHandler(this.NTEntryChooser);
             // 
@@ -1969,7 +1977,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
-            this.ClientSize = new System.Drawing.Size(716, 205);
+            this.ClientSize = new System.Drawing.Size(684, 225);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.randomButton);
             this.Controls.Add(this.nullButton);
@@ -1982,10 +1990,11 @@
             this.Controls.Add(this.methodLabel);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.methodTitleLabel);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(700, 264);
             this.Name = "IndexForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
