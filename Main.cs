@@ -1429,5 +1429,16 @@ namespace UltimateBlueScreenSimulator
         {
             advancedNTOptionsToolStripMenuItem.PerformClick();
         }
+
+        private void Main_Resize(object sender, EventArgs e)
+        {
+            flowLayoutPanel2.Width = flowLayoutPanel1.Width;
+            ntPanel.Width = flowLayoutPanel1.Width;
+            errorCode.Width = flowLayoutPanel1.Width;
+            nineXmessage.Width = flowLayoutPanel1.Width;
+            flowLayoutPanel4.Width = flowLayoutPanel1.Width;
+            winPanel.Width = flowLayoutPanel1.Width;
+            WXOptions.Width = flowLayoutPanel1.Width;
+        }
     }
 }

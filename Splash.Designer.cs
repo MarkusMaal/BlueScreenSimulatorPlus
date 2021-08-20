@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Splash));
             this.splashEmoticon = new System.Windows.Forms.Label();
             this.splashPlus = new System.Windows.Forms.Label();
             this.appNameLabel = new System.Windows.Forms.Label();
@@ -74,7 +75,7 @@
             // 
             // SplashText
             // 
-            this.SplashText.BackColor = System.Drawing.Color.Black;
+            this.SplashText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.SplashText.Font = new System.Drawing.Font("Segoe UI", 8F);
             this.SplashText.Location = new System.Drawing.Point(20, 129);
             this.SplashText.Name = "SplashText";
@@ -95,7 +96,7 @@
             this.appMarketedVersionLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.appMarketedVersionLabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.appMarketedVersionLabel.Font = new System.Drawing.Font("Segoe UI", 24F);
-            this.appMarketedVersionLabel.ForeColor = System.Drawing.Color.Blue;
+            this.appMarketedVersionLabel.ForeColor = System.Drawing.Color.MediumBlue;
             this.appMarketedVersionLabel.Location = new System.Drawing.Point(374, 42);
             this.appMarketedVersionLabel.Name = "appMarketedVersionLabel";
             this.appMarketedVersionLabel.Size = new System.Drawing.Size(61, 64);
@@ -109,7 +110,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.BackColor = System.Drawing.Color.Black;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.BackgroundImage = global::UltimateBlueScreenSimulator.Properties.Resources.round_corners;
             this.ClientSize = new System.Drawing.Size(471, 149);
             this.Controls.Add(this.appMarketedVersionLabel);
@@ -119,7 +120,9 @@
             this.Controls.Add(this.splashEmoticon);
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Splash";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Splash";
             this.TopMost = true;

@@ -124,6 +124,8 @@
             // 
             // windowVersion
             // 
+            this.windowVersion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.windowVersion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.windowVersion.FormattingEnabled = true;
             this.windowVersion.Items.AddRange(new object[] {
@@ -174,8 +176,9 @@
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(15, 73);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(472, 275);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(472, 266);
             this.flowLayoutPanel1.TabIndex = 3;
+            this.flowLayoutPanel1.WrapContents = false;
             // 
             // WXOptions
             // 
@@ -192,7 +195,6 @@
             this.flowLayoutPanel2.Controls.Add(this.greenBox);
             this.flowLayoutPanel2.Controls.Add(this.qrBox);
             this.flowLayoutPanel2.Controls.Add(this.memoryBox);
-            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
@@ -287,6 +289,7 @@
             // 
             // button2
             // 
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button2.Enabled = false;
             this.button2.Location = new System.Drawing.Point(401, 59);
             this.button2.Name = "button2";
@@ -298,6 +301,8 @@
             // 
             // textBox2
             // 
+            this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox2.Enabled = false;
             this.textBox2.Location = new System.Drawing.Point(151, 59);
             this.textBox2.Name = "textBox2";
@@ -323,6 +328,8 @@
             // 
             // textBox1
             // 
+            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox1.Location = new System.Drawing.Point(80, 30);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(384, 20);
@@ -487,7 +494,7 @@
             this.checkBox1.AutoSize = true;
             this.checkBox1.Checked = true;
             this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Location = new System.Drawing.Point(473, 3);
+            this.checkBox1.Location = new System.Drawing.Point(3, 257);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(237, 17);
             this.checkBox1.TabIndex = 6;
@@ -502,7 +509,7 @@
             this.dumpBox.AutoSize = true;
             this.dumpBox.Checked = true;
             this.dumpBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.dumpBox.Location = new System.Drawing.Point(473, 26);
+            this.dumpBox.Location = new System.Drawing.Point(3, 280);
             this.dumpBox.Name = "dumpBox";
             this.dumpBox.Size = new System.Drawing.Size(69, 17);
             this.dumpBox.TabIndex = 13;
@@ -516,15 +523,15 @@
             // 
             this.winPanel.Controls.Add(this.playSndBox);
             this.winPanel.Controls.Add(this.flowLayoutPanel3);
-            this.winPanel.Location = new System.Drawing.Point(473, 49);
+            this.winPanel.Location = new System.Drawing.Point(3, 303);
             this.winPanel.Name = "winPanel";
-            this.winPanel.Size = new System.Drawing.Size(461, 56);
+            this.winPanel.Size = new System.Drawing.Size(461, 70);
             this.winPanel.TabIndex = 14;
             // 
             // playSndBox
             // 
             this.playSndBox.AutoSize = true;
-            this.playSndBox.Location = new System.Drawing.Point(2, 35);
+            this.playSndBox.Location = new System.Drawing.Point(1, 53);
             this.playSndBox.Name = "playSndBox";
             this.playSndBox.Size = new System.Drawing.Size(93, 17);
             this.playSndBox.TabIndex = 4;
@@ -535,12 +542,14 @@
             // 
             // flowLayoutPanel3
             // 
+            this.flowLayoutPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.flowLayoutPanel3.Controls.Add(this.win1startup);
             this.flowLayoutPanel3.Controls.Add(this.win2startup);
             this.flowLayoutPanel3.Controls.Add(this.nostartup);
             this.flowLayoutPanel3.Location = new System.Drawing.Point(0, 3);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(458, 26);
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(458, 44);
             this.flowLayoutPanel3.TabIndex = 3;
             // 
             // win1startup
@@ -583,7 +592,7 @@
             this.waterBox.AutoSize = true;
             this.waterBox.Checked = true;
             this.waterBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.waterBox.Location = new System.Drawing.Point(473, 111);
+            this.waterBox.Location = new System.Drawing.Point(3, 379);
             this.waterBox.Name = "waterBox";
             this.waterBox.Size = new System.Drawing.Size(127, 17);
             this.waterBox.TabIndex = 16;
@@ -595,7 +604,7 @@
             // winMode
             // 
             this.winMode.AutoSize = true;
-            this.winMode.Location = new System.Drawing.Point(473, 134);
+            this.winMode.Location = new System.Drawing.Point(3, 402);
             this.winMode.Name = "winMode";
             this.winMode.Size = new System.Drawing.Size(121, 17);
             this.winMode.TabIndex = 17;
@@ -609,7 +618,7 @@
             this.flowLayoutPanel4.Controls.Add(this.advOptionsButton);
             this.flowLayoutPanel4.Controls.Add(this.eCodeEditButton);
             this.flowLayoutPanel4.Controls.Add(this.advNTButton);
-            this.flowLayoutPanel4.Location = new System.Drawing.Point(473, 157);
+            this.flowLayoutPanel4.Location = new System.Drawing.Point(3, 425);
             this.flowLayoutPanel4.Name = "flowLayoutPanel4";
             this.flowLayoutPanel4.Size = new System.Drawing.Size(467, 30);
             this.flowLayoutPanel4.TabIndex = 18;
@@ -661,7 +670,7 @@
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(418, 373);
+            this.button1.Location = new System.Drawing.Point(418, 364);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(68, 23);
             this.button1.TabIndex = 4;
@@ -674,7 +683,7 @@
             // button3
             // 
             this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.Location = new System.Drawing.Point(301, 373);
+            this.button3.Location = new System.Drawing.Point(301, 364);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(111, 23);
             this.button3.TabIndex = 9;
@@ -686,8 +695,8 @@
             // 
             // button7
             // 
-            this.button7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button7.Location = new System.Drawing.Point(15, 373);
+            this.button7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button7.Location = new System.Drawing.Point(15, 364);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(69, 23);
             this.button7.TabIndex = 14;
@@ -703,7 +712,7 @@
             // 
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(15, 357);
+            this.label7.Location = new System.Drawing.Point(15, 348);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(150, 13);
             this.label7.TabIndex = 6;
@@ -712,7 +721,7 @@
             // label10
             // 
             this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label10.Location = new System.Drawing.Point(351, 351);
+            this.label10.Location = new System.Drawing.Point(351, 342);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(134, 13);
             this.label10.TabIndex = 8;
@@ -914,7 +923,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(499, 410);
+            this.ClientSize = new System.Drawing.Size(499, 401);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.button3);
@@ -926,21 +935,18 @@
             this.Controls.Add(this.windowVersion);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.menuBar);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.HelpButton = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuBar;
-            this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(550, 9999);
-            this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(515, 373);
+            this.MinimumSize = new System.Drawing.Size(440, 440);
             this.Name = "Main";
-            this.Text = "BlueScreen Simulator Plus";
+            this.Text = "BlueScreen Simulator Plus 2.0";
             this.HelpButtonClicked += new System.ComponentModel.CancelEventHandler(this.Form1_HelpButtonClicked);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Initialize);
             this.Shown += new System.EventHandler(this.Form1_Shown);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
+            this.Resize += new System.EventHandler(this.Main_Resize);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
             this.WXOptions.ResumeLayout(false);

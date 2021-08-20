@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>bsodgen_npJ_icon.ico</ApplicationIcon>
+    <ApplicationIcon>bssp2.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="PresentationCore" />
@@ -325,6 +325,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="bsodgen_npJ_icon.ico" />
+    <Content Include="bssp2.ico" />
+    <None Include="Resources\bsodbanner2.png" />
     <None Include="Resources\round_corners.png" />
     <None Include="Resources\rasters3.bmp" />
     <None Include="Resources\doscii.png" />
