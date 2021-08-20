@@ -10,7 +10,7 @@ namespace UltimateBlueScreenSimulator
             InitializeComponent();
         }
 
-        private void ChooseFile_Load(object sender, EventArgs e)
+        private void Initialize(object sender, EventArgs e)
         {
             foreach (string line in Properties.Resources.CULPRIT_FILES.Split('\n'))
             {
@@ -26,7 +26,7 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void ListView1_ItemActivate(object sender, EventArgs e)
+        private void WhenUserSelectsTheDesiredFile(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.OK;
             this.Close();

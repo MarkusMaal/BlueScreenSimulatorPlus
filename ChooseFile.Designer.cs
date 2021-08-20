@@ -56,7 +56,7 @@ namespace UltimateBlueScreenSimulator
             this.fileBrowser.TabIndex = 0;
             this.fileBrowser.UseCompatibleStateImageBehavior = false;
             this.fileBrowser.View = System.Windows.Forms.View.Details;
-            this.fileBrowser.ItemActivate += new System.EventHandler(this.ListView1_ItemActivate);
+            this.fileBrowser.ItemActivate += new System.EventHandler(this.WhenUserSelectsTheDesiredFile);
             // 
             // FileName
             // 
@@ -77,7 +77,7 @@ namespace UltimateBlueScreenSimulator
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ChooseFile";
             this.Text = "Choose culprit file";
-            this.Load += new System.EventHandler(this.ChooseFile_Load);
+            this.Load += new System.EventHandler(this.Initialize);
             this.ResumeLayout(false);
 
         }

@@ -30,75 +30,75 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UpdateInterface));
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.updateHeading = new System.Windows.Forms.Label();
+            this.updateDescriptionLabel = new System.Windows.Forms.Label();
+            this.updateStepsPanel = new System.Windows.Forms.TableLayoutPanel();
             this.TempStatus = new System.Windows.Forms.PictureBox();
             this.Launchstatus = new System.Windows.Forms.PictureBox();
             this.HashStatus = new System.Windows.Forms.PictureBox();
             this.DownloadStatus = new System.Windows.Forms.PictureBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.label7 = new System.Windows.Forms.Label();
+            this.downloadUpdateLabel = new System.Windows.Forms.Label();
+            this.hashCheckLabel = new System.Windows.Forms.Label();
+            this.installAndLaunchLabel = new System.Windows.Forms.Label();
+            this.delTempLabel = new System.Windows.Forms.Label();
+            this.updateProgress = new System.Windows.Forms.ProgressBar();
+            this.warningLabel = new System.Windows.Forms.Label();
             this.dloadState = new System.Windows.Forms.Label();
             this.hashWait = new System.Windows.Forms.Timer(this.components);
             this.installWait = new System.Windows.Forms.Timer(this.components);
             this.cleanWait = new System.Windows.Forms.Timer(this.components);
-            this.tableLayoutPanel1.SuspendLayout();
+            this.updateStepsPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TempStatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Launchstatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.HashStatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DownloadStatus)).BeginInit();
             this.SuspendLayout();
             // 
-            // label1
+            // updateHeading
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 13F);
-            this.label1.Location = new System.Drawing.Point(12, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(431, 25);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Please wait while we download and install the update";
+            this.updateHeading.AutoSize = true;
+            this.updateHeading.Font = new System.Drawing.Font("Segoe UI", 13F);
+            this.updateHeading.Location = new System.Drawing.Point(12, 9);
+            this.updateHeading.Name = "updateHeading";
+            this.updateHeading.Size = new System.Drawing.Size(431, 25);
+            this.updateHeading.TabIndex = 0;
+            this.updateHeading.Text = "Please wait while we download and install the update";
             // 
-            // label2
+            // updateDescriptionLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.label2.Location = new System.Drawing.Point(14, 34);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(359, 30);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "During the update progress, the program may restart several times.\r\nThe following" +
+            this.updateDescriptionLabel.AutoSize = true;
+            this.updateDescriptionLabel.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.updateDescriptionLabel.Location = new System.Drawing.Point(14, 34);
+            this.updateDescriptionLabel.Name = "updateDescriptionLabel";
+            this.updateDescriptionLabel.Size = new System.Drawing.Size(359, 30);
+            this.updateDescriptionLabel.TabIndex = 1;
+            this.updateDescriptionLabel.Text = "During the update progress, the program may restart several times.\r\nThe following" +
     " steps will be taken to ensure a successful update:";
             // 
-            // tableLayoutPanel1
+            // updateStepsPanel
             // 
-            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.updateStepsPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 4.502814F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 95.49718F));
-            this.tableLayoutPanel1.Controls.Add(this.TempStatus, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.Launchstatus, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.HashStatus, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.DownloadStatus, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.label3, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.label4, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label5, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.label6, 1, 3);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(17, 77);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 4;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(460, 78);
-            this.tableLayoutPanel1.TabIndex = 2;
+            this.updateStepsPanel.ColumnCount = 2;
+            this.updateStepsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 4.502814F));
+            this.updateStepsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 95.49718F));
+            this.updateStepsPanel.Controls.Add(this.TempStatus, 0, 3);
+            this.updateStepsPanel.Controls.Add(this.Launchstatus, 0, 2);
+            this.updateStepsPanel.Controls.Add(this.HashStatus, 0, 1);
+            this.updateStepsPanel.Controls.Add(this.DownloadStatus, 0, 0);
+            this.updateStepsPanel.Controls.Add(this.downloadUpdateLabel, 1, 0);
+            this.updateStepsPanel.Controls.Add(this.hashCheckLabel, 1, 1);
+            this.updateStepsPanel.Controls.Add(this.installAndLaunchLabel, 1, 2);
+            this.updateStepsPanel.Controls.Add(this.delTempLabel, 1, 3);
+            this.updateStepsPanel.Location = new System.Drawing.Point(17, 77);
+            this.updateStepsPanel.Name = "updateStepsPanel";
+            this.updateStepsPanel.RowCount = 4;
+            this.updateStepsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.updateStepsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.updateStepsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.updateStepsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.updateStepsPanel.Size = new System.Drawing.Size(460, 78);
+            this.updateStepsPanel.TabIndex = 2;
             // 
             // TempStatus
             // 
@@ -148,63 +148,64 @@
             this.DownloadStatus.TabIndex = 4;
             this.DownloadStatus.TabStop = false;
             // 
-            // label3
+            // downloadUpdateLabel
             // 
-            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Location = new System.Drawing.Point(23, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(434, 19);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Downloading the update";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.downloadUpdateLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.downloadUpdateLabel.Location = new System.Drawing.Point(23, 0);
+            this.downloadUpdateLabel.Name = "downloadUpdateLabel";
+            this.downloadUpdateLabel.Size = new System.Drawing.Size(434, 19);
+            this.downloadUpdateLabel.TabIndex = 0;
+            this.downloadUpdateLabel.Text = "Downloading the update";
+            this.downloadUpdateLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label4
+            // hashCheckLabel
             // 
-            this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label4.Location = new System.Drawing.Point(23, 19);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(434, 19);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "Hashchecking";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.hashCheckLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.hashCheckLabel.Location = new System.Drawing.Point(23, 19);
+            this.hashCheckLabel.Name = "hashCheckLabel";
+            this.hashCheckLabel.Size = new System.Drawing.Size(434, 19);
+            this.hashCheckLabel.TabIndex = 1;
+            this.hashCheckLabel.Text = "Hashchecking";
+            this.hashCheckLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label5
+            // installAndLaunchLabel
             // 
-            this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label5.Location = new System.Drawing.Point(23, 38);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(434, 20);
-            this.label5.TabIndex = 2;
-            this.label5.Text = "Installing and launching the new update";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.installAndLaunchLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.installAndLaunchLabel.Location = new System.Drawing.Point(23, 38);
+            this.installAndLaunchLabel.Name = "installAndLaunchLabel";
+            this.installAndLaunchLabel.Size = new System.Drawing.Size(434, 20);
+            this.installAndLaunchLabel.TabIndex = 2;
+            this.installAndLaunchLabel.Text = "Installing and launching the new update";
+            this.installAndLaunchLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label6
+            // delTempLabel
             // 
-            this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label6.Location = new System.Drawing.Point(23, 58);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(434, 20);
-            this.label6.TabIndex = 3;
-            this.label6.Text = "Deleting temporary update files";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.delTempLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.delTempLabel.Location = new System.Drawing.Point(23, 58);
+            this.delTempLabel.Name = "delTempLabel";
+            this.delTempLabel.Size = new System.Drawing.Size(434, 20);
+            this.delTempLabel.TabIndex = 3;
+            this.delTempLabel.Text = "Deleting temporary update files";
+            this.delTempLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // progressBar1
+            // updateProgress
             // 
-            this.progressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.updateProgress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.progressBar1.Location = new System.Drawing.Point(17, 161);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(460, 20);
-            this.progressBar1.TabIndex = 3;
+            this.updateProgress.Location = new System.Drawing.Point(17, 161);
+            this.updateProgress.Name = "updateProgress";
+            this.updateProgress.Size = new System.Drawing.Size(460, 20);
+            this.updateProgress.TabIndex = 3;
             // 
-            // label7
+            // warningLabel
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(14, 201);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(248, 13);
-            this.label7.TabIndex = 4;
-            this.label7.Text = "Do not turn off your computer or close this program!";
+            this.warningLabel.AutoSize = true;
+            this.warningLabel.Location = new System.Drawing.Point(14, 201);
+            this.warningLabel.Name = "warningLabel";
+            this.warningLabel.Size = new System.Drawing.Size(434, 13);
+            this.warningLabel.TabIndex = 4;
+            this.warningLabel.Text = "Do not turn off your computer or close this program! Doing so, will result in a f" +
+    "ailed update!!!";
             // 
             // dloadState
             // 
@@ -236,21 +237,21 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(489, 234);
             this.Controls.Add(this.dloadState);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.progressBar1);
-            this.Controls.Add(this.tableLayoutPanel1);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.warningLabel);
+            this.Controls.Add(this.updateProgress);
+            this.Controls.Add(this.updateStepsPanel);
+            this.Controls.Add(this.updateDescriptionLabel);
+            this.Controls.Add(this.updateHeading);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(478, 273);
             this.Name = "UpdateInterface";
-            this.Text = "Updater 1.0";
+            this.Text = "Updater 1.1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.UpdateInterface_FormClosing);
             this.Load += new System.EventHandler(this.UpdateInterface_Load);
-            this.tableLayoutPanel1.ResumeLayout(false);
+            this.updateStepsPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.TempStatus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Launchstatus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.HashStatus)).EndInit();
@@ -262,19 +263,19 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label updateHeading;
+        private System.Windows.Forms.Label updateDescriptionLabel;
+        private System.Windows.Forms.TableLayoutPanel updateStepsPanel;
+        private System.Windows.Forms.Label downloadUpdateLabel;
+        private System.Windows.Forms.Label hashCheckLabel;
+        private System.Windows.Forms.Label installAndLaunchLabel;
+        private System.Windows.Forms.Label delTempLabel;
         private System.Windows.Forms.PictureBox TempStatus;
         private System.Windows.Forms.PictureBox Launchstatus;
         private System.Windows.Forms.PictureBox HashStatus;
         private System.Windows.Forms.PictureBox DownloadStatus;
-        private System.Windows.Forms.ProgressBar progressBar1;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ProgressBar updateProgress;
+        private System.Windows.Forms.Label warningLabel;
         private System.Windows.Forms.Label dloadState;
         private System.Windows.Forms.Timer hashWait;
         private System.Windows.Forms.Timer installWait;

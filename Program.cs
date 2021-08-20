@@ -123,6 +123,9 @@ namespace UltimateBlueScreenSimulator
         public static string load_message = "";
         public static bool hidden = false;
         public static string multidisplaymode = "blank";
+
+        public static string update_server = "http://markustegelane.tk/app";
+
         readonly private static ManagementObjectSearcher aa = new ManagementObjectSearcher("root\\CIMV2", "SELECT * FROM Win32_BaseBoard");
         public static List<BlueScreen> bluescreens;
 
@@ -133,48 +136,11 @@ namespace UltimateBlueScreenSimulator
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             dr = new DrawRoutines();
-            //If hidesplash flag is not set, display the splash screen
-            if (!args.Contains("/hidesplash"))
-            {
-                if (!args.Contains("/finalize_update"))
-                {
-                    hidden = true;
-                    spl = new Splash();
-                    spl.ShowDialog();
-                    if (args.Contains("/preview_splash"))
-                    {
-                        return;
-                    }
-                }
-                else
-                {
-                    verificate = Verikey(args);
-                }
-            }
-            else
-            {
-                verificate = Verikey(args);
-            }
-            if (bad) { return; }
-            if (!verificate) { return; }
-
-            //Clear verification certificate if clr flag is set
-            if (args.Contains("/clr"))
-            {
-                if ((!args.Contains("/hidesplash")) || (!args.Contains("/finalize_update")))
-                {
-                    spl.Close();
-                }
-                File.Delete(Environment.GetEnvironmentVariable("USERPROFILE") + @"\bssp_firstlaunch.txt");
-                MessageBox.Show("Signature verification file deleted. The program will now close.", "Ultimate blue screen simulator plus", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
 
             //Initialize forms
             f1 = new Main();
             bluescreens = new List<BlueScreen>();
             ReRe();
-
             //Load application configuration if it exists
             if (File.Exists("settings.cfg"))
             {
@@ -212,6 +178,16 @@ namespace UltimateBlueScreenSimulator
                         {
                             f1.GMode = element.Replace("ScaleMode=", "");
                         }
+                        else if (element.StartsWith("Server="))
+                        {
+                            update_server = element.Replace("Server=", "");
+                        }
+                        // this skips checking hidden/visible OS-s
+                        // this is a feature that was exclusive to 1.x
+                        else if (element.Contains("\""))
+                        {
+                            break;
+                        }
                     }
                 }
                 catch (Exception ex)
@@ -221,6 +197,48 @@ namespace UltimateBlueScreenSimulator
                     MessageBox.Show(ex.Message);
                 }
             }
+            //If hidesplash flag is not set, display the splash screen
+            if (!args.Contains("/hidesplash"))
+            {
+                if (!args.Contains("/finalize_update"))
+                {
+                    hidden = true;
+                    spl = new Splash();
+                    spl.ShowDialog();
+                    if (args.Contains("/preview_splash"))
+                    {
+                        return;
+                    }
+                }
+                else
+                {
+                    verificate = Verikey(args);
+                }
+            }
+            else
+            {
+                verificate = Verikey(args);
+            }
+            if (bad) { return; }
+            if (!verificate) { return; }
+
+            //Clear verification certificate if clr flag is set
+            if (args.Contains("/clr"))
+            {
+                if ((!args.Contains("/hidesplash")) || (!args.Contains("/finalize_update")))
+                {
+                    spl.Close();
+                }
+                File.Delete(Environment.GetEnvironmentVariable("USERPROFILE") + @"\bssp_firstlaunch.txt");
+                MessageBox.Show("Signature verification file deleted. The program will now close.", "Ultimate blue screen simulator plus", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            if (args.Contains("/c"))
+            {
+                f1.GetOS();
+            }
+
 
             //Load Windows NT error codes from the database
             f1.comboBox1.Items.Clear();
@@ -268,11 +286,6 @@ namespace UltimateBlueScreenSimulator
             if (args.Contains("/random")) { f1.RandFunction(); }
             //Hide watermark if hwm flag is set
             if (args.Contains("/hvm")) { f1.waterBox.Checked = false; }
-            //Simulate crash if /c flag is set
-            if (args.Contains("/c"))
-            {
-                f1.Crash();
-            }
             bool done = false;
             foreach (string argument in args)
             {
@@ -290,7 +303,7 @@ namespace UltimateBlueScreenSimulator
                     {
                         if (filename != "")
                         {
-                            AboutBox1 abb = new AboutBox1();
+                            AboutSettingsDialog abb = new AboutSettingsDialog();
                             abb.loadBsconfig.FileName = filename;
                             abb.LoadConfig();
                             abb.Close();
@@ -329,6 +342,7 @@ namespace UltimateBlueScreenSimulator
                     }
                 }
             }
+            
             //sets other optional flags
             if (args.Contains("/ddesc")) { 
                 foreach (BlueScreen bs in bluescreens)
@@ -514,6 +528,11 @@ namespace UltimateBlueScreenSimulator
                 }
             }
 
+            //Simulate crash if /c flag is set
+            if (args.Contains("/c"))
+            {
+                f1.Crash();
+            }
             //run application
             Application.Run(f1);
   

@@ -192,6 +192,8 @@ namespace UltimateBlueScreenSimulator
                         this.Close();
                     }
                 }
+                this.BringToFront();
+                this.Activate();
             }
         }
 

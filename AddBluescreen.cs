@@ -12,18 +12,18 @@ namespace UltimateBlueScreenSimulator
             InitializeComponent();
         }
 
-        private void Button2_Click(object sender, EventArgs e)
+        private void CancelClick(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
 
-        private void AddBluescreen_Load(object sender, EventArgs e)
+        private void Initialize(object sender, EventArgs e)
         {
             templatePicker.SelectedIndex = 0;
         }
 
-        private void TemplatePicker_SelectedIndexChanged(object sender, EventArgs e)
+        private void OSSelector(object sender, EventArgs e)
         {
             switch (templatePicker.SelectedItem.ToString())
             {
@@ -91,7 +91,7 @@ namespace UltimateBlueScreenSimulator
             base_os = osBox.Text;
         }
 
-        private void CheckBox1_CheckedChanged(object sender, EventArgs e)
+        private void ConfirmCustomOS(object sender, EventArgs e)
         {
             if (specifyOsBox.Checked)
             {
@@ -108,7 +108,7 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void Button1_Click(object sender, EventArgs e)
+        private void MakeBluescreen(object sender, EventArgs e)
         {
             BlueScreen my_config = new BlueScreen(base_os);
             my_config.SetString("friendlyname", friendlyBox.Text);
@@ -119,7 +119,7 @@ namespace UltimateBlueScreenSimulator
             this.Close();
         }
 
-        private void osBox_TextChanged(object sender, EventArgs e)
+        private void JustifyWindowsWarriors(object sender, EventArgs e)
         {
             if (Program.f1.enableeggs)
             {

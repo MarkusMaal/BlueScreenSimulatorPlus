@@ -254,7 +254,7 @@ namespace UltimateBlueScreenSimulator
 
         private void Timer1_Tick(object sender, EventArgs e)
         {
-            if (timer1.Interval != me.GetInt("blink_speed")) { timer1.Interval = me.GetInt("blink_speed"); }
+            if (screenUpdater.Interval != me.GetInt("blink_speed")) { screenUpdater.Interval = me.GetInt("blink_speed"); }
             if (!window)
             {
                 foreach (WindowScreen ws in wss)
@@ -276,6 +276,8 @@ namespace UltimateBlueScreenSimulator
                         this.Close();
                     }
                 }
+                this.BringToFront();
+                this.Activate();
             }
             if (!locked)
             {

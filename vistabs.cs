@@ -268,6 +268,8 @@ namespace UltimateBlueScreenSimulator
                         this.Close();
                     }
                 }
+                this.BringToFront();
+                this.Activate();
             }
             if (tardisFade.Enabled == true) { return; }
             if (rainBowScreen.Enabled == true) { return; }

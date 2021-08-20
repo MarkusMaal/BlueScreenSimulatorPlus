@@ -31,7 +31,7 @@ namespace UltimateBlueScreenSimulator
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(win));
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.screenUpdater = new System.Windows.Forms.Timer(this.components);
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.pictureBox19 = new System.Windows.Forms.PictureBox();
             this.pictureBox18 = new System.Windows.Forms.PictureBox();
@@ -75,11 +75,11 @@ namespace UltimateBlueScreenSimulator
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // timer1
+            // screenUpdater
             // 
-            this.timer1.Enabled = true;
-            this.timer1.Interval = 10;
-            this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
+            this.screenUpdater.Enabled = true;
+            this.screenUpdater.Interval = 10;
+            this.screenUpdater.Tick += new System.EventHandler(this.Timer1_Tick);
             // 
             // tableLayoutPanel1
             // 
@@ -377,7 +377,7 @@ namespace UltimateBlueScreenSimulator
 
         #endregion
 
-        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Timer screenUpdater;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.PictureBox pictureBox16;
         private System.Windows.Forms.PictureBox pictureBox15;

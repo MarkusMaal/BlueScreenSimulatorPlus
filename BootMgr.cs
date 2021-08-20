@@ -16,7 +16,7 @@ namespace UltimateBlueScreenSimulator
             InitializeComponent();
         }
 
-        private void BootMgr_KeyDown(object sender, KeyEventArgs e)
+        private void KeyChecker(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
             {
@@ -28,7 +28,7 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void BootMgr_Load(object sender, EventArgs e)
+        private void Initialization(object sender, EventArgs e)
         {
             this.Icon = me.GetIcon();
             this.Text = me.GetString("friendlyname");
@@ -40,18 +40,18 @@ namespace UltimateBlueScreenSimulator
             IDictionary<string, string> txt = me.GetTexts();
             IDictionary<string, string> titles = me.GetTitles();
             //this.Font = me.GetFont();
-            label1.BackColor = fg; label1.ForeColor = bg; label1.Text = titles["Main"];
-            label5.BackColor = fg; label5.ForeColor = bg; label5.Text = txt["Continue"];
-            label6.BackColor = fg; label6.ForeColor = bg; label6.Text = txt["Exit"];
+            bootmgrTitle.BackColor = fg; bootmgrTitle.ForeColor = bg; bootmgrTitle.Text = titles["Main"];
+            bootmgrEnterContinue.BackColor = fg; bootmgrEnterContinue.ForeColor = bg; bootmgrEnterContinue.Text = txt["Continue"];
+            bootmgrEscapeExit.BackColor = fg; bootmgrEscapeExit.ForeColor = bg; bootmgrEscapeExit.Text = txt["Exit"];
 
-            label2.BackColor = bg; label2.ForeColor = fg; label2.Text = txt["Troubleshooting introduction"];
-            label3.BackColor = bg; label3.ForeColor = fg; label3.Text = txt["Troubleshooting"];
-            label4.BackColor = bg; label4.ForeColor = fg; label4.Text = txt["Troubleshooting without disc"];
-            label7.BackColor = bg; label7.ForeColor = fg; label7.Text = txt["Status"];
-            label8.BackColor = bg; label8.ForeColor = fg; label8.Text = txt["Info"];
+            bootmgrIntro.BackColor = bg; bootmgrIntro.ForeColor = fg; bootmgrIntro.Text = txt["Troubleshooting introduction"];
+            bootmgrTroubleshoot.BackColor = bg; bootmgrTroubleshoot.ForeColor = fg; bootmgrTroubleshoot.Text = txt["Troubleshooting"];
+            bootmgrConsultAdmin.BackColor = bg; bootmgrConsultAdmin.ForeColor = fg; bootmgrConsultAdmin.Text = txt["Troubleshooting without disc"];
+            bootmgrStatus.BackColor = bg; bootmgrStatus.ForeColor = fg; bootmgrStatus.Text = txt["Status"];
+            bootmgrInfo.BackColor = bg; bootmgrInfo.ForeColor = fg; bootmgrInfo.Text = txt["Info"];
 
-            label9.BackColor = hbg; label9.ForeColor = hfg; label9.Text = me.GetString("code").ToLower();
-            label10.BackColor = hbg; label10.ForeColor = hfg; label10.Text = txt["Error description"];
+            bootmgrStatusCode.BackColor = hbg; bootmgrStatusCode.ForeColor = hfg; bootmgrStatusCode.Text = me.GetString("code").ToLower();
+            bootmgrInfoDetails.BackColor = hbg; bootmgrInfoDetails.ForeColor = hfg; bootmgrInfoDetails.Text = txt["Error description"];
 
             this.TopMost = false;
             Program.loadfinished = true;
@@ -86,7 +86,7 @@ namespace UltimateBlueScreenSimulator
             this.Hide();
         }
 
-        private void Timer1_Tick(object sender, EventArgs e)
+        private void UpdateScreen(object sender, EventArgs e)
         {
             foreach (WindowScreen ws in wss)
             {
@@ -125,10 +125,12 @@ namespace UltimateBlueScreenSimulator
                     naturalclose = true;
                     this.Close();
                 }
+                this.BringToFront();
+                this.Activate();
             }
         }
 
-        private void BootMgr_FormClosing(object sender, FormClosingEventArgs e)
+        private void Unloading(object sender, FormClosingEventArgs e)
         {
             if (!naturalclose)
             {

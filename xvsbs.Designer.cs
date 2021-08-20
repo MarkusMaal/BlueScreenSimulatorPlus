@@ -33,7 +33,7 @@ namespace UltimateBlueScreenSimulator
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Xvsbs));
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.dumpTimer = new System.Windows.Forms.Timer(this.components);
             this.tardisFade = new System.Windows.Forms.Timer(this.components);
             this.rainBowScreen = new System.Windows.Forms.Timer(this.components);
             this.introductionText = new System.Windows.Forms.AliasedLabel();
@@ -42,13 +42,14 @@ namespace UltimateBlueScreenSimulator
             this.technicalCode = new System.Windows.Forms.AliasedLabel();
             this.dumpLabel = new System.Windows.Forms.AliasedLabel();
             this.waterMarkText = new System.Windows.Forms.AliasedLabel();
+            this.screenUpdater = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
-            // timer1
+            // dumpTimer
             // 
-            this.timer1.Enabled = true;
-            this.timer1.Interval = 500;
-            this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
+            this.dumpTimer.Enabled = true;
+            this.dumpTimer.Interval = 500;
+            this.dumpTimer.Tick += new System.EventHandler(this.Timer1_Tick);
             // 
             // tardisFade
             // 
@@ -99,7 +100,7 @@ namespace UltimateBlueScreenSimulator
             this.supportInfo.Location = new System.Drawing.Point(-1, 90);
             this.supportInfo.Margin = new System.Windows.Forms.Padding(3, 20, 3, 0);
             this.supportInfo.Name = "supportInfo";
-            this.supportInfo.Size = new System.Drawing.Size(602, 200);
+            this.supportInfo.Size = new System.Drawing.Size(602, 213);
             this.supportInfo.TabIndex = 10;
             this.supportInfo.Text = resources.GetString("supportInfo.Text");
             this.supportInfo.UseCompatibleTextRendering = true;
@@ -142,6 +143,12 @@ namespace UltimateBlueScreenSimulator
             this.waterMarkText.TabIndex = 7;
             this.waterMarkText.Text = "bluescreen simulator plus";
             // 
+            // screenUpdater
+            // 
+            this.screenUpdater.Enabled = true;
+            this.screenUpdater.Interval = 500;
+            this.screenUpdater.Tick += new System.EventHandler(this.screenUpdater_Tick);
+            // 
             // Xvsbs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -174,7 +181,7 @@ namespace UltimateBlueScreenSimulator
 
         #endregion
         public AliasedLabel waterMarkText;
-        public System.Windows.Forms.Timer timer1;
+        public System.Windows.Forms.Timer dumpTimer;
         private System.Windows.Forms.Timer tardisFade;
         private System.Windows.Forms.Timer rainBowScreen;
         public AliasedLabel introductionText;
@@ -182,6 +189,7 @@ namespace UltimateBlueScreenSimulator
         public AliasedLabel supportInfo;
         public AliasedLabel technicalCode;
         public AliasedLabel dumpLabel;
+        private Timer screenUpdater;
     }
 
 }

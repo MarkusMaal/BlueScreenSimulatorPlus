@@ -23,7 +23,7 @@ namespace UltimateBlueScreenSimulator
             InitializeComponent();
         }
 
-        private void Timer1_Tick(object sender, EventArgs e)
+        private void TimeoutProgression(object sender, EventArgs e)
         {
             if (fullscreen)
             {
@@ -41,13 +41,15 @@ namespace UltimateBlueScreenSimulator
                         this.Close();
                     }
                 }
+                this.BringToFront();
+                this.Activate();
             }
             if (progress == 0) { this.Close(); }
             timeOut.Text = timeOut.Text.Replace(progress.ToString(), (progress - 1).ToString());
             progress--;
         }
 
-        private void Cebsod_Load(object sender, EventArgs e)
+        private void Initialize(object sender, EventArgs e)
         {
             try
             {
@@ -179,7 +181,7 @@ namespace UltimateBlueScreenSimulator
             waterMarkText.ForeColor = Color.FromArgb(colors[0], colors[1], colors[2]);
         }
 
-        private void Cebsod_FormClosing(object sender, FormClosingEventArgs e)
+        private void Unload(object sender, FormClosingEventArgs e)
         {
             if (e.CloseReason == CloseReason.UserClosing)
             {
@@ -203,7 +205,7 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void Cebsod_FormClosed(object sender, FormClosedEventArgs e)
+        private void AfterUnload(object sender, FormClosedEventArgs e)
         {
             if (!fullscreen)
             { 
@@ -214,7 +216,7 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void RainBowScreen_Tick(object sender, EventArgs e)
+        private void DoubleRainbow(object sender, EventArgs e)
         {
 
             int r = this.BackColor.R;

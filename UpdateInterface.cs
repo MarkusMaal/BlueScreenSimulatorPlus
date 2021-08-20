@@ -70,7 +70,7 @@ namespace UltimateBlueScreenSimulator
             dloadState.Text = string.Format("{0} KB downloaded (Transfer rate: {1} kb/s)", (e.BytesReceived / 1024d).ToString("0.00"), (e.BytesReceived / 1024d / sw.Elapsed.TotalSeconds).ToString("0.00"));
 
             // Update the progressbar percentage only when the value is not the same.
-            progressBar1.Value = e.ProgressPercentage;
+            updateProgress.Value = e.ProgressPercentage;
 
         }
 
@@ -108,7 +108,7 @@ namespace UltimateBlueScreenSimulator
 
         private void UpdateInterface_Load(object sender, EventArgs e)
         {
-            if (Program.f1.hashverify == false) { label4.Text = "Hashchecking (will be skipped)"; }
+            if (Program.f1.hashverify == false) { hashCheckLabel.Text = "Hashchecking (will be skipped)"; }
             GoodHash = File.ReadAllText("hash.txt").Trim();
             if (!finalize)
             { 
@@ -116,7 +116,7 @@ namespace UltimateBlueScreenSimulator
                 SetStatus(HashStatus, "Pending");
                 SetStatus(Launchstatus, "Pending");
                 SetStatus(TempStatus, "Pending");
-                DownloadFile("markustegelane.tk/app/BSSP_latest.zim", "BSSP.exe");
+                DownloadFile(Program.update_server + "/BSSP_latest.zim", "BSSP.exe");
             }
             if (finalize)
             {
@@ -124,7 +124,7 @@ namespace UltimateBlueScreenSimulator
                 SetStatus(HashStatus, "Success");
                 SetStatus(Launchstatus, "Success");
                 SetStatus(TempStatus, "Processing");
-                progressBar1.Visible = false;
+                updateProgress.Visible = false;
                 dloadState.Visible = false;
                 cleanWait.Enabled = true;
             }
@@ -152,7 +152,7 @@ namespace UltimateBlueScreenSimulator
 
         private void HashWait_Tick(object sender, EventArgs e)
         {
-            progressBar1.Visible = false;
+            updateProgress.Visible = false;
             hashWait.Enabled = false;
             MD5 d5 = MD5.Create();
             Byte[] hash = d5.ComputeHash(File.ReadAllBytes("BSSP.exe"));
@@ -171,7 +171,7 @@ namespace UltimateBlueScreenSimulator
                     SetStatus(HashStatus, "Pending");
                     SetStatus(Launchstatus, "Pending");
                     SetStatus(TempStatus, "Pending");
-                    DownloadFile("markustegelane.tk/app/BSSP_latest.zim", "BSSP.exe");
+                    DownloadFile(Program.update_server + "/BSSP_latest.zim", "BSSP.exe");
                 } else
                 {
                     SetStatus(Launchstatus, "Processing");
@@ -197,6 +197,7 @@ namespace UltimateBlueScreenSimulator
         private void CleanWait_Tick(object sender, EventArgs e)
         {
             cleanWait.Enabled = false;
+            File.SetAttributes("UltimateBlueScreenSimulator.exe", FileAttributes.Hidden);
             File.Delete("UltimateBlueScreenSimulator.exe");
             File.Move("BSSP_new.exe", "UltimateBlueScreenSimulator.exe");
             System.IO.File.WriteAllText("finish.bat", Properties.Resources.final);

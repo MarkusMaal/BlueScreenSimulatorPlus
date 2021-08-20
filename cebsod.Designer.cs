@@ -88,7 +88,7 @@
             // 
             this.screenUpdater.Enabled = true;
             this.screenUpdater.Interval = 1000;
-            this.screenUpdater.Tick += new System.EventHandler(this.Timer1_Tick);
+            this.screenUpdater.Tick += new System.EventHandler(this.TimeoutProgression);
             // 
             // waterMarkText
             // 
@@ -105,7 +105,7 @@
             // rainBowScreen
             // 
             this.rainBowScreen.Interval = 10;
-            this.rainBowScreen.Tick += new System.EventHandler(this.RainBowScreen_Tick);
+            this.rainBowScreen.Tick += new System.EventHandler(this.DoubleRainbow);
             // 
             // Cebsod
             // 
@@ -126,9 +126,9 @@
             this.MaximizeBox = false;
             this.Name = "Cebsod";
             this.Text = "Windows CE 5 blue screen simulator";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Cebsod_FormClosing);
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Cebsod_FormClosed);
-            this.Load += new System.EventHandler(this.Cebsod_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Unload);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AfterUnload);
+            this.Load += new System.EventHandler(this.Initialize);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -54,11 +54,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AboutBox1.cs">
+    <Compile Include="AboutSettingsDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AboutBox1.Designer.cs">
-      <DependentUpon>AboutBox1.cs</DependentUpon>
+    <Compile Include="AboutSettingsDialog.Designer.cs">
+      <DependentUpon>AboutSettingsDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="AddBluescreen.cs">
       <SubType>Form</SubType>
@@ -210,8 +210,8 @@
     <Compile Include="xvsbs.Designer.cs">
       <DependentUpon>xvsbs.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="AboutBox1.resx">
-      <DependentUpon>AboutBox1.cs</DependentUpon>
+    <EmbeddedResource Include="AboutSettingsDialog.resx">
+      <DependentUpon>AboutSettingsDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AddBluescreen.resx">
       <DependentUpon>AddBluescreen.cs</DependentUpon>

@@ -97,7 +97,7 @@ namespace UltimateBlueScreenSimulator
             InitializeComponent();
         }
 
-        private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void ChangeConfiguration(object sender, EventArgs e)
         {
             if (linkLabel1.Visible)
             {
@@ -367,7 +367,7 @@ namespace UltimateBlueScreenSimulator
             bsod_starter.Start();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void Initialize(object sender, EventArgs e)
         {
             ts = new ThreadStart(ShowBlueScreen);
             bsod_starter = new Thread(ts);
@@ -401,7 +401,7 @@ namespace UltimateBlueScreenSimulator
             if (autoupdate == true)
             { 
                 UpdateInterface ui = new UpdateInterface();
-                ui.DownloadFile("markustegelane.tk/app/bssp_version.txt", "vercheck.txt");
+                ui.DownloadFile(Program.update_server + "/bssp_version.txt", "vercheck.txt");
                 updateCheckerTimer.Enabled = true;
                 if (System.IO.File.Exists("BSSP_latest.zim"))
                 {
@@ -431,102 +431,83 @@ namespace UltimateBlueScreenSimulator
                     }
                 }
             }
-            if (error == 1)
+            switch (error)
             {
-                MessageBox.Show("No command specified in hidden mode\nAre you missing the /c argument?\n\n0x001: COMMAND_DEADLOCK", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                case 0:
+                    break;
+                case 1:
+                    MessageBox.Show("No command specified in hidden mode\nAre you missing the /c argument?\n\n0x001: COMMAND_DEADLOCK", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 2:
+                    MessageBox.Show("Specified file is either corrupted or not a valid blue screen simulator plus hack file.\n\n0x002: HEADER_MISSING", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 3:
+                    MessageBox.Show("Specified file is either corrupted or incompatible with this version of blue screen simulator plus.\n\n0x003: INCOMPATIBLE_HACK", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 4:
+                    MessageBox.Show("Specified file is either corrupt or does not exist.\n\n0x004: FILE_MISSING", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 5:
+                    MessageBox.Show("Specified file is either corrupted or incompatible with this version of blue screen simulator plus.\n\n0x005: MISSING_ATTRIBUTES", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 6:
+                    MessageBox.Show("Specified file is either corrupted or incompatible with this version of blue screen simulator plus.\n\n0x006: FACE_TOO_LONG", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 7:
+                    MessageBox.Show("Specified file is either corrupted or incompatible with this version of blue screen simulator plus.\n\n0x007: FACE_TOO_SHORT", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 8:
+                    MessageBox.Show("Specified file is either corrupted or incompatible with this version of blue screen simulator plus.\n\n0x008: RGB_OUT_OF_RANGE", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 9:
+                    MessageBox.Show("Specified file is either corrupted or incompatible with this version of blue screen simulator plus.\n\n0x009: RGB_VALUE_NEGATIVE", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 10:
+                    MessageBox.Show("A supported Windows version could not be identified.\n\n0x00A: PRODUCT_NAME_NOT_LISTED", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 11:
+                    MessageBox.Show("Windows version could not be identified.\nAre you using a compatibility layer?\n\n0x00B: PRODUCT_NAME_MISSING", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 12:
+                    MessageBox.Show("Cannot find the Windows version specified\n\n0x00C: WINVER_NOT_FOUND", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 13:
+                    MessageBox.Show("Cannot find the error code specified\n\n0x00D: NTCODE_NOT_FOUND", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 14:
+                    MessageBox.Show("Cannot find the error code specified\n\n0x00D: 9XCODE_NOT_FOUND", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 15:
+                    MessageBox.Show("The syntax of the command is incorrect\n\n0x00E: BAD_SYNTAX", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 16:
+                    MessageBox.Show("The syntax of the command is incorrect\n\n0x00F: BAD_SYNTAX", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 17:
+                    MessageBox.Show("The syntax of the command is incorrect\n\n0x010: BAD_SYNTAX", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 18:
+                    MessageBox.Show("The syntax of the command is incorrect\n\n0x011: BAD_SYNTAX", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 19:
+                    MessageBox.Show("Internal database could not be loaded\n\n0x012: NT_DATABASE_MISSING", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 20:
+                    MessageBox.Show("Internal database seems to be corrupted\n\n0x013: NT_DATABASE_CORRUPTED", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 23:
+                    MessageBox.Show("The syntax of the command is incorrect\n\n0x016: COMMAND_ARGUMENT_INVALID", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 24:
+                    MessageBox.Show("Specified hack file does not exist\n\n0x014: HACK_FILE_NON_EXISTENT", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 25:
+                    MessageBox.Show("Specified hack file is either corrupted or incompatible with this version of blue screen simulator plus.\n\n0x015: HACK_FILE_INCOMPATIBLE", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                default:
+                    this.Close();
+                    break;
             }
-            if (error == 10)
-            {
-                MessageBox.Show("A supported Windows version could not be identified.\n\n0x00A: PRODUCT_NAME_NOT_LISTED", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                error = 0;
-            }
-            if (error == 11)
-            {
-                MessageBox.Show("Windows version could not be identified.\nAre you using a compatibility layer?\n\n0x00B: PRODUCT_NAME_MISSING", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                error = 0;
-            }
-            if (error == 12)
-            {
-                MessageBox.Show("Cannot find the Windows version specified\n\n0x00C: WINVER_NOT_FOUND", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            if (error == 13)
-            {
-                MessageBox.Show("Cannot find the error code specified\n\n0x00D: NTCODE_NOT_FOUND", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            if (error == 14)
-            {
-                MessageBox.Show("Cannot find the error code specified\n\n0x00D: 9XCODE_NOT_FOUND", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            if (error == 15)
-            {
-                MessageBox.Show("The syntax of the command is incorrect\n\n0x00E: BAD_SYNTAX", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            if (error == 16)
-            {
-                MessageBox.Show("The syntax of the command is incorrect\n\n0x00F: BAD_SYNTAX", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            if (error == 17)
-            {
-                MessageBox.Show("The syntax of the command is incorrect\n\n0x010: BAD_SYNTAX", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            if (error == 18)
-            {
-                MessageBox.Show("The syntax of the command is incorrect\n\n0x011: BAD_SYNTAX", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            if (error == 19)
-            {
-                MessageBox.Show("Internal database could not be loaded\n\n0x012: NT_DATABASE_MISSING", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            if (error == 20)
-            {
-                MessageBox.Show("Internal database seems to be corrupted\n\n0x013: NT_DATABASE_CORRUPTED", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            if (error == 24)
-            {
-                MessageBox.Show("Specified hack file does not exist\n\n0x014: HACK_FILE_NON_EXISTENT", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            if (error == 25)
-            {
-                MessageBox.Show("Specified hack file is either corrupted or incompatible with this version of blue screen simulator plus.\n\n0x015: HACK_FILE_INCOMPATIBLE", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            if (error == 23)
-            {
-                MessageBox.Show("The syntax of the command is incorrect\n\n0x016: COMMAND_ARGUMENT_INVALID", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            if (error == 9)
-            {
-                MessageBox.Show("Specified file is either corrupted or incompatible with this version of blue screen simulator plus.\n\n0x009: RGB_VALUE_NEGATIVE", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else if (error == 8)
-            {
-                MessageBox.Show("Specified file is either corrupted or incompatible with this version of blue screen simulator plus.\n\n0x008: RGB_OUT_OF_RANGE", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else if (error == 7)
-            {
-                MessageBox.Show("Specified file is either corrupted or incompatible with this version of blue screen simulator plus.\n\n0x007: FACE_TOO_SHORT", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else if (error == 6)
-            {
-                MessageBox.Show("Specified file is either corrupted or incompatible with this version of blue screen simulator plus.\n\n0x006: FACE_TOO_LONG", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else if (error == 5)
-            {
-                MessageBox.Show("Specified file is either corrupted or incompatible with this version of blue screen simulator plus.\n\n0x005: MISSING_ATTRIBUTES", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else if (error == 2)
-            {
-                MessageBox.Show("Specified file is either corrupted or not a valid blue screen simulator plus hack file.\n\n0x002: HEADER_MISSING", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else if (error == 3)
-            {
-                MessageBox.Show("Specified file is either corrupted or incompatible with this version of blue screen simulator plus.\n\n0x003: INCOMPATIBLE_HACK", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            if (error == 4)
-            {
-                MessageBox.Show("Specified file is either corrupt or does not exist.\n\n0x004: FILE_MISSING", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            if (error != 0) { this.Close(); }
-
         }
 
         private void Button1_Click(object sender, EventArgs e)
@@ -771,7 +752,7 @@ namespace UltimateBlueScreenSimulator
         private void Form1_HelpButtonClicked(object sender, CancelEventArgs e)
         {
             if (!abopen) {
-                AboutBox1 a1 = new AboutBox1
+                AboutSettingsDialog a1 = new AboutSettingsDialog
                 {
                     Text = "Help and about"
                 };
@@ -877,7 +858,8 @@ namespace UltimateBlueScreenSimulator
                     tries += 1;
                     try
                     {
-                        System.IO.File.Delete("BSSP.exe");
+                        System.IO.File.Move("BSSP.exe", Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\BSSP_old.exe");
+                        System.IO.File.Delete(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\BSSP_old.exe");
                     }
                     catch
                     {
@@ -894,7 +876,7 @@ namespace UltimateBlueScreenSimulator
                 if (System.IO.File.Exists("vercheck.txt"))
                 {
                     string[] lines = System.IO.File.ReadAllLines("vercheck.txt");
-                    if (lines[0].Trim() != "1.14")
+                    if (Convert.ToDouble(lines[0].Replace(".", ",").Replace("\r", "").Replace("\n", "").Trim()) > 2.0)
                     {
                         updateCheckerTimer.Enabled = false;
                         System.IO.File.Delete("vercheck.txt");
@@ -948,8 +930,10 @@ namespace UltimateBlueScreenSimulator
                         }
                     }
                 }
-            } catch
+            } catch (Exception ex)
             {
+                updateCheckerTimer.Enabled = false;
+                MessageBox.Show("An error has occoured.\n\nFatal exception: " + ex.Message + "\n\nStack trace\n" + ex.StackTrace, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -964,7 +948,7 @@ namespace UltimateBlueScreenSimulator
             {
                 try
                 {
-                    System.IO.File.WriteAllText("settings.cfg", "UpdateClose=" + postponeupdate.ToString() + "\nHashVerify=" + hashverify.ToString() + "\nAutoUpdate=" + autoupdate.ToString() + "\nShowCursor=" + showcursor.ToString() + "\nScaleMode=" + GMode + "\nMultiMode=" + Program.multidisplaymode.ToString() + "\nSeecrets=" + enableeggs.ToString());
+                    System.IO.File.WriteAllText("settings.cfg", "UpdateClose=" + postponeupdate.ToString() + "\nHashVerify=" + hashverify.ToString() + "\nAutoUpdate=" + autoupdate.ToString() + "\nShowCursor=" + showcursor.ToString() + "\nScaleMode=" + GMode + "\nMultiMode=" + Program.multidisplaymode.ToString() + "\nSeecrets=" + enableeggs.ToString() + "\nServer=" + Program.update_server);
                 } catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
@@ -988,12 +972,7 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void WindowVersion_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Button7_Click_1(object sender, EventArgs e)
+        private void OpenSettings(object sender, EventArgs e)
         {
             if (textBox1.Text == "betadark")
             {
@@ -1039,7 +1018,7 @@ namespace UltimateBlueScreenSimulator
             }
             if (!abopen)
             {
-                AboutBox1 ab1 = new AboutBox1
+                AboutSettingsDialog ab1 = new AboutSettingsDialog
                 {
                     Text = "Settings",
                     SettingTab = true
@@ -1274,7 +1253,7 @@ namespace UltimateBlueScreenSimulator
         {
             if (!abopen)
             {
-                AboutBox1 a1 = new AboutBox1
+                AboutSettingsDialog a1 = new AboutSettingsDialog
                 {
                     Text = "Help and about"
                 };
@@ -1344,7 +1323,7 @@ namespace UltimateBlueScreenSimulator
         {
             if (!abopen)
             {
-                AboutBox1 ab1 = new AboutBox1
+                AboutSettingsDialog ab1 = new AboutSettingsDialog
                 {
                     Text = "Help and about",
                     SettingTab = false
@@ -1361,7 +1340,7 @@ namespace UltimateBlueScreenSimulator
         {
             if (!abopen)
             {
-                AboutBox1 ab1 = new AboutBox1
+                AboutSettingsDialog ab1 = new AboutSettingsDialog
                 {
                     Text = "Help and about",
                     SettingTab = false,
@@ -1379,7 +1358,7 @@ namespace UltimateBlueScreenSimulator
         {
             if (!abopen)
             {
-                AboutBox1 ab1 = new AboutBox1
+                AboutSettingsDialog ab1 = new AboutSettingsDialog
                 {
                     Text = "Help and about",
                     SettingTab = false,
@@ -1402,7 +1381,7 @@ namespace UltimateBlueScreenSimulator
         {
             if (!abopen)
             {
-                AboutBox1 ab1 = new AboutBox1
+                AboutSettingsDialog ab1 = new AboutSettingsDialog
                 {
                     Text = "Settings",
                     SettingTab = true,

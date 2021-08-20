@@ -142,9 +142,8 @@
             this.windowVersion.Name = "windowVersion";
             this.windowVersion.Size = new System.Drawing.Size(397, 21);
             this.windowVersion.TabIndex = 1;
-            this.windowVersion.SelectedIndexChanged += new System.EventHandler(this.ComboBox1_SelectedIndexChanged);
+            this.windowVersion.SelectedIndexChanged += new System.EventHandler(this.ChangeConfiguration);
             this.windowVersion.DropDownClosed += new System.EventHandler(this.windowVersion_DropDownClosed);
-            this.windowVersion.Click += new System.EventHandler(this.WindowVersion_Click);
             this.windowVersion.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Button7_KeyDown);
             // 
             // label2
@@ -697,7 +696,7 @@
         "Hint: To get help or see information about the program, press ? next to the clos" +
         "e button.");
             this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.Button7_Click_1);
+            this.button7.Click += new System.EventHandler(this.OpenSettings);
             this.button7.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Button7_KeyDown);
             // 
             // label7
@@ -939,7 +938,7 @@
             this.Text = "BlueScreen Simulator Plus";
             this.HelpButtonClicked += new System.ComponentModel.CancelEventHandler(this.Form1_HelpButtonClicked);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Load += new System.EventHandler(this.Initialize);
             this.Shown += new System.EventHandler(this.Form1_Shown);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.flowLayoutPanel1.ResumeLayout(false);

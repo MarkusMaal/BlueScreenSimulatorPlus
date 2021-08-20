@@ -32,7 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(old_bluescreen));
             this.titleBorder = new System.Windows.Forms.Panel();
             this.titleText = new System.Windows.Forms.PictureBox();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.screenUpdater = new System.Windows.Forms.Timer(this.components);
             this.blinkingColor = new System.Windows.Forms.PictureBox();
             this.anyKeyMsg = new System.Windows.Forms.PictureBox();
             this.line7 = new System.Windows.Forms.PictureBox();
@@ -82,10 +82,10 @@
             this.titleText.TabStop = false;
             this.titleText.Click += new System.EventHandler(this.PictureBox1_Click);
             // 
-            // timer1
+            // screenUpdater
             // 
-            this.timer1.Enabled = true;
-            this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
+            this.screenUpdater.Enabled = true;
+            this.screenUpdater.Tick += new System.EventHandler(this.Timer1_Tick);
             // 
             // blinkingColor
             // 
@@ -290,7 +290,7 @@
         private System.Windows.Forms.PictureBox line7;
         private System.Windows.Forms.PictureBox anyKeyMsg;
         private System.Windows.Forms.PictureBox blinkingColor;
-        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Timer screenUpdater;
         private System.Windows.Forms.Panel simplePanel;
         public System.Windows.Forms.Label waterMarkText;
     }

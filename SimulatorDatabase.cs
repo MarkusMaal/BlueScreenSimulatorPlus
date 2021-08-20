@@ -918,7 +918,7 @@ namespace SimulatorDatabase
                     PushText("Information text with dump", "Your PC ran into a problem and needs to restart. We're just\r\ncollecting some error info, and then you can restart. ({0}%\r\ncomplete)");
                     PushText("Information text without dump", "Your PC ran into a problem that it couldn't\r\nhandle and now it needs to restart.");
                     PushText("Error code", "You can search for the error online: {0}");
-                    SetFont("Segoe UI", 19.4f, FontStyle.Regular);
+                    SetFont("Segoe UI Semilight", 19.4f, FontStyle.Regular);
                     SetTheme(RGB(16, 113, 170), RGB(255, 255, 255));
                     SetString("friendlyname", "Windows 8/8.1 (Native, ClearType)");
 
@@ -938,7 +938,7 @@ namespace SimulatorDatabase
                     PushText("Progress", "{0}% complete");
                     SetInt("qr_size", 110);
                     SetString("qr_file", "local:0");
-                    SetFont("Segoe UI", 19.4f, FontStyle.Regular);
+                    SetFont("Segoe UI Semilight", 19.4f, FontStyle.Regular);
                     SetTheme(RGB(16, 113, 170), RGB(255, 255, 255));
                     SetString("friendlyname", "Windows 10 (Native, ClearType)");
 

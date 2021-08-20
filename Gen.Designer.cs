@@ -58,7 +58,7 @@ namespace UltimateBlueScreenSimulator
             // timer1
             // 
             this.timer1.Enabled = true;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.timer1.Tick += new System.EventHandler(this.ProgressChecker);
             // 
             // Gen
             // 
@@ -75,7 +75,7 @@ namespace UltimateBlueScreenSimulator
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Gen_FormClosing);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PreventUserClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

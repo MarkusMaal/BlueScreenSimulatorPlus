@@ -16,7 +16,7 @@ namespace UltimateBlueScreenSimulator
             InitializeComponent();
         }
 
-        private void Gen_FormClosing(object sender, FormClosingEventArgs e)
+        private void PreventUserClosing(object sender, FormClosingEventArgs e)
         {
             if (e.CloseReason == CloseReason.UserClosing)
             {
@@ -28,7 +28,7 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        private void ProgressChecker(object sender, EventArgs e)
         {
             this.Text = Program.load_message;
             if (Program.loadfinished)

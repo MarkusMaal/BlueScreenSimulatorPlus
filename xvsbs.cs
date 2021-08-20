@@ -60,26 +60,27 @@ namespace UltimateBlueScreenSimulator
                 if (whatfail != "")
                 {
 
-                    if (me.GetBool("extrafile"))
-                    {
-                        dumpLabel.Text = "***  " + whatfail.ToUpper() + " - Address " + me.GenHex(8, me.GetFiles().ElementAt(0).Value[0]) + " base at " + me.GenHex(8, me.GetFiles().ElementAt(0).Value[1]) + ", DateStamp " + me.GenHex(8, me.GetFiles().ElementAt(0).Value[2]).ToLower() + "\r\n\r\n\r\n";
-                    }
                     errorCode.Text = txt["Culprit file"] + whatfail.ToUpper() + "\n\n" + errorCode.Text;
                     supportInfo.Location = new Point(supportInfo.Location.X, supportInfo.Location.Y + 24);
                     technicalCode.Location = new Point(dumpLabel.Location.X, technicalCode.Location.Y + 24);
                     dumpLabel.Location = new Point(dumpLabel.Location.X, dumpLabel.Location.Y + 24);
                 }
                 introductionText.Text = txt["A problem has been detected..."];
-                supportInfo.Text = txt["Troubleshooting introduction"] + "\n\n" + txt["Troubleshooting"] + "\n\n" + txt["Technical information"];
+                supportInfo.Text = txt["Troubleshooting introduction"] + "\n\n" + txt["Troubleshooting"] + "\n\n\n" + txt["Technical information"];
                 string[] esplit = technicalCode.Text.Replace("*** STOP: ", "").Replace(")", "").Replace(" (", "*").Split('*');
                 technicalCode.Text = txt["Technical information formatting"].Replace("{0}", esplit[0]).Replace("{1}", esplit[1]);
 
+                if (me.GetBool("extrafile") && (whatfail != ""))
+                {
+                    technicalCode.Text += "\r\n\r\n\r\n***  " + whatfail.ToUpper() + " - Address " + me.GenHex(8, me.GetFiles().ElementAt(0).Value[0]) + " base at " + me.GenHex(8, me.GetFiles().ElementAt(0).Value[1]) + ", DateStamp " + me.GenHex(8, me.GetFiles().ElementAt(0).Value[2]).ToLower() + "\r\n\r\n\r\n";
+                }
                 try
                 {
-                    if (me.GetBool("autoclose"))
+                    if (me.GetBool("autoclose") && !me.GetBool("extrafile"))
                     {
                         dumpLabel.Text = txt["Physical memory dump"].Split('\n')[0].Trim();
                     }
+                    dumpTimer.Enabled = (me.GetBool("autoclose") && !me.GetBool("extrafile"));
                 }
                 catch
                 {
@@ -173,7 +174,7 @@ namespace UltimateBlueScreenSimulator
                     dumpLabel.Location = new Point(dumpLabel.Location.X, dumpLabel.Location.Y + 39);
                 }
                 naturalclose = false;
-                dumpLabel.Visible = me.GetBool("autoclose");
+                dumpLabel.Visible = me.GetBool("autoclose") && !me.GetBool("extrafile");
             } catch (Exception ex)
             {
                 Program.loadfinished = true;
@@ -184,32 +185,19 @@ namespace UltimateBlueScreenSimulator
 
         private void Timer1_Tick(object sender, EventArgs e)
         {
-            if (fullscreen)
-            {
-                foreach (WindowScreen ws in wss)
-                {
-                    if (ws.Visible == false)
-                    {
-                        naturalclose = true;
-                        this.Close();
-                    }
-                    try
-                    {
-                        Program.dr.Draw(ws);
-                    }
-                    catch
-                    {
-                        naturalclose = true;
-                        this.Close();
-                    }
-                }
-            }
             if (tardisFade.Enabled == true) { return; }
             if (rainBowScreen.Enabled == true) { return; }
-
-            if (me.GetBool("autoclose") && !dumpLabel.Text.Contains(txt["Physical memory dump"].Split('\n')[1].Trim()))
+            try
             {
-                dumpLabel.Text += "\n" + txt["Physical memory dump"].Split('\n')[1].Trim() + "\n" + txt["Technical support"].Split('\n')[0].Trim() + "\n" + txt["Technical support"].Split('\n')[1].Trim();
+                if (me.GetBool("autoclose") && !dumpLabel.Text.Contains(txt["Physical memory dump"].Split('\n')[1].Trim()))
+                {
+                    dumpLabel.Text += "\n" + txt["Physical memory dump"].Split('\n')[1].Trim() + "\n" + txt["Technical support"].Split('\n')[0].Trim() + "\n" + txt["Technical support"].Split('\n')[1].Trim();
+                }
+            } catch (Exception ex)
+            {
+                dumpTimer.Enabled = false;
+                MessageBox.Show("An error occoured.\r\n\r\n" + ex.Message + "\r\n\r\n" + ex.StackTrace, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
             }
         }
 
@@ -449,6 +437,32 @@ namespace UltimateBlueScreenSimulator
                     ws.Close();
                     this.naturalclose = true;
                 }
+            }
+        }
+
+        private void screenUpdater_Tick(object sender, EventArgs e)
+        {
+            if (fullscreen)
+            {
+                foreach (WindowScreen ws in wss)
+                {
+                    if (ws.Visible == false)
+                    {
+                        naturalclose = true;
+                        this.Close();
+                    }
+                    try
+                    {
+                        Program.dr.Draw(ws);
+                    }
+                    catch
+                    {
+                        naturalclose = true;
+                        this.Close();
+                    }
+                }
+                this.BringToFront();
+                this.Activate();
             }
         }
     }
