@@ -29,6 +29,7 @@ namespace UltimateBlueScreenSimulator
             {
                 codeSelection.Text = "Code 1";
                 SetupCodes(c1);
+                DispCodes(c1, c2, c3, c4);
             }
         }
 
@@ -38,6 +39,7 @@ namespace UltimateBlueScreenSimulator
             {
                 codeSelection.Text = "Code 2";
                 SetupCodes(c2);
+                DispCodes(c1, c2, c3, c4);
             }
         }
         private void SwitchCode3(object sender, EventArgs e)
@@ -46,6 +48,7 @@ namespace UltimateBlueScreenSimulator
             {
                 codeSelection.Text = "Code 3";
                 SetupCodes(c3);
+                DispCodes(c1, c2, c3, c4);
             }
         }
 
@@ -55,6 +58,7 @@ namespace UltimateBlueScreenSimulator
             {
                 codeSelection.Text = "Code 4";
                 SetupCodes(c4);
+                DispCodes(c1, c2, c3, c4);
             }
         }
 
@@ -66,7 +70,10 @@ namespace UltimateBlueScreenSimulator
                 {
                     if (c.Name == "c1_" + (i + 1).ToString())
                     {
-                        c.Text = code.Substring(i, 1);
+                        try
+                        {
+                            c.Text = code.Substring(i, 1);
+                        } catch { }
                     }
                 }
             }
@@ -323,7 +330,20 @@ namespace UltimateBlueScreenSimulator
             }
             else if (me.GetString("os") == "Windows 9x/Me")
             {
-                for (var i = 16; i > 4; i--)
+                int maximum = 8;
+                if (codeSelection.Text == "Code 1") { maximum = 2; }
+                else if (codeSelection.Text == "Code 2") { maximum = 4; }
+                chooseCode4.Enabled = false;
+                for (var i = 3; i <= 8; i++)
+                {
+                    Button btn = (Button)tableLayoutPanel1.Controls["button" + i.ToString()];
+                    Button nullbtn = (Button)tableLayoutPanel1.Controls["null" + i.ToString()];
+                    TextBox txtbox = (TextBox)tableLayoutPanel1.Controls["textBox" + i.ToString()];
+                    btn.Enabled = true;
+                    nullbtn.Enabled = true;
+                    txtbox.Enabled = true;
+                }
+                for (var i = 16; i > maximum; i--)
                 {
                     Button btn = (Button)tableLayoutPanel1.Controls["button" + i.ToString()];
                     Button nullbtn = (Button)tableLayoutPanel1.Controls["null" + i.ToString()];
@@ -332,7 +352,7 @@ namespace UltimateBlueScreenSimulator
                     nullbtn.Enabled = false;
                     txtbox.Enabled = false;
                 }
-                return c1.Substring(0, 4) + ", " + c2.Substring(0, 4) + ", " + c3.Substring(0, 4) + ", " + c4.Substring(0, 4);
+                return c1.Substring(0, 2) + " : " + c2.Substring(0, 4) + " : " + c3.Substring(0, 8);
             }
             return "0x" + c1 + ", 0x" + c2 + ", 0x" + c3 + ", 0x" + c4;
         }
