@@ -924,6 +924,8 @@ namespace SimulatorDatabase
                     SetFont("Segoe UI Semilight", 19.4f, FontStyle.Regular);
                     SetTheme(RGB(16, 113, 170), RGB(255, 255, 255));
                     SetString("friendlyname", "Windows 8/8.1 (Native, ClearType)");
+                    SetInt("margin-x", 9);
+                    SetInt("margin-y", 12);
 
                     SetBool("autoclose", true);
                     SetString("code", "IRQL_NOT_LESS_OR_EQUAL (0x0000000A)");
@@ -944,6 +946,8 @@ namespace SimulatorDatabase
                     SetFont("Segoe UI Semilight", 19.4f, FontStyle.Regular);
                     SetTheme(RGB(16, 113, 170), RGB(255, 255, 255));
                     SetString("friendlyname", "Windows 10 (Native, ClearType)");
+                    SetInt("margin-x", 9);
+                    SetInt("margin-y", 12);
 
                     SetBool("winxplus", true);
                     SetBool("autoclose", true);
@@ -967,6 +971,8 @@ namespace SimulatorDatabase
                     SetFont("Segoe UI Light", 19.4f, FontStyle.Regular);
                     SetTheme(RGB(0, 0, 0), RGB(255, 255, 255));
                     SetString("friendlyname", "Windows 11 (Native, ClearType)");
+                    SetInt("margin-x", 9);
+                    SetInt("margin-y", 12);
 
                     SetBool("winxplus", true);
                     SetBool("autoclose", true);

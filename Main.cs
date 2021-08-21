@@ -132,6 +132,7 @@ namespace UltimateBlueScreenSimulator
             advNTButton.Visible = false;
             dumpBox.Enabled = true;
             eCodeEditButton.Visible = false;
+            devPCBox.Visible = false;
             // set current bluescreen
             me = Program.bluescreens[Program.bluescreens.Count - 1 - windowVersion.SelectedIndex];
             // set control visibility for specific OS-es
@@ -159,6 +160,7 @@ namespace UltimateBlueScreenSimulator
                 winMode.Visible = true;
                 memoryBox.Visible = true;
                 eCodeEditButton.Visible = true;
+                devPCBox.Visible = true;
             }
             else if (me.GetString("os") == "Windows 8/8.1")
             {
@@ -1472,6 +1474,11 @@ namespace UltimateBlueScreenSimulator
             flowLayoutPanel4.Width = flowLayoutPanel1.Width;
             winPanel.Width = flowLayoutPanel1.Width;
             WXOptions.Width = flowLayoutPanel1.Width;
+        }
+
+        private void DevPCBox_CheckedChanged(object sender, EventArgs e)
+        {
+            me.SetBool("device", devPCBox.Checked);
         }
     }
 }

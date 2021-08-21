@@ -101,6 +101,7 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.waitPopup = new System.Windows.Forms.Timer(this.components);
+            this.devPCBox = new System.Windows.Forms.CheckBox();
             this.flowLayoutPanel1.SuspendLayout();
             this.WXOptions.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
@@ -195,6 +196,7 @@
             this.flowLayoutPanel2.Controls.Add(this.greenBox);
             this.flowLayoutPanel2.Controls.Add(this.qrBox);
             this.flowLayoutPanel2.Controls.Add(this.memoryBox);
+            this.flowLayoutPanel2.Controls.Add(this.devPCBox);
             this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
@@ -919,6 +921,18 @@
             // 
             this.waitPopup.Tick += new System.EventHandler(this.WaitPopup_Tick);
             // 
+            // devPCBox
+            // 
+            this.devPCBox.AutoSize = true;
+            this.devPCBox.Location = new System.Drawing.Point(152, 26);
+            this.devPCBox.Name = "devPCBox";
+            this.devPCBox.Size = new System.Drawing.Size(175, 17);
+            this.devPCBox.TabIndex = 5;
+            this.devPCBox.Text = "Replace \"PC\" with \"device\" [?]";
+            this.quickHelp.SetToolTip(this.devPCBox, "On newer builds of Windows 10, the blue screen may say \"device\" instead of \"PC\"");
+            this.devPCBox.UseVisualStyleBackColor = true;
+            this.devPCBox.CheckedChanged += new System.EventHandler(this.DevPCBox_CheckedChanged);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1043,6 +1057,7 @@
         private System.Windows.Forms.ToolStripMenuItem advancedNTOptionsToolStripMenuItem;
         internal System.Windows.Forms.CheckBox addInfFile;
         private System.Windows.Forms.Button advNTButton;
+        private System.Windows.Forms.CheckBox devPCBox;
     }
 }
 

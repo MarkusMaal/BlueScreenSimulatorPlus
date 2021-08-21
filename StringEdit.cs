@@ -129,6 +129,24 @@ namespace UltimateBlueScreenSimulator
                 lsti.ImageIndex = 5;
                 MessageView.Items.Add(lsti);
             }
+
+            if ((me.GetString("os") == "Windows 8/8.1") || me.GetBool("winxplus"))
+            {
+                ListViewItem li = new ListViewItem
+                {
+                    Text = "Horizontal margin"
+                };
+                li.SubItems.Add(me.GetInt("margin-x").ToString() + "%");
+                li.ImageIndex = 5;
+                MessageView.Items.Add(li);
+                li = new ListViewItem
+                {
+                    Text = "Vertical margin"
+                };
+                li.SubItems.Add(me.GetInt("margin-y").ToString() + "%");
+                li.ImageIndex = 5;
+                MessageView.Items.Add(li);
+            }
             MessageView.Items.Add(GetColorListViewItem("Background color", me.GetTheme(true)));
             MessageView.Items.Add(GetColorListViewItem("Foreground color", me.GetTheme(false)));
             if ((me.GetString("os") == "Windows 3.1x") || (me.GetString("os") == "Windows 9x/Me") || (me.GetString("os") == "BOOTMGR"))
@@ -157,7 +175,23 @@ namespace UltimateBlueScreenSimulator
             if (MessageView.SelectedIndices.Count > 0)
             {
                 string selection = MessageView.SelectedItems[0].Text;
-                if (selection.StartsWith("Title: "))
+                if (selection == "Horizontal margin")
+                {
+                    this.type = "margin-x";
+                    secondsLabel.Text = "%";
+                    timeoutProps.Visible = true;
+                    timeoutBox.Text = me.GetInt("margin-x").ToString();
+                    specificProps.Text = "Margin properties";
+                }
+                else if (selection == "Vertical margin")
+                {
+                    this.type = "margin-y";
+                    secondsLabel.Text = "%";
+                    timeoutProps.Visible = true;
+                    timeoutBox.Text = me.GetInt("margin-y").ToString();
+                    specificProps.Text = "Margin properties";
+                }
+                else if (selection.StartsWith("Title: "))
                 {
                     this.type = "title";
                     this.editable = MessageView.SelectedItems[0].Text.Substring(7);
@@ -242,6 +276,8 @@ namespace UltimateBlueScreenSimulator
                     timeoutBox.Text = me.GetInt("timer").ToString();
                     HideAllProps();
                     timeoutProps.Visible = true;
+                    type = "timer";
+                    secondsLabel.Text = "seconds";
                     specificProps.Text = "Timer properties";
                 }
                 else if (selection == "QR code size")
@@ -373,7 +409,7 @@ namespace UltimateBlueScreenSimulator
             {
                 try
                 {
-                    me.SetInt("timer", Convert.ToInt32(timeoutBox.Text));
+                    me.SetInt(type, Convert.ToInt32(timeoutBox.Text));
                     MessageView.Clear();
                     UpdateMessageView();
                 }
