@@ -36,30 +36,58 @@ namespace UltimateBlueScreenSimulator
 
         public void DownloadFile(string urlAddress, string location)
         {
-            using (webClient = new WebClient())
+            try
             {
-                webClient.DownloadFileCompleted += new AsyncCompletedEventHandler(Completed);
-                webClient.DownloadProgressChanged += new DownloadProgressChangedEventHandler(ProgressChanged);
-
-                // The variable that will be holding the url address (making sure it starts with http://)
-                Uri URL = urlAddress.StartsWith("http://", StringComparison.OrdinalIgnoreCase) ? new Uri(urlAddress) : new Uri("http://" + urlAddress);
-
-                // Start the stopwatch which we will be using to calculate the download speed
-                sw.Start();
-
-                try
+                using (webClient = new WebClient())
                 {
-                    // Start downloading the file
-                    webClient.DownloadFileAsync(URL, location);
+                    webClient.DownloadFileCompleted += new AsyncCompletedEventHandler(Completed);
+                    webClient.DownloadProgressChanged += new DownloadProgressChangedEventHandler(ProgressChanged);
+
+                    // The variable that will be holding the url address (making sure it starts with http://)
+                    Uri URL = urlAddress.StartsWith("http://", StringComparison.OrdinalIgnoreCase) ? new Uri(urlAddress) : new Uri("http://" + urlAddress);
+
+                    // Start the stopwatch which we will be using to calculate the download speed
+                    sw.Start();
+
+                    try
+                    {
+                        // Start downloading the file
+                        webClient.DownloadFileAsync(URL, location);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
                 }
-                catch (Exception ex)
+                if (location.EndsWith(".txt"))
                 {
-                    MessageBox.Show(ex.Message);
+                    File.SetAttributes(location, FileAttributes.Hidden);
                 }
-            }
-            if (location.EndsWith(".txt"))
+            } catch (Exception ex)
             {
-                File.SetAttributes(location, FileAttributes.Hidden);
+                if (Program.f1.enableeggs)
+                {
+                    Metaerror me = new Metaerror
+                    {
+                        message = ex.Message,
+                        stack_trace = ex.StackTrace,
+                        type = "VioletScreen"
+                    };
+                    switch (me.ShowDialog())
+                    {
+                        case DialogResult.Abort:
+                            Application.Exit();
+                            return;
+                        case DialogResult.Retry:
+                            DownloadFile(urlAddress, location);
+                            return;
+                        case DialogResult.Ignore:
+                            break;
+                    }
+                } else
+                {
+                    MessageBox.Show("An error has occoured.\n\n" + ex.Message + "\n\n" + ex.StackTrace, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 

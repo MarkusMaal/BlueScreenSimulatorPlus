@@ -192,9 +192,27 @@ namespace UltimateBlueScreenSimulator
                 }
                 catch (Exception ex)
                 {
-
-                    //Configuration seems to be corrupted, if this part is executed...
-                    MessageBox.Show(ex.Message);
+                    Metaerror me = new Metaerror()
+                    {
+                        message = ex.Message,
+                        stack_trace = ex.StackTrace,
+                        type = "VioletScreen"
+                    };
+                    
+                    if (Program.f1.enableeggs)
+                    {
+                        switch (me.ShowDialog())
+                        {
+                            case DialogResult.Abort:
+                                return;
+                            case DialogResult.Retry:
+                                Application.Restart();
+                                return;
+                            case DialogResult.Ignore:
+                                break;
+                        }
+                    }
+                    else { MessageBox.Show("There was a problem with the settings file.\n\n" + ex.Message + "\n\n" + ex.StackTrace, "E R R O R", MessageBoxButtons.OK, MessageBoxIcon.Error); }
                 }
             }
             //If hidesplash flag is not set, display the splash screen

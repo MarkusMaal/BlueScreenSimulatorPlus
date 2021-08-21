@@ -1,7 +1,7 @@
 ﻿
 namespace UltimateBlueScreenSimulator
 {
-    partial class win
+    partial class Win
     {
         /// <summary>
         /// Required designer variable.
@@ -30,7 +30,7 @@ namespace UltimateBlueScreenSimulator
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(win));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Win));
             this.screenUpdater = new System.Windows.Forms.Timer(this.components);
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.pictureBox19 = new System.Windows.Forms.PictureBox();

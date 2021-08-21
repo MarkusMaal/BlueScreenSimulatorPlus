@@ -235,7 +235,10 @@ namespace UltimateBlueScreenSimulator
             } catch (Exception ex)
             {
                 Program.loadfinished = true;
-                MessageBox.Show("A blue screen couldn't be displayed due to an error\n\n" + ex.Message + "\n\n" + ex.StackTrace, "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                screenUpdater.Enabled = false;
+                this.Hide();
+                if (Program.f1.enableeggs) { me.Crash(ex.Message, ex.StackTrace, "OrangeScreen"); }
+                else { MessageBox.Show("The blue screen cannot be displayed due to an error.\n\n" + ex.Message + "\n\n" + ex.StackTrace, "E R R O R", MessageBoxButtons.OK, MessageBoxIcon.Error); }
                 this.Close();
             }
         }

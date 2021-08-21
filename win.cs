@@ -12,7 +12,7 @@ using SimulatorDatabase;
 
 namespace UltimateBlueScreenSimulator
 {
-    public partial class win : Form
+    public partial class Win : Form
     {
         public bool window = false;
         internal BlueScreen me = Program.bluescreens[0];
@@ -26,7 +26,7 @@ namespace UltimateBlueScreenSimulator
         readonly Random r = new Random();
         readonly SoundPlayer sp = new SoundPlayer();
         Bitmap splash = Properties.Resources.win1_splash;
-        public win()
+        public Win()
         {
             InitializeComponent();
         }
@@ -246,7 +246,10 @@ namespace UltimateBlueScreenSimulator
             } catch (Exception ex)
             {
                 Program.loadfinished = true;
-                MessageBox.Show("A blue screen couldn't be displayed due to an error\n\n" + ex.Message + "\n\n" + ex.StackTrace, "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                screenUpdater.Enabled = false;
+                this.Hide();
+                if (Program.f1.enableeggs) { me.Crash(ex.Message, ex.StackTrace, "OrangeScreen"); }
+                else { MessageBox.Show("The blue screen cannot be displayed due to an error.\n\n" + ex.Message + "\n\n" + ex.StackTrace, "E R R O R", MessageBoxButtons.OK, MessageBoxIcon.Error); }
                 this.Close();
             }
             Program.load_progress = 100;

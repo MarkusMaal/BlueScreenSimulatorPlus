@@ -30,60 +30,71 @@ namespace UltimateBlueScreenSimulator
 
         private void Initialization(object sender, EventArgs e)
         {
-            this.Icon = me.GetIcon();
-            this.Text = me.GetString("friendlyname");
-            Color bg = me.GetTheme(true);
-            Color fg = me.GetTheme(false);
-            Color hbg = me.GetTheme(true, true);
-            Color hfg = me.GetTheme(false, true);
-            this.BackColor = bg; this.ForeColor = fg;
-            IDictionary<string, string> txt = me.GetTexts();
-            IDictionary<string, string> titles = me.GetTitles();
-            //this.Font = me.GetFont();
-            bootmgrTitle.BackColor = fg; bootmgrTitle.ForeColor = bg; bootmgrTitle.Text = titles["Main"];
-            bootmgrEnterContinue.BackColor = fg; bootmgrEnterContinue.ForeColor = bg; bootmgrEnterContinue.Text = txt["Continue"];
-            bootmgrEscapeExit.BackColor = fg; bootmgrEscapeExit.ForeColor = bg; bootmgrEscapeExit.Text = txt["Exit"];
-
-            bootmgrIntro.BackColor = bg; bootmgrIntro.ForeColor = fg; bootmgrIntro.Text = txt["Troubleshooting introduction"];
-            bootmgrTroubleshoot.BackColor = bg; bootmgrTroubleshoot.ForeColor = fg; bootmgrTroubleshoot.Text = txt["Troubleshooting"];
-            bootmgrConsultAdmin.BackColor = bg; bootmgrConsultAdmin.ForeColor = fg; bootmgrConsultAdmin.Text = txt["Troubleshooting without disc"];
-            bootmgrStatus.BackColor = bg; bootmgrStatus.ForeColor = fg; bootmgrStatus.Text = txt["Status"];
-            bootmgrInfo.BackColor = bg; bootmgrInfo.ForeColor = fg; bootmgrInfo.Text = txt["Info"];
-
-            bootmgrStatusCode.BackColor = hbg; bootmgrStatusCode.ForeColor = hfg; bootmgrStatusCode.Text = me.GetString("code").ToLower();
-            bootmgrInfoDetails.BackColor = hbg; bootmgrInfoDetails.ForeColor = hfg; bootmgrInfoDetails.Text = txt["Error description"];
-
-            this.TopMost = false;
-            Program.loadfinished = true;
-            if (Screen.AllScreens.Length > 1)
+            try
             {
-                foreach (Screen s in Screen.AllScreens)
+                this.Icon = me.GetIcon();
+                this.Text = me.GetString("friendlyname");
+                Color bg = me.GetTheme(true);
+                Color fg = me.GetTheme(false);
+                Color hbg = me.GetTheme(true, true);
+                Color hfg = me.GetTheme(false, true);
+                this.BackColor = bg; this.ForeColor = fg;
+                IDictionary<string, string> txt = me.GetTexts();
+                IDictionary<string, string> titles = me.GetTitles();
+                //this.Font = me.GetFont();
+                bootmgrTitle.BackColor = fg; bootmgrTitle.ForeColor = bg; bootmgrTitle.Text = titles["Main"];
+                bootmgrEnterContinue.BackColor = fg; bootmgrEnterContinue.ForeColor = bg; bootmgrEnterContinue.Text = txt["Continue"];
+                bootmgrEscapeExit.BackColor = fg; bootmgrEscapeExit.ForeColor = bg; bootmgrEscapeExit.Text = txt["Exit"];
+
+                bootmgrIntro.BackColor = bg; bootmgrIntro.ForeColor = fg; bootmgrIntro.Text = txt["Troubleshooting introduction"];
+                bootmgrTroubleshoot.BackColor = bg; bootmgrTroubleshoot.ForeColor = fg; bootmgrTroubleshoot.Text = txt["Troubleshooting"];
+                bootmgrConsultAdmin.BackColor = bg; bootmgrConsultAdmin.ForeColor = fg; bootmgrConsultAdmin.Text = txt["Troubleshooting without disc"];
+                bootmgrStatus.BackColor = bg; bootmgrStatus.ForeColor = fg; bootmgrStatus.Text = txt["Status"];
+                bootmgrInfo.BackColor = bg; bootmgrInfo.ForeColor = fg; bootmgrInfo.Text = txt["Info"];
+
+                bootmgrStatusCode.BackColor = hbg; bootmgrStatusCode.ForeColor = hfg; bootmgrStatusCode.Text = me.GetString("code").ToLower();
+                bootmgrInfoDetails.BackColor = hbg; bootmgrInfoDetails.ForeColor = hfg; bootmgrInfoDetails.Text = txt["Error description"];
+
+                this.TopMost = false;
+                Program.loadfinished = true;
+                if (Screen.AllScreens.Length > 1)
                 {
-                    WindowScreen ws = new WindowScreen();
-                    if (!s.Primary)
+                    foreach (Screen s in Screen.AllScreens)
                     {
-                        if (Program.multidisplaymode != "none")
+                        WindowScreen ws = new WindowScreen();
+                        if (!s.Primary)
                         {
-                            ws.StartPosition = FormStartPosition.Manual;
-                            ws.Location = s.WorkingArea.Location;
-                            ws.Size = new Size(s.WorkingArea.Width, s.WorkingArea.Height);
-                            ws.primary = false;
+                            if (Program.multidisplaymode != "none")
+                            {
+                                ws.StartPosition = FormStartPosition.Manual;
+                                ws.Location = s.WorkingArea.Location;
+                                ws.Size = new Size(s.WorkingArea.Width, s.WorkingArea.Height);
+                                ws.primary = false;
+                            }
                         }
+                        wss.Add(ws);
                     }
-                    wss.Add(ws);
                 }
-            }
-            foreach (WindowScreen ws in wss)
+                foreach (WindowScreen ws in wss)
+                {
+                    ws.Show();
+                }
+                this.waterMarkText.Visible = me.GetBool("watermark");
+                int[] colors = { this.BackColor.R + 50, this.BackColor.G + 50, this.BackColor.B + 50 };
+                if (colors[0] > 255) { colors[0] -= 255; }
+                if (colors[1] > 255) { colors[1] -= 255; }
+                if (colors[2] > 255) { colors[2] -= 255; }
+                waterMarkText.ForeColor = Color.FromArgb(colors[0], colors[1], colors[2]);
+                this.Hide();
+            } catch (Exception ex)
             {
-                ws.Show();
+                Program.loadfinished = true;
+                screenUpdater.Enabled = false;
+                this.Hide();
+                if (Program.f1.enableeggs) { me.Crash(ex.Message, ex.StackTrace, "OrangeScreen"); }
+                else { MessageBox.Show("The blue screen cannot be displayed due to an error.\n\n" + ex.Message + "\n\n" + ex.StackTrace, "E R R O R", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+                this.Close();
             }
-            this.waterMarkText.Visible = me.GetBool("watermark");
-            int[] colors = { this.BackColor.R + 50, this.BackColor.G + 50, this.BackColor.B + 50 };
-            if (colors[0] > 255) { colors[0] -= 255; }
-            if (colors[1] > 255) { colors[1] -= 255; }
-            if (colors[2] > 255) { colors[2] -= 255; }
-            waterMarkText.ForeColor = Color.FromArgb(colors[0], colors[1], colors[2]);
-            this.Hide();
         }
 
         private void UpdateScreen(object sender, EventArgs e)

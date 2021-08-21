@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using UltimateBlueScreenSimulator;
 using System.Drawing;
 using System.Management;
+using System.Threading;
 
 //
 // This namespace contains classes that are shared between forms that specify
@@ -512,7 +513,7 @@ namespace SimulatorDatabase
                     Setup9x(new Old_bluescreen());
                     break;
                 case "Windows 1.x/2.x":
-                    SetupWin(new win());
+                    SetupWin(new Win());
                     break;
             }
         }
@@ -579,7 +580,7 @@ namespace SimulatorDatabase
             bs.ShowDialog();
             System.Threading.Thread.CurrentThread.Abort();
         }
-        private void SetupWin(win bs)
+        private void SetupWin(Win bs)
         {
             try
             {
@@ -706,7 +707,7 @@ namespace SimulatorDatabase
             }
             bs.me = this;
             bs.ShowDialog();
-            System.Threading.Thread.CurrentThread.Abort();
+            Thread.CurrentThread.Abort();
         }
 
         private void SetupWin8(WXBS bs)
@@ -743,9 +744,28 @@ namespace SimulatorDatabase
             }
             bs.me = this;
             bs.ShowDialog();
-            System.Threading.Thread.CurrentThread.Abort();
+            Thread.CurrentThread.Abort();
         }
 
+        public void Crash(string message, string stacktrace, string type)
+        {
+            Metaerror me = new Metaerror
+            {
+                stack_trace = stacktrace,
+                message = message,
+                type = type
+            };
+            switch (me.ShowDialog())
+            {
+                case DialogResult.Ignore:
+                    break;
+                case DialogResult.Retry:
+                    break;
+                case DialogResult.Abort:
+                    Thread.CurrentThread.Abort();
+                    break;
+            }
+        }
 
         // default hacks for specific OS
         public void SetOSSpecificDefaults()

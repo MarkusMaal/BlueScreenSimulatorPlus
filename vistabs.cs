@@ -193,86 +193,97 @@ namespace UltimateBlueScreenSimulator
             } catch (Exception ex)
             {
                 Program.loadfinished = true;
-                MessageBox.Show("A blue screen couldn't be displayed due to an error\n\n" + ex.Message + "\n\n" + ex.StackTrace, "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                screenUpdater.Enabled = false;
+                this.Hide();
+                if (Program.f1.enableeggs) { me.Crash(ex.Message, ex.StackTrace, "OrangeScreen"); }
+                else { MessageBox.Show("The blue screen cannot be displayed due to an error.\n\n" + ex.Message + "\n\n" + ex.StackTrace, "E R R O R", MessageBoxButtons.OK, MessageBoxIcon.Error); }
                 this.Close();
             }
         }
 
         private void Timer1_Tick(object sender, EventArgs e)
         {
-            if (me.GetBool("autoclose"))
+            try
             {
-                if (progress < 100)
+                if (me.GetBool("autoclose"))
                 {
-                    string labeltxt = "";
-                    if (whatfail != "")
+                    if (progress < 100)
                     {
-                        labeltxt = dumpText.Text.Split('\n')[0].Replace("Collecting data for crash dump ...", "") + "\n\n";
-                    }
-                    if (!labeltxt.Contains(me.GetTexts()["Collecting data for crash dump"]))
-                    {
-                        labeltxt += me.GetTexts()["Collecting data for crash dump"];
-                    }
-                    labeltxt += "\n" + me.GetTexts()["Initializing crash dump"];
-                    progress++;
-                    string ntext = "";
-                    int spaces = 3 - progress.ToString().Length;
-                    for (int i = 0; i < spaces; i++) { ntext += " "; }
-                    ntext += progress.ToString();
-                    labeltxt += "\n" + me.GetTexts()["Begin dump"] + "\n" + me.GetTexts()["Physical memory dump"].Replace("{0}", " " + ntext);
-                    dumpText.Text = labeltxt;
-                    if (progress == 100)
-                    {
-                        dumpText.Text += "\n" + me.GetTexts()["End dump"] + "\n" + me.GetTexts()["Technical support"];
-                    }
-                    float HeightInPixels;
-                    using (Graphics g = this.CreateGraphics())
-                    {
-                        var points = dumpText.Font.SizeInPoints;
-                        HeightInPixels = points * g.DpiX / 72;
-                    }
-                    if (dumpText.Location.Y + (int)(HeightInPixels * dumpText.Text.Split('\n').Length + 2) > this.ClientSize.Height)
-                    {
-                        int delta = 0;
-                        while (dumpText.Location.Y + (int)(HeightInPixels * (dumpText.Text.Split('\n').Length + 2)) - delta >= this.ClientSize.Height)
+                        string labeltxt = "";
+                        if (whatfail != "")
                         {
-                            delta += 1;
+                            labeltxt = dumpText.Text.Split('\n')[0].Replace("Collecting data for crash dump ...", "") + "\n\n";
                         }
-                        //delta += errorCode.Height;
-                        foreach (Control c in this.Controls)
+                        if (!labeltxt.Contains(me.GetTexts()["Collecting data for crash dump"]))
                         {
-                            if (c.Name != "waterMarkText")
+                            labeltxt += me.GetTexts()["Collecting data for crash dump"];
+                        }
+                        labeltxt += "\n" + me.GetTexts()["Initializing crash dump"];
+                        progress++;
+                        string ntext = "";
+                        int spaces = 3 - progress.ToString().Length;
+                        for (int i = 0; i < spaces; i++) { ntext += " "; }
+                        ntext += progress.ToString();
+                        labeltxt += "\n" + me.GetTexts()["Begin dump"] + "\n" + me.GetTexts()["Physical memory dump"].Replace("{0}", " " + ntext);
+                        dumpText.Text = labeltxt;
+                        if (progress == 100)
+                        {
+                            dumpText.Text += "\n" + me.GetTexts()["End dump"] + "\n" + me.GetTexts()["Technical support"];
+                        }
+                        float HeightInPixels;
+                        using (Graphics g = this.CreateGraphics())
+                        {
+                            var points = dumpText.Font.SizeInPoints;
+                            HeightInPixels = points * g.DpiX / 72;
+                        }
+                        if (dumpText.Location.Y + (int)(HeightInPixels * dumpText.Text.Split('\n').Length + 2) > this.ClientSize.Height)
+                        {
+                            int delta = 0;
+                            while (dumpText.Location.Y + (int)(HeightInPixels * (dumpText.Text.Split('\n').Length + 2)) - delta >= this.ClientSize.Height)
                             {
-                                c.Location = new Point(c.Location.X, c.Location.Y - delta);
+                                delta += 1;
+                            }
+                            //delta += errorCode.Height;
+                            foreach (Control c in this.Controls)
+                            {
+                                if (c.Name != "waterMarkText")
+                                {
+                                    c.Location = new Point(c.Location.X, c.Location.Y - delta);
+                                }
                             }
                         }
                     }
                 }
-            }
-            if (fullscreen)
-            {
-                foreach (WindowScreen ws in wss)
+                if (fullscreen)
                 {
-                    if (ws.Visible == false)
+                    foreach (WindowScreen ws in wss)
                     {
-                        naturalclose = true;
-                        this.Close();
+                        if (ws.Visible == false)
+                        {
+                            naturalclose = true;
+                            this.Close();
+                        }
+                        try
+                        {
+                            Program.dr.Draw(ws);
+                        }
+                        catch
+                        {
+                            naturalclose = true;
+                            this.Close();
+                        }
                     }
-                    try
-                    {
-                        Program.dr.Draw(ws);
-                    }
-                    catch
-                    {
-                        naturalclose = true;
-                        this.Close();
-                    }
+                    this.BringToFront();
+                    this.Activate();
                 }
-                this.BringToFront();
-                this.Activate();
+                if (tardisFade.Enabled == true) { return; }
+                if (rainBowScreen.Enabled == true) { return; }
+            } catch (Exception ex)
+            {
+                screenUpdater.Enabled = false;
+                me.Crash(ex.Message, ex.StackTrace, "OrangeScreen");
+                this.Close();
             }
-            if (tardisFade.Enabled == true) { return; }
-            if (rainBowScreen.Enabled == true) { return; }
         }
 
         private void Xvsbs_FormClosing(object sender, FormClosingEventArgs e)

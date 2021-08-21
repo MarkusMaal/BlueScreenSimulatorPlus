@@ -126,6 +126,12 @@
     <Compile Include="IndexForm.Designer.cs">
       <DependentUpon>IndexForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="metaerror.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="metaerror.Designer.cs">
+      <DependentUpon>metaerror.cs</DependentUpon>
+    </Compile>
     <Compile Include="NTBSOD.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -245,6 +251,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="IndexForm.resx">
       <DependentUpon>IndexForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="metaerror.resx">
+      <DependentUpon>metaerror.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NTBSOD.resx">
       <DependentUpon>NTBSOD.cs</DependentUpon>
