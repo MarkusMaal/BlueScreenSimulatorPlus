@@ -111,7 +111,7 @@
             this.matchAllRadio.Location = new System.Drawing.Point(3, 30);
             this.matchAllRadio.Name = "matchAllRadio";
             this.matchAllRadio.Size = new System.Drawing.Size(143, 17);
-            this.matchAllRadio.TabIndex = 1;
+            this.matchAllRadio.TabIndex = 2;
             this.matchAllRadio.Text = "Match all current settings";
             this.matchAllRadio.UseVisualStyleBackColor = true;
             this.matchAllRadio.Click += new System.EventHandler(this.RadioButton2_Click);
@@ -123,7 +123,7 @@
             this.bestMatchRadio.Location = new System.Drawing.Point(3, 7);
             this.bestMatchRadio.Name = "bestMatchRadio";
             this.bestMatchRadio.Size = new System.Drawing.Size(368, 17);
-            this.bestMatchRadio.TabIndex = 0;
+            this.bestMatchRadio.TabIndex = 1;
             this.bestMatchRadio.TabStop = true;
             this.bestMatchRadio.Text = "Use a bluescreen type that matches this system, but match other settings";
             this.bestMatchRadio.UseVisualStyleBackColor = true;
@@ -149,7 +149,7 @@
             this.triggerPanel.Location = new System.Drawing.Point(12, 112);
             this.triggerPanel.Name = "triggerPanel";
             this.triggerPanel.Size = new System.Drawing.Size(520, 81);
-            this.triggerPanel.TabIndex = 3;
+            this.triggerPanel.TabIndex = 2;
             // 
             // usbRadio
             // 
@@ -157,7 +157,7 @@
             this.usbRadio.Location = new System.Drawing.Point(143, 3);
             this.usbRadio.Name = "usbRadio";
             this.usbRadio.Size = new System.Drawing.Size(82, 17);
-            this.usbRadio.TabIndex = 7;
+            this.usbRadio.TabIndex = 3;
             this.usbRadio.Text = "USB device";
             this.usbRadio.UseVisualStyleBackColor = true;
             this.usbRadio.CheckedChanged += new System.EventHandler(this.RadioButton16_CheckedChanged);
@@ -173,7 +173,7 @@
             this.triggerFlowPanel.Location = new System.Drawing.Point(3, 26);
             this.triggerFlowPanel.Name = "triggerFlowPanel";
             this.triggerFlowPanel.Size = new System.Drawing.Size(514, 52);
-            this.triggerFlowPanel.TabIndex = 6;
+            this.triggerFlowPanel.TabIndex = 4;
             // 
             // timePanel
             // 
@@ -182,7 +182,7 @@
             this.timePanel.Location = new System.Drawing.Point(3, 3);
             this.timePanel.Name = "timePanel";
             this.timePanel.Size = new System.Drawing.Size(173, 33);
-            this.timePanel.TabIndex = 7;
+            this.timePanel.TabIndex = 1;
             // 
             // timerBox
             // 
@@ -211,7 +211,7 @@
             this.appPanel.Location = new System.Drawing.Point(182, 3);
             this.appPanel.Name = "appPanel";
             this.appPanel.Size = new System.Drawing.Size(286, 45);
-            this.appPanel.TabIndex = 7;
+            this.appPanel.TabIndex = 2;
             this.appPanel.Visible = false;
             // 
             // triggerAppLabel
@@ -240,15 +240,16 @@
             this.usbPanel.Location = new System.Drawing.Point(474, 3);
             this.usbPanel.Name = "usbPanel";
             this.usbPanel.Size = new System.Drawing.Size(333, 52);
-            this.usbPanel.TabIndex = 9;
+            this.usbPanel.TabIndex = 3;
             this.usbPanel.Visible = false;
             // 
             // whyNoDeviceButton
             // 
+            this.whyNoDeviceButton.ForeColor = System.Drawing.SystemColors.ControlText;
             this.whyNoDeviceButton.Location = new System.Drawing.Point(87, 29);
             this.whyNoDeviceButton.Name = "whyNoDeviceButton";
             this.whyNoDeviceButton.Size = new System.Drawing.Size(141, 20);
-            this.whyNoDeviceButton.TabIndex = 10;
+            this.whyNoDeviceButton.TabIndex = 2;
             this.whyNoDeviceButton.Text = "My device isn\'t detected";
             this.whyNoDeviceButton.UseVisualStyleBackColor = true;
             this.whyNoDeviceButton.Click += new System.EventHandler(this.Button5_Click);
@@ -256,10 +257,11 @@
             // resetDeviceButton
             // 
             this.resetDeviceButton.Enabled = false;
+            this.resetDeviceButton.ForeColor = System.Drawing.SystemColors.ControlText;
             this.resetDeviceButton.Location = new System.Drawing.Point(6, 29);
             this.resetDeviceButton.Name = "resetDeviceButton";
             this.resetDeviceButton.Size = new System.Drawing.Size(75, 20);
-            this.resetDeviceButton.TabIndex = 9;
+            this.resetDeviceButton.TabIndex = 1;
             this.resetDeviceButton.Text = "Reset";
             this.resetDeviceButton.UseVisualStyleBackColor = true;
             this.resetDeviceButton.Click += new System.EventHandler(this.Button4_Click);
@@ -278,7 +280,7 @@
             this.appRadio.Location = new System.Drawing.Point(60, 3);
             this.appRadio.Name = "appRadio";
             this.appRadio.Size = new System.Drawing.Size(77, 17);
-            this.appRadio.TabIndex = 1;
+            this.appRadio.TabIndex = 2;
             this.appRadio.Text = "Application";
             this.appRadio.UseVisualStyleBackColor = true;
             this.appRadio.CheckedChanged += new System.EventHandler(this.RadioButton4_CheckedChanged);
@@ -290,7 +292,7 @@
             this.timeRadio.Location = new System.Drawing.Point(3, 3);
             this.timeRadio.Name = "timeRadio";
             this.timeRadio.Size = new System.Drawing.Size(51, 17);
-            this.timeRadio.TabIndex = 0;
+            this.timeRadio.TabIndex = 1;
             this.timeRadio.TabStop = true;
             this.timeRadio.Text = "Timer";
             this.timeRadio.UseVisualStyleBackColor = true;
@@ -304,7 +306,7 @@
             this.letCloseBox.Location = new System.Drawing.Point(12, 212);
             this.letCloseBox.Name = "letCloseBox";
             this.letCloseBox.Size = new System.Drawing.Size(277, 17);
-            this.letCloseBox.TabIndex = 4;
+            this.letCloseBox.TabIndex = 3;
             this.letCloseBox.Text = "Allow the user to close the blue screen using ALT+F4";
             this.letCloseBox.UseVisualStyleBackColor = true;
             this.letCloseBox.CheckedChanged += new System.EventHandler(this.LetCloseBox_CheckedChanged);
@@ -324,7 +326,7 @@
             this.friendlyMessageBox.Location = new System.Drawing.Point(12, 235);
             this.friendlyMessageBox.Name = "friendlyMessageBox";
             this.friendlyMessageBox.Size = new System.Drawing.Size(277, 17);
-            this.friendlyMessageBox.TabIndex = 6;
+            this.friendlyMessageBox.TabIndex = 4;
             this.friendlyMessageBox.Text = "Show a message after the bluescreen is being closed";
             this.friendlyMessageBox.UseVisualStyleBackColor = true;
             this.friendlyMessageBox.CheckedChanged += new System.EventHandler(this.CheckBox2_CheckedChanged);
@@ -338,7 +340,7 @@
             this.friendlyMessageContentsBox.Multiline = true;
             this.friendlyMessageContentsBox.Name = "friendlyMessageContentsBox";
             this.friendlyMessageContentsBox.Size = new System.Drawing.Size(520, 45);
-            this.friendlyMessageContentsBox.TabIndex = 7;
+            this.friendlyMessageContentsBox.TabIndex = 6;
             this.friendlyMessageContentsBox.Text = "Enter a message here.";
             this.friendlyMessageContentsBox.TextChanged += new System.EventHandler(this.TextBox2_TextChanged);
             // 
@@ -359,7 +361,7 @@
             this.friendlyMessageTitleBox.Location = new System.Drawing.Point(87, 306);
             this.friendlyMessageTitleBox.Name = "friendlyMessageTitleBox";
             this.friendlyMessageTitleBox.Size = new System.Drawing.Size(445, 20);
-            this.friendlyMessageTitleBox.TabIndex = 10;
+            this.friendlyMessageTitleBox.TabIndex = 7;
             this.friendlyMessageTitleBox.Text = "Enter a title here";
             this.friendlyMessageTitleBox.TextChanged += new System.EventHandler(this.TextBox3_TextChanged);
             // 
@@ -376,7 +378,7 @@
             this.friendlyMessageIconPanel.Location = new System.Drawing.Point(12, 345);
             this.friendlyMessageIconPanel.Name = "friendlyMessageIconPanel";
             this.friendlyMessageIconPanel.Size = new System.Drawing.Size(520, 26);
-            this.friendlyMessageIconPanel.TabIndex = 11;
+            this.friendlyMessageIconPanel.TabIndex = 8;
             // 
             // errorRadio
             // 
@@ -467,7 +469,7 @@
             this.friendlyMessageButtonsPanel.Location = new System.Drawing.Point(12, 389);
             this.friendlyMessageButtonsPanel.Name = "friendlyMessageButtonsPanel";
             this.friendlyMessageButtonsPanel.Size = new System.Drawing.Size(520, 26);
-            this.friendlyMessageButtonsPanel.TabIndex = 13;
+            this.friendlyMessageButtonsPanel.TabIndex = 9;
             // 
             // okRadio
             // 
@@ -510,7 +512,7 @@
             this.retryCancelRadio.Location = new System.Drawing.Point(254, 3);
             this.retryCancelRadio.Name = "retryCancelRadio";
             this.retryCancelRadio.Size = new System.Drawing.Size(88, 17);
-            this.retryCancelRadio.TabIndex = 5;
+            this.retryCancelRadio.TabIndex = 3;
             this.retryCancelRadio.Text = "Retry/Cancel";
             this.retryCancelRadio.UseVisualStyleBackColor = true;
             this.retryCancelRadio.CheckedChanged += new System.EventHandler(this.RadioButton15_CheckedChanged);
@@ -521,7 +523,7 @@
             this.yesNoRadio.Location = new System.Drawing.Point(348, 3);
             this.yesNoRadio.Name = "yesNoRadio";
             this.yesNoRadio.Size = new System.Drawing.Size(62, 17);
-            this.yesNoRadio.TabIndex = 3;
+            this.yesNoRadio.TabIndex = 4;
             this.yesNoRadio.Text = "Yes/No";
             this.yesNoRadio.UseVisualStyleBackColor = true;
             this.yesNoRadio.CheckedChanged += new System.EventHandler(this.RadioButton13_CheckedChanged);
@@ -532,7 +534,7 @@
             this.yesNoCancelRadio.Location = new System.Drawing.Point(416, 3);
             this.yesNoCancelRadio.Name = "yesNoCancelRadio";
             this.yesNoCancelRadio.Size = new System.Drawing.Size(100, 17);
-            this.yesNoCancelRadio.TabIndex = 4;
+            this.yesNoCancelRadio.TabIndex = 5;
             this.yesNoCancelRadio.Text = "Yes/No/Cancel";
             this.yesNoCancelRadio.UseVisualStyleBackColor = true;
             this.yesNoCancelRadio.CheckedChanged += new System.EventHandler(this.RadioButton14_CheckedChanged);
@@ -541,10 +543,11 @@
             // 
             this.previewFriendlyMessageButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.previewFriendlyMessageButton.Enabled = false;
+            this.previewFriendlyMessageButton.ForeColor = System.Drawing.SystemColors.ControlText;
             this.previewFriendlyMessageButton.Location = new System.Drawing.Point(425, 229);
             this.previewFriendlyMessageButton.Name = "previewFriendlyMessageButton";
             this.previewFriendlyMessageButton.Size = new System.Drawing.Size(107, 23);
-            this.previewFriendlyMessageButton.TabIndex = 15;
+            this.previewFriendlyMessageButton.TabIndex = 5;
             this.previewFriendlyMessageButton.Text = "Preview message";
             this.previewFriendlyMessageButton.UseVisualStyleBackColor = true;
             this.previewFriendlyMessageButton.Click += new System.EventHandler(this.Button1_Click);
@@ -552,12 +555,13 @@
             // okButton
             // 
             this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.okButton.Location = new System.Drawing.Point(456, 429);
+            this.okButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.okButton.Location = new System.Drawing.Point(457, 429);
             this.okButton.Name = "okButton";
             this.okButton.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.okButton.Size = new System.Drawing.Size(75, 23);
-            this.okButton.TabIndex = 16;
-            this.okButton.Text = "OK";
+            this.okButton.TabIndex = 10;
+            this.okButton.Text = "O&K";
             this.okButton.UseVisualStyleBackColor = true;
             this.okButton.Click += new System.EventHandler(this.Button2_Click);
             // 
@@ -565,12 +569,13 @@
             // 
             this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancelButton.Location = new System.Drawing.Point(375, 429);
+            this.cancelButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.cancelButton.Location = new System.Drawing.Point(376, 429);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
-            this.cancelButton.TabIndex = 17;
-            this.cancelButton.Text = "Cancel";
+            this.cancelButton.TabIndex = 11;
+            this.cancelButton.Text = "&Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.Button3_Click);
             // 

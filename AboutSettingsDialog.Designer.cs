@@ -223,12 +223,15 @@
             // okButton
             // 
             this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.okButton.BackColor = System.Drawing.SystemColors.Control;
             this.okButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.okButton.ForeColor = System.Drawing.SystemColors.ControlText;
             this.okButton.Location = new System.Drawing.Point(450, 320);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(75, 23);
             this.okButton.TabIndex = 24;
             this.okButton.Text = "&OK";
+            this.okButton.UseVisualStyleBackColor = false;
             this.okButton.Click += new System.EventHandler(this.OkButton_Click);
             // 
             // labelCompanyName
@@ -295,6 +298,7 @@
             // customServerButton
             // 
             this.customServerButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.customServerButton.ForeColor = System.Drawing.SystemColors.ControlText;
             this.customServerButton.Location = new System.Drawing.Point(441, 245);
             this.customServerButton.Name = "customServerButton";
             this.customServerButton.Size = new System.Drawing.Size(74, 23);
@@ -308,6 +312,7 @@
             // primaryServerButton
             // 
             this.primaryServerButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.primaryServerButton.ForeColor = System.Drawing.SystemColors.ControlText;
             this.primaryServerButton.Location = new System.Drawing.Point(291, 245);
             this.primaryServerButton.Name = "primaryServerButton";
             this.primaryServerButton.Size = new System.Drawing.Size(71, 23);
@@ -320,6 +325,7 @@
             // backupServerButton
             // 
             this.backupServerButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.backupServerButton.ForeColor = System.Drawing.SystemColors.ControlText;
             this.backupServerButton.Location = new System.Drawing.Point(365, 245);
             this.backupServerButton.Name = "backupServerButton";
             this.backupServerButton.Size = new System.Drawing.Size(74, 23);
@@ -366,6 +372,7 @@
             this.updateCheckButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.updateCheckButton.AutoSize = true;
             this.updateCheckButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.updateCheckButton.ForeColor = System.Drawing.SystemColors.ControlText;
             this.updateCheckButton.Location = new System.Drawing.Point(151, 303);
             this.updateCheckButton.Name = "updateCheckButton";
             this.updateCheckButton.Padding = new System.Windows.Forms.Padding(6, 0, 6, 0);
@@ -379,6 +386,7 @@
             // unsignButton
             // 
             this.unsignButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.unsignButton.ForeColor = System.Drawing.SystemColors.ControlText;
             this.unsignButton.Location = new System.Drawing.Point(20, 303);
             this.unsignButton.Name = "unsignButton";
             this.unsignButton.Size = new System.Drawing.Size(125, 23);
@@ -539,6 +547,7 @@
             // devNukeAllButton
             // 
             this.devNukeAllButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.devNukeAllButton.ForeColor = System.Drawing.SystemColors.ControlText;
             this.devNukeAllButton.Location = new System.Drawing.Point(226, 3);
             this.devNukeAllButton.Name = "devNukeAllButton";
             this.devNukeAllButton.Size = new System.Drawing.Size(97, 46);
@@ -550,6 +559,7 @@
             // devNewAllButton
             // 
             this.devNewAllButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.devNewAllButton.ForeColor = System.Drawing.SystemColors.ControlText;
             this.devNewAllButton.Location = new System.Drawing.Point(328, 3);
             this.devNewAllButton.Name = "devNewAllButton";
             this.devNewAllButton.Size = new System.Drawing.Size(97, 46);
@@ -561,6 +571,7 @@
             // devDictEditButton
             // 
             this.devDictEditButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.devDictEditButton.ForeColor = System.Drawing.SystemColors.ControlText;
             this.devDictEditButton.Location = new System.Drawing.Point(431, 3);
             this.devDictEditButton.Name = "devDictEditButton";
             this.devDictEditButton.Size = new System.Drawing.Size(90, 46);
@@ -613,6 +624,7 @@
             // resetButton
             // 
             this.resetButton.Enabled = false;
+            this.resetButton.ForeColor = System.Drawing.SystemColors.ControlText;
             this.resetButton.Location = new System.Drawing.Point(3, 65);
             this.resetButton.Name = "resetButton";
             this.resetButton.Size = new System.Drawing.Size(141, 23);
@@ -625,6 +637,7 @@
             // resetHackButton
             // 
             this.resetHackButton.Enabled = false;
+            this.resetHackButton.ForeColor = System.Drawing.SystemColors.ControlText;
             this.resetHackButton.Location = new System.Drawing.Point(3, 36);
             this.resetHackButton.Name = "resetHackButton";
             this.resetHackButton.Size = new System.Drawing.Size(141, 23);
@@ -636,6 +649,7 @@
             // 
             // addCfg
             // 
+            this.addCfg.ForeColor = System.Drawing.SystemColors.ControlText;
             this.addCfg.Location = new System.Drawing.Point(3, 7);
             this.addCfg.Name = "addCfg";
             this.addCfg.Size = new System.Drawing.Size(141, 23);
@@ -648,6 +662,7 @@
             // removeCfg
             // 
             this.removeCfg.Enabled = false;
+            this.removeCfg.ForeColor = System.Drawing.SystemColors.ControlText;
             this.removeCfg.Location = new System.Drawing.Point(150, 65);
             this.removeCfg.Name = "removeCfg";
             this.removeCfg.Size = new System.Drawing.Size(145, 23);
@@ -660,6 +675,7 @@
             // 
             // saveCfg
             // 
+            this.saveCfg.ForeColor = System.Drawing.SystemColors.ControlText;
             this.saveCfg.Location = new System.Drawing.Point(150, 36);
             this.saveCfg.Name = "saveCfg";
             this.saveCfg.Size = new System.Drawing.Size(145, 23);
@@ -672,6 +688,7 @@
             // 
             // loadCfg
             // 
+            this.loadCfg.ForeColor = System.Drawing.SystemColors.ControlText;
             this.loadCfg.Location = new System.Drawing.Point(150, 7);
             this.loadCfg.Name = "loadCfg";
             this.loadCfg.Size = new System.Drawing.Size(145, 23);
@@ -825,6 +842,7 @@
             // 
             // howToGetHelpButton
             // 
+            this.howToGetHelpButton.ForeColor = System.Drawing.SystemColors.ControlText;
             this.howToGetHelpButton.Location = new System.Drawing.Point(8, 6);
             this.howToGetHelpButton.Margin = new System.Windows.Forms.Padding(8, 6, 3, 3);
             this.howToGetHelpButton.Name = "howToGetHelpButton";
@@ -836,6 +854,7 @@
             // 
             // purposesOfThisProgramButton
             // 
+            this.purposesOfThisProgramButton.ForeColor = System.Drawing.SystemColors.ControlText;
             this.purposesOfThisProgramButton.Location = new System.Drawing.Point(117, 6);
             this.purposesOfThisProgramButton.Margin = new System.Windows.Forms.Padding(2, 6, 3, 3);
             this.purposesOfThisProgramButton.Name = "purposesOfThisProgramButton";
@@ -847,6 +866,7 @@
             // 
             // systemRequirementsButton
             // 
+            this.systemRequirementsButton.ForeColor = System.Drawing.SystemColors.ControlText;
             this.systemRequirementsButton.Location = new System.Drawing.Point(263, 6);
             this.systemRequirementsButton.Margin = new System.Windows.Forms.Padding(2, 6, 3, 3);
             this.systemRequirementsButton.Name = "systemRequirementsButton";

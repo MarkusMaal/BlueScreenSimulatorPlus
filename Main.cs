@@ -1129,6 +1129,44 @@ namespace UltimateBlueScreenSimulator
                 {
                     kode = "";
                 }
+                if (e.Shift && (e.KeyCode == Keys.F6))
+                {
+                    if (windowVersion.Focused)
+                    {
+                        flowLayoutPanel1.Focus();
+                    }
+                    else if (flowLayoutPanel1.Focused)
+                    {
+                        button7.Focus();
+                    }
+                    else if (menuBar.Focused)
+                    {
+                        windowVersion.Focus();
+                    }
+                    else
+                    {
+                        menuBar.Focus();
+                    }
+                }
+                else if (!e.Shift && (e.KeyCode == Keys.F6))
+                {
+                    if (windowVersion.Focused)
+                    {
+                        menuBar.Focus();
+                    }
+                    else if (flowLayoutPanel1.Focused)
+                    {
+                        windowVersion.Focus();
+                    }
+                    else if (menuBar.Focused)
+                    {
+                        button7.Focus();
+                    }
+                    else
+                    {
+                        flowLayoutPanel1.Focus();
+                    }
+                }
                 if (kode == "uuddlrlrba")
                 {
                     ClickIt ci = new ClickIt();
@@ -1496,6 +1534,67 @@ namespace UltimateBlueScreenSimulator
                 Process p = new Process();
                 p.StartInfo.FileName = Environment.GetEnvironmentVariable("TEMP") + "\\bssp_manual.pdf";
                 p.Start();
+            }
+        }
+
+        private void LightSwitch(object sender, EventArgs e)
+        {
+            Color back;
+            Color fore;
+            if (nightThemeToolStripMenuItem.Checked)
+            {
+                back = Color.Black;
+                fore = Color.Gray;
+            } else
+            {
+                back = SystemColors.Control;
+                fore = SystemColors.ControlText;
+            }
+            this.BackColor = back;
+            this.ForeColor = fore;
+            foreach (Control c in this.Controls)
+            {
+                c.BackColor = back;
+                c.ForeColor = fore;
+                if (c is FlowLayoutPanel flp)
+                {
+                    foreach (Control fpc in flp.Controls)
+                    {
+                        if ((fpc is FlowLayoutPanel) || (fpc is Panel))
+                        {
+                            foreach (Control sc in fpc.Controls)
+                            {
+                                sc.BackColor = back;
+                                sc.ForeColor = fore;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private void SimulatorToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
+        {
+            if (nightThemeToolStripMenuItem.Checked)
+            {
+                simulatorToolStripMenuItem.DropDown.BackColor = Color.FromArgb(80, 80, 80);
+                simulatorToolStripMenuItem.DropDown.ForeColor = Color.Gray;
+                helpToolStripMenuItem.DropDown.BackColor = Color.FromArgb(80, 80, 80);
+                helpToolStripMenuItem.DropDown.ForeColor = Color.Gray;
+                advancedToolStripMenuItem.DropDown.BackColor = Color.FromArgb(80, 80, 80);
+                advancedToolStripMenuItem.DropDown.ForeColor = Color.Gray;
+                settingsToolStripMenuItem.DropDown.BackColor = Color.FromArgb(80, 80, 80);
+                settingsToolStripMenuItem.DropDown.ForeColor = Color.Gray;
+            } else
+            {
+                simulatorToolStripMenuItem.DropDown.BackColor = SystemColors.Menu;
+                simulatorToolStripMenuItem.DropDown.ForeColor = SystemColors.MenuText;
+                helpToolStripMenuItem.DropDown.BackColor = SystemColors.Menu;
+                helpToolStripMenuItem.DropDown.ForeColor = SystemColors.MenuText;
+                advancedToolStripMenuItem.DropDown.BackColor = SystemColors.Menu;
+                advancedToolStripMenuItem.DropDown.ForeColor = SystemColors.MenuText;
+                settingsToolStripMenuItem.DropDown.BackColor = SystemColors.Menu;
+                settingsToolStripMenuItem.DropDown.ForeColor = SystemColors.MenuText;
             }
         }
     }

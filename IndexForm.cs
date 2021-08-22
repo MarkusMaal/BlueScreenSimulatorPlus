@@ -259,6 +259,24 @@ namespace UltimateBlueScreenSimulator
 
         private void Initialize(object sender, EventArgs e)
         {
+            if (Program.f1.nightThemeToolStripMenuItem.Checked)
+            {
+                this.BackColor = System.Drawing.Color.Black;
+                this.ForeColor = System.Drawing.Color.Gray;
+                for (int i = 1; i <= 16; i++)
+                {
+                    tableLayoutPanel1.Controls["textBox" + i].BackColor = System.Drawing.Color.Black;
+                    tableLayoutPanel1.Controls["textBox" + i].ForeColor = System.Drawing.Color.Gray;
+                }
+                for (int i = 1; i <= 8; i++)
+                {
+                    tableLayoutPanel2.Controls["ntt" + i].BackColor = System.Drawing.Color.Black;
+                    tableLayoutPanel2.Controls["ntt" + i].ForeColor = System.Drawing.Color.Gray;
+                }
+                fileBox.BackColor = System.Drawing.Color.Black;
+                fileBox.ForeColor = System.Drawing.Color.Gray;
+                fileBox.BorderStyle = BorderStyle.FixedSingle;
+            }
             List<string> blacklist = new List<string>();
             List<string> whitelist = new List<string>();
             string[] bl = { "Windows 3.1x", "Windows 1.x/2.x", "Windows CE" };

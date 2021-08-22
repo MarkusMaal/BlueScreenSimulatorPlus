@@ -26,7 +26,24 @@ namespace UltimateBlueScreenSimulator
 
         private void PrankMode_Load(object sender, EventArgs e)
         {
+            if (Program.f1.nightThemeToolStripMenuItem.Checked)
+            {
+                this.BackColor = System.Drawing.Color.Black;
+                this.ForeColor = System.Drawing.Color.Gray;
+                friendlyMessageContentsBox.BackColor = this.BackColor;
+                friendlyMessageContentsBox.ForeColor = this.ForeColor;
+                friendlyMessageContentsBox.BorderStyle = BorderStyle.FixedSingle;
+                friendlyMessageTitleBox.BackColor = this.BackColor;
+                friendlyMessageTitleBox.ForeColor = this.ForeColor;
+                friendlyMessageTitleBox.BorderStyle = BorderStyle.FixedSingle;
+                triggerAppBox.BackColor = this.BackColor;
+                triggerAppBox.ForeColor = this.ForeColor;
+                triggerAppBox.BorderStyle = BorderStyle.FixedSingle;
+                timerBox.BackColor = this.BackColor;
+                timerBox.ForeColor = this.ForeColor;
+                timerBox.BorderStyle = BorderStyle.FixedSingle;
 
+            }
             string winver = releaseId;
             int contain = -1;
             if (bestMatchRadio.Checked == true)

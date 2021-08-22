@@ -24,6 +24,12 @@ namespace UltimateBlueScreenSimulator
                     fileBrowser.Items.Add(lvi);
                 }
             }
+            if (Program.f1.nightThemeToolStripMenuItem.Checked)
+            {
+                fileBrowser.BackColor = System.Drawing.Color.Black;
+                fileBrowser.ForeColor = System.Drawing.Color.Gray;
+                fileBrowser.GridLines = false;
+            }
         }
 
         private void WhenUserSelectsTheDesiredFile(object sender, EventArgs e)

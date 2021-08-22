@@ -106,6 +106,29 @@ namespace UltimateBlueScreenSimulator
 
         private void SetInitalInterface(object sender, EventArgs e)
         {
+            if (Program.f1.nightThemeToolStripMenuItem.Checked)
+            {
+                aboutSettingsTabControl.Appearance = TabAppearance.FlatButtons;
+                this.BackColor = Color.Black;
+                this.ForeColor = Color.Gray;
+                foreach (Panel p in aboutSettingsTabControl.TabPages)
+                {
+                    p.BackColor = this.BackColor;
+                    p.ForeColor = this.ForeColor;
+                }
+                markusSoftwareLogo.BackColor = Color.DimGray;
+                veriFileLogo.BackColor = Color.DimGray;
+                primaryServerBox.BackColor = Color.Black;
+                primaryServerBox.ForeColor = Color.Gray;
+                primaryServerBox.BorderStyle = BorderStyle.FixedSingle;
+                configList.BackColor = Color.Black;
+                configList.ForeColor = Color.Gray;
+                configList.BorderStyle = BorderStyle.FixedSingle;
+                helpDisplay.BackColor = Color.Black;
+                helpDisplay.ForeColor = Color.Gray;
+                commandLineHelpDisplay.BackColor = Color.Black;
+                commandLineHelpDisplay.ForeColor = Color.Gray;
+            }
             //Ping main form that the about box/help/settings dialog is open
             Program.f1.abopen = true;
             //Hide settings tabs

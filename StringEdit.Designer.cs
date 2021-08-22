@@ -119,9 +119,9 @@
             this.MessageView.MultiSelect = false;
             this.MessageView.Name = "MessageView";
             this.MessageView.ShowGroups = false;
-            this.MessageView.Size = new System.Drawing.Size(256, 299);
+            this.MessageView.Size = new System.Drawing.Size(256, 322);
             this.MessageView.SmallImageList = this.AllIcons;
-            this.MessageView.TabIndex = 2;
+            this.MessageView.TabIndex = 0;
             this.MessageView.UseCompatibleStateImageBehavior = false;
             this.MessageView.View = System.Windows.Forms.View.Details;
             this.MessageView.SelectedIndexChanged += new System.EventHandler(this.MessageView_SelectedIndexChanged);
@@ -137,10 +137,11 @@
             // buttonOK
             // 
             this.buttonOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonOK.Location = new System.Drawing.Point(610, 354);
+            this.buttonOK.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.buttonOK.Location = new System.Drawing.Point(610, 377);
             this.buttonOK.Name = "buttonOK";
             this.buttonOK.Size = new System.Drawing.Size(75, 23);
-            this.buttonOK.TabIndex = 5;
+            this.buttonOK.TabIndex = 8;
             this.buttonOK.Text = "&OK";
             this.buttonOK.UseVisualStyleBackColor = true;
             this.buttonOK.Click += new System.EventHandler(this.Button1_Click);
@@ -151,7 +152,7 @@
             this.stringProps.Location = new System.Drawing.Point(3, 330);
             this.stringProps.Name = "stringProps";
             this.stringProps.Size = new System.Drawing.Size(400, 175);
-            this.stringProps.TabIndex = 32;
+            this.stringProps.TabIndex = 6;
             this.stringProps.Visible = false;
             // 
             // stringEditor
@@ -170,11 +171,12 @@
             this.colorProps.Location = new System.Drawing.Point(3, 282);
             this.colorProps.Name = "colorProps";
             this.colorProps.Size = new System.Drawing.Size(394, 42);
-            this.colorProps.TabIndex = 33;
+            this.colorProps.TabIndex = 5;
             this.colorProps.Visible = false;
             // 
             // colorButton
             // 
+            this.colorButton.ForeColor = System.Drawing.SystemColors.ControlText;
             this.colorButton.Location = new System.Drawing.Point(56, 10);
             this.colorButton.Name = "colorButton";
             this.colorButton.Size = new System.Drawing.Size(75, 23);
@@ -204,8 +206,8 @@
             this.specificPropsFlowLayoutPanel.Controls.Add(this.stringProps);
             this.specificPropsFlowLayoutPanel.Location = new System.Drawing.Point(276, 39);
             this.specificPropsFlowLayoutPanel.Name = "specificPropsFlowLayoutPanel";
-            this.specificPropsFlowLayoutPanel.Size = new System.Drawing.Size(404, 300);
-            this.specificPropsFlowLayoutPanel.TabIndex = 34;
+            this.specificPropsFlowLayoutPanel.Size = new System.Drawing.Size(404, 323);
+            this.specificPropsFlowLayoutPanel.TabIndex = 2;
             // 
             // qrProps
             // 
@@ -215,16 +217,17 @@
             this.qrProps.Location = new System.Drawing.Point(3, 3);
             this.qrProps.Name = "qrProps";
             this.qrProps.Size = new System.Drawing.Size(394, 71);
-            this.qrProps.TabIndex = 35;
+            this.qrProps.TabIndex = 1;
             this.qrProps.Visible = false;
             // 
             // browseButton
             // 
             this.browseButton.Enabled = false;
+            this.browseButton.ForeColor = System.Drawing.SystemColors.ControlText;
             this.browseButton.Location = new System.Drawing.Point(10, 45);
             this.browseButton.Name = "browseButton";
             this.browseButton.Size = new System.Drawing.Size(75, 23);
-            this.browseButton.TabIndex = 2;
+            this.browseButton.TabIndex = 5;
             this.browseButton.Text = "Browse";
             this.browseButton.UseVisualStyleBackColor = true;
             this.browseButton.Click += new System.EventHandler(this.BrowseButton_Click);
@@ -246,7 +249,7 @@
             this.radioFlowLayoutPanel.Location = new System.Drawing.Point(7, 3);
             this.radioFlowLayoutPanel.Name = "radioFlowLayoutPanel";
             this.radioFlowLayoutPanel.Size = new System.Drawing.Size(222, 23);
-            this.radioFlowLayoutPanel.TabIndex = 0;
+            this.radioFlowLayoutPanel.TabIndex = 1;
             // 
             // defaultRadioBtn
             // 
@@ -255,7 +258,7 @@
             this.defaultRadioBtn.Location = new System.Drawing.Point(3, 3);
             this.defaultRadioBtn.Name = "defaultRadioBtn";
             this.defaultRadioBtn.Size = new System.Drawing.Size(59, 17);
-            this.defaultRadioBtn.TabIndex = 0;
+            this.defaultRadioBtn.TabIndex = 2;
             this.defaultRadioBtn.TabStop = true;
             this.defaultRadioBtn.Text = "Default";
             this.defaultRadioBtn.UseVisualStyleBackColor = true;
@@ -267,7 +270,7 @@
             this.transparentRadioBtn.Location = new System.Drawing.Point(68, 3);
             this.transparentRadioBtn.Name = "transparentRadioBtn";
             this.transparentRadioBtn.Size = new System.Drawing.Size(82, 17);
-            this.transparentRadioBtn.TabIndex = 1;
+            this.transparentRadioBtn.TabIndex = 3;
             this.transparentRadioBtn.Text = "Transparent";
             this.transparentRadioBtn.UseVisualStyleBackColor = true;
             this.transparentRadioBtn.CheckedChanged += new System.EventHandler(this.TransparentRadioBtn_CheckedChanged);
@@ -278,7 +281,7 @@
             this.customRadioBtn.Location = new System.Drawing.Point(156, 3);
             this.customRadioBtn.Name = "customRadioBtn";
             this.customRadioBtn.Size = new System.Drawing.Size(60, 17);
-            this.customRadioBtn.TabIndex = 2;
+            this.customRadioBtn.TabIndex = 4;
             this.customRadioBtn.Text = "Custom";
             this.customRadioBtn.UseVisualStyleBackColor = true;
             this.customRadioBtn.CheckedChanged += new System.EventHandler(this.CustomRadioBtn_CheckedChanged);
@@ -290,7 +293,7 @@
             this.timeoutProps.Location = new System.Drawing.Point(3, 80);
             this.timeoutProps.Name = "timeoutProps";
             this.timeoutProps.Size = new System.Drawing.Size(394, 29);
-            this.timeoutProps.TabIndex = 35;
+            this.timeoutProps.TabIndex = 2;
             this.timeoutProps.Visible = false;
             // 
             // timeoutBox
@@ -317,11 +320,12 @@
             this.fontProps.Location = new System.Drawing.Point(3, 115);
             this.fontProps.Name = "fontProps";
             this.fontProps.Size = new System.Drawing.Size(394, 84);
-            this.fontProps.TabIndex = 36;
+            this.fontProps.TabIndex = 3;
             this.fontProps.Visible = false;
             // 
             // fontChangeButton
             // 
+            this.fontChangeButton.ForeColor = System.Drawing.SystemColors.ControlText;
             this.fontChangeButton.Location = new System.Drawing.Point(11, 54);
             this.fontChangeButton.Name = "fontChangeButton";
             this.fontChangeButton.Size = new System.Drawing.Size(75, 23);
@@ -347,7 +351,7 @@
             this.blinkProps.Location = new System.Drawing.Point(3, 205);
             this.blinkProps.Name = "blinkProps";
             this.blinkProps.Size = new System.Drawing.Size(394, 71);
-            this.blinkProps.TabIndex = 35;
+            this.blinkProps.TabIndex = 4;
             this.blinkProps.Visible = false;
             // 
             // speedTrackbar
@@ -396,19 +400,19 @@
             // 
             this.whereTheButtonsLink.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.whereTheButtonsLink.AutoSize = true;
-            this.whereTheButtonsLink.Location = new System.Drawing.Point(12, 360);
+            this.whereTheButtonsLink.Location = new System.Drawing.Point(12, 383);
             this.whereTheButtonsLink.Name = "whereTheButtonsLink";
             this.whereTheButtonsLink.Size = new System.Drawing.Size(189, 13);
-            this.whereTheButtonsLink.TabIndex = 35;
+            this.whereTheButtonsLink.TabIndex = 7;
             this.whereTheButtonsLink.TabStop = true;
-            this.whereTheButtonsLink.Text = "Where are the save and load buttons?";
+            this.whereTheButtonsLink.Text = "&Where are the save and load buttons?";
             this.whereTheButtonsLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel1_LinkClicked);
             // 
             // StringEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(697, 389);
+            this.ClientSize = new System.Drawing.Size(697, 412);
             this.Controls.Add(this.whereTheButtonsLink);
             this.Controls.Add(this.specificPropsFlowLayoutPanel);
             this.Controls.Add(this.buttonOK);

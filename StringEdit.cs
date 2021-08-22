@@ -23,6 +23,31 @@ namespace UltimateBlueScreenSimulator
             HideAllProps();
             MessageView.Clear();
             UpdateMessageView();
+            if (Program.f1.nightThemeToolStripMenuItem.Checked)
+            {
+                this.BackColor = Color.Black;
+                this.ForeColor = Color.Gray;
+                MessageView.BackColor = Color.Black;
+                MessageView.ForeColor = Color.Gray;
+                MessageView.GridLines = false;
+                MessageView.BorderStyle = BorderStyle.None;
+                qrProps.BackColor = Color.Black;
+                qrProps.ForeColor = Color.Gray;
+                timeoutProps.BackColor = Color.Black;
+                timeoutProps.ForeColor = Color.Gray;
+                timeoutBox.BackColor = Color.Black;
+                timeoutBox.ForeColor = Color.Gray;
+                timeoutBox.BorderStyle = BorderStyle.FixedSingle;
+                radioFlowLayoutPanel.BackColor = Color.Black;
+                radioFlowLayoutPanel.ForeColor = Color.Gray;
+                fontProps.BackColor = Color.Black;
+                fontProps.ForeColor = Color.Gray;
+                blinkProps.BackColor = Color.Black;
+                blinkProps.ForeColor = Color.Gray;
+                stringEditor.BackColor = Color.Black;
+                stringEditor.ForeColor = Color.Gray;
+                stringEditor.BorderStyle = BorderStyle.FixedSingle;
+            }
         }
 
         private ListViewItem GetColorListViewItem(string title, Color color)
