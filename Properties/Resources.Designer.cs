@@ -96,16 +96,6 @@ namespace UltimateBlueScreenSimulator.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap bsodbanner {
-            get {
-                object obj = ResourceManager.GetObject("bsodbanner", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap bsodbanner2 {
             get {
                 object obj = ResourceManager.GetObject("bsodbanner2", resourceCulture);
@@ -134,22 +124,12 @@ namespace UltimateBlueScreenSimulator.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static System.Drawing.Bitmap corner_bl {
+        internal static byte[] BSSP_manual {
             get {
-                object obj = ResourceManager.GetObject("corner_bl", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap corner_br {
-            get {
-                object obj = ResourceManager.GetObject("corner_br", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                object obj = ResourceManager.GetObject("BSSP_manual", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         
@@ -159,26 +139,6 @@ namespace UltimateBlueScreenSimulator.Properties {
         internal static System.Drawing.Bitmap corner_br1 {
             get {
                 object obj = ResourceManager.GetObject("corner_br1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap corner_tl {
-            get {
-                object obj = ResourceManager.GetObject("corner_tl", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap corner_tr {
-            get {
-                object obj = ResourceManager.GetObject("corner_tr", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

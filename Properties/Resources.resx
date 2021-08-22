@@ -159,9 +159,6 @@
   <data name="CULPRIT_FILES" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\CULPRIT_FILES.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1257</value>
   </data>
-  <data name="corner_tl" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\corner_tl.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="bsodqr" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bsodqr.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -173,12 +170,6 @@
   </data>
   <data name="current" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\current.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="corner_tr" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\corner_tr.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="bsodbanner" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\bsodbanner.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="pending" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\pending.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -199,19 +190,16 @@
   <data name="round_corners" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\round_corners.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="corner_br" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\corner_br.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="win2_splash" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\win2_splash.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="corner_bl" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\corner_bl.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="bsodqr_transparent" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bsodqr_transparent.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="bsodbanner2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bsodbanner2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BSSP_manual" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BSSP manual.pdf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

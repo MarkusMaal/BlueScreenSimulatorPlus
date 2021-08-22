@@ -321,6 +321,7 @@
     <None Include="Resources\bsodqr.bmp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\BSSP manual.pdf" />
     <None Include="Resources\rasters.bmp" />
   </ItemGroup>
   <ItemGroup>

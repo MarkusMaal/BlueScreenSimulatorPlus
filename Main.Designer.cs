@@ -41,6 +41,7 @@
             this.greenBox = new System.Windows.Forms.CheckBox();
             this.qrBox = new System.Windows.Forms.CheckBox();
             this.memoryBox = new System.Windows.Forms.CheckBox();
+            this.devPCBox = new System.Windows.Forms.CheckBox();
             this.errorCode = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -101,7 +102,7 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.waitPopup = new System.Windows.Forms.Timer(this.components);
-            this.devPCBox = new System.Windows.Forms.CheckBox();
+            this.contentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.flowLayoutPanel1.SuspendLayout();
             this.WXOptions.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
@@ -272,6 +273,18 @@
         "ows 8+ bluescreens)");
             this.memoryBox.UseVisualStyleBackColor = true;
             this.memoryBox.CheckedChanged += new System.EventHandler(this.MemoryBox_CheckedChanged);
+            // 
+            // devPCBox
+            // 
+            this.devPCBox.AutoSize = true;
+            this.devPCBox.Location = new System.Drawing.Point(152, 26);
+            this.devPCBox.Name = "devPCBox";
+            this.devPCBox.Size = new System.Drawing.Size(175, 17);
+            this.devPCBox.TabIndex = 5;
+            this.devPCBox.Text = "Replace \"PC\" with \"device\" [?]";
+            this.quickHelp.SetToolTip(this.devPCBox, "On newer builds of Windows 10, the blue screen may say \"device\" instead of \"PC\"");
+            this.devPCBox.UseVisualStyleBackColor = true;
+            this.devPCBox.CheckedChanged += new System.EventHandler(this.DevPCBox_CheckedChanged);
             // 
             // errorCode
             // 
@@ -880,6 +893,7 @@
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.commandLineSyntaxToolStripMenuItem,
+            this.contentsToolStripMenuItem,
             this.quickHelpToolStripMenuItem,
             this.toolStripSeparator2,
             this.aboutToolStripMenuItem});
@@ -900,7 +914,6 @@
             // quickHelpToolStripMenuItem
             // 
             this.quickHelpToolStripMenuItem.Name = "quickHelpToolStripMenuItem";
-            this.quickHelpToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1;
             this.quickHelpToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.quickHelpToolStripMenuItem.Text = "Quick help";
             this.quickHelpToolStripMenuItem.Click += new System.EventHandler(this.QuickHelpToolStripMenuItem_Click);
@@ -921,17 +934,13 @@
             // 
             this.waitPopup.Tick += new System.EventHandler(this.WaitPopup_Tick);
             // 
-            // devPCBox
+            // contentsToolStripMenuItem
             // 
-            this.devPCBox.AutoSize = true;
-            this.devPCBox.Location = new System.Drawing.Point(152, 26);
-            this.devPCBox.Name = "devPCBox";
-            this.devPCBox.Size = new System.Drawing.Size(175, 17);
-            this.devPCBox.TabIndex = 5;
-            this.devPCBox.Text = "Replace \"PC\" with \"device\" [?]";
-            this.quickHelp.SetToolTip(this.devPCBox, "On newer builds of Windows 10, the blue screen may say \"device\" instead of \"PC\"");
-            this.devPCBox.UseVisualStyleBackColor = true;
-            this.devPCBox.CheckedChanged += new System.EventHandler(this.DevPCBox_CheckedChanged);
+            this.contentsToolStripMenuItem.Name = "contentsToolStripMenuItem";
+            this.contentsToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1;
+            this.contentsToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.contentsToolStripMenuItem.Text = "Contents";
+            this.contentsToolStripMenuItem.Click += new System.EventHandler(this.ContentsToolStripMenuItem_Click);
             // 
             // Main
             // 
@@ -1058,6 +1067,7 @@
         internal System.Windows.Forms.CheckBox addInfFile;
         private System.Windows.Forms.Button advNTButton;
         private System.Windows.Forms.CheckBox devPCBox;
+        private System.Windows.Forms.ToolStripMenuItem contentsToolStripMenuItem;
     }
 }
 

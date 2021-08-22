@@ -1480,5 +1480,23 @@ namespace UltimateBlueScreenSimulator
         {
             me.SetBool("device", devPCBox.Checked);
         }
+
+        private void ContentsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (DoWeHaveInternet(1000))
+            {
+                // online user manual
+                Process p = new Process();
+                p.StartInfo.FileName = "https://www.youtube.com/watch?v=yD2FSwTy2lw";
+                p.Start();
+            } else
+            {
+                System.IO.File.WriteAllBytes(Environment.GetEnvironmentVariable("TEMP") + "\\bssp_manual.pdf", Properties.Resources.BSSP_manual);
+
+                Process p = new Process();
+                p.StartInfo.FileName = Environment.GetEnvironmentVariable("TEMP") + "\\bssp_manual.pdf";
+                p.Start();
+            }
+        }
     }
 }
