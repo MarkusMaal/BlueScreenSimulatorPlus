@@ -1525,7 +1525,7 @@ namespace UltimateBlueScreenSimulator
             {
                 // online user manual
                 Process p = new Process();
-                p.StartInfo.FileName = "https://www.youtube.com/watch?v=yD2FSwTy2lw";
+                p.StartInfo.FileName = "https://markustegelane.ml/bssp/help.pdf";
                 p.Start();
             } else
             {
