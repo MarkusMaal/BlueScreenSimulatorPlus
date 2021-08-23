@@ -286,49 +286,54 @@ namespace UltimateBlueScreenSimulator
             {
                 foreach (Image img in image)
                 {
-                    if (pictureBox19.Image.Width + img.Width > pictureBox19.Width)
+                    if ((img != null) || (pictureBox19 != null))
                     {
-                        try
+                        if (pictureBox19.Image.Width + img.Width > pictureBox19.Width)
                         {
-                            Bitmap partone = new Bitmap(pictureBox19.Width - img.Width, img.Height);
-                            Graphics g;
-                            g = Graphics.FromImage(partone);
-                            g.DrawImage(img, 0, 0);
-                            Bitmap bmp = new Bitmap(pictureBox19.Width, pictureBox19.Image.Height);
-                            g = Graphics.FromImage(bmp);
-                            g.DrawImage(pictureBox19.Image, 0, 0);
-                            g.DrawImage(partone, new Point(pictureBox19.Image.Width + 1, 0));
-                            pictureBox19.Image = bmp;
-                            if (pictureBox1.Image != null)
+                            try
                             {
-                                pictureBox1.Image.Dispose();
+                                Bitmap partone = new Bitmap(pictureBox19.Width - img.Width, img.Height);
+                                Graphics g;
+                                g = Graphics.FromImage(partone);
+                                g.DrawImage(img, 0, 0);
+                                Bitmap bmp = new Bitmap(pictureBox19.Width, pictureBox19.Image.Height);
+                                g = Graphics.FromImage(bmp);
+                                g.DrawImage(pictureBox19.Image, 0, 0);
+                                g.DrawImage(partone, new Point(pictureBox19.Image.Width + 1, 0));
+                                pictureBox19.Image = bmp;
+                                if (pictureBox1.Image != null)
+                                {
+                                    pictureBox1.Image.Dispose();
+                                }
+                                for (int i = 1; i < 19; i++)
+                                {
+                                    try
+                                    {
+                                        ((PictureBox)tableLayoutPanel1.Controls["pictureBox" + i.ToString()]).Image = ((PictureBox)tableLayoutPanel1.Controls["pictureBox" + (i + 1).ToString()]).Image;
+                                    }
+                                    catch
+                                    {
+
+                                    }
+                                }
+                                pictureBox19.Image = Properties.Resources.dummy;
+                                partone.Dispose();
                             }
-                            for (int i = 1; i < 19; i++)
+                            catch
                             {
-                                try
-                                {
-                                    ((PictureBox)tableLayoutPanel1.Controls["pictureBox" + i.ToString()]).Image = ((PictureBox)tableLayoutPanel1.Controls["pictureBox" + (i + 1).ToString()]).Image;
-                                }
-                                catch
-                                {
 
-                                }
                             }
-                            pictureBox19.Image = Properties.Resources.dummy;
-                            partone.Dispose();
-                        } catch
-                        {
-
+                            img.Dispose();
                         }
-                        img.Dispose();
-                    } else
-                    {
-                        Bitmap bmp = new Bitmap(pictureBox19.Image.Width + img.Width, pictureBox19.Image.Height);
-                        Graphics g = Graphics.FromImage(bmp);
-                        g.DrawImage(pictureBox19.Image, 0, 0);
-                        g.DrawImage(img, new Point(pictureBox19.Image.Width + 1, 0));
-                        pictureBox19.Image = bmp;
-                        img.Dispose();
+                        else
+                        {
+                            Bitmap bmp = new Bitmap(pictureBox19.Image.Width + img.Width, pictureBox19.Image.Height);
+                            Graphics g = Graphics.FromImage(bmp);
+                            g.DrawImage(pictureBox19.Image, 0, 0);
+                            g.DrawImage(img, new Point(pictureBox19.Image.Width + 1, 0));
+                            pictureBox19.Image = bmp;
+                            img.Dispose();
+                        }
                     }
                 }
                 image.Clear();
@@ -339,46 +344,60 @@ namespace UltimateBlueScreenSimulator
 
         private void Win_FormClosed(object sender, FormClosedEventArgs e)
         {
-            foreach (Control c in tableLayoutPanel1.Controls)
+            try
             {
-                c.Dispose();
+                foreach (Control c in tableLayoutPanel1.Controls)
+                {
+                    c.Dispose();
+                }
+                this.Dispose();
             }
-            this.Dispose();
+            catch
+            {
+                Console.WriteLine("Warning: \"Win\" forcibly closed from external source!!!");
+            }
         }
 
         private void Win_FormClosing(object sender, FormClosingEventArgs e)
         {
             try
             {
-                if (secondThread != null)
+                screenUpdater.Enabled = false;
+                if (Program.f1 != null)
                 {
-                    secondThread.Abort();
-                }
-                foreach (WindowScreen ws in wss)
-                {
-                    ws.Close();
-                }
-                foreach (Image img in freezescreens)
-                {
-                    img.Dispose();
-                }
-                foreach (Image img in image)
-                {
-                    img.Dispose();
-                }
-                splash.Dispose();
+                    if (secondThread != null)
+                    {
+                        secondThread.Abort();
+                    }
+                    foreach (WindowScreen ws in wss)
+                    {
+                        ws.Close();
+                    }
+                    foreach (Image img in freezescreens)
+                    {
+                        img.Dispose();
+                    }
+                    foreach (Image img in image)
+                    {
+                        img.Dispose();
+                    }
+                    splash.Dispose();
 
-                if (me.GetBool("playsound"))
-                {
-                    sp.Stop();
-                    sp.Dispose();
+                    if (me.GetBool("playsound"))
+                    {
+                        sp.Stop();
+                        sp.Dispose();
+                    }
+                    try
+                    {
+                        this.Dispose();
+                    } catch { }
                 }
-                this.Dispose();
             } catch (Exception ex)
             {
                 Program.loadfinished = true;
                 MessageBox.Show("An error has occoured.\n\n" + ex.Message + "\n\n" + ex.StackTrace, "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.Close();
+                this.Dispose();
             }
         }
     }

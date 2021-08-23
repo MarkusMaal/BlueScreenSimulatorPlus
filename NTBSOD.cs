@@ -373,21 +373,27 @@ namespace UltimateBlueScreenSimulator
             }
             if (stackTrace1_1.Image != null)
             {
-                foreach (Control c in this.tableLayoutPanel1.Controls)
+                try
                 {
-                    if (c is PictureBox box && box.Image != null) { box.Image.Dispose(); c.Dispose(); }
-                }
-                foreach (Control c in this.ntContainer.Controls)
+                    foreach (Control c in this.tableLayoutPanel1.Controls)
+                    {
+                        if (c is PictureBox box && box.Image != null) { box.Image.Dispose(); c.Dispose(); }
+                    }
+                    foreach (Control c in this.ntContainer.Controls)
+                    {
+                        if (c is PictureBox box && box.Image != null) { box.Image.Dispose(); c.Dispose(); }
+                    }
+                    foreach (Control c in this.flowLayoutPanel2.Controls)
+                    {
+                        if (c is PictureBox box && box.Image != null) { box.Image.Dispose(); c.Dispose(); }
+                    }
+                    foreach (Control c in this.flowLayoutPanel3.Controls)
+                    {
+                        if (c is PictureBox box && box.Image != null) { box.Image.Dispose(); c.Dispose(); }
+                    }
+                } catch
                 {
-                    if (c is PictureBox box && box.Image != null) { box.Image.Dispose(); c.Dispose(); }
-                }
-                foreach (Control c in this.flowLayoutPanel2.Controls)
-                {
-                    if (c is PictureBox box && box.Image != null) { box.Image.Dispose(); c.Dispose(); }
-                }
-                foreach (Control c in this.flowLayoutPanel3.Controls)
-                {
-                    if (c is PictureBox box && box.Image != null) { box.Image.Dispose(); c.Dispose(); }
+                    Console.WriteLine("Warning: Failed to dispose images!!!");
                 }
             }
             if (fullscreen)
@@ -416,7 +422,13 @@ namespace UltimateBlueScreenSimulator
                     Program.f1.Close();
                 }
             }
-            this.Dispose();
+            try
+            {
+                this.Dispose();
+            } catch
+            {
+                Console.WriteLine("Warning: \"NTSOD\" forcibly closed from external source!!!");
+            }
         }
     }
 }

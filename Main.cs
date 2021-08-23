@@ -593,6 +593,7 @@ namespace UltimateBlueScreenSimulator
                 Gen g = new Gen();
                 g.Show();
             }
+            Program.f1.lockout = false;
             Crash();
         }
 
@@ -795,10 +796,6 @@ namespace UltimateBlueScreenSimulator
             {
                 MessageBox.Show("Help and about window is already open", "Cannot open help and about", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            /*if (MessageBox.Show("System requirements:\n\nOS: Windows XP or later\nMicrosoft .NET Framework 3.5 (preinstalled in Windows 7 and later)\nScreen resolution: 1024x768 or higher (1280x1024 or higher recommended)\n\n\nHow to get help?\n\nFor items that have [?] at the end, you can just hover over them for more information.\n\n\nHow do I disable ClearType?\n\nTo disable ClearType, open system properties (Windows + Pause/Break). Then select advanced options (or Advanced tab). Finally select \"Settings\" from the performance section and uncheck font smoothing.\n\n\nWhat is the purpose of this program?\n\nThis program can be used as a way of screenshotting bluescreens without actually crashing your computer or messing with virtual machines. You can also use this program for pranking purposes (no harm will be done to the system).\n\n\nAbout this program:\n\nLanguage: C# (.NET framework, Windows Forms)\nCreated by: Markus Maal (TheMarkusGuy/MarkusTegelane)\nVersion 1.11, Build 7-8-19\nThis program can only be provided free of charge (if you had to pay for this, please ask for a refund). This program is provided as is, without a warranty.\n2019 Markuse tarkvara (Markus' software)\n\nWould you like to see command line argument syntax? (select \"Yes\" if you do)", "Help and about", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
-            { 
-                MessageBox.Show(Program.cmds, "Command line argument usage", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }*/
             e.Cancel = true;
         }
 
@@ -812,6 +809,9 @@ namespace UltimateBlueScreenSimulator
                 int secs = time[2];
                 if ((hrs == 0) && (mins == 0) && (secs == 0))
                 {
+                    me.SetBool("watermark", false);
+                    me.SetBool("windowed", false);
+                    me.SetBool("autoclose", true);
                     Crash();
                     waitPopup.Enabled = true;
                     prankModeTimer.Enabled = false;
@@ -844,8 +844,10 @@ namespace UltimateBlueScreenSimulator
                     string usbinfo = usb.DeviceID;
                     if ((usbinfo == usb_device[0]))
                     {
-                        if (bsod_starter.IsAlive) { bsod_starter.Abort(); }
-                        bsod_starter.Start();
+                        me.SetBool("watermark", false);
+                        me.SetBool("windowed", false);
+                        me.SetBool("autoclose", true);
+                        Crash();
                         waitPopup.Enabled = true;
                         prankModeTimer.Enabled = false;
                         break;
@@ -860,6 +862,9 @@ namespace UltimateBlueScreenSimulator
                 }
                 if (getcatch)
                 {
+                    me.SetBool("watermark", false);
+                    me.SetBool("windowed", false);
+                    me.SetBool("autoclose", true);
                     Crash();
                     waitPopup.Enabled = true;
                     prankModeTimer.Enabled = false;

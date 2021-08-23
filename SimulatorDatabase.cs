@@ -480,7 +480,7 @@ namespace SimulatorDatabase
                         me = this
                     };
                     bm.ShowDialog();
-                    System.Threading.Thread.CurrentThread.Abort();
+                    Thread.CurrentThread.Abort();
                     break;
                 case "Windows 11":
                     SetupWinXabove(new WXBS(), true);
@@ -535,7 +535,24 @@ namespace SimulatorDatabase
             }
             bs.me = this;
             bs.ShowDialog();
-            System.Threading.Thread.CurrentThread.Abort();
+            CheckMessageJustInCase();
+            Thread.CurrentThread.Abort();
+        }
+
+        private void CheckMessageJustInCase()
+        {
+            if (!Program.f1.showcursor)
+            {
+                Cursor.Show();
+            }
+            if (Program.f1.showmsg)
+            {
+                MessageBox.Show(Program.f1.MsgBoxMessage,
+                                Program.f1.MsgBoxTitle,
+                                Program.f1.MsgBoxType,
+                                Program.f1.MsgBoxIcon);
+                Program.f1.showmsg = false;
+            }
         }
 
         private void SetupNT(NTBSOD bs)
@@ -558,7 +575,7 @@ namespace SimulatorDatabase
             }
             bs.me = this;
             bs.ShowDialog();
-            System.Threading.Thread.CurrentThread.Abort();
+            Thread.CurrentThread.Abort();
         }
 
         private void Setup9x(Old_bluescreen bs)
@@ -578,7 +595,7 @@ namespace SimulatorDatabase
             }
             bs.me = this;
             bs.ShowDialog();
-            System.Threading.Thread.CurrentThread.Abort();
+            Thread.CurrentThread.Abort();
         }
         private void SetupWin(Win bs)
         {
@@ -594,7 +611,7 @@ namespace SimulatorDatabase
             }
             bs.me = this;
             bs.ShowDialog();
-            System.Threading.Thread.CurrentThread.Abort();
+            Thread.CurrentThread.Abort();
         }
 
         private void Setup2k(W2kbs bs)
@@ -619,7 +636,7 @@ namespace SimulatorDatabase
             }
             bs.me = this;
             bs.ShowDialog();
-            System.Threading.Thread.CurrentThread.Abort();
+            Thread.CurrentThread.Abort();
         }
 
         private void SetupExperience(Xvsbs bs)
@@ -642,7 +659,7 @@ namespace SimulatorDatabase
             }
             bs.me = this;
             bs.ShowDialog();
-            System.Threading.Thread.CurrentThread.Abort();
+            Thread.CurrentThread.Abort();
         }
 
         private void SetupVista(Vistabs bs)
@@ -670,7 +687,7 @@ namespace SimulatorDatabase
             }
             bs.me = this;
             bs.ShowDialog();
-            System.Threading.Thread.CurrentThread.Abort();
+            Thread.CurrentThread.Abort();
         }
 
         private void SetupWinXabove(WXBS bs, bool w11 = false)

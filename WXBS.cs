@@ -61,10 +61,7 @@ namespace UltimateBlueScreenSimulator
                         ws.Dispose();
                     }
                 }
-                if (!Program.f1.showcursor)
-                {
-                    Cursor.Show();
-                }
+                screenUpdater.Enabled = false;
             }
         }
 

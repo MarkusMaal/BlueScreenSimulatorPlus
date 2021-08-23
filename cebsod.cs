@@ -141,24 +141,27 @@ namespace UltimateBlueScreenSimulator
                         foreach (WindowScreen ws in wss)
                         {
                             var frm = Form.ActiveForm;
-                            if (ws.primary || Program.multidisplaymode == "mirror")
+                            if (frm != null)
                             {
-                                using (var bmp = new Bitmap(frm.Width, frm.Height))
+                                if (ws.primary || Program.multidisplaymode == "mirror")
                                 {
-                                    frm.DrawToBitmap(bmp, new Rectangle(0, 0, bmp.Width, bmp.Height));
-
-                                    Bitmap newImage = new Bitmap(ws.Width, ws.Height);
-                                    using (Graphics g = Graphics.FromImage(newImage))
+                                    using (var bmp = new Bitmap(frm.Width, frm.Height))
                                     {
-                                        if (Program.f1.GMode == "HighQualityBicubic") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic; }
-                                        if (Program.f1.GMode == "HighQualityBilinear") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBilinear; }
-                                        if (Program.f1.GMode == "Bilinear") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.Bilinear; }
-                                        if (Program.f1.GMode == "Bicubic") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.Bicubic; }
-                                        if (Program.f1.GMode == "NearestNeighbour") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor; }
-                                        g.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
-                                        g.DrawImage(bmp, new Rectangle(0, 0, ws.Width, ws.Height));
+                                        frm.DrawToBitmap(bmp, new Rectangle(0, 0, bmp.Width, bmp.Height));
+
+                                        Bitmap newImage = new Bitmap(ws.Width, ws.Height);
+                                        using (Graphics g = Graphics.FromImage(newImage))
+                                        {
+                                            if (Program.f1.GMode == "HighQualityBicubic") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic; }
+                                            if (Program.f1.GMode == "HighQualityBilinear") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBilinear; }
+                                            if (Program.f1.GMode == "Bilinear") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.Bilinear; }
+                                            if (Program.f1.GMode == "Bicubic") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.Bicubic; }
+                                            if (Program.f1.GMode == "NearestNeighbour") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor; }
+                                            g.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
+                                            g.DrawImage(bmp, new Rectangle(0, 0, ws.Width, ws.Height));
+                                        }
+                                        ws.screenDisplay.Image = newImage;
                                     }
-                                    ws.screenDisplay.Image = newImage;
                                 }
                             }
                         }
@@ -214,6 +217,7 @@ namespace UltimateBlueScreenSimulator
                         bmp.Dispose();
                     }
                 }
+                screenUpdater.Enabled = false;
             }
         }
 

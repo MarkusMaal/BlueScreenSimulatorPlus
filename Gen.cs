@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace UltimateBlueScreenSimulator
@@ -40,6 +34,11 @@ namespace UltimateBlueScreenSimulator
             {
                 genProgressBar.Style = ProgressBarStyle.Continuous;
                 genProgressBar.Value = Program.load_progress;
+                if (Program.load_progress < 10)
+                {
+                    this.Activate();
+                    this.BringToFront();
+                }
             }
             else if (Program.load_progress > 100)
             {
