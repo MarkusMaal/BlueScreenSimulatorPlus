@@ -555,6 +555,7 @@
             this.devNukeAllButton.TabIndex = 21;
             this.devNukeAllButton.Text = "[DEV] Nuke All (DANGEROUS!!)";
             this.devNukeAllButton.UseVisualStyleBackColor = true;
+            this.devNukeAllButton.Visible = false;
             this.devNukeAllButton.Click += new System.EventHandler(this.DevNukeAll);
             // 
             // devNewAllButton
@@ -567,6 +568,7 @@
             this.devNewAllButton.TabIndex = 20;
             this.devNewAllButton.Text = "[DEV] New All";
             this.devNewAllButton.UseVisualStyleBackColor = true;
+            this.devNewAllButton.Visible = false;
             this.devNewAllButton.Click += new System.EventHandler(this.DevNewAll);
             // 
             // devDictEditButton
@@ -579,6 +581,7 @@
             this.devDictEditButton.TabIndex = 19;
             this.devDictEditButton.Text = "[DEV] DictEdit";
             this.devDictEditButton.UseVisualStyleBackColor = true;
+            this.devDictEditButton.Visible = false;
             this.devDictEditButton.Click += new System.EventHandler(this.DevDictEdit);
             // 
             // multiDisplayBox

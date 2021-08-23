@@ -1004,7 +1004,7 @@
             this.MainMenuStrip = this.menuBar;
             this.MinimumSize = new System.Drawing.Size(470, 440);
             this.Name = "Main";
-            this.Text = "BlueScreen Simulator Plus 2.0";
+            this.Text = "BlueScreen Simulator Plus 2.0 *** BETA VERSION ***";
             this.HelpButtonClicked += new System.ComponentModel.CancelEventHandler(this.Form1_HelpButtonClicked);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Initialize);

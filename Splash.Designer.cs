@@ -36,6 +36,8 @@
             this.SplashText = new System.Windows.Forms.Label();
             this.veriFileTimer = new System.Windows.Forms.Timer(this.components);
             this.appMarketedVersionLabel = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // splashEmoticon
@@ -70,7 +72,7 @@
             this.appNameLabel.Name = "appNameLabel";
             this.appNameLabel.Size = new System.Drawing.Size(279, 38);
             this.appNameLabel.TabIndex = 2;
-            this.appNameLabel.Text = "Blue screen simulator plus";
+            this.appNameLabel.Text = "Blue Screen Simulator Plus";
             this.appNameLabel.UseWaitCursor = true;
             // 
             // SplashText
@@ -97,13 +99,35 @@
             this.appMarketedVersionLabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.appMarketedVersionLabel.Font = new System.Drawing.Font("Segoe UI", 24F);
             this.appMarketedVersionLabel.ForeColor = System.Drawing.Color.MediumBlue;
-            this.appMarketedVersionLabel.Location = new System.Drawing.Point(374, 42);
+            this.appMarketedVersionLabel.Location = new System.Drawing.Point(376, 42);
             this.appMarketedVersionLabel.Name = "appMarketedVersionLabel";
             this.appMarketedVersionLabel.Size = new System.Drawing.Size(61, 64);
             this.appMarketedVersionLabel.TabIndex = 4;
             this.appMarketedVersionLabel.Text = "2.0";
             this.appMarketedVersionLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
             this.appMarketedVersionLabel.UseWaitCursor = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI Semilight", 8.5F);
+            this.label1.ForeColor = System.Drawing.Color.DarkGray;
+            this.label1.Location = new System.Drawing.Point(119, 85);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(230, 15);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "advanced bugcheck simulation technology";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.label2.ForeColor = System.Drawing.Color.Yellow;
+            this.label2.Location = new System.Drawing.Point(389, 6);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(73, 13);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "pre-release 1";
             // 
             // Splash
             // 
@@ -113,6 +137,8 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.BackgroundImage = global::UltimateBlueScreenSimulator.Properties.Resources.round_corners;
             this.ClientSize = new System.Drawing.Size(471, 149);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.appMarketedVersionLabel);
             this.Controls.Add(this.SplashText);
             this.Controls.Add(this.appNameLabel);
@@ -130,6 +156,7 @@
             this.UseWaitCursor = true;
             this.Load += new System.EventHandler(this.Splash_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -141,5 +168,7 @@
         internal System.Windows.Forms.Label SplashText;
         internal System.Windows.Forms.Timer veriFileTimer;
         private System.Windows.Forms.Label appMarketedVersionLabel;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }

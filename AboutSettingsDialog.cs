@@ -14,12 +14,14 @@ namespace UltimateBlueScreenSimulator
         //If this flag is set, then help tabs are hidden and setting tabs are visible
         public bool SettingTab = false;
         public int tab_id = 0;
+        public bool DevBuild = true;
         public AboutSettingsDialog()
         {
             InitializeComponent();
             //Get assembly information about the program
             this.Text = String.Format("About {0}", AssemblyTitle);
-            this.labelProductName.Text = "Blue screen simulator plus";
+            this.labelProductName.Text = "Blue Screen Simulator Plus";
+            if (DevBuild) { this.labelProductName.Text += " [Development Build]"; }
             this.labelVersion.Text = String.Format("Version {0}", AssemblyVersion);
             this.labelCopyright.Text = AssemblyCopyright;
             this.labelCompanyName.Text = "Codename *Waffles*\nLanguage: C# (.NET framework, Windows Forms)\nCreated by: Markus Maal (TheMarkusGuy/MarkusTegelane)\n\nThis program can only be provided free of charge (if you had to pay for this, please ask for a refund). This program is provided as is, without a warranty.\n2019 Markuse tarkvara (Markus' software)";
@@ -215,6 +217,9 @@ namespace UltimateBlueScreenSimulator
                 {
                     configList.Items.Add(bs.GetString("friendlyname"));
                 }
+                devDictEditButton.Visible = DevBuild;
+                devNewAllButton.Visible = DevBuild;
+                devNukeAllButton.Visible = DevBuild;
             }
             else if (aboutSettingsTabControl.SelectedTab.Text == "Command line help")
             {
