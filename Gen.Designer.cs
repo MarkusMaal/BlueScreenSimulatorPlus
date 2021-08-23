@@ -33,7 +33,7 @@ namespace UltimateBlueScreenSimulator
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Gen));
             this.genProgressBar = new System.Windows.Forms.ProgressBar();
             this.genLabel = new System.Windows.Forms.Label();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.genTimer = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // genProgressBar
@@ -56,10 +56,10 @@ namespace UltimateBlueScreenSimulator
             this.genLabel.TabIndex = 1;
             this.genLabel.Text = "Generating blue screen...";
             // 
-            // timer1
+            // genTimer
             // 
-            this.timer1.Enabled = true;
-            this.timer1.Tick += new System.EventHandler(this.ProgressChecker);
+            this.genTimer.Enabled = true;
+            this.genTimer.Tick += new System.EventHandler(this.ProgressChecker);
             // 
             // Gen
             // 
@@ -87,6 +87,6 @@ namespace UltimateBlueScreenSimulator
 
         private System.Windows.Forms.ProgressBar genProgressBar;
         private System.Windows.Forms.Label genLabel;
-        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Timer genTimer;
     }
 }

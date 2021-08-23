@@ -1234,7 +1234,19 @@ namespace UltimateBlueScreenSimulator
             me.SetString("culprit", textBox2.Text);
             if ((me.GetString("os") == "Windows XP") || (me.GetString("os") == "Windows Vista/7"))
             {
-                me.RenameFile(me.GetFiles().ElementAt(0).Key, textBox2.Text);
+                try
+                {
+                    me.RenameFile(me.GetFiles().ElementAt(0).Key, textBox2.Text);
+                } catch (Exception ex)
+                {
+                    if (enableeggs)
+                    {
+                        me.Crash(ex.Message, ex.StackTrace, "GreenScreen");
+                    } else
+                    {
+                        MessageBox.Show("An error has occoured.\n\n" + ex.Message + "\n\n" + ex.StackTrace, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
             }
         }
 

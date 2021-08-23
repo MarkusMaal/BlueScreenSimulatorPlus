@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using System.IO;
 using SimulatorDatabase;
 using System.Collections.Generic;
+using System.Threading;
 using System.Diagnostics;
 
 namespace UltimateBlueScreenSimulator
@@ -15,6 +16,7 @@ namespace UltimateBlueScreenSimulator
         public bool SettingTab = false;
         public int tab_id = 0;
         public bool DevBuild = true;
+        public bool finished = false;
         public AboutSettingsDialog()
         {
             InitializeComponent();
@@ -476,89 +478,100 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
+        private void SaveData(string filename)
+        {
+            string filedata = "*** Blue screen simulator plus 2.0 ***";
+            foreach (BlueScreen bs in Program.bluescreens)
+            {
+                filedata += "\n\n\n#" + bs.GetString("os") + "\n\n";
+                if (bs.AllStrings().Count > 0)
+                {
+                    filedata += "\n\n[string]";
+                    foreach (KeyValuePair<string, string> entry in bs.AllStrings())
+                    {
+                        filedata += "\n" + entry.Key + "=" + entry.Value.Replace(":", "::").Replace("#", ":h:").Replace(";", ":sc:").Replace("[", ":sb:").Replace("]", ":eb:") + ";";
+                    }
+                }
+                filedata += "\necode1=" + bs.GetString("ecode1") + ";";
+                filedata += "\necode2=" + bs.GetString("ecode2") + ";";
+                filedata += "\necode3=" + bs.GetString("ecode3") + ";";
+                filedata += "\necode4=" + bs.GetString("ecode4") + ";";
+                filedata += "\nicon=" + bs.GetString("icon") + ";";
+
+                if (bs.GetFiles().Count > 0)
+                {
+                    filedata += "\n\n[nt_codes]";
+                    foreach (KeyValuePair<string, string[]> entry in bs.GetFiles())
+                    {
+                        filedata += "\n" + entry.Key + "=" + string.Join(",", entry.Value) + ";";
+                    }
+                }
+
+                if (bs.AllBools().Count > 0)
+                {
+                    filedata += "\n\n[boolean]";
+                    foreach (KeyValuePair<string, bool> entry in bs.AllBools())
+                    {
+                        filedata += "\n" + entry.Key + "=" + entry.Value.ToString() + ";";
+                    }
+                }
+
+                if (bs.AllInts().Count > 0)
+                {
+                    filedata += "\n\n[integer]";
+                    foreach (KeyValuePair<string, int> entry in bs.AllInts())
+                    {
+                        filedata += "\n" + entry.Key + "=" + entry.Value.ToString() + ";";
+                    }
+                }
+
+                filedata += "\n\n[theme]";
+                filedata += "\nbg=" + RGB_String(bs.GetTheme(true)) + ";";
+                filedata += "\nfg=" + RGB_String(bs.GetTheme(false)) + ";";
+                filedata += "\nhbg=" + RGB_String(bs.GetTheme(true, true)) + ";";
+                filedata += "\nhfg=" + RGB_String(bs.GetTheme(false, true)) + ";";
+
+                if (bs.GetTitles().Count > 0)
+                {
+                    filedata += "\n\n[title]";
+                    foreach (KeyValuePair<string, string> entry in bs.GetTitles())
+                    {
+                        filedata += "\n" + entry.Key + "=" + entry.Value.Replace(":", "::").Replace("#", ":h:").Replace(";", ":sc:").Replace("[", ":sb:").Replace("]", ":eb:") + ";";
+                    }
+                }
+
+                if (bs.GetTexts().Count > 0)
+                {
+                    filedata += "\n\n[text]";
+                    foreach (KeyValuePair<string, string> entry in bs.GetTexts())
+                    {
+                        filedata += "\n" + entry.Key + "=" + entry.Value.Replace(":", "::").Replace("#", ":h:").Replace(";", ":sc:").Replace("[", ":sb:").Replace("]", ":eb:") + ";";
+                    }
+                }
+
+                if (bs.GetBool("font_support"))
+                {
+                    filedata += "\n\n[format]";
+                    filedata += "\nfontfamily=" + bs.GetFont().FontFamily.Name + ";";
+                    filedata += "\nsize=" + bs.GetFont().Size.ToString() + ";";
+                    filedata += "\nstyle=" + bs.GetFont().Style.ToString() + ";";
+                }
+            }
+            File.WriteAllText(filename, filedata);
+            MessageBox.Show("Blue screen configuration saved successfully", "Blue screen simulator 2.x configuration file creator", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            finished = true;
+            Thread.CurrentThread.Abort();
+        }
+
         private void SaveConfig(object sender, EventArgs e)
         {
             if (saveBsconfig.ShowDialog() == DialogResult.OK)
             {
-                string filedata = "*** Blue screen simulator plus 2.0 ***";
-                foreach (BlueScreen bs in Program.bluescreens)
-                {
-                    filedata += "\n\n\n#" + bs.GetString("os") + "\n\n";
-                    if (bs.AllStrings().Count > 0)
-                    {
-                        filedata += "\n\n[string]";
-                        foreach (KeyValuePair<string, string> entry in bs.AllStrings())
-                        {
-                            filedata += "\n" + entry.Key + "=" + entry.Value.Replace(":", "::").Replace("#", ":h:").Replace(";", ":sc:").Replace("[", ":sb:").Replace("]", ":eb:") + ";";
-                        }
-                    }
-                    filedata += "\necode1=" + bs.GetString("ecode1") + ";";
-                    filedata += "\necode2=" + bs.GetString("ecode2") + ";";
-                    filedata += "\necode3=" + bs.GetString("ecode3") + ";";
-                    filedata += "\necode4=" + bs.GetString("ecode4") + ";";
-                    filedata += "\nicon=" + bs.GetString("icon") + ";";
-
-                    if (bs.GetFiles().Count > 0)
-                    {
-                        filedata += "\n\n[nt_codes]";
-                        foreach (KeyValuePair<string, string[]> entry in bs.GetFiles())
-                        {
-                            filedata += "\n" + entry.Key + "=" + string.Join(",", entry.Value) + ";";
-                        }
-                    }
-
-                    if (bs.AllBools().Count > 0)
-                    {
-                        filedata += "\n\n[boolean]";
-                        foreach (KeyValuePair<string, bool> entry in bs.AllBools())
-                        {
-                            filedata += "\n" + entry.Key + "=" + entry.Value.ToString() + ";";
-                        }
-                    }
-
-                    if (bs.AllInts().Count > 0)
-                    {
-                        filedata += "\n\n[integer]";
-                        foreach (KeyValuePair<string, int> entry in bs.AllInts())
-                        {
-                            filedata += "\n" + entry.Key + "=" + entry.Value.ToString() + ";";
-                        }
-                    }
-
-                    filedata += "\n\n[theme]";
-                    filedata += "\nbg=" + RGB_String(bs.GetTheme(true)) + ";";
-                    filedata += "\nfg=" + RGB_String(bs.GetTheme(false)) + ";";
-                    filedata += "\nhbg=" + RGB_String(bs.GetTheme(true, true)) + ";";
-                    filedata += "\nhfg=" + RGB_String(bs.GetTheme(false, true)) + ";";
-
-                    if (bs.GetTitles().Count > 0)
-                    {
-                        filedata += "\n\n[title]";
-                        foreach (KeyValuePair<string, string> entry in bs.GetTitles())
-                        {
-                            filedata += "\n" + entry.Key + "=" + entry.Value.Replace(":", "::").Replace("#", ":h:").Replace(";", ":sc:").Replace("[", ":sb:").Replace("]", ":eb:") + ";";
-                        }
-                    }
-
-                    if (bs.GetTexts().Count > 0)
-                    {
-                        filedata += "\n\n[text]";
-                        foreach (KeyValuePair<string, string> entry in bs.GetTexts())
-                        {
-                            filedata += "\n" + entry.Key + "=" + entry.Value.Replace(":", "::").Replace("#", ":h:").Replace(";", ":sc:").Replace("[", ":sb:").Replace("]", ":eb:") + ";";
-                        }
-                    }
-
-                    if (bs.GetBool("font_support"))
-                    {
-                        filedata += "\n\n[format]";
-                        filedata += "\nfontfamily=" + bs.GetFont().FontFamily.Name + ";";
-                        filedata += "\nsize=" + bs.GetFont().Size.ToString() + ";";
-                        filedata += "\nstyle=" + bs.GetFont().Style.ToString() + ";";
-                    }
-                }
-                File.WriteAllText(saveBsconfig.FileName, filedata);
-                MessageBox.Show("Blue screen configuration saved successfully", "Blue screen simulator 2.x configuration file creator", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Thread t = new Thread(() => SaveData(saveBsconfig.FileName));
+                t.Start();
+                finished = false;
+                checkIfLoadedSaved.Enabled = true;
+                this.Enabled = false;
             }
         }
 
@@ -593,6 +606,7 @@ namespace UltimateBlueScreenSimulator
                 Program.bluescreens.Add(new BlueScreen("Windows 10"));
                 foreach (string fileline in filelines)
                 {
+                    Thread.Sleep(10);
                     if (fileline.Contains("***")) { continue; }
                     if (fileline.StartsWith("FACE "))
                     {
@@ -632,6 +646,7 @@ namespace UltimateBlueScreenSimulator
                 string restof = "";
                 for (int i = 7; i < filelines.Length; i++)
                 {
+                    Thread.Sleep(10);
                     restof += filelines[i] + "\n";
                 }
                 string[] sections = restof.Replace("--", "\t").Split('\t');
@@ -640,6 +655,7 @@ namespace UltimateBlueScreenSimulator
                 string miscs = "";
                 for (int i = 0; i < sections.Length; i++)
                 {
+                    Thread.Sleep(10);
                     if (sections[i] == "STRINGBUILD START")
                     {
                         strings = sections[i + 1];
@@ -653,34 +669,47 @@ namespace UltimateBlueScreenSimulator
                         miscs = sections[i + 1];
                     }
                 }
-                string[] stringlist = strings.Substring(1, strings.Length - 1).Replace("http://", "\\\\").Replace("//", "\t").Replace("\\\\", "http://").Split('\t');
-                string[] misclist = miscs.Substring(1, miscs.Length - 1).Split('\n');
-                string[] fontlist = fonts.Substring(1, fonts.Length - 1).Split('\n');
+                string[] stringlist = { };
+                string[] misclist = { };
+                string[] fontlist = { };
+                try
+                {
+                    stringlist = strings.Substring(1, strings.Length - 1).Replace("http://", "\\\\").Replace("//", "\t").Replace("\\\\", "http://").Split('\t');
+                    misclist = miscs.Substring(1, miscs.Length - 1).Split('\n');
+                    fontlist = fonts.Substring(1, fonts.Length - 1).Split('\n');
+                }
+                catch { }
+                bool fontok = true;
                 foreach (string element in fontlist)
                 {
-                    if (!element.Contains(",")) { continue; }
-                    string[] subfont = element.Replace("label26: ", "").Replace("label39: ", "").Replace("label49: ", "").Replace("label50: ", "").Replace("modernDetailFont: ", "").Replace("emotiFont: ", "").Replace("modernTextFont: ", "").Replace(",4", "").Split(',');
-                    FontStyle fs = new FontStyle();
-                    fs = FontStyle.Regular;
-                    if (subfont[5] == "Bold=True") { fs |= FontStyle.Bold; }
-                    if (subfont[6] == "Italic=True") { fs |= FontStyle.Italic; }
-                    if (subfont[7] == "Underline=True") { fs |= FontStyle.Underline; }
-                    string family = subfont[0].ToString();
-                    int fontsize = Convert.ToInt32(subfont[1].Replace("Size=", ""));
-                    if (element.StartsWith("modernTextFont: "))
+                    Thread.Sleep(10);
+                    try
                     {
-                        Program.bluescreens[7].SetFont(family, fontsize, fs);
-                        Program.bluescreens[8].SetFont(family, fontsize, fs);
-                    }
-                    if (element.StartsWith("label50: ")) { Program.bluescreens[6].SetFont(family, fontsize, fs); }
-                    if (element.StartsWith("label49: ")) { Program.bluescreens[5].SetFont(family, fontsize, fs); }
-                    if (element.StartsWith("label39: ")) { Program.bluescreens[4].SetFont(family, fontsize, fs); }
-                    if (element.StartsWith("label26: ")) { Program.bluescreens[3].SetFont(family, fontsize, fs); }
+                        if (!element.Contains(",")) { continue; }
+                        string[] subfont = element.Replace("label26: ", "").Replace("label39: ", "").Replace("label49: ", "").Replace("label50: ", "").Replace("modernDetailFont: ", "").Replace("emotiFont: ", "").Replace("modernTextFont: ", "").Replace(",4", "").Split(',');
+                        FontStyle fs = new FontStyle();
+                        fs = FontStyle.Regular;
+                        if (subfont[5] == "Bold=True") { fs |= FontStyle.Bold; }
+                        if (subfont[6] == "Italic=True") { fs |= FontStyle.Italic; }
+                        if (subfont[7] == "Underline=True") { fs |= FontStyle.Underline; }
+                        string family = subfont[0].ToString();
+                        int fontsize = Convert.ToInt32(subfont[1].Replace("Size=", ""));
+                        if (element.StartsWith("modernTextFont: "))
+                        {
+                            Program.bluescreens[7].SetFont(family, fontsize, fs);
+                            Program.bluescreens[8].SetFont(family, fontsize, fs);
+                        }
+                        if (element.StartsWith("label50: ")) { Program.bluescreens[6].SetFont(family, fontsize, fs); }
+                        if (element.StartsWith("label49: ")) { Program.bluescreens[5].SetFont(family, fontsize, fs); }
+                        if (element.StartsWith("label39: ")) { Program.bluescreens[4].SetFont(family, fontsize, fs); }
+                        if (element.StartsWith("label26: ")) { Program.bluescreens[3].SetFont(family, fontsize, fs); }
+                    } catch { fontok = false; }
                 }
                 try
                 {
                     foreach (string element in misclist)
                     {
+                        Thread.Sleep(10);
                         if (element.StartsWith("qrType: "))
                         {
                             string decide = element.Replace("qrType: ", "");
@@ -780,27 +809,23 @@ namespace UltimateBlueScreenSimulator
                 Program.bluescreens[8].SetText("Culprit file", stringlist[42].Replace("\n", Environment.NewLine));
                 Program.bluescreens[8].SetText("Progress", stringlist[43].Replace("\n", Environment.NewLine));
                 Program.bluescreens[8].SetText("Error code", stringlist[44].Replace("\n", Environment.NewLine));
+                if (!fontok)
+                {
+                    MessageBox.Show("The configuration file was loaded, but some fonts weren't changed due to an error.", "Config loaded", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
-            catch (Exception ex)
+            catch
             {
-                if (this.Visible == false)
-                {
-                    Program.f1.error = 25;
-                }
-                else
-                {
-                    MessageBox.Show("An error occurred while trying to load configuration file\n\nException: " + ex.Message + "\nStack trace:" + ex.StackTrace.ToString(), "Configuration file may be corrupted or incompatible", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
             }
         }
 
-        public void LoadConfig()
+        public void LoadConfig(string filename)
         {
-            string filedata = File.ReadAllText(loadBsconfig.FileName);
+            string filedata = File.ReadAllText(filename);
             string version = filedata.Split('\n')[0];
             if (version.StartsWith("*** Blue screen simulator plus 1."))
             {
-                LegacyLoad(File.ReadAllLines(loadBsconfig.FileName));
+                LegacyLoad(File.ReadAllLines(filename));
             }
             else if (version.StartsWith("*** Blue screen simulator plus 2."))
             {
@@ -808,6 +833,7 @@ namespace UltimateBlueScreenSimulator
                 Program.bluescreens.Clear();
                 foreach (string section in primary_section_tokens)
                 {
+                    Thread.Sleep(10);
                     string[] subsection_tokens = section.Split('[');
                     if (section.StartsWith("*")) { continue; }
                     string os_name = subsection_tokens[0].Replace("\n", "");
@@ -901,18 +927,22 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
+        private void ConfigLoader(string filename)
+        {
+            LoadConfig(filename);
+            finished = true;
+            Thread.CurrentThread.Abort();
+        }
+
         private void BrowseConfig(object sender, EventArgs e)
         {
             if ((loadBsconfig.FileName != "")||(loadBsconfig.ShowDialog() == DialogResult.OK))
             {
-                LoadConfig();
-            }
-            loadBsconfig.FileName = "";
-            configList.ClearSelected();
-            configList.Items.Clear();
-            foreach (BlueScreen bs in Program.bluescreens)
-            {
-                configList.Items.Add(bs.GetString("friendlyname"));
+                Thread t = new Thread(() => ConfigLoader(loadBsconfig.FileName));
+                t.Start();
+                finished = false;
+                checkIfLoadedSaved.Enabled = true;
+                this.Enabled = false;
             }
         }
 
@@ -1006,6 +1036,23 @@ namespace UltimateBlueScreenSimulator
         private void RestartAll(object sender, EventArgs e)
         {
             Application.Restart();
+        }
+
+        private void WaitUntilComplete(object sender, EventArgs e)
+        {
+            if (finished)
+            {
+                this.Enabled = true;
+                configList.ClearSelected();
+                configList.Items.Clear();
+                foreach (BlueScreen bs in Program.bluescreens)
+                {
+                    configList.Items.Add(bs.GetString("friendlyname"));
+                }
+                loadBsconfig.FileName = "";
+                saveBsconfig.FileName = "";
+                checkIfLoadedSaved.Enabled = false;
+            }
         }
     }
 }

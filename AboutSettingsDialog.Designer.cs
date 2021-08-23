@@ -99,6 +99,7 @@
             this.updateCheckerTimer = new System.Windows.Forms.Timer(this.components);
             this.saveBsconfig = new System.Windows.Forms.SaveFileDialog();
             this.loadBsconfig = new System.Windows.Forms.OpenFileDialog();
+            this.checkIfLoadedSaved = new System.Windows.Forms.Timer(this.components);
             this.aboutTable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).BeginInit();
             this.logoDisplayFlowPanel.SuspendLayout();
@@ -985,6 +986,10 @@
     "1.x configuration files|*.bscfg;*.bsc";
             this.loadBsconfig.Title = "Load bluescreen configuration";
             // 
+            // checkIfLoadedSaved
+            // 
+            this.checkIfLoadedSaved.Tick += new System.EventHandler(this.WaitUntilComplete);
+            // 
             // AboutSettingsDialog
             // 
             this.AcceptButton = this.okButton;
@@ -1100,5 +1105,6 @@
         private System.Windows.Forms.Button devSplashButton;
         private System.Windows.Forms.FlowLayoutPanel devFlowPanel;
         private System.Windows.Forms.Button devRestartApp;
+        private System.Windows.Forms.Timer checkIfLoadedSaved;
     }
 }

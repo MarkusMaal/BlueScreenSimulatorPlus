@@ -237,23 +237,36 @@ namespace UltimateBlueScreenSimulator
                 }
                 ntEntryChooser.Items.Add(item_string.Substring(0, item_string.Length - 2));
             }
-            if (keyname == "")
+            if (ntEntryChooser.Items.Count > 0)
             {
-                ntEntryChooser.SelectedIndex = 0;
-            }
-            else
-            {
-                for (int i = 0; i < ntEntryChooser.Items.Count; i++)
+                if (keyname == "")
                 {
-                    string filename = ntEntryChooser.Items[i].ToString().Split('-')[0];
-                    filename = filename.Substring(0, filename.Length - 1);
-                    if (filename == keyname)
-                    {
-                        ntEntryChooser.SelectedIndex = i;
-                        break;
-                    }
+                    ntEntryChooser.SelectedIndex = 0;
                 }
-                
+                else
+                {
+                    for (int i = 0; i < ntEntryChooser.Items.Count; i++)
+                    {
+                        string filename = ntEntryChooser.Items[i].ToString().Split('-')[0];
+                        filename = filename.Substring(0, filename.Length - 1);
+                        if (filename == keyname)
+                        {
+                            ntEntryChooser.SelectedIndex = i;
+                            break;
+                        }
+                    }
+
+                }
+            } else
+            {
+                if (Program.f1.enableeggs)
+                {
+                    MessageBox.Show("Nothing useful here.", "NT advanced options", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                } else
+                {
+                    MessageBox.Show("Dictionary that contains Windows NT file codes is empty.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                this.Close();
             }
         }
 

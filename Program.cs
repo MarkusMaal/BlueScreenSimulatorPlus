@@ -317,8 +317,7 @@ namespace UltimateBlueScreenSimulator
                         if (filename != "")
                         {
                             AboutSettingsDialog abb = new AboutSettingsDialog();
-                            abb.loadBsconfig.FileName = filename;
-                            abb.LoadConfig();
+                            abb.LoadConfig(filename);
                             abb.Close();
                             abb.Dispose();
                         }
