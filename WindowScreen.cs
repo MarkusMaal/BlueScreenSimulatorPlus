@@ -22,19 +22,23 @@ namespace UltimateBlueScreenSimulator
 
         private void WindowScreen_FormClosing(object sender, FormClosingEventArgs e)
         {
-            this.Hide();
+            if (!Program.f1.lockout) { this.Hide(); }
             // Prevent closing when Alt + F4 is pressed
             if (e.CloseReason == CloseReason.UserClosing)
             {
+                if (!Program.f1.showcursor && !Program.f1.lockout)
+                {
+                    Cursor.Show();
+                }
                 e.Cancel = Program.f1.lockout;
             }
             else
             {
+                if (!Program.f1.showcursor)
+                {
+                    Cursor.Show();
+                }
                 e.Cancel = false;
-            }
-            if (!Program.f1.showcursor)
-            {
-                Cursor.Show();
             }
         }
 

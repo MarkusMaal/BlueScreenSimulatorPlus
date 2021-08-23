@@ -114,6 +114,7 @@
             this.matchAllRadio.TabIndex = 2;
             this.matchAllRadio.Text = "Match all current settings";
             this.matchAllRadio.UseVisualStyleBackColor = true;
+            this.matchAllRadio.CheckedChanged += new System.EventHandler(this.MatchAllRadio_CheckedChanged);
             this.matchAllRadio.Click += new System.EventHandler(this.RadioButton2_Click);
             // 
             // bestMatchRadio

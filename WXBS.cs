@@ -38,23 +38,33 @@ namespace UltimateBlueScreenSimulator
             // WXBS
             if (e.CloseReason == CloseReason.UserClosing)
             {
-                e.Cancel = Program.f1.lockout;
+                if (progress < 100)
+                {
+                    e.Cancel = Program.f1.lockout;
+                }
+                else
+                {
+                    e.Cancel = false;
+                }
             }
             else
             {
                 e.Cancel = false;
             }
-            if (wss.Count > 0)
+            if (!e.Cancel)
             {
-                foreach (WindowScreen ws in wss)
+                if (wss.Count > 0)
                 {
-                    ws.Close();
-                    ws.Dispose();
+                    foreach (WindowScreen ws in wss)
+                    {
+                        ws.Close();
+                        ws.Dispose();
+                    }
                 }
-            }
-            if (!Program.f1.showcursor)
-            {
-                Cursor.Show();
+                if (!Program.f1.showcursor)
+                {
+                    Cursor.Show();
+                }
             }
         }
 
@@ -262,7 +272,7 @@ namespace UltimateBlueScreenSimulator
                     if (progress >= 100)
                     {
                         progressUpdater.Enabled = false;
-                        if (close == true) { this.Close(); }
+                        if (me.GetBool("autoclose")) { this.Close(); }
                         progressIndicator.Text = me.GetTexts()["Progress"].Replace("{0}", "100");
                     }
                     progress += 1;
@@ -275,7 +285,10 @@ namespace UltimateBlueScreenSimulator
                     {
                         yourPCranLabel.Text = yourPCranLabel.Text.Replace(progress.ToString() + "%", "100%");
                         progressUpdater.Enabled = false;
-                       this.Close();
+                        if (me.GetBool("autoclose"))
+                        {
+                            this.Close();
+                        }
                     }
                     string oldprogress = progress.ToString();
                     progress += 1;
@@ -367,6 +380,15 @@ namespace UltimateBlueScreenSimulator
                 }
                 this.BringToFront();
                 this.Activate();
+            }
+        }
+
+        private void WXBS_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                // debug here
+                Program.f1.me.GetString("a");
             }
         }
     }

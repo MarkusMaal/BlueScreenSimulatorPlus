@@ -17,8 +17,20 @@ namespace UltimateBlueScreenSimulator
         List<USBDeviceInfo> prevDevs = new List<USBDeviceInfo>();
         string[] devinfo = { };
         bool timecatch = true;
+        int contain = 0;
         MessageBoxIcon MsgBoxIcon = MessageBoxIcon.Exclamation;
         MessageBoxButtons MsgBoxType = MessageBoxButtons.OK;
+        BlueScreen me;
+        readonly List<string> blackninja = new List<string>
+        {
+            "Windows Vista/7",
+            "Windows XP",
+            "Windows 2000",
+            "Windows NT 3.x/4.0",
+            "Windows 9x/Me",
+            "Windows 3.1x",
+            "Windows 1.x/2.x"
+        };
         public PrankMode()
         {
             InitializeComponent();
@@ -45,7 +57,6 @@ namespace UltimateBlueScreenSimulator
 
             }
             string winver = releaseId;
-            int contain = -1;
             if (bestMatchRadio.Checked == true)
             {
                 Program.f1.winMode.Checked = false;
@@ -148,6 +159,7 @@ namespace UltimateBlueScreenSimulator
                         }
                     }
                 }
+                me = Program.bluescreens[contain];
                 if (contain == -1)
                 {
                     bestMatchRadio.Checked = false;
@@ -157,6 +169,7 @@ namespace UltimateBlueScreenSimulator
                     MessageBox.Show("Due to blue screen simulator plus configuration or the specific version of Windows you are using, it is not possible to use a bluescreen similar to one that your Windows version uses. If this is what you want to do, please enable your Windows version in BSSP settings or settings file. If this message still pops up, then use a different Windows version.", "Unable to autodetect Windows version", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
             }
+            letCloseBox.Enabled = !blackninja.Contains(Program.bluescreens[contain].GetString("os"));
         }
 
         private void RadioButton3_CheckedChanged(object sender, EventArgs e)
@@ -465,8 +478,21 @@ namespace UltimateBlueScreenSimulator
             {
                 if (MessageBox.Show("Warning: This feature is experimental and WILL NOT work with all error screens. If you are unable to close the blue screen, use task manager to end it. Do you still want to continue?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
                 {
-                    letCloseBox.Checked = false;
+                    letCloseBox.Checked = true;
                 }
+            }
+        }
+
+        private void MatchAllRadio_CheckedChanged(object sender, EventArgs e)
+        {
+            if (matchAllRadio.Checked)
+            {
+                letCloseBox.Enabled = !blackninja.Contains(Program.f1.me.GetString("os"));
+                letCloseBox.Checked = true;
+            } else
+            {
+                letCloseBox.Enabled = !blackninja.Contains(me.GetString("os"));
+                letCloseBox.Checked = true;
             }
         }
     }

@@ -188,22 +188,31 @@ namespace UltimateBlueScreenSimulator
         {
             if (e.CloseReason == CloseReason.UserClosing)
             {
-                e.Cancel = Program.f1.lockout;
+                if (progress > 0)
+                {
+                    e.Cancel = Program.f1.lockout;
+                } else
+                {
+                    e.Cancel = false;
+                }
             }
             else
             {
                 e.Cancel = false;
             }
-            if (fullscreen)
+            if (!e.Cancel)
             {
-                foreach (WindowScreen ws in wss)
+                if (fullscreen)
                 {
-                    if (ws.Visible) { ws.Close(); }
-                    ws.Dispose();
-                }
-                foreach (Bitmap bmp in freezescreens)
-                {
-                    bmp.Dispose();
+                    foreach (WindowScreen ws in wss)
+                    {
+                        if (ws.Visible) { ws.Close(); }
+                        ws.Dispose();
+                    }
+                    foreach (Bitmap bmp in freezescreens)
+                    {
+                        bmp.Dispose();
+                    }
                 }
             }
         }

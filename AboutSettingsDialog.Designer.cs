@@ -88,6 +88,7 @@
             this.howToGetHelpButton = new System.Windows.Forms.Button();
             this.purposesOfThisProgramButton = new System.Windows.Forms.Button();
             this.systemRequirementsButton = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.helpDisplay = new System.Windows.Forms.TextBox();
             this.commandLinePanel = new System.Windows.Forms.TabPage();
             this.commandLineHelpDisplay = new System.Windows.Forms.TextBox();
@@ -835,6 +836,7 @@
             this.helpButtonsFlowPanel.Controls.Add(this.howToGetHelpButton);
             this.helpButtonsFlowPanel.Controls.Add(this.purposesOfThisProgramButton);
             this.helpButtonsFlowPanel.Controls.Add(this.systemRequirementsButton);
+            this.helpButtonsFlowPanel.Controls.Add(this.button1);
             this.helpButtonsFlowPanel.Location = new System.Drawing.Point(3, 3);
             this.helpButtonsFlowPanel.Name = "helpButtonsFlowPanel";
             this.helpButtonsFlowPanel.Size = new System.Drawing.Size(534, 37);
@@ -875,6 +877,17 @@
             this.systemRequirementsButton.Text = "System requirements";
             this.systemRequirementsButton.UseVisualStyleBackColor = true;
             this.systemRequirementsButton.Click += new System.EventHandler(this.QuickHelp_SystemRequirements);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(390, 6);
+            this.button1.Margin = new System.Windows.Forms.Padding(2, 6, 3, 3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(94, 23);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "User manual";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.UserManualButtonClick);
             // 
             // helpDisplay
             // 
@@ -1042,5 +1055,6 @@
         private System.Windows.Forms.Button primaryServerButton;
         private System.Windows.Forms.Button backupServerButton;
         private System.Windows.Forms.Button customServerButton;
+        private System.Windows.Forms.Button button1;
     }
 }

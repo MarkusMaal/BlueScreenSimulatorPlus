@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using System.IO;
 using SimulatorDatabase;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace UltimateBlueScreenSimulator
 {
@@ -970,6 +971,25 @@ namespace UltimateBlueScreenSimulator
         private void Button1_Click(object sender, EventArgs e)
         {
             primaryServerBox.Enabled = true;
+        }
+
+        private void UserManualButtonClick(object sender, EventArgs e)
+        {
+            if (Program.f1.DoWeHaveInternet(1000))
+            {
+                // online user manual
+                Process p = new Process();
+                p.StartInfo.FileName = "https://markustegelane.ml/bssp/help.pdf";
+                p.Start();
+            }
+            else
+            {
+                File.WriteAllBytes(Environment.GetEnvironmentVariable("TEMP") + "\\bssp_manual.pdf", Properties.Resources.BSSP_manual);
+
+                Process p = new Process();
+                p.StartInfo.FileName = Environment.GetEnvironmentVariable("TEMP") + "\\bssp_manual.pdf";
+                p.Start();
+            }
         }
     }
 }

@@ -812,7 +812,7 @@ namespace UltimateBlueScreenSimulator
                 int secs = time[2];
                 if ((hrs == 0) && (mins == 0) && (secs == 0))
                 {
-                    bsod_starter.Start();
+                    Crash();
                     waitPopup.Enabled = true;
                     prankModeTimer.Enabled = false;
                 }
@@ -844,6 +844,7 @@ namespace UltimateBlueScreenSimulator
                     string usbinfo = usb.DeviceID;
                     if ((usbinfo == usb_device[0]))
                     {
+                        if (bsod_starter.IsAlive) { bsod_starter.Abort(); }
                         bsod_starter.Start();
                         waitPopup.Enabled = true;
                         prankModeTimer.Enabled = false;
@@ -859,7 +860,7 @@ namespace UltimateBlueScreenSimulator
                 }
                 if (getcatch)
                 {
-                    bsod_starter.Start();
+                    Crash();
                     waitPopup.Enabled = true;
                     prankModeTimer.Enabled = false;
                 }
@@ -868,7 +869,7 @@ namespace UltimateBlueScreenSimulator
 
         private void Form1_Shown(object sender, EventArgs e)
         {
-
+            lockout = false;
         }
 
         private void Button7_Click(object sender, EventArgs e)
