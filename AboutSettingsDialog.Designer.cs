@@ -61,9 +61,12 @@
             this.noUpdatesRadio = new System.Windows.Forms.RadioButton();
             this.updatePanelHeading = new System.Windows.Forms.Label();
             this.simulatorSettingsPanel = new System.Windows.Forms.TabPage();
-            this.devNukeAllButton = new System.Windows.Forms.Button();
-            this.devNewAllButton = new System.Windows.Forms.Button();
+            this.devFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.devSplashButton = new System.Windows.Forms.Button();
             this.devDictEditButton = new System.Windows.Forms.Button();
+            this.devNewAllButton = new System.Windows.Forms.Button();
+            this.devNukeAllButton = new System.Windows.Forms.Button();
+            this.devRestartApp = new System.Windows.Forms.Button();
             this.multiDisplayBox = new System.Windows.Forms.ComboBox();
             this.multiDisplayLabel = new System.Windows.Forms.Label();
             this.configEditingButtonsFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
@@ -107,6 +110,7 @@
             this.updateTimeFlowPanel.SuspendLayout();
             this.updateSettingsFlowPanel.SuspendLayout();
             this.simulatorSettingsPanel.SuspendLayout();
+            this.devFlowPanel.SuspendLayout();
             this.configEditingButtonsFlowPanel.SuspendLayout();
             this.helpPanel.SuspendLayout();
             this.helpPanelChild.SuspendLayout();
@@ -523,9 +527,7 @@
             // 
             // simulatorSettingsPanel
             // 
-            this.simulatorSettingsPanel.Controls.Add(this.devNukeAllButton);
-            this.simulatorSettingsPanel.Controls.Add(this.devNewAllButton);
-            this.simulatorSettingsPanel.Controls.Add(this.devDictEditButton);
+            this.simulatorSettingsPanel.Controls.Add(this.devFlowPanel);
             this.simulatorSettingsPanel.Controls.Add(this.multiDisplayBox);
             this.simulatorSettingsPanel.Controls.Add(this.multiDisplayLabel);
             this.simulatorSettingsPanel.Controls.Add(this.configEditingButtonsFlowPanel);
@@ -545,44 +547,79 @@
             this.simulatorSettingsPanel.Text = "Simulator settings";
             this.simulatorSettingsPanel.UseVisualStyleBackColor = true;
             // 
-            // devNukeAllButton
+            // devFlowPanel
             // 
-            this.devNukeAllButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.devNukeAllButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.devNukeAllButton.Location = new System.Drawing.Point(226, 3);
-            this.devNukeAllButton.Name = "devNukeAllButton";
-            this.devNukeAllButton.Size = new System.Drawing.Size(97, 46);
-            this.devNukeAllButton.TabIndex = 21;
-            this.devNukeAllButton.Text = "[DEV] Nuke All (DANGEROUS!!)";
-            this.devNukeAllButton.UseVisualStyleBackColor = true;
-            this.devNukeAllButton.Visible = false;
-            this.devNukeAllButton.Click += new System.EventHandler(this.DevNukeAll);
+            this.devFlowPanel.AutoScroll = true;
+            this.devFlowPanel.Controls.Add(this.devSplashButton);
+            this.devFlowPanel.Controls.Add(this.devDictEditButton);
+            this.devFlowPanel.Controls.Add(this.devNewAllButton);
+            this.devFlowPanel.Controls.Add(this.devNukeAllButton);
+            this.devFlowPanel.Controls.Add(this.devRestartApp);
+            this.devFlowPanel.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+            this.devFlowPanel.Location = new System.Drawing.Point(158, 3);
+            this.devFlowPanel.Name = "devFlowPanel";
+            this.devFlowPanel.Size = new System.Drawing.Size(373, 58);
+            this.devFlowPanel.TabIndex = 23;
+            this.devFlowPanel.Visible = false;
+            this.devFlowPanel.WrapContents = false;
             // 
-            // devNewAllButton
+            // devSplashButton
             // 
-            this.devNewAllButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.devNewAllButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.devNewAllButton.Location = new System.Drawing.Point(328, 3);
-            this.devNewAllButton.Name = "devNewAllButton";
-            this.devNewAllButton.Size = new System.Drawing.Size(97, 46);
-            this.devNewAllButton.TabIndex = 20;
-            this.devNewAllButton.Text = "[DEV] New All";
-            this.devNewAllButton.UseVisualStyleBackColor = true;
-            this.devNewAllButton.Visible = false;
-            this.devNewAllButton.Click += new System.EventHandler(this.DevNewAll);
+            this.devSplashButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.devSplashButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.devSplashButton.Location = new System.Drawing.Point(341, 3);
+            this.devSplashButton.Name = "devSplashButton";
+            this.devSplashButton.Size = new System.Drawing.Size(82, 34);
+            this.devSplashButton.TabIndex = 22;
+            this.devSplashButton.Text = "[DEV] Splash Screen";
+            this.devSplashButton.UseVisualStyleBackColor = true;
+            this.devSplashButton.Click += new System.EventHandler(this.DisplayDevSplashScreen);
             // 
             // devDictEditButton
             // 
             this.devDictEditButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.devDictEditButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.devDictEditButton.Location = new System.Drawing.Point(431, 3);
+            this.devDictEditButton.Location = new System.Drawing.Point(272, 3);
             this.devDictEditButton.Name = "devDictEditButton";
-            this.devDictEditButton.Size = new System.Drawing.Size(90, 46);
+            this.devDictEditButton.Size = new System.Drawing.Size(63, 34);
             this.devDictEditButton.TabIndex = 19;
             this.devDictEditButton.Text = "[DEV] DictEdit";
             this.devDictEditButton.UseVisualStyleBackColor = true;
-            this.devDictEditButton.Visible = false;
             this.devDictEditButton.Click += new System.EventHandler(this.DevDictEdit);
+            // 
+            // devNewAllButton
+            // 
+            this.devNewAllButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.devNewAllButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.devNewAllButton.Location = new System.Drawing.Point(202, 3);
+            this.devNewAllButton.Name = "devNewAllButton";
+            this.devNewAllButton.Size = new System.Drawing.Size(64, 34);
+            this.devNewAllButton.TabIndex = 20;
+            this.devNewAllButton.Text = "[DEV] New All";
+            this.devNewAllButton.UseVisualStyleBackColor = true;
+            this.devNewAllButton.Click += new System.EventHandler(this.DevNewAll);
+            // 
+            // devNukeAllButton
+            // 
+            this.devNukeAllButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.devNukeAllButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.devNukeAllButton.Location = new System.Drawing.Point(99, 3);
+            this.devNukeAllButton.Name = "devNukeAllButton";
+            this.devNukeAllButton.Size = new System.Drawing.Size(97, 34);
+            this.devNukeAllButton.TabIndex = 21;
+            this.devNukeAllButton.Text = "[DEV] Nuke All (DANGEROUS!!)";
+            this.devNukeAllButton.UseVisualStyleBackColor = true;
+            this.devNukeAllButton.Click += new System.EventHandler(this.DevNukeAll);
+            // 
+            // devRestartApp
+            // 
+            this.devRestartApp.Location = new System.Drawing.Point(3, 3);
+            this.devRestartApp.Name = "devRestartApp";
+            this.devRestartApp.Size = new System.Drawing.Size(90, 34);
+            this.devRestartApp.TabIndex = 23;
+            this.devRestartApp.Text = "[DEV] Restart Application";
+            this.devRestartApp.UseVisualStyleBackColor = true;
+            this.devRestartApp.Click += new System.EventHandler(this.RestartAll);
             // 
             // multiDisplayBox
             // 
@@ -979,6 +1016,7 @@
             this.updateSettingsFlowPanel.PerformLayout();
             this.simulatorSettingsPanel.ResumeLayout(false);
             this.simulatorSettingsPanel.PerformLayout();
+            this.devFlowPanel.ResumeLayout(false);
             this.configEditingButtonsFlowPanel.ResumeLayout(false);
             this.helpPanel.ResumeLayout(false);
             this.helpPanelChild.ResumeLayout(false);
@@ -1059,5 +1097,8 @@
         private System.Windows.Forms.Button backupServerButton;
         private System.Windows.Forms.Button customServerButton;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button devSplashButton;
+        private System.Windows.Forms.FlowLayoutPanel devFlowPanel;
+        private System.Windows.Forms.Button devRestartApp;
     }
 }

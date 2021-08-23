@@ -117,6 +117,7 @@
             this.label1.Size = new System.Drawing.Size(230, 15);
             this.label1.TabIndex = 5;
             this.label1.Text = "advanced bugcheck simulation technology";
+            this.label1.UseWaitCursor = true;
             // 
             // label2
             // 
@@ -127,7 +128,8 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(73, 13);
             this.label2.TabIndex = 6;
-            this.label2.Text = "pre-release 1";
+            this.label2.Text = "pre-release 2";
+            this.label2.UseWaitCursor = true;
             // 
             // Splash
             // 
@@ -154,7 +156,7 @@
             this.TopMost = true;
             this.TransparencyKey = System.Drawing.Color.Magenta;
             this.UseWaitCursor = true;
-            this.Load += new System.EventHandler(this.Splash_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Splash_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

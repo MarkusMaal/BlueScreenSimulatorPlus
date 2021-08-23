@@ -14,11 +14,6 @@ namespace UltimateBlueScreenSimulator
             InitializeComponent();
         }
 
-
-        private void Splash_Load(object sender, EventArgs e)
-        {
-        }
-
         private void Timer1_Tick(object sender, EventArgs e)
         {
             veriFileTimer.Enabled = false;
@@ -50,6 +45,12 @@ namespace UltimateBlueScreenSimulator
             this.Close();
         }
 
-
+        private void Splash_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+        }
     }
 }

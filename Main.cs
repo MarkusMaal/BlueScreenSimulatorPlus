@@ -1004,6 +1004,10 @@ namespace UltimateBlueScreenSimulator
             {
                 e.Cancel = false;
             }
+            if (!e.Cancel)
+            {
+                Application.Exit();
+            }
         }
 
         private void OpenSettings(object sender, EventArgs e)

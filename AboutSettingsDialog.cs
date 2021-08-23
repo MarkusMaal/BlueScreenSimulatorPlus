@@ -217,9 +217,7 @@ namespace UltimateBlueScreenSimulator
                 {
                     configList.Items.Add(bs.GetString("friendlyname"));
                 }
-                devDictEditButton.Visible = DevBuild;
-                devNewAllButton.Visible = DevBuild;
-                devNukeAllButton.Visible = DevBuild;
+                devFlowPanel.Visible = DevBuild;
             }
             else if (aboutSettingsTabControl.SelectedTab.Text == "Command line help")
             {
@@ -995,6 +993,19 @@ namespace UltimateBlueScreenSimulator
                 p.StartInfo.FileName = Environment.GetEnvironmentVariable("TEMP") + "\\bssp_manual.pdf";
                 p.Start();
             }
+        }
+
+        private void DisplayDevSplashScreen(object sender, EventArgs e)
+        {
+            Splash spl = new Splash();
+            spl.SplashText.Text = "Idling. Press ESC to exit.";
+            spl.veriFileTimer.Enabled = false;
+            spl.Show();
+        }
+
+        private void RestartAll(object sender, EventArgs e)
+        {
+            Application.Restart();
         }
     }
 }

@@ -132,11 +132,30 @@ namespace UltimateBlueScreenSimulator
         [STAThread]
         public static void Main(string[] args)
         {
+
             //Application initialization
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            dr = new DrawRoutines();
 
+            verificate = Verikey(args);
+            if (bad) { return; }
+            if (!verificate) { return; }
+            //If hidesplash flag is not set, display the splash screen
+            if (!args.Contains("/hidesplash"))
+            {
+                if (!args.Contains("/finalize_update"))
+                {
+                    hidden = true;
+                    spl = new Splash();
+                    spl.ShowDialog();
+                    spl.Dispose();
+                    if (args.Contains("/preview_splash"))
+                    {
+                        return;
+                    }
+                }
+            }
+            dr = new DrawRoutines();
             //Initialize forms
             f1 = new Main();
             bluescreens = new List<BlueScreen>();
@@ -215,30 +234,6 @@ namespace UltimateBlueScreenSimulator
                     else { MessageBox.Show("There was a problem with the settings file.\n\n" + ex.Message + "\n\n" + ex.StackTrace, "E R R O R", MessageBoxButtons.OK, MessageBoxIcon.Error); }
                 }
             }
-            //If hidesplash flag is not set, display the splash screen
-            if (!args.Contains("/hidesplash"))
-            {
-                if (!args.Contains("/finalize_update"))
-                {
-                    hidden = true;
-                    spl = new Splash();
-                    spl.ShowDialog();
-                    if (args.Contains("/preview_splash"))
-                    {
-                        return;
-                    }
-                }
-                else
-                {
-                    verificate = Verikey(args);
-                }
-            }
-            else
-            {
-                verificate = Verikey(args);
-            }
-            if (bad) { return; }
-            if (!verificate) { return; }
 
             //Clear verification certificate if clr flag is set
             if (args.Contains("/clr"))
@@ -583,11 +578,12 @@ namespace UltimateBlueScreenSimulator
             {
                 if (MessageBox.Show("It looks like you are using this program for the very first time. If you did not start this program, dont worry. This program is not malicious, but you should click \"No\" below and scan your computer for viruses/malicious programs.\n\n\nThis program can only be used for non-harmful purposes, such as:\n\n* Screenshotting blue screens from different operating systems (for use in a video, article, etc)\n* Non-harmful pranking purposes (ie pranking a friend, relative, etc)\n* Having fun tweaking different blue screens\n* Learning about different blue screens from different operating systems\n* Other testing or reviewing purposes\n\n\nBy clicking or selecting \"Yes\" you accept that you DO NOT use this program maliciously (ie as a part of a malicious program, a way of sacrificing productivity, etc). A verification signature will be created preventing this message from popping up in this computer. \n\nIf you click or select \"No\" then the program will close. The popup will reappear once you relaunch the program from this computer and user account.", "Welcome to Blue screen simulator plus", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.No)
                 {
-                    return verifi;
+                    return false;
                 }
                 else
                 {
                     WriteFile();
+                    return true;
                 }
             }
             return verifi;
