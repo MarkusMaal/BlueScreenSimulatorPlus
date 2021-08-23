@@ -177,27 +177,25 @@
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tableLayoutPanel1.ColumnCount = 17;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 65.54622F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 34.45378F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 37F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 37F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 35F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 39F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 37F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 32F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 35F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 32F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 38F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 36F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 36F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 37F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 43F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 61F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 37F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 37F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 37F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 37F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 37F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 37F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 37F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 37F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 37F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 37F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 37F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 37F));
             this.tableLayoutPanel1.Controls.Add(this.textBox16, 16, 3);
             this.tableLayoutPanel1.Controls.Add(this.textBox15, 15, 3);
             this.tableLayoutPanel1.Controls.Add(this.textBox14, 14, 3);
@@ -281,11 +279,11 @@
             this.textBox16.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox16.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox16.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox16.Location = new System.Drawing.Point(621, 64);
+            this.textBox16.Location = new System.Drawing.Point(648, 64);
             this.textBox16.MaxLength = 1;
             this.textBox16.Name = "textBox16";
             this.textBox16.ReadOnly = true;
-            this.textBox16.Size = new System.Drawing.Size(56, 13);
+            this.textBox16.Size = new System.Drawing.Size(31, 13);
             this.textBox16.TabIndex = 65;
             this.textBox16.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textBox16.TextChanged += new System.EventHandler(this.SetText16);
@@ -296,11 +294,11 @@
             this.textBox15.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox15.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox15.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox15.Location = new System.Drawing.Point(578, 64);
+            this.textBox15.Location = new System.Drawing.Point(611, 64);
             this.textBox15.MaxLength = 1;
             this.textBox15.Name = "textBox15";
             this.textBox15.ReadOnly = true;
-            this.textBox15.Size = new System.Drawing.Size(37, 13);
+            this.textBox15.Size = new System.Drawing.Size(31, 13);
             this.textBox15.TabIndex = 64;
             this.textBox15.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textBox15.TextChanged += new System.EventHandler(this.SetText15);
@@ -311,11 +309,11 @@
             this.textBox14.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox14.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox14.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox14.Location = new System.Drawing.Point(538, 64);
+            this.textBox14.Location = new System.Drawing.Point(574, 64);
             this.textBox14.MaxLength = 1;
             this.textBox14.Name = "textBox14";
             this.textBox14.ReadOnly = true;
-            this.textBox14.Size = new System.Drawing.Size(34, 13);
+            this.textBox14.Size = new System.Drawing.Size(31, 13);
             this.textBox14.TabIndex = 63;
             this.textBox14.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textBox14.TextChanged += new System.EventHandler(this.SetText14);
@@ -326,7 +324,7 @@
             this.textBox13.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox13.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox13.Location = new System.Drawing.Point(501, 64);
+            this.textBox13.Location = new System.Drawing.Point(537, 64);
             this.textBox13.MaxLength = 1;
             this.textBox13.Name = "textBox13";
             this.textBox13.ReadOnly = true;
@@ -340,10 +338,10 @@
             // 
             this.null16.Dock = System.Windows.Forms.DockStyle.Fill;
             this.null16.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.null16.Location = new System.Drawing.Point(618, 41);
+            this.null16.Location = new System.Drawing.Point(645, 41);
             this.null16.Margin = new System.Windows.Forms.Padding(0);
             this.null16.Name = "null16";
-            this.null16.Size = new System.Drawing.Size(62, 20);
+            this.null16.Size = new System.Drawing.Size(37, 20);
             this.null16.TabIndex = 61;
             this.null16.Text = "Set";
             this.null16.UseVisualStyleBackColor = true;
@@ -353,10 +351,10 @@
             // 
             this.null15.Dock = System.Windows.Forms.DockStyle.Fill;
             this.null15.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.null15.Location = new System.Drawing.Point(575, 41);
+            this.null15.Location = new System.Drawing.Point(608, 41);
             this.null15.Margin = new System.Windows.Forms.Padding(0);
             this.null15.Name = "null15";
-            this.null15.Size = new System.Drawing.Size(43, 20);
+            this.null15.Size = new System.Drawing.Size(37, 20);
             this.null15.TabIndex = 60;
             this.null15.Text = "Set";
             this.null15.UseVisualStyleBackColor = true;
@@ -366,10 +364,10 @@
             // 
             this.null14.Dock = System.Windows.Forms.DockStyle.Fill;
             this.null14.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.null14.Location = new System.Drawing.Point(535, 41);
+            this.null14.Location = new System.Drawing.Point(571, 41);
             this.null14.Margin = new System.Windows.Forms.Padding(0);
             this.null14.Name = "null14";
-            this.null14.Size = new System.Drawing.Size(40, 20);
+            this.null14.Size = new System.Drawing.Size(37, 20);
             this.null14.TabIndex = 59;
             this.null14.Text = "Set";
             this.null14.UseVisualStyleBackColor = true;
@@ -379,7 +377,7 @@
             // 
             this.null13.Dock = System.Windows.Forms.DockStyle.Fill;
             this.null13.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.null13.Location = new System.Drawing.Point(498, 41);
+            this.null13.Location = new System.Drawing.Point(534, 41);
             this.null13.Margin = new System.Windows.Forms.Padding(0);
             this.null13.Name = "null13";
             this.null13.Size = new System.Drawing.Size(37, 20);
@@ -392,10 +390,10 @@
             // 
             this.button16.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button16.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button16.Location = new System.Drawing.Point(618, 21);
+            this.button16.Location = new System.Drawing.Point(645, 21);
             this.button16.Margin = new System.Windows.Forms.Padding(0);
             this.button16.Name = "button16";
-            this.button16.Size = new System.Drawing.Size(62, 20);
+            this.button16.Size = new System.Drawing.Size(37, 20);
             this.button16.TabIndex = 57;
             this.button16.Text = "Set";
             this.button16.UseVisualStyleBackColor = true;
@@ -405,10 +403,10 @@
             // 
             this.button15.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button15.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button15.Location = new System.Drawing.Point(575, 21);
+            this.button15.Location = new System.Drawing.Point(608, 21);
             this.button15.Margin = new System.Windows.Forms.Padding(0);
             this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(43, 20);
+            this.button15.Size = new System.Drawing.Size(37, 20);
             this.button15.TabIndex = 56;
             this.button15.Text = "Set";
             this.button15.UseVisualStyleBackColor = true;
@@ -418,10 +416,10 @@
             // 
             this.button14.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button14.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button14.Location = new System.Drawing.Point(535, 21);
+            this.button14.Location = new System.Drawing.Point(571, 21);
             this.button14.Margin = new System.Windows.Forms.Padding(0);
             this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(40, 20);
+            this.button14.Size = new System.Drawing.Size(37, 20);
             this.button14.TabIndex = 55;
             this.button14.Text = "Set";
             this.button14.UseVisualStyleBackColor = true;
@@ -431,7 +429,7 @@
             // 
             this.button13.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button13.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button13.Location = new System.Drawing.Point(498, 21);
+            this.button13.Location = new System.Drawing.Point(534, 21);
             this.button13.Margin = new System.Windows.Forms.Padding(0);
             this.button13.Name = "button13";
             this.button13.Size = new System.Drawing.Size(37, 20);
@@ -444,9 +442,9 @@
             // 
             this.c1_16.AutoSize = true;
             this.c1_16.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.c1_16.Location = new System.Drawing.Point(621, 0);
+            this.c1_16.Location = new System.Drawing.Point(648, 0);
             this.c1_16.Name = "c1_16";
-            this.c1_16.Size = new System.Drawing.Size(56, 21);
+            this.c1_16.Size = new System.Drawing.Size(31, 21);
             this.c1_16.TabIndex = 53;
             this.c1_16.Text = "R";
             this.c1_16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -456,9 +454,9 @@
             // 
             this.c1_15.AutoSize = true;
             this.c1_15.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.c1_15.Location = new System.Drawing.Point(578, 0);
+            this.c1_15.Location = new System.Drawing.Point(611, 0);
             this.c1_15.Name = "c1_15";
-            this.c1_15.Size = new System.Drawing.Size(37, 21);
+            this.c1_15.Size = new System.Drawing.Size(31, 21);
             this.c1_15.TabIndex = 52;
             this.c1_15.Text = "R";
             this.c1_15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -468,9 +466,9 @@
             // 
             this.c1_14.AutoSize = true;
             this.c1_14.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.c1_14.Location = new System.Drawing.Point(538, 0);
+            this.c1_14.Location = new System.Drawing.Point(574, 0);
             this.c1_14.Name = "c1_14";
-            this.c1_14.Size = new System.Drawing.Size(34, 21);
+            this.c1_14.Size = new System.Drawing.Size(31, 21);
             this.c1_14.TabIndex = 15;
             this.c1_14.Text = "R";
             this.c1_14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -480,7 +478,7 @@
             // 
             this.c1_13.AutoSize = true;
             this.c1_13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.c1_13.Location = new System.Drawing.Point(501, 0);
+            this.c1_13.Location = new System.Drawing.Point(537, 0);
             this.c1_13.Name = "c1_13";
             this.c1_13.Size = new System.Drawing.Size(31, 21);
             this.c1_13.TabIndex = 15;
@@ -493,11 +491,11 @@
             this.textBox12.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox12.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox12.Location = new System.Drawing.Point(465, 64);
+            this.textBox12.Location = new System.Drawing.Point(500, 64);
             this.textBox12.MaxLength = 1;
             this.textBox12.Name = "textBox12";
             this.textBox12.ReadOnly = true;
-            this.textBox12.Size = new System.Drawing.Size(30, 13);
+            this.textBox12.Size = new System.Drawing.Size(31, 13);
             this.textBox12.TabIndex = 51;
             this.textBox12.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textBox12.TextAlignChanged += new System.EventHandler(this.SetText12);
@@ -508,11 +506,11 @@
             this.textBox11.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox11.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox11.Location = new System.Drawing.Point(429, 64);
+            this.textBox11.Location = new System.Drawing.Point(463, 64);
             this.textBox11.MaxLength = 1;
             this.textBox11.Name = "textBox11";
             this.textBox11.ReadOnly = true;
-            this.textBox11.Size = new System.Drawing.Size(30, 13);
+            this.textBox11.Size = new System.Drawing.Size(31, 13);
             this.textBox11.TabIndex = 50;
             this.textBox11.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textBox11.TextChanged += new System.EventHandler(this.SetText11);
@@ -523,11 +521,11 @@
             this.textBox10.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox10.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox10.Location = new System.Drawing.Point(391, 64);
+            this.textBox10.Location = new System.Drawing.Point(426, 64);
             this.textBox10.MaxLength = 1;
             this.textBox10.Name = "textBox10";
             this.textBox10.ReadOnly = true;
-            this.textBox10.Size = new System.Drawing.Size(32, 13);
+            this.textBox10.Size = new System.Drawing.Size(31, 13);
             this.textBox10.TabIndex = 49;
             this.textBox10.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textBox10.TextChanged += new System.EventHandler(this.SetText10);
@@ -538,11 +536,11 @@
             this.textBox9.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox9.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox9.Location = new System.Drawing.Point(359, 64);
+            this.textBox9.Location = new System.Drawing.Point(389, 64);
             this.textBox9.MaxLength = 1;
             this.textBox9.Name = "textBox9";
             this.textBox9.ReadOnly = true;
-            this.textBox9.Size = new System.Drawing.Size(26, 13);
+            this.textBox9.Size = new System.Drawing.Size(31, 13);
             this.textBox9.TabIndex = 48;
             this.textBox9.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textBox9.TextChanged += new System.EventHandler(this.SetText9);
@@ -553,11 +551,11 @@
             this.textBox8.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox8.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox8.Location = new System.Drawing.Point(324, 64);
+            this.textBox8.Location = new System.Drawing.Point(352, 64);
             this.textBox8.MaxLength = 1;
             this.textBox8.Name = "textBox8";
             this.textBox8.ReadOnly = true;
-            this.textBox8.Size = new System.Drawing.Size(29, 13);
+            this.textBox8.Size = new System.Drawing.Size(31, 13);
             this.textBox8.TabIndex = 47;
             this.textBox8.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textBox8.TextChanged += new System.EventHandler(this.SetText8);
@@ -568,11 +566,11 @@
             this.textBox7.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox7.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox7.Location = new System.Drawing.Point(292, 64);
+            this.textBox7.Location = new System.Drawing.Point(315, 64);
             this.textBox7.MaxLength = 1;
             this.textBox7.Name = "textBox7";
             this.textBox7.ReadOnly = true;
-            this.textBox7.Size = new System.Drawing.Size(26, 13);
+            this.textBox7.Size = new System.Drawing.Size(31, 13);
             this.textBox7.TabIndex = 46;
             this.textBox7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textBox7.TextChanged += new System.EventHandler(this.SetText7);
@@ -583,7 +581,7 @@
             this.textBox6.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox6.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox6.Location = new System.Drawing.Point(255, 64);
+            this.textBox6.Location = new System.Drawing.Point(278, 64);
             this.textBox6.MaxLength = 1;
             this.textBox6.Name = "textBox6";
             this.textBox6.ReadOnly = true;
@@ -598,11 +596,11 @@
             this.textBox5.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox5.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox5.Location = new System.Drawing.Point(216, 64);
+            this.textBox5.Location = new System.Drawing.Point(241, 64);
             this.textBox5.MaxLength = 1;
             this.textBox5.Name = "textBox5";
             this.textBox5.ReadOnly = true;
-            this.textBox5.Size = new System.Drawing.Size(33, 13);
+            this.textBox5.Size = new System.Drawing.Size(31, 13);
             this.textBox5.TabIndex = 44;
             this.textBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textBox5.Click += new System.EventHandler(this.SetText5);
@@ -614,11 +612,11 @@
             this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox4.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox4.Location = new System.Drawing.Point(181, 64);
+            this.textBox4.Location = new System.Drawing.Point(204, 64);
             this.textBox4.MaxLength = 1;
             this.textBox4.Name = "textBox4";
             this.textBox4.ReadOnly = true;
-            this.textBox4.Size = new System.Drawing.Size(29, 13);
+            this.textBox4.Size = new System.Drawing.Size(31, 13);
             this.textBox4.TabIndex = 43;
             this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textBox4.Click += new System.EventHandler(this.SetText4);
@@ -630,7 +628,7 @@
             this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox3.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox3.Location = new System.Drawing.Point(144, 64);
+            this.textBox3.Location = new System.Drawing.Point(167, 64);
             this.textBox3.MaxLength = 1;
             this.textBox3.Name = "textBox3";
             this.textBox3.ReadOnly = true;
@@ -646,7 +644,7 @@
             this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox2.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox2.Location = new System.Drawing.Point(107, 64);
+            this.textBox2.Location = new System.Drawing.Point(130, 64);
             this.textBox2.MaxLength = 1;
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
@@ -662,11 +660,11 @@
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox1.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox1.Location = new System.Drawing.Point(71, 64);
+            this.textBox1.Location = new System.Drawing.Point(93, 64);
             this.textBox1.MaxLength = 1;
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(30, 13);
+            this.textBox1.Size = new System.Drawing.Size(31, 13);
             this.textBox1.TabIndex = 2;
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textBox1.Click += new System.EventHandler(this.SetText1);
@@ -678,10 +676,10 @@
             this.null1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.null1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.null1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.null1.Location = new System.Drawing.Point(68, 41);
+            this.null1.Location = new System.Drawing.Point(90, 41);
             this.null1.Margin = new System.Windows.Forms.Padding(0);
             this.null1.Name = "null1";
-            this.null1.Size = new System.Drawing.Size(36, 20);
+            this.null1.Size = new System.Drawing.Size(37, 20);
             this.null1.TabIndex = 40;
             this.null1.Text = "Set";
             this.null1.UseVisualStyleBackColor = true;
@@ -691,7 +689,7 @@
             // 
             this.null2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.null2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.null2.Location = new System.Drawing.Point(104, 41);
+            this.null2.Location = new System.Drawing.Point(127, 41);
             this.null2.Margin = new System.Windows.Forms.Padding(0);
             this.null2.Name = "null2";
             this.null2.Size = new System.Drawing.Size(37, 20);
@@ -704,7 +702,7 @@
             // 
             this.null3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.null3.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.null3.Location = new System.Drawing.Point(141, 41);
+            this.null3.Location = new System.Drawing.Point(164, 41);
             this.null3.Margin = new System.Windows.Forms.Padding(0);
             this.null3.Name = "null3";
             this.null3.Size = new System.Drawing.Size(37, 20);
@@ -717,10 +715,10 @@
             // 
             this.null4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.null4.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.null4.Location = new System.Drawing.Point(178, 41);
+            this.null4.Location = new System.Drawing.Point(201, 41);
             this.null4.Margin = new System.Windows.Forms.Padding(0);
             this.null4.Name = "null4";
-            this.null4.Size = new System.Drawing.Size(35, 20);
+            this.null4.Size = new System.Drawing.Size(37, 20);
             this.null4.TabIndex = 37;
             this.null4.Text = "Set";
             this.null4.UseVisualStyleBackColor = true;
@@ -730,10 +728,10 @@
             // 
             this.null5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.null5.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.null5.Location = new System.Drawing.Point(213, 41);
+            this.null5.Location = new System.Drawing.Point(238, 41);
             this.null5.Margin = new System.Windows.Forms.Padding(0);
             this.null5.Name = "null5";
-            this.null5.Size = new System.Drawing.Size(39, 20);
+            this.null5.Size = new System.Drawing.Size(37, 20);
             this.null5.TabIndex = 36;
             this.null5.Text = "Set";
             this.null5.UseVisualStyleBackColor = true;
@@ -743,7 +741,7 @@
             // 
             this.null6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.null6.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.null6.Location = new System.Drawing.Point(252, 41);
+            this.null6.Location = new System.Drawing.Point(275, 41);
             this.null6.Margin = new System.Windows.Forms.Padding(0);
             this.null6.Name = "null6";
             this.null6.Size = new System.Drawing.Size(37, 20);
@@ -756,10 +754,10 @@
             // 
             this.null7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.null7.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.null7.Location = new System.Drawing.Point(289, 41);
+            this.null7.Location = new System.Drawing.Point(312, 41);
             this.null7.Margin = new System.Windows.Forms.Padding(0);
             this.null7.Name = "null7";
-            this.null7.Size = new System.Drawing.Size(32, 20);
+            this.null7.Size = new System.Drawing.Size(37, 20);
             this.null7.TabIndex = 34;
             this.null7.Text = "Set";
             this.null7.UseVisualStyleBackColor = true;
@@ -769,10 +767,10 @@
             // 
             this.null8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.null8.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.null8.Location = new System.Drawing.Point(321, 41);
+            this.null8.Location = new System.Drawing.Point(349, 41);
             this.null8.Margin = new System.Windows.Forms.Padding(0);
             this.null8.Name = "null8";
-            this.null8.Size = new System.Drawing.Size(35, 20);
+            this.null8.Size = new System.Drawing.Size(37, 20);
             this.null8.TabIndex = 33;
             this.null8.Text = "Set";
             this.null8.UseVisualStyleBackColor = true;
@@ -782,10 +780,10 @@
             // 
             this.null9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.null9.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.null9.Location = new System.Drawing.Point(356, 41);
+            this.null9.Location = new System.Drawing.Point(386, 41);
             this.null9.Margin = new System.Windows.Forms.Padding(0);
             this.null9.Name = "null9";
-            this.null9.Size = new System.Drawing.Size(32, 20);
+            this.null9.Size = new System.Drawing.Size(37, 20);
             this.null9.TabIndex = 32;
             this.null9.Text = "Set";
             this.null9.UseVisualStyleBackColor = true;
@@ -795,10 +793,10 @@
             // 
             this.null10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.null10.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.null10.Location = new System.Drawing.Point(388, 41);
+            this.null10.Location = new System.Drawing.Point(423, 41);
             this.null10.Margin = new System.Windows.Forms.Padding(0);
             this.null10.Name = "null10";
-            this.null10.Size = new System.Drawing.Size(38, 20);
+            this.null10.Size = new System.Drawing.Size(37, 20);
             this.null10.TabIndex = 31;
             this.null10.Text = "Set";
             this.null10.UseVisualStyleBackColor = true;
@@ -808,10 +806,10 @@
             // 
             this.null11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.null11.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.null11.Location = new System.Drawing.Point(426, 41);
+            this.null11.Location = new System.Drawing.Point(460, 41);
             this.null11.Margin = new System.Windows.Forms.Padding(0);
             this.null11.Name = "null11";
-            this.null11.Size = new System.Drawing.Size(36, 20);
+            this.null11.Size = new System.Drawing.Size(37, 20);
             this.null11.TabIndex = 30;
             this.null11.Text = "Set";
             this.null11.UseVisualStyleBackColor = true;
@@ -821,10 +819,10 @@
             // 
             this.null12.Dock = System.Windows.Forms.DockStyle.Fill;
             this.null12.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.null12.Location = new System.Drawing.Point(462, 41);
+            this.null12.Location = new System.Drawing.Point(497, 41);
             this.null12.Margin = new System.Windows.Forms.Padding(0);
             this.null12.Name = "null12";
-            this.null12.Size = new System.Drawing.Size(36, 20);
+            this.null12.Size = new System.Drawing.Size(37, 20);
             this.null12.TabIndex = 29;
             this.null12.Text = "Set";
             this.null12.UseVisualStyleBackColor = true;
@@ -834,10 +832,10 @@
             // 
             this.button12.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button12.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button12.Location = new System.Drawing.Point(462, 21);
+            this.button12.Location = new System.Drawing.Point(497, 21);
             this.button12.Margin = new System.Windows.Forms.Padding(0);
             this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(36, 20);
+            this.button12.Size = new System.Drawing.Size(37, 20);
             this.button12.TabIndex = 28;
             this.button12.Text = "Set";
             this.button12.UseVisualStyleBackColor = true;
@@ -847,10 +845,10 @@
             // 
             this.button11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button11.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button11.Location = new System.Drawing.Point(426, 21);
+            this.button11.Location = new System.Drawing.Point(460, 21);
             this.button11.Margin = new System.Windows.Forms.Padding(0);
             this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(36, 20);
+            this.button11.Size = new System.Drawing.Size(37, 20);
             this.button11.TabIndex = 27;
             this.button11.Text = "Set";
             this.button11.UseVisualStyleBackColor = true;
@@ -860,10 +858,10 @@
             // 
             this.button10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button10.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button10.Location = new System.Drawing.Point(388, 21);
+            this.button10.Location = new System.Drawing.Point(423, 21);
             this.button10.Margin = new System.Windows.Forms.Padding(0);
             this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(38, 20);
+            this.button10.Size = new System.Drawing.Size(37, 20);
             this.button10.TabIndex = 26;
             this.button10.Text = "Set";
             this.button10.UseVisualStyleBackColor = true;
@@ -873,10 +871,10 @@
             // 
             this.button9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button9.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button9.Location = new System.Drawing.Point(356, 21);
+            this.button9.Location = new System.Drawing.Point(386, 21);
             this.button9.Margin = new System.Windows.Forms.Padding(0);
             this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(32, 20);
+            this.button9.Size = new System.Drawing.Size(37, 20);
             this.button9.TabIndex = 25;
             this.button9.Text = "Set";
             this.button9.UseVisualStyleBackColor = true;
@@ -886,10 +884,10 @@
             // 
             this.button8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button8.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button8.Location = new System.Drawing.Point(321, 21);
+            this.button8.Location = new System.Drawing.Point(349, 21);
             this.button8.Margin = new System.Windows.Forms.Padding(0);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(35, 20);
+            this.button8.Size = new System.Drawing.Size(37, 20);
             this.button8.TabIndex = 24;
             this.button8.Text = "Set";
             this.button8.UseVisualStyleBackColor = true;
@@ -899,10 +897,10 @@
             // 
             this.button7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button7.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button7.Location = new System.Drawing.Point(289, 21);
+            this.button7.Location = new System.Drawing.Point(312, 21);
             this.button7.Margin = new System.Windows.Forms.Padding(0);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(32, 20);
+            this.button7.Size = new System.Drawing.Size(37, 20);
             this.button7.TabIndex = 23;
             this.button7.Text = "Set";
             this.button7.UseVisualStyleBackColor = true;
@@ -912,7 +910,7 @@
             // 
             this.button6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button6.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button6.Location = new System.Drawing.Point(252, 21);
+            this.button6.Location = new System.Drawing.Point(275, 21);
             this.button6.Margin = new System.Windows.Forms.Padding(0);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(37, 20);
@@ -925,10 +923,10 @@
             // 
             this.button5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button5.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button5.Location = new System.Drawing.Point(213, 21);
+            this.button5.Location = new System.Drawing.Point(238, 21);
             this.button5.Margin = new System.Windows.Forms.Padding(0);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(39, 20);
+            this.button5.Size = new System.Drawing.Size(37, 20);
             this.button5.TabIndex = 21;
             this.button5.Text = "Set";
             this.button5.UseVisualStyleBackColor = true;
@@ -938,10 +936,10 @@
             // 
             this.button4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button4.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button4.Location = new System.Drawing.Point(178, 21);
+            this.button4.Location = new System.Drawing.Point(201, 21);
             this.button4.Margin = new System.Windows.Forms.Padding(0);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(35, 20);
+            this.button4.Size = new System.Drawing.Size(37, 20);
             this.button4.TabIndex = 20;
             this.button4.Text = "Set";
             this.button4.UseVisualStyleBackColor = true;
@@ -951,7 +949,7 @@
             // 
             this.button3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button3.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button3.Location = new System.Drawing.Point(141, 21);
+            this.button3.Location = new System.Drawing.Point(164, 21);
             this.button3.Margin = new System.Windows.Forms.Padding(0);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(37, 20);
@@ -964,7 +962,7 @@
             // 
             this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button2.Location = new System.Drawing.Point(104, 21);
+            this.button2.Location = new System.Drawing.Point(127, 21);
             this.button2.Margin = new System.Windows.Forms.Padding(0);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(37, 20);
@@ -977,10 +975,10 @@
             // 
             this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button1.Location = new System.Drawing.Point(68, 21);
+            this.button1.Location = new System.Drawing.Point(90, 21);
             this.button1.Margin = new System.Windows.Forms.Padding(0);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(36, 20);
+            this.button1.Size = new System.Drawing.Size(37, 20);
             this.button1.TabIndex = 2;
             this.button1.Text = "Set";
             this.button1.UseVisualStyleBackColor = true;
@@ -992,7 +990,7 @@
             this.fixedRow.Dock = System.Windows.Forms.DockStyle.Fill;
             this.fixedRow.Location = new System.Drawing.Point(3, 61);
             this.fixedRow.Name = "fixedRow";
-            this.fixedRow.Size = new System.Drawing.Size(62, 21);
+            this.fixedRow.Size = new System.Drawing.Size(84, 21);
             this.fixedRow.TabIndex = 17;
             this.fixedRow.Text = "Fixed (0-F)";
             this.fixedRow.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1003,7 +1001,7 @@
             this.nullRow.Dock = System.Windows.Forms.DockStyle.Fill;
             this.nullRow.Location = new System.Drawing.Point(3, 41);
             this.nullRow.Name = "nullRow";
-            this.nullRow.Size = new System.Drawing.Size(62, 20);
+            this.nullRow.Size = new System.Drawing.Size(84, 20);
             this.nullRow.TabIndex = 2;
             this.nullRow.Text = "Null (0)";
             this.nullRow.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1014,7 +1012,7 @@
             this.randomRow.Dock = System.Windows.Forms.DockStyle.Fill;
             this.randomRow.Location = new System.Drawing.Point(3, 21);
             this.randomRow.Name = "randomRow";
-            this.randomRow.Size = new System.Drawing.Size(62, 20);
+            this.randomRow.Size = new System.Drawing.Size(84, 20);
             this.randomRow.TabIndex = 15;
             this.randomRow.Text = "Random (R)";
             this.randomRow.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1023,9 +1021,9 @@
             // 
             this.c1_12.AutoSize = true;
             this.c1_12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.c1_12.Location = new System.Drawing.Point(465, 0);
+            this.c1_12.Location = new System.Drawing.Point(500, 0);
             this.c1_12.Name = "c1_12";
-            this.c1_12.Size = new System.Drawing.Size(30, 21);
+            this.c1_12.Size = new System.Drawing.Size(31, 21);
             this.c1_12.TabIndex = 14;
             this.c1_12.Text = "R";
             this.c1_12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1035,9 +1033,9 @@
             // 
             this.c1_11.AutoSize = true;
             this.c1_11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.c1_11.Location = new System.Drawing.Point(429, 0);
+            this.c1_11.Location = new System.Drawing.Point(463, 0);
             this.c1_11.Name = "c1_11";
-            this.c1_11.Size = new System.Drawing.Size(30, 21);
+            this.c1_11.Size = new System.Drawing.Size(31, 21);
             this.c1_11.TabIndex = 13;
             this.c1_11.Text = "R";
             this.c1_11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1047,9 +1045,9 @@
             // 
             this.c1_10.AutoSize = true;
             this.c1_10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.c1_10.Location = new System.Drawing.Point(391, 0);
+            this.c1_10.Location = new System.Drawing.Point(426, 0);
             this.c1_10.Name = "c1_10";
-            this.c1_10.Size = new System.Drawing.Size(32, 21);
+            this.c1_10.Size = new System.Drawing.Size(31, 21);
             this.c1_10.TabIndex = 12;
             this.c1_10.Text = "R";
             this.c1_10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1059,9 +1057,9 @@
             // 
             this.c1_9.AutoSize = true;
             this.c1_9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.c1_9.Location = new System.Drawing.Point(359, 0);
+            this.c1_9.Location = new System.Drawing.Point(389, 0);
             this.c1_9.Name = "c1_9";
-            this.c1_9.Size = new System.Drawing.Size(26, 21);
+            this.c1_9.Size = new System.Drawing.Size(31, 21);
             this.c1_9.TabIndex = 11;
             this.c1_9.Text = "R";
             this.c1_9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1071,9 +1069,9 @@
             // 
             this.c1_8.AutoSize = true;
             this.c1_8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.c1_8.Location = new System.Drawing.Point(324, 0);
+            this.c1_8.Location = new System.Drawing.Point(352, 0);
             this.c1_8.Name = "c1_8";
-            this.c1_8.Size = new System.Drawing.Size(29, 21);
+            this.c1_8.Size = new System.Drawing.Size(31, 21);
             this.c1_8.TabIndex = 10;
             this.c1_8.Text = "R";
             this.c1_8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1083,9 +1081,9 @@
             // 
             this.c1_7.AutoSize = true;
             this.c1_7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.c1_7.Location = new System.Drawing.Point(292, 0);
+            this.c1_7.Location = new System.Drawing.Point(315, 0);
             this.c1_7.Name = "c1_7";
-            this.c1_7.Size = new System.Drawing.Size(26, 21);
+            this.c1_7.Size = new System.Drawing.Size(31, 21);
             this.c1_7.TabIndex = 9;
             this.c1_7.Text = "R";
             this.c1_7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1095,7 +1093,7 @@
             // 
             this.c1_6.AutoSize = true;
             this.c1_6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.c1_6.Location = new System.Drawing.Point(255, 0);
+            this.c1_6.Location = new System.Drawing.Point(278, 0);
             this.c1_6.Name = "c1_6";
             this.c1_6.Size = new System.Drawing.Size(31, 21);
             this.c1_6.TabIndex = 8;
@@ -1107,9 +1105,9 @@
             // 
             this.c1_5.AutoSize = true;
             this.c1_5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.c1_5.Location = new System.Drawing.Point(216, 0);
+            this.c1_5.Location = new System.Drawing.Point(241, 0);
             this.c1_5.Name = "c1_5";
-            this.c1_5.Size = new System.Drawing.Size(33, 21);
+            this.c1_5.Size = new System.Drawing.Size(31, 21);
             this.c1_5.TabIndex = 7;
             this.c1_5.Text = "R";
             this.c1_5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1119,9 +1117,9 @@
             // 
             this.c1_4.AutoSize = true;
             this.c1_4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.c1_4.Location = new System.Drawing.Point(181, 0);
+            this.c1_4.Location = new System.Drawing.Point(204, 0);
             this.c1_4.Name = "c1_4";
-            this.c1_4.Size = new System.Drawing.Size(29, 21);
+            this.c1_4.Size = new System.Drawing.Size(31, 21);
             this.c1_4.TabIndex = 6;
             this.c1_4.Text = "R";
             this.c1_4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1131,7 +1129,7 @@
             // 
             this.c1_3.AutoSize = true;
             this.c1_3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.c1_3.Location = new System.Drawing.Point(144, 0);
+            this.c1_3.Location = new System.Drawing.Point(167, 0);
             this.c1_3.Name = "c1_3";
             this.c1_3.Size = new System.Drawing.Size(31, 21);
             this.c1_3.TabIndex = 5;
@@ -1143,7 +1141,7 @@
             // 
             this.c1_2.AutoSize = true;
             this.c1_2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.c1_2.Location = new System.Drawing.Point(107, 0);
+            this.c1_2.Location = new System.Drawing.Point(130, 0);
             this.c1_2.Name = "c1_2";
             this.c1_2.Size = new System.Drawing.Size(31, 21);
             this.c1_2.TabIndex = 4;
@@ -1155,9 +1153,9 @@
             // 
             this.c1_1.AutoSize = true;
             this.c1_1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.c1_1.Location = new System.Drawing.Point(71, 0);
+            this.c1_1.Location = new System.Drawing.Point(93, 0);
             this.c1_1.Name = "c1_1";
-            this.c1_1.Size = new System.Drawing.Size(30, 21);
+            this.c1_1.Size = new System.Drawing.Size(31, 21);
             this.c1_1.TabIndex = 3;
             this.c1_1.Text = "R";
             this.c1_1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1169,7 +1167,7 @@
             this.codeSelection.Dock = System.Windows.Forms.DockStyle.Fill;
             this.codeSelection.Location = new System.Drawing.Point(3, 0);
             this.codeSelection.Name = "codeSelection";
-            this.codeSelection.Size = new System.Drawing.Size(62, 21);
+            this.codeSelection.Size = new System.Drawing.Size(84, 21);
             this.codeSelection.TabIndex = 2;
             this.codeSelection.Text = "Code 1";
             this.codeSelection.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;

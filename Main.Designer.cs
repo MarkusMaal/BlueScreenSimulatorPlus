@@ -1002,7 +1002,7 @@
             this.HelpButton = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuBar;
-            this.MinimumSize = new System.Drawing.Size(440, 440);
+            this.MinimumSize = new System.Drawing.Size(470, 440);
             this.Name = "Main";
             this.Text = "BlueScreen Simulator Plus 2.0";
             this.HelpButtonClicked += new System.ComponentModel.CancelEventHandler(this.Form1_HelpButtonClicked);
