@@ -857,7 +857,7 @@ namespace SimulatorDatabase
                     PushText("Restart message", "The computer will restart automatically\r\nafter {0} seconds.");
                     SetInt("timer", 30);
                     SetFont("Lucida Console", 10.4f, FontStyle.Regular);
-                    SetString("friendlyname", "Windows CE 3.0 and later (750x400, Standard)");
+                    SetString("friendlyname", "Windows CE 5.0 and later (750x400, Standard)");
 
                     SetString("code", "IRQL_NOT_LESS_OR_EQUAL (0x0000000A)");
                     break;

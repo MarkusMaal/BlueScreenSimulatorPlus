@@ -18,10 +18,10 @@ namespace UltimateBlueScreenSimulator
         {
             veriFileTimer.Enabled = false;
             Program.verificate = true;
-            if (!File.Exists(Environment.GetEnvironmentVariable("USERPROFILE") + @"\bssp_firstlaunch.txt")) { Program.verificate = false; }
+            if (!File.Exists(Environment.GetEnvironmentVariable("USERPROFILE") + @"\bssp2_firstlaunch.txt")) { Program.verificate = false; }
             if (Program.verificate == true)
             {
-                if (Program.Verifile() != File.ReadAllText(Environment.GetEnvironmentVariable("USERPROFILE") + @"\bssp_firstlaunch.txt"))
+                if (Program.Verifile() != File.ReadAllText(Environment.GetEnvironmentVariable("USERPROFILE") + @"\bssp2_firstlaunch.txt"))
                 {
                     if (args.Contains("/c") && args.Contains("/hwm"))
                     {

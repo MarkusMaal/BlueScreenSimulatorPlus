@@ -37,8 +37,12 @@
             this.labelProductName = new System.Windows.Forms.Label();
             this.labelVersion = new System.Windows.Forms.Label();
             this.labelCopyright = new System.Windows.Forms.Label();
-            this.okButton = new System.Windows.Forms.Button();
             this.labelCompanyName = new System.Windows.Forms.Label();
+            this.okButton = new System.Windows.Forms.Button();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.srcCodeButton = new System.Windows.Forms.Button();
+            this.copyingButton = new System.Windows.Forms.Button();
+            this.rndFactButton = new System.Windows.Forms.Button();
             this.aboutSettingsTabControl = new System.Windows.Forms.TabControl();
             this.aboutPanel = new System.Windows.Forms.TabPage();
             this.updatePanel = new System.Windows.Forms.TabPage();
@@ -105,6 +109,7 @@
             this.logoDisplayFlowPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.markusSoftwareLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.veriFileLogo)).BeginInit();
+            this.flowLayoutPanel1.SuspendLayout();
             this.aboutSettingsTabControl.SuspendLayout();
             this.aboutPanel.SuspendLayout();
             this.updatePanel.SuspendLayout();
@@ -129,18 +134,20 @@
             this.aboutTable.Controls.Add(this.labelProductName, 1, 0);
             this.aboutTable.Controls.Add(this.labelVersion, 1, 1);
             this.aboutTable.Controls.Add(this.labelCopyright, 1, 2);
-            this.aboutTable.Controls.Add(this.okButton, 1, 5);
             this.aboutTable.Controls.Add(this.labelCompanyName, 1, 3);
+            this.aboutTable.Controls.Add(this.okButton, 1, 6);
+            this.aboutTable.Controls.Add(this.flowLayoutPanel1, 1, 5);
             this.aboutTable.Dock = System.Windows.Forms.DockStyle.Fill;
             this.aboutTable.Location = new System.Drawing.Point(3, 3);
             this.aboutTable.Name = "aboutTable";
-            this.aboutTable.RowCount = 6;
+            this.aboutTable.RowCount = 7;
             this.aboutTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.19195F));
             this.aboutTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.572755F));
             this.aboutTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.19195F));
-            this.aboutTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 27.86378F));
-            this.aboutTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40.24768F));
-            this.aboutTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15.47988F));
+            this.aboutTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 31.79191F));
+            this.aboutTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 35.78275F));
+            this.aboutTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.69649F));
+            this.aboutTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.aboutTable.Size = new System.Drawing.Size(528, 346);
             this.aboutTable.TabIndex = 0;
             // 
@@ -150,7 +157,7 @@
             this.logoPictureBox.Image = global::UltimateBlueScreenSimulator.Properties.Resources.bsodbanner2;
             this.logoPictureBox.Location = new System.Drawing.Point(3, 3);
             this.logoPictureBox.Name = "logoPictureBox";
-            this.aboutTable.SetRowSpan(this.logoPictureBox, 6);
+            this.aboutTable.SetRowSpan(this.logoPictureBox, 7);
             this.logoPictureBox.Size = new System.Drawing.Size(134, 340);
             this.logoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.logoPictureBox.TabIndex = 12;
@@ -158,13 +165,14 @@
             // 
             // logoDisplayFlowPanel
             // 
+            this.logoDisplayFlowPanel.AutoScroll = true;
             this.logoDisplayFlowPanel.Controls.Add(this.markusSoftwareLogo);
             this.logoDisplayFlowPanel.Controls.Add(this.veriFileLogo);
             this.logoDisplayFlowPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.logoDisplayFlowPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.logoDisplayFlowPanel.Location = new System.Drawing.Point(143, 157);
+            this.logoDisplayFlowPanel.Location = new System.Drawing.Point(143, 158);
             this.logoDisplayFlowPanel.Name = "logoDisplayFlowPanel";
-            this.logoDisplayFlowPanel.Size = new System.Drawing.Size(382, 131);
+            this.logoDisplayFlowPanel.Size = new System.Drawing.Size(382, 106);
             this.logoDisplayFlowPanel.TabIndex = 25;
             // 
             // markusSoftwareLogo
@@ -174,7 +182,7 @@
             this.markusSoftwareLogo.Location = new System.Drawing.Point(0, 0);
             this.markusSoftwareLogo.Margin = new System.Windows.Forms.Padding(0);
             this.markusSoftwareLogo.Name = "markusSoftwareLogo";
-            this.markusSoftwareLogo.Size = new System.Drawing.Size(202, 53);
+            this.markusSoftwareLogo.Size = new System.Drawing.Size(271, 87);
             this.markusSoftwareLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.markusSoftwareLogo.TabIndex = 0;
             this.markusSoftwareLogo.TabStop = false;
@@ -182,10 +190,10 @@
             // veriFileLogo
             // 
             this.veriFileLogo.Image = global::UltimateBlueScreenSimulator.Properties.Resources.verifile;
-            this.veriFileLogo.Location = new System.Drawing.Point(0, 53);
+            this.veriFileLogo.Location = new System.Drawing.Point(271, 0);
             this.veriFileLogo.Margin = new System.Windows.Forms.Padding(0);
             this.veriFileLogo.Name = "veriFileLogo";
-            this.veriFileLogo.Size = new System.Drawing.Size(202, 67);
+            this.veriFileLogo.Size = new System.Drawing.Size(253, 87);
             this.veriFileLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.veriFileLogo.TabIndex = 1;
             this.veriFileLogo.TabStop = false;
@@ -205,7 +213,7 @@
             // labelVersion
             // 
             this.labelVersion.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelVersion.Location = new System.Drawing.Point(146, 21);
+            this.labelVersion.Location = new System.Drawing.Point(146, 19);
             this.labelVersion.Margin = new System.Windows.Forms.Padding(6, 0, 3, 0);
             this.labelVersion.MaximumSize = new System.Drawing.Size(0, 17);
             this.labelVersion.Name = "labelVersion";
@@ -217,7 +225,7 @@
             // labelCopyright
             // 
             this.labelCopyright.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelCopyright.Location = new System.Drawing.Point(146, 39);
+            this.labelCopyright.Location = new System.Drawing.Point(146, 36);
             this.labelCopyright.Margin = new System.Windows.Forms.Padding(6, 0, 3, 0);
             this.labelCopyright.MaximumSize = new System.Drawing.Size(0, 17);
             this.labelCopyright.Name = "labelCopyright";
@@ -226,11 +234,20 @@
             this.labelCopyright.Text = "Copyright";
             this.labelCopyright.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // labelCompanyName
+            // 
+            this.labelCompanyName.Dock = System.Windows.Forms.DockStyle.Top;
+            this.labelCompanyName.Location = new System.Drawing.Point(146, 55);
+            this.labelCompanyName.Margin = new System.Windows.Forms.Padding(6, 0, 3, 0);
+            this.labelCompanyName.Name = "labelCompanyName";
+            this.labelCompanyName.Size = new System.Drawing.Size(379, 88);
+            this.labelCompanyName.TabIndex = 22;
+            // 
             // okButton
             // 
             this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.okButton.BackColor = System.Drawing.SystemColors.Control;
-            this.okButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.okButton.ForeColor = System.Drawing.SystemColors.ControlText;
             this.okButton.Location = new System.Drawing.Point(450, 320);
             this.okButton.Name = "okButton";
@@ -240,14 +257,48 @@
             this.okButton.UseVisualStyleBackColor = false;
             this.okButton.Click += new System.EventHandler(this.OkButton_Click);
             // 
-            // labelCompanyName
+            // flowLayoutPanel1
             // 
-            this.labelCompanyName.Dock = System.Windows.Forms.DockStyle.Top;
-            this.labelCompanyName.Location = new System.Drawing.Point(146, 60);
-            this.labelCompanyName.Margin = new System.Windows.Forms.Padding(6, 0, 3, 0);
-            this.labelCompanyName.Name = "labelCompanyName";
-            this.labelCompanyName.Size = new System.Drawing.Size(379, 88);
-            this.labelCompanyName.TabIndex = 22;
+            this.flowLayoutPanel1.AutoScroll = true;
+            this.flowLayoutPanel1.Controls.Add(this.srcCodeButton);
+            this.flowLayoutPanel1.Controls.Add(this.copyingButton);
+            this.flowLayoutPanel1.Controls.Add(this.rndFactButton);
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(143, 270);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(382, 40);
+            this.flowLayoutPanel1.TabIndex = 26;
+            this.flowLayoutPanel1.WrapContents = false;
+            // 
+            // srcCodeButton
+            // 
+            this.srcCodeButton.Location = new System.Drawing.Point(3, 3);
+            this.srcCodeButton.Name = "srcCodeButton";
+            this.srcCodeButton.Size = new System.Drawing.Size(103, 23);
+            this.srcCodeButton.TabIndex = 0;
+            this.srcCodeButton.Text = "Source code";
+            this.srcCodeButton.UseVisualStyleBackColor = true;
+            this.srcCodeButton.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // copyingButton
+            // 
+            this.copyingButton.Location = new System.Drawing.Point(112, 3);
+            this.copyingButton.Name = "copyingButton";
+            this.copyingButton.Size = new System.Drawing.Size(86, 23);
+            this.copyingButton.TabIndex = 1;
+            this.copyingButton.Text = "Copying";
+            this.copyingButton.UseVisualStyleBackColor = true;
+            this.copyingButton.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // rndFactButton
+            // 
+            this.rndFactButton.Location = new System.Drawing.Point(204, 3);
+            this.rndFactButton.Name = "rndFactButton";
+            this.rndFactButton.Size = new System.Drawing.Size(99, 23);
+            this.rndFactButton.TabIndex = 2;
+            this.rndFactButton.Text = "Random factoid";
+            this.rndFactButton.UseVisualStyleBackColor = true;
+            this.rndFactButton.Click += new System.EventHandler(this.button4_Click);
             // 
             // aboutSettingsTabControl
             // 
@@ -1011,6 +1062,7 @@
             this.logoDisplayFlowPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.markusSoftwareLogo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.veriFileLogo)).EndInit();
+            this.flowLayoutPanel1.ResumeLayout(false);
             this.aboutSettingsTabControl.ResumeLayout(false);
             this.aboutPanel.ResumeLayout(false);
             this.updatePanel.ResumeLayout(false);
@@ -1106,5 +1158,9 @@
         private System.Windows.Forms.FlowLayoutPanel devFlowPanel;
         private System.Windows.Forms.Button devRestartApp;
         private System.Windows.Forms.Timer checkIfLoadedSaved;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.Button srcCodeButton;
+        private System.Windows.Forms.Button copyingButton;
+        private System.Windows.Forms.Button rndFactButton;
     }
 }

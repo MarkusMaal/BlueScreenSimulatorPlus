@@ -128,7 +128,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(73, 13);
             this.label2.TabIndex = 6;
-            this.label2.Text = "pre-release 2";
+            this.label2.Text = "pre-release 3";
             this.label2.UseWaitCursor = true;
             // 
             // Splash

@@ -24,9 +24,9 @@ namespace UltimateBlueScreenSimulator
             this.Text = String.Format("About {0}", AssemblyTitle);
             this.labelProductName.Text = "Blue Screen Simulator Plus";
             if (DevBuild) { this.labelProductName.Text += " [Development Build]"; }
-            this.labelVersion.Text = String.Format("Version {0}", AssemblyVersion);
+            this.labelVersion.Text = String.Format("Version {0} with Verifile 1.1", AssemblyVersion);
             this.labelCopyright.Text = AssemblyCopyright;
-            this.labelCompanyName.Text = "Codename *Waffles*\nLanguage: C# (.NET framework, Windows Forms)\nCreated by: Markus Maal (TheMarkusGuy/MarkusTegelane)\n\nThis program can only be provided free of charge (if you had to pay for this, please ask for a refund). This program is provided as is, without a warranty.\n2019 Markuse tarkvara (Markus' software)";
+            this.labelCompanyName.Text = "Codename *Waffles*\nLanguage: C# (.NET framework, Windows Forms)\nCreated by: Markus Maal (TheMarkusGuy/MarkusTegelane)\n\nThis program can only be provided free of charge (if you had to pay for this, please ask for a refund). This program is provided as is, without a warranty.\n2020 Markuse tarkvara (Markus' software)";
         }
 
         #region Assembly Attribute Accessors
@@ -141,6 +141,7 @@ namespace UltimateBlueScreenSimulator
             {
                 updatePanel.Dispose();
                 simulatorSettingsPanel.Dispose();
+                rndFactButton.Visible = Program.f1.enableeggs;
             }
             //Hide help/about tabs and get settings
             if (SettingTab)
@@ -256,9 +257,9 @@ namespace UltimateBlueScreenSimulator
             //Removes verification signature from the system
             try
             { 
-                if (File.Exists(Environment.GetEnvironmentVariable("USERPROFILE") + "\\bssp_firstlaunch.txt"))
+                if (File.Exists(Environment.GetEnvironmentVariable("USERPROFILE") + "\\bssp2_firstlaunch.txt"))
                 {
-                    File.Delete(Environment.GetEnvironmentVariable("USERPROFILE") + "\\bssp_firstlaunch.txt");
+                    File.Delete(Environment.GetEnvironmentVariable("USERPROFILE") + "\\bssp2_firstlaunch.txt");
                     MessageBox.Show("Signature removed successfully.", "Verifile verification system", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
@@ -379,15 +380,6 @@ namespace UltimateBlueScreenSimulator
 
         private void OnMeResized(object sender, EventArgs e)
         {
-            //Hides/shows elements in specific window sizes
-            if (this.Height <= 360)
-            {
-                this.labelCompanyName.Text = "Codename Bluesmith\nLanguage: C# (.NET framework, Windows Forms)\nCreated by: Markus Maal (TheMarkusGuy/MarkusTegelane)";
-            }
-            else
-            {
-                this.labelCompanyName.Text = "Codename Bluesmith\nLanguage: C# (.NET framework, Windows Forms)\nCreated by: Markus Maal (TheMarkusGuy/MarkusTegelane)\n\nThis program can only be provided free of charge (if you had to pay for this, please ask for a refund). This program is provided as is, without a warranty.\n2019 Markuse tarkvara (Markus' software)";
-            }
             helpDisplay.Size = new Size(helpPanelChild.Width, Convert.ToInt32(helpPanelChild.Height * 0.8010638));
         }
 
@@ -606,7 +598,6 @@ namespace UltimateBlueScreenSimulator
                 Program.bluescreens.Add(new BlueScreen("Windows 10"));
                 foreach (string fileline in filelines)
                 {
-                    Thread.Sleep(10);
                     if (fileline.Contains("***")) { continue; }
                     if (fileline.StartsWith("FACE "))
                     {
@@ -646,7 +637,6 @@ namespace UltimateBlueScreenSimulator
                 string restof = "";
                 for (int i = 7; i < filelines.Length; i++)
                 {
-                    Thread.Sleep(10);
                     restof += filelines[i] + "\n";
                 }
                 string[] sections = restof.Replace("--", "\t").Split('\t');
@@ -682,7 +672,6 @@ namespace UltimateBlueScreenSimulator
                 bool fontok = true;
                 foreach (string element in fontlist)
                 {
-                    Thread.Sleep(10);
                     try
                     {
                         if (!element.Contains(",")) { continue; }
@@ -709,7 +698,6 @@ namespace UltimateBlueScreenSimulator
                 {
                     foreach (string element in misclist)
                     {
-                        Thread.Sleep(10);
                         if (element.StartsWith("qrType: "))
                         {
                             string decide = element.Replace("qrType: ", "");
@@ -1052,6 +1040,53 @@ namespace UltimateBlueScreenSimulator
                 loadBsconfig.FileName = "";
                 saveBsconfig.FileName = "";
                 checkIfLoadedSaved.Enabled = false;
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Process p = new Process();
+            p.StartInfo.FileName = "https://github.com/MarkusMaal/BlueScreenSimulatorPlus";
+            p.Start();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            TextView tv = new TextView();
+            tv.Text = Properties.Resources.COPYING.Replace("\n", "\r\n");
+            tv.Title = "Copying";
+            tv.ShowDialog();
+            tv.Dispose();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if (Program.f1.enableeggs)
+            {
+                string[] tips =
+                {
+                "You can close a blue screen by pressing ALT+F4",
+                "There is a crash screen for a program that simulates crash screens, right?",
+                "The codename came from a song that was playing in the background during the development process",
+                "If Microsoft decides to change their error screens, I'll push an update that adds these changes",
+                "Configuration files store every property about all error screens",
+                "Windows Vista/7 blue screen scrolls, when there is too much information on screen",
+                "There are rainbow easter eggs for Windows XP, Vista, 7, CE, and 1.x/2.x blue screens",
+                "In prank mode, the watermark on a blue screen is disabled automatically",
+                "There are two error screens in this program, that technically aren't blue screens",
+                "This program, for the most part, also works in ReactOS, which is an open source Windows clone based on reverse engineering",
+                "The first Windows XP bluescreen I ever saw displayed DRIVER_IRQL_NOT_LESS_OR_EQUAL as the error code",
+                "You can also use the Enter key to close Windows 9x bluescreens",
+                "Microsoft originally planned to replace a blue screen with a black one as early as Windows 8",
+                "Every major Windows release, up until Windows 11, has had some sort of a blue screen",
+                "Blue is a color that symbolises peace",
+                "Windows 2000 blue screen doesn't use rasterized fonts, because I figured it looked 'close enough' to the original",
+                "If you use the 'choose' button when setting a culprit file, you might see some weird filenames...",
+                "The background of the logo graphic in the about screen displays the three primary colors used in these error screens",
+                "target: void"
+            };
+                Random r = new Random();
+                MessageBox.Show(tips[r.Next(0, tips.Length - 1)], "Random fact", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }

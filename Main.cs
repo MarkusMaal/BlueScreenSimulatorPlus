@@ -133,8 +133,14 @@ namespace UltimateBlueScreenSimulator
             dumpBox.Enabled = true;
             eCodeEditButton.Visible = false;
             devPCBox.Visible = false;
-            // set current bluescreen
-            me = Program.bluescreens[Program.bluescreens.Count - 1 - windowVersion.SelectedIndex];
+            try
+            {
+                // set current bluescreen
+                me = Program.bluescreens[Program.bluescreens.Count - 1 - windowVersion.SelectedIndex];
+            } catch (Exception ex)
+            {
+                me.Crash(ex.Message, ex.StackTrace, "OrangeScreen");
+            }
             // set control visibility for specific OS-es
             if (me.GetString("os") == "Windows 11")
             {
@@ -1017,48 +1023,6 @@ namespace UltimateBlueScreenSimulator
 
         private void OpenSettings(object sender, EventArgs e)
         {
-            if (textBox1.Text == "betadark")
-            {
-                MessageBox.Show("This egg is experimental. Don't complain please...", "Dark mode beta", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Form[] allForms = { this, new StringEdit(), Program.spl };
-                foreach (Form f in allForms)
-                {
-                    f.BackColor = Color.Black;
-                    f.ForeColor = Color.White;
-                    foreach (Button c in f.Controls.OfType<Button>())
-                    {
-                        c.FlatStyle = FlatStyle.Flat;
-                        c.BackColor = Color.FromArgb(0, 0, 50);
-                    }
-                    foreach (ComboBox c in f.Controls.OfType<ComboBox>())
-                    {
-                        c.DropDownStyle = ComboBoxStyle.DropDown;
-                        c.FlatStyle = FlatStyle.Flat;
-                        c.BackColor = Color.FromArgb(50, 50, 50);
-                        c.ForeColor = Color.FromArgb(255, 255, 255);
-                    }
-                    foreach (Panel p in f.Controls.OfType<Panel>())
-                    {
-                        foreach (Panel q in p.Controls.OfType<Panel>())
-                        {
-                            foreach (TextBox t in q.Controls.OfType<TextBox>())
-                            {
-                                t.BorderStyle = BorderStyle.FixedSingle;
-                                t.ForeColor = Color.White;
-                                t.BackColor = Color.DimGray;
-                            }
-                            foreach (ComboBox c in q.Controls.OfType<ComboBox>())
-                            {
-                                c.DropDownStyle = ComboBoxStyle.DropDown;
-                                c.FlatStyle = FlatStyle.Flat;
-                                c.BackColor = Color.FromArgb(50, 50, 50);
-                                c.ForeColor = Color.FromArgb(255, 255, 255);
-                            }
-                        }
-                    }
-                    return;
-                }
-            }
             if (!abopen)
             {
                 AboutSettingsDialog ab1 = new AboutSettingsDialog
@@ -1066,7 +1030,8 @@ namespace UltimateBlueScreenSimulator
                     Text = "Settings",
                     SettingTab = true
                 };
-                ab1.Show();
+                ab1.ShowDialog();
+                ab1.Dispose();
             }
             else
             {
@@ -1421,7 +1386,8 @@ namespace UltimateBlueScreenSimulator
                     Text = "Help and about",
                     SettingTab = false
                 };
-                ab1.Show();
+                ab1.ShowDialog();
+                ab1.Dispose();
             }
             else
             {
@@ -1439,7 +1405,8 @@ namespace UltimateBlueScreenSimulator
                     SettingTab = false,
                     tab_id = 1
                 };
-                ab1.Show();
+                ab1.ShowDialog();
+                ab1.Dispose();
             }
             else
             {
@@ -1457,7 +1424,8 @@ namespace UltimateBlueScreenSimulator
                     SettingTab = false,
                     tab_id = 2
                 };
-                ab1.Show();
+                ab1.ShowDialog();
+                ab1.Dispose();
             }
             else
             {
@@ -1480,7 +1448,8 @@ namespace UltimateBlueScreenSimulator
                     SettingTab = true,
                     tab_id = 1
                 };
-                ab1.Show();
+                ab1.ShowDialog();
+                ab1.Dispose();
             }
             else
             {
