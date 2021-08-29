@@ -1,6 +1,6 @@
 ﻿namespace UltimateBlueScreenSimulator
 {
-    partial class old_bluescreen
+    partial class Old_bluescreen
     {
         /// <summary>
         /// Required designer variable.
@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(old_bluescreen));
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Old_bluescreen));
+            this.titleBorder = new System.Windows.Forms.Panel();
+            this.titleText = new System.Windows.Forms.PictureBox();
+            this.screenUpdater = new System.Windows.Forms.Timer(this.components);
+            this.blinkingColor = new System.Windows.Forms.PictureBox();
             this.anyKeyMsg = new System.Windows.Forms.PictureBox();
             this.line7 = new System.Windows.Forms.PictureBox();
             this.line4 = new System.Windows.Forms.PictureBox();
@@ -43,11 +43,11 @@
             this.line5 = new System.Windows.Forms.PictureBox();
             this.line3 = new System.Windows.Forms.PictureBox();
             this.line1 = new System.Windows.Forms.PictureBox();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.simplePanel = new System.Windows.Forms.Panel();
             this.waterMarkText = new System.Windows.Forms.Label();
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.titleBorder.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.titleText)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.blinkingColor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.anyKeyMsg)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.line7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.line4)).BeginInit();
@@ -57,47 +57,47 @@
             ((System.ComponentModel.ISupportInitialize)(this.line5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.line3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.line1)).BeginInit();
-            this.panel2.SuspendLayout();
+            this.simplePanel.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panel1
+            // titleBorder
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(170)))), ((int)(((byte)(170)))), ((int)(((byte)(170)))));
-            this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Location = new System.Drawing.Point(268, 16);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(75, 18);
-            this.panel1.TabIndex = 1;
+            this.titleBorder.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(170)))), ((int)(((byte)(170)))), ((int)(((byte)(170)))));
+            this.titleBorder.Controls.Add(this.titleText);
+            this.titleBorder.Location = new System.Drawing.Point(268, 16);
+            this.titleBorder.Name = "titleBorder";
+            this.titleBorder.Size = new System.Drawing.Size(75, 18);
+            this.titleBorder.TabIndex = 1;
             // 
-            // pictureBox1
+            // titleText
             // 
-            this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.ErrorImage = null;
-            this.pictureBox1.ImageLocation = "";
-            this.pictureBox1.Location = new System.Drawing.Point(10, 2);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(58, 15);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.PictureBox1_Click);
+            this.titleText.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.titleText.BackColor = System.Drawing.Color.Transparent;
+            this.titleText.ErrorImage = null;
+            this.titleText.ImageLocation = "";
+            this.titleText.Location = new System.Drawing.Point(10, 2);
+            this.titleText.Name = "titleText";
+            this.titleText.Size = new System.Drawing.Size(58, 15);
+            this.titleText.TabIndex = 0;
+            this.titleText.TabStop = false;
+            this.titleText.Click += new System.EventHandler(this.PictureBox1_Click);
             // 
-            // timer1
+            // screenUpdater
             // 
-            this.timer1.Enabled = true;
-            this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
+            this.screenUpdater.Enabled = true;
+            this.screenUpdater.Tick += new System.EventHandler(this.Timer1_Tick);
             // 
-            // pictureBox2
+            // blinkingColor
             // 
-            this.pictureBox2.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.pictureBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(170)))), ((int)(((byte)(170)))), ((int)(((byte)(170)))));
-            this.pictureBox2.ErrorImage = null;
-            this.pictureBox2.ImageLocation = "";
-            this.pictureBox2.Location = new System.Drawing.Point(404, 224);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(7, 2);
-            this.pictureBox2.TabIndex = 11;
-            this.pictureBox2.TabStop = false;
+            this.blinkingColor.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.blinkingColor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(170)))), ((int)(((byte)(170)))), ((int)(((byte)(170)))));
+            this.blinkingColor.ErrorImage = null;
+            this.blinkingColor.ImageLocation = "";
+            this.blinkingColor.Location = new System.Drawing.Point(404, 224);
+            this.blinkingColor.Name = "blinkingColor";
+            this.blinkingColor.Size = new System.Drawing.Size(7, 2);
+            this.blinkingColor.TabIndex = 11;
+            this.blinkingColor.TabStop = false;
             // 
             // anyKeyMsg
             // 
@@ -207,34 +207,34 @@
             this.line1.TabIndex = 2;
             this.line1.TabStop = false;
             // 
-            // panel2
+            // simplePanel
             // 
-            this.panel2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.panel2.Controls.Add(this.pictureBox2);
-            this.panel2.Controls.Add(this.anyKeyMsg);
-            this.panel2.Controls.Add(this.panel1);
-            this.panel2.Controls.Add(this.line7);
-            this.panel2.Controls.Add(this.line1);
-            this.panel2.Controls.Add(this.line4);
-            this.panel2.Controls.Add(this.line3);
-            this.panel2.Controls.Add(this.line2);
-            this.panel2.Controls.Add(this.line5);
-            this.panel2.Controls.Add(this.line8);
-            this.panel2.Controls.Add(this.line6);
-            this.panel2.Location = new System.Drawing.Point(0, 76);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(624, 275);
-            this.panel2.TabIndex = 12;
-            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.Panel2_Paint);
+            this.simplePanel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.simplePanel.Controls.Add(this.blinkingColor);
+            this.simplePanel.Controls.Add(this.anyKeyMsg);
+            this.simplePanel.Controls.Add(this.titleBorder);
+            this.simplePanel.Controls.Add(this.line7);
+            this.simplePanel.Controls.Add(this.line1);
+            this.simplePanel.Controls.Add(this.line4);
+            this.simplePanel.Controls.Add(this.line3);
+            this.simplePanel.Controls.Add(this.line2);
+            this.simplePanel.Controls.Add(this.line5);
+            this.simplePanel.Controls.Add(this.line8);
+            this.simplePanel.Controls.Add(this.line6);
+            this.simplePanel.Location = new System.Drawing.Point(0, 76);
+            this.simplePanel.Name = "simplePanel";
+            this.simplePanel.Size = new System.Drawing.Size(624, 275);
+            this.simplePanel.TabIndex = 12;
+            this.simplePanel.Paint += new System.Windows.Forms.PaintEventHandler(this.Panel2_Paint);
             // 
             // waterMarkText
             // 
             this.waterMarkText.AutoSize = true;
-            this.waterMarkText.Font = new System.Drawing.Font("Arial", 12F);
-            this.waterMarkText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(198)))), ((int)(((byte)(198)))), ((int)(((byte)(198)))));
+            this.waterMarkText.Font = new System.Drawing.Font("Corbel", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
+            this.waterMarkText.ForeColor = System.Drawing.Color.Blue;
             this.waterMarkText.Location = new System.Drawing.Point(12, 5);
             this.waterMarkText.Name = "waterMarkText";
-            this.waterMarkText.Size = new System.Drawing.Size(183, 18);
+            this.waterMarkText.Size = new System.Drawing.Size(131, 14);
             this.waterMarkText.TabIndex = 13;
             this.waterMarkText.Text = "bluescreen simulator plus";
             // 
@@ -245,7 +245,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(170)))));
             this.ClientSize = new System.Drawing.Size(624, 392);
             this.Controls.Add(this.waterMarkText);
-            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.simplePanel);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -258,9 +258,9 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Old_bluescreen_FormClosed);
             this.Load += new System.EventHandler(this.Old_bluescreen_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Old_bluescreen_KeyDown);
-            this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.titleBorder.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.titleText)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.blinkingColor)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.anyKeyMsg)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.line7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.line4)).EndInit();
@@ -270,7 +270,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.line5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.line3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.line1)).EndInit();
-            this.panel2.ResumeLayout(false);
+            this.simplePanel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -278,8 +278,8 @@
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.PictureBox titleText;
+        private System.Windows.Forms.Panel titleBorder;
         private System.Windows.Forms.PictureBox line1;
         private System.Windows.Forms.PictureBox line3;
         private System.Windows.Forms.PictureBox line5;
@@ -289,9 +289,9 @@
         private System.Windows.Forms.PictureBox line4;
         private System.Windows.Forms.PictureBox line7;
         private System.Windows.Forms.PictureBox anyKeyMsg;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.PictureBox blinkingColor;
+        private System.Windows.Forms.Timer screenUpdater;
+        private System.Windows.Forms.Panel simplePanel;
         public System.Windows.Forms.Label waterMarkText;
     }
 }

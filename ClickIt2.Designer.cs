@@ -95,10 +95,10 @@
             this.button1.Text = "Kliki siia";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Visible = false;
-            this.button1.Click += new System.EventHandler(this.button38_Click);
-            this.button1.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.button38_HelpRequested);
-            this.button1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button38_MouseClick);
-            this.button1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button38_MouseMove_1);
+            this.button1.Click += new System.EventHandler(this.Button38_Click);
+            this.button1.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.Button38_HelpRequested);
+            this.button1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseClick);
+            this.button1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseMove_1);
             // 
             // button2
             // 
@@ -112,10 +112,10 @@
             this.button2.Text = "Kliki siia";
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Visible = false;
-            this.button2.Click += new System.EventHandler(this.button38_Click);
-            this.button2.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.button38_HelpRequested);
-            this.button2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button38_MouseClick);
-            this.button2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button38_MouseMove_1);
+            this.button2.Click += new System.EventHandler(this.Button38_Click);
+            this.button2.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.Button38_HelpRequested);
+            this.button2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseClick);
+            this.button2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseMove_1);
             // 
             // button3
             // 
@@ -129,10 +129,10 @@
             this.button3.Text = "Kliki siia";
             this.button3.UseVisualStyleBackColor = false;
             this.button3.Visible = false;
-            this.button3.Click += new System.EventHandler(this.button38_Click);
-            this.button3.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.button38_HelpRequested);
-            this.button3.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button38_MouseClick);
-            this.button3.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button38_MouseMove_1);
+            this.button3.Click += new System.EventHandler(this.Button38_Click);
+            this.button3.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.Button38_HelpRequested);
+            this.button3.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseClick);
+            this.button3.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseMove_1);
             // 
             // button4
             // 
@@ -146,10 +146,10 @@
             this.button4.Text = "Kliki siia";
             this.button4.UseVisualStyleBackColor = false;
             this.button4.Visible = false;
-            this.button4.Click += new System.EventHandler(this.button38_Click);
-            this.button4.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.button38_HelpRequested);
-            this.button4.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button38_MouseClick);
-            this.button4.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button38_MouseMove_1);
+            this.button4.Click += new System.EventHandler(this.Button38_Click);
+            this.button4.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.Button38_HelpRequested);
+            this.button4.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseClick);
+            this.button4.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseMove_1);
             // 
             // button5
             // 
@@ -163,10 +163,10 @@
             this.button5.Text = "Kliki siia";
             this.button5.UseVisualStyleBackColor = false;
             this.button5.Visible = false;
-            this.button5.Click += new System.EventHandler(this.button38_Click);
-            this.button5.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.button38_HelpRequested);
-            this.button5.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button38_MouseClick);
-            this.button5.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button38_MouseMove_1);
+            this.button5.Click += new System.EventHandler(this.Button38_Click);
+            this.button5.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.Button38_HelpRequested);
+            this.button5.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseClick);
+            this.button5.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseMove_1);
             // 
             // button6
             // 
@@ -180,10 +180,10 @@
             this.button6.Text = "Kliki siia";
             this.button6.UseVisualStyleBackColor = false;
             this.button6.Visible = false;
-            this.button6.Click += new System.EventHandler(this.button38_Click);
-            this.button6.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.button38_HelpRequested);
-            this.button6.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button38_MouseClick);
-            this.button6.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button38_MouseMove_1);
+            this.button6.Click += new System.EventHandler(this.Button38_Click);
+            this.button6.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.Button38_HelpRequested);
+            this.button6.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseClick);
+            this.button6.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseMove_1);
             // 
             // button7
             // 
@@ -197,10 +197,10 @@
             this.button7.Text = "Kliki siia";
             this.button7.UseVisualStyleBackColor = false;
             this.button7.Visible = false;
-            this.button7.Click += new System.EventHandler(this.button38_Click);
-            this.button7.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.button38_HelpRequested);
-            this.button7.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button38_MouseClick);
-            this.button7.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button38_MouseMove_1);
+            this.button7.Click += new System.EventHandler(this.Button38_Click);
+            this.button7.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.Button38_HelpRequested);
+            this.button7.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseClick);
+            this.button7.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseMove_1);
             // 
             // button8
             // 
@@ -214,10 +214,10 @@
             this.button8.Text = "Kliki siia";
             this.button8.UseVisualStyleBackColor = false;
             this.button8.Visible = false;
-            this.button8.Click += new System.EventHandler(this.button38_Click);
-            this.button8.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.button38_HelpRequested);
-            this.button8.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button38_MouseClick);
-            this.button8.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button38_MouseMove_1);
+            this.button8.Click += new System.EventHandler(this.Button38_Click);
+            this.button8.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.Button38_HelpRequested);
+            this.button8.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseClick);
+            this.button8.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseMove_1);
             // 
             // button9
             // 
@@ -231,10 +231,10 @@
             this.button9.Text = "Kliki siia";
             this.button9.UseVisualStyleBackColor = false;
             this.button9.Visible = false;
-            this.button9.Click += new System.EventHandler(this.button38_Click);
-            this.button9.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.button38_HelpRequested);
-            this.button9.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button38_MouseClick);
-            this.button9.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button38_MouseMove_1);
+            this.button9.Click += new System.EventHandler(this.Button38_Click);
+            this.button9.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.Button38_HelpRequested);
+            this.button9.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseClick);
+            this.button9.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseMove_1);
             // 
             // button10
             // 
@@ -248,10 +248,10 @@
             this.button10.Text = "Kliki siia";
             this.button10.UseVisualStyleBackColor = false;
             this.button10.Visible = false;
-            this.button10.Click += new System.EventHandler(this.button38_Click);
-            this.button10.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.button38_HelpRequested);
-            this.button10.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button38_MouseClick);
-            this.button10.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button38_MouseMove_1);
+            this.button10.Click += new System.EventHandler(this.Button38_Click);
+            this.button10.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.Button38_HelpRequested);
+            this.button10.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseClick);
+            this.button10.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseMove_1);
             // 
             // button11
             // 
@@ -265,10 +265,10 @@
             this.button11.Text = "Kliki siia";
             this.button11.UseVisualStyleBackColor = false;
             this.button11.Visible = false;
-            this.button11.Click += new System.EventHandler(this.button38_Click);
-            this.button11.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.button38_HelpRequested);
-            this.button11.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button38_MouseClick);
-            this.button11.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button38_MouseMove_1);
+            this.button11.Click += new System.EventHandler(this.Button38_Click);
+            this.button11.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.Button38_HelpRequested);
+            this.button11.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseClick);
+            this.button11.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseMove_1);
             // 
             // button12
             // 
@@ -282,10 +282,10 @@
             this.button12.Text = "Kliki siia";
             this.button12.UseVisualStyleBackColor = false;
             this.button12.Visible = false;
-            this.button12.Click += new System.EventHandler(this.button38_Click);
-            this.button12.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.button38_HelpRequested);
-            this.button12.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button38_MouseClick);
-            this.button12.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button38_MouseMove_1);
+            this.button12.Click += new System.EventHandler(this.Button38_Click);
+            this.button12.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.Button38_HelpRequested);
+            this.button12.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseClick);
+            this.button12.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseMove_1);
             // 
             // button13
             // 
@@ -299,10 +299,10 @@
             this.button13.Text = "Kliki siia";
             this.button13.UseVisualStyleBackColor = false;
             this.button13.Visible = false;
-            this.button13.Click += new System.EventHandler(this.button38_Click);
-            this.button13.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.button38_HelpRequested);
-            this.button13.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button38_MouseClick);
-            this.button13.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button38_MouseMove_1);
+            this.button13.Click += new System.EventHandler(this.Button38_Click);
+            this.button13.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.Button38_HelpRequested);
+            this.button13.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseClick);
+            this.button13.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseMove_1);
             // 
             // button14
             // 
@@ -316,10 +316,10 @@
             this.button14.Text = "Kliki siia";
             this.button14.UseVisualStyleBackColor = false;
             this.button14.Visible = false;
-            this.button14.Click += new System.EventHandler(this.button38_Click);
-            this.button14.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.button38_HelpRequested);
-            this.button14.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button38_MouseClick);
-            this.button14.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button38_MouseMove_1);
+            this.button14.Click += new System.EventHandler(this.Button38_Click);
+            this.button14.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.Button38_HelpRequested);
+            this.button14.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseClick);
+            this.button14.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseMove_1);
             // 
             // button15
             // 
@@ -333,10 +333,10 @@
             this.button15.Text = "Kliki siia";
             this.button15.UseVisualStyleBackColor = false;
             this.button15.Visible = false;
-            this.button15.Click += new System.EventHandler(this.button38_Click);
-            this.button15.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.button38_HelpRequested);
-            this.button15.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button38_MouseClick);
-            this.button15.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button38_MouseMove_1);
+            this.button15.Click += new System.EventHandler(this.Button38_Click);
+            this.button15.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.Button38_HelpRequested);
+            this.button15.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseClick);
+            this.button15.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseMove_1);
             // 
             // button16
             // 
@@ -350,10 +350,10 @@
             this.button16.Text = "Kliki siia";
             this.button16.UseVisualStyleBackColor = false;
             this.button16.Visible = false;
-            this.button16.Click += new System.EventHandler(this.button38_Click);
-            this.button16.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.button38_HelpRequested);
-            this.button16.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button38_MouseClick);
-            this.button16.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button38_MouseMove_1);
+            this.button16.Click += new System.EventHandler(this.Button38_Click);
+            this.button16.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.Button38_HelpRequested);
+            this.button16.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseClick);
+            this.button16.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseMove_1);
             // 
             // button17
             // 
@@ -367,10 +367,10 @@
             this.button17.Text = "Kliki siia";
             this.button17.UseVisualStyleBackColor = false;
             this.button17.Visible = false;
-            this.button17.Click += new System.EventHandler(this.button38_Click);
-            this.button17.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.button38_HelpRequested);
-            this.button17.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button38_MouseClick);
-            this.button17.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button38_MouseMove_1);
+            this.button17.Click += new System.EventHandler(this.Button38_Click);
+            this.button17.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.Button38_HelpRequested);
+            this.button17.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseClick);
+            this.button17.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseMove_1);
             // 
             // button18
             // 
@@ -384,10 +384,10 @@
             this.button18.Text = "Kliki siia";
             this.button18.UseVisualStyleBackColor = false;
             this.button18.Visible = false;
-            this.button18.Click += new System.EventHandler(this.button38_Click);
-            this.button18.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.button38_HelpRequested);
-            this.button18.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button38_MouseClick);
-            this.button18.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button38_MouseMove_1);
+            this.button18.Click += new System.EventHandler(this.Button38_Click);
+            this.button18.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.Button38_HelpRequested);
+            this.button18.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseClick);
+            this.button18.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseMove_1);
             // 
             // button19
             // 
@@ -401,10 +401,10 @@
             this.button19.Text = "Kliki siia";
             this.button19.UseVisualStyleBackColor = false;
             this.button19.Visible = false;
-            this.button19.Click += new System.EventHandler(this.button38_Click);
-            this.button19.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.button38_HelpRequested);
-            this.button19.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button38_MouseClick);
-            this.button19.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button38_MouseMove_1);
+            this.button19.Click += new System.EventHandler(this.Button38_Click);
+            this.button19.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.Button38_HelpRequested);
+            this.button19.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseClick);
+            this.button19.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseMove_1);
             // 
             // button20
             // 
@@ -418,10 +418,10 @@
             this.button20.Text = "Kliki siia";
             this.button20.UseVisualStyleBackColor = false;
             this.button20.Visible = false;
-            this.button20.Click += new System.EventHandler(this.button38_Click);
-            this.button20.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.button38_HelpRequested);
-            this.button20.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button38_MouseClick);
-            this.button20.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button38_MouseMove_1);
+            this.button20.Click += new System.EventHandler(this.Button38_Click);
+            this.button20.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.Button38_HelpRequested);
+            this.button20.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseClick);
+            this.button20.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseMove_1);
             // 
             // button21
             // 
@@ -435,10 +435,10 @@
             this.button21.Text = "Kliki siia";
             this.button21.UseVisualStyleBackColor = false;
             this.button21.Visible = false;
-            this.button21.Click += new System.EventHandler(this.button38_Click);
-            this.button21.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.button38_HelpRequested);
-            this.button21.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button38_MouseClick);
-            this.button21.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button38_MouseMove_1);
+            this.button21.Click += new System.EventHandler(this.Button38_Click);
+            this.button21.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.Button38_HelpRequested);
+            this.button21.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseClick);
+            this.button21.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseMove_1);
             // 
             // button22
             // 
@@ -452,10 +452,10 @@
             this.button22.Text = "Kliki siia";
             this.button22.UseVisualStyleBackColor = false;
             this.button22.Visible = false;
-            this.button22.Click += new System.EventHandler(this.button38_Click);
-            this.button22.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.button38_HelpRequested);
-            this.button22.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button38_MouseClick);
-            this.button22.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button38_MouseMove_1);
+            this.button22.Click += new System.EventHandler(this.Button38_Click);
+            this.button22.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.Button38_HelpRequested);
+            this.button22.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseClick);
+            this.button22.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseMove_1);
             // 
             // button23
             // 
@@ -469,10 +469,10 @@
             this.button23.Text = "Kliki siia";
             this.button23.UseVisualStyleBackColor = false;
             this.button23.Visible = false;
-            this.button23.Click += new System.EventHandler(this.button38_Click);
-            this.button23.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.button38_HelpRequested);
-            this.button23.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button38_MouseClick);
-            this.button23.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button38_MouseMove_1);
+            this.button23.Click += new System.EventHandler(this.Button38_Click);
+            this.button23.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.Button38_HelpRequested);
+            this.button23.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseClick);
+            this.button23.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseMove_1);
             // 
             // button24
             // 
@@ -486,10 +486,10 @@
             this.button24.Text = "Kliki siia";
             this.button24.UseVisualStyleBackColor = false;
             this.button24.Visible = false;
-            this.button24.Click += new System.EventHandler(this.button38_Click);
-            this.button24.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.button38_HelpRequested);
-            this.button24.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button38_MouseClick);
-            this.button24.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button38_MouseMove_1);
+            this.button24.Click += new System.EventHandler(this.Button38_Click);
+            this.button24.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.Button38_HelpRequested);
+            this.button24.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseClick);
+            this.button24.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseMove_1);
             // 
             // button25
             // 
@@ -503,10 +503,10 @@
             this.button25.Text = "Kliki siia";
             this.button25.UseVisualStyleBackColor = false;
             this.button25.Visible = false;
-            this.button25.Click += new System.EventHandler(this.button38_Click);
-            this.button25.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.button38_HelpRequested);
-            this.button25.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button38_MouseClick);
-            this.button25.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button38_MouseMove_1);
+            this.button25.Click += new System.EventHandler(this.Button38_Click);
+            this.button25.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.Button38_HelpRequested);
+            this.button25.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseClick);
+            this.button25.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseMove_1);
             // 
             // button26
             // 
@@ -520,10 +520,10 @@
             this.button26.Text = "Kliki siia";
             this.button26.UseVisualStyleBackColor = false;
             this.button26.Visible = false;
-            this.button26.Click += new System.EventHandler(this.button38_Click);
-            this.button26.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.button38_HelpRequested);
-            this.button26.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button38_MouseClick);
-            this.button26.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button38_MouseMove_1);
+            this.button26.Click += new System.EventHandler(this.Button38_Click);
+            this.button26.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.Button38_HelpRequested);
+            this.button26.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseClick);
+            this.button26.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseMove_1);
             // 
             // button27
             // 
@@ -537,10 +537,10 @@
             this.button27.Text = "Kliki siia";
             this.button27.UseVisualStyleBackColor = false;
             this.button27.Visible = false;
-            this.button27.Click += new System.EventHandler(this.button38_Click);
-            this.button27.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.button38_HelpRequested);
-            this.button27.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button38_MouseClick);
-            this.button27.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button38_MouseMove_1);
+            this.button27.Click += new System.EventHandler(this.Button38_Click);
+            this.button27.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.Button38_HelpRequested);
+            this.button27.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseClick);
+            this.button27.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseMove_1);
             // 
             // button28
             // 
@@ -554,10 +554,10 @@
             this.button28.Text = "Kliki siia";
             this.button28.UseVisualStyleBackColor = false;
             this.button28.Visible = false;
-            this.button28.Click += new System.EventHandler(this.button38_Click);
-            this.button28.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.button38_HelpRequested);
-            this.button28.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button38_MouseClick);
-            this.button28.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button38_MouseMove_1);
+            this.button28.Click += new System.EventHandler(this.Button38_Click);
+            this.button28.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.Button38_HelpRequested);
+            this.button28.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseClick);
+            this.button28.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseMove_1);
             // 
             // button29
             // 
@@ -571,10 +571,10 @@
             this.button29.Text = "Kliki siia";
             this.button29.UseVisualStyleBackColor = false;
             this.button29.Visible = false;
-            this.button29.Click += new System.EventHandler(this.button38_Click);
-            this.button29.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.button38_HelpRequested);
-            this.button29.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button38_MouseClick);
-            this.button29.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button38_MouseMove_1);
+            this.button29.Click += new System.EventHandler(this.Button38_Click);
+            this.button29.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.Button38_HelpRequested);
+            this.button29.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseClick);
+            this.button29.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseMove_1);
             // 
             // button30
             // 
@@ -588,10 +588,10 @@
             this.button30.Text = "Kliki siia";
             this.button30.UseVisualStyleBackColor = false;
             this.button30.Visible = false;
-            this.button30.Click += new System.EventHandler(this.button38_Click);
-            this.button30.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.button38_HelpRequested);
-            this.button30.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button38_MouseClick);
-            this.button30.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button38_MouseMove_1);
+            this.button30.Click += new System.EventHandler(this.Button38_Click);
+            this.button30.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.Button38_HelpRequested);
+            this.button30.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseClick);
+            this.button30.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseMove_1);
             // 
             // button31
             // 
@@ -605,10 +605,10 @@
             this.button31.Text = "Kliki siia";
             this.button31.UseVisualStyleBackColor = false;
             this.button31.Visible = false;
-            this.button31.Click += new System.EventHandler(this.button38_Click);
-            this.button31.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.button38_HelpRequested);
-            this.button31.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button38_MouseClick);
-            this.button31.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button38_MouseMove_1);
+            this.button31.Click += new System.EventHandler(this.Button38_Click);
+            this.button31.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.Button38_HelpRequested);
+            this.button31.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseClick);
+            this.button31.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseMove_1);
             // 
             // button32
             // 
@@ -622,10 +622,10 @@
             this.button32.Text = "Kliki siia";
             this.button32.UseVisualStyleBackColor = false;
             this.button32.Visible = false;
-            this.button32.Click += new System.EventHandler(this.button38_Click);
-            this.button32.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.button38_HelpRequested);
-            this.button32.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button38_MouseClick);
-            this.button32.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button38_MouseMove_1);
+            this.button32.Click += new System.EventHandler(this.Button38_Click);
+            this.button32.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.Button38_HelpRequested);
+            this.button32.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseClick);
+            this.button32.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseMove_1);
             // 
             // button33
             // 
@@ -639,10 +639,10 @@
             this.button33.Text = "Kliki siia";
             this.button33.UseVisualStyleBackColor = false;
             this.button33.Visible = false;
-            this.button33.Click += new System.EventHandler(this.button38_Click);
-            this.button33.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.button38_HelpRequested);
-            this.button33.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button38_MouseClick);
-            this.button33.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button38_MouseMove_1);
+            this.button33.Click += new System.EventHandler(this.Button38_Click);
+            this.button33.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.Button38_HelpRequested);
+            this.button33.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseClick);
+            this.button33.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseMove_1);
             // 
             // button34
             // 
@@ -656,10 +656,10 @@
             this.button34.Text = "Kliki siia";
             this.button34.UseVisualStyleBackColor = false;
             this.button34.Visible = false;
-            this.button34.Click += new System.EventHandler(this.button38_Click);
-            this.button34.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.button38_HelpRequested);
-            this.button34.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button38_MouseClick);
-            this.button34.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button38_MouseMove_1);
+            this.button34.Click += new System.EventHandler(this.Button38_Click);
+            this.button34.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.Button38_HelpRequested);
+            this.button34.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseClick);
+            this.button34.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseMove_1);
             // 
             // button35
             // 
@@ -673,10 +673,10 @@
             this.button35.Text = "Kliki siia";
             this.button35.UseVisualStyleBackColor = false;
             this.button35.Visible = false;
-            this.button35.Click += new System.EventHandler(this.button38_Click);
-            this.button35.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.button38_HelpRequested);
-            this.button35.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button38_MouseClick);
-            this.button35.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button38_MouseMove_1);
+            this.button35.Click += new System.EventHandler(this.Button38_Click);
+            this.button35.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.Button38_HelpRequested);
+            this.button35.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseClick);
+            this.button35.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseMove_1);
             // 
             // button36
             // 
@@ -690,10 +690,10 @@
             this.button36.Text = "Kliki siia";
             this.button36.UseVisualStyleBackColor = false;
             this.button36.Visible = false;
-            this.button36.Click += new System.EventHandler(this.button38_Click);
-            this.button36.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.button38_HelpRequested);
-            this.button36.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button38_MouseClick);
-            this.button36.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button38_MouseMove_1);
+            this.button36.Click += new System.EventHandler(this.Button38_Click);
+            this.button36.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.Button38_HelpRequested);
+            this.button36.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseClick);
+            this.button36.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseMove_1);
             // 
             // button37
             // 
@@ -707,10 +707,10 @@
             this.button37.Text = "Kliki siia";
             this.button37.UseVisualStyleBackColor = false;
             this.button37.Visible = false;
-            this.button37.Click += new System.EventHandler(this.button38_Click);
-            this.button37.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.button38_HelpRequested);
-            this.button37.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button38_MouseClick);
-            this.button37.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button38_MouseMove_1);
+            this.button37.Click += new System.EventHandler(this.Button38_Click);
+            this.button37.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.Button38_HelpRequested);
+            this.button37.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseClick);
+            this.button37.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseMove_1);
             // 
             // button38
             // 
@@ -724,10 +724,10 @@
             this.button38.Text = "Kliki siia";
             this.button38.UseVisualStyleBackColor = false;
             this.button38.Visible = false;
-            this.button38.Click += new System.EventHandler(this.button38_Click);
-            this.button38.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.button38_HelpRequested);
-            this.button38.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button38_MouseClick);
-            this.button38.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button38_MouseMove_1);
+            this.button38.Click += new System.EventHandler(this.Button38_Click);
+            this.button38.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.Button38_HelpRequested);
+            this.button38.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseClick);
+            this.button38.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseMove_1);
             // 
             // button39
             // 
@@ -741,10 +741,10 @@
             this.button39.Text = "Kliki siia";
             this.button39.UseVisualStyleBackColor = false;
             this.button39.Visible = false;
-            this.button39.Click += new System.EventHandler(this.button38_Click);
-            this.button39.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.button38_HelpRequested);
-            this.button39.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button38_MouseClick);
-            this.button39.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button38_MouseMove_1);
+            this.button39.Click += new System.EventHandler(this.Button38_Click);
+            this.button39.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.Button38_HelpRequested);
+            this.button39.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseClick);
+            this.button39.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseMove_1);
             // 
             // button40
             // 
@@ -758,10 +758,10 @@
             this.button40.Text = "Kliki siia";
             this.button40.UseVisualStyleBackColor = false;
             this.button40.Visible = false;
-            this.button40.Click += new System.EventHandler(this.button38_Click);
-            this.button40.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.button38_HelpRequested);
-            this.button40.MouseClick += new System.Windows.Forms.MouseEventHandler(this.button38_MouseClick);
-            this.button40.MouseMove += new System.Windows.Forms.MouseEventHandler(this.button38_MouseMove_1);
+            this.button40.Click += new System.EventHandler(this.Button38_Click);
+            this.button40.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.Button38_HelpRequested);
+            this.button40.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseClick);
+            this.button40.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Button38_MouseMove_1);
             // 
             // label1
             // 
@@ -772,10 +772,8 @@
             this.label1.Size = new System.Drawing.Size(123, 25);
             this.label1.TabIndex = 40;
             this.label1.Text = "Proovikordi: 0";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
-            this.label1.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.label1_HelpRequested);
-            this.label1.DoubleClick += new System.EventHandler(this.label1_DoubleClick);
-            this.label1.Resize += new System.EventHandler(this.label1_Resize);
+            this.label1.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.Label1_HelpRequested);
+            this.label1.DoubleClick += new System.EventHandler(this.Label1_DoubleClick);
             // 
             // checkBox1
             // 
@@ -790,8 +788,8 @@
             this.checkBox1.TabIndex = 41;
             this.checkBox1.Text = "Muuda värve";
             this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
-            this.checkBox1.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.checkBox1_HelpRequested);
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.CheckBox1_CheckedChanged);
+            this.checkBox1.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.CheckBox1_HelpRequested);
             // 
             // comboBox1
             // 
@@ -808,8 +806,7 @@
             this.comboBox1.Size = new System.Drawing.Size(150, 21);
             this.comboBox1.TabIndex = 42;
             this.comboBox1.Text = "Select language/Vali keel";
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
-            this.comboBox1.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.comboBox1_HelpRequested);
+            this.comboBox1.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.ComboBox1_HelpRequested);
             // 
             // button41
             // 
@@ -822,8 +819,8 @@
             this.button41.TabIndex = 43;
             this.button41.Text = "Kopeeri lõikelauale";
             this.button41.UseVisualStyleBackColor = false;
-            this.button41.Click += new System.EventHandler(this.button41_Click);
-            this.button41.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.button41_HelpRequested);
+            this.button41.Click += new System.EventHandler(this.Button41_Click);
+            this.button41.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.Button41_HelpRequested);
             // 
             // button42
             // 
@@ -835,8 +832,8 @@
             this.button42.TabIndex = 44;
             this.button42.Text = "Kasuta koodi";
             this.button42.UseVisualStyleBackColor = true;
-            this.button42.Click += new System.EventHandler(this.button42_Click);
-            this.button42.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.button42_HelpRequested);
+            this.button42.Click += new System.EventHandler(this.Button42_Click);
+            this.button42.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.Button42_HelpRequested);
             // 
             // textBox1
             // 
@@ -848,9 +845,8 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(123, 23);
             this.textBox1.TabIndex = 45;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged_1);
-            this.textBox1.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.textBox1_HelpRequested);
-            this.textBox1.DoubleClick += new System.EventHandler(this.textBox1_DoubleClick);
+            this.textBox1.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.TextBox1_HelpRequested);
+            this.textBox1.DoubleClick += new System.EventHandler(this.TextBox1_DoubleClick);
             // 
             // listBox1
             // 
@@ -860,7 +856,6 @@
             this.listBox1.Size = new System.Drawing.Size(120, 95);
             this.listBox1.TabIndex = 46;
             this.listBox1.Visible = false;
-            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -871,7 +866,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(693, 90);
             this.label2.TabIndex = 47;
-            this.label2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.label2_MouseMove);
+            this.label2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Label2_MouseMove);
             // 
             // progressBar1
             // 
@@ -887,7 +882,7 @@
             // timer1
             // 
             this.timer1.Interval = 1000;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
             // 
             // helpLabel1
             // 
@@ -897,7 +892,7 @@
             this.helpLabel1.Size = new System.Drawing.Size(255, 29);
             this.helpLabel1.TabIndex = 49;
             this.helpLabel1.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            this.helpLabel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.helpLabel1_MouseMove);
+            this.helpLabel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.HelpLabel1_MouseMove);
             // 
             // checkBox2
             // 
@@ -982,8 +977,6 @@
             this.Activated += new System.EventHandler(this.Form1_Activated);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Click += new System.EventHandler(this.Form1_Click);
-            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
-            this.MouseLeave += new System.EventHandler(this.Form1_MouseLeave);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseMove);
             this.Resize += new System.EventHandler(this.Form1_Resize);
             this.ResumeLayout(false);

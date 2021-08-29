@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO;
@@ -17,7 +13,7 @@ namespace UltimateBlueScreenSimulator
     {
         public bool finalize = false;
         WebClient webClient;               // Our WebClient that will be doing the downloading for us
-        Stopwatch sw = new Stopwatch();    // The stopwatch which we will be using to calculate the download speed
+        readonly Stopwatch sw = new Stopwatch();    // The stopwatch which we will be using to calculate the download speed
         string GoodHash = "6ABA5BC55589EE8D64E30B36596E5517";
 
         public UpdateInterface()
@@ -40,25 +36,57 @@ namespace UltimateBlueScreenSimulator
 
         public void DownloadFile(string urlAddress, string location)
         {
-            using (webClient = new WebClient())
+            try
             {
-                webClient.DownloadFileCompleted += new AsyncCompletedEventHandler(Completed);
-                webClient.DownloadProgressChanged += new DownloadProgressChangedEventHandler(ProgressChanged);
-
-                // The variable that will be holding the url address (making sure it starts with http://)
-                Uri URL = urlAddress.StartsWith("http://", StringComparison.OrdinalIgnoreCase) ? new Uri(urlAddress) : new Uri("http://" + urlAddress);
-
-                // Start the stopwatch which we will be using to calculate the download speed
-                sw.Start();
-
-                try
+                using (webClient = new WebClient())
                 {
-                    // Start downloading the file
-                    webClient.DownloadFileAsync(URL, location);
+                    webClient.DownloadFileCompleted += new AsyncCompletedEventHandler(Completed);
+                    webClient.DownloadProgressChanged += new DownloadProgressChangedEventHandler(ProgressChanged);
+
+                    // The variable that will be holding the url address (making sure it starts with http://)
+                    Uri URL = urlAddress.StartsWith("http://", StringComparison.OrdinalIgnoreCase) ? new Uri(urlAddress) : new Uri("http://" + urlAddress);
+
+                    // Start the stopwatch which we will be using to calculate the download speed
+                    sw.Start();
+
+                    try
+                    {
+                        // Start downloading the file
+                        webClient.DownloadFileAsync(URL, location);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
                 }
-                catch (Exception ex)
+                if (location.EndsWith(".txt"))
                 {
-                    MessageBox.Show(ex.Message);
+                    File.SetAttributes(location, FileAttributes.Hidden);
+                }
+            } catch (Exception ex)
+            {
+                if (Program.f1.enableeggs)
+                {
+                    Metaerror me = new Metaerror
+                    {
+                        message = ex.Message,
+                        stack_trace = ex.StackTrace,
+                        type = "VioletScreen"
+                    };
+                    switch (me.ShowDialog())
+                    {
+                        case DialogResult.Abort:
+                            Application.Exit();
+                            return;
+                        case DialogResult.Retry:
+                            DownloadFile(urlAddress, location);
+                            return;
+                        case DialogResult.Ignore:
+                            break;
+                    }
+                } else
+                {
+                    MessageBox.Show("An error has occoured.\n\n" + ex.Message + "\n\n" + ex.StackTrace, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -70,7 +98,7 @@ namespace UltimateBlueScreenSimulator
             dloadState.Text = string.Format("{0} KB downloaded (Transfer rate: {1} kb/s)", (e.BytesReceived / 1024d).ToString("0.00"), (e.BytesReceived / 1024d / sw.Elapsed.TotalSeconds).ToString("0.00"));
 
             // Update the progressbar percentage only when the value is not the same.
-            progressBar1.Value = e.ProgressPercentage;
+            updateProgress.Value = e.ProgressPercentage;
 
         }
 
@@ -108,7 +136,7 @@ namespace UltimateBlueScreenSimulator
 
         private void UpdateInterface_Load(object sender, EventArgs e)
         {
-            if (Program.f1.hashverify == false) { label4.Text = "Hashchecking (will be skipped)"; }
+            if (Program.f1.hashverify == false) { hashCheckLabel.Text = "Hashchecking (will be skipped)"; }
             GoodHash = File.ReadAllText("hash.txt").Trim();
             if (!finalize)
             { 
@@ -116,7 +144,7 @@ namespace UltimateBlueScreenSimulator
                 SetStatus(HashStatus, "Pending");
                 SetStatus(Launchstatus, "Pending");
                 SetStatus(TempStatus, "Pending");
-                DownloadFile("markustegelane.tk/app/BSSP_latest.zim", "BSSP.exe");
+                DownloadFile(Program.update_server + "/BSSP_latest.zim", "BSSP.exe");
             }
             if (finalize)
             {
@@ -124,7 +152,7 @@ namespace UltimateBlueScreenSimulator
                 SetStatus(HashStatus, "Success");
                 SetStatus(Launchstatus, "Success");
                 SetStatus(TempStatus, "Processing");
-                progressBar1.Visible = false;
+                updateProgress.Visible = false;
                 dloadState.Visible = false;
                 cleanWait.Enabled = true;
             }
@@ -152,7 +180,7 @@ namespace UltimateBlueScreenSimulator
 
         private void HashWait_Tick(object sender, EventArgs e)
         {
-            progressBar1.Visible = false;
+            updateProgress.Visible = false;
             hashWait.Enabled = false;
             MD5 d5 = MD5.Create();
             Byte[] hash = d5.ComputeHash(File.ReadAllBytes("BSSP.exe"));
@@ -171,7 +199,7 @@ namespace UltimateBlueScreenSimulator
                     SetStatus(HashStatus, "Pending");
                     SetStatus(Launchstatus, "Pending");
                     SetStatus(TempStatus, "Pending");
-                    DownloadFile("markustegelane.tk/app/BSSP_latest.zim", "BSSP.exe");
+                    DownloadFile(Program.update_server + "/BSSP_latest.zim", "BSSP.exe");
                 } else
                 {
                     SetStatus(Launchstatus, "Processing");
@@ -197,6 +225,7 @@ namespace UltimateBlueScreenSimulator
         private void CleanWait_Tick(object sender, EventArgs e)
         {
             cleanWait.Enabled = false;
+            File.SetAttributes("UltimateBlueScreenSimulator.exe", FileAttributes.Hidden);
             File.Delete("UltimateBlueScreenSimulator.exe");
             File.Move("BSSP_new.exe", "UltimateBlueScreenSimulator.exe");
             System.IO.File.WriteAllText("finish.bat", Properties.Resources.final);
@@ -208,6 +237,17 @@ namespace UltimateBlueScreenSimulator
             p.StartInfo.WorkingDirectory = Environment.CurrentDirectory;
             p.Start();
             this.Close();
+        }
+
+        private void BlinkBlink_Tick(object sender, EventArgs e)
+        {
+            if (warningLabel.ForeColor == SystemColors.ControlText)
+            {
+                warningLabel.ForeColor = Color.Red;
+            } else
+            {
+                warningLabel.ForeColor = SystemColors.ControlText;
+            }
         }
     }
 }

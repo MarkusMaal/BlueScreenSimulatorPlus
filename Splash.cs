@@ -14,19 +14,14 @@ namespace UltimateBlueScreenSimulator
             InitializeComponent();
         }
 
-
-        private void Splash_Load(object sender, EventArgs e)
-        {
-        }
-
         private void Timer1_Tick(object sender, EventArgs e)
         {
-            timer1.Enabled = false;
+            veriFileTimer.Enabled = false;
             Program.verificate = true;
-            if (!File.Exists(Environment.GetEnvironmentVariable("USERPROFILE") + @"\bssp_firstlaunch.txt")) { Program.verificate = false; }
+            if (!File.Exists(Environment.GetEnvironmentVariable("USERPROFILE") + @"\bssp2_firstlaunch.txt")) { Program.verificate = false; }
             if (Program.verificate == true)
             {
-                if (Program.Verifile() != File.ReadAllText(Environment.GetEnvironmentVariable("USERPROFILE") + @"\bssp_firstlaunch.txt"))
+                if (Program.Verifile() != File.ReadAllText(Environment.GetEnvironmentVariable("USERPROFILE") + @"\bssp2_firstlaunch.txt"))
                 {
                     if (args.Contains("/c") && args.Contains("/hwm"))
                     {
@@ -50,6 +45,12 @@ namespace UltimateBlueScreenSimulator
             this.Close();
         }
 
-
+        private void Splash_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+        }
     }
 }

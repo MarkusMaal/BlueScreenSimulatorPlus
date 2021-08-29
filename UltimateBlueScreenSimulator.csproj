@@ -33,10 +33,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>bsodgen_npJ_icon.ico</ApplicationIcon>
+    <ApplicationIcon>bssp2.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Management">
@@ -53,23 +54,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AboutBox1.cs">
+    <Compile Include="AboutSettingsDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AboutBox1.Designer.cs">
-      <DependentUpon>AboutBox1.cs</DependentUpon>
+    <Compile Include="AboutSettingsDialog.Designer.cs">
+      <DependentUpon>AboutSettingsDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddBluescreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddBluescreen.Designer.cs">
+      <DependentUpon>AddBluescreen.cs</DependentUpon>
     </Compile>
     <Compile Include="BootMgr.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="BootMgr.Designer.cs">
       <DependentUpon>BootMgr.cs</DependentUpon>
-    </Compile>
-    <Compile Include="bsodhacks.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="bsodhacks.Designer.cs">
-      <DependentUpon>bsodhacks.cs</DependentUpon>
     </Compile>
     <Compile Include="BTS.cs">
       <SubType>Form</SubType>
@@ -83,6 +84,12 @@
     <Compile Include="cebsod.Designer.cs">
       <DependentUpon>cebsod.cs</DependentUpon>
     </Compile>
+    <Compile Include="ChooseFile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChooseFile.Designer.cs">
+      <DependentUpon>ChooseFile.cs</DependentUpon>
+    </Compile>
     <Compile Include="ClickIt.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,17 +102,35 @@
     <Compile Include="ClickIt2.Designer.cs">
       <DependentUpon>ClickIt2.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form1.cs">
+    <Compile Include="DictEdit.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="DictEdit.Designer.cs">
+      <DependentUpon>DictEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main.Designer.cs">
+      <DependentUpon>Main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Gen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Gen.Designer.cs">
+      <DependentUpon>Gen.cs</DependentUpon>
     </Compile>
     <Compile Include="IndexForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="IndexForm.Designer.cs">
       <DependentUpon>IndexForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="metaerror.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="metaerror.Designer.cs">
+      <DependentUpon>metaerror.cs</DependentUpon>
     </Compile>
     <Compile Include="NTBSOD.cs">
       <SubType>Form</SubType>
@@ -127,6 +152,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SimulatorDatabase.cs" />
     <Compile Include="Splash.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -145,17 +171,38 @@
     <Compile Include="SupportEditor.Designer.cs">
       <DependentUpon>SupportEditor.cs</DependentUpon>
     </Compile>
+    <Compile Include="System\Windows\Forms\AliasedLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TextView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TextView.Designer.cs">
+      <DependentUpon>TextView.cs</DependentUpon>
+    </Compile>
     <Compile Include="UpdateInterface.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UpdateInterface.Designer.cs">
       <DependentUpon>UpdateInterface.cs</DependentUpon>
     </Compile>
+    <Compile Include="vistabs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="vistabs.Designer.cs">
+      <DependentUpon>vistabs.cs</DependentUpon>
+    </Compile>
     <Compile Include="w2kbs.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="w2kbs.Designer.cs">
       <DependentUpon>w2kbs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="win.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="win.Designer.cs">
+      <DependentUpon>win.cs</DependentUpon>
     </Compile>
     <Compile Include="WindowScreen.cs">
       <SubType>Form</SubType>
@@ -175,14 +222,14 @@
     <Compile Include="xvsbs.Designer.cs">
       <DependentUpon>xvsbs.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="AboutBox1.resx">
-      <DependentUpon>AboutBox1.cs</DependentUpon>
+    <EmbeddedResource Include="AboutSettingsDialog.resx">
+      <DependentUpon>AboutSettingsDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddBluescreen.resx">
+      <DependentUpon>AddBluescreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BootMgr.resx">
       <DependentUpon>BootMgr.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="bsodhacks.resx">
-      <DependentUpon>bsodhacks.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="BTS.resx">
       <DependentUpon>BTS.cs</DependentUpon>
@@ -190,17 +237,29 @@
     <EmbeddedResource Include="cebsod.resx">
       <DependentUpon>cebsod.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ChooseFile.resx">
+      <DependentUpon>ChooseFile.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ClickIt.resx">
       <DependentUpon>ClickIt.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ClickIt2.resx">
       <DependentUpon>ClickIt2.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="DictEdit.resx">
+      <DependentUpon>DictEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main.resx">
+      <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Gen.resx">
+      <DependentUpon>Gen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="IndexForm.resx">
       <DependentUpon>IndexForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="metaerror.resx">
+      <DependentUpon>metaerror.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NTBSOD.resx">
       <DependentUpon>NTBSOD.cs</DependentUpon>
@@ -230,11 +289,20 @@
     <EmbeddedResource Include="SupportEditor.resx">
       <DependentUpon>SupportEditor.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="TextView.resx">
+      <DependentUpon>TextView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UpdateInterface.resx">
       <DependentUpon>UpdateInterface.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="vistabs.resx">
+      <DependentUpon>vistabs.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="w2kbs.resx">
       <DependentUpon>w2kbs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="win.resx">
+      <DependentUpon>win.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WindowScreen.resx">
       <DependentUpon>WindowScreen.cs</DependentUpon>
@@ -262,6 +330,8 @@
     <None Include="Resources\bsodqr.bmp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\BSSP manual.pdf" />
+    <None Include="Resources\COPYING" />
     <None Include="Resources\rasters.bmp" />
   </ItemGroup>
   <ItemGroup>
@@ -275,13 +345,23 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="bsodgen_npJ_icon.ico" />
+    <Content Include="bssp2.ico" />
+    <None Include="Resources\bsodbanner2.png" />
+    <None Include="Resources\round_corners.png" />
+    <None Include="Resources\rasters3.bmp" />
+    <None Include="Resources\doscii.png" />
+    <None Include="Resources\win2_splash.bmp" />
+    <None Include="Resources\win1_splash.bmp" />
+    <None Include="Resources\win1_splash.png" />
+    <None Include="Resources\untitled.wav" />
+    <None Include="Resources\dummy.png" />
+    <None Include="Resources\CULPRIT_FILES.txt" />
     <None Include="Resources\corner_br1.png" />
     <None Include="Resources\corner_tr.png" />
     <None Include="Resources\corner_tl.png" />
     <None Include="Resources\corner_br.png" />
     <None Include="Resources\corner_bl.png" />
     <None Include="Resources\MarkusTegelane_element_brandpic.png" />
-    <None Include="Resources\rasters3.bmp" />
     <None Include="Resources\verifile.png" />
     <None Include="Resources\msoftware.png" />
     <None Include="Resources\bsodbanner.png" />

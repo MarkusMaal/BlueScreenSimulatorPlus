@@ -16,105 +16,105 @@ namespace UltimateBlueScreenSimulator
         {
             InitializeComponent();
         }
-        private void click9_MouseClick(object sender, MouseEventArgs e)
+        private void Click9_MouseClick(object sender, MouseEventArgs e)
         {
             MessageBox.Show("You finished impossible! You are awesome!");
         }
 
-        private void click9_Click(object sender, EventArgs e)
+        private void Click9_Click(object sender, EventArgs e)
         {
             MessageBox.Show("You are a hacker!");
         }
 
-        private void click1_MouseMove(object sender, MouseEventArgs e)
+        private void Click1_MouseMove(object sender, MouseEventArgs e)
         {
             click1.Visible = false;
             click2.Visible = true;
-            num = num + 1;
+            num++;
             label2.Text = num.ToString();
-            ccode();
+            Ccode();
         }
 
-        private void click2_MouseMove(object sender, MouseEventArgs e)
+        private void Click2_MouseMove(object sender, MouseEventArgs e)
         {
             click2.Visible = false;
             click3.Visible = true;
-            num = num + 1;
+            num++;
             label2.Text = num.ToString();
-            ccode();
+            Ccode();
         }
 
-        private void click3_MouseMove(object sender, MouseEventArgs e)
+        private void Click3_MouseMove(object sender, MouseEventArgs e)
         {
 
             click3.Visible = false;
             click4.Visible = true;
-            num = num + 1;
+            num++;
             label2.Text = num.ToString();
-            ccode();
+            Ccode();
         }
 
-        private void click4_MouseMove(object sender, MouseEventArgs e)
+        private void Click4_MouseMove(object sender, MouseEventArgs e)
         {
 
             click4.Visible = false;
             click5.Visible = true;
-            num = num + 1;
+            num++;
             label2.Text = num.ToString();
-            ccode();
+            Ccode();
         }
 
-        private void click5_MouseMove(object sender, MouseEventArgs e)
+        private void Click5_MouseMove(object sender, MouseEventArgs e)
         {
 
             click5.Visible = false;
             click6.Visible = true;
-            num = num + 1;
+            num++;
             label2.Text = num.ToString();
-            ccode();
+            Ccode();
         }
 
-        private void click6_MouseMove(object sender, MouseEventArgs e)
+        private void Click6_MouseMove(object sender, MouseEventArgs e)
         {
 
             click6.Visible = false;
             click7.Visible = true;
-            num = num + 1;
+            num++;
             label2.Text = num.ToString();
-            ccode();
+            Ccode();
         }
 
-        private void click7_MouseMove(object sender, MouseEventArgs e)
+        private void Click7_MouseMove(object sender, MouseEventArgs e)
         {
 
             click7.Visible = false;
             click8.Visible = true;
-            num = num + 1;
+            num++;
             label2.Text = num.ToString();
-            ccode();
+            Ccode();
         }
 
-        private void click8_MouseMove(object sender, MouseEventArgs e)
+        private void Click8_MouseMove(object sender, MouseEventArgs e)
         {
 
             click8.Visible = false;
             click9.Visible = true;
-            num = num + 1;
+            num++;
             label2.Text = num.ToString();
-            ccode();
+            Ccode();
         }
 
-        private void click9_MouseMove(object sender, MouseEventArgs e)
+        private void Click9_MouseMove(object sender, MouseEventArgs e)
         {
 
             click9.Visible = false;
             click1.Visible = true;
-            num = num + 1;
+            num++;
             label2.Text = num.ToString();
-            ccode();
+            Ccode();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
             string s = textBox1.Text;
             string[] words = s.Split('.');
@@ -129,8 +129,7 @@ namespace UltimateBlueScreenSimulator
             listBox1.SelectedIndex = 0;
             Int32.TryParse(listBox1.SelectedItem.ToString(), out num);
             listBox1.SelectedIndex = 1;
-            int g = 0;
-            Int32.TryParse(listBox1.SelectedItem.ToString(), out g);
+            Int32.TryParse(listBox1.SelectedItem.ToString(), out int g);
             click1.Visible = false;
             click2.Visible = false;
             click3.Visible = false;
@@ -179,7 +178,7 @@ namespace UltimateBlueScreenSimulator
             label2.Text = num.ToString();
             listBox1.Items.Clear();
         }
-        void ccode()
+        void Ccode()
         {
             int vb = 0;
             if (click1.Visible == true) { vb = 1; }

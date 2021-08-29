@@ -1,0 +1,211 @@
+ACPI.sys:ACPI Driver for NT
+acpiex.sys:ACPIEx Driver  
+afd.sys:Ancillary Function Driver for WinSock  
+afunix.sys:AF_UNIX socket provider 
+AgileVpn.sys:RAS Agile Vpn Miniport Call Manager 
+ahcache.sys:Application Compatibility Cache  
+atrfiltr.sys:Example ATR Filter Driver  
+bam.sys:BAM Kernel Driver 
+BasicDisplay.sys:Microsoft Basic Display Driver
+BasicRender.sys:Microsoft Basic Render Driver 
+BazisVirtualCDBus.sys:WinCDEmu virtual CDROM bus 
+Beep.SYS:BEEP Driver 
+bindflt.sys:Windows Bind Filter Driver 
+BOOTVID.dll:VGA Boot Driver
+bowser.sys:NT Lan Manager Datagram Receiver Driver
+cdd.dll:Canonical Display Driver
+cdrom.sys:SCSI CD-ROM Driver
+CEA.sys:Event Aggregation Kernel Mode Library  
+CI.dll:Code Integrity Module
+CimFS.SYS:
+CLASSPNP.SYS:SCSI Class System Dll
+cldflt.sys:Cloud Files Mini Filter Driver
+CLFS.SYS:Common Log File System Driver 
+clipsp.sys:CLIP Service
+cmimcext.sys:Kernel Configuration Manager Initial Configuration Extension Host Export Driver
+cng.sys:Kernel Cryptography, Next Generation
+CompositeBus.sys:Multi-Transport Composite Bus Enumerator  
+condrv.sys:Console Driver 
+crashdmp.sys:Crash Dump Driver 
+dfsc.sys:DFS Namespace Client Driver
+disk.sys:PnP Disk Driver
+drmk.sys:Microsoft Trusted Audio Drivers  
+dump_diskdump.sys:
+dump_dumpfve.sys:
+dump_storahci.sys:
+dxgkrnl.sys:DirectX Graphics Kernel 
+dxgmms2.sys:DirectX Graphics MMS 
+EMVSCARD.sys:USB Smart Card Reader
+fastfat.SYS:Fast FAT File System Driver
+filecrypt.sys:Windows sandboxing and encryption filter  
+fileinfo.sys:FileInfo Filter Driver  
+FLTMGR.SYS:Microsoft Filesystem Filter Manager 
+Fs_Rec.sys:File System Recognizer Driver 
+fvevol.sys:BitLocker Drive Encryption Driver
+fwpkclnt.sys:FWP/IPsec Kernel-Mode API  
+gdrv2.sys:GIGA-BYTE NonPnP Driver 
+gpuenergydrv.sys:GPU Energy Kernel Driver
+gt680x.sys:USB Scanner Driver
+hal.dll:Hardware Abstraction Layer DLL
+hcmon.sys:VMware USB monitor
+HDAudBus.sys:High Definition Audio Bus Driver 
+HIDCLASS.SYS:Hid Class Library 
+HIDPARSE.SYS:Hid Parsing Library  
+hidusb.sys:USB Miniport Driver for Input Devices  
+HTTP.sys:HTTP Protocol Stack  
+hvservice.sys:Hypervisor Boot Driver  
+hvsocket.sys:Microsoft Hyper-V Socket Provider
+iaLPSS2i_GPIO2_CNL.sys:Intel(R) Serial IO GPIO Driver v2
+intelpep.sys:Intel Power Engine Plugin  
+intelppm.sys:Processor Device Driver 
+IntelTA.sys:Intel Telemetry Driver  
+iorate.sys:I/O rate control Filter 
+kbdclass.sys:Keyboard Class Driver
+kbdhid.sys:HID Keyboard Filter Driver 
+kd.dll:Local Kernel Debugger
+kdnic.sys:Microsoft Kernel Debugger Network Miniport
+ks.sys:Kernel CSA Library
+ksecdd.sys:Kernel Security Support Provider Interface
+ksecpkg.sys:Kernel Security Support Provider Interface Packages
+ksthunk.sys:Kernel Streaming WOW Thunk Service  
+lltdio.sys:Link-Layer Topology Mapper I/O Driver  
+luafv.sys:LUA File Virtualization Filter Driver  
+LXCORE.SYS:LX Core  
+lxss.sys:LXSS  
+mmcss.sys:MMCSS Driver
+monitor.sys:Monitor Driver 
+mouclass.sys:Mouse Class Driver
+mouhid.sys:HID Mouse Filter Driver 
+mountmgr.sys:Mount Point Manager  
+mpsdrv.sys:Microsoft Protection Service Driver 
+mrxsmb.sys:Windows NT SMB Minirdr  
+mrxsmb20.sys:Longhorn SMB 2.0 Redirector
+Msfs.SYS:Mailslot driver
+msgpioclx.sys:GPIO Class Extension Driver
+msisadrv.sys:ISA Driver
+mslldp.sys:Microsoft Link-Layer Discovery Protocol Driver
+msquic.sys:Windows QUIC Driver
+msrpc.sys:Kernel Remote Procedure Call Provider
+mssmbios.sys:System Management BIOS Driver
+mup.sys:Multiple UNC Provider Driver
+myfault.sys:Not my fault
+ndis.sys:Network Driver Interface Specification (NDIS)
+ndiscap.sys:Microsoft NDIS Packet Capture Filter Driver  
+ndistapi.sys:NDIS 3.0 connection wrapper driver  
+NdisVirtualBus.sys:Microsoft Virtual Network Adapter Enumerator 
+ndiswan.sys:MS PPP Framing Driver (Strong Encryption) 
+NDProxy.sys:NDIS Proxy  
+Ndu.sys:Windows Network Data Usage Monitoring Driver 
+netbios.sys:NetBIOS interface driver
+netbt.sys:MBT Transport driver 
+NETIO.SYS:Network I/O Subsystem
+Npfs.SYS:NPFS Driver 
+npsvctrig.sys:Named pipe service triggers
+nsiproxy.sys:NSI Proxy
+Ntfs.sys:NT File System Driver
+ntosext.sys:NTOS extension host driver 
+ntoskrnl.exe:NT Kernel & System
+Null.SYS:NULL Driver 
+nvhda64v.sys:NVIDIA HDMI Audio Driver
+nvlddmkm.sys:NVIDIA Windows Kernel Mode Driver, Version 461.40  
+NvModuleTracker.sys:Process and module monitoring driver
+nvvad64v.sys:NVIDIA Virtual Audio Driver
+nvvhci.sys:Virtual USB Host Controller driver  
+pacer.sys:QoS Packet Scheduler 
+partmgr.sys:Partition driver  
+pci.sys:NT Plug and Play PCI Enumerator  
+pcw.sys:Performance Counters for Windows Driver
+pdc.sys:Power Dependency Coordinator Driver 
+peauth.sys:Protected Environment Authentication and Authorization Export Driver
+portcls.sys:Port Class (Class Driver for Port/Miniport Devices)
+PSHED.dll:Platform Specific Hardware Error Driver
+rasl2tp.sys:RAS L2TP mini-port/call-manager driver 
+raspppoe.sys:RAS PPPoE mini-port/call-manager driver
+raspptp.sys:Peer-to-Peer Tunneling Protocol  
+rassstp.sys:RAS SSTP Miniport Call Manager
+rdbss.sys:Redirected Drive Buffering SubSystem Driver  
+rdpbus.sys:Microsoft RDP Bus Device driver  
+rdpvideominiport.sys:Microsoft RDP Video Miniport driver 
+rdyboost.sys:ReadyBoost Driver 
+rspndr.sys:Link-Layer Topology Responder Driver for NDIS 6 
+rt640x64.sys:Realtek 8125/8136/8168/8169 NDIS 6.40 64-bit Driver
+RTKVHD64.sys:Realtek(r) High Definition Audio Function Driver
+scfilter.sys:Microsoft Smart Card Reader Filter Driver 
+SgrmAgent.sys:System Guard Runtime Monitor Agent Driver 
+SleepStudyHelper.sys:Sleep Study Helper
+SMCLIB.SYS:Smart Card Driver Library  
+spaceport.sys:Storage Spaces Driver
+srv2.sys:Smb 2.0 Server driver
+srvnet.sys:Server Network driver
+storahci.sys:MS AHCI Storport Miniport Driver 
+storport.sys:Microsoft Storage Port Driver 
+storqosflt.sys:Storage QoS Filter
+storvsp.sys:Storage vsp Driver
+swenum.sys:Plug and Play Software Device Enumerator
+tardis.sys:Tardis
+tbs.sys:Export driver for kernel mode TPM API  
+tcpip.sys:TCP/IP driver 
+tcpipreg.sys:TCP/IP Registry Compatibility Driver
+TDI.SYS:TDI Wrapper 
+tdx.sys:TDI Translation Driver  
+TeeDriverW10x64.sys:Intel(R) Management Engine Interface
+tm.sys:Kernel Transaction Manager Driver
+tmeter.sys:NDIS helper driver
+ucx01000.sys:USB Controller Extension
+UEFI.sys:UEFI Driver for NT
+umbus.sys:User-Mode Bus Enumerator
+umpass.sys:Generic pass-through driver
+usbaudio.sys:USB Audio Class Driver  
+usbccgp.sys:USB Common Class Generic Parent Driver 
+USBD.SYS:Universal Serial Bus Driver
+UsbHub3.sys:USB3 HUB Driver
+USBSTOR.SYS:USB Mass Storage Class Driver 
+usbvideo.sys:USB Video Class Driver  
+USBXHCI.SYS:USB XHCI Driver
+VBoxDrv.sys:VirtualBox Support Driver  
+VBoxNetLwf.sys:VirtualBox NDIS 6.0 Lightweight Filter Driver
+VBoxUSBMon.sys:VirtualBox USB Monitor Driver 
+vdrvroot.sys:Virtual Drive Root Enumerator 
+vfpext.sys:Microsoft Azure VFP Extension 
+Vid.sys:Microsoft Hyper-V Virtualization Infrastructure Driver
+vmbkmclr.sys:Hyper-V VMBus Root KMCL 
+vmbusr.sys:Microsoft Hyper-V Virtual Machine Bus Root Driver  
+vmci.sys:VMware PCI VMCI Bus Device 
+vmm.sys:Virtual Machine Monitor 
+VMNET.SYS:VMware virtual network driver (64-bit) 
+vmnetadapter.sys:VMware virtual network adapter driver (64-bit)  
+vmnetbridge.sys:VMware bridge driver (64-bit) 
+vmnetuserif.sys:VMware network application interface driver (64-bit)
+VmsProxy.sys:VMSWITCH Proxy Driver
+VmsProxyHNic.sys:VmSwitch NIC Proxy Driver  
+vmswitch.sys:Microsoft® Network Virtualization Service Provider 
+vmx86.sys:VMware kernel driver 
+volmgr.sys:Volume Manager Driver
+volmgrx.sys:Volume Manager Extension Driver  
+volsnap.sys:Volume Shadow Copy driver  
+volume.sys:Volume driver  
+vpcivsp.sys:Virtual PCI VSP Driver  
+vsock.sys:VMware vSockets Service 
+vwififlt.sys:Virtual WiFi Filter Driver 
+wanarp.sys:MS Remote Access and Routing ARP Driver
+watchdog.sys:Watchdog Driver
+wcifs.sys:Windows Container Isolation FS Filter Driver 
+Wdf01000.sys:Kernel Mode Driver Framework Runtime
+WdFilter.sys:Microsoft antimalware file system filter driver 
+WDFLDR.SYS:Kernel Mode Driver Framework Loader 
+WdNisDrv.sys:Windows Defender Network Stream Filter 
+werkernel.sys:Windows Error Reporting Kernel Driver  
+wfplwfs.sys:WFP NDIS 6.30 Lightweight Filter Dsriver
+win32k.sys:Multi-User Win32 Driver 
+win32kbase.sys:Win32 base kernel driver
+win32kfull.sys:Full/Desktop Win32k Kernel Driver
+WindowsTrustedRT.sys:Windows Trusted Runtime Interface Driver  
+WindowsTrustedRTProxy.sys:Windows Trusted Runtime Service Proxy Driver 
+winhvr.sys:Windows Hypervisor Root Interface Driver  
+wmiacpi.sys:Windows Management Interface for ACPI  
+WMILIB.SYS:WMILIB WMI support library Dll
+Wof.sys:Windows Overlay Filter  
+WpdUpFltr.sys:Windows Portable Device Upper Class Filter Driver  
+WppRecorder.sys:WPP Trace Recorder
+ws2ifsl.sys:Winsock2 IFS Layer
+WUDFRd.sys:Windows Driver Foundation - User-mode Driver Framework Reflector

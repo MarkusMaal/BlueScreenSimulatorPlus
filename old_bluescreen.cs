@@ -1,191 +1,268 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
+using SimulatorDatabase;
 
 namespace UltimateBlueScreenSimulator
 {
-    public partial class old_bluescreen : Form
+    public partial class Old_bluescreen : Form
     {
         public string errorCode = "0E : 016F : BFF9B3D4";
         public bool window = false;
         public string screenmode = "System error";
-        WindowScreen ws = new WindowScreen();
-        string[] letters = { "?", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ":", ",", ".", "+", "*", "!", "_" , "-", "(", ")", "/", "\\", " " };
-        public old_bluescreen()
+        internal BlueScreen me = Program.bluescreens[0];
+        readonly List<WindowScreen> wss = new List<WindowScreen>();
+        readonly List<Bitmap> freezescreens = new List<Bitmap>();
+        IDictionary<string, string> titles;
+        IDictionary<string, string> texts;
+        Color bg;
+        Color fg;
+        Color hlb;
+        Color hlf;
+        readonly string[] letters = { "?", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ":", ",", ".", "+", "*", "!", "_" , "-", "(", ")", "/", "\\", "'", " " };
+        public Old_bluescreen()
         {
             InitializeComponent();
         }
 
         private void Old_bluescreen_Load(object sender, EventArgs e)
         {
-            timer1.Interval = Program.bh.timer1.Interval;
-            panel1.BackColor = Program.f1.bsodold[2];
-            pictureBox2.BackColor = Program.f1.bsodold[2];
-            if (screenmode == "System error")
+            try
             {
-                pictureBox1.Image = WriteWord(Program.bh.textBox1.Text, Program.f1.bsodold[2], Program.f1.bsodold[3]);
-                pictureBox1.Size = new Size(8 * Program.bh.textBox1.Text.Length, pictureBox1.Height);
-                panel1.Size = new Size(pictureBox1.Width + 20, panel1.Height);
-                panel1.Location = new Point((this.Width / 2) - (panel1.Width / 2) - 8, panel1.Location.Y);
-                pictureBox1.Location = new Point(10, 2);
+                this.Icon = me.GetIcon();
+                this.Text = me.GetString("friendlyname");
+                string prompt;
+                titles = me.GetTitles();
+                texts = me.GetTexts();
+                if (screenmode == "No unresponsive programs")
+                {
+                    screenUpdater.Interval = me.GetInt("timer");
+                    bg = me.GetTheme(true);
+                    fg = me.GetTheme(false);
+                    hlb = me.GetTheme(true, true);
+                    hlf = me.GetTheme(false, true);
+                    prompt = texts["Prompt"];
+                }
+                else
+                {
+                    screenUpdater.Interval = me.GetInt("timer");
+                    bg = me.GetTheme(true);
+                    fg = me.GetTheme(false);
+                    hlb = me.GetTheme(true, true);
+                    hlf = me.GetTheme(false, true);
+                    prompt = texts["Prompt"];
+                }
 
-                try { line1.Image = WriteWord(Program.bh.textBox4.Text.Split('\n')[0].Replace("{0}", errorCode).Substring(0, Program.bh.textBox4.Text.Split('\n')[0].Replace("{0}", errorCode).Length - 1), Program.f1.bsodold[0], Program.f1.bsodold[1]); } catch { }
-                try { line2.Image = WriteWord(Program.bh.textBox4.Text.Split('\n')[1].Replace("{0}", errorCode).Substring(0, Program.bh.textBox4.Text.Split('\n')[1].Replace("{0}", errorCode).Length - 1), Program.f1.bsodold[0], Program.f1.bsodold[1]); } catch { }
-                try { line3.Image = WriteWord(Program.bh.textBox4.Text.Split('\n')[2].Replace("{0}", errorCode).Substring(0, Program.bh.textBox4.Text.Split('\n')[2].Replace("{0}", errorCode).Length - 1), Program.f1.bsodold[0], Program.f1.bsodold[1]); } catch { }
-                try { line4.Image = WriteWord(Program.bh.textBox4.Text.Split('\n')[3].Replace("{0}", errorCode).Substring(0, Program.bh.textBox4.Text.Split('\n')[3].Replace("{0}", errorCode).Length - 1), Program.f1.bsodold[0], Program.f1.bsodold[1]); } catch { }
-                try { line5.Image = WriteWord(Program.bh.textBox4.Text.Split('\n')[4].Replace("{0}", errorCode).Substring(0, Program.bh.textBox4.Text.Split('\n')[4].Replace("{0}", errorCode).Length - 1), Program.f1.bsodold[0], Program.f1.bsodold[1]); } catch { }
-                try { line6.Image = WriteWord(Program.bh.textBox4.Text.Split('\n')[5].Replace("{0}", errorCode).Substring(0, Program.bh.textBox4.Text.Split('\n')[5].Replace("{0}", errorCode).Length - 1), Program.f1.bsodold[0], Program.f1.bsodold[1]); } catch { }
-                try { line7.Image = WriteWord(Program.bh.textBox4.Text.Split('\n')[6].Replace("{0}", errorCode).Substring(0, Program.bh.textBox4.Text.Split('\n')[6].Replace("{0}", errorCode).Length - 1), Program.f1.bsodold[0], Program.f1.bsodold[1]); } catch { }
-                try { line8.Image = WriteWord(Program.bh.textBox4.Text.Split('\n')[7].Replace("{0}", errorCode).Substring(0, Program.bh.textBox4.Text.Split('\n')[7].Replace("{0}", errorCode).Length - 1), Program.f1.bsodold[0], Program.f1.bsodold[1]); } catch { }
-            }
-            else if (screenmode == "Application error")
-            {
-                pictureBox1.Image = WriteWord(Program.bh.textBox1.Text, Program.f1.bsodold[2], Program.f1.bsodold[3]);
-                pictureBox1.Size = new Size(8 * Program.bh.textBox1.Text.Length, pictureBox1.Height);
-                panel1.Size = new Size(pictureBox1.Width + 20, panel1.Height);
-                panel1.Location = new Point((this.Width / 2) - (panel1.Width / 2) - 8, panel1.Location.Y);
-                pictureBox1.Location = new Point(10, 2);
+                titleBorder.BackColor = me.GetTheme(true, true);
+                blinkingColor.BackColor = me.GetTheme(true, true);
+                if (screenmode == "System error")
+                {
+                    titleText.Image = WriteWord(titles["Main"], hlb, hlf);
+                    titleText.Size = new Size(8 * titles["Main"].Length, titleText.Height);
+                    titleBorder.Size = new Size(titleText.Width + 20, titleBorder.Height);
+                    titleBorder.Location = new Point((this.Width / 2) - (titleBorder.Width / 2) - 8, titleBorder.Location.Y);
+                    titleText.Location = new Point(10, 2);
 
-                try { line1.Image = WriteWord(Program.bh.textBox8.Text.Split('\n')[0].Substring(0, Program.bh.textBox8.Text.Split('\n')[0].Length - 1).Replace("{0}", errorCode.ToString().Split(':')[1].ToString().Replace(" ", "").ToString()).Replace("{1}", errorCode.ToString().Split(':')[2].ToString().Replace(" ", "").ToString()), Program.f1.bsodold[0], Program.f1.bsodold[1]); } catch { }
-                try { line2.Image = WriteWord(Program.bh.textBox8.Text.Split('\n')[1].Substring(0, Program.bh.textBox8.Text.Split('\n')[1].Length - 1).Replace("{0}", errorCode.ToString().Split(':')[1].ToString().Replace(" ", "").ToString()).Replace("{1}", errorCode.ToString().Split(':')[2].ToString().Replace(" ", "").ToString()), Program.f1.bsodold[0], Program.f1.bsodold[1]); } catch { }
-                try { line3.Image = WriteWord(Program.bh.textBox8.Text.Split('\n')[2].Substring(0, Program.bh.textBox8.Text.Split('\n')[2].Length - 1).Replace("{0}", errorCode.ToString().Split(':')[1].ToString().Replace(" ", "").ToString()).Replace("{1}", errorCode.ToString().Split(':')[2].ToString().Replace(" ", "").ToString()), Program.f1.bsodold[0], Program.f1.bsodold[1]); } catch { }
-                try { line4.Image = WriteWord(Program.bh.textBox8.Text.Split('\n')[3].Substring(0, Program.bh.textBox8.Text.Split('\n')[3].Length - 1).Replace("{0}", errorCode.ToString().Split(':')[1].ToString().Replace(" ", "").ToString()).Replace("{1}", errorCode.ToString().Split(':')[2].ToString().Replace(" ", "").ToString()), Program.f1.bsodold[0], Program.f1.bsodold[1]); } catch { }
-                try { line5.Image = WriteWord(Program.bh.textBox8.Text.Split('\n')[4].Substring(0, Program.bh.textBox8.Text.Split('\n')[4].Length - 1).Replace("{0}", errorCode.ToString().Split(':')[1].ToString().Replace(" ", "").ToString()).Replace("{1}", errorCode.ToString().Split(':')[2].ToString().Replace(" ", "").ToString()), Program.f1.bsodold[0], Program.f1.bsodold[1]); } catch { }
-                try { line6.Image = WriteWord(Program.bh.textBox8.Text.Split('\n')[5].Substring(0, Program.bh.textBox8.Text.Split('\n')[5].Length - 1).Replace("{0}", errorCode.ToString().Split(':')[1].ToString().Replace(" ", "").ToString()).Replace("{1}", errorCode.ToString().Split(':')[2].ToString().Replace(" ", "").ToString()), Program.f1.bsodold[0], Program.f1.bsodold[1]); } catch { }
+                    try { line1.Image = WriteWord(texts["System error"].Split('\n')[0].Replace("{0}", errorCode).Substring(0, texts["System error"].Split('\n')[0].Replace("{0}", errorCode).Length - 1), bg, fg); } catch { }
+                    try { line2.Image = WriteWord(texts["System error"].Split('\n')[1].Replace("{0}", errorCode).Substring(0, texts["System error"].Split('\n')[1].Replace("{0}", errorCode).Length - 1), bg, fg); } catch { }
+                    try { line3.Image = WriteWord(texts["System error"].Split('\n')[2].Replace("{0}", errorCode).Substring(0, texts["System error"].Split('\n')[2].Replace("{0}", errorCode).Length - 1), bg, fg); } catch { }
+                    try { line4.Image = WriteWord(texts["System error"].Split('\n')[3].Replace("{0}", errorCode).Substring(0, texts["System error"].Split('\n')[3].Replace("{0}", errorCode).Length - 1), bg, fg); } catch { }
+                    try { line5.Image = WriteWord(texts["System error"].Split('\n')[4].Replace("{0}", errorCode).Substring(0, texts["System error"].Split('\n')[4].Replace("{0}", errorCode).Length - 1), bg, fg); } catch { }
+                    try { line6.Image = WriteWord(texts["System error"].Split('\n')[5].Replace("{0}", errorCode).Substring(0, texts["System error"].Split('\n')[5].Replace("{0}", errorCode).Length - 1), bg, fg); } catch { }
+                    try { line7.Image = WriteWord(texts["System error"].Split('\n')[6].Replace("{0}", errorCode).Substring(0, texts["System error"].Split('\n')[6].Replace("{0}", errorCode).Length - 1), bg, fg); } catch { }
+                    try { line8.Image = WriteWord(texts["System error"].Split('\n')[7].Replace("{0}", errorCode).Substring(0, texts["System error"].Split('\n')[7].Replace("{0}", errorCode).Length - 1), bg, fg); } catch { }
+                }
+                else if (screenmode == "Application error")
+                {
+                    titleText.Image = WriteWord(titles["Main"], hlb, hlf);
+                    titleText.Size = new Size(8 * titles["Main"].Length, titleText.Height);
+                    titleBorder.Size = new Size(titleText.Width + 20, titleBorder.Height);
+                    titleBorder.Location = new Point((this.Width / 2) - (titleBorder.Width / 2) - 8, titleBorder.Location.Y);
+                    titleText.Location = new Point(10, 2);
 
-                /*          line1.Image = WriteWord("A fatal exception 0E has occurred at " + errorCode.ToString().Split(':')[1].ToString().Replace(" ", "").ToString() + ":" + errorCode.ToString().Split(':')[2].ToString().Replace(" ", "").ToString() + ". The current", Program.f1.bsodold[0], Program.f1.bsodold[1]);
-                          line2.Image = WriteWord("application will be terminated.", Program.f1.bsodold[0], Program.f1.bsodold[1]);
-                          line4.Image = WriteWord("*  Press any key to terminate current application.", Program.f1.bsodold[0], Program.f1.bsodold[1]);
-                          line5.Image = WriteWord("*  Press CTRL+ALT+DEL again to restart your computer. You will", Program.f1.bsodold[0], Program.f1.bsodold[1]);
-                          line6.Image = WriteWord("   lose any unsaved information in all applications.", Program.f1.bsodold[0], Program.f1.bsodold[1]);*/
-                line7.Visible = false;
-                line8.Visible = false;
-                panel2.Location = new Point(panel2.Location.X, panel2.Location.Y + 20);
-                anyKeyMsg.Location = new Point(anyKeyMsg.Location.X, anyKeyMsg.Location.Y - 30);
-                pictureBox2.Location = new Point(pictureBox2.Location.X, pictureBox2.Location.Y - 30);
-            }
-            else if (screenmode == "Driver error")
-            {
-                pictureBox1.Image = WriteWord(Program.bh.textBox1.Text, Program.f1.bsodold[2], Program.f1.bsodold[3]);
-                pictureBox1.Size = new Size(8 * Program.bh.textBox1.Text.Length, pictureBox1.Height);
-                panel1.Size = new Size(pictureBox1.Width + 20, panel1.Height);
-                panel1.Location = new Point((this.Width / 2) - (panel1.Width / 2) - 8, panel1.Location.Y);
-                pictureBox1.Location = new Point(10, 2);
+                    try { line1.Image = WriteWord(texts["Application error"].Split('\n')[0].Substring(0, texts["Application error"].Split('\n')[0].Length - 1).Replace("{2}", me.GenHex(2, me.GetString("ecode1"))).Replace("{0}", errorCode.ToString().Split(':')[1].ToString().Replace(" ", "").ToString()).Replace("{1}", errorCode.ToString().Split(':')[2].ToString().Replace(" ", "").ToString()), bg, fg); } catch { }
+                    try { line2.Image = WriteWord(texts["Application error"].Split('\n')[1].Substring(0, texts["Application error"].Split('\n')[1].Length - 1).Replace("{2}", me.GenHex(2, me.GetString("ecode1"))).Replace("{0}", errorCode.ToString().Split(':')[1].ToString().Replace(" ", "").ToString()).Replace("{1}", errorCode.ToString().Split(':')[2].ToString().Replace(" ", "").ToString()), bg, fg); } catch { }
+                    try { line3.Image = WriteWord(texts["Application error"].Split('\n')[2].Substring(0, texts["Application error"].Split('\n')[2].Length - 1).Replace("{2}", me.GenHex(2, me.GetString("ecode1"))).Replace("{0}", errorCode.ToString().Split(':')[1].ToString().Replace(" ", "").ToString()).Replace("{1}", errorCode.ToString().Split(':')[2].ToString().Replace(" ", "").ToString()), bg, fg); } catch { }
+                    try { line4.Image = WriteWord(texts["Application error"].Split('\n')[3].Substring(0, texts["Application error"].Split('\n')[3].Length - 1).Replace("{2}", me.GenHex(2, me.GetString("ecode1"))).Replace("{0}", errorCode.ToString().Split(':')[1].ToString().Replace(" ", "").ToString()).Replace("{1}", errorCode.ToString().Split(':')[2].ToString().Replace(" ", "").ToString()), bg, fg); } catch { }
+                    try { line5.Image = WriteWord(texts["Application error"].Split('\n')[4].Substring(0, texts["Application error"].Split('\n')[4].Length - 1).Replace("{2}", me.GenHex(2, me.GetString("ecode1"))).Replace("{0}", errorCode.ToString().Split(':')[1].ToString().Replace(" ", "").ToString()).Replace("{1}", errorCode.ToString().Split(':')[2].ToString().Replace(" ", "").ToString()), bg, fg); } catch { }
+                    try { line6.Image = WriteWord(texts["Application error"].Split('\n')[5].Substring(0, texts["Application error"].Split('\n')[5].Length - 1).Replace("{2}", me.GenHex(2, me.GetString("ecode1"))).Replace("{0}", errorCode.ToString().Split(':')[1].ToString().Replace(" ", "").ToString()).Replace("{1}", errorCode.ToString().Split(':')[2].ToString().Replace(" ", "").ToString()), bg, fg); } catch { }
 
-                try { line1.Image = WriteWord(Program.bh.textBox9.Text.Split('\n')[0].Substring(0, Program.bh.textBox9.Text.Split('\n')[0].Length - 1).Replace("{2}", Program.f1.GenHex(8, "RRRRRRRR")).Replace("{0}", errorCode.ToString().Split(':')[1].ToString().Replace(" ", "").ToString()).Replace("{1}", errorCode.ToString().Split(':')[2].ToString().Replace(" ", "").ToString()), Program.f1.bsodold[0], Program.f1.bsodold[1]); } catch { }
-                try { line2.Image = WriteWord(Program.bh.textBox9.Text.Split('\n')[1].Substring(0, Program.bh.textBox9.Text.Split('\n')[1].Length - 1).Replace("{2}", Program.f1.GenHex(8, "RRRRRRRR")).Replace("{0}", errorCode.ToString().Split(':')[1].ToString().Replace(" ", "").ToString()).Replace("{1}", errorCode.ToString().Split(':')[2].ToString().Replace(" ", "").ToString()), Program.f1.bsodold[0], Program.f1.bsodold[1]); } catch { }
-                try { line3.Image = WriteWord(Program.bh.textBox9.Text.Split('\n')[2].Substring(0, Program.bh.textBox9.Text.Split('\n')[2].Length - 1).Replace("{2}", Program.f1.GenHex(8, "RRRRRRRR")).Replace("{0}", errorCode.ToString().Split(':')[1].ToString().Replace(" ", "").ToString()).Replace("{1}", errorCode.ToString().Split(':')[2].ToString().Replace(" ", "").ToString()), Program.f1.bsodold[0], Program.f1.bsodold[1]); } catch { }
-                try { line4.Image = WriteWord(Program.bh.textBox9.Text.Split('\n')[3].Substring(0, Program.bh.textBox9.Text.Split('\n')[3].Length - 1).Replace("{2}", Program.f1.GenHex(8, "RRRRRRRR")).Replace("{0}", errorCode.ToString().Split(':')[1].ToString().Replace(" ", "").ToString()).Replace("{1}", errorCode.ToString().Split(':')[2].ToString().Replace(" ", "").ToString()), Program.f1.bsodold[0], Program.f1.bsodold[1]); } catch { }
-                try { line5.Image = WriteWord(Program.bh.textBox9.Text.Split('\n')[4].Substring(0, Program.bh.textBox9.Text.Split('\n')[4].Length - 1).Replace("{2}", Program.f1.GenHex(8, "RRRRRRRR")).Replace("{0}", errorCode.ToString().Split(':')[1].ToString().Replace(" ", "").ToString()).Replace("{1}", errorCode.ToString().Split(':')[2].ToString().Replace(" ", "").ToString()), Program.f1.bsodold[0], Program.f1.bsodold[1]); } catch { }
-                try { line6.Image = WriteWord(Program.bh.textBox9.Text.Split('\n')[5].Substring(0, Program.bh.textBox9.Text.Split('\n')[5].Length - 1).Replace("{2}", Program.f1.GenHex(8, "RRRRRRRR")).Replace("{0}", errorCode.ToString().Split(':')[1].ToString().Replace(" ", "").ToString()).Replace("{1}", errorCode.ToString().Split(':')[2].ToString().Replace(" ", "").ToString()), Program.f1.bsodold[0], Program.f1.bsodold[1]); } catch { }
-                /*line1.Image = WriteWord("A fatal exception 0E has occurred at " + Program.f1.GenHex(4, "RRRR") + ":" + Program.f1.GenHex(8, "RRRRRRRR") + " in VXD VMM(01) +", Program.f1.bsodold[0], Program.f1.bsodold[1]);
-                line2.Image = WriteWord(Program.f1.GenHex(8, "RRRRRRRR") + ". The current application will be terminated.", Program.f1.bsodold[0], Program.f1.bsodold[1]);
-                line4.Image = WriteWord("*  Press any key to terminate current application.", Program.f1.bsodold[0], Program.f1.bsodold[1]);
-                line5.Image = WriteWord("*  Press CTRL+ALT+DEL again to restart your computer. You will", Program.f1.bsodold[0], Program.f1.bsodold[1]);
-                line6.Image = WriteWord("   lose any unsaved information in all applications.", Program.f1.bsodold[0], Program.f1.bsodold[1]);*/
-                line7.Visible = false;
-                line8.Visible = false;
-                panel2.Location = new Point(panel2.Location.X, panel2.Location.Y + 20);
-                anyKeyMsg.Location = new Point(anyKeyMsg.Location.X, anyKeyMsg.Location.Y - 30);
-                pictureBox2.Location = new Point(pictureBox2.Location.X, pictureBox2.Location.Y - 30);
-            }
-            else if (screenmode == "System is unresponsive (Warning)")
-            {
-                pictureBox1.Image = WriteWord(Program.bh.textBox3.Text, Program.f1.bsodold[2], Program.f1.bsodold[3]);
-                pictureBox1.Size = new Size(8 * Program.bh.textBox3.Text.Length, pictureBox1.Height);
-                panel1.Size = new Size(pictureBox1.Width + 20, panel1.Height);
-                panel1.Location = new Point((this.Width / 2) - (panel1.Width / 2) - 8, panel1.Location.Y);
-                pictureBox1.Location = new Point(10, 2);
-                try { line1.Image = WriteWord(Program.bh.textBox11.Text.Split('\n')[0].Substring(0, Program.bh.textBox11.Text.Split('\n')[0].Length - 1), Program.f1.bsodold[0], Program.f1.bsodold[1]); } catch { }
-                try { line2.Image = WriteWord(Program.bh.textBox11.Text.Split('\n')[1].Substring(0, Program.bh.textBox11.Text.Split('\n')[1].Length - 1), Program.f1.bsodold[0], Program.f1.bsodold[1]); } catch { }
-                try { line3.Image = WriteWord(Program.bh.textBox11.Text.Split('\n')[2].Substring(0, Program.bh.textBox11.Text.Split('\n')[2].Length - 1), Program.f1.bsodold[0], Program.f1.bsodold[1]); } catch { }
-                try { line4.Image = WriteWord(Program.bh.textBox11.Text.Split('\n')[3].Substring(0, Program.bh.textBox11.Text.Split('\n')[3].Length - 1), Program.f1.bsodold[0], Program.f1.bsodold[1]); } catch { }
-                try { line5.Image = WriteWord(Program.bh.textBox11.Text.Split('\n')[4].Substring(0, Program.bh.textBox11.Text.Split('\n')[4].Length - 1), Program.f1.bsodold[0], Program.f1.bsodold[1]); } catch { }
-                try { line6.Image = WriteWord(Program.bh.textBox11.Text.Split('\n')[5].Substring(0, Program.bh.textBox11.Text.Split('\n')[5].Length - 1), Program.f1.bsodold[0], Program.f1.bsodold[1]); } catch { }
-                /*line1.Image = WriteWord("The system is either busy or has become unstable. You can wait and", Program.f1.bsodold[0], Program.f1.bsodold[1]);
-                line2.Image = WriteWord("see if it becomes available again, or you can restart your computer.", Program.f1.bsodold[0], Program.f1.bsodold[1]);
-                line4.Image = WriteWord("*  Press any key to return to Windows and wait.", Program.f1.bsodold[0], Program.f1.bsodold[1]);
-                line5.Image = WriteWord("*  Press CTRL+ALT+DEL again to restart your computer. You will", Program.f1.bsodold[0], Program.f1.bsodold[1]);
-                line6.Image = WriteWord("   lose any unsaved information in programs that are running.", Program.f1.bsodold[0], Program.f1.bsodold[1]);*/
-                line7.Visible = false;
-                line8.Visible = false;
-                panel2.Location = new Point(panel2.Location.X, panel2.Location.Y + 20);
-                anyKeyMsg.Location = new Point(anyKeyMsg.Location.X, anyKeyMsg.Location.Y - 30);
-                pictureBox2.Location = new Point(pictureBox2.Location.X, pictureBox2.Location.Y - 30);
-            }
-            else if (screenmode == "System is busy")
-            {
-                pictureBox1.Image = WriteWord(Program.bh.textBox2.Text, Program.f1.bsodold[2], Program.f1.bsodold[3]);
-                pictureBox1.Size = new Size(8 * Program.bh.textBox2.Text.Length, pictureBox1.Height);
-                panel1.Size = new Size(pictureBox1.Width + 20, panel1.Height);
-                panel1.Location = new Point((this.Width / 2) - (panel1.Width / 2) - 8, panel1.Location.Y);
-                pictureBox1.Location = new Point(10, 2);
-                try { line1.Image = WriteWord(Program.bh.textBox10.Text.Split('\n')[0].Substring(0, Program.bh.textBox10.Text.Split('\n')[0].Length - 1), Program.f1.bsodold[0], Program.f1.bsodold[1]); } catch { }
-                try { line2.Image = WriteWord(Program.bh.textBox10.Text.Split('\n')[1].Substring(0, Program.bh.textBox10.Text.Split('\n')[1].Length - 1), Program.f1.bsodold[0], Program.f1.bsodold[1]); } catch { }
-                try { line3.Image = WriteWord(Program.bh.textBox10.Text.Split('\n')[2].Substring(0, Program.bh.textBox10.Text.Split('\n')[2].Length - 1), Program.f1.bsodold[0], Program.f1.bsodold[1]); } catch { }
-                try { line4.Image = WriteWord(Program.bh.textBox10.Text.Split('\n')[3].Substring(0, Program.bh.textBox10.Text.Split('\n')[3].Length - 1), Program.f1.bsodold[0], Program.f1.bsodold[1]); } catch { }
-                try { line5.Image = WriteWord(Program.bh.textBox10.Text.Split('\n')[4].Substring(0, Program.bh.textBox10.Text.Split('\n')[4].Length - 1), Program.f1.bsodold[0], Program.f1.bsodold[1]); } catch { }
-                try { line6.Image = WriteWord(Program.bh.textBox10.Text.Split('\n')[5].Substring(0, Program.bh.textBox10.Text.Split('\n')[5].Length - 1), Program.f1.bsodold[0], Program.f1.bsodold[1]); } catch { }
-                try { line7.Image = WriteWord(Program.bh.textBox10.Text.Split('\n')[6].Substring(0, Program.bh.textBox10.Text.Split('\n')[6].Length - 1), Program.f1.bsodold[0], Program.f1.bsodold[1]); } catch { }
-               
-                /*line1.Image = WriteWord("The system is busy waiting for the Close Program dialog box to be", Program.f1.bsodold[0], Program.f1.bsodold[1]);
-                line2.Image = WriteWord("displayed.  You can wait and see if it appears, or you can restart", Program.f1.bsodold[0], Program.f1.bsodold[1]);
-                line3.Image = WriteWord("your computer.", Program.f1.bsodold[0], Program.f1.bsodold[1]);
-                line5.Image = WriteWord("*  Press any key to return to Windows and wait.", Program.f1.bsodold[0], Program.f1.bsodold[1]);
-                line6.Image = WriteWord("*  Press CTRL+ALT+DEL again to restart your computer. You will", Program.f1.bsodold[0], Program.f1.bsodold[1]);
-                line7.Image = WriteWord("   lose any unsaved information in programs that are running.", Program.f1.bsodold[0], Program.f1.bsodold[1]);*/
-                line8.Visible = false;
-                pictureBox1.Size = new Size(pictureBox1.Width + 70, pictureBox1.Height);
-                pictureBox1.Location = new Point(10, 2);
-                panel2.Location = new Point(panel2.Location.X, panel2.Location.Y + 10);
-                anyKeyMsg.Location = new Point(anyKeyMsg.Location.X, anyKeyMsg.Location.Y - 10);
-                pictureBox2.Location = new Point(pictureBox2.Location.X, pictureBox2.Location.Y - 10);
+                    line7.Visible = false;
+                    line8.Visible = false;
+                    simplePanel.Location = new Point(simplePanel.Location.X, simplePanel.Location.Y + 20);
+                    anyKeyMsg.Location = new Point(anyKeyMsg.Location.X, anyKeyMsg.Location.Y - 30);
+                    blinkingColor.Location = new Point(blinkingColor.Location.X, blinkingColor.Location.Y - 30);
+                }
+                else if (screenmode == "Driver error")
+                {
+                    titleText.Image = WriteWord(titles["Main"], hlb, hlf);
+                    titleText.Size = new Size(8 * titles["Main"].Length, titleText.Height);
+                    titleBorder.Size = new Size(titleText.Width + 20, titleBorder.Height);
+                    titleBorder.Location = new Point((this.Width / 2) - (titleBorder.Width / 2) - 8, titleBorder.Location.Y);
+                    titleText.Location = new Point(10, 2);
 
-            }
-            else if (screenmode == "No unresponsive programs")
+                    try { line1.Image = WriteWord(texts["Driver error"].Split('\n')[0].Substring(0, texts["Driver error"].Split('\n')[0].Length - 1).Replace("{2}", me.GenHex(2, me.GetString("ecode1"))).Replace("{0}", errorCode.ToString().Split(':')[1].ToString().Replace(" ", "").ToString()).Replace("{1}", errorCode.ToString().Split(':')[2].ToString().Replace(" ", "").ToString()), bg, fg); } catch { }
+                    try { line2.Image = WriteWord(texts["Driver error"].Split('\n')[1].Substring(0, texts["Driver error"].Split('\n')[1].Length - 1).Replace("{2}", me.GenHex(2, me.GetString("ecode1"))).Replace("{0}", errorCode.ToString().Split(':')[1].ToString().Replace(" ", "").ToString()).Replace("{1}", errorCode.ToString().Split(':')[2].ToString().Replace(" ", "").ToString()), bg, fg); } catch { }
+                    try { line3.Image = WriteWord(texts["Driver error"].Split('\n')[2].Substring(0, texts["Driver error"].Split('\n')[2].Length - 1).Replace("{2}", me.GenHex(2, me.GetString("ecode1"))).Replace("{0}", errorCode.ToString().Split(':')[1].ToString().Replace(" ", "").ToString()).Replace("{1}", errorCode.ToString().Split(':')[2].ToString().Replace(" ", "").ToString()), bg, fg); } catch { }
+                    try { line4.Image = WriteWord(texts["Driver error"].Split('\n')[3].Substring(0, texts["Driver error"].Split('\n')[3].Length - 1).Replace("{2}", me.GenHex(2, me.GetString("ecode1"))).Replace("{0}", errorCode.ToString().Split(':')[1].ToString().Replace(" ", "").ToString()).Replace("{1}", errorCode.ToString().Split(':')[2].ToString().Replace(" ", "").ToString()), bg, fg); } catch { }
+                    try { line5.Image = WriteWord(texts["Driver error"].Split('\n')[4].Substring(0, texts["Driver error"].Split('\n')[4].Length - 1).Replace("{2}", me.GenHex(2, me.GetString("ecode1"))).Replace("{0}", errorCode.ToString().Split(':')[1].ToString().Replace(" ", "").ToString()).Replace("{1}", errorCode.ToString().Split(':')[2].ToString().Replace(" ", "").ToString()), bg, fg); } catch { }
+                    try { line6.Image = WriteWord(texts["Driver error"].Split('\n')[5].Substring(0, texts["Driver error"].Split('\n')[5].Length - 1).Replace("{2}", me.GenHex(2, me.GetString("ecode1"))).Replace("{0}", errorCode.ToString().Split(':')[1].ToString().Replace(" ", "").ToString()).Replace("{1}", errorCode.ToString().Split(':')[2].ToString().Replace(" ", "").ToString()), bg, fg); } catch { }
+                    line7.Visible = false;
+                    line8.Visible = false;
+                    simplePanel.Location = new Point(simplePanel.Location.X, simplePanel.Location.Y + 20);
+                    anyKeyMsg.Location = new Point(anyKeyMsg.Location.X, anyKeyMsg.Location.Y - 30);
+                    blinkingColor.Location = new Point(blinkingColor.Location.X, blinkingColor.Location.Y - 30);
+                }
+                else if (screenmode == "System is unresponsive (Warning)")
+                {
+                    titleText.Image = WriteWord(titles["Warning"], hlb, hlf);
+                    titleText.Size = new Size(8 * titles["Warning"].Length, titleText.Height);
+                    titleBorder.Size = new Size(titleText.Width + 20, titleBorder.Height);
+                    titleBorder.Location = new Point((this.Width / 2) - (titleBorder.Width / 2) - 8, titleBorder.Location.Y);
+                    titleText.Location = new Point(10, 2);
+                    try { line1.Image = WriteWord(texts["System is unresponsive"].Split('\n')[0].Substring(0, texts["System is unresponsive"].Split('\n')[0].Length - 1), bg, fg); } catch { }
+                    try { line2.Image = WriteWord(texts["System is unresponsive"].Split('\n')[1].Substring(0, texts["System is unresponsive"].Split('\n')[1].Length - 1), bg, fg); } catch { }
+                    try { line3.Image = WriteWord(texts["System is unresponsive"].Split('\n')[2].Substring(0, texts["System is unresponsive"].Split('\n')[2].Length - 1), bg, fg); } catch { }
+                    try { line4.Image = WriteWord(texts["System is unresponsive"].Split('\n')[3].Substring(0, texts["System is unresponsive"].Split('\n')[3].Length - 1), bg, fg); } catch { }
+                    try { line5.Image = WriteWord(texts["System is unresponsive"].Split('\n')[4].Substring(0, texts["System is unresponsive"].Split('\n')[4].Length - 1), bg, fg); } catch { }
+                    try { line6.Image = WriteWord(texts["System is unresponsive"].Split('\n')[5].Substring(0, texts["System is unresponsive"].Split('\n')[5].Length - 1), bg, fg); } catch { }
+                    line7.Visible = false;
+                    line8.Visible = false;
+                    simplePanel.Location = new Point(simplePanel.Location.X, simplePanel.Location.Y + 20);
+                    anyKeyMsg.Location = new Point(anyKeyMsg.Location.X, anyKeyMsg.Location.Y - 30);
+                    blinkingColor.Location = new Point(blinkingColor.Location.X, blinkingColor.Location.Y - 30);
+                }
+                else if (screenmode == "System is busy")
+                {
+                    titleText.Image = WriteWord(titles["System is busy"], hlb, hlf);
+                    titleText.Size = new Size(8 * titles["System is busy"].Length, titleText.Height);
+                    titleBorder.Size = new Size(titleText.Width + 20, titleBorder.Height);
+                    titleBorder.Location = new Point((this.Width / 2) - (titleBorder.Width / 2) - 8, titleBorder.Location.Y);
+                    titleText.Location = new Point(10, 2);
+                    try { line1.Image = WriteWord(texts["System is busy"].Split('\n')[0].Substring(0, texts["System is busy"].Split('\n')[0].Length - 1), bg, fg); } catch { }
+                    try { line2.Image = WriteWord(texts["System is busy"].Split('\n')[1].Substring(0, texts["System is busy"].Split('\n')[1].Length - 1), bg, fg); } catch { }
+                    try { line3.Image = WriteWord(texts["System is busy"].Split('\n')[2].Substring(0, texts["System is busy"].Split('\n')[2].Length - 1), bg, fg); } catch { }
+                    try { line4.Image = WriteWord(texts["System is busy"].Split('\n')[3].Substring(0, texts["System is busy"].Split('\n')[3].Length - 1), bg, fg); } catch { }
+                    try { line5.Image = WriteWord(texts["System is busy"].Split('\n')[4].Substring(0, texts["System is busy"].Split('\n')[4].Length - 1), bg, fg); } catch { }
+                    try { line6.Image = WriteWord(texts["System is busy"].Split('\n')[5].Substring(0, texts["System is busy"].Split('\n')[5].Length - 1), bg, fg); } catch { }
+                    try { line7.Image = WriteWord(texts["System is busy"].Split('\n')[6].Substring(0, texts["System is busy"].Split('\n')[6].Length - 1), bg, fg); } catch { }
+
+                    line8.Visible = false;
+                    titleText.Size = new Size(titleText.Width + 70, titleText.Height);
+                    titleText.Location = new Point(10, 2);
+                    simplePanel.Location = new Point(simplePanel.Location.X, simplePanel.Location.Y + 10);
+                    anyKeyMsg.Location = new Point(anyKeyMsg.Location.X, anyKeyMsg.Location.Y - 10);
+                    blinkingColor.Location = new Point(blinkingColor.Location.X, blinkingColor.Location.Y - 10);
+
+                }
+                else if (screenmode == "No unresponsive programs")
+                {
+                    titleText.Image = WriteWord(titles["Main"], hlb, hlf);
+                    titleText.Size = new Size(8 * titles["Main"].Length, titleText.Height);
+                    titleBorder.Size = new Size(titleText.Width + 20, titleBorder.Height);
+                    titleBorder.Location = new Point((this.Width / 2) - (titleBorder.Width / 2) - 8, titleBorder.Location.Y);
+                    titleText.Location = new Point(10, 2);
+                    try { line1.Image = WriteWord(texts["No unresponsive programs"].Split('\n')[0].Substring(0, texts["No unresponsive programs"].Split('\n')[0].Length - 1), bg, fg); } catch { }
+                    try { line2.Image = WriteWord(texts["No unresponsive programs"].Split('\n')[1].Substring(0, texts["No unresponsive programs"].Split('\n')[1].Length - 1), bg, fg); } catch { }
+                    try { line3.Image = WriteWord(texts["No unresponsive programs"].Split('\n')[2].Substring(0, texts["No unresponsive programs"].Split('\n')[2].Length - 1), bg, fg); } catch { }
+                    try { line4.Image = WriteWord(texts["No unresponsive programs"].Split('\n')[3].Substring(0, texts["No unresponsive programs"].Split('\n')[3].Length - 1), bg, fg); } catch { }
+                    try { line5.Image = WriteWord(texts["No unresponsive programs"].Split('\n')[4].Substring(0, texts["No unresponsive programs"].Split('\n')[4].Length - 1), bg, fg); } catch { }
+                    try { line6.Image = WriteWord(texts["No unresponsive programs"].Split('\n')[5].Substring(0, texts["No unresponsive programs"].Split('\n')[5].Length - 1), bg, fg); } catch { }
+                    try { line7.Image = WriteWord(texts["No unresponsive programs"].Split('\n')[6].Substring(0, texts["No unresponsive programs"].Split('\n')[6].Length - 1), bg, fg); } catch { }
+                    try { line8.Image = WriteWord(texts["No unresponsive programs"].Split('\n')[7].Substring(0, texts["No unresponsive programs"].Split('\n')[7].Length - 1), bg, fg); } catch { }
+                    line4.Location = new Point(line4.Location.X, line4.Location.Y + 14);
+                    line5.Location = new Point(line5.Location.X, line5.Location.Y + 14);
+                    line6.Location = new Point(line6.Location.X, line6.Location.Y + 26);
+                    line7.Location = new Point(line7.Location.X, line7.Location.Y + 26);
+                    line8.Location = new Point(line8.Location.X, line8.Location.Y + 26);
+                    simplePanel.Location = new Point(simplePanel.Location.X, simplePanel.Location.Y - 15);
+                    anyKeyMsg.Location = new Point(anyKeyMsg.Location.X, anyKeyMsg.Location.Y + 26);
+                    blinkingColor.Location = new Point(blinkingColor.Location.X, blinkingColor.Location.Y + 26);
+                }
+                anyKeyMsg.Image = WriteWord(prompt, bg, fg);
+                anyKeyMsg.Size = new Size(prompt.Length * 8, anyKeyMsg.Height);
+                anyKeyMsg.Location = new Point((this.Width / 2) - (anyKeyMsg.Width / 2) - 16, anyKeyMsg.Location.Y);
+                blinkingColor.Location = new Point(anyKeyMsg.Location.X + anyKeyMsg.Width + 8, blinkingColor.Location.Y);
+                Program.loadfinished = true;
+                if (!window)
+                {
+                    this.FormBorderStyle = FormBorderStyle.None;
+                    this.TopMost = false;
+
+                    if (Screen.AllScreens.Length > 1)
+                    {
+                        foreach (Screen s in Screen.AllScreens)
+                        {
+                            WindowScreen ws = new WindowScreen();
+                            if (!s.Primary)
+                            {
+                                if (Program.multidisplaymode != "none")
+                                {
+                                    ws.StartPosition = FormStartPosition.Manual;
+                                    ws.Location = s.WorkingArea.Location;
+                                    ws.Size = new Size(s.WorkingArea.Width, s.WorkingArea.Height);
+                                    ws.primary = false;
+
+                                    if (Program.multidisplaymode == "freeze")
+                                    {
+                                        Bitmap screenshot = new Bitmap(s.Bounds.Width,
+                                            s.Bounds.Height,
+                                            System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+                                        Graphics gfxScreenshot = Graphics.FromImage(screenshot);
+                                        gfxScreenshot.CopyFromScreen(
+                                            s.Bounds.X,
+                                            s.Bounds.Y,
+                                            0,
+                                            0,
+                                            s.Bounds.Size,
+                                            CopyPixelOperation.SourceCopy
+                                            );
+                                        freezescreens.Add(screenshot);
+
+                                    }
+                                }
+                            }
+                            wss.Add(ws);
+                        }
+                    }
+                    else
+                    {
+                        wss.Add(new WindowScreen());
+                    }
+                    for (int i = 0; i < wss.Count; i++)
+                    {
+                        WindowScreen ws = wss[i];
+                        ws.Show();
+                        if (!ws.primary)
+                        {
+                            if (Program.multidisplaymode == "freeze")
+                            {
+                                ws.screenDisplay.Image = freezescreens[i - 1];
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    this.Size = new Size(640, 320);
+                }
+                int[] colors = { this.BackColor.R + 50, this.BackColor.R + 50, this.BackColor.B + 50 };
+                if (colors[0] > 255) { colors[0] -= 255; }
+                if (colors[1] > 255) { colors[1] -= 255; }
+                if (colors[2] > 255) { colors[2] -= 255; }
+                waterMarkText.ForeColor = Color.FromArgb(colors[0], colors[1], colors[2]);
+            } catch (Exception ex)
             {
-                pictureBox1.Image = WriteWord(Program.bh.textBox1.Text, Program.f1.bsodold[2], Program.f1.bsodold[3]);
-                pictureBox1.Size = new Size(8 * Program.bh.textBox1.Text.Length, pictureBox1.Height);
-                panel1.Size = new Size(pictureBox1.Width + 20, panel1.Height);
-                panel1.Location = new Point((this.Width / 2) - (panel1.Width / 2) - 8, panel1.Location.Y);
-                pictureBox1.Location = new Point(10, 2);
-                try { line1.Image = WriteWord(Program.bh.textBox6.Text.Split('\n')[0].Substring(0, Program.bh.textBox6.Text.Split('\n')[0].Length - 1), Program.f1.bsodold[0], Program.f1.bsodold[1]); } catch { }
-                try { line2.Image = WriteWord(Program.bh.textBox6.Text.Split('\n')[1].Substring(0, Program.bh.textBox6.Text.Split('\n')[1].Length - 1), Program.f1.bsodold[0], Program.f1.bsodold[1]); } catch { }
-                try { line3.Image = WriteWord(Program.bh.textBox6.Text.Split('\n')[2].Substring(0, Program.bh.textBox6.Text.Split('\n')[2].Length - 1), Program.f1.bsodold[0], Program.f1.bsodold[1]); } catch { }
-                try { line4.Image = WriteWord(Program.bh.textBox6.Text.Split('\n')[3].Substring(0, Program.bh.textBox6.Text.Split('\n')[3].Length - 1), Program.f1.bsodold[0], Program.f1.bsodold[1]); } catch { }
-                try { line5.Image = WriteWord(Program.bh.textBox6.Text.Split('\n')[4].Substring(0, Program.bh.textBox6.Text.Split('\n')[4].Length - 1), Program.f1.bsodold[0], Program.f1.bsodold[1]); } catch { }
-                try { line6.Image = WriteWord(Program.bh.textBox6.Text.Split('\n')[5].Substring(0, Program.bh.textBox6.Text.Split('\n')[5].Length - 1), Program.f1.bsodold[0], Program.f1.bsodold[1]); } catch { }
-                try { line7.Image = WriteWord(Program.bh.textBox6.Text.Split('\n')[6].Substring(0, Program.bh.textBox6.Text.Split('\n')[6].Length - 1), Program.f1.bsodold[0], Program.f1.bsodold[1]); } catch { }
-                try { line8.Image = WriteWord(Program.bh.textBox6.Text.Split('\n')[7].Substring(0, Program.bh.textBox6.Text.Split('\n')[7].Length - 1), Program.f1.bsodold[0], Program.f1.bsodold[1]); } catch { }
-                line4.Location = new Point(line4.Location.X, line4.Location.Y + 14);
-                line5.Location = new Point(line5.Location.X, line5.Location.Y + 14);
-                line6.Location = new Point(line6.Location.X, line6.Location.Y + 26);
-                line7.Location = new Point(line7.Location.X, line7.Location.Y + 26);
-                line8.Location = new Point(line8.Location.X, line8.Location.Y + 26);
-                panel2.Location = new Point(panel2.Location.X, panel2.Location.Y - 15);
-                anyKeyMsg.Location = new Point(anyKeyMsg.Location.X, anyKeyMsg.Location.Y + 26);
-                pictureBox2.Location = new Point(pictureBox2.Location.X, pictureBox2.Location.Y + 26);
-            }
-            anyKeyMsg.Image = WriteWord(Program.bh.textBox5.Text, Program.f1.bsodold[0], Program.f1.bsodold[1]);
-            anyKeyMsg.Size = new Size(Program.bh.textBox5.Text.Length * 8, anyKeyMsg.Height);
-            anyKeyMsg.Location = new Point((this.Width / 2) - (anyKeyMsg.Width / 2) - 16, anyKeyMsg.Location.Y);
-            pictureBox2.Location = new Point(anyKeyMsg.Location.X + anyKeyMsg.Width + 8, pictureBox2.Location.Y);
-            if (!window)
-            { 
-                this.FormBorderStyle = FormBorderStyle.None;
-                this.TopMost = false;
-                ws.Show();
-            } else
-            {
-                this.Size = new Size(640, 320);
+                Program.loadfinished = true;
+                screenUpdater.Enabled = false;
+                this.Hide();
+                if (Program.f1.enableeggs) { me.Crash(ex.Message, ex.StackTrace, "OrangeScreen"); }
+                else { MessageBox.Show("The blue screen cannot be displayed due to an error.\n\n" + ex.Message + "\n\n" + ex.StackTrace, "E R R O R", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+                this.Close();
             }
         }
-        private Bitmap WriteWord (string word, Color bg, Color fg)
+        private Bitmap WriteWord(string word, Color bg, Color fg)
         {
             Bitmap bmpres;
             bmpres = GetSymbol(word.Substring(0, 1), bg, fg);
@@ -196,7 +273,7 @@ namespace UltimateBlueScreenSimulator
             }
             return bmpres;
         }
-        private Bitmap GetSymbol (string symbol, Color bg, Color fg)
+        private Bitmap GetSymbol(string symbol, Color bg, Color fg)
         {
             int index = 0;
             for (int i = 0; i < letters.Length; i++)
@@ -219,8 +296,8 @@ namespace UltimateBlueScreenSimulator
                                      cropRect,
                                      GraphicsUnit.Pixel);
                 }
-                Bitmap tc = changecolor(bg, target, Color.FromArgb(0, 0, 0));
-                Bitmap t = changecolor(fg, tc, Color.FromArgb(255, 255, 255));
+                Bitmap tc = Changecolor(bg, target, Color.FromArgb(0, 0, 0));
+                Bitmap t = Changecolor(fg, tc, Color.FromArgb(255, 255, 255));
                 target = t;
                 return target;
             }
@@ -241,7 +318,7 @@ namespace UltimateBlueScreenSimulator
             }
             return ne;
         }
-        private Bitmap changecolor(Color gc, Bitmap bmp, Color incol)
+        private Bitmap Changecolor(Color gc, Bitmap bmp, Color incol)
         {
             Color black = incol;
             Color white = gc;
@@ -260,45 +337,38 @@ namespace UltimateBlueScreenSimulator
 
         private void Timer1_Tick(object sender, EventArgs e)
         {
+            if (screenUpdater.Interval != me.GetInt("blink_speed")) { screenUpdater.Interval = me.GetInt("blink_speed"); }
             if (!window)
             {
-                if (ws.Visible == false)
+                foreach (WindowScreen ws in wss)
                 {
-                    this.Close();
-                }
-                try
-                {
-                    var frm = Form.ActiveForm;
-                    using (var bmp = new Bitmap(frm.Width, frm.Height))
+                    if (ws.Visible == false)
                     {
-                        frm.DrawToBitmap(bmp, new Rectangle(0, 0, bmp.Width, bmp.Height));
-
-                        Bitmap newImage = new Bitmap(ws.Width, ws.Height);
-                        using (Graphics g = Graphics.FromImage(newImage))
+                        this.Close();
+                    }
+                    try
+                    {
+                        if (!ws.primary && Program.multidisplaymode == "blank")
                         {
-                            if (Program.f1.GMode == "HighQualityBicubic") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic; }
-                            if (Program.f1.GMode == "HighQualityBilinear") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBilinear; }
-                            if (Program.f1.GMode == "Bilinear") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.Bilinear; }
-                            if (Program.f1.GMode == "Bicubic") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.Bicubic; }
-                            if (Program.f1.GMode == "NearestNeighbour") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor; }
-                            g.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
-                            g.DrawImage(bmp, new Rectangle(0, 0, ws.Width, ws.Height));
+                            continue;
                         }
-                        ws.pictureBox1.Image = newImage;
+                        Program.dr.Draw(ws);
+                    }
+                    catch
+                    {
+                        this.Close();
                     }
                 }
-                catch
-                {
-                    this.Close();
-                }
+                this.BringToFront();
+                this.Activate();
             }
-            if (pictureBox2.Visible == false)
+            if (blinkingColor.Visible == false)
             {
-                pictureBox2.Visible = true;
+                blinkingColor.Visible = true;
                 return;
             } else
             {
-                pictureBox2.Visible = false;
+                blinkingColor.Visible = false;
                 return;
             }
         }
@@ -306,9 +376,12 @@ namespace UltimateBlueScreenSimulator
         private void Old_bluescreen_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
-            { 
-                try { if (ws.Visible == true) { ws.Close(); } }
-                catch { }
+            {
+                foreach (WindowScreen ws in wss)
+                {
+                    try { if (ws.Visible == true) { ws.Close(); } }
+                    catch { }
+                }
                 this.Close();
             }
         }
@@ -325,11 +398,27 @@ namespace UltimateBlueScreenSimulator
 
         private void Old_bluescreen_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                e.Cancel = Program.f1.lockout;
+            }
+            else
+            {
+                e.Cancel = false;
+            }
             if (!window)
             {
-                if (ws.Visible)
+                foreach (WindowScreen ws in wss)
                 {
-                    ws.Close();
+                    if (ws.Visible)
+                    {
+                        ws.Dispose();
+                        ws.Close();
+                    }
+                }
+                foreach (Bitmap bmp in freezescreens)
+                {
+                    bmp.Dispose();
                 }
             }
         }

@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
+using SimulatorDatabase;
 
 namespace UltimateBlueScreenSimulator
 {
@@ -18,8 +15,12 @@ namespace UltimateBlueScreenSimulator
         public string code = "";
         public string whatfail = "";
         public bool w8 = false;
+        public bool w11 = false;
         private bool w8close = false;
         private int progress = 0;
+        internal BlueScreen me = Program.bluescreens[0];
+        readonly List<WindowScreen> wss = new List<WindowScreen>();
+        readonly List<Bitmap> freezescreens = new List<Bitmap>();
         public WXBS()
         {
             InitializeComponent();
@@ -32,154 +33,271 @@ namespace UltimateBlueScreenSimulator
 
         private void WXBS_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (!Program.f1.showcursor)
+            // prevent closing with Alt + F4
+            // if Windows is shutting down, this will not prevent closing of
+            // WXBS
+            if (e.CloseReason == CloseReason.UserClosing)
             {
-                Cursor.Show();
+                if (progress < 100)
+                {
+                    e.Cancel = Program.f1.lockout;
+                }
+                else
+                {
+                    e.Cancel = false;
+                }
+            }
+            else
+            {
+                e.Cancel = false;
+            }
+            if (!e.Cancel)
+            {
+                if (wss.Count > 0)
+                {
+                    foreach (WindowScreen ws in wss)
+                    {
+                        ws.Close();
+                        ws.Dispose();
+                    }
+                }
+                screenUpdater.Enabled = false;
             }
         }
 
         private void WXBS_Load(object sender, EventArgs e)
         {
-            label1.Font = Program.bh.emotiFont.Font;
-            label2.Font = Program.bh.modernTextFont.Font;
-            label3.Font = Program.bh.modernTextFont.Font;
-            label4.Font = Program.bh.modernDetailFont.Font;
-            label5.Font = Program.bh.modernDetailFont.Font;
-            label2.Text = Program.bh.textBox41.Text;
-            pictureBox1.Size = new Size(Program.bh.trackBar1.Value, Program.bh.trackBar1.Value);
-            if (Program.bh.transparentQR.Checked == true) { pictureBox1.Image = Properties.Resources.bsodqr_transparent; }
-            if (Program.bh.defactoQR.Checked == true) { pictureBox1.Image = Properties.Resources.bsodqr; }
-            try { if (Program.bh.customQR.Checked == true) { pictureBox1.Image = Image.FromFile(Program.bh.qrFile.Text); } } catch { pictureBox1.Image = Properties.Resources.bsodqr; }
-            if (w8 == true)
+            try
             {
-                label2.Text = Program.bh.textBox37.Text.Replace("{0}", "0");
-                if (close == true) { close = false; w8close = true; }
+                this.Icon = me.GetIcon();
+                this.Text = me.GetString("friendlyname");
+                memCodes.Visible = me.GetBool("extracodes");
+                Font textfont = me.GetFont();
+                float textsize = textfont.Size;
+                Font emotifont = new Font(me.GetFont().FontFamily, textsize * 5f, me.GetFont().Style);
+                Font modernDetailFont = new Font(me.GetFont().FontFamily, textsize * 0.55f, me.GetFont().Style);
+                emoticonLabel.Font = emotifont;
+                yourPCranLabel.Font = textfont;
+                progressIndicator.Font = textfont;
+                supportInfo.Font = modernDetailFont;
+                errorCode.Font = modernDetailFont;
+                yourPCranLabel.Text = me.GetTexts()["Information text with dump"];
 
-            } else
-            {
-                label3.Text = Program.bh.textBox44.Text.Replace("{0}", "0");
-                label4.Text = Program.bh.textBox42.Text;
-            }
-            if (!w8close)
-            { 
-                if (close == false)
+                qrCode.Size = new Size(me.GetInt("qr_size"), me.GetInt("qr_size"));
+
+                if (me.GetString("qr_file") == "local:1") { qrCode.Image = Properties.Resources.bsodqr_transparent; }
+                else if (me.GetString("qr_file") == "local:0") { qrCode.Image = Properties.Resources.bsodqr; }
+                else { try { qrCode.Image = Image.FromFile(me.GetString("qr_file")); } catch { qrCode.Image = Properties.Resources.bsodqr; } }
+                if (w8 == true)
                 {
-                    label2.Text = Program.bh.textBox40.Text;
+                    yourPCranLabel.Text = me.GetTexts()["Information text with dump"].Replace("{0}", "0");
+                    if (close == true) { close = false; w8close = true; }
+
                 }
-                if (green)
+                else
                 {
-                    this.BackColor = Color.FromArgb(47, 121, 42);
-                    label2.Text = label2.Text.Replace("PC", "Windows Insider Build");
+                    progressIndicator.Text = me.GetTexts()["Progress"].Replace("{0}", "0");
+                    supportInfo.Text = me.GetTexts()["Additional information"];
                 }
-                if (server)
+                if (!w8close)
                 {
-                    label1.Visible = false;
-                    label2.Margin = new Padding(label2.Margin.Left, 80, 0, 0);
-                }
-            }
-            try { waterMarkText.ForeColor = Color.FromArgb(this.BackColor.R + 60, this.BackColor.G + 60, this.BackColor.B + 60); } catch { }
-            if (this.FormBorderStyle == FormBorderStyle.None)
-            {
-                if (!Program.f1.showcursor)
-                { 
-                    Cursor.Hide();
-                }
-            }
-            label1.Padding = new Padding(0, Convert.ToInt32(this.Height * 0.12), 0, 0);
-            panel2.Width = Convert.ToInt32(this.Width * 0.09) - 10;
-            label2.Padding = new Padding(panel2.Width - 3, 0, 0, 0);
-            label3.Padding = label2.Padding;
-            label1.Margin = new Padding(Convert.ToInt32(panel2.Width * 0.8), 0, 0, 0);
-            flowLayoutPanel2.Width = this.Width - 10;
-            if (w8 == false)
-            {
-                if (whatfail == "")
-                { 
-                    label5.Text = Program.bh.textBox45.Text.Replace("{0}", code);
-                } else
-                {
-                    label5.Location = new Point(3, 36);
-                    label5.Text = Program.bh.textBox45.Text.Replace("{0}", code + "\n\n" + Program.bh.textBox43.Text.Replace("{0}", whatfail.ToLower()));
-                }
-            }
-            if (w8 == true)
-            {
-                label3.Visible = false;
-                if (whatfail == "")
-                {
-                    label5.Text = Program.bh.textBox39.Text.Replace("{0}", code);
-                } else
-                {
-                    label5.Text = Program.bh.textBox39.Text.Replace("{0}", code + " (" + whatfail.ToLower() + ")");
-                }
-            }
-            if (qr == true)
-            {
-                pictureBox1.Visible = true;
-                label4.Visible = true;
-                label5.Location = new Point(3, 56);
-                Point locationOnForm = pictureBox1.FindForm().PointToClient(pictureBox1.Parent.PointToScreen(pictureBox1.Location));
-                panel1.Location = new Point(panel2.Width + pictureBox1.Width + 20, locationOnForm.Y);
-            } else
-            {
-                pictureBox1.Visible = false;
-                label4.Visible = false;
-                label5.Location = new Point(3, 0);
-                Point locationOnForm = flowLayoutPanel2.FindForm().PointToClient(flowLayoutPanel2.Parent.PointToScreen(flowLayoutPanel2.Location));
-                panel1.Location = new Point(panel2.Width, locationOnForm.Y);
-            }
-            if (qr == false)
-            { 
-                if (close == false)
-                {
-                    if (w8)
+                    if (close == false)
                     {
-                        Point locationOnForm = label2.FindForm().PointToClient(label2.Parent.PointToScreen(label2.Location));
-                        panel1.Location = new Point(panel1.Location.X, locationOnForm.Y + 150);
+                        yourPCranLabel.Text = me.GetTexts()["Information text without dump"];
+                    }
+                    if (green)
+                    {
+                        this.BackColor = Color.FromArgb(47, 121, 42);
+                        yourPCranLabel.Text = yourPCranLabel.Text.Replace("PC", "Windows Insider Build");
+                    }
+                    if (server)
+                    {
+                        emoticonLabel.Visible = false;
+                        yourPCranLabel.Margin = new Padding(yourPCranLabel.Margin.Left, 80, 0, 0);
+                    }
+                    if (me.GetBool("device")) { yourPCranLabel.Text = yourPCranLabel.Text.Replace("PC", "device"); }
+                }
+                try { waterMarkText.ForeColor = Color.FromArgb(this.BackColor.R + 60, this.BackColor.G + 60, this.BackColor.B + 60); } catch { }
+                if (this.FormBorderStyle == FormBorderStyle.None)
+                {
+                    if (!Program.f1.showcursor)
+                    {
+                        Cursor.Hide();
                     }
                 }
-            }
-            if (w8)
-            {
-                if (w8close == false)
+                emoticonLabel.Padding = new Padding(0, Convert.ToInt32(this.Height * ((double)me.GetInt("margin-y") / 100.0)), 0, 0);
+                qrMargin.Width = Convert.ToInt32(this.Width * ((double)me.GetInt("margin-x") / 100.0)) - 10;
+                yourPCranLabel.Padding = new Padding(qrMargin.Width - 3, 0, 0, 0);
+                progressIndicator.Padding = yourPCranLabel.Padding;
+                emoticonLabel.Margin = new Padding(Convert.ToInt32(qrMargin.Width * 0.8), 0, 0, 0);
+                horizontalFlowPanel.Width = this.Width - 10;
+                if (w8 == false)
                 {
-                    label2.Text = Program.bh.textBox38.Text;
-                    timer1.Enabled = false;
-                    label3.Visible = false;
-                    Point locationOnForm = label2.FindForm().PointToClient(label2.Parent.PointToScreen(label2.Location));
-                    panel1.Location = new Point(panel2.Width, locationOnForm.Y + 120);
+                    if (whatfail == "")
+                    {
+                        errorCode.Text = me.GetTexts()["Error code"].Replace("{0}", code);
+                    }
+                    else
+                    {
+                        errorCode.Location = new Point(3, 36);
+                        errorCode.Text = me.GetTexts()["Error code"].Replace("{0}", code + "\n\n" + me.GetTexts()["Culprit file"].Replace("{0}", whatfail.ToLower()));
+                    }
                 }
-            }
-            if (w8close == true)
+                if (w8 == true)
+                {
+                    progressIndicator.Visible = false;
+                    if (whatfail == "")
+                    {
+                        errorCode.Text = me.GetTexts()["Error code"].Replace("{0}", code);
+                    }
+                    else
+                    {
+                        errorCode.Text = me.GetTexts()["Error code"].Replace("{0}", code + " (" + whatfail.ToLower() + ")");
+                    }
+                }
+                if (qr == true)
+                {
+                    qrCode.Visible = true;
+                    supportInfo.Visible = true;
+                    errorCode.Location = new Point(3, 56);
+                    Point locationOnForm = qrCode.FindForm().PointToClient(qrCode.Parent.PointToScreen(qrCode.Location));
+                    supportContainer.Location = new Point(qrMargin.Width + qrCode.Width + 20, locationOnForm.Y);
+                }
+                else
+                {
+                    qrCode.Visible = false;
+                    supportInfo.Visible = false;
+                    errorCode.Location = new Point(3, 0);
+                    Point locationOnForm = horizontalFlowPanel.FindForm().PointToClient(horizontalFlowPanel.Parent.PointToScreen(horizontalFlowPanel.Location));
+                    supportContainer.Location = new Point(qrMargin.Width - 13, locationOnForm.Y);
+                }
+                if (qr == false)
+                {
+                    if (close == false)
+                    {
+                        if (w8)
+                        {
+                            Point locationOnForm = yourPCranLabel.FindForm().PointToClient(yourPCranLabel.Parent.PointToScreen(yourPCranLabel.Location));
+                            supportContainer.Location = new Point(supportContainer.Location.X, locationOnForm.Y + 150);
+                        }
+                    }
+                }
+                if (w8)
+                {
+                    if (w8close == false)
+                    {
+                        yourPCranLabel.Text = me.GetTexts()["Information text without dump"];
+                        progressUpdater.Enabled = false;
+                        progressIndicator.Visible = false;
+                        Point locationOnForm = yourPCranLabel.FindForm().PointToClient(yourPCranLabel.Parent.PointToScreen(yourPCranLabel.Location));
+                        supportContainer.Location = new Point(qrMargin.Width - 13, locationOnForm.Y + 120);
+                    }
+                }
+                if (w8close == true)
+                {
+                    progressUpdater.Enabled = true;
+                }
+                Program.loadfinished = true;
+                if (!me.GetBool("windowed"))
+                {
+                    if (Screen.AllScreens.Length > 1)
+                    {
+                        foreach (Screen s in Screen.AllScreens)
+                        {
+                            if (!s.Primary)
+                            {
+                                if (Program.multidisplaymode != "none")
+                                {
+                                    WindowScreen ws = new WindowScreen
+                                    {
+                                        StartPosition = FormStartPosition.Manual,
+                                        Location = s.WorkingArea.Location,
+                                        Size = new Size(s.WorkingArea.Width, s.WorkingArea.Height),
+                                        primary = false
+                                    };
+                                    if (Program.multidisplaymode == "freeze")
+                                    {
+                                        screenUpdater.Enabled = false;
+                                        Bitmap screenshot = new Bitmap(s.Bounds.Width,
+                                            s.Bounds.Height,
+                                            System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+                                        Graphics gfxScreenshot = Graphics.FromImage(screenshot);
+                                        gfxScreenshot.CopyFromScreen(
+                                            s.Bounds.X,
+                                            s.Bounds.Y,
+                                            0,
+                                            0,
+                                            s.Bounds.Size,
+                                            CopyPixelOperation.SourceCopy
+                                            );
+                                        freezescreens.Add(screenshot);
+
+                                    }
+                                    wss.Add(ws);
+                                }
+                            }
+                        }
+                        for (int i = 0; i < wss.Count; i++)
+                        {
+                            WindowScreen ws = wss[i];
+                            ws.Show();
+                            if (Program.multidisplaymode == "freeze")
+                            {
+                                ws.screenDisplay.Image = freezescreens[i];
+                            }
+                        }
+                    }
+                }
+            } catch (Exception ex)
             {
-                timer1.Enabled = true;
+                Program.loadfinished = true;
+                screenUpdater.Enabled = false;
+                progressUpdater.Enabled = false;
+                this.Hide();
+                if (Program.f1.enableeggs) { me.Crash(ex.Message, ex.StackTrace, "OrangeScreen"); }
+                else { MessageBox.Show("The blue screen cannot be displayed due to an error.\n\n" + ex.Message + "\n\n" + ex.StackTrace, "E R R O R", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+                this.Close();
             }
         }
 
         private void Timer1_Tick(object sender, EventArgs e)
         {
-            if (!w8close) { 
-                if (progress >= 100)
-                {
-                    timer1.Enabled = false;
-                    if (close == true) { this.Close(); }
-                    label3.Text = Program.bh.textBox44.Text.Replace("{0}", "100");
-                }
-                progress += 1;
-                if (progress > 60) { timer1.Interval = 300; }
-                label3.Text = Program.bh.textBox44.Text.Replace("{0}", progress.ToString());
-            } else
+            try
             {
-                if (progress >= 100)
+                if (!w8close)
                 {
-                    label2.Text = label2.Text.Replace(progress.ToString() + "%", "100%");
-                    timer1.Enabled = false;
-                    if (w8close == true) { this.Close(); }
+                    if (progress >= 100)
+                    {
+                        progressUpdater.Enabled = false;
+                        if (me.GetBool("autoclose")) { this.Close(); }
+                        progressIndicator.Text = me.GetTexts()["Progress"].Replace("{0}", "100");
+                    }
+                    progress += 1;
+                    if (progress > 60) { progressUpdater.Interval = 300; }
+                    progressIndicator.Text = me.GetTexts()["Progress"].Replace("{0}", progress.ToString());
                 }
-                string oldprogress = progress.ToString();
-                progress += 1;
-                if (progress > 60) { timer1.Interval = 300; }
-                label2.Text = label2.Text.Replace(oldprogress + "%", progress.ToString() + "%");
+                else
+                {
+                    if (progress >= 100)
+                    {
+                        yourPCranLabel.Text = yourPCranLabel.Text.Replace(progress.ToString() + "%", "100%");
+                        progressUpdater.Enabled = false;
+                        if (me.GetBool("autoclose"))
+                        {
+                            this.Close();
+                        }
+                    }
+                    string oldprogress = progress.ToString();
+                    progress += 1;
+                    if (progress > 60) { progressUpdater.Interval = 300; }
+                    yourPCranLabel.Text = yourPCranLabel.Text.Replace(oldprogress + "%", progress.ToString() + "%");
+                }
+            } catch (Exception ex)
+            {
+                progressUpdater.Enabled = false;
+                if (Program.f1.enableeggs) { me.Crash(ex.Message, ex.StackTrace, "GreenScreen"); }
+                else { MessageBox.Show("An error has occoured.\n\n" + ex.Message + "\n\n" + ex.StackTrace.ToString(), "E R R O R", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+                
             }
         }
 
@@ -194,29 +312,28 @@ namespace UltimateBlueScreenSimulator
                 MessageBox.Show(Program.f1.MsgBoxMessage, Program.f1.MsgBoxTitle, Program.f1.MsgBoxType, Program.f1.MsgBoxIcon);
                 Program.f1.showmsg = false;
             }
-            Program.f1.Show();
         }
 
         private void WXBS_Resize(object sender, EventArgs e)
         {
-            label1.Padding = new Padding(0, Convert.ToInt32(this.Height * 0.12), 0, 0);
-            panel2.Width = Convert.ToInt32(this.Width * 0.09) - 10;
-            label2.Padding = new Padding(panel2.Width - 3, 0, 0, 0);
-            label3.Padding = label2.Padding;
-            label1.Margin = new Padding(Convert.ToInt32(panel2.Width * 0.77), 0, 0, 0);
-            flowLayoutPanel2.Width = this.Width - 10;
+            emoticonLabel.Padding = new Padding(0, Convert.ToInt32(this.Height * ((double)me.GetInt("margin-y") / 100.0)), 0, 0);
+            qrMargin.Width = Convert.ToInt32(this.Width * ((double)me.GetInt("margin-x") / 100.0)) - 10;
+            yourPCranLabel.Padding = new Padding(qrMargin.Width - 3, 0, 0, 0);
+            progressIndicator.Padding = yourPCranLabel.Padding;
+            emoticonLabel.Margin = new Padding(Convert.ToInt32(qrMargin.Width * 0.77), 0, 0, 0);
+            horizontalFlowPanel.Width = this.Width - 10;
 
             if (qr == true)
             {
-                label5.Location = new Point(3, 56);
-                Point locationOnForm = pictureBox1.FindForm().PointToClient(pictureBox1.Parent.PointToScreen(pictureBox1.Location));
-                panel1.Location = new Point(panel2.Width + pictureBox1.Width + 20, locationOnForm.Y);
+                errorCode.Location = new Point(3, 56);
+                Point locationOnForm = qrCode.FindForm().PointToClient(qrCode.Parent.PointToScreen(qrCode.Location));
+                supportContainer.Location = new Point(qrMargin.Width + qrCode.Width + 20, locationOnForm.Y);
             }
             else
             {
-                label5.Location = new Point(3, 0);
-                Point locationOnForm = flowLayoutPanel2.FindForm().PointToClient(flowLayoutPanel2.Parent.PointToScreen(flowLayoutPanel2.Location));
-                panel1.Location = new Point(panel2.Width, locationOnForm.Y);
+                errorCode.Location = new Point(3, 0);
+                Point locationOnForm = horizontalFlowPanel.FindForm().PointToClient(horizontalFlowPanel.Parent.PointToScreen(horizontalFlowPanel.Location));
+                supportContainer.Location = new Point(qrMargin.Width - 13, locationOnForm.Y);
             }
             if (qr == false)
             {
@@ -224,8 +341,8 @@ namespace UltimateBlueScreenSimulator
                 {
                     if (w8)
                     {
-                        Point locationOnForm = label2.FindForm().PointToClient(label2.Parent.PointToScreen(label2.Location));
-                        panel1.Location = new Point(panel1.Location.X, locationOnForm.Y + 150);
+                        Point locationOnForm = yourPCranLabel.FindForm().PointToClient(yourPCranLabel.Parent.PointToScreen(yourPCranLabel.Location));
+                        supportContainer.Location = new Point(supportContainer.Location.X, locationOnForm.Y + 150);
                     }
                 }
             }
@@ -233,9 +350,42 @@ namespace UltimateBlueScreenSimulator
             {
                 if (w8close == false)
                 {
-                    Point locationOnForm = label2.FindForm().PointToClient(label2.Parent.PointToScreen(label2.Location));
-                    panel1.Location = new Point(panel2.Width, locationOnForm.Y + 120);
+                    Point locationOnForm = yourPCranLabel.FindForm().PointToClient(yourPCranLabel.Parent.PointToScreen(yourPCranLabel.Location));
+                    supportContainer.Location = new Point(qrMargin.Width - 13, locationOnForm.Y + 120);
                 }
+            }
+        }
+
+        private void Timer2_Tick(object sender, EventArgs e)
+        {
+            if (!me.GetBool("windowed"))
+            {
+                foreach (WindowScreen ws in wss)
+                {
+                    if (ws.Visible == false)
+                    {
+                        this.Close();
+                    }
+                    try
+                    {
+                        Program.dr.Draw(ws);
+                    }
+                    catch
+                    {
+                        this.Close();
+                    }
+                }
+                this.BringToFront();
+                this.Activate();
+            }
+        }
+
+        private void WXBS_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                // debug here
+                Program.f1.me.GetString("a");
             }
         }
     }

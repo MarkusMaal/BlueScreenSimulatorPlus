@@ -16,47 +16,46 @@ namespace UltimateBlueScreenSimulator
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void CloseClick(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        private void pictureBox2_Click(object sender, EventArgs e)
+        private void ChangeAllSizeMode()
         {
-            if (pictureBox2.SizeMode == PictureBoxSizeMode.Zoom)
+            switch (charSetB.SizeMode)
             {
-                pictureBox2.SizeMode = PictureBoxSizeMode.CenterImage;
-                pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
-            }
-            else if (pictureBox2.SizeMode == PictureBoxSizeMode.CenterImage)
-            {
-                pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
-                pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            }
-            else if (pictureBox2.SizeMode == PictureBoxSizeMode.StretchImage)
-            {
-                pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
-                pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+                case PictureBoxSizeMode.Zoom:
+                    charSetC.SizeMode = PictureBoxSizeMode.CenterImage;
+                    charSetB.SizeMode = PictureBoxSizeMode.CenterImage;
+                    charSetA.SizeMode = PictureBoxSizeMode.CenterImage;
+                    break;
+                case PictureBoxSizeMode.CenterImage:
+                    charSetC.SizeMode = PictureBoxSizeMode.StretchImage;
+                    charSetB.SizeMode = PictureBoxSizeMode.StretchImage;
+                    charSetA.SizeMode = PictureBoxSizeMode.StretchImage;
+                    break;
+                case PictureBoxSizeMode.StretchImage:
+                    charSetC.SizeMode = PictureBoxSizeMode.Zoom;
+                    charSetB.SizeMode = PictureBoxSizeMode.Zoom;
+                    charSetA.SizeMode = PictureBoxSizeMode.Zoom;
+                    break;
             }
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void ChangeSizeModeB(object sender, EventArgs e)
         {
-            if (pictureBox2.SizeMode == PictureBoxSizeMode.Zoom)
-            {
-                pictureBox2.SizeMode = PictureBoxSizeMode.CenterImage;
-                pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
-            }
-            else if (pictureBox2.SizeMode == PictureBoxSizeMode.CenterImage)
-            {
-                pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
-                pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            }
-            else if (pictureBox2.SizeMode == PictureBoxSizeMode.StretchImage)
-            {
-                pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
-                pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            }
+            ChangeAllSizeMode();
+        }
+
+        private void ChangeSizeModeA(object sender, EventArgs e)
+        {
+            ChangeAllSizeMode();
+        }
+
+        private void ChangeSizeModeC(object sender, EventArgs e)
+        {
+            ChangeAllSizeMode();
         }
     }
 }

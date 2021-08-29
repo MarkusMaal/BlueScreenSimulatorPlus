@@ -30,140 +30,150 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BootMgr));
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.bootmgrTitle = new System.Windows.Forms.Label();
+            this.bootmgrIntro = new System.Windows.Forms.Label();
+            this.bootmgrTroubleshoot = new System.Windows.Forms.Label();
+            this.bootmgrConsultAdmin = new System.Windows.Forms.Label();
+            this.bootmgrEnterContinue = new System.Windows.Forms.Label();
+            this.bootmgrEscapeExit = new System.Windows.Forms.Label();
+            this.bootmgrStatus = new System.Windows.Forms.Label();
+            this.bootmgrInfo = new System.Windows.Forms.Label();
+            this.bootmgrStatusCode = new System.Windows.Forms.Label();
+            this.bootmgrInfoDetails = new System.Windows.Forms.Label();
+            this.screenUpdater = new System.Windows.Forms.Timer(this.components);
+            this.waterMarkText = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // label1
+            // bootmgrTitle
             // 
-            this.label1.BackColor = System.Drawing.Color.Silver;
-            this.label1.Font = new System.Drawing.Font("Consolas", 16F);
-            this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(34, 11);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(947, 26);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Windows Boot Manager";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.bootmgrTitle.BackColor = System.Drawing.Color.Silver;
+            this.bootmgrTitle.Font = new System.Drawing.Font("Consolas", 16F);
+            this.bootmgrTitle.ForeColor = System.Drawing.Color.Black;
+            this.bootmgrTitle.Location = new System.Drawing.Point(34, 11);
+            this.bootmgrTitle.Name = "bootmgrTitle";
+            this.bootmgrTitle.Size = new System.Drawing.Size(947, 26);
+            this.bootmgrTitle.TabIndex = 0;
+            this.bootmgrTitle.Text = "Windows Boot Manager";
+            this.bootmgrTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label2
+            // bootmgrIntro
             // 
-            this.label2.BackColor = System.Drawing.Color.Black;
-            this.label2.Font = new System.Drawing.Font("Consolas", 16F);
-            this.label2.ForeColor = System.Drawing.Color.Silver;
-            this.label2.Location = new System.Drawing.Point(28, 81);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(963, 58);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Windows failed to start. A recent hardware or software change might be the\r\ncause" +
+            this.bootmgrIntro.BackColor = System.Drawing.Color.Black;
+            this.bootmgrIntro.Font = new System.Drawing.Font("Consolas", 16F);
+            this.bootmgrIntro.ForeColor = System.Drawing.Color.Silver;
+            this.bootmgrIntro.Location = new System.Drawing.Point(28, 81);
+            this.bootmgrIntro.Name = "bootmgrIntro";
+            this.bootmgrIntro.Size = new System.Drawing.Size(963, 58);
+            this.bootmgrIntro.TabIndex = 1;
+            this.bootmgrIntro.Text = "Windows failed to start. A recent hardware or software change might be the\r\ncause" +
     ". To fix the problem:";
             // 
-            // label3
+            // bootmgrTroubleshoot
             // 
-            this.label3.BackColor = System.Drawing.Color.Black;
-            this.label3.Font = new System.Drawing.Font("Consolas", 16F);
-            this.label3.ForeColor = System.Drawing.Color.Silver;
-            this.label3.Location = new System.Drawing.Point(58, 166);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(933, 87);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "1. Insert your Windows installation disc and restart your computer.\r\n2. Choose yo" +
+            this.bootmgrTroubleshoot.BackColor = System.Drawing.Color.Black;
+            this.bootmgrTroubleshoot.Font = new System.Drawing.Font("Consolas", 16F);
+            this.bootmgrTroubleshoot.ForeColor = System.Drawing.Color.Silver;
+            this.bootmgrTroubleshoot.Location = new System.Drawing.Point(58, 166);
+            this.bootmgrTroubleshoot.Name = "bootmgrTroubleshoot";
+            this.bootmgrTroubleshoot.Size = new System.Drawing.Size(933, 87);
+            this.bootmgrTroubleshoot.TabIndex = 2;
+            this.bootmgrTroubleshoot.Text = "1. Insert your Windows installation disc and restart your computer.\r\n2. Choose yo" +
     "ur language settings, and then click \"Next.\"\r\n3. Click \"Repair your computer.\"";
             // 
-            // label4
+            // bootmgrConsultAdmin
             // 
-            this.label4.BackColor = System.Drawing.Color.Black;
-            this.label4.Font = new System.Drawing.Font("Consolas", 16F);
-            this.label4.ForeColor = System.Drawing.Color.Silver;
-            this.label4.Location = new System.Drawing.Point(28, 282);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(963, 58);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "If you do not have this disc, contact your system administrator or computer\r\nmanu" +
+            this.bootmgrConsultAdmin.BackColor = System.Drawing.Color.Black;
+            this.bootmgrConsultAdmin.Font = new System.Drawing.Font("Consolas", 16F);
+            this.bootmgrConsultAdmin.ForeColor = System.Drawing.Color.Silver;
+            this.bootmgrConsultAdmin.Location = new System.Drawing.Point(28, 282);
+            this.bootmgrConsultAdmin.Name = "bootmgrConsultAdmin";
+            this.bootmgrConsultAdmin.Size = new System.Drawing.Size(963, 58);
+            this.bootmgrConsultAdmin.TabIndex = 3;
+            this.bootmgrConsultAdmin.Text = "If you do not have this disc, contact your system administrator or computer\r\nmanu" +
     "facturer for assistance.";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
-            // label5
+            // bootmgrEnterContinue
             // 
-            this.label5.BackColor = System.Drawing.Color.Silver;
-            this.label5.Font = new System.Drawing.Font("Consolas", 16F);
-            this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(39, 731);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(455, 26);
-            this.label5.TabIndex = 4;
-            this.label5.Text = " ENTER=Continue";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.bootmgrEnterContinue.BackColor = System.Drawing.Color.Silver;
+            this.bootmgrEnterContinue.Font = new System.Drawing.Font("Consolas", 16F);
+            this.bootmgrEnterContinue.ForeColor = System.Drawing.Color.Black;
+            this.bootmgrEnterContinue.Location = new System.Drawing.Point(39, 731);
+            this.bootmgrEnterContinue.Name = "bootmgrEnterContinue";
+            this.bootmgrEnterContinue.Size = new System.Drawing.Size(455, 26);
+            this.bootmgrEnterContinue.TabIndex = 4;
+            this.bootmgrEnterContinue.Text = " ENTER=Continue";
+            this.bootmgrEnterContinue.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label6
+            // bootmgrEscapeExit
             // 
-            this.label6.BackColor = System.Drawing.Color.Silver;
-            this.label6.Font = new System.Drawing.Font("Consolas", 16F);
-            this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(493, 731);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(488, 26);
-            this.label6.TabIndex = 5;
-            this.label6.Text = "ESC=Exit ";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.bootmgrEscapeExit.BackColor = System.Drawing.Color.Silver;
+            this.bootmgrEscapeExit.Font = new System.Drawing.Font("Consolas", 16F);
+            this.bootmgrEscapeExit.ForeColor = System.Drawing.Color.Black;
+            this.bootmgrEscapeExit.Location = new System.Drawing.Point(493, 731);
+            this.bootmgrEscapeExit.Name = "bootmgrEscapeExit";
+            this.bootmgrEscapeExit.Size = new System.Drawing.Size(488, 26);
+            this.bootmgrEscapeExit.TabIndex = 5;
+            this.bootmgrEscapeExit.Text = "ESC=Exit ";
+            this.bootmgrEscapeExit.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // label7
+            // bootmgrStatus
             // 
-            this.label7.BackColor = System.Drawing.Color.Black;
-            this.label7.Font = new System.Drawing.Font("Consolas", 16F);
-            this.label7.ForeColor = System.Drawing.Color.Silver;
-            this.label7.Location = new System.Drawing.Point(81, 451);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(105, 31);
-            this.label7.TabIndex = 6;
-            this.label7.Text = "Status: ";
+            this.bootmgrStatus.BackColor = System.Drawing.Color.Black;
+            this.bootmgrStatus.Font = new System.Drawing.Font("Consolas", 16F);
+            this.bootmgrStatus.ForeColor = System.Drawing.Color.Silver;
+            this.bootmgrStatus.Location = new System.Drawing.Point(81, 451);
+            this.bootmgrStatus.Name = "bootmgrStatus";
+            this.bootmgrStatus.Size = new System.Drawing.Size(105, 31);
+            this.bootmgrStatus.TabIndex = 6;
+            this.bootmgrStatus.Text = "Status: ";
             // 
-            // label8
+            // bootmgrInfo
             // 
-            this.label8.BackColor = System.Drawing.Color.Black;
-            this.label8.Font = new System.Drawing.Font("Consolas", 16F);
-            this.label8.ForeColor = System.Drawing.Color.Silver;
-            this.label8.Location = new System.Drawing.Point(81, 507);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(74, 31);
-            this.label8.TabIndex = 7;
-            this.label8.Text = "Info: ";
+            this.bootmgrInfo.BackColor = System.Drawing.Color.Black;
+            this.bootmgrInfo.Font = new System.Drawing.Font("Consolas", 16F);
+            this.bootmgrInfo.ForeColor = System.Drawing.Color.Silver;
+            this.bootmgrInfo.Location = new System.Drawing.Point(81, 507);
+            this.bootmgrInfo.Name = "bootmgrInfo";
+            this.bootmgrInfo.Size = new System.Drawing.Size(74, 31);
+            this.bootmgrInfo.TabIndex = 7;
+            this.bootmgrInfo.Text = "Info: ";
             // 
-            // label9
+            // bootmgrStatusCode
             // 
-            this.label9.BackColor = System.Drawing.Color.Black;
-            this.label9.Font = new System.Drawing.Font("Consolas", 16F);
-            this.label9.ForeColor = System.Drawing.Color.White;
-            this.label9.Location = new System.Drawing.Point(182, 451);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(644, 31);
-            this.label9.TabIndex = 8;
-            this.label9.Text = "0xc000000e";
+            this.bootmgrStatusCode.BackColor = System.Drawing.Color.Black;
+            this.bootmgrStatusCode.Font = new System.Drawing.Font("Consolas", 16F);
+            this.bootmgrStatusCode.ForeColor = System.Drawing.Color.White;
+            this.bootmgrStatusCode.Location = new System.Drawing.Point(182, 451);
+            this.bootmgrStatusCode.Name = "bootmgrStatusCode";
+            this.bootmgrStatusCode.Size = new System.Drawing.Size(644, 31);
+            this.bootmgrStatusCode.TabIndex = 8;
+            this.bootmgrStatusCode.Text = "0xc000000e";
             // 
-            // label10
+            // bootmgrInfoDetails
             // 
-            this.label10.BackColor = System.Drawing.Color.Black;
-            this.label10.Font = new System.Drawing.Font("Consolas", 16F);
-            this.label10.ForeColor = System.Drawing.Color.White;
-            this.label10.Location = new System.Drawing.Point(161, 507);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(766, 65);
-            this.label10.TabIndex = 9;
-            this.label10.Text = "The boot selection failed because a required device is\r\ninaccessible.";
+            this.bootmgrInfoDetails.BackColor = System.Drawing.Color.Black;
+            this.bootmgrInfoDetails.Font = new System.Drawing.Font("Consolas", 16F);
+            this.bootmgrInfoDetails.ForeColor = System.Drawing.Color.White;
+            this.bootmgrInfoDetails.Location = new System.Drawing.Point(161, 507);
+            this.bootmgrInfoDetails.Name = "bootmgrInfoDetails";
+            this.bootmgrInfoDetails.Size = new System.Drawing.Size(766, 65);
+            this.bootmgrInfoDetails.TabIndex = 9;
+            this.bootmgrInfoDetails.Text = "The boot selection failed because a required device is\r\ninaccessible.";
             // 
-            // timer1
+            // screenUpdater
             // 
-            this.timer1.Enabled = true;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.screenUpdater.Enabled = true;
+            this.screenUpdater.Tick += new System.EventHandler(this.UpdateScreen);
+            // 
+            // waterMarkText
+            // 
+            this.waterMarkText.AutoSize = true;
+            this.waterMarkText.ForeColor = System.Drawing.Color.DimGray;
+            this.waterMarkText.Location = new System.Drawing.Point(853, 709);
+            this.waterMarkText.Name = "waterMarkText";
+            this.waterMarkText.Size = new System.Drawing.Size(128, 13);
+            this.waterMarkText.TabIndex = 10;
+            this.waterMarkText.Text = "blue screen simulator plus";
             // 
             // BootMgr
             // 
@@ -171,39 +181,42 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(1024, 768);
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.waterMarkText);
+            this.Controls.Add(this.bootmgrInfoDetails);
+            this.Controls.Add(this.bootmgrStatusCode);
+            this.Controls.Add(this.bootmgrInfo);
+            this.Controls.Add(this.bootmgrStatus);
+            this.Controls.Add(this.bootmgrEscapeExit);
+            this.Controls.Add(this.bootmgrEnterContinue);
+            this.Controls.Add(this.bootmgrConsultAdmin);
+            this.Controls.Add(this.bootmgrTroubleshoot);
+            this.Controls.Add(this.bootmgrIntro);
+            this.Controls.Add(this.bootmgrTitle);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "BootMgr";
             this.Text = "Windows Boot Manager error screen simulator";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.BootMgr_FormClosing);
-            this.Load += new System.EventHandler(this.BootMgr_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BootMgr_KeyDown);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Unloading);
+            this.Load += new System.EventHandler(this.Initialization);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyChecker);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Label bootmgrTitle;
+        private System.Windows.Forms.Label bootmgrIntro;
+        private System.Windows.Forms.Label bootmgrTroubleshoot;
+        private System.Windows.Forms.Label bootmgrConsultAdmin;
+        private System.Windows.Forms.Label bootmgrEnterContinue;
+        private System.Windows.Forms.Label bootmgrEscapeExit;
+        private System.Windows.Forms.Label bootmgrStatus;
+        private System.Windows.Forms.Label bootmgrInfo;
+        private System.Windows.Forms.Label bootmgrStatusCode;
+        private System.Windows.Forms.Label bootmgrInfoDetails;
+        private System.Windows.Forms.Timer screenUpdater;
+        private System.Windows.Forms.Label waterMarkText;
     }
 }

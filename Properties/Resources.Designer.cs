@@ -85,11 +85,20 @@ namespace UltimateBlueScreenSimulator.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream beep {
+            get {
+                return ResourceManager.GetStream("beep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap bsodbanner {
+        internal static System.Drawing.Bitmap bsodbanner2 {
             get {
-                object obj = ResourceManager.GetObject("bsodbanner", resourceCulture);
+                object obj = ResourceManager.GetObject("bsodbanner2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -115,22 +124,34 @@ namespace UltimateBlueScreenSimulator.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static System.Drawing.Bitmap corner_bl {
+        internal static byte[] BSSP_manual {
             get {
-                object obj = ResourceManager.GetObject("corner_bl", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                object obj = ResourceManager.GetObject("BSSP_manual", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized string similar to                     GNU GENERAL PUBLIC LICENSE
+        ///                       Version 3, 29 June 2007
+        ///
+        /// Copyright (C) 2007 Free Software Foundation, Inc. &lt;http://fsf.org/&gt;
+        /// Everyone is permitted to copy and distribute verbatim copies
+        /// of this license document, but changing it is not allowed.
+        ///
+        ///                            Preamble
+        ///
+        ///  The GNU General Public License is a free, copyleft license for
+        ///software and other kinds of works.
+        ///
+        ///  The licenses for most software and other practical works are designed
+        ///to take away yo [rest of string was truncated]&quot;;.
         /// </summary>
-        internal static System.Drawing.Bitmap corner_br {
+        internal static string COPYING {
             get {
-                object obj = ResourceManager.GetObject("corner_br", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetString("COPYING", resourceCulture);
             }
         }
         
@@ -145,22 +166,23 @@ namespace UltimateBlueScreenSimulator.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized string similar to ACPI.sys:ACPI Driver for NT
+        ///acpiex.sys:ACPIEx Driver  
+        ///afd.sys:Ancillary Function Driver for WinSock  
+        ///afunix.sys:AF_UNIX socket provider 
+        ///AgileVpn.sys:RAS Agile Vpn Miniport Call Manager 
+        ///ahcache.sys:Application Compatibility Cache  
+        ///atrfiltr.sys:Example ATR Filter Driver  
+        ///bam.sys:BAM Kernel Driver 
+        ///BasicDisplay.sys:Microsoft Basic Display Driver
+        ///BasicRender.sys:Microsoft Basic Render Driver 
+        ///BazisVirtualCDBus.sys:WinCDEmu virtual CDROM bus 
+        ///Beep.SYS:BEEP Driver 
+        ///bindflt.sys:Windows Bind Filte [rest of string was truncated]&quot;;.
         /// </summary>
-        internal static System.Drawing.Bitmap corner_tl {
+        internal static string CULPRIT_FILES {
             get {
-                object obj = ResourceManager.GetObject("corner_tl", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap corner_tr {
-            get {
-                object obj = ResourceManager.GetObject("corner_tr", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetString("CULPRIT_FILES", resourceCulture);
             }
         }
         
@@ -180,6 +202,26 @@ namespace UltimateBlueScreenSimulator.Properties {
         internal static System.Drawing.Bitmap current1 {
             get {
                 object obj = ResourceManager.GetObject("current1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap doscii {
+            get {
+                object obj = ResourceManager.GetObject("doscii", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap dummy {
+            get {
+                object obj = ResourceManager.GetObject("dummy", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -306,6 +348,16 @@ namespace UltimateBlueScreenSimulator.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap round_corners {
+            get {
+                object obj = ResourceManager.GetObject("round_corners", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap success {
             get {
                 object obj = ResourceManager.GetObject("success", resourceCulture);
@@ -319,6 +371,26 @@ namespace UltimateBlueScreenSimulator.Properties {
         internal static System.Drawing.Bitmap verifile {
             get {
                 object obj = ResourceManager.GetObject("verifile", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap win1_splash {
+            get {
+                object obj = ResourceManager.GetObject("win1_splash", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap win2_splash {
+            get {
+                object obj = ResourceManager.GetObject("win2_splash", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

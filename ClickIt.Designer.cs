@@ -54,9 +54,9 @@
             this.click1.TabIndex = 0;
             this.click1.Text = "Click here";
             this.click1.UseVisualStyleBackColor = true;
-            this.click1.Click += new System.EventHandler(this.click9_Click);
-            this.click1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.click9_MouseClick);
-            this.click1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.click1_MouseMove);
+            this.click1.Click += new System.EventHandler(this.Click9_Click);
+            this.click1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Click9_MouseClick);
+            this.click1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Click1_MouseMove);
             // 
             // click2
             // 
@@ -67,9 +67,9 @@
             this.click2.Text = "Click here";
             this.click2.UseVisualStyleBackColor = true;
             this.click2.Visible = false;
-            this.click2.Click += new System.EventHandler(this.click9_Click);
-            this.click2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.click9_MouseClick);
-            this.click2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.click2_MouseMove);
+            this.click2.Click += new System.EventHandler(this.Click9_Click);
+            this.click2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Click9_MouseClick);
+            this.click2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Click2_MouseMove);
             // 
             // click3
             // 
@@ -80,9 +80,9 @@
             this.click3.Text = "Click here";
             this.click3.UseVisualStyleBackColor = true;
             this.click3.Visible = false;
-            this.click3.Click += new System.EventHandler(this.click9_Click);
-            this.click3.MouseClick += new System.Windows.Forms.MouseEventHandler(this.click9_MouseClick);
-            this.click3.MouseMove += new System.Windows.Forms.MouseEventHandler(this.click3_MouseMove);
+            this.click3.Click += new System.EventHandler(this.Click9_Click);
+            this.click3.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Click9_MouseClick);
+            this.click3.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Click3_MouseMove);
             // 
             // click4
             // 
@@ -93,9 +93,9 @@
             this.click4.Text = "Click here";
             this.click4.UseVisualStyleBackColor = true;
             this.click4.Visible = false;
-            this.click4.Click += new System.EventHandler(this.click9_Click);
-            this.click4.MouseClick += new System.Windows.Forms.MouseEventHandler(this.click9_MouseClick);
-            this.click4.MouseMove += new System.Windows.Forms.MouseEventHandler(this.click4_MouseMove);
+            this.click4.Click += new System.EventHandler(this.Click9_Click);
+            this.click4.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Click9_MouseClick);
+            this.click4.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Click4_MouseMove);
             // 
             // click5
             // 
@@ -106,9 +106,9 @@
             this.click5.Text = "Click here";
             this.click5.UseVisualStyleBackColor = true;
             this.click5.Visible = false;
-            this.click5.Click += new System.EventHandler(this.click9_Click);
-            this.click5.MouseClick += new System.Windows.Forms.MouseEventHandler(this.click9_MouseClick);
-            this.click5.MouseMove += new System.Windows.Forms.MouseEventHandler(this.click5_MouseMove);
+            this.click5.Click += new System.EventHandler(this.Click9_Click);
+            this.click5.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Click9_MouseClick);
+            this.click5.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Click5_MouseMove);
             // 
             // click6
             // 
@@ -119,9 +119,9 @@
             this.click6.Text = "Click here";
             this.click6.UseVisualStyleBackColor = true;
             this.click6.Visible = false;
-            this.click6.Click += new System.EventHandler(this.click9_Click);
-            this.click6.MouseClick += new System.Windows.Forms.MouseEventHandler(this.click9_MouseClick);
-            this.click6.MouseMove += new System.Windows.Forms.MouseEventHandler(this.click6_MouseMove);
+            this.click6.Click += new System.EventHandler(this.Click9_Click);
+            this.click6.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Click9_MouseClick);
+            this.click6.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Click6_MouseMove);
             // 
             // click7
             // 
@@ -132,9 +132,9 @@
             this.click7.Text = "Click here";
             this.click7.UseVisualStyleBackColor = true;
             this.click7.Visible = false;
-            this.click7.Click += new System.EventHandler(this.click9_Click);
-            this.click7.MouseClick += new System.Windows.Forms.MouseEventHandler(this.click9_MouseClick);
-            this.click7.MouseMove += new System.Windows.Forms.MouseEventHandler(this.click7_MouseMove);
+            this.click7.Click += new System.EventHandler(this.Click9_Click);
+            this.click7.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Click9_MouseClick);
+            this.click7.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Click7_MouseMove);
             // 
             // click8
             // 
@@ -145,9 +145,9 @@
             this.click8.Text = "Click here";
             this.click8.UseVisualStyleBackColor = true;
             this.click8.Visible = false;
-            this.click8.Click += new System.EventHandler(this.click9_Click);
-            this.click8.MouseClick += new System.Windows.Forms.MouseEventHandler(this.click9_MouseClick);
-            this.click8.MouseMove += new System.Windows.Forms.MouseEventHandler(this.click8_MouseMove);
+            this.click8.Click += new System.EventHandler(this.Click9_Click);
+            this.click8.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Click9_MouseClick);
+            this.click8.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Click8_MouseMove);
             // 
             // click9
             // 
@@ -158,9 +158,9 @@
             this.click9.Text = "Click here";
             this.click9.UseVisualStyleBackColor = true;
             this.click9.Visible = false;
-            this.click9.Click += new System.EventHandler(this.click9_Click);
-            this.click9.MouseClick += new System.Windows.Forms.MouseEventHandler(this.click9_MouseClick);
-            this.click9.MouseMove += new System.Windows.Forms.MouseEventHandler(this.click9_MouseMove);
+            this.click9.Click += new System.EventHandler(this.Click9_Click);
+            this.click9.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Click9_MouseClick);
+            this.click9.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Click9_MouseMove);
             // 
             // label1
             // 
@@ -200,7 +200,7 @@
             this.button1.TabIndex = 12;
             this.button1.Text = "Use code";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
             // listBox1
             // 

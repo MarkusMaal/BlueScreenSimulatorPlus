@@ -1,19 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 
 namespace UltimateBlueScreenSimulator
 {
     public partial class WindowScreen : Form
     {
         public Bitmap bmp;
+        public bool primary = true;
         public WindowScreen()
         {
             InitializeComponent();
@@ -22,16 +16,22 @@ namespace UltimateBlueScreenSimulator
         private void WindowScreen_Load(object sender, EventArgs e)
         {
             if (!Program.f1.showcursor) { Cursor.Hide(); }
+            if (this.primary) { this.Text += " (primary)"; }
+            else { this.Text += " (secondary)"; }
         }
 
         private void WindowScreen_FormClosing(object sender, FormClosingEventArgs e)
         {
-            this.Hide();
-            if (!Program.f1.showcursor)
+            if (!Program.f1.lockout) { this.Hide(); }
+            // Prevent closing when Alt + F4 is pressed
+            if (e.CloseReason == CloseReason.UserClosing)
             {
-                Cursor.Show();
+                e.Cancel = Program.f1.lockout;
             }
-            pictureBox1.Image.Dispose();
+            else
+            {
+                e.Cancel = false;
+            }
         }
 
         private void WindowScreen_FormClosed(object sender, FormClosedEventArgs e)
@@ -40,12 +40,12 @@ namespace UltimateBlueScreenSimulator
             {
                 Program.f1.Close();
             }
-            if (Program.f1.showmsg == true)
-            {
-                MessageBox.Show(Program.f1.MsgBoxMessage, Program.f1.MsgBoxTitle, Program.f1.MsgBoxType, Program.f1.MsgBoxIcon);
-                Program.f1.showmsg = false;
+            if ((screenDisplay != null) && (screenDisplay.Image != null))
+            { 
+                this.screenDisplay.Image.Dispose();
+                this.screenDisplay.Dispose();
             }
-            Program.f1.Show();
+            this.Dispose();
         }
     }
 }
