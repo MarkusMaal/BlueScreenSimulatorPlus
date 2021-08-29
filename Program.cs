@@ -2,7 +2,7 @@
  * Blue screen simulator plus
  * Codename: *Waffles*
  * 
- * Version 2.0 (development build)
+ * Version 2.0 (release)
  *
  * {} markus' software // {} markuse tarkvara
  * 
