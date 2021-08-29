@@ -1020,7 +1020,6 @@
             this.commandLineHelpDisplay.ShortcutsEnabled = false;
             this.commandLineHelpDisplay.Size = new System.Drawing.Size(534, 352);
             this.commandLineHelpDisplay.TabIndex = 0;
-            this.commandLineHelpDisplay.WordWrap = false;
             // 
             // updateCheckerTimer
             // 

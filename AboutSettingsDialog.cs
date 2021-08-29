@@ -15,7 +15,7 @@ namespace UltimateBlueScreenSimulator
         //If this flag is set, then help tabs are hidden and setting tabs are visible
         public bool SettingTab = false;
         public int tab_id = 0;
-        public bool DevBuild = true;
+        public bool DevBuild = false;
         public bool finished = false;
         public AboutSettingsDialog()
         {
@@ -232,7 +232,7 @@ namespace UltimateBlueScreenSimulator
         //Help texts
         private void QuickHelp_Help(object sender, EventArgs e)
         {
-            helpDisplay.Text = "How to get help?\n\nFor items that have [?] at the end, you can just hover over them for more information.".Replace("\n", Environment.NewLine);
+            helpDisplay.Text = "How to quickly get help?\n\nFor items that have [?] at the end, you can just hover over them for more information.".Replace("\n", Environment.NewLine);
         }
 
         private void QuickHelp_Purpose(object sender, EventArgs e)
@@ -242,7 +242,7 @@ namespace UltimateBlueScreenSimulator
 
         private void QuickHelp_SystemRequirements(object sender, EventArgs e)
         {
-            helpDisplay.Text = "System requirements:\n\nOS: Windows XP or later\nMicrosoft.NET Framework 4.0 (preinstalled in Windows 8 and later)\nScreen resolution: 1024x720 or higher (1280x1024 or higher recommended)".Replace("\n", Environment.NewLine);
+            helpDisplay.Text = "System requirements:\n\nOS: Windows XP or later (Windows 8 or later recommended)\n150MB of available RAM (recommended minimum)\n50MB of available RAM (absolute minimum)\nx86 or compatible processor\nRead-Write storage media\nMicrosoft.NET Framework 4.0\n1000bps or  internet connection (for updates and online help functionality)\nScreen resolution: 1024x720 or higher (1280x720 or higher recommended)".Replace("\n", Environment.NewLine);
         }
 
         //Closes the dialog and sets dialogresult to ok
