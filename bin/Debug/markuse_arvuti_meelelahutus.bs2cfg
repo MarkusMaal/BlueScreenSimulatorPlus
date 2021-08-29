@@ -1,0 +1,93 @@
+*** Blue screen simulator plus 2.0 ***
+
+
+#Windows 8/8.1
+
+
+
+[string]
+emoticon=::);
+friendlyname=Windows 8/8.1 (Native, ClearType);
+code=IRQL_NOT_LESS_OR_EQUAL (0x0000000A);
+qr_file=;
+culprit=FLTMGR.SYS;
+ecode1=RRRRRRRRRRRRRRRR;
+ecode2=RRRRRRRRRRRRRRRR;
+ecode3=RRRRRRRRRRRRRRRR;
+ecode4=RRRRRRRRRRRRRRRR;
+icon=3D window;
+
+[boolean]
+watermark=False;
+autoclose=True;
+show_description=False;
+font_support=True;
+extracodes=False;
+show_file=False;
+
+[integer]
+qr_file=110;
+
+[theme]
+bg=16,113,170;
+fg=255,255,255;
+hbg=255,255,255;
+hfg=0,0,0;
+
+[text]
+Information text with dump=Markuse arvuti meelelahutus;
+Information text without dump=Markuse arvuti meelelahutus;
+Error code=(c) Markuse videod 2019;
+
+[format]
+fontfamily=Segoe UI;
+size=20;
+style=Regular;
+
+
+#Windows 10
+
+
+
+[string]
+emoticon=::);
+qr_file=;
+friendlyname=Windows 10 (Native, ClearType);
+code=IRQL_NOT_LESS_OR_EQUAL (0x0000000A);
+culprit=;
+ecode1=RRRRRRRRRRRRRRRR;
+ecode2=RRRRRRRRRRRRRRRR;
+ecode3=RRRRRRRRRRRRRRRR;
+ecode4=RRRRRRRRRRRRRRRR;
+icon=3D window;
+
+[boolean]
+watermark=False;
+winxplus=True;
+autoclose=True;
+qr=False;
+show_description=False;
+font_support=True;
+show_file=False;
+
+[integer]
+qr_size=110;
+
+[theme]
+bg=16,113,170;
+fg=255,255,255;
+hbg=255,255,255;
+hfg=0,0,0;
+
+[text]
+Information text with dump=Markuse arvuti meelelahutus;
+Information text without dump=Markuse arvuti meelelahutus;
+Additional information=;
+Culprit file=;
+Error code=;
+Progress=;
+
+[format]
+fontfamily=Segoe UI;
+size=20;
+style=Regular;

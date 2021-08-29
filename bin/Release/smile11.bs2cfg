@@ -1,0 +1,59 @@
+*** Blue screen simulator plus 2.0 ***
+
+
+#Windows 11
+
+
+
+[string]
+emoticon=::);
+qr_file=local::0;
+friendlyname=Windows 11 (Native, ClearType);
+code=NETWORK_BOOT_DUPLICATE_ADDRESS (0x000000BC);
+culprit=lxss.sys;
+screen_mode=System error;
+ecode1=RRRRRRRRRRRRRRRR;
+ecode2=RRRRRRRRRRRRRRRR;
+ecode3=RRRRRRRRRRRRRRRR;
+ecode4=RRRRRRRRRRRRRRRR;
+icon=2D window;
+
+[boolean]
+watermark=False;
+winxplus=True;
+autoclose=True;
+qr=True;
+show_description=False;
+font_support=True;
+stack_trace=False;
+server=False;
+extracodes=True;
+show_file=True;
+
+[integer]
+qr_size=110;
+margin-x=9;
+margin-y=12;
+
+[theme]
+bg=0,0,0;
+fg=255,255,255;
+hbg=255,255,255;
+hfg=0,0,0;
+
+[text]
+Information text with dump=Your device ran into a problem and needs to restart. We're just
+collecting some error info, and then we'll restart for you.;
+Information text without dump=Your device ran into a problem and needs to restart. We're just
+collecting some error info, and then you can restart.;
+Additional information=For more information about this issue and possible fixes, visit http:://windows.com/stopcode;
+Culprit file=What failed:: {0};
+Error code=If you call a support person, give them this info::
+
+Stop code:: {0};
+Progress={0}% complete;
+
+[format]
+fontfamily=Segoe UI Light;
+size=19,4;
+style=Regular;
