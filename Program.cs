@@ -725,7 +725,8 @@ namespace UltimateBlueScreenSimulator
             Program.bluescreens.Add(new BlueScreen("Windows NT 3.x/4.0"));
             Program.bluescreens.Add(new BlueScreen("Windows 2000"));
             Program.bluescreens.Add(new BlueScreen("Windows XP"));
-            Program.bluescreens.Add(new BlueScreen("Windows Vista/7"));
+            Program.bluescreens.Add(new BlueScreen("Windows Vista"));
+            Program.bluescreens.Add(new BlueScreen("Windows 7"));
             Program.bluescreens.Add(new BlueScreen("Windows 8/8.1"));
             Program.bluescreens.Add(new BlueScreen("Windows 10"));
             Program.bluescreens.Add(new BlueScreen("Windows 11"));

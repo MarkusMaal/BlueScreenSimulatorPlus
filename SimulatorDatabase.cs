@@ -491,7 +491,10 @@ namespace SimulatorDatabase
                 case "Windows 8/8.1":
                     SetupWin8(new WXBS());
                     break;
-                case "Windows Vista/7":
+                case "Windows 7":
+                    SetupVista(new Vistabs());
+                    break;
+                case "Windows Vista":
                     SetupVista(new Vistabs());
                     break;
                 case "Windows XP":
@@ -925,7 +928,34 @@ namespace SimulatorDatabase
                     SetBool("show_description", true);
                     SetBool("font_support", true);
                     break;
-                case "Windows Vista/7":
+                case "Windows Vista":
+                    this.icon = "3D flag";
+                    PushText("A problem has been detected...", "A problem has been detected and Windows has been shut down to prevent damage\r\nto your computer.");
+                    PushText("Troubleshooting introduction", "If this is the first time you've seen this Stop error screen,\r\nrestart your computer. If this screen appears again, follow\r\nthese steps:");
+                    PushText("Troubleshooting", "Check to make sure any new hardware or software is properly installed.\r\nIf this is a new installation, ask your hardware or software manufacturer\r\nfor any Windows updates you might need.\r\n\r\nIf problems continue, disable or remove any newly installed hardware\r\nor software. Disable BIOS memory options such as caching or shadowing.\r\nIf you need to use Safe mode to remove or disable components, restart\r\nyour computer, press F8 to select Advanced Startup Options, and then\r\nselect Safe Mode.");
+                    PushText("Technical information", "Technical information:");
+                    PushText("Technical information formatting", "*** STOP: {0} ({1})");
+                    PushText("Collecting data for crash dump", "Collecting data for crash dump ...");
+                    PushText("Initializing crash dump", "Initializing disk for crash dump ...");
+                    PushText("Begin dump", "Beginning dump of physical memory.");
+                    PushText("End dump", "Physical memory dump complete.");
+                    PushText("Physical memory dump", "Dumping physical memory to disk:{0}");
+                    PushText("Culprit file", "The problem seems to be caused by the following file: ");
+                    PushText("Culprit file memory address", "***  {0} - Address {1} base at {2}, DateStamp {3}");
+                    PushText("Technical support", "Contact your system admin or technical support group for further assistance.");
+                    SetFont("Lucida Console", 9.4f, FontStyle.Regular);
+                    SetString("friendlyname", "Windows Vista (640x480, ClearType)");
+                    SetTheme(RGB(0, 0, 128), RGB(255, 255, 255));
+
+                    SetBool("autoclose", true);
+                    SetString("code", "IRQL_NOT_LESS_OR_EQUAL (0x0000000A)");
+                    string[] inspir = { "RRRRRRRR", "RRRRRRRR", "RRRRRRRR" };
+                    SetString("culprit", GenFile(true));
+                    PushFile(GetString("culprit"), inspir);
+                    SetBool("show_description", true);
+                    SetBool("font_support", true);
+                    break;
+                case "Windows 7":
                     this.icon = "3D flag";
                     PushText("A problem has been detected...", "A problem has been detected and Windows has been shut down to prevent damage\r\nto your computer.");
                     PushText("Troubleshooting introduction", "If this is the first time you've seen this Stop error screen,\r\nrestart your computer. If this screen appears again, follow\r\nthese steps:");
@@ -941,14 +971,14 @@ namespace SimulatorDatabase
                     PushText("Culprit file memory address", "***  {0} - Address {1} base at {2}, DateStamp {3}");
                     PushText("Technical support", "Contact your system admin or technical support group for further assistance.");
                     SetFont("Consolas", 9.4f, FontStyle.Regular);
-                    SetString("friendlyname", "Windows Vista/7 (640x480, ClearType)");
+                    SetString("friendlyname", "Windows 7 (640x480, ClearType)");
                     SetTheme(RGB(0, 0, 128), RGB(255, 255, 255));
 
                     SetBool("autoclose", true);
                     SetString("code", "IRQL_NOT_LESS_OR_EQUAL (0x0000000A)");
-                    string[] inspir = { "RRRRRRRR", "RRRRRRRR", "RRRRRRRR" };
+                    string[] inspirc = { "RRRRRRRR", "RRRRRRRR", "RRRRRRRR" };
                     SetString("culprit", GenFile(true));
-                    PushFile(GetString("culprit"), inspir);
+                    PushFile(GetString("culprit"), inspirc);
                     SetBool("show_description", true);
                     SetBool("font_support", true);
                     break;
@@ -1005,8 +1035,8 @@ namespace SimulatorDatabase
                     PushText("Progress", "{0}% complete");
                     SetInt("qr_size", 110);
                     SetString("qr_file", "local:0");
-                    SetFont("Segoe UI Light", 19.4f, FontStyle.Regular);
-                    SetTheme(RGB(0, 0, 0), RGB(255, 255, 255));
+                    SetFont("Segoe UI Semilight", 19.4f, FontStyle.Regular);
+                    SetTheme(RGB(0, 0, 128), RGB(255, 255, 255));
                     SetString("friendlyname", "Windows 11 (Native, ClearType)");
                     SetInt("margin-x", 9);
                     SetInt("margin-y", 12);

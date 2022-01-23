@@ -177,7 +177,7 @@ namespace UltimateBlueScreenSimulator
                 memoryBox.Visible = true;
                 eCodeEditButton.Visible = true;
             }
-            else if (me.GetString("os") == "Windows Vista/7")
+            else if ((me.GetString("os") == "Windows Vista") || (me.GetString("os") == "Windows 7"))
             {
                 errorCode.Visible = true;
                 winMode.Visible = true;
