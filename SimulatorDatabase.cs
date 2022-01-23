@@ -944,7 +944,7 @@ namespace SimulatorDatabase
                     PushText("Culprit file memory address", "***  {0} - Address {1} base at {2}, DateStamp {3}");
                     PushText("Technical support", "Contact your system admin or technical support group for further assistance.");
                     SetFont("Lucida Console", 9.4f, FontStyle.Regular);
-                    SetString("friendlyname", "Windows Vista (640x480, ClearType)");
+                    SetString("friendlyname", "Windows Vista (640x480, Standard)");
                     SetTheme(RGB(0, 0, 128), RGB(255, 255, 255));
 
                     SetBool("autoclose", true);

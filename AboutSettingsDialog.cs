@@ -593,7 +593,7 @@ namespace UltimateBlueScreenSimulator
                 Program.bluescreens.Add(new BlueScreen("Windows NT 3.x/4.0"));
                 Program.bluescreens.Add(new BlueScreen("Windows 2000"));
                 Program.bluescreens.Add(new BlueScreen("Windows XP"));
-                Program.bluescreens.Add(new BlueScreen("Windows Vista/7"));
+                Program.bluescreens.Add(new BlueScreen("Windows 7"));
                 Program.bluescreens.Add(new BlueScreen("Windows 8/8.1"));
                 Program.bluescreens.Add(new BlueScreen("Windows 10"));
                 foreach (string fileline in filelines)
@@ -824,7 +824,8 @@ namespace UltimateBlueScreenSimulator
                     Thread.Sleep(10);
                     string[] subsection_tokens = section.Split('[');
                     if (section.StartsWith("*")) { continue; }
-                    string os_name = subsection_tokens[0].Replace("\n", "");
+                    // replace Windows Vista/7 with Windows 7 for backwards compatibility reasons
+                    string os_name = subsection_tokens[0].Replace("\n", "").Replace("Windows Vista/7", "Windows 7");
                     if (os_name == "") { continue; }
                     BlueScreen bs = new BlueScreen(os_name, false);
                     bs.ClearAllTitleTexts();

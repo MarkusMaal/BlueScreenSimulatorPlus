@@ -41,6 +41,14 @@ namespace UltimateBlueScreenSimulator
                 h1 = me.GenHex(8, me.GetFiles().ElementAt(0).Value[0]);
                 h2 = me.GenHex(8, me.GetFiles().ElementAt(0).Value[1]);
                 h3 = me.GenHex(8, me.GetFiles().ElementAt(0).Value[2]);
+                if (me.GetString("os") == "Windows Vista")
+                {
+                    introductionText.UseCompatibleTextRendering = true;
+                    errorCode.UseCompatibleTextRendering = true;
+                    supportInfo.UseCompatibleTextRendering = true;
+                    technicalCode.UseCompatibleTextRendering = true;
+                    dumpText.UseCompatibleTextRendering = true;
+                }
                 bg = me.GetTheme(true);
                 fg = me.GetTheme(false);
                 txt = me.GetTexts();
@@ -78,8 +86,15 @@ namespace UltimateBlueScreenSimulator
                     errorCode.Text = txt["Culprit file"] + whatfail.ToUpper() + "\n\n" + errorCode.Text;
                     dumpText.Margin = new Padding(3, 15, 3, 0);
                 }
-                supportInfo.Location = new Point(supportInfo.Location.X, errorCode.Location.Y + errorCode.Size.Height + (2 * (int)HeightInPixels));
-                technicalCode.Location = new Point(technicalCode.Location.X, supportInfo.Location.Y + supportInfo.Size.Height + (int)HeightInPixels);
+                if (errorCode.Visible)
+                {
+                    supportInfo.Location = new Point(supportInfo.Location.X, introductionText.Location.Y + errorCode.Location.Y + errorCode.Size.Height + (int)((1 / 2) * (double)HeightInPixels));
+                    technicalCode.Location = new Point(technicalCode.Location.X, introductionText.Location.Y + errorCode.Location.Y + supportInfo.Size.Height - (int)HeightInPixels);
+                } else
+                {
+                    supportInfo.Location = new Point(supportInfo.Location.X, introductionText.Location.Y + (int)HeightInPixels);
+                    technicalCode.Location = new Point(technicalCode.Location.X, introductionText.Location.Y + supportInfo.Size.Height - (int)HeightInPixels);
+                }
                 errorCode.Margin = new Padding(3, 15, 3, 0);
                 supportInfo.Margin = new Padding(3, 15, 3, 0);
                 technicalCode.Margin = new Padding(3, 15, 3, 0);
@@ -103,7 +118,7 @@ namespace UltimateBlueScreenSimulator
                     technicalCode.Text += "\r\n\r\n" + txt["Culprit file memory address"].Replace("{0}", whatfail.ToUpper()).Replace("{1}", h1).Replace("{2}", h2).Replace("{3}", h3.ToLower());
                 }
                 technicalCode.Size = new Size(technicalCode.Size.Width, (int)((technicalCode.Text.Split('\n').Length + 2) * HeightInPixels));
-                dumpText.Location = new Point(dumpText.Location.X, technicalCode.Location.Y + technicalCode.Size.Height);
+                dumpText.Location = new Point(dumpText.Location.X, technicalCode.Location.Y + 4* (int)HeightInPixels);
                 if (!fullscreen) { this.FormBorderStyle = FormBorderStyle.FixedSingle; this.ShowInTaskbar = true; this.ShowIcon = true; }
                 if (!errorCode.Visible && !dumpText.Visible)
                 {
