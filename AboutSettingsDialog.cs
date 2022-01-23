@@ -15,7 +15,7 @@ namespace UltimateBlueScreenSimulator
         //If this flag is set, then help tabs are hidden and setting tabs are visible
         public bool SettingTab = false;
         public int tab_id = 0;
-        public bool DevBuild = false;
+        public bool DevBuild = true;
         public bool finished = false;
         public AboutSettingsDialog()
         {
@@ -980,13 +980,13 @@ namespace UltimateBlueScreenSimulator
         private void SetToPrimaryServer(object sender, EventArgs e)
         {
             primaryServerBox.Enabled = false;
-            primaryServerBox.Text = "http://markustegelane.tk/app";
+            primaryServerBox.Text = "http://markustegelane.ml/app";
         }
 
         private void SetToBackupServer(object sender, EventArgs e)
         {
             primaryServerBox.Enabled = false;
-            primaryServerBox.Text = "http://web-markustegelane.000webhostapp.com/app";
+            primaryServerBox.Text = "http://markustegelane.000webhostapp.com/app";
         }
 
         private void Button1_Click(object sender, EventArgs e)

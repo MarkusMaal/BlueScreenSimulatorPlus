@@ -8,6 +8,8 @@ using Microsoft.Win32;
 using SimulatorDatabase;
 using System.Threading;
 using System.Net.NetworkInformation;
+using System.Collections.Generic;
+
 namespace UltimateBlueScreenSimulator
 {
     public partial class Main : Form
@@ -663,36 +665,33 @@ namespace UltimateBlueScreenSimulator
 
         internal void RandFunction()
         {
-            try
+            List<BlueScreen> new_screens = new List<BlueScreen>();
+            foreach (BlueScreen bs in Program.bluescreens)
             {
-                windowVersion.SelectedIndex = SetRnd(windowVersion.Items.Count - 1);
-                autoBox.Checked = Convert.ToBoolean(SetRnd(2) - 1);
-                greenBox.Checked = Convert.ToBoolean(SetRnd(2) - 1);
-                serverBox.Checked = Convert.ToBoolean(SetRnd(2) - 1);
-                qrBox.Checked = Convert.ToBoolean(SetRnd(2) - 1);
-                comboBox1.SelectedIndex = SetRnd(comboBox1.Items.Count - 1);
-                comboBox2.SelectedIndex = SetRnd(comboBox2.Items.Count - 1);
-                amdBox.Checked = Convert.ToBoolean(SetRnd(2) - 1);
-                stackBox.Checked = Convert.ToBoolean(SetRnd(2) - 1);
-                acpiBox.Checked = Convert.ToBoolean(SetRnd(2) - 1);
-                blinkBox.Checked = Convert.ToBoolean(SetRnd(2) - 1); ;
-                checkBox1.Checked = Convert.ToBoolean(SetRnd(2) - 1);
-                checkBox2.Checked = Convert.ToBoolean(SetRnd(2) - 1);
-                if (enableeggs)
+                Random r = new Random();
+                foreach (string kvp in bs.AllBools().Keys.ToArray<string>())
                 {
-                    if (textBox1.Text == "blackscreen")
-                    {
-                        windowVersion.Items.Add("Windows Vista/7 BOOTMGR (1024x768, ClearType)");
-                        windowVersion.SelectedIndex = windowVersion.Items.Count - 1;
-                    }
+                    bool value = r.Next(0, 1) == 1;
+                    bs.SetBool(kvp, value);
                 }
-                textBox2.Text = me.GenFile();
-                if (windowVersion.SelectedIndex == 4) { checkBox1.Checked = true; }
+                bs.SetString("code", comboBox1.Items[r.Next(0, comboBox1.Items.Count - 1)].ToString());
+                bs.SetString("screen_mode", comboBox2.Items[r.Next(0, comboBox2.Items.Count - 1)].ToString());
+                bs.SetBool("windowed", true);
+                Thread.Sleep(16);
+                new_screens.Add(bs);
             }
-            catch (Exception ex)
+            Program.bluescreens = new_screens;
+            windowVersion.SelectedIndex = SetRnd(windowVersion.Items.Count - 1);
+            if (enableeggs)
             {
-                Console.WriteLine("\nUnspecified error: " + ex.Message + "\n");
+                if (textBox1.Text == "blackscreen")
+                {
+                    windowVersion.Items.Add("Windows Vista/7 BOOTMGR (1024x768, ClearType)");
+                    windowVersion.SelectedIndex = windowVersion.Items.Count - 1;
+                }
             }
+            textBox2.Text = me.GenFile();
+            if (windowVersion.SelectedIndex == 4) { checkBox1.Checked = true; }
         }
 
         int SetRnd(int limit)

@@ -124,7 +124,7 @@ namespace UltimateBlueScreenSimulator
         public static bool hidden = false;
         public static string multidisplaymode = "blank";
 
-        public static string update_server = "http://markustegelane.tk/app";
+        public static string update_server = "http://markustegelane.000webhostapp.com/app";
 
         readonly private static ManagementObjectSearcher aa = new ManagementObjectSearcher("root\\CIMV2", "SELECT * FROM Win32_BaseBoard");
         public static List<BlueScreen> bluescreens;
