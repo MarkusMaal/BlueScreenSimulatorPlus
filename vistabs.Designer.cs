@@ -60,13 +60,15 @@ namespace UltimateBlueScreenSimulator
             // 
             // introductionText
             // 
+            this.introductionText.AutoSize = true;
             this.introductionText.BackColor = System.Drawing.Color.Navy;
             this.introductionText.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.introductionText.Font = new System.Drawing.Font("Consolas", 9F);
             this.introductionText.ForeColor = System.Drawing.Color.White;
             this.introductionText.Location = new System.Drawing.Point(-1, 15);
+            this.introductionText.MaximumSize = new System.Drawing.Size(641, 0);
             this.introductionText.Name = "introductionText";
-            this.introductionText.Size = new System.Drawing.Size(641, 28);
+            this.introductionText.Size = new System.Drawing.Size(539, 28);
             this.introductionText.TabIndex = 8;
             this.introductionText.Text = "A problem has been detected and Windows has been shut down to prevent damage\nto y" +
     "our computer.";
@@ -80,6 +82,7 @@ namespace UltimateBlueScreenSimulator
             this.errorCode.ForeColor = System.Drawing.Color.White;
             this.errorCode.Location = new System.Drawing.Point(-1, 58);
             this.errorCode.Margin = new System.Windows.Forms.Padding(3, 20, 3, 0);
+            this.errorCode.MaximumSize = new System.Drawing.Size(641, 0);
             this.errorCode.Name = "errorCode";
             this.errorCode.Size = new System.Drawing.Size(336, 14);
             this.errorCode.TabIndex = 9;
@@ -87,28 +90,32 @@ namespace UltimateBlueScreenSimulator
             // 
             // supportInfo
             // 
+            this.supportInfo.AutoSize = true;
             this.supportInfo.BackColor = System.Drawing.Color.Navy;
             this.supportInfo.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.supportInfo.Font = new System.Drawing.Font("Consolas", 9F);
             this.supportInfo.ForeColor = System.Drawing.Color.White;
             this.supportInfo.Location = new System.Drawing.Point(-1, 90);
             this.supportInfo.Margin = new System.Windows.Forms.Padding(3, 20, 3, 0);
+            this.supportInfo.MaximumSize = new System.Drawing.Size(641, 0);
             this.supportInfo.Name = "supportInfo";
-            this.supportInfo.Size = new System.Drawing.Size(641, 239);
+            this.supportInfo.Size = new System.Drawing.Size(623, 28);
             this.supportInfo.TabIndex = 10;
             this.supportInfo.Text = "You are not supposed to see this text under any condition. If you see this text, " +
     "please let the cops know immediately.";
             // 
             // technicalCode
             // 
+            this.technicalCode.AutoSize = true;
             this.technicalCode.BackColor = System.Drawing.Color.Navy;
             this.technicalCode.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.technicalCode.Font = new System.Drawing.Font("Consolas", 9F);
             this.technicalCode.ForeColor = System.Drawing.Color.White;
             this.technicalCode.Location = new System.Drawing.Point(-1, 331);
             this.technicalCode.Margin = new System.Windows.Forms.Padding(3, 20, 3, 0);
+            this.technicalCode.MaximumSize = new System.Drawing.Size(641, 0);
             this.technicalCode.Name = "technicalCode";
-            this.technicalCode.Size = new System.Drawing.Size(641, 34);
+            this.technicalCode.Size = new System.Drawing.Size(490, 14);
             this.technicalCode.TabIndex = 11;
             this.technicalCode.Text = "*** STOP: 0xDEADDEAD (0x00000000, 0x00000000, 0x00000000, 0x00000000)";
             // 
@@ -133,6 +140,7 @@ namespace UltimateBlueScreenSimulator
             this.dumpText.ForeColor = System.Drawing.Color.White;
             this.dumpText.Location = new System.Drawing.Point(-1, 373);
             this.dumpText.Margin = new System.Windows.Forms.Padding(3, 20, 3, 0);
+            this.dumpText.MaximumSize = new System.Drawing.Size(641, 0);
             this.dumpText.Name = "dumpText";
             this.dumpText.Size = new System.Drawing.Size(84, 14);
             this.dumpText.TabIndex = 12;
@@ -173,11 +181,11 @@ namespace UltimateBlueScreenSimulator
         private System.Windows.Forms.Timer tardisFade;
         private System.Windows.Forms.Timer rainBowScreen;
         public System.Windows.Forms.AliasedLabel waterMarkText;
-        public System.Windows.Forms.AliasedLabel introductionText;
         public System.Windows.Forms.AliasedLabel errorCode;
         public System.Windows.Forms.AliasedLabel supportInfo;
         public System.Windows.Forms.AliasedLabel technicalCode;
         public System.Windows.Forms.AliasedLabel dumpText;
+        private System.Windows.Forms.AliasedLabel introductionText;
     }
 
 }

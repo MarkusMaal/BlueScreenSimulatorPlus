@@ -41,6 +41,7 @@ namespace UltimateBlueScreenSimulator
                 h1 = me.GenHex(8, me.GetFiles().ElementAt(0).Value[0]);
                 h2 = me.GenHex(8, me.GetFiles().ElementAt(0).Value[1]);
                 h3 = me.GenHex(8, me.GetFiles().ElementAt(0).Value[2]);
+                // disable ClearType, if the OS is Windows Vista
                 if (me.GetString("os") == "Windows Vista")
                 {
                     introductionText.UseCompatibleTextRendering = true;
@@ -78,29 +79,6 @@ namespace UltimateBlueScreenSimulator
                     var points = me.GetFont().SizeInPoints;
                     HeightInPixels = points * g.DpiX / 72;
                 }
-                errorCode.Visible = me.GetBool("show_description");
-                dumpText.Text = txt["Collecting data for crash dump"]; dumpText.Text += "\n" + txt["Initializing crash dump"];
-                dumpText.Text += "\n" + txt["Begin dump"] + "\n" + txt["Physical memory dump"] + "   0";
-                if (whatfail != "")
-                {
-                    errorCode.Text = txt["Culprit file"] + whatfail.ToUpper() + "\n\n" + errorCode.Text;
-                    dumpText.Margin = new Padding(3, 15, 3, 0);
-                }
-                if (errorCode.Visible)
-                {
-                    supportInfo.Location = new Point(supportInfo.Location.X, introductionText.Location.Y + errorCode.Location.Y + errorCode.Size.Height + (int)((1 / 2) * (double)HeightInPixels));
-                    technicalCode.Location = new Point(technicalCode.Location.X, introductionText.Location.Y + errorCode.Location.Y + supportInfo.Size.Height - (int)HeightInPixels);
-                } else
-                {
-                    supportInfo.Location = new Point(supportInfo.Location.X, introductionText.Location.Y + (int)HeightInPixels);
-                    technicalCode.Location = new Point(technicalCode.Location.X, introductionText.Location.Y + supportInfo.Size.Height - (int)HeightInPixels);
-                }
-                errorCode.Margin = new Padding(3, 15, 3, 0);
-                supportInfo.Margin = new Padding(3, 15, 3, 0);
-                technicalCode.Margin = new Padding(3, 15, 3, 0);
-                supportInfo.Text = supportInfo.Text.Replace("\n\n\n", "\n\n");
-                dumpText.Margin = new Padding(3, 15, 3, 0);
-
 
                 introductionText.Text = txt["A problem has been detected..."];
                 supportInfo.Text = txt["Troubleshooting introduction"] + "\n\n" + txt["Troubleshooting"] + "\n\n" + txt["Technical information"];
@@ -117,6 +95,70 @@ namespace UltimateBlueScreenSimulator
                 {
                     technicalCode.Text += "\r\n\r\n" + txt["Culprit file memory address"].Replace("{0}", whatfail.ToUpper()).Replace("{1}", h1).Replace("{2}", h2).Replace("{3}", h3.ToLower());
                 }
+                errorCode.Visible = me.GetBool("show_description");
+                if (me.GetBool("autoclose"))
+                {
+                    dumpText.Text = txt["Collecting data for crash dump"]; dumpText.Text += "\n" + txt["Initializing crash dump"];
+                    dumpText.Text += "\n" + txt["Begin dump"] + "\n" + txt["Physical memory dump"] + "   0";
+                } else
+                {
+                    dumpText.Visible = false;
+                }
+                if (whatfail != "")
+                {
+                    errorCode.Text = txt["Culprit file"] + whatfail.ToUpper() + "\n\n" + errorCode.Text;
+                    dumpText.Margin = new Padding(3, 15, 3, 0);
+                }
+                /*               if (errorCode.Visible && !fullscreen)
+                               {
+                                   supportInfo.Location = new Point(supportInfo.Location.X, introductionText.Location.Y + errorCode.Location.Y + errorCode.Size.Height + (int)((1 / 2) * (double)HeightInPixels));
+                                   technicalCode.Location = new Point(technicalCode.Location.X, introductionText.Location.Y + errorCode.Location.Y + supportInfo.Size.Height - (int)HeightInPixels);
+                               } else if (!fullscreen)
+                               {
+                                   supportInfo.Location = new Point(supportInfo.Location.X, introductionText.Location.Y + (int)HeightInPixels);
+                                   technicalCode.Location = new Point(technicalCode.Location.X, introductionText.Location.Y + supportInfo.Size.Height - (int)HeightInPixels);
+                               } else if (errorCode.Visible)
+                               {
+                                   supportInfo.Location = new Point(supportInfo.Location.X, introductionText.Location.Y + errorCode.Location.Y + errorCode.Size.Height + (int)((1 / 2) * (double)HeightInPixels));
+                                   if (me.GetString("os") == "Windows Vista")
+                                   {
+                                       supportInfo.Size = new Size(supportInfo.Size.Width, supportInfo.Size.Height - 3 * (int)HeightInPixels);
+                                       technicalCode.Location = new Point(technicalCode.Location.X, introductionText.Location.Y + errorCode.Location.Y + supportInfo.Size.Height + 2 * (int)(HeightInPixels));
+                                   } else
+                                   {
+                                       technicalCode.Location = new Point(technicalCode.Location.X, introductionText.Location.Y + errorCode.Location.Y + supportInfo.Size.Height + (int)(1.5 * (double)HeightInPixels));
+                                   }
+                               } else
+                               {
+                                   supportInfo.Location = new Point(supportInfo.Location.X, introductionText.Location.Y + 4*(int)HeightInPixels);
+                                   if (me.GetString("os") == "Windows Vista")
+                                   {
+                                       supportInfo.Size = new Size(supportInfo.Size.Width, supportInfo.Size.Height - 3 * (int)HeightInPixels);
+                                   }
+                                   //supportInfo.Visible = false;
+                                   technicalCode.Location = new Point(technicalCode.Location.X, introductionText.Location.Y + supportInfo.Size.Height + (int)(4 * (double)HeightInPixels));
+                               }*/
+                int addsome = 0;
+                if (errorCode.Visible)
+                {
+                    addsome = (int)(2.25 * HeightInPixels);
+                    if (whatfail != "")
+                    {
+                        addsome += (int)(HeightInPixels * 2);
+                    }
+                }
+                int support = introductionText.Location.Y + introductionText.Size.Height + (int)(HeightInPixels / 2) + addsome;
+                int ecode = introductionText.Location.Y + (int)(HeightInPixels / 2) + introductionText.Size.Height;
+                supportInfo.Location = new Point(supportInfo.Location.X, support);
+                errorCode.Location = new Point(errorCode.Location.X, ecode);
+                technicalCode.Location = new Point(technicalCode.Location.X, (int)(support + supportInfo.Size.Height + HeightInPixels));
+                errorCode.Margin = new Padding(3, 15, 3, 0);
+                supportInfo.Margin = new Padding(3, 15, 3, 0);
+                technicalCode.Margin = new Padding(3, 15, 3, 0);
+                supportInfo.Text = supportInfo.Text.Replace("\n\n\n", "\n\n");
+                dumpText.Margin = new Padding(3, 15, 3, 0);
+                
+
                 technicalCode.Size = new Size(technicalCode.Size.Width, (int)((technicalCode.Text.Split('\n').Length + 2) * HeightInPixels));
                 dumpText.Location = new Point(dumpText.Location.X, technicalCode.Location.Y + 4* (int)HeightInPixels);
                 if (!fullscreen) { this.FormBorderStyle = FormBorderStyle.FixedSingle; this.ShowInTaskbar = true; this.ShowIcon = true; }
