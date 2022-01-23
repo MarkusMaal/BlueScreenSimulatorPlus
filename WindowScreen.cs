@@ -38,7 +38,10 @@ namespace UltimateBlueScreenSimulator
         {
             if (Program.f1.closecuzhidden == true)
             {
-                Program.f1.Close();
+                try
+                {
+                    Program.f1.Close();
+                } catch { }
             }
             if ((screenDisplay != null) && (screenDisplay.Image != null))
             { 

@@ -75,6 +75,7 @@
             this.okButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
             this.usbFinder = new System.Windows.Forms.Timer(this.components);
+            this.closePrank = new System.Windows.Forms.CheckBox();
             this.bluescreenTypePanel.SuspendLayout();
             this.triggerPanel.SuspendLayout();
             this.triggerFlowPanel.SuspendLayout();
@@ -584,12 +585,26 @@
             // 
             this.usbFinder.Tick += new System.EventHandler(this.Timer1_Tick);
             // 
+            // closePrank
+            // 
+            this.closePrank.AutoSize = true;
+            this.closePrank.Checked = true;
+            this.closePrank.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.closePrank.Location = new System.Drawing.Point(12, 435);
+            this.closePrank.Name = "closePrank";
+            this.closePrank.Size = new System.Drawing.Size(185, 17);
+            this.closePrank.TabIndex = 15;
+            this.closePrank.Text = "Re-open after ending prank mode";
+            this.closePrank.UseVisualStyleBackColor = true;
+            this.closePrank.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
             // PrankMode
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
             this.ClientSize = new System.Drawing.Size(539, 464);
+            this.Controls.Add(this.closePrank);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.previewFriendlyMessageButton);
@@ -614,6 +629,7 @@
             this.MinimumSize = new System.Drawing.Size(555, 503);
             this.Name = "PrankMode";
             this.Text = "Prank mode";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PrankMode_FormClosing);
             this.Load += new System.EventHandler(this.PrankMode_Load);
             this.bluescreenTypePanel.ResumeLayout(false);
             this.bluescreenTypePanel.PerformLayout();
@@ -681,5 +697,6 @@
         private System.Windows.Forms.Label deviceInfoLabel;
         private System.Windows.Forms.Timer usbFinder;
         private System.Windows.Forms.Button whyNoDeviceButton;
+        private System.Windows.Forms.CheckBox closePrank;
     }
 }

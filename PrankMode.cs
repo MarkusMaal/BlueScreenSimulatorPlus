@@ -9,6 +9,7 @@ namespace UltimateBlueScreenSimulator
     public partial class PrankMode : Form
     {
         readonly string releaseId = Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion", "ProductName", "").ToString();
+        readonly int buildNumber = Convert.ToInt32(Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion", "CurrentBuild", "0").ToString());
 
         string MsgBoxMessage = "Enter a message here.";
         string MsgBoxTitle = "Enter a title here";
@@ -333,6 +334,7 @@ namespace UltimateBlueScreenSimulator
         private void Button3_Click(object sender, EventArgs e)
         {
             this.Close();
+            Program.f1.closecuzhidden = false;
         }
 
         private void Button2_Click(object sender, EventArgs e)
@@ -342,9 +344,11 @@ namespace UltimateBlueScreenSimulator
             {
                 //this gets the Windows product name
                 string winver = releaseId;
+
                 //this makes sure that the blue screen type matches the OS
                 if (bestMatchRadio.Checked == true)
                 {
+                    if (buildNumber >= 22000) { winver = "Windows 11"; }
                     Program.f1.winMode.Checked = false;
                     for (int i = 0; i < Program.bluescreens.Count; i++)
                     {
@@ -493,6 +497,19 @@ namespace UltimateBlueScreenSimulator
             {
                 letCloseBox.Enabled = !blackninja.Contains(me.GetString("os"));
                 letCloseBox.Checked = true;
+            }
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            Program.f1.closecuzhidden = !closePrank.Checked;
+        }
+
+        private void PrankMode_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (Program.f1.Visible)
+            {
+                Program.f1.closecuzhidden = false;
             }
         }
     }

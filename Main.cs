@@ -302,9 +302,11 @@ namespace UltimateBlueScreenSimulator
             ntPanel.Visible = false;
             if (windowVersion.Items.Count > 0) { windowVersion.SelectedIndex = 0; }
             string winver = "";
+            int os_build = 0;
             try
             {
                 winver = Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion", "ProductName", "").ToString();
+                os_build = Convert.ToInt32(Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion", "CurrentBuild", "0").ToString());
             }
             catch
             {
@@ -315,12 +317,12 @@ namespace UltimateBlueScreenSimulator
                 specificos = "";
             }
             //this code identifies Windows 11
-            if (winver.Contains("Windows 11"))
+            if (os_build >= 22000)
             {
                 SetOS("Windows 11");
             }
             //this code identifies Windows 10
-            if (winver.Contains("Windows 10"))
+            else if (winver.Contains("Windows 10"))
             {
                 SetOS("Windows 10");
             }
@@ -1461,9 +1463,16 @@ namespace UltimateBlueScreenSimulator
         {
             if (!bsod_starter.IsAlive)
             {
-                waitPopup.Enabled = false;
-                this.WindowState = FormWindowState.Normal;
-                this.Show();
+                if (!closecuzhidden)
+                {
+                    waitPopup.Enabled = false;
+                    this.WindowState = FormWindowState.Normal;
+                    this.Show();
+                }
+                else
+                {
+                    this.Close();
+                }
             }
         }
 
