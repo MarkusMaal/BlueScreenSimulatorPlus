@@ -77,7 +77,7 @@
             // 
             // SplashText
             // 
-            this.SplashText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.SplashText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(90)))));
             this.SplashText.Font = new System.Drawing.Font("Segoe UI", 8F);
             this.SplashText.Location = new System.Drawing.Point(20, 129);
             this.SplashText.Name = "SplashText";
@@ -103,7 +103,7 @@
             this.appMarketedVersionLabel.Name = "appMarketedVersionLabel";
             this.appMarketedVersionLabel.Size = new System.Drawing.Size(61, 64);
             this.appMarketedVersionLabel.TabIndex = 4;
-            this.appMarketedVersionLabel.Text = "2.0";
+            this.appMarketedVersionLabel.Text = "2.1";
             this.appMarketedVersionLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
             this.appMarketedVersionLabel.UseWaitCursor = true;
             // 
@@ -128,16 +128,15 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(69, 13);
             this.label2.TabIndex = 6;
-            this.label2.Text = "final release";
+            this.label2.Text = "beta release";
             this.label2.UseWaitCursor = true;
-            this.label2.Visible = false;
             // 
             // Splash
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(90)))));
             this.BackgroundImage = global::UltimateBlueScreenSimulator.Properties.Resources.round_corners;
             this.ClientSize = new System.Drawing.Size(471, 149);
             this.Controls.Add(this.label2);

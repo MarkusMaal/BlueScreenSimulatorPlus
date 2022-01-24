@@ -626,12 +626,8 @@ namespace SimulatorDatabase
                 bs.fullscreen = !this.GetBool("windowed");
                 bs.waterMarkText.Visible = this.GetBool("watermark");
                 if (this.GetBool("show_file")) { bs.whatfail = this.GetString("culprit"); }
-                bs.errorCode.Text = "*** STOP: " + this.GetString("code").Split(' ')[1].ToString().Replace(")", "").Replace("(", "").ToString() + " (" +
-                                    GenHex(8, this.GetString("ecode1")) + ", " +
-                                    GenHex(8, this.GetString("ecode2")) + ", " +
-                                    GenHex(8, this.GetString("ecode3")) + ", " +
-                                    GenHex(8, this.GetString("ecode4")) + ")";
-                bs.errorCode.Text = bs.errorCode.Text + "\n" + this.GetString("code").Split(' ')[0].ToString();
+                bs.errorCode = string.Format(this.GetTexts()["Error code formatting"].Replace("{1}", "0x{1}, 0x{2}, 0x{3}, 0x{4}"), this.GetString("code").Split(' ')[1].ToString().Replace(")", "").Replace("(", "").ToString(), GenHex(8, this.GetString("ecode1")), GenHex(8, this.GetString("ecode2")), GenHex(8, this.GetString("ecode3")), GenHex(8, this.GetString("ecode4")));
+                bs.errorCode = bs.errorCode + "\n" + this.GetString("code").Split(' ')[0].ToString();
             }
             catch (Exception ex)
             {
@@ -898,13 +894,16 @@ namespace SimulatorDatabase
                     PushText("Troubleshooting introduction", "If this is the first time you've seen this Stop error screen,\r\nrestart your computer. If this screen appears again, follow\r\nthese steps: ");
                     PushText("Troubleshooting text", "Check for viruses on your computer. Remove any newly installed\r\nhard drives or hard drive controllers. Check your hard drive\r\nto make sure it is properly configured and terminated.\r\nRun CHKDSK /F to check for hard drive corruption, and then\r\nrestart your computer.");
                     PushText("Additional troubleshooting information", "Refer to your Getting Started manual for more information on\r\ntroubleshooting Stop errors.");
+                    PushText("File information", "*** Address {0} base at {1}, DateStamp {2} - {3}");
                     SetFont("Lucida Console", 8.0f, FontStyle.Bold);
                     SetString("friendlyname", "Windows 2000 Professional/Server Family (640x480, Standard)");
                     SetTheme(RGB(0, 0, 128), RGB(255, 255, 255));
-
+                    string[] inspirw2k = { "RRRRRRRR", "RRRRRRRR", "RRRRRRRR" };
+                    SetString("culprit", GenFile(true));
+                    PushFile(GetString("culprit"), inspirw2k);
                     SetString("code", "IRQL_NOT_LESS_OR_EQUAL (0x0000000A)");
                     SetBool("show_description", true);
-                    SetBool("font_support", true);
+                    SetBool("font_support", false);
                     break;
                 case "Windows XP":
                     this.icon = "3D flag";

@@ -208,6 +208,7 @@ namespace UltimateBlueScreenSimulator
                 winMode.Visible = true;
                 checkBox1.Checked = true;
                 eCodeEditButton.Visible = true;
+                advNTButton.Visible = true;
             }
             else if (me.GetString("os") == "Windows 9x/Me")
             {
@@ -333,10 +334,15 @@ namespace UltimateBlueScreenSimulator
             {
                 SetOS("Windows 8");
             }
-            //this code identifies Windows 7 or Windows Vista
-            else if ((winver.Contains("Windows 7")) || (winver.Contains("Windows Vista")))
+            //this code identifies Windows 7
+            else if (winver.Contains("Windows 7"))
             {
-                SetOS("Windows Vista/7");
+                SetOS("Windows 7");
+            }
+            //this code identifies Windows Vista
+            else if (winver.Contains("Windows Vista"))
+            {
+                SetOS("Windows Vista");
             }
             //this code identifies Windows XP
             else if (winver.Contains("Windows XP"))
@@ -555,8 +561,6 @@ namespace UltimateBlueScreenSimulator
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            //displays "Generating..." when a bluescreen is being generated
-            //label10.Text = "Generating...";
             if (enableeggs == true)
             {
                 if (textBox2.Text.ToLower().Contains("null"))
@@ -1198,7 +1202,7 @@ namespace UltimateBlueScreenSimulator
                 }
             }
             me.SetString("culprit", textBox2.Text);
-            if ((me.GetString("os") == "Windows XP") || (me.GetString("os") == "Windows Vista/7"))
+            if ((me.GetString("os") == "Windows XP") || (me.GetString("os") == "Windows Vista") || (me.GetString("os") == "Windows 7"))
             {
                 try
                 {

@@ -18,7 +18,8 @@ namespace UltimateBlueScreenSimulator
         bool inr = false;
         bool ing = false;
         bool inb = false;
-
+        internal string errorCode;
+        readonly string[] letters = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ":", ",", ".", "+", "*", "(", ")", "[", "]", "{", "}", "/", "\\", "-", "_", " ", "'" };
         public W2kbs()
         {
             InitializeComponent();
@@ -26,6 +27,17 @@ namespace UltimateBlueScreenSimulator
 
         private void W2kbs_FormClosing(object sender, FormClosingEventArgs e)
         {
+            foreach (Control c in tableLayoutPanel1.Controls)
+            {
+                try
+                {
+                    c.Dispose();
+                }
+                catch
+                {
+
+                }
+            }
             if (e.CloseReason == CloseReason.UserClosing)
             {
                 e.Cancel = Program.f1.lockout;
@@ -47,11 +59,94 @@ namespace UltimateBlueScreenSimulator
                 }
             }
         }
-
-        private void W2kbs_Load(object sender, EventArgs e)
+        private Bitmap WriteWord(string word, Color bg, Color fg)
         {
+            Bitmap bmpres;
+            bmpres = GetSymbol(word.Substring(0, 1), bg, fg);
+            for (int i = 1; i < word.Length; i++)
+            {
+                Bitmap two = GetSymbol(word.Substring(i, 1), bg, fg);
+                bmpres = Merge(bmpres, two);
+                two.Dispose();
+            }
+            return bmpres;
+        }
+        private Bitmap GetSymbol(string symbol, Color bg, Color fg)
+        {
+            int index = 0;
             try
             {
+                for (int i = 0; i < letters.Length + 1; i++)
+                {
+                    if (letters[i].ToString() == symbol)
+                    {
+                        index = i;
+                        break;
+                    }
+                }
+            }
+            catch
+            {
+
+            }
+            Rectangle cropRect = new Rectangle(index * 8, 0, 8, 8);
+            try
+            {
+                Bitmap src = Properties.Resources.rasterNT as Bitmap;
+                Bitmap target = new Bitmap(cropRect.Width, cropRect.Height);
+                using (Graphics g = Graphics.FromImage(target))
+                {
+                    g.DrawImage(src, new Rectangle(0, 0, target.Width, target.Height),
+                                     cropRect,
+                                     GraphicsUnit.Pixel);
+                }
+                Bitmap tc = Changecolor(bg, target, Color.FromArgb(0, 0, 0));
+                Bitmap t = Changecolor(fg, tc, Color.FromArgb(255, 255, 255));
+                target = t;
+                //tc.Dispose();
+                //t.Dispose();
+                return target;
+            }
+            catch
+            {
+                MessageBox.Show("Internal character set seems to be corrupted\n\n0x015: NT_CHARSET_CORRUPTED", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return new Bitmap(1, 1);
+            }
+        }
+
+        private Bitmap Merge(Bitmap bmp, Bitmap bmp2)
+        {
+            Bitmap ne = new Bitmap(bmp.Width + 8, bmp.Height);
+
+            using (Graphics grfx = Graphics.FromImage(ne))
+            {
+                grfx.DrawImage(bmp, 0, 0);
+                grfx.DrawImage(bmp2, ne.Width - 8, 0);
+            }
+            bmp.Dispose();
+            bmp2.Dispose();
+            return ne;
+        }
+        private Bitmap Changecolor(Color gc, Bitmap bmp, Color incol)
+        {
+            Color black = incol;
+            Color white = gc;
+            Bitmap img = bmp;
+            for (int i = 0; i < img.Width; i++)
+            {
+                for (int j = 0; j < img.Height; j++)
+                {
+                    Color pixelColor = img.GetPixel(i, j);
+                    if (pixelColor == black)
+                        img.SetPixel(i, j, white);
+                }
+            }
+            return img;
+        }
+        private void W2kbs_Load(object sender, EventArgs e)
+        {
+            //try
+            //{
                 if (Program.f1.enableeggs)
                 {
                     if (this.BackColor == this.ForeColor)
@@ -62,28 +157,50 @@ namespace UltimateBlueScreenSimulator
                 }
                 this.Icon = me.GetIcon();
                 this.Text = me.GetString("friendlyname");
-                string[] esplit = errorCode.Text.Split('\n')[0].Replace("*** STOP: ", "").Replace(")", "").Replace(" (", "*").Split('*');
-
-                errorCode.Text = me.GetTexts()["Error code formatting"].Replace("{0}", esplit[0]).Replace("{1}", esplit[1]) + "\n" + errorCode.Text.Split('\n')[1];
-                upMessage.Text = me.GetTexts()["Troubleshooting introduction"];
-                supportInfo.Text = me.GetTexts()["Troubleshooting text"];
-                downMessage.Text = me.GetTexts()["Additional troubleshooting information"];
-                errorCode.Font = me.GetFont();
-                upMessage.Font = me.GetFont();
-                supportInfo.Font = me.GetFont();
-                downMessage.Font = me.GetFont();
-                if (!fullscreen) { this.FormBorderStyle = FormBorderStyle.FixedSingle; this.ShowInTaskbar = true; this.ShowIcon = true; }
-                if (Program.f1.supporttext == "")
-                {
-                    supportInfo.Visible = false;
-                    errorCode.Visible = false;
-                }
+                List<Bitmap> lines = new List<Bitmap>();
+                lines.Add(WriteWord(" ", this.BackColor, this.ForeColor));
                 if (whatfail != "")
                 {
-                    errorCode.Text += "\n\n*** Address " + me.GenHex(8, "RRRRRRRR") + " base at " + me.GenHex(8, "RRRRRRRR") + ", DateStamp " + me.GenHex(8, "RRRRRRRR").ToLower() + " - " + whatfail.ToLower();
+                    // set file information template to default value if not found for backwards compatibility with version 2.0 configuration formats
+                    string addr = me.GetTexts().ContainsKey("File information") ? me.GetTexts()["File information"] : "*** Address {0} base at {1}, DateStamp {2} - {3}";
+                    errorCode += "\n\n";
+                    errorCode += string.Format(addr, me.GenHex(8, me.GetFiles()[me.GetString("culprit")][0]), me.GenHex(8, me.GetFiles()[me.GetString("culprit")][1]), me.GenHex(8, me.GetFiles()[me.GetString("culprit")][2]).ToLower(), whatfail.ToLower());
                 }
-                errorCode.Text = errorCode.Text.Replace("IRQL", "DRIVER_IRQL");
+                errorCode = errorCode.Replace("IRQL", "DRIVER_IRQL");
 
+                foreach (string l in errorCode.Split('\n'))
+                {
+                    if (l.Replace("\r", "\n").Replace("\n", "") == "") { lines.Add(WriteWord(" ", this.BackColor, this.ForeColor)); continue; }
+                    lines.Add(WriteWord(l.Replace("\r", "\n").Replace("\n", ""), this.BackColor, this.ForeColor));
+                }
+                lines.Add(WriteWord(" ", this.BackColor, this.ForeColor));
+
+                foreach (string l in me.GetTexts()["Troubleshooting introduction"].Split('\n'))
+                {
+                    if (l.Replace("\r", "\n").Replace("\n", "") == "") { lines.Add(WriteWord(" ", this.BackColor, this.ForeColor)); continue; }
+                    lines.Add(WriteWord(l.Replace("\r", "\n").Replace("\n", ""), this.BackColor, this.ForeColor));
+                }
+                lines.Add(WriteWord(" ", this.BackColor, this.ForeColor));
+
+                foreach (string l in me.GetTexts()["Troubleshooting text"].Split('\n'))
+                {
+                    if (l.Replace("\r", "\n").Replace("\n", "") == "") { lines.Add(WriteWord(" ", this.BackColor, this.ForeColor)); continue; }
+                    lines.Add(WriteWord(l.Replace("\r", "\n").Replace("\n", ""), this.BackColor, this.ForeColor));
+                }
+                lines.Add(WriteWord(" ", this.BackColor, this.ForeColor));
+
+                foreach (string l in me.GetTexts()["Additional troubleshooting information"].Split('\n'))
+                {
+                    if (l.Replace("\r", "\n").Replace("\n", "") == "") { lines.Add(WriteWord(" ", this.BackColor, this.ForeColor)); continue; }
+                    lines.Add(WriteWord(l.Replace("\r", "\n").Replace("\n", ""), this.BackColor, this.ForeColor));
+                }
+                int z = 1;
+                foreach (Bitmap line in lines)
+                {
+                    ((PictureBox)tableLayoutPanel1.Controls[string.Format("pictureBox{0}", z)]).Image = line;
+                    z++;
+                }
+                if (!fullscreen) { this.FormBorderStyle = FormBorderStyle.FixedSingle; this.ShowInTaskbar = true; this.ShowIcon = true; }
                 int[] colors = { this.BackColor.R + 50, this.BackColor.G + 50, this.BackColor.B + 50 };
                 if (colors[0] > 255) { colors[0] -= 255; }
                 if (colors[1] > 255) { colors[1] -= 255; }
@@ -163,15 +280,15 @@ namespace UltimateBlueScreenSimulator
                     }
                     this.Hide();
                 }
-            } catch (Exception ex)
-            {
+            //} catch (Exception ex)
+            /* {
                 Program.loadfinished = true;
                 screenUpdater.Enabled = false;
                 this.Hide();
                 if (Program.f1.enableeggs) { me.Crash(ex.Message, ex.StackTrace, "OrangeScreen"); }
                 else { MessageBox.Show("The blue screen cannot be displayed due to an error.\n\n" + ex.Message + "\n\n" + ex.StackTrace, "E R R O R", MessageBoxButtons.OK, MessageBoxIcon.Error); }
                 this.Close();
-            }
+            } */
         }
 
         private void Timer1_Tick(object sender, EventArgs e)

@@ -472,7 +472,7 @@ namespace UltimateBlueScreenSimulator
 
         private void SaveData(string filename)
         {
-            string filedata = "*** Blue screen simulator plus 2.0 ***";
+            string filedata = "*** Blue screen simulator plus 2.1 ***";
             foreach (BlueScreen bs in Program.bluescreens)
             {
                 filedata += "\n\n\n#" + bs.GetString("os") + "\n\n";
