@@ -99,6 +99,10 @@ namespace UltimateBlueScreenSimulator
                     progressIndicator.Text = me.GetTexts()["Progress"].Replace("{0}", "0");
                     supportInfo.Text = me.GetTexts()["Additional information"];
                 }
+                if (me.GetBool("blackscreen"))
+                {
+                    this.BackColor = Color.Black;
+                }
                 if (!w8close)
                 {
                     if (close == false)

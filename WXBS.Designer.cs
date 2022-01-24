@@ -67,7 +67,7 @@
             // emoticonLabel
             // 
             this.emoticonLabel.AutoSize = true;
-            this.emoticonLabel.Font = new System.Drawing.Font("Segoe UI", 102F);
+            this.emoticonLabel.Font = new System.Drawing.Font("Segoe UI Semilight", 102F);
             this.emoticonLabel.Location = new System.Drawing.Point(60, 0);
             this.emoticonLabel.Margin = new System.Windows.Forms.Padding(60, 0, 3, 0);
             this.emoticonLabel.Name = "emoticonLabel";
@@ -79,12 +79,12 @@
             // yourPCranLabel
             // 
             this.yourPCranLabel.AutoSize = true;
-            this.yourPCranLabel.Font = new System.Drawing.Font("Segoe UI", 20F);
+            this.yourPCranLabel.Font = new System.Drawing.Font("Segoe UI Semilight", 20F);
             this.yourPCranLabel.Location = new System.Drawing.Point(3, 280);
             this.yourPCranLabel.Margin = new System.Windows.Forms.Padding(3, 20, 3, 0);
             this.yourPCranLabel.Name = "yourPCranLabel";
             this.yourPCranLabel.Padding = new System.Windows.Forms.Padding(80, 0, 0, 0);
-            this.yourPCranLabel.Size = new System.Drawing.Size(789, 74);
+            this.yourPCranLabel.Size = new System.Drawing.Size(779, 74);
             this.yourPCranLabel.TabIndex = 1;
             this.yourPCranLabel.Text = "Your PC ran into a problem and needs to restart. We\'re just\r\ncollecting some erro" +
     "r info, and then we\'ll restart for you.";
@@ -92,12 +92,12 @@
             // progressIndicator
             // 
             this.progressIndicator.AutoSize = true;
-            this.progressIndicator.Font = new System.Drawing.Font("Segoe UI", 20F);
+            this.progressIndicator.Font = new System.Drawing.Font("Segoe UI Semilight", 20F);
             this.progressIndicator.Location = new System.Drawing.Point(3, 394);
             this.progressIndicator.Margin = new System.Windows.Forms.Padding(3, 40, 3, 0);
             this.progressIndicator.Name = "progressIndicator";
             this.progressIndicator.Padding = new System.Windows.Forms.Padding(80, 0, 0, 0);
-            this.progressIndicator.Size = new System.Drawing.Size(252, 37);
+            this.progressIndicator.Size = new System.Drawing.Size(248, 37);
             this.progressIndicator.TabIndex = 2;
             this.progressIndicator.Text = "0% complete";
             // 
@@ -139,7 +139,7 @@
             // 
             // errorCode
             // 
-            this.errorCode.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.errorCode.Font = new System.Drawing.Font("Segoe UI Semilight", 11F);
             this.errorCode.Location = new System.Drawing.Point(0, 56);
             this.errorCode.Margin = new System.Windows.Forms.Padding(3, 20, 3, 0);
             this.errorCode.Name = "errorCode";
@@ -149,7 +149,7 @@
             // 
             // supportInfo
             // 
-            this.supportInfo.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.supportInfo.Font = new System.Drawing.Font("Segoe UI Semilight", 11F);
             this.supportInfo.Location = new System.Drawing.Point(0, 0);
             this.supportInfo.Margin = new System.Windows.Forms.Padding(3, 20, 3, 0);
             this.supportInfo.Name = "supportInfo";

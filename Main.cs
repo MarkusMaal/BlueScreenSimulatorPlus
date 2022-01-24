@@ -135,6 +135,7 @@ namespace UltimateBlueScreenSimulator
             dumpBox.Enabled = true;
             eCodeEditButton.Visible = false;
             devPCBox.Visible = false;
+            blackScreenBox.Visible = false;
             try
             {
                 // set current bluescreen
@@ -155,6 +156,8 @@ namespace UltimateBlueScreenSimulator
                 winMode.Visible = true;
                 memoryBox.Visible = true;
                 eCodeEditButton.Visible = true;
+                blackScreenBox.Visible = true;
+                blackScreenBox.Checked = me.GetBool("blackscreen");
             }
             else if (me.GetString("os") == "Windows 10")
             {
@@ -1599,6 +1602,11 @@ namespace UltimateBlueScreenSimulator
                 settingsToolStripMenuItem.DropDown.BackColor = SystemColors.Menu;
                 settingsToolStripMenuItem.DropDown.ForeColor = SystemColors.MenuText;
             }
+        }
+
+        private void blackScreenBox_CheckedChanged(object sender, EventArgs e)
+        {
+            me.SetBool("blackscreen", blackScreenBox.Checked);
         }
     }
 }
