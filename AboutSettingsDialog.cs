@@ -489,7 +489,14 @@ namespace UltimateBlueScreenSimulator
                 filedata += "\necode3=" + bs.GetString("ecode3") + ";";
                 filedata += "\necode4=" + bs.GetString("ecode4") + ";";
                 filedata += "\nicon=" + bs.GetString("icon") + ";";
-
+                if (bs.AllProgress().Count > 0)
+                {
+                    filedata += "\n\n[progress]";
+                    foreach (KeyValuePair<int, int> entry in bs.AllProgress())
+                    {
+                        filedata += string.Format("\n{0}={1};", entry.Key, entry.Value);
+                    }
+                }
                 if (bs.GetFiles().Count > 0)
                 {
                     filedata += "\n\n[nt_codes]";
@@ -830,6 +837,7 @@ namespace UltimateBlueScreenSimulator
                     BlueScreen bs = new BlueScreen(os_name, false);
                     bs.ClearAllTitleTexts();
                     bs.ClearFiles();
+                    bs.ClearProgress();
                     foreach (string subsection in subsection_tokens)
                     {
                         if (subsection.IndexOf("]") > 0)
@@ -863,6 +871,9 @@ namespace UltimateBlueScreenSimulator
                                             break;
                                         case "title":
                                             bs.PushTitle(key, value.Replace("::", ":/:/:").Replace(":h:", "#").Replace(":sc:", ";").Replace(":sb:", "[").Replace(":eb:", "]").Replace(":/:/:", ":"));
+                                            break;
+                                        case "progress":
+                                            bs.SetProgression(int.Parse(key), int.Parse(value));
                                             break;
                                         case "nt_codes":
                                             bs.PushFile(key, value.Split(','));
@@ -1053,9 +1064,11 @@ namespace UltimateBlueScreenSimulator
 
         private void button3_Click(object sender, EventArgs e)
         {
-            TextView tv = new TextView();
-            tv.Text = Properties.Resources.COPYING.Replace("\n", "\r\n");
-            tv.Title = "Copying";
+            TextView tv = new TextView
+            {
+                Text = Properties.Resources.COPYING.Replace("\n", "\r\n"),
+                Title = "Copying"
+            };
             tv.ShowDialog();
             tv.Dispose();
         }
@@ -1089,6 +1102,13 @@ namespace UltimateBlueScreenSimulator
                 Random r = new Random();
                 MessageBox.Show(tips[r.Next(0, tips.Length - 1)], "Random fact", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            ProgressTuner pt = new ProgressTuner();
+            pt.Show();
+            MessageBox.Show("Testing ended");
         }
     }
 }

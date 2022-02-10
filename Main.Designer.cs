@@ -42,6 +42,7 @@
             this.qrBox = new System.Windows.Forms.CheckBox();
             this.memoryBox = new System.Windows.Forms.CheckBox();
             this.devPCBox = new System.Windows.Forms.CheckBox();
+            this.blackScreenBox = new System.Windows.Forms.CheckBox();
             this.errorCode = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -73,6 +74,7 @@
             this.advOptionsButton = new System.Windows.Forms.Button();
             this.eCodeEditButton = new System.Windows.Forms.Button();
             this.advNTButton = new System.Windows.Forms.Button();
+            this.progressTuneButton = new System.Windows.Forms.Button();
             this.quickHelp = new System.Windows.Forms.ToolTip(this.components);
             this.button1 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -96,6 +98,7 @@
             this.blueScreenHacksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.codeCustomizationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.advancedNTOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.progressTunerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.prankModeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -105,7 +108,6 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.waitPopup = new System.Windows.Forms.Timer(this.components);
-            this.blackScreenBox = new System.Windows.Forms.CheckBox();
             this.flowLayoutPanel1.SuspendLayout();
             this.WXOptions.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
@@ -181,7 +183,7 @@
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(15, 73);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(472, 266);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(472, 296);
             this.flowLayoutPanel1.TabIndex = 3;
             this.flowLayoutPanel1.WrapContents = false;
             // 
@@ -289,6 +291,19 @@
             this.quickHelp.SetToolTip(this.devPCBox, "On newer builds of Windows 10, the blue screen may say \"device\" instead of \"PC\"");
             this.devPCBox.UseVisualStyleBackColor = true;
             this.devPCBox.CheckedChanged += new System.EventHandler(this.DevPCBox_CheckedChanged);
+            // 
+            // blackScreenBox
+            // 
+            this.blackScreenBox.AutoSize = true;
+            this.blackScreenBox.Location = new System.Drawing.Point(333, 26);
+            this.blackScreenBox.Name = "blackScreenBox";
+            this.blackScreenBox.Size = new System.Drawing.Size(103, 17);
+            this.blackScreenBox.TabIndex = 8;
+            this.blackScreenBox.Text = "Black screen [?]";
+            this.quickHelp.SetToolTip(this.blackScreenBox, "On older versions of Windows 11, the screen was black instead of blue.");
+            this.blackScreenBox.UseVisualStyleBackColor = true;
+            this.blackScreenBox.Visible = false;
+            this.blackScreenBox.CheckedChanged += new System.EventHandler(this.blackScreenBox_CheckedChanged);
             // 
             // errorCode
             // 
@@ -642,9 +657,10 @@
             this.flowLayoutPanel4.Controls.Add(this.advOptionsButton);
             this.flowLayoutPanel4.Controls.Add(this.eCodeEditButton);
             this.flowLayoutPanel4.Controls.Add(this.advNTButton);
+            this.flowLayoutPanel4.Controls.Add(this.progressTuneButton);
             this.flowLayoutPanel4.Location = new System.Drawing.Point(3, 425);
             this.flowLayoutPanel4.Name = "flowLayoutPanel4";
-            this.flowLayoutPanel4.Size = new System.Drawing.Size(467, 30);
+            this.flowLayoutPanel4.Size = new System.Drawing.Size(467, 61);
             this.flowLayoutPanel4.TabIndex = 18;
             // 
             // advOptionsButton
@@ -696,12 +712,27 @@
             this.advNTButton.Visible = false;
             this.advNTButton.Click += new System.EventHandler(this.AdvNTButton_Click);
             // 
+            // progressTuneButton
+            // 
+            this.progressTuneButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.progressTuneButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.progressTuneButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.progressTuneButton.Location = new System.Drawing.Point(3, 32);
+            this.progressTuneButton.Name = "progressTuneButton";
+            this.progressTuneButton.Size = new System.Drawing.Size(113, 23);
+            this.progressTuneButton.TabIndex = 13;
+            this.progressTuneButton.Text = "Progress &tuner";
+            this.quickHelp.SetToolTip(this.progressTuneButton, "Allows you to adjust the timing and increments of the progress indicator on vario" +
+        "us blue screens.");
+            this.progressTuneButton.UseVisualStyleBackColor = true;
+            this.progressTuneButton.Click += new System.EventHandler(this.button4_Click_1);
+            // 
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.button1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button1.Location = new System.Drawing.Point(418, 364);
+            this.button1.Location = new System.Drawing.Point(418, 394);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(68, 23);
             this.button1.TabIndex = 14;
@@ -716,7 +747,7 @@
             this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.button3.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button3.Location = new System.Drawing.Point(301, 364);
+            this.button3.Location = new System.Drawing.Point(301, 394);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(111, 23);
             this.button3.TabIndex = 13;
@@ -731,7 +762,7 @@
             this.button7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button7.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.button7.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button7.Location = new System.Drawing.Point(15, 364);
+            this.button7.Location = new System.Drawing.Point(15, 394);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(69, 23);
             this.button7.TabIndex = 12;
@@ -747,7 +778,7 @@
             // 
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(15, 348);
+            this.label7.Location = new System.Drawing.Point(15, 378);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(150, 13);
             this.label7.TabIndex = 6;
@@ -756,7 +787,7 @@
             // label10
             // 
             this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label10.Location = new System.Drawing.Point(351, 342);
+            this.label10.Location = new System.Drawing.Point(351, 372);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(134, 13);
             this.label10.TabIndex = 8;
@@ -822,7 +853,7 @@
             // simulateToolStripMenuItem
             // 
             this.simulateToolStripMenuItem.Name = "simulateToolStripMenuItem";
-            this.simulateToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.simulateToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.simulateToolStripMenuItem.Text = "&Simulate";
             this.simulateToolStripMenuItem.Click += new System.EventHandler(this.SimulateToolStripMenuItem_Click);
             // 
@@ -832,7 +863,7 @@
             this.autoUpdateToolStripMenuItem,
             this.simulatorSettingsToolStripMenuItem});
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.settingsToolStripMenuItem.Text = "Settings";
             this.settingsToolStripMenuItem.DropDownOpening += new System.EventHandler(this.SimulatorToolStripMenuItem_DropDownOpening);
             // 
@@ -859,26 +890,26 @@
             // 
             this.toolStripSeparator1.AutoSize = false;
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 3);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(139, 3);
             // 
             // nightThemeToolStripMenuItem
             // 
             this.nightThemeToolStripMenuItem.CheckOnClick = true;
             this.nightThemeToolStripMenuItem.Name = "nightThemeToolStripMenuItem";
-            this.nightThemeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.nightThemeToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.nightThemeToolStripMenuItem.Text = "Night theme";
             this.nightThemeToolStripMenuItem.CheckStateChanged += new System.EventHandler(this.LightSwitch);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(139, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.exitToolStripMenuItem.Text = "E&xit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
@@ -888,6 +919,7 @@
             this.blueScreenHacksToolStripMenuItem,
             this.codeCustomizationToolStripMenuItem,
             this.advancedNTOptionsToolStripMenuItem,
+            this.progressTunerToolStripMenuItem,
             this.toolStripSeparator3,
             this.prankModeToolStripMenuItem});
             this.advancedToolStripMenuItem.Name = "advancedToolStripMenuItem";
@@ -918,6 +950,13 @@
             this.advancedNTOptionsToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.advancedNTOptionsToolStripMenuItem.Text = "Advanced &NT options";
             this.advancedNTOptionsToolStripMenuItem.Click += new System.EventHandler(this.AdvancedNTOptionsToolStripMenuItem_Click);
+            // 
+            // progressTunerToolStripMenuItem
+            // 
+            this.progressTunerToolStripMenuItem.Name = "progressTunerToolStripMenuItem";
+            this.progressTunerToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.progressTunerToolStripMenuItem.Text = "Progress &Tuner";
+            this.progressTunerToolStripMenuItem.Click += new System.EventHandler(this.progressTunerToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
@@ -985,24 +1024,11 @@
             // 
             this.waitPopup.Tick += new System.EventHandler(this.WaitPopup_Tick);
             // 
-            // blackScreenBox
-            // 
-            this.blackScreenBox.AutoSize = true;
-            this.blackScreenBox.Location = new System.Drawing.Point(333, 26);
-            this.blackScreenBox.Name = "blackScreenBox";
-            this.blackScreenBox.Size = new System.Drawing.Size(103, 17);
-            this.blackScreenBox.TabIndex = 8;
-            this.blackScreenBox.Text = "Black screen [?]";
-            this.quickHelp.SetToolTip(this.blackScreenBox, "On older versions of Windows 11, the screen was black instead of blue.");
-            this.blackScreenBox.UseVisualStyleBackColor = true;
-            this.blackScreenBox.Visible = false;
-            this.blackScreenBox.CheckedChanged += new System.EventHandler(this.blackScreenBox_CheckedChanged);
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(499, 401);
+            this.ClientSize = new System.Drawing.Size(499, 431);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.button3);
@@ -1017,7 +1043,7 @@
             this.HelpButton = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuBar;
-            this.MinimumSize = new System.Drawing.Size(470, 440);
+            this.MinimumSize = new System.Drawing.Size(470, 470);
             this.Name = "Main";
             this.Text = "BlueScreen Simulator Plus 2.1";
             this.HelpButtonClicked += new System.ComponentModel.CancelEventHandler(this.Form1_HelpButtonClicked);
@@ -1127,6 +1153,8 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         public System.Windows.Forms.ToolStripMenuItem nightThemeToolStripMenuItem;
         private System.Windows.Forms.CheckBox blackScreenBox;
+        private System.Windows.Forms.Button progressTuneButton;
+        private System.Windows.Forms.ToolStripMenuItem progressTunerToolStripMenuItem;
     }
 }
 

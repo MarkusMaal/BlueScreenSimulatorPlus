@@ -135,6 +135,8 @@ namespace UltimateBlueScreenSimulator
             dumpBox.Enabled = true;
             eCodeEditButton.Visible = false;
             devPCBox.Visible = false;
+            progressTuneButton.Visible = false;
+            progressTunerToolStripMenuItem.Enabled = false;
             blackScreenBox.Visible = false;
             try
             {
@@ -157,6 +159,8 @@ namespace UltimateBlueScreenSimulator
                 memoryBox.Visible = true;
                 eCodeEditButton.Visible = true;
                 blackScreenBox.Visible = true;
+                progressTuneButton.Visible = true;
+                progressTunerToolStripMenuItem.Enabled = true;
                 blackScreenBox.Checked = me.GetBool("blackscreen");
             }
             else if (me.GetString("os") == "Windows 10")
@@ -171,7 +175,9 @@ namespace UltimateBlueScreenSimulator
                 winMode.Visible = true;
                 memoryBox.Visible = true;
                 eCodeEditButton.Visible = true;
+                progressTunerToolStripMenuItem.Enabled = true;
                 devPCBox.Visible = true;
+                progressTuneButton.Visible = true;
             }
             else if (me.GetString("os") == "Windows 8/8.1")
             {
@@ -181,6 +187,8 @@ namespace UltimateBlueScreenSimulator
                 winMode.Visible = true;
                 memoryBox.Visible = true;
                 eCodeEditButton.Visible = true;
+                progressTunerToolStripMenuItem.Enabled = true;
+                progressTuneButton.Visible = true;
             }
             else if ((me.GetString("os") == "Windows Vista") || (me.GetString("os") == "Windows 7"))
             {
@@ -193,6 +201,8 @@ namespace UltimateBlueScreenSimulator
                 addInfFile.Enabled = true;
                 advNTButton.Visible = true;
                 eCodeEditButton.Visible = true;
+                progressTunerToolStripMenuItem.Enabled = true;
+                progressTuneButton.Visible = true;
             }
             else if (me.GetString("os") == "Windows XP")
             {
@@ -1607,6 +1617,31 @@ namespace UltimateBlueScreenSimulator
         private void blackScreenBox_CheckedChanged(object sender, EventArgs e)
         {
             me.SetBool("blackscreen", blackScreenBox.Checked);
+        }
+
+        private void button4_Click_1(object sender, EventArgs e)
+        {
+            ProgressTuner pt = new ProgressTuner();
+            pt.KFrames = me.AllProgress();
+            pt.Text = string.Format("Progress tuner - {0}", me.GetString("friendlyname"));
+            if (pt.KFrames.Count > 0)
+            {
+                pt.progressTrackBar.Maximum = me.GetInt("progressmillis");
+            }
+            pt.ReloadBitmap();
+            pt.SetLabelText();
+            pt.totalTimeText.Text = ((float)me.GetInt("progressmillis") / 100f).ToString().Replace(",", ".");
+            if (pt.ShowDialog() == DialogResult.OK)
+            {
+                me.SetAllProgression(pt.KFrames.Keys.ToArray<int>(), pt.KFrames.Values.ToArray<int>());
+                me.SetInt("progressmillis", pt.progressTrackBar.Maximum);
+            }
+            pt.Dispose();
+        }
+
+        private void progressTunerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            progressTuneButton.PerformClick();
         }
     }
 }

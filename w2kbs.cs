@@ -145,21 +145,22 @@ namespace UltimateBlueScreenSimulator
         }
         private void W2kbs_Load(object sender, EventArgs e)
         {
-            //try
-            //{
-                if (Program.f1.enableeggs)
+            try
+            {
+            if (Program.f1.enableeggs)
+            {
+                if (this.BackColor == this.ForeColor)
                 {
-                    if (this.BackColor == this.ForeColor)
-                    {
-                        this.BackColor = Color.Red;
-                        rainBowScreen.Enabled = true;
-                    }
+                    this.BackColor = Color.Red;
+                    rainBowScreen.Enabled = true;
                 }
-                this.Icon = me.GetIcon();
-                this.Text = me.GetString("friendlyname");
-                List<Bitmap> lines = new List<Bitmap>();
-                lines.Add(WriteWord(" ", this.BackColor, this.ForeColor));
-                if (whatfail != "")
+            }
+            this.Icon = me.GetIcon();
+            this.Text = me.GetString("friendlyname");
+            List<Bitmap> lines = new List<Bitmap>
+            { WriteWord(" ", this.BackColor, this.ForeColor)
+            };
+            if (whatfail != "")
                 {
                     // set file information template to default value if not found for backwards compatibility with version 2.0 configuration formats
                     string addr = me.GetTexts().ContainsKey("File information") ? me.GetTexts()["File information"] : "*** Address {0} base at {1}, DateStamp {2} - {3}";
@@ -280,15 +281,15 @@ namespace UltimateBlueScreenSimulator
                     }
                     this.Hide();
                 }
-            //} catch (Exception ex)
-            /* {
+            } catch (Exception ex)
+            {
                 Program.loadfinished = true;
                 screenUpdater.Enabled = false;
                 this.Hide();
                 if (Program.f1.enableeggs) { me.Crash(ex.Message, ex.StackTrace, "OrangeScreen"); }
                 else { MessageBox.Show("The blue screen cannot be displayed due to an error.\n\n" + ex.Message + "\n\n" + ex.StackTrace, "E R R O R", MessageBoxButtons.OK, MessageBoxIcon.Error); }
                 this.Close();
-            } */
+            }
         }
 
         private void Timer1_Tick(object sender, EventArgs e)

@@ -71,6 +71,7 @@
             this.devNewAllButton = new System.Windows.Forms.Button();
             this.devNukeAllButton = new System.Windows.Forms.Button();
             this.devRestartApp = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.multiDisplayBox = new System.Windows.Forms.ComboBox();
             this.multiDisplayLabel = new System.Windows.Forms.Label();
             this.configEditingButtonsFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
@@ -607,6 +608,7 @@
             this.devFlowPanel.Controls.Add(this.devNewAllButton);
             this.devFlowPanel.Controls.Add(this.devNukeAllButton);
             this.devFlowPanel.Controls.Add(this.devRestartApp);
+            this.devFlowPanel.Controls.Add(this.button2);
             this.devFlowPanel.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
             this.devFlowPanel.Location = new System.Drawing.Point(158, 3);
             this.devFlowPanel.Name = "devFlowPanel";
@@ -619,7 +621,7 @@
             // 
             this.devSplashButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.devSplashButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.devSplashButton.Location = new System.Drawing.Point(341, 3);
+            this.devSplashButton.Location = new System.Drawing.Point(439, 3);
             this.devSplashButton.Name = "devSplashButton";
             this.devSplashButton.Size = new System.Drawing.Size(82, 34);
             this.devSplashButton.TabIndex = 22;
@@ -631,7 +633,7 @@
             // 
             this.devDictEditButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.devDictEditButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.devDictEditButton.Location = new System.Drawing.Point(272, 3);
+            this.devDictEditButton.Location = new System.Drawing.Point(370, 3);
             this.devDictEditButton.Name = "devDictEditButton";
             this.devDictEditButton.Size = new System.Drawing.Size(63, 34);
             this.devDictEditButton.TabIndex = 19;
@@ -643,7 +645,7 @@
             // 
             this.devNewAllButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.devNewAllButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.devNewAllButton.Location = new System.Drawing.Point(202, 3);
+            this.devNewAllButton.Location = new System.Drawing.Point(300, 3);
             this.devNewAllButton.Name = "devNewAllButton";
             this.devNewAllButton.Size = new System.Drawing.Size(64, 34);
             this.devNewAllButton.TabIndex = 20;
@@ -655,7 +657,7 @@
             // 
             this.devNukeAllButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.devNukeAllButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.devNukeAllButton.Location = new System.Drawing.Point(99, 3);
+            this.devNukeAllButton.Location = new System.Drawing.Point(197, 3);
             this.devNukeAllButton.Name = "devNukeAllButton";
             this.devNukeAllButton.Size = new System.Drawing.Size(97, 34);
             this.devNukeAllButton.TabIndex = 21;
@@ -665,13 +667,23 @@
             // 
             // devRestartApp
             // 
-            this.devRestartApp.Location = new System.Drawing.Point(3, 3);
+            this.devRestartApp.Location = new System.Drawing.Point(101, 3);
             this.devRestartApp.Name = "devRestartApp";
             this.devRestartApp.Size = new System.Drawing.Size(90, 34);
             this.devRestartApp.TabIndex = 23;
             this.devRestartApp.Text = "[DEV] Restart Application";
             this.devRestartApp.UseVisualStyleBackColor = true;
             this.devRestartApp.Click += new System.EventHandler(this.RestartAll);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(3, 3);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(92, 34);
+            this.button2.TabIndex = 24;
+            this.button2.Text = "[TEST] Progress Tuner";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click_1);
             // 
             // multiDisplayBox
             // 
@@ -1161,5 +1173,6 @@
         private System.Windows.Forms.Button srcCodeButton;
         private System.Windows.Forms.Button copyingButton;
         private System.Windows.Forms.Button rndFactButton;
+        private System.Windows.Forms.Button button2;
     }
 }

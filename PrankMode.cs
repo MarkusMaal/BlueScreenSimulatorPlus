@@ -339,8 +339,19 @@ namespace UltimateBlueScreenSimulator
 
         private void Button2_Click(object sender, EventArgs e)
         {
+            string messageA = "The program will now be hidden. Once the prank has been triggered, the program will reopen itself.";
+            string messageB = "The program will now be hidden. Once the prank has been triggered, the program will reopen iteself and then close after exiting the blue screen.";
+            string message = "You are not " + /* garbage, please trust me on this! */
+                             "supposed " /*ly, they were hanging out... */ +
+                             /*...*/ "to " + "see " /* who actually did this! */ +
+                             "this " + /* message was for you */ ", John!";
+            message = messageB;
+            if (closePrank.Checked)
+            {
+                message = messageA;
+            }
             //this confirms the action
-            if (MessageBox.Show("The program will now be hidden. Once the prank has been triggered, the program will reopen itself.", "Prank mode will begin if you click OK", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.OK)
+            if (MessageBox.Show(message, "Prank mode will begin if you click OK", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.OK)
             {
                 //this gets the Windows product name
                 string winver = releaseId;
@@ -402,11 +413,6 @@ namespace UltimateBlueScreenSimulator
         private void MaskedTextBox1_TextChanged(object sender, EventArgs e)
         {
             time = timerBox.Text.Split(':');
-        }
-
-        private void RadioButton1_CheckedChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void RadioButton15_CheckedChanged(object sender, EventArgs e)

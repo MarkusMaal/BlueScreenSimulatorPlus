@@ -129,7 +129,6 @@
             this.bestMatchRadio.TabStop = true;
             this.bestMatchRadio.Text = "Use a bluescreen type that matches this system, but match other settings";
             this.bestMatchRadio.UseVisualStyleBackColor = true;
-            this.bestMatchRadio.CheckedChanged += new System.EventHandler(this.RadioButton1_CheckedChanged);
             // 
             // triggerLabel
             // 

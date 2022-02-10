@@ -120,6 +120,7 @@ namespace SimulatorDatabase
         readonly IDictionary<string, bool> bools;
         readonly IDictionary<string, int> ints;
         readonly IDictionary<string, string> strings;
+        readonly IDictionary<int, int> progression;
 
         private readonly Random r;
 
@@ -140,6 +141,7 @@ namespace SimulatorDatabase
             this.bools = new Dictionary<string, bool>();
             this.ints = new Dictionary<string, int>();
             this.strings = new Dictionary<string, string>();
+            this.progression = new Dictionary<int, int>();
             this.font = new Font("Lucida Console", 10.4f, FontStyle.Regular);
             if (autosetup) { SetOSSpecificDefaults(); }
         }
@@ -147,6 +149,7 @@ namespace SimulatorDatabase
         public IDictionary<string, bool> AllBools() { return this.bools; }
         public IDictionary<string, int> AllInts() { return this.ints; }
         public IDictionary<string, string> AllStrings() { return this.strings; }
+        public IDictionary<int, int> AllProgress() { return this.progression; }
 
         // blue screen properties
         public bool GetBool(string name)
@@ -208,6 +211,12 @@ namespace SimulatorDatabase
             this.titles.Clear();
             this.texts.Clear();
         }
+
+        public void ClearProgress()
+        {
+            this.progression.Clear();
+        }
+
         public void SetString(string name, string value)
         {
             switch (name)
@@ -348,6 +357,39 @@ namespace SimulatorDatabase
         }
 
 
+
+        // progress keyframes
+        public int GetProgression(int name)
+        {
+            if (this.progression.ContainsKey(name))
+            {
+                return this.progression[name];
+            }
+            else
+            {
+                return 0;
+            }
+        }
+        public void SetProgression(int name, int value)
+        {
+            if (this.progression.ContainsKey(name))
+            {
+                this.progression[name] = value;
+            }
+            else
+            {
+                this.progression.Add(name, value);
+            }
+        }
+
+        public void SetAllProgression(int[] keys, int[] values)
+        {
+            this.progression.Clear();
+            for (int i = 0; i < keys.Length; i++)
+            {
+                this.progression[keys[i]] = values[i];
+            }
+        }
 
         //GenAddress uses the last function to generate multiple error address codes
         public string GenAddress(int count, int places, bool lower)
@@ -626,7 +668,7 @@ namespace SimulatorDatabase
                 bs.fullscreen = !this.GetBool("windowed");
                 bs.waterMarkText.Visible = this.GetBool("watermark");
                 if (this.GetBool("show_file")) { bs.whatfail = this.GetString("culprit"); }
-                bs.errorCode = string.Format(this.GetTexts()["Error code formatting"].Replace("{1}", "0x{1}, 0x{2}, 0x{3}, 0x{4}"), this.GetString("code").Split(' ')[1].ToString().Replace(")", "").Replace("(", "").ToString(), GenHex(8, this.GetString("ecode1")), GenHex(8, this.GetString("ecode2")), GenHex(8, this.GetString("ecode3")), GenHex(8, this.GetString("ecode4")));
+                bs.errorCode = string.Format(this.GetTexts()["Error code formatting"].Replace("{1}", "0x{1},0x{2},0x{3},0x{4}"), this.GetString("code").Split(' ')[1].ToString().Replace(")", "").Replace("(", "").ToString(), GenHex(8, this.GetString("ecode1")), GenHex(8, this.GetString("ecode2")), GenHex(8, this.GetString("ecode3")), GenHex(8, this.GetString("ecode4")));
                 bs.errorCode = bs.errorCode + "\n" + this.GetString("code").Split(' ')[0].ToString();
             }
             catch (Exception ex)
@@ -698,6 +740,7 @@ namespace SimulatorDatabase
             bs.close = GetBool("autoclose");
             bs.green = GetBool("insider");
             bs.server = GetBool("server");
+            bs.maxprogressmillis = GetInt("progressmillis");
             bs.w11 = w11;
             bs.memCodes.Text = "0x" + GenHex(16, GetString("ecode1")) + "\r\n0x" +
                                 GenHex(16, GetString("ecode2")) + "\r\n0x" +
@@ -731,6 +774,7 @@ namespace SimulatorDatabase
             bs.emoticonLabel.Text = this.GetString("emoticon");
             bs.BackColor = this.GetTheme(true);
             bs.ForeColor = this.GetTheme(false);
+            bs.maxprogressmillis = GetInt("progressmillis");
             bs.qr = false;
             bs.w8 = true;
             bs.close = GetBool("autoclose");
@@ -995,6 +1039,7 @@ namespace SimulatorDatabase
 
                     SetBool("autoclose", true);
                     SetString("code", "IRQL_NOT_LESS_OR_EQUAL (0x0000000A)");
+                    SetDefaultProgression();
                     SetBool("show_description", true);
                     SetBool("font_support", true);
                     break;
@@ -1022,6 +1067,7 @@ namespace SimulatorDatabase
                     SetString("code", "IRQL_NOT_LESS_OR_EQUAL (0x0000000A)");
                     SetBool("show_description", true);
                     SetBool("font_support", true);
+                    SetDefaultProgression();
                     break;
                 case "Windows 11":
                     this.icon = "2D window";
@@ -1046,10 +1092,32 @@ namespace SimulatorDatabase
                     SetBool("qr", true);
                     SetString("qr_file", "local:0");
                     SetString("code", "IRQL_NOT_LESS_OR_EQUAL (0x0000000A)");
+                    SetDefaultProgression();
                     SetBool("show_description", true);
                     SetBool("font_support", true);
                     break;
             }
+        }
+
+        private void SetDefaultProgression()
+        {
+            int totalmillis = 100;
+            int percent = 0;
+            while (percent < 100)
+            {
+                int val = r.Next(0, 9);
+                if (val + percent > 100)
+                {
+                    val = 100 - percent;
+                }
+                if (val != 0)
+                {
+                    SetProgression(totalmillis, val);
+                    percent += val;
+                }
+                totalmillis += 100;
+            }
+            SetInt("progressmillis", totalmillis);
         }
     }
 }

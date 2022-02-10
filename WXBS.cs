@@ -18,6 +18,9 @@ namespace UltimateBlueScreenSimulator
         public bool w11 = false;
         private bool w8close = false;
         private int progress = 0;
+        private int progressmillis = 0;
+        private bool oldmode = true;
+        internal int maxprogressmillis = 0;
         internal BlueScreen me = Program.bluescreens[0];
         readonly List<WindowScreen> wss = new List<WindowScreen>();
         readonly List<Bitmap> freezescreens = new List<Bitmap>();
@@ -69,6 +72,11 @@ namespace UltimateBlueScreenSimulator
         {
             try
             {
+                oldmode = me.AllProgress().Keys.Count == 0;
+                if (!oldmode)
+                {
+                    progressUpdater.Interval = 1;
+                }
                 this.Icon = me.GetIcon();
                 this.Text = me.GetString("friendlyname");
                 memCodes.Visible = me.GetBool("extracodes");
@@ -268,21 +276,28 @@ namespace UltimateBlueScreenSimulator
         {
             try
             {
+                if (!oldmode) { progressmillis++; }
                 if (!w8close)
                 {
-                    if (progress >= 100)
+                    if ((oldmode && (progress >= 100)) || (progressmillis == maxprogressmillis))
                     {
                         progressUpdater.Enabled = false;
                         if (me.GetBool("autoclose")) { this.Close(); }
                         progressIndicator.Text = me.GetTexts()["Progress"].Replace("{0}", "100");
                     }
-                    progress += 1;
-                    if (progress > 60) { progressUpdater.Interval = 300; }
+                    if (oldmode)
+                    {
+                        progress += 1;
+                        if (progress > 60) { progressUpdater.Interval = 300; }
+                    } else
+                    {
+                        progress += me.GetProgression(progressmillis);
+                    }
                     progressIndicator.Text = me.GetTexts()["Progress"].Replace("{0}", progress.ToString());
                 }
                 else
                 {
-                    if (progress >= 100)
+                    if ((oldmode && (progress >= 100)) || (progressmillis == maxprogressmillis))
                     {
                         yourPCranLabel.Text = yourPCranLabel.Text.Replace(progress.ToString() + "%", "100%");
                         progressUpdater.Enabled = false;
@@ -292,8 +307,15 @@ namespace UltimateBlueScreenSimulator
                         }
                     }
                     string oldprogress = progress.ToString();
-                    progress += 1;
-                    if (progress > 60) { progressUpdater.Interval = 300; }
+                    if (oldmode)
+                    {
+                        progress += 1;
+                        if (progress > 60) { progressUpdater.Interval = 300; }
+                    }
+                    else
+                    {
+                        progress += me.GetProgression(progressmillis);
+                    }
                     yourPCranLabel.Text = yourPCranLabel.Text.Replace(oldprogress + "%", progress.ToString() + "%");
                 }
             } catch (Exception ex)
