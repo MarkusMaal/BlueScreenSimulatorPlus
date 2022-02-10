@@ -108,6 +108,11 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.waitPopup = new System.Windows.Forms.Timer(this.components);
+            this.customCheckBox = new System.Windows.Forms.CheckBox();
+            this.customMessageText = new System.Windows.Forms.TextBox();
+            this.customMessageLabel1 = new System.Windows.Forms.Label();
+            this.customMessageCode = new System.Windows.Forms.TextBox();
+            this.customMessageLabel2 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1.SuspendLayout();
             this.WXOptions.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
@@ -307,6 +312,11 @@
             // 
             // errorCode
             // 
+            this.errorCode.Controls.Add(this.customMessageLabel2);
+            this.errorCode.Controls.Add(this.customMessageCode);
+            this.errorCode.Controls.Add(this.customMessageLabel1);
+            this.errorCode.Controls.Add(this.customMessageText);
+            this.errorCode.Controls.Add(this.customCheckBox);
             this.errorCode.Controls.Add(this.button2);
             this.errorCode.Controls.Add(this.textBox2);
             this.errorCode.Controls.Add(this.checkBox2);
@@ -395,7 +405,7 @@
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(103, 3);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(361, 21);
+            this.comboBox1.Size = new System.Drawing.Size(279, 21);
             this.comboBox1.TabIndex = 1;
             this.quickHelp.SetToolTip(this.comboBox1, "Select specific NT error message to display.");
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.ComboBox1_SelectedIndexChanged_1);
@@ -1024,6 +1034,58 @@
             // 
             this.waitPopup.Tick += new System.EventHandler(this.WaitPopup_Tick);
             // 
+            // customCheckBox
+            // 
+            this.customCheckBox.AutoSize = true;
+            this.customCheckBox.Location = new System.Drawing.Point(386, 5);
+            this.customCheckBox.Name = "customCheckBox";
+            this.customCheckBox.Size = new System.Drawing.Size(76, 17);
+            this.customCheckBox.TabIndex = 7;
+            this.customCheckBox.Text = "Custom [?]";
+            this.quickHelp.SetToolTip(this.customCheckBox, "Allows you to set custom error codes");
+            this.customCheckBox.UseVisualStyleBackColor = true;
+            this.customCheckBox.CheckedChanged += new System.EventHandler(this.customCheckBox_CheckedChanged);
+            // 
+            // customMessageText
+            // 
+            this.customMessageText.Location = new System.Drawing.Point(103, 3);
+            this.customMessageText.Name = "customMessageText";
+            this.customMessageText.Size = new System.Drawing.Size(168, 20);
+            this.customMessageText.TabIndex = 8;
+            this.customMessageText.Visible = false;
+            this.customMessageText.TextChanged += new System.EventHandler(this.customMessageText_TextChanged);
+            // 
+            // customMessageLabel1
+            // 
+            this.customMessageLabel1.AutoSize = true;
+            this.customMessageLabel1.Location = new System.Drawing.Point(274, 5);
+            this.customMessageLabel1.Name = "customMessageLabel1";
+            this.customMessageLabel1.Size = new System.Drawing.Size(21, 13);
+            this.customMessageLabel1.TabIndex = 9;
+            this.customMessageLabel1.Text = "(0x";
+            this.customMessageLabel1.Visible = false;
+            // 
+            // customMessageCode
+            // 
+            this.customMessageCode.Location = new System.Drawing.Point(296, 2);
+            this.customMessageCode.MaxLength = 8;
+            this.customMessageCode.Name = "customMessageCode";
+            this.customMessageCode.Size = new System.Drawing.Size(70, 20);
+            this.customMessageCode.TabIndex = 10;
+            this.customMessageCode.Text = "00000000";
+            this.customMessageCode.Visible = false;
+            this.customMessageCode.TextChanged += new System.EventHandler(this.customMessageCode_TextChanged);
+            // 
+            // customMessageLabel2
+            // 
+            this.customMessageLabel2.AutoSize = true;
+            this.customMessageLabel2.Location = new System.Drawing.Point(366, 6);
+            this.customMessageLabel2.Name = "customMessageLabel2";
+            this.customMessageLabel2.Size = new System.Drawing.Size(10, 13);
+            this.customMessageLabel2.TabIndex = 11;
+            this.customMessageLabel2.Text = ")";
+            this.customMessageLabel2.Visible = false;
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1155,6 +1217,11 @@
         private System.Windows.Forms.CheckBox blackScreenBox;
         private System.Windows.Forms.Button progressTuneButton;
         private System.Windows.Forms.ToolStripMenuItem progressTunerToolStripMenuItem;
+        private System.Windows.Forms.Label customMessageLabel2;
+        private System.Windows.Forms.TextBox customMessageCode;
+        private System.Windows.Forms.Label customMessageLabel1;
+        private System.Windows.Forms.TextBox customMessageText;
+        private System.Windows.Forms.CheckBox customCheckBox;
     }
 }
 

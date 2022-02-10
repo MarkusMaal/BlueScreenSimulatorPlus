@@ -256,6 +256,15 @@ namespace UltimateBlueScreenSimulator
                 winMode.Visible = true;
                 winPanel.Visible = true;
             }
+            bool inlist = false;
+            foreach (string item in comboBox1.Items)
+            {
+                if (item == me.GetString("code"))
+                {
+                    inlist = true;
+                }
+            }
+            customCheckBox.Checked = !inlist;
             codeCustomizationToolStripMenuItem.Enabled = eCodeEditButton.Visible;
             advancedNTOptionsToolStripMenuItem.Enabled = advNTButton.Visible;
             // load options for current bluescreen
@@ -1642,6 +1651,31 @@ namespace UltimateBlueScreenSimulator
         private void progressTunerToolStripMenuItem_Click(object sender, EventArgs e)
         {
             progressTuneButton.PerformClick();
+        }
+
+        private void customCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            customMessageCode.Visible = customCheckBox.Checked;
+            customMessageLabel1.Visible = customCheckBox.Checked;
+            customMessageLabel2.Visible = customCheckBox.Checked;
+            customMessageText.Visible = customCheckBox.Checked;
+            comboBox1.Visible = !customCheckBox.Checked;
+            customMessageText.Text = me.GetString("code").Split(' ')[0];
+            customMessageCode.Text = me.GetString("code").Split('(')[1].Split('x')[1].Replace(")", "");
+            if (!customCheckBox.Checked)
+            {
+                me.SetString("code", comboBox1.SelectedItem.ToString());
+            }
+        }
+
+        private void customMessageText_TextChanged(object sender, EventArgs e)
+        {
+            me.SetString("code", string.Format("{0} (0x{1})", customMessageText.Text, customMessageCode.Text));
+        }
+
+        private void customMessageCode_TextChanged(object sender, EventArgs e)
+        {
+            me.SetString("code", string.Format("{0} (0x{1})", customMessageText.Text, customMessageCode.Text));
         }
     }
 }
