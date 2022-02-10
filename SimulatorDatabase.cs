@@ -1099,7 +1099,7 @@ namespace SimulatorDatabase
             }
         }
 
-        private void SetDefaultProgression()
+        public void SetDefaultProgression()
         {
             int totalmillis = 100;
             int percent = 0;

@@ -65,6 +65,7 @@
             this.noUpdatesRadio = new System.Windows.Forms.RadioButton();
             this.updatePanelHeading = new System.Windows.Forms.Label();
             this.simulatorSettingsPanel = new System.Windows.Forms.TabPage();
+            this.randomnessCheckBox = new System.Windows.Forms.CheckBox();
             this.devFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.devSplashButton = new System.Windows.Forms.Button();
             this.devDictEditButton = new System.Windows.Forms.Button();
@@ -580,6 +581,7 @@
             // 
             // simulatorSettingsPanel
             // 
+            this.simulatorSettingsPanel.Controls.Add(this.randomnessCheckBox);
             this.simulatorSettingsPanel.Controls.Add(this.devFlowPanel);
             this.simulatorSettingsPanel.Controls.Add(this.multiDisplayBox);
             this.simulatorSettingsPanel.Controls.Add(this.multiDisplayLabel);
@@ -599,6 +601,18 @@
             this.simulatorSettingsPanel.TabIndex = 4;
             this.simulatorSettingsPanel.Text = "Simulator settings";
             this.simulatorSettingsPanel.UseVisualStyleBackColor = true;
+            // 
+            // randomnessCheckBox
+            // 
+            this.randomnessCheckBox.AutoSize = true;
+            this.randomnessCheckBox.Location = new System.Drawing.Point(20, 192);
+            this.randomnessCheckBox.Name = "randomnessCheckBox";
+            this.randomnessCheckBox.Size = new System.Drawing.Size(333, 17);
+            this.randomnessCheckBox.TabIndex = 24;
+            this.randomnessCheckBox.Text = "Add randomness to progress counters in legacy configurations [?]";
+            this.helpTip.SetToolTip(this.randomnessCheckBox, resources.GetString("randomnessCheckBox.ToolTip"));
+            this.randomnessCheckBox.UseVisualStyleBackColor = true;
+            this.randomnessCheckBox.CheckedChanged += new System.EventHandler(this.randomnessCheckBox_CheckedChanged);
             // 
             // devFlowPanel
             // 
@@ -696,7 +710,7 @@
             "Blank other screens",
             "Mirror primary screen",
             "Freeze secondary screens"});
-            this.multiDisplayBox.Location = new System.Drawing.Point(143, 256);
+            this.multiDisplayBox.Location = new System.Drawing.Point(143, 262);
             this.multiDisplayBox.Name = "multiDisplayBox";
             this.multiDisplayBox.Size = new System.Drawing.Size(370, 21);
             this.multiDisplayBox.TabIndex = 18;
@@ -705,7 +719,7 @@
             // multiDisplayLabel
             // 
             this.multiDisplayLabel.AutoSize = true;
-            this.multiDisplayLabel.Location = new System.Drawing.Point(17, 259);
+            this.multiDisplayLabel.Location = new System.Drawing.Point(17, 265);
             this.multiDisplayLabel.Name = "multiDisplayLabel";
             this.multiDisplayLabel.Size = new System.Drawing.Size(116, 13);
             this.multiDisplayLabel.TabIndex = 17;
@@ -831,7 +845,7 @@
             this.eggHunterButton.AutoSize = true;
             this.eggHunterButton.Checked = true;
             this.eggHunterButton.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.eggHunterButton.Location = new System.Drawing.Point(20, 232);
+            this.eggHunterButton.Location = new System.Drawing.Point(20, 238);
             this.eggHunterButton.Name = "eggHunterButton";
             this.eggHunterButton.Size = new System.Drawing.Size(132, 17);
             this.eggHunterButton.TabIndex = 8;
@@ -844,9 +858,9 @@
             // 
             this.simulatorSettingsNotice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.simulatorSettingsNotice.Location = new System.Drawing.Point(17, 309);
+            this.simulatorSettingsNotice.Location = new System.Drawing.Point(17, 319);
             this.simulatorSettingsNotice.Name = "simulatorSettingsNotice";
-            this.simulatorSettingsNotice.Size = new System.Drawing.Size(496, 43);
+            this.simulatorSettingsNotice.Size = new System.Drawing.Size(493, 37);
             this.simulatorSettingsNotice.TabIndex = 7;
             this.simulatorSettingsNotice.Text = "Scaling mode does not affect modern Windows blue screens, as they use the native " +
     "resolution of your monitor without scaling. Setting up multi-monitor behaviour i" +
@@ -864,7 +878,7 @@
             "Nearest neighbour (sharpest, but blocky)",
             "Alternate bicubic (less artifacting)",
             "Alternate bilinear (sharper)"});
-            this.scalingModeBox.Location = new System.Drawing.Point(143, 285);
+            this.scalingModeBox.Location = new System.Drawing.Point(143, 291);
             this.scalingModeBox.Name = "scalingModeBox";
             this.scalingModeBox.Size = new System.Drawing.Size(370, 21);
             this.scalingModeBox.TabIndex = 6;
@@ -875,7 +889,7 @@
             // scalingModeLabel
             // 
             this.scalingModeLabel.AutoSize = true;
-            this.scalingModeLabel.Location = new System.Drawing.Point(17, 288);
+            this.scalingModeLabel.Location = new System.Drawing.Point(17, 294);
             this.scalingModeLabel.Name = "scalingModeLabel";
             this.scalingModeLabel.Size = new System.Drawing.Size(120, 13);
             this.scalingModeLabel.TabIndex = 5;
@@ -886,7 +900,7 @@
             this.hideInFullscreenButton.AutoSize = true;
             this.hideInFullscreenButton.Checked = true;
             this.hideInFullscreenButton.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.hideInFullscreenButton.Location = new System.Drawing.Point(20, 209);
+            this.hideInFullscreenButton.Location = new System.Drawing.Point(20, 215);
             this.hideInFullscreenButton.Name = "hideInFullscreenButton";
             this.hideInFullscreenButton.Size = new System.Drawing.Size(288, 17);
             this.hideInFullscreenButton.TabIndex = 4;
@@ -1174,5 +1188,6 @@
         private System.Windows.Forms.Button copyingButton;
         private System.Windows.Forms.Button rndFactButton;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.CheckBox randomnessCheckBox;
     }
 }

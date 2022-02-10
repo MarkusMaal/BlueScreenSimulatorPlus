@@ -1011,7 +1011,7 @@ namespace UltimateBlueScreenSimulator
             {
                 try
                 {
-                    System.IO.File.WriteAllText("settings.cfg", "UpdateClose=" + postponeupdate.ToString() + "\nHashVerify=" + hashverify.ToString() + "\nAutoUpdate=" + autoupdate.ToString() + "\nShowCursor=" + showcursor.ToString() + "\nScaleMode=" + GMode + "\nMultiMode=" + Program.multidisplaymode.ToString() + "\nSeecrets=" + enableeggs.ToString() + "\nServer=" + Program.update_server);
+                    System.IO.File.WriteAllText("settings.cfg", "UpdateClose=" + postponeupdate.ToString() + "\nHashVerify=" + hashverify.ToString() + "\nAutoUpdate=" + autoupdate.ToString() + "\nShowCursor=" + showcursor.ToString() + "\nScaleMode=" + GMode + "\nMultiMode=" + Program.multidisplaymode.ToString() + "\nSeecrets=" + enableeggs.ToString() + "\nServer=" + Program.update_server + "\nRandomness=" + Program.randomness);
                 } catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);

@@ -216,6 +216,7 @@ namespace UltimateBlueScreenSimulator
                 hideInFullscreenButton.Checked = !Program.f1.showcursor;
                 configList.ClearSelected();
                 configList.Items.Clear();
+                randomnessCheckBox.Checked = Program.randomness;
                 foreach (BlueScreen bs in Program.bluescreens)
                 {
                     configList.Items.Add(bs.GetString("friendlyname"));
@@ -796,6 +797,10 @@ namespace UltimateBlueScreenSimulator
                 Program.bluescreens[7].SetText("Information text with dump", stringlist[36].Replace("\n", Environment.NewLine));
                 Program.bluescreens[7].SetText("Information text without dump", stringlist[37].Replace("\n", Environment.NewLine));
                 Program.bluescreens[7].SetText("Error code", stringlist[38].Replace("\n", Environment.NewLine));
+                if (randomnessCheckBox.Checked)
+                {
+                    Program.bluescreens[7].SetDefaultProgression();
+                }
 
                 // Windows 10
                 Program.bluescreens[8].SetText("Information text with dump", stringlist[40].Replace("\n", Environment.NewLine));
@@ -804,6 +809,10 @@ namespace UltimateBlueScreenSimulator
                 Program.bluescreens[8].SetText("Culprit file", stringlist[42].Replace("\n", Environment.NewLine));
                 Program.bluescreens[8].SetText("Progress", stringlist[43].Replace("\n", Environment.NewLine));
                 Program.bluescreens[8].SetText("Error code", stringlist[44].Replace("\n", Environment.NewLine));
+                if (randomnessCheckBox.Checked)
+                {
+                    Program.bluescreens[8].SetDefaultProgression();
+                }
                 if (!fontok)
                 {
                     MessageBox.Show("The configuration file was loaded, but some fonts weren't changed due to an error.", "Config loaded", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -818,6 +827,7 @@ namespace UltimateBlueScreenSimulator
         {
             string filedata = File.ReadAllText(filename);
             string version = filedata.Split('\n')[0];
+            bool added_randomness = false;
             if (version.StartsWith("*** Blue screen simulator plus 1."))
             {
                 LegacyLoad(File.ReadAllLines(filename));
@@ -873,6 +883,7 @@ namespace UltimateBlueScreenSimulator
                                             bs.PushTitle(key, value.Replace("::", ":/:/:").Replace(":h:", "#").Replace(":sc:", ";").Replace(":sb:", "[").Replace(":eb:", "]").Replace(":/:/:", ":"));
                                             break;
                                         case "progress":
+                                            added_randomness = true;
                                             bs.SetProgression(int.Parse(key), int.Parse(value));
                                             break;
                                         case "nt_codes":
@@ -921,6 +932,14 @@ namespace UltimateBlueScreenSimulator
                             }
                             bs.SetFont(fontfamily, size, style);
                         }
+                    }
+                    if (!randomnessCheckBox.Checked)
+                    {
+                        added_randomness = true;
+                    }
+                    if (!added_randomness)
+                    {
+                        bs.SetDefaultProgression();
                     }
                     Program.bluescreens.Add(bs);
                 }
@@ -1109,6 +1128,11 @@ namespace UltimateBlueScreenSimulator
             ProgressTuner pt = new ProgressTuner();
             pt.Show();
             MessageBox.Show("Testing ended");
+        }
+
+        private void randomnessCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            Program.randomness = randomnessCheckBox.Checked;
         }
     }
 }

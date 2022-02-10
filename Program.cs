@@ -123,6 +123,7 @@ namespace UltimateBlueScreenSimulator
         public static string load_message = "";
         public static bool hidden = false;
         public static string multidisplaymode = "blank";
+        public static bool randomness = false;
 
         public static string update_server = "http://markustegelane.000webhostapp.com/app";
 
@@ -132,421 +133,425 @@ namespace UltimateBlueScreenSimulator
         [STAThread]
         public static void Main(string[] args)
         {
-                //Application initialization
-                Application.EnableVisualStyles();
-                Application.SetCompatibleTextRenderingDefault(false);
+            //Application initialization
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
 
-                verificate = Verikey(args);
-                if (bad) { return; }
-                if (!verificate) { return; }
-                //If hidesplash flag is not set, display the splash screen
-                if (!args.Contains("/hidesplash"))
+            verificate = Verikey(args);
+            if (bad) { return; }
+            if (!verificate) { return; }
+            //If hidesplash flag is not set, display the splash screen
+            if (!args.Contains("/hidesplash"))
+            {
+                if (!args.Contains("/finalize_update"))
                 {
-                    if (!args.Contains("/finalize_update"))
+                    hidden = true;
+                    spl = new Splash();
+                    spl.ShowDialog();
+                    spl.Dispose();
+                    if (args.Contains("/preview_splash"))
                     {
-                        hidden = true;
-                        spl = new Splash();
-                        spl.ShowDialog();
-                        spl.Dispose();
-                        if (args.Contains("/preview_splash"))
-                        {
-                            return;
-                        }
+                        return;
                     }
                 }
-                dr = new DrawRoutines();
-                //Initialize forms
-                f1 = new Main();
-                bluescreens = new List<BlueScreen>();
-                ReRe();
-                //Load application configuration if it exists
-                if (File.Exists("settings.cfg"))
-                {
-                    try
-                    {
-                        string[] fc = File.ReadAllText("settings.cfg").Split('\n');
-                        foreach (string element in fc)
-                        {
-                            //Other configurations
-                            if (element.StartsWith("UpdateClose="))
-                            {
-                                f1.postponeupdate = Convert.ToBoolean(element.Replace("UpdateClose=", ""));
-                            }
-                            else if (element.StartsWith("HashVerify="))
-                            {
-                                f1.hashverify = Convert.ToBoolean(element.Replace("HashVerify=", ""));
-                            }
-                            else if (element.StartsWith("AutoUpdate="))
-                            {
-                                f1.autoupdate = Convert.ToBoolean(element.Replace("AutoUpdate=", ""));
-                            }
-                            else if (element.StartsWith("ShowCursor="))
-                            {
-                                f1.showcursor = Convert.ToBoolean(element.Replace("ShowCursor=", ""));
-                            }
-                            else if (element.StartsWith("MultiMode="))
-                            {
-                                multidisplaymode = element.Replace("MultiMode=", "");
-                            }
-                            else if (element.StartsWith("Seecrets="))
-                            {
-                                f1.enableeggs = Convert.ToBoolean(element.Replace("Seecrets=", ""));
-                            }
-                            else if (element.StartsWith("ScaleMode="))
-                            {
-                                f1.GMode = element.Replace("ScaleMode=", "");
-                            }
-                            else if (element.StartsWith("Server="))
-                            {
-                                update_server = element.Replace("Server=", "");
-                            }
-                            // this skips checking hidden/visible OS-s
-                            // this is a feature that was exclusive to 1.x
-                            else if (element.Contains("\""))
-                            {
-                                break;
-                            }
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        Metaerror me = new Metaerror()
-                        {
-                            message = ex.Message,
-                            stack_trace = ex.StackTrace,
-                            type = "VioletScreen"
-                        };
-
-                        if (Program.f1.enableeggs)
-                        {
-                            switch (me.ShowDialog())
-                            {
-                                case DialogResult.Abort:
-                                    return;
-                                case DialogResult.Retry:
-                                    Application.Restart();
-                                    return;
-                                case DialogResult.Ignore:
-                                    break;
-                            }
-                        }
-                        else { MessageBox.Show("There was a problem with the settings file.\n\n" + ex.Message + "\n\n" + ex.StackTrace, "E R R O R", MessageBoxButtons.OK, MessageBoxIcon.Error); }
-                    }
-                }
-
-                //Clear verification certificate if clr flag is set
-                if (args.Contains("/clr"))
-                {
-                    if ((!args.Contains("/hidesplash")) || (!args.Contains("/finalize_update")))
-                    {
-                        spl.Close();
-                    }
-                    File.Delete(Environment.GetEnvironmentVariable("USERPROFILE") + @"\bssp2_firstlaunch.txt");
-                    MessageBox.Show("Signature verification file deleted. The program will now close.", "Ultimate blue screen simulator plus", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return;
-                }
-
-                if (args.Contains("/c"))
-                {
-                    f1.GetOS();
-                }
-
-
-                //Load Windows NT error codes from the database
-                f1.comboBox1.Items.Clear();
-                string database = "";
+            }
+            dr = new DrawRoutines();
+            //Initialize forms
+            f1 = new Main();
+            bluescreens = new List<BlueScreen>();
+            ReRe();
+            //Load application configuration if it exists
+            if (File.Exists("settings.cfg"))
+            {
                 try
                 {
-                    database = Properties.Resources.NTERRORDATABASE;
-                }
-                catch
-                {
-                    f1.error = 19;
-                }
-                try
-                {
-                    string[] databaselines = database.Split('\n');
-                    foreach (string element in databaselines)
+                    string[] fc = File.ReadAllText("settings.cfg").Split('\n');
+                    foreach (string element in fc)
                     {
-                        string[] codesplit = element.Split('\t');
-                        string final = codesplit[1].ToString().Substring(0, codesplit[1].ToString().Length - 1) + " (" + codesplit[0].ToString() + ")";
-                        f1.comboBox1.Items.Add(final);
+                        //Other configurations
+                        if (element.StartsWith("UpdateClose="))
+                        {
+                            f1.postponeupdate = Convert.ToBoolean(element.Replace("UpdateClose=", ""));
+                        }
+                        else if (element.StartsWith("HashVerify="))
+                        {
+                            f1.hashverify = Convert.ToBoolean(element.Replace("HashVerify=", ""));
+                        }
+                        else if (element.StartsWith("AutoUpdate="))
+                        {
+                            f1.autoupdate = Convert.ToBoolean(element.Replace("AutoUpdate=", ""));
+                        }
+                        else if (element.StartsWith("ShowCursor="))
+                        {
+                            f1.showcursor = Convert.ToBoolean(element.Replace("ShowCursor=", ""));
+                        }
+                        else if (element.StartsWith("MultiMode="))
+                        {
+                            multidisplaymode = element.Replace("MultiMode=", "");
+                        }
+                        else if (element.StartsWith("Seecrets="))
+                        {
+                            f1.enableeggs = Convert.ToBoolean(element.Replace("Seecrets=", ""));
+                        }
+                        else if (element.StartsWith("ScaleMode="))
+                        {
+                            f1.GMode = element.Replace("ScaleMode=", "");
+                        }
+                        else if (element.StartsWith("Server="))
+                        {
+                            update_server = element.Replace("Server=", "");
+                        }
+                        else if (element.StartsWith("Randomness="))
+                        {
+                            randomness = Convert.ToBoolean(element.Replace("Randomness=", ""));
+                        }
+                        // this skips checking hidden/visible OS-s
+                        // this is a feature that was exclusive to 1.x
+                        else if (element.Contains("\""))
+                        {
+                            break;
+                        }
                     }
                 }
-                catch
+                catch (Exception ex)
                 {
-                    f1.error = 20;
-                }
-                //Set default selection indexes for combo boxes
-                f1.comboBox1.SelectedIndex = 9;
-                f1.windowVersion.SelectedIndex = 0;
-                f1.comboBox2.SelectedIndex = 0;
-                //Post update scripts
-                if (args.Contains("/doneupdate"))
-                {
-                    System.IO.File.Delete("BSSP.exe");
-                }
-                if (args.Contains("/finalize_update"))
-                {
-                    UpdateInterface ui = new UpdateInterface
+                    Metaerror me = new Metaerror()
                     {
-                        finalize = true
+                        message = ex.Message,
+                        stack_trace = ex.StackTrace,
+                        type = "VioletScreen"
                     };
-                    Application.Run(ui);
-                }
-                //Generate random blue screen when /random flag is set
-                if (args.Contains("/random")) { f1.RandFunction(); }
-                //Hide watermark if hwm flag is set
-                if (args.Contains("/hvm")) { f1.waterBox.Checked = false; }
-                bool done = false;
-                foreach (string argument in args)
-                {
-                    //check argument syntax
-                    if (!argument.StartsWith("/"))
+
+                    if (Program.f1.enableeggs)
                     {
-                        f1.error = 23;
-                        break;
-                    }
-                    //this code loads hack file if specified in arguments
-                    if (argument.Contains("/config:"))
-                    {
-                        string filename = argument.Split(':')[1];
-                        if (File.Exists(filename))
+                        switch (me.ShowDialog())
                         {
-                            if (filename != "")
-                            {
-                                AboutSettingsDialog abb = new AboutSettingsDialog();
-                                abb.LoadConfig(filename);
-                                abb.Close();
-                                abb.Dispose();
-                            }
-                        }
-                        else
-                        {
-                            f1.error = 24;
-                        }
-                    }
-                    //select Windows version using /wv argument
-                    if (argument.Contains("/wv"))
-                    {
-                        string ecode = argument.Split(':')[1];
-                        if (ecode == "")
-                        {
-                            f1.error = 15;
-                        }
-                        int i = 0;
-                        foreach (BlueScreen bs in bluescreens)
-                        {
-                            if (bs.GetString("friendlyname").ToLower().Contains(ecode.ToLower()) || bs.GetString("os").ToLower().Contains(ecode.ToLower()))
-                            {
-                                f1.me = bs;
-                                f1.displayone = true;
-                                f1.comboBox1.SelectedIndex = i;
-                                done = true;
+                            case DialogResult.Abort:
+                                return;
+                            case DialogResult.Retry:
+                                Application.Restart();
+                                return;
+                            case DialogResult.Ignore:
                                 break;
-                            }
-                            i++;
-                        }
-                        if (!done)
-                        {
-                            f1.error = 12;
                         }
                     }
+                    else { MessageBox.Show("There was a problem with the settings file.\n\n" + ex.Message + "\n\n" + ex.StackTrace, "E R R O R", MessageBoxButtons.OK, MessageBoxIcon.Error); }
                 }
+            }
 
-                //sets other optional flags
-                if (args.Contains("/ddesc"))
+            //Clear verification certificate if clr flag is set
+            if (args.Contains("/clr"))
+            {
+                if ((!args.Contains("/hidesplash")) || (!args.Contains("/finalize_update")))
                 {
-                    foreach (BlueScreen bs in bluescreens)
-                    {
-                        bs.SetBool("show_description", false);
-                    }
+                    spl.Close();
                 }
-                if (args.Contains("/desc"))
-                {
-                    foreach (BlueScreen bs in bluescreens)
-                    {
-                        bs.SetBool("show_description", true);
-                    }
-                }
-                if (args.Contains("/dac"))
-                {
-                    foreach (BlueScreen bs in bluescreens)
-                    {
-                        bs.SetBool("autoclose", false);
-                    }
-                }
-                if (args.Contains("/ac"))
-                {
-                    foreach (BlueScreen bs in bluescreens)
-                    {
-                        bs.SetBool("autoclose", true);
-                    }
-                }
-                if (args.Contains("/ap"))
-                {
-                    foreach (BlueScreen bs in bluescreens)
-                    {
-                        bs.SetBool("acpi", true);
-                    }
-                }
-                if (args.Contains("/dap"))
-                {
-                    foreach (BlueScreen bs in bluescreens)
-                    {
-                        bs.SetBool("acpi", false);
-                    }
-                }
-                if (args.Contains("/amd"))
-                {
-                    foreach (BlueScreen bs in bluescreens)
-                    {
-                        bs.SetBool("amd", true);
-                    }
-                }
-                if (args.Contains("/damd"))
-                {
-                    foreach (BlueScreen bs in bluescreens)
-                    {
-                        bs.SetBool("amd", false);
-                    }
-                }
-                if (args.Contains("/blink"))
-                {
-                    foreach (BlueScreen bs in bluescreens)
-                    {
-                        bs.SetBool("blink", true);
-                    }
-                }
-                if (args.Contains("/dblink"))
-                {
-                    foreach (BlueScreen bs in bluescreens)
-                    {
-                        bs.SetBool("blink", false);
-                    }
-                }
-                if (args.Contains("/gs"))
-                {
-                    foreach (BlueScreen bs in bluescreens)
-                    {
-                        bs.SetBool("insider", true);
-                    }
-                }
-                if (args.Contains("/dgs"))
-                {
-                    foreach (BlueScreen bs in bluescreens)
-                    {
-                        bs.SetBool("insider", false);
-                    }
-                }
-                if (args.Contains("/qr"))
-                {
-                    foreach (BlueScreen bs in bluescreens)
-                    {
-                        bs.SetBool("qr", true);
-                    }
-                }
-                if (args.Contains("/dqr"))
-                {
-                    foreach (BlueScreen bs in bluescreens)
-                    {
-                        bs.SetBool("qr", false);
-                    }
-                }
-                if (args.Contains("/srv"))
-                {
-                    foreach (BlueScreen bs in bluescreens)
-                    {
-                        bs.SetBool("server", true);
-                    }
-                }
-                if (args.Contains("/dsrv"))
-                {
-                    foreach (BlueScreen bs in bluescreens)
-                    {
-                        bs.SetBool("server", false);
-                    }
-                }
-                if (args.Contains("/stack"))
-                {
-                    foreach (BlueScreen bs in bluescreens)
-                    {
-                        bs.SetBool("stack_trace", true);
-                    }
-                }
-                if (args.Contains("/dstack"))
-                {
-                    foreach (BlueScreen bs in bluescreens)
-                    {
-                        bs.SetBool("stack_trace", false);
-                    }
-                }
-                if (args.Contains("/win"))
-                {
-                    foreach (BlueScreen bs in bluescreens)
-                    {
-                        bs.SetBool("windowed", true);
-                    }
-                }
-                if (args.Contains("/dfile"))
-                {
-                    foreach (BlueScreen bs in bluescreens)
-                    {
-                        bs.SetBool("show_file", false);
-                        bs.SetString("culprit", "");
-                    }
-                }
-                //displays help
-                if (args.Contains("/?"))
-                {
-                    MessageBox.Show(cmds, "Command line argument usage", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    f1.error = 999;
-                }
-                //displays errror cuplrit file if specified in arguments
-                foreach (string argument in args)
-                {
-                    if (argument.StartsWith("/file:"))
-                    {
-                        f1.checkBox2.Checked = true;
-                        string ecode = argument.Split(':')[1].ToString();
-                        foreach (BlueScreen bs in bluescreens)
-                        {
-                            bs.SetString("culprit", ecode);
-                        }
-                        if (ecode == "")
-                        {
-                            f1.error = 16;
-                        }
-                        f1.textBox2.Text = ecode;
-                    }
-                }
-                //hide main interface if /h flag is set
-                if (args.Contains("/h"))
-                {
-                    f1.WindowState = FormWindowState.Minimized;
-                    f1.ShowInTaskbar = false;
-                    f1.ShowIcon = false;
-                    f1.closecuzhidden = true;
-                    if (!args.Contains("/c"))
-                    {
-                        f1.error = 1;
-                    }
-                }
-                if (args.Contains("/hwm"))
-                {
-                    foreach (BlueScreen bs in bluescreens)
-                    {
-                        bs.SetBool("watermark", false);
-                    }
-                }
+                File.Delete(Environment.GetEnvironmentVariable("USERPROFILE") + @"\bssp2_firstlaunch.txt");
+                MessageBox.Show("Signature verification file deleted. The program will now close.", "Ultimate blue screen simulator plus", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
 
-                //Simulate crash if /c flag is set
-                if (args.Contains("/c"))
+            if (args.Contains("/c"))
+            {
+                f1.GetOS();
+            }
+
+
+            //Load Windows NT error codes from the database
+            f1.comboBox1.Items.Clear();
+            string database = "";
+            try
+            {
+                database = Properties.Resources.NTERRORDATABASE;
+            }
+            catch
+            {
+                f1.error = 19;
+            }
+            try
+            {
+                string[] databaselines = database.Split('\n');
+                foreach (string element in databaselines)
                 {
-                    f1.Crash();
+                    string[] codesplit = element.Split('\t');
+                    string final = codesplit[1].ToString().Substring(0, codesplit[1].ToString().Length - 1) + " (" + codesplit[0].ToString() + ")";
+                    f1.comboBox1.Items.Add(final);
                 }
-                //run application
-                Application.Run(f1);
+            }
+            catch
+            {
+                f1.error = 20;
+            }
+            //Set default selection indexes for combo boxes
+            f1.comboBox1.SelectedIndex = 9;
+            f1.windowVersion.SelectedIndex = 0;
+            f1.comboBox2.SelectedIndex = 0;
+            //Post update scripts
+            if (args.Contains("/doneupdate"))
+            {
+                System.IO.File.Delete("BSSP.exe");
+            }
+            if (args.Contains("/finalize_update"))
+            {
+                UpdateInterface ui = new UpdateInterface
+                {
+                    finalize = true
+                };
+                Application.Run(ui);
+            }
+            //Generate random blue screen when /random flag is set
+            if (args.Contains("/random")) { f1.RandFunction(); }
+            //Hide watermark if hwm flag is set
+            if (args.Contains("/hvm")) { f1.waterBox.Checked = false; }
+            bool done = false;
+            foreach (string argument in args)
+            {
+                //check argument syntax
+                if (!argument.StartsWith("/"))
+                {
+                    f1.error = 23;
+                    break;
+                }
+                //this code loads hack file if specified in arguments
+                if (argument.Contains("/config:"))
+                {
+                    string filename = argument.Split(':')[1];
+                    if (File.Exists(filename))
+                    {
+                        if (filename != "")
+                        {
+                            AboutSettingsDialog abb = new AboutSettingsDialog();
+                            abb.LoadConfig(filename);
+                            abb.Close();
+                            abb.Dispose();
+                        }
+                    }
+                    else
+                    {
+                        f1.error = 24;
+                    }
+                }
+                //select Windows version using /wv argument
+                if (argument.Contains("/wv"))
+                {
+                    string ecode = argument.Split(':')[1];
+                    if (ecode == "")
+                    {
+                        f1.error = 15;
+                    }
+                    int i = 0;
+                    foreach (BlueScreen bs in bluescreens)
+                    {
+                        if (bs.GetString("friendlyname").ToLower().Contains(ecode.ToLower()) || bs.GetString("os").ToLower().Contains(ecode.ToLower()))
+                        {
+                            f1.me = bs;
+                            f1.displayone = true;
+                            f1.comboBox1.SelectedIndex = i;
+                            done = true;
+                            break;
+                        }
+                        i++;
+                    }
+                    if (!done)
+                    {
+                        f1.error = 12;
+                    }
+                }
+            }
+
+            //sets other optional flags
+            if (args.Contains("/ddesc"))
+            {
+                foreach (BlueScreen bs in bluescreens)
+                {
+                    bs.SetBool("show_description", false);
+                }
+            }
+            if (args.Contains("/desc"))
+            {
+                foreach (BlueScreen bs in bluescreens)
+                {
+                    bs.SetBool("show_description", true);
+                }
+            }
+            if (args.Contains("/dac"))
+            {
+                foreach (BlueScreen bs in bluescreens)
+                {
+                    bs.SetBool("autoclose", false);
+                }
+            }
+            if (args.Contains("/ac"))
+            {
+                foreach (BlueScreen bs in bluescreens)
+                {
+                    bs.SetBool("autoclose", true);
+                }
+            }
+            if (args.Contains("/ap"))
+            {
+                foreach (BlueScreen bs in bluescreens)
+                {
+                    bs.SetBool("acpi", true);
+                }
+            }
+            if (args.Contains("/dap"))
+            {
+                foreach (BlueScreen bs in bluescreens)
+                {
+                    bs.SetBool("acpi", false);
+                }
+            }
+            if (args.Contains("/amd"))
+            {
+                foreach (BlueScreen bs in bluescreens)
+                {
+                    bs.SetBool("amd", true);
+                }
+            }
+            if (args.Contains("/damd"))
+            {
+                foreach (BlueScreen bs in bluescreens)
+                {
+                    bs.SetBool("amd", false);
+                }
+            }
+            if (args.Contains("/blink"))
+            {
+                foreach (BlueScreen bs in bluescreens)
+                {
+                    bs.SetBool("blink", true);
+                }
+            }
+            if (args.Contains("/dblink"))
+            {
+                foreach (BlueScreen bs in bluescreens)
+                {
+                    bs.SetBool("blink", false);
+                }
+            }
+            if (args.Contains("/gs"))
+            {
+                foreach (BlueScreen bs in bluescreens)
+                {
+                    bs.SetBool("insider", true);
+                }
+            }
+            if (args.Contains("/dgs"))
+            {
+                foreach (BlueScreen bs in bluescreens)
+                {
+                    bs.SetBool("insider", false);
+                }
+            }
+            if (args.Contains("/qr"))
+            {
+                foreach (BlueScreen bs in bluescreens)
+                {
+                    bs.SetBool("qr", true);
+                }
+            }
+            if (args.Contains("/dqr"))
+            {
+                foreach (BlueScreen bs in bluescreens)
+                {
+                    bs.SetBool("qr", false);
+                }
+            }
+            if (args.Contains("/srv"))
+            {
+                foreach (BlueScreen bs in bluescreens)
+                {
+                    bs.SetBool("server", true);
+                }
+            }
+            if (args.Contains("/dsrv"))
+            {
+                foreach (BlueScreen bs in bluescreens)
+                {
+                    bs.SetBool("server", false);
+                }
+            }
+            if (args.Contains("/stack"))
+            {
+                foreach (BlueScreen bs in bluescreens)
+                {
+                    bs.SetBool("stack_trace", true);
+                }
+            }
+            if (args.Contains("/dstack"))
+            {
+                foreach (BlueScreen bs in bluescreens)
+                {
+                    bs.SetBool("stack_trace", false);
+                }
+            }
+            if (args.Contains("/win"))
+            {
+                foreach (BlueScreen bs in bluescreens)
+                {
+                    bs.SetBool("windowed", true);
+                }
+            }
+            if (args.Contains("/dfile"))
+            {
+                foreach (BlueScreen bs in bluescreens)
+                {
+                    bs.SetBool("show_file", false);
+                    bs.SetString("culprit", "");
+                }
+            }
+            //displays help
+            if (args.Contains("/?"))
+            {
+                MessageBox.Show(cmds, "Command line argument usage", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                f1.error = 999;
+            }
+            //displays errror cuplrit file if specified in arguments
+            foreach (string argument in args)
+            {
+                if (argument.StartsWith("/file:"))
+                {
+                    f1.checkBox2.Checked = true;
+                    string ecode = argument.Split(':')[1].ToString();
+                    foreach (BlueScreen bs in bluescreens)
+                    {
+                        bs.SetString("culprit", ecode);
+                    }
+                    if (ecode == "")
+                    {
+                        f1.error = 16;
+                    }
+                    f1.textBox2.Text = ecode;
+                }
+            }
+            //hide main interface if /h flag is set
+            if (args.Contains("/h"))
+            {
+                f1.WindowState = FormWindowState.Minimized;
+                f1.ShowInTaskbar = false;
+                f1.ShowIcon = false;
+                f1.closecuzhidden = true;
+                if (!args.Contains("/c"))
+                {
+                    f1.error = 1;
+                }
+            }
+            if (args.Contains("/hwm"))
+            {
+                foreach (BlueScreen bs in bluescreens)
+                {
+                    bs.SetBool("watermark", false);
+                }
+            }
+
+            //Simulate crash if /c flag is set
+            if (args.Contains("/c"))
+            {
+                f1.Crash();
+            }
+            //run application
+            Application.Run(f1);
         }
 
         /// <summary>
