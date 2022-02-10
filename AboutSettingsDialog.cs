@@ -794,6 +794,7 @@ namespace UltimateBlueScreenSimulator
                 Program.bluescreens[6].SetText("Technical support", vista_support.Replace("\n", Environment.NewLine));
 
                 // Windows 8
+                Program.bluescreens[7].ClearProgress();
                 Program.bluescreens[7].SetText("Information text with dump", stringlist[36].Replace("\n", Environment.NewLine));
                 Program.bluescreens[7].SetText("Information text without dump", stringlist[37].Replace("\n", Environment.NewLine));
                 Program.bluescreens[7].SetText("Error code", stringlist[38].Replace("\n", Environment.NewLine));
@@ -803,6 +804,7 @@ namespace UltimateBlueScreenSimulator
                 }
 
                 // Windows 10
+                Program.bluescreens[8].ClearProgress();
                 Program.bluescreens[8].SetText("Information text with dump", stringlist[40].Replace("\n", Environment.NewLine));
                 Program.bluescreens[8].SetText("Information text without dump", stringlist[39].Replace("\n", Environment.NewLine));
                 Program.bluescreens[8].SetText("Additional information", stringlist[41].Replace("\n", Environment.NewLine));
@@ -847,7 +849,6 @@ namespace UltimateBlueScreenSimulator
                     BlueScreen bs = new BlueScreen(os_name, false);
                     bs.ClearAllTitleTexts();
                     bs.ClearFiles();
-                    bs.ClearProgress();
                     foreach (string subsection in subsection_tokens)
                     {
                         if (subsection.IndexOf("]") > 0)
