@@ -120,6 +120,11 @@ namespace UltimateBlueScreenSimulator
                 }
                 int support = introductionText.Location.Y + introductionText.Size.Height + (int)(HeightInPixels / 2) + addsome;
                 int ecode = introductionText.Location.Y + (int)(HeightInPixels / 2) + introductionText.Size.Height;
+                if (me.GetString("os") == "Windows 7")
+                {
+                    ecode += (int)(HeightInPixels);
+                    support += (int)(HeightInPixels * 1.5);
+                }
                 supportInfo.Location = new Point(supportInfo.Location.X, support);
                 errorCode.Location = new Point(errorCode.Location.X, ecode);
                 technicalCode.Location = new Point(technicalCode.Location.X, (int)(support + supportInfo.Size.Height + HeightInPixels));
@@ -129,7 +134,7 @@ namespace UltimateBlueScreenSimulator
                 supportInfo.Text = supportInfo.Text.Replace("\n\n\n", "\n\n");
                 dumpText.Margin = new Padding(3, 15, 3, 0);
                 technicalCode.Size = new Size(technicalCode.Size.Width, (int)((technicalCode.Text.Split('\n').Length + 2) * HeightInPixels));
-                dumpText.Location = new Point(dumpText.Location.X, technicalCode.Location.Y + 4* (int)HeightInPixels);
+                dumpText.Location = new Point(dumpText.Location.X, technicalCode.Location.Y + 4 * (int)HeightInPixels);
                 if (!fullscreen) { this.FormBorderStyle = FormBorderStyle.FixedSingle; this.ShowInTaskbar = true; this.ShowIcon = true; }
                 if (!errorCode.Visible && !dumpText.Visible)
                 {

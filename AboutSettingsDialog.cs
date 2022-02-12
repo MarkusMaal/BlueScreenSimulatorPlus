@@ -388,62 +388,124 @@ namespace UltimateBlueScreenSimulator
         {
             if (configList.SelectedIndices.Count > 0)
             {
-                osName.Text = Program.bluescreens[configList.SelectedIndex].GetString("friendlyname");
-                resetButton.Enabled = (configList.SelectedIndices.Count > 0);
-                resetHackButton.Enabled = (configList.SelectedIndices.Count > 0);
-                removeCfg.Enabled = (configList.SelectedIndices.Count > 0);
+                osName.Text = string.Format("Selected configuration: {0}", Program.bluescreens[configList.SelectedIndex].GetString("friendlyname"));
             } else
             {
                 osName.Text = "Select a configuration to modify/remove it";
             }
+            resetButton.Enabled = (configList.SelectedIndices.Count > 0);
+            resetHackButton.Enabled = (configList.SelectedIndices.Count > 0);
+            removeCfg.Enabled = (configList.SelectedIndices.Count > 0);
         }
 
         private void ConfigHackEraser(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Warning: This will remove any custom settings from this configuration. ANY UNSAVED CHANGES WILL BE LOST!!! Are you sure you want to continue?", "Reset bugcheck", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            if (configList.SelectedIndices.Count > 0)
             {
-                string backfriendly = Program.bluescreens[configList.SelectedIndex].GetString("friendlyname");
-                string backicon = Program.bluescreens[configList.SelectedIndex].GetString("icon");
-                Program.bluescreens[configList.SelectedIndex] = new BlueScreen(Program.bluescreens[configList.SelectedIndex].GetString("os"));
-                Program.bluescreens[configList.SelectedIndex].SetString("icon", backicon);
-                Program.bluescreens[configList.SelectedIndex].SetString("friendlyname", backfriendly);
-                MessageBox.Show("Configuration was reset", "Reset everything", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else
+                if (MessageBox.Show("Warning: This will remove any custom settings from this configuration. ANY UNSAVED CHANGES WILL BE LOST!!! Are you sure you want to continue?", "Reset bugcheck", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                {
+                    string backfriendly = Program.bluescreens[configList.SelectedIndex].GetString("friendlyname");
+                    string backicon = Program.bluescreens[configList.SelectedIndex].GetString("icon");
+                    Program.bluescreens[configList.SelectedIndex] = new BlueScreen(Program.bluescreens[configList.SelectedIndex].GetString("os"));
+                    Program.bluescreens[configList.SelectedIndex].SetString("icon", backicon);
+                    Program.bluescreens[configList.SelectedIndex].SetString("friendlyname", backfriendly);
+                    MessageBox.Show("Configuration was reset", "Reset everything", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Reason: The user clicked no", "No changes were made", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+            } else
             {
-                MessageBox.Show("Reason: The user clicked no", "No changes were made", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                if (MessageBox.Show("Would you restore default configurations?", "Seecret factory defaults option", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    configList.ClearSelected();
+                    configList.Items.Clear();
+                    Program.bluescreens.Clear();
+                    Program.ReRe();
+                    foreach (BlueScreen bs in Program.bluescreens)
+                    {
+                        configList.Items.Add(bs.GetString("friendlyname"));
+                    }
+                    MessageBox.Show("Configurations were reset", "Seecret factory defaults", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("No action was performed.", "Seecret factory defaults", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
         }
 
         private void ResetConfig(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Warning: This will remove any setting set under the 'hacks' menu. Other settings set in the main screen will remain the same. ANY UNSAVED CHANGES WILL BE LOST!!! Are you sure you want to continue?", "Reset hacks", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            if (configList.SelectedIndices.Count > 0)
             {
-                Program.bluescreens[configList.SelectedIndex].ClearAllTitleTexts();
-                Program.bluescreens[configList.SelectedIndex].SetOSSpecificDefaults();
-                MessageBox.Show("Hacks were reset", "Reset hacks", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (MessageBox.Show("Warning: This will remove any setting set under the 'additional options' menu. Other settings set in the main screen will remain the same. ANY UNSAVED CHANGES WILL BE LOST!!! Are you sure you want to continue?", "Reset hacks", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                {
+                    Program.bluescreens[configList.SelectedIndex].ClearAllTitleTexts();
+                    Program.bluescreens[configList.SelectedIndex].SetOSSpecificDefaults();
+                    MessageBox.Show("Hacks were reset", "Reset hacks", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Reason: The user clicked no", "No changes were made", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                configList.ClearSelected();
             } else
             {
-                MessageBox.Show("Reason: The user clicked no", "No changes were made", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                if (MessageBox.Show("Would you like to reset everything under the 'additional options' menu to defaults for all configurations?", "Seecret factory hacks defaults", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    configList.ClearSelected();
+                    configList.Items.Clear();
+                    foreach (BlueScreen bs in Program.bluescreens)
+                    {
+                        bs.ClearAllTitleTexts();
+                        bs.SetOSSpecificDefaults();
+                    }
+                    MessageBox.Show("Hacks were reset", "Seecret factory hacks defaults", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("No action was performed.", "Seecret factory hacks defaults", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
         }
 
         private void ConfigEraser(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Warning: This will remove this configuration from the repository. ANY UNSAVED CHANGES WILL BE LOST!!! Are you sure you want to do that?", "Delete bugcheck", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            if (configList.SelectedIndices.Count > 0)
             {
-                
-                Program.bluescreens.Remove(Program.bluescreens[configList.SelectedIndex]);
-                configList.ClearSelected();
-                configList.Items.Clear();
-                foreach (BlueScreen bs in Program.bluescreens)
+                if (MessageBox.Show("Warning: This will remove this configuration from the repository. ANY UNSAVED CHANGES WILL BE LOST!!! Are you sure you want to do that?", "Delete bugcheck", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                 {
-                    configList.Items.Add(bs.GetString("friendlyname"));
+
+                    Program.bluescreens.Remove(Program.bluescreens[configList.SelectedIndex]);
+                    configList.ClearSelected();
+                    configList.Items.Clear();
+                    foreach (BlueScreen bs in Program.bluescreens)
+                    {
+                        configList.Items.Add(bs.GetString("friendlyname"));
+                    }
+                    MessageBox.Show("Config removed successfully", "Configuration deletion", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                MessageBox.Show("Config removed successfully", "Configuration deletion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                else
+                {
+                    MessageBox.Show("Reason: The user clicked no", "No changes were made", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
             } else
             {
-                MessageBox.Show("Reason: The user clicked no", "No changes were made", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                if (MessageBox.Show("Would you like to remove all configurations?", "Nuke mode", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                {
+                    configList.ClearSelected();
+                    configList.Items.Clear();
+                    Program.bluescreens.Clear();
+                    resetHackButton.Enabled = false;
+                    resetButton.Enabled = false;
+                    removeCfg.Enabled = false;
+                    MessageBox.Show("Configurations erased. All configurations must be re-added manually.\nNote: Do not use the main interface before adding any configurations!", "Nuke mode", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                } else
+                {
+                    MessageBox.Show("No action was performed.", "Nuke mode", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
         }
 
@@ -1134,6 +1196,33 @@ namespace UltimateBlueScreenSimulator
         private void randomnessCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             Program.randomness = randomnessCheckBox.Checked;
+        }
+
+        private void selectAllBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (selectAllBox.Checked)
+            {
+                configList.ClearSelected();
+                resetHackButton.Enabled = true;
+                resetButton.Enabled = true;
+                removeCfg.Enabled = true;
+                removeCfg.Text = "Remove configurations [?]";
+                configList.Enabled = false;
+                helpTip.SetToolTip(resetHackButton, "Deletes everything under the 'additional options' menu for all configurations");
+                helpTip.SetToolTip(resetButton, "Reset all settings within all configurations");
+                helpTip.SetToolTip(removeCfg, "Removes all configurations. This is useful, if you're making your own custom skin packs and want only a few operating systems to be visible.");
+                osName.Text = "All selected";
+                return;
+            }
+            resetHackButton.Enabled = false;
+            resetButton.Enabled = false;
+            removeCfg.Enabled = false;
+            configList.Enabled = true;
+            removeCfg.Text = "Remove configuration [?]";
+            helpTip.SetToolTip(resetHackButton, "Deletes everything under the 'additional options' menu for this configuration");
+            helpTip.SetToolTip(resetButton, "Reset all settings in this configuration");
+            helpTip.SetToolTip(removeCfg, "Removes the configuration, meaning it will no longer be accessible in the main menu or any other part of the program.");
+            osName.Text = "Select a configuration to modify/remove it";
         }
     }
 }

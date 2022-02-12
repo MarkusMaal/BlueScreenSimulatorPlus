@@ -44,6 +44,11 @@
             this.devPCBox = new System.Windows.Forms.CheckBox();
             this.blackScreenBox = new System.Windows.Forms.CheckBox();
             this.errorCode = new System.Windows.Forms.Panel();
+            this.customMessageLabel2 = new System.Windows.Forms.Label();
+            this.customMessageCode = new System.Windows.Forms.TextBox();
+            this.customMessageLabel1 = new System.Windows.Forms.Label();
+            this.customMessageText = new System.Windows.Forms.TextBox();
+            this.customCheckBox = new System.Windows.Forms.CheckBox();
             this.button2 = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
@@ -108,11 +113,6 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.waitPopup = new System.Windows.Forms.Timer(this.components);
-            this.customCheckBox = new System.Windows.Forms.CheckBox();
-            this.customMessageText = new System.Windows.Forms.TextBox();
-            this.customMessageLabel1 = new System.Windows.Forms.Label();
-            this.customMessageCode = new System.Windows.Forms.TextBox();
-            this.customMessageLabel2 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1.SuspendLayout();
             this.WXOptions.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
@@ -330,6 +330,58 @@
             this.errorCode.Name = "errorCode";
             this.errorCode.Size = new System.Drawing.Size(467, 105);
             this.errorCode.TabIndex = 3;
+            // 
+            // customMessageLabel2
+            // 
+            this.customMessageLabel2.AutoSize = true;
+            this.customMessageLabel2.Location = new System.Drawing.Point(366, 6);
+            this.customMessageLabel2.Name = "customMessageLabel2";
+            this.customMessageLabel2.Size = new System.Drawing.Size(10, 13);
+            this.customMessageLabel2.TabIndex = 11;
+            this.customMessageLabel2.Text = ")";
+            this.customMessageLabel2.Visible = false;
+            // 
+            // customMessageCode
+            // 
+            this.customMessageCode.Location = new System.Drawing.Point(296, 2);
+            this.customMessageCode.MaxLength = 8;
+            this.customMessageCode.Name = "customMessageCode";
+            this.customMessageCode.Size = new System.Drawing.Size(70, 20);
+            this.customMessageCode.TabIndex = 10;
+            this.customMessageCode.Text = "00000000";
+            this.customMessageCode.Visible = false;
+            this.customMessageCode.TextChanged += new System.EventHandler(this.customMessageCode_TextChanged);
+            // 
+            // customMessageLabel1
+            // 
+            this.customMessageLabel1.AutoSize = true;
+            this.customMessageLabel1.Location = new System.Drawing.Point(274, 5);
+            this.customMessageLabel1.Name = "customMessageLabel1";
+            this.customMessageLabel1.Size = new System.Drawing.Size(21, 13);
+            this.customMessageLabel1.TabIndex = 9;
+            this.customMessageLabel1.Text = "(0x";
+            this.customMessageLabel1.Visible = false;
+            // 
+            // customMessageText
+            // 
+            this.customMessageText.Location = new System.Drawing.Point(103, 3);
+            this.customMessageText.Name = "customMessageText";
+            this.customMessageText.Size = new System.Drawing.Size(168, 20);
+            this.customMessageText.TabIndex = 8;
+            this.customMessageText.Visible = false;
+            this.customMessageText.TextChanged += new System.EventHandler(this.customMessageText_TextChanged);
+            // 
+            // customCheckBox
+            // 
+            this.customCheckBox.AutoSize = true;
+            this.customCheckBox.Location = new System.Drawing.Point(386, 5);
+            this.customCheckBox.Name = "customCheckBox";
+            this.customCheckBox.Size = new System.Drawing.Size(76, 17);
+            this.customCheckBox.TabIndex = 7;
+            this.customCheckBox.Text = "Custom [?]";
+            this.quickHelp.SetToolTip(this.customCheckBox, "Allows you to set custom error codes");
+            this.customCheckBox.UseVisualStyleBackColor = true;
+            this.customCheckBox.CheckedChanged += new System.EventHandler(this.customCheckBox_CheckedChanged);
             // 
             // button2
             // 
@@ -863,7 +915,7 @@
             // simulateToolStripMenuItem
             // 
             this.simulateToolStripMenuItem.Name = "simulateToolStripMenuItem";
-            this.simulateToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.simulateToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.simulateToolStripMenuItem.Text = "&Simulate";
             this.simulateToolStripMenuItem.Click += new System.EventHandler(this.SimulateToolStripMenuItem_Click);
             // 
@@ -873,7 +925,7 @@
             this.autoUpdateToolStripMenuItem,
             this.simulatorSettingsToolStripMenuItem});
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.settingsToolStripMenuItem.Text = "Settings";
             this.settingsToolStripMenuItem.DropDownOpening += new System.EventHandler(this.SimulatorToolStripMenuItem_DropDownOpening);
             // 
@@ -900,26 +952,26 @@
             // 
             this.toolStripSeparator1.AutoSize = false;
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(139, 3);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 3);
             // 
             // nightThemeToolStripMenuItem
             // 
             this.nightThemeToolStripMenuItem.CheckOnClick = true;
             this.nightThemeToolStripMenuItem.Name = "nightThemeToolStripMenuItem";
-            this.nightThemeToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.nightThemeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.nightThemeToolStripMenuItem.Text = "Night theme";
             this.nightThemeToolStripMenuItem.CheckStateChanged += new System.EventHandler(this.LightSwitch);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(139, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(177, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exitToolStripMenuItem.Text = "E&xit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
@@ -1033,58 +1085,6 @@
             // waitPopup
             // 
             this.waitPopup.Tick += new System.EventHandler(this.WaitPopup_Tick);
-            // 
-            // customCheckBox
-            // 
-            this.customCheckBox.AutoSize = true;
-            this.customCheckBox.Location = new System.Drawing.Point(386, 5);
-            this.customCheckBox.Name = "customCheckBox";
-            this.customCheckBox.Size = new System.Drawing.Size(76, 17);
-            this.customCheckBox.TabIndex = 7;
-            this.customCheckBox.Text = "Custom [?]";
-            this.quickHelp.SetToolTip(this.customCheckBox, "Allows you to set custom error codes");
-            this.customCheckBox.UseVisualStyleBackColor = true;
-            this.customCheckBox.CheckedChanged += new System.EventHandler(this.customCheckBox_CheckedChanged);
-            // 
-            // customMessageText
-            // 
-            this.customMessageText.Location = new System.Drawing.Point(103, 3);
-            this.customMessageText.Name = "customMessageText";
-            this.customMessageText.Size = new System.Drawing.Size(168, 20);
-            this.customMessageText.TabIndex = 8;
-            this.customMessageText.Visible = false;
-            this.customMessageText.TextChanged += new System.EventHandler(this.customMessageText_TextChanged);
-            // 
-            // customMessageLabel1
-            // 
-            this.customMessageLabel1.AutoSize = true;
-            this.customMessageLabel1.Location = new System.Drawing.Point(274, 5);
-            this.customMessageLabel1.Name = "customMessageLabel1";
-            this.customMessageLabel1.Size = new System.Drawing.Size(21, 13);
-            this.customMessageLabel1.TabIndex = 9;
-            this.customMessageLabel1.Text = "(0x";
-            this.customMessageLabel1.Visible = false;
-            // 
-            // customMessageCode
-            // 
-            this.customMessageCode.Location = new System.Drawing.Point(296, 2);
-            this.customMessageCode.MaxLength = 8;
-            this.customMessageCode.Name = "customMessageCode";
-            this.customMessageCode.Size = new System.Drawing.Size(70, 20);
-            this.customMessageCode.TabIndex = 10;
-            this.customMessageCode.Text = "00000000";
-            this.customMessageCode.Visible = false;
-            this.customMessageCode.TextChanged += new System.EventHandler(this.customMessageCode_TextChanged);
-            // 
-            // customMessageLabel2
-            // 
-            this.customMessageLabel2.AutoSize = true;
-            this.customMessageLabel2.Location = new System.Drawing.Point(366, 6);
-            this.customMessageLabel2.Name = "customMessageLabel2";
-            this.customMessageLabel2.Size = new System.Drawing.Size(10, 13);
-            this.customMessageLabel2.TabIndex = 11;
-            this.customMessageLabel2.Text = ")";
-            this.customMessageLabel2.Visible = false;
             // 
             // Main
             // 

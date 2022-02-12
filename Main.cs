@@ -1639,6 +1639,11 @@ namespace UltimateBlueScreenSimulator
             }
             pt.ReloadBitmap();
             pt.SetLabelText();
+            if (this.nightThemeToolStripMenuItem.Checked)
+            {
+                pt.BackColor = Color.Black;
+                pt.ForeColor = Color.White;
+            }
             pt.totalTimeText.Text = ((float)me.GetInt("progressmillis") / 100f).ToString().Replace(",", ".");
             if (pt.ShowDialog() == DialogResult.OK)
             {

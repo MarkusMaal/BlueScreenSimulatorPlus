@@ -65,6 +65,8 @@
             this.noUpdatesRadio = new System.Windows.Forms.RadioButton();
             this.updatePanelHeading = new System.Windows.Forms.Label();
             this.simulatorSettingsPanel = new System.Windows.Forms.TabPage();
+            this.label1 = new System.Windows.Forms.Label();
+            this.selectAllBox = new System.Windows.Forms.CheckBox();
             this.randomnessCheckBox = new System.Windows.Forms.CheckBox();
             this.devFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.devSplashButton = new System.Windows.Forms.Button();
@@ -78,10 +80,10 @@
             this.configEditingButtonsFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.resetButton = new System.Windows.Forms.Button();
             this.resetHackButton = new System.Windows.Forms.Button();
-            this.addCfg = new System.Windows.Forms.Button();
             this.removeCfg = new System.Windows.Forms.Button();
             this.saveCfg = new System.Windows.Forms.Button();
             this.loadCfg = new System.Windows.Forms.Button();
+            this.addCfg = new System.Windows.Forms.Button();
             this.osName = new System.Windows.Forms.Label();
             this.configList = new System.Windows.Forms.ListBox();
             this.eggHunterButton = new System.Windows.Forms.CheckBox();
@@ -581,6 +583,8 @@
             // 
             // simulatorSettingsPanel
             // 
+            this.simulatorSettingsPanel.Controls.Add(this.label1);
+            this.simulatorSettingsPanel.Controls.Add(this.selectAllBox);
             this.simulatorSettingsPanel.Controls.Add(this.randomnessCheckBox);
             this.simulatorSettingsPanel.Controls.Add(this.devFlowPanel);
             this.simulatorSettingsPanel.Controls.Add(this.multiDisplayBox);
@@ -601,6 +605,29 @@
             this.simulatorSettingsPanel.TabIndex = 4;
             this.simulatorSettingsPanel.Text = "Simulator settings";
             this.simulatorSettingsPanel.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.label1.Location = new System.Drawing.Point(377, 95);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(1, 96);
+            this.label1.TabIndex = 26;
+            // 
+            // selectAllBox
+            // 
+            this.selectAllBox.AutoSize = true;
+            this.selectAllBox.CheckAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.selectAllBox.Location = new System.Drawing.Point(378, 191);
+            this.selectAllBox.Name = "selectAllBox";
+            this.selectAllBox.Size = new System.Drawing.Size(153, 17);
+            this.selectAllBox.TabIndex = 25;
+            this.selectAllBox.Text = "Select all configurations [?]";
+            this.selectAllBox.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.helpTip.SetToolTip(this.selectAllBox, "Selects all configurations at once");
+            this.selectAllBox.UseVisualStyleBackColor = true;
+            this.selectAllBox.CheckedChanged += new System.EventHandler(this.selectAllBox_CheckedChanged);
             // 
             // randomnessCheckBox
             // 
@@ -730,14 +757,14 @@
             this.configEditingButtonsFlowPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.configEditingButtonsFlowPanel.Controls.Add(this.resetButton);
             this.configEditingButtonsFlowPanel.Controls.Add(this.resetHackButton);
-            this.configEditingButtonsFlowPanel.Controls.Add(this.addCfg);
             this.configEditingButtonsFlowPanel.Controls.Add(this.removeCfg);
             this.configEditingButtonsFlowPanel.Controls.Add(this.saveCfg);
             this.configEditingButtonsFlowPanel.Controls.Add(this.loadCfg);
+            this.configEditingButtonsFlowPanel.Controls.Add(this.addCfg);
             this.configEditingButtonsFlowPanel.FlowDirection = System.Windows.Forms.FlowDirection.BottomUp;
-            this.configEditingButtonsFlowPanel.Location = new System.Drawing.Point(226, 97);
+            this.configEditingButtonsFlowPanel.Location = new System.Drawing.Point(227, 97);
             this.configEditingButtonsFlowPanel.Name = "configEditingButtonsFlowPanel";
-            this.configEditingButtonsFlowPanel.Size = new System.Drawing.Size(305, 91);
+            this.configEditingButtonsFlowPanel.Size = new System.Drawing.Size(302, 91);
             this.configEditingButtonsFlowPanel.TabIndex = 16;
             // 
             // resetButton
@@ -746,7 +773,7 @@
             this.resetButton.ForeColor = System.Drawing.SystemColors.ControlText;
             this.resetButton.Location = new System.Drawing.Point(3, 65);
             this.resetButton.Name = "resetButton";
-            this.resetButton.Size = new System.Drawing.Size(141, 23);
+            this.resetButton.Size = new System.Drawing.Size(145, 23);
             this.resetButton.TabIndex = 12;
             this.resetButton.Text = "Reset everything [?]";
             this.helpTip.SetToolTip(this.resetButton, "Reset all settings in this configuration");
@@ -759,30 +786,18 @@
             this.resetHackButton.ForeColor = System.Drawing.SystemColors.ControlText;
             this.resetHackButton.Location = new System.Drawing.Point(3, 36);
             this.resetHackButton.Name = "resetHackButton";
-            this.resetHackButton.Size = new System.Drawing.Size(141, 23);
+            this.resetHackButton.Size = new System.Drawing.Size(145, 23);
             this.resetHackButton.TabIndex = 13;
             this.resetHackButton.Text = "Reset hacks [?]";
-            this.helpTip.SetToolTip(this.resetHackButton, "Deletes any custom hacks for this configuration");
+            this.helpTip.SetToolTip(this.resetHackButton, "Deletes everything under the \'additional options\' menu for this configuration");
             this.resetHackButton.UseVisualStyleBackColor = true;
             this.resetHackButton.Click += new System.EventHandler(this.ResetConfig);
-            // 
-            // addCfg
-            // 
-            this.addCfg.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.addCfg.Location = new System.Drawing.Point(3, 7);
-            this.addCfg.Name = "addCfg";
-            this.addCfg.Size = new System.Drawing.Size(141, 23);
-            this.addCfg.TabIndex = 14;
-            this.addCfg.Text = "Add configuration [?]";
-            this.helpTip.SetToolTip(this.addCfg, resources.GetString("addCfg.ToolTip"));
-            this.addCfg.UseVisualStyleBackColor = true;
-            this.addCfg.Click += new System.EventHandler(this.AddConfig);
             // 
             // removeCfg
             // 
             this.removeCfg.Enabled = false;
             this.removeCfg.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.removeCfg.Location = new System.Drawing.Point(150, 65);
+            this.removeCfg.Location = new System.Drawing.Point(3, 7);
             this.removeCfg.Name = "removeCfg";
             this.removeCfg.Size = new System.Drawing.Size(145, 23);
             this.removeCfg.TabIndex = 15;
@@ -795,7 +810,7 @@
             // saveCfg
             // 
             this.saveCfg.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.saveCfg.Location = new System.Drawing.Point(150, 36);
+            this.saveCfg.Location = new System.Drawing.Point(154, 65);
             this.saveCfg.Name = "saveCfg";
             this.saveCfg.Size = new System.Drawing.Size(145, 23);
             this.saveCfg.TabIndex = 16;
@@ -808,7 +823,7 @@
             // loadCfg
             // 
             this.loadCfg.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.loadCfg.Location = new System.Drawing.Point(150, 7);
+            this.loadCfg.Location = new System.Drawing.Point(154, 36);
             this.loadCfg.Name = "loadCfg";
             this.loadCfg.Size = new System.Drawing.Size(145, 23);
             this.loadCfg.TabIndex = 17;
@@ -817,12 +832,24 @@
             this.loadCfg.UseVisualStyleBackColor = true;
             this.loadCfg.Click += new System.EventHandler(this.BrowseConfig);
             // 
+            // addCfg
+            // 
+            this.addCfg.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.addCfg.Location = new System.Drawing.Point(154, 7);
+            this.addCfg.Name = "addCfg";
+            this.addCfg.Size = new System.Drawing.Size(145, 23);
+            this.addCfg.TabIndex = 14;
+            this.addCfg.Text = "Add configuration [?]";
+            this.helpTip.SetToolTip(this.addCfg, resources.GetString("addCfg.ToolTip"));
+            this.addCfg.UseVisualStyleBackColor = true;
+            this.addCfg.Click += new System.EventHandler(this.AddConfig);
+            // 
             // osName
             // 
             this.osName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.osName.Location = new System.Drawing.Point(226, 64);
+            this.osName.Location = new System.Drawing.Point(228, 64);
             this.osName.Name = "osName";
-            this.osName.Size = new System.Drawing.Size(295, 30);
+            this.osName.Size = new System.Drawing.Size(301, 30);
             this.osName.TabIndex = 11;
             this.osName.Text = "Select a configuration to modify/remove it";
             // 
@@ -836,7 +863,7 @@
             this.configList.Location = new System.Drawing.Point(20, 64);
             this.configList.Name = "configList";
             this.configList.ScrollAlwaysVisible = true;
-            this.configList.Size = new System.Drawing.Size(200, 124);
+            this.configList.Size = new System.Drawing.Size(201, 124);
             this.configList.TabIndex = 9;
             this.configList.SelectedIndexChanged += new System.EventHandler(this.ConfigSelector);
             // 
@@ -1189,5 +1216,7 @@
         private System.Windows.Forms.Button rndFactButton;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.CheckBox randomnessCheckBox;
+        private System.Windows.Forms.CheckBox selectAllBox;
+        private System.Windows.Forms.Label label1;
     }
 }
