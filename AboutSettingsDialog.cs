@@ -257,7 +257,7 @@ namespace UltimateBlueScreenSimulator
         {
             //Removes verification signature from the system
             try
-            { 
+            {
                 if (File.Exists(Environment.GetEnvironmentVariable("USERPROFILE") + "\\bssp2_firstlaunch.txt"))
                 {
                     File.Delete(Environment.GetEnvironmentVariable("USERPROFILE") + "\\bssp2_firstlaunch.txt");
@@ -353,7 +353,7 @@ namespace UltimateBlueScreenSimulator
         private void CursorVisibilitySetup(object sender, EventArgs e)
         {
             if (hideInFullscreenButton.Checked == true)
-            { 
+            {
                 Program.f1.showcursor = false;
             }
             else
@@ -369,7 +369,7 @@ namespace UltimateBlueScreenSimulator
             //Makes sure that the configuration is saved when closing the form
             Program.f1.abopen = false;
             if (SettingTab)
-            { 
+            {
                 Program.f1.GetOS();
             }
         }
@@ -533,6 +533,19 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
+        private bool CheckExist(string os1, string os2 = "", string os3 = "")
+        {
+            foreach (BlueScreen bs in Program.bluescreens)
+            {
+                if ((bs.GetString("os") == os1) || (bs.GetString("os") == os2) || (bs.GetString("os") == os3))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        // This function is used create version 1.x compatible save file
         private string LegacySave()
         {
             string filedata = "*** Blue screen simulator plus 1.11 ***";
@@ -546,20 +559,28 @@ namespace UltimateBlueScreenSimulator
             BlueScreen ce = Program.bluescreens[0];
             BlueScreen threeone = Program.bluescreens[0];
             bool bsdefined = false;
+            // select winModern (Windows 10 or 11)
+            if (!CheckExist("Windows 10", "Windows 11")) { return " * ERROR * "; }
             while (!bsdefined)
             {
-                foreach (BlueScreen bs in Program.bluescreens) { if ((bs.GetString("os") == "Windows 11") || (bs.GetString("os") == "Windows 10")) { if (MessageBox.Show(string.Format("Would you like to use the following blue screen as the configuration base for modern blue screens and text data for Windows 10 blue screen:\n\n{0}", bs.GetString("friendlyname")), "Legacy save function", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes) { winmodern = bs; bsdefined = true; break; } } }
+                foreach (BlueScreen bs in Program.bluescreens) {if ((bs.GetString("os") == "Windows 11") || (bs.GetString("os") == "Windows 10")) { if (MessageBox.Show(string.Format("Would you like to use the following blue screen as the configuration base for modern blue screens and text data for Windows 10 blue screen:\n\n{0}", bs.GetString("friendlyname")), "Legacy save function", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes) { winmodern = bs; bsdefined = true; break; } } }
             }
+
+            if (!CheckExist("Windows 8/8.1")) { return " * ERROR * "; }
             bsdefined = false;
             while (!bsdefined)
             {
                 foreach (BlueScreen bs in Program.bluescreens) { if ((bs.GetString("os") == "Windows 11") || (bs.GetString("os") == "Windows 10") || (bs.GetString("os") == "Windows 8/8.1")) { if (MessageBox.Show(string.Format("Would you like to use the following blue screen's text data for Windows 8/8.1 blue screens:\n\n{0}", bs.GetString("friendlyname")), "Legacy save function", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes) { wineight = bs; bsdefined = true; break; } } }
             }
+
+
+            if (!CheckExist("Windows Vista", "Windows 7")) { return " * ERROR * "; }
             bsdefined = false;
             while (!bsdefined)
             {
                 foreach (BlueScreen bs in Program.bluescreens) { if ((bs.GetString("os") == "Windows Vista") || (bs.GetString("os") == "Windows 7")) { if (MessageBox.Show(string.Format("Would you like to use the following blue screen as the configuration base for Windows Vista/7 blue screens:\n\n{0}", bs.GetString("friendlyname")), "Legacy save function", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes) { vista7 = bs; bsdefined = true; break; } } }
             }
+            if (!CheckExist("Windows XP")) { return " * ERROR * "; }
             bsdefined = false;
             while (!bsdefined)
             {
@@ -574,6 +595,7 @@ namespace UltimateBlueScreenSimulator
                     }
                 }
             }
+            if (!CheckExist("Windows 2000")) { return " * ERROR * "; }
             bsdefined = false;
             while (!bsdefined)
             {
@@ -589,6 +611,7 @@ namespace UltimateBlueScreenSimulator
                 }
             }
             bsdefined = false;
+            if (!CheckExist("Windows NT 3.x/4.0")) { return " * ERROR * "; }
             while (!bsdefined)
             {
                 foreach (BlueScreen bs in Program.bluescreens)
@@ -603,6 +626,7 @@ namespace UltimateBlueScreenSimulator
                 }
             }
             bsdefined = false;
+            if (!CheckExist("Windows 9x/Me")) { return " * ERROR * "; }
             while (!bsdefined)
             {
                 foreach (BlueScreen bs in Program.bluescreens)
@@ -617,6 +641,7 @@ namespace UltimateBlueScreenSimulator
                 }
             }
             bsdefined = false;
+            if (!CheckExist("Windows CE")) { return " * ERROR * "; }
             while (!bsdefined)
             {
                 foreach (BlueScreen bs in Program.bluescreens)
@@ -631,6 +656,7 @@ namespace UltimateBlueScreenSimulator
                 }
             }
             bsdefined = false;
+            if (!CheckExist("Windows 3.1x")) { return " * ERROR * "; }
             while (!bsdefined)
             {
                 foreach (BlueScreen bs in Program.bluescreens)
@@ -743,8 +769,14 @@ namespace UltimateBlueScreenSimulator
             } else
             {
                 filedata = LegacySave();
-                File.WriteAllText(filename, filedata, System.Text.Encoding.Unicode);
-                MessageBox.Show("Blue screen configuration saved successfully", "Blue screen simulator 2.x configuration file creator", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (filedata != " * ERROR * ")
+                {
+                    File.WriteAllText(filename, filedata, System.Text.Encoding.Unicode);
+                    MessageBox.Show("Blue screen configuration saved successfully", "Blue screen simulator 1.x configuration file creator", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                } else
+                {
+                    MessageBox.Show("Blue screen configuration was not saved, because an error occoured.\n\nBefore attempting to save to 1.x format, make sure that the following operating systems exist in your configuration list:\n\nWindows 10 and/or 11\nWindows Vista or Windows 7\nWindows XP\nWindows CE\nWindows NT 3.x/4.0\nWindows 9x/Me\nWindows 3.1x", "Blue screen simulator 1.x configuration file creator", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
                 finished = true;
                 Thread.CurrentThread.Abort();
             }
