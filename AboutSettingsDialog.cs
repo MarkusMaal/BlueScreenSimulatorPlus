@@ -44,7 +44,7 @@ namespace UltimateBlueScreenSimulator
                         return titleAttribute.Title;
                     }
                 }
-                return System.IO.Path.GetFileNameWithoutExtension(Assembly.GetExecutingAssembly().CodeBase);
+                return Path.GetFileNameWithoutExtension(Assembly.GetExecutingAssembly().CodeBase);
             }
         }
 
@@ -533,12 +533,230 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
+        private string LegacySave()
+        {
+            string filedata = "*** Blue screen simulator plus 1.11 ***";
+            BlueScreen winmodern = Program.bluescreens[0];
+            BlueScreen wineight = Program.bluescreens[0];
+            BlueScreen vista7 = Program.bluescreens[0];
+            BlueScreen xp = Program.bluescreens[0];
+            BlueScreen win2k = Program.bluescreens[0];
+            BlueScreen winnt = Program.bluescreens[0];
+            BlueScreen ninexme = Program.bluescreens[0];
+            BlueScreen ce = Program.bluescreens[0];
+            BlueScreen threeone = Program.bluescreens[0];
+            bool bsdefined = false;
+            while (!bsdefined)
+            {
+                foreach (BlueScreen bs in Program.bluescreens) { if ((bs.GetString("os") == "Windows 11") || (bs.GetString("os") == "Windows 10")) { if (MessageBox.Show(string.Format("Would you like to use the following blue screen as the configuration base for modern blue screens and text data for Windows 10 blue screen:\n\n{0}", bs.GetString("friendlyname")), "Legacy save function", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes) { winmodern = bs; bsdefined = true; break; } } }
+            }
+            bsdefined = false;
+            while (!bsdefined)
+            {
+                foreach (BlueScreen bs in Program.bluescreens) { if ((bs.GetString("os") == "Windows 11") || (bs.GetString("os") == "Windows 10") || (bs.GetString("os") == "Windows 8/8.1")) { if (MessageBox.Show(string.Format("Would you like to use the following blue screen's text data for Windows 8/8.1 blue screens:\n\n{0}", bs.GetString("friendlyname")), "Legacy save function", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes) { wineight = bs; bsdefined = true; break; } } }
+            }
+            bsdefined = false;
+            while (!bsdefined)
+            {
+                foreach (BlueScreen bs in Program.bluescreens) { if ((bs.GetString("os") == "Windows Vista") || (bs.GetString("os") == "Windows 7")) { if (MessageBox.Show(string.Format("Would you like to use the following blue screen as the configuration base for Windows Vista/7 blue screens:\n\n{0}", bs.GetString("friendlyname")), "Legacy save function", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes) { vista7 = bs; bsdefined = true; break; } } }
+            }
+            bsdefined = false;
+            while (!bsdefined)
+            {
+                foreach (BlueScreen bs in Program.bluescreens)
+                {
+                    if ((bs.GetString("os") == "Windows XP"))
+                    {
+                        if (MessageBox.Show(string.Format("Would you like to use the following blue screen as the configuration base for Windows XP blue screen:\n\n{0}", bs.GetString("friendlyname")), "Legacy save function", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            xp = bs; bsdefined = true;  break;
+                        }
+                    }
+                }
+            }
+            bsdefined = false;
+            while (!bsdefined)
+            {
+                foreach (BlueScreen bs in Program.bluescreens)
+                {
+                    if ((bs.GetString("os") == "Windows 2000"))
+                    {
+                        if (MessageBox.Show(string.Format("Would you like to use the following blue screen as the configuration base for Windows 2000 blue screen:\n\n{0}", bs.GetString("friendlyname")), "Legacy save function", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            win2k = bs; bsdefined = true; break;
+                        }
+                    }
+                }
+            }
+            bsdefined = false;
+            while (!bsdefined)
+            {
+                foreach (BlueScreen bs in Program.bluescreens)
+                {
+                    if ((bs.GetString("os") == "Windows NT 3.x/4.0"))
+                    {
+                        if (MessageBox.Show(string.Format("Would you like to use the following blue screen as the configuration base for Windows NT 3.x/4.0 blue screen:\n\n{0}", bs.GetString("friendlyname")), "Legacy save function", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            winnt = bs; bsdefined = true; break;
+                        }
+                    }
+                }
+            }
+            bsdefined = false;
+            while (!bsdefined)
+            {
+                foreach (BlueScreen bs in Program.bluescreens)
+                {
+                    if ((bs.GetString("os") == "Windows 9x/Me"))
+                    {
+                        if (MessageBox.Show(string.Format("Would you like to use the following blue screen as the configuration base for Windows 9x/Me blue screens:\n\n{0}", bs.GetString("friendlyname")), "Legacy save function", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            ninexme = bs; bsdefined = true; break;
+                        }
+                    }
+                }
+            }
+            bsdefined = false;
+            while (!bsdefined)
+            {
+                foreach (BlueScreen bs in Program.bluescreens)
+                {
+                    if ((bs.GetString("os") == "Windows CE"))
+                    {
+                        if (MessageBox.Show(string.Format("Would you like to use the following blue screen as the configuration base for Windows CE blue screens:\n\n{0}", bs.GetString("friendlyname")), "Legacy save function", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            ce = bs; bsdefined = true; break;
+                        }
+                    }
+                }
+            }
+            bsdefined = false;
+            while (!bsdefined)
+            {
+                foreach (BlueScreen bs in Program.bluescreens)
+                {
+                    if ((bs.GetString("os") == "Windows 3.1x"))
+                    {
+                        if (MessageBox.Show(string.Format("Would you like to use the following blue screen as the configuration base for Windows 3.1x CTRL+ALT+DELETE screen:\n\n{0}", bs.GetString("friendlyname")), "Legacy save function", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            threeone = bs; bsdefined = true; break;
+                        }
+                    }
+                }
+            }
+            filedata += string.Format("\nFACE {0}", winmodern.GetString("emoticon"));
+            filedata += string.Format("\nMODERN {0}:{1}:{2},{3}:{4}:{5}", winmodern.GetTheme(true).R, winmodern.GetTheme(true).G, winmodern.GetTheme(true).B, winmodern.GetTheme(false).R, winmodern.GetTheme(false).G, winmodern.GetTheme(false).B);
+            filedata += string.Format("\nW2K {0}:{1}:{2},{3}:{4}:{5}", win2k.GetTheme(true).R, win2k.GetTheme(true).G, win2k.GetTheme(true).B, win2k.GetTheme(false).R, win2k.GetTheme(false).G, win2k.GetTheme(false).B);
+            filedata += string.Format("\nNT34 {0}:{1}:{2},{3}:{4}:{5}", winnt.GetTheme(true).R, winnt.GetTheme(true).G, winnt.GetTheme(true).B, winnt.GetTheme(false).R, winnt.GetTheme(false).G, winnt.GetTheme(false).B);
+            filedata += string.Format("\nW9XME {0}:{1}:{2},{3}:{4}:{5}", ninexme.GetTheme(true).R, ninexme.GetTheme(true).G, ninexme.GetTheme(true).B, ninexme.GetTheme(false).R, ninexme.GetTheme(false).G, ninexme.GetTheme(false).B);
+            filedata += string.Format("\nW9XME_HL {0}:{1}:{2},{3}:{4}:{5}", ninexme.GetTheme(true, true).R, ninexme.GetTheme(true, true).G, ninexme.GetTheme(true, true).B, ninexme.GetTheme(false, true).R, ninexme.GetTheme(false, true).G, ninexme.GetTheme(false, true).B);
+            filedata += "\n--STRINGBUILD START--\n";
+            filedata += string.Format("{0}//{1}//{2}//{3}//{4}//{5}//{6}//{7}//{8}//{9}//{10}//{11}//{12}//{13}//{14}//{15}//{16}//{17}//{18}//{19}//{20}//{21}//{22}//{23}//{24}//{25}//{26}//{27}//{28}//{29}//{30}//{31}//{32}//{33}//{34}//{35}//{36}//{37}//{38}//{39}//{40}//{41}//{42}//{43}//{44}//--STRINGBUILD END--",
+                        ninexme.GetTitles()["Main"],
+                        ninexme.GetTitles()["System is busy"],
+                        ninexme.GetTitles()["Warning"],
+                        ninexme.GetTexts()["System error"],
+                        ninexme.GetTexts()["Prompt"],
+                        threeone.GetTexts()["No unresponsive programs"],
+                        ninexme.GetInt("blink_speed"),
+                        ninexme.GetTexts()["Application error"],
+                        ninexme.GetTexts()["Driver error"],
+                        ninexme.GetTexts()["System is busy"],
+                        ninexme.GetTexts()["System is unresponsive"],
+                        ce.GetTexts()["A problem has occurred..."],
+                        ce.GetTexts()["CTRL+ALT+DEL message"],
+                        ce.GetTexts()["Technical information"],
+                        ce.GetTexts()["Technical information formatting"],
+                        ce.GetTexts()["Restart message"],
+                        ce.GetInt("timer"),
+                        winnt.GetTexts()["Error code formatting"],
+                        winnt.GetTexts()["CPUID formatting"],
+                        winnt.GetTexts()["Stack trace heading"],
+                        winnt.GetTexts()["Stack trace table formatting"],
+                        winnt.GetTexts()["Memory address dump heading"],
+                        winnt.GetTexts()["Memory address dump table"],
+                        winnt.GetTexts()["Troubleshooting text"],
+                        win2k.GetTexts()["Error code formatting"],
+                        win2k.GetTexts()["Troubleshooting introduction"],
+                        xp.GetTexts()["A problem has been detected..."],
+                        win2k.GetTexts()["Troubleshooting text"],
+                        win2k.GetTexts()["Additional troubleshooting information"],
+                        xp.GetTexts()["Troubleshooting introduction"],
+                        xp.GetTexts()["Troubleshooting"],
+                        xp.GetTexts()["Technical information"],
+                        xp.GetTexts()["Technical information formatting"],
+                        xp.GetTexts()["Physical memory dump"],
+                        xp.GetTexts()["Technical support"] + "\n" + vista7.GetTexts()["Technical support"],
+                        vista7.GetTexts()["Physical memory dump"],
+                        wineight.GetTexts()["Information text with dump"],
+                        wineight.GetTexts()["Information text without dump"],
+                        wineight.GetTexts()["Error code"],
+                        winmodern.GetTexts()["Information text without dump"],
+                        winmodern.GetTexts()["Information text with dump"],
+                        winmodern.GetTexts()["Additional information"],
+                        winmodern.GetTexts()["Culprit file"],
+                        winmodern.GetTexts()["Progress"],
+                        winmodern.GetTexts()["Error code"]);
+            filedata += "\n--FONT START--";
+            Font textfont = winmodern.GetFont();
+            float textsize = textfont.Size;
+            Font emotifont = new Font(winmodern.GetFont().FontFamily, textsize * 5f, winmodern.GetFont().Style);
+            Font modernDetailFont = new Font(winmodern.GetFont().FontFamily, textsize * 0.55f, winmodern.GetFont().Style);
+
+            filedata += string.Format("\nemotiFont: {0},Bold={1},Italic={2},Underline={3}", emotifont.ToString().Replace("[Font: Name=", "").Replace("]", "").Replace(", ", ","), winmodern.GetFont().Bold, winmodern.GetFont().Italic, winmodern.GetFont().Underline);
+            filedata += string.Format("\nmodernTextFont: {0},Bold={1},Italic={2},Underline={3}", textfont.ToString().Replace("[Font: Name=", "").Replace("]", "").Replace(", ", ","), winmodern.GetFont().Bold, winmodern.GetFont().Italic, winmodern.GetFont().Underline);
+            filedata += string.Format("\nmodernDetailFont: {0},Bold={1},Italic={2},Underline={3}", modernDetailFont.ToString().Replace("[Font: Name=", "").Replace("]", "").Replace(", ", ","), winmodern.GetFont().Bold, winmodern.GetFont().Italic, winmodern.GetFont().Underline);
+            filedata += string.Format("\nlabel50: {0},Bold={1},Italic={2},Underline={3}", vista7.GetFont().ToString().Replace("[Font: Name=", "").Replace("]", "").Replace(", ", ","), vista7.GetFont().Bold, vista7.GetFont().Italic, vista7.GetFont().Underline);
+            filedata += string.Format("\nlabel49: {0},Bold={1},Italic={2},Underline={3}", xp.GetFont().ToString().Replace("[Font: Name=", "").Replace("]", "").Replace(", ", ","), xp.GetFont().Bold, xp.GetFont().Italic, xp.GetFont().Underline);
+            filedata += "\nlabel39: Lucida Console,Size=8,Units=3,GdiCharSet=1,GdiVerticalFont=False,Bold=True,Italic=False,Underline=False";
+            filedata += string.Format("\nlabel26: {0},Bold={1},Italic={2},Underline={3}", ce.GetFont().ToString().Replace("[Font: Name=", "").Replace("]", "").Replace(", ", ","), ce.GetFont().Bold, ce.GetFont().Italic, ce.GetFont().Underline);
+            filedata += "\n--FONT END--";
+            filedata += "\n--MISC START--";
+            filedata += string.Format("\nqrSize: {0}", winmodern.GetInt("qr_size"));
+            if (winmodern.GetString("qr_file").Contains("local:"))
+            {
+                if (winmodern.GetString("qr_file").Contains("local:0"))
+                {
+                    filedata += "\nqrType: Default";
+                } else
+                {
+                    filedata += "\nqrType: Transparent";
+                }
+            } else
+            {
+                filedata += "\nqrType: Custom";
+            }
+            filedata += string.Format("\nqrPath: {0}", winmodern.GetString("qr_file"));
+            filedata += "\n--MISC END--\n";
+            return filedata;
+        }
+
         private void SaveData(string filename)
         {
-            string filedata = "*** Blue screen simulator plus 2.1 ***";
+            string filedata;
+            if (saveBsconfig.FilterIndex == 1)
+            {
+                filedata = "*** Blue screen simulator plus 2.1 ***";
+            } else if (saveBsconfig.FilterIndex == 2)
+            {
+                filedata = "*** Blue screen simulator plus 2.0 ***";
+            } else
+            {
+                filedata = LegacySave();
+                File.WriteAllText(filename, filedata, System.Text.Encoding.Unicode);
+                MessageBox.Show("Blue screen configuration saved successfully", "Blue screen simulator 2.x configuration file creator", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                finished = true;
+                Thread.CurrentThread.Abort();
+            }
             foreach (BlueScreen bs in Program.bluescreens)
             {
-                filedata += "\n\n\n#" + bs.GetString("os") + "\n\n";
+                if (saveBsconfig.FilterIndex == 1)
+                {
+                    filedata += "\n\n\n#" + bs.GetString("os") + "\n\n";
+                } else
+                {
+                    filedata += "\n\n\n#" + bs.GetString("os").Replace("Windows Vista", "Windows Vista/7").Replace("Windows 7", "Windows Vista/7") + "\n\n";
+                }
                 if (bs.AllStrings().Count > 0)
                 {
                     filedata += "\n\n[string]";
@@ -552,7 +770,7 @@ namespace UltimateBlueScreenSimulator
                 filedata += "\necode3=" + bs.GetString("ecode3") + ";";
                 filedata += "\necode4=" + bs.GetString("ecode4") + ";";
                 filedata += "\nicon=" + bs.GetString("icon") + ";";
-                if (bs.AllProgress().Count > 0)
+                if ((bs.AllProgress().Count > 0) && (saveBsconfig.FilterIndex == 1))
                 {
                     filedata += "\n\n[progress]";
                     foreach (KeyValuePair<int, int> entry in bs.AllProgress())
@@ -574,7 +792,15 @@ namespace UltimateBlueScreenSimulator
                     filedata += "\n\n[boolean]";
                     foreach (KeyValuePair<string, bool> entry in bs.AllBools())
                     {
-                        filedata += "\n" + entry.Key + "=" + entry.Value.ToString() + ";";
+                        if (!((entry.Key == "font_support") && (bs.GetString("os") == "Windows 2000") && (saveBsconfig.FilterIndex != 1)))
+                        {
+                            filedata += "\n" + entry.Key + "=" + entry.Value.ToString() + ";";
+                        }
+                        else
+                        {
+                            // makes sure that Windows 2k blue screens have font support if saving in older format
+                            filedata += "\nfont_support=True;";
+                        }
                     }
                 }
 
@@ -611,18 +837,24 @@ namespace UltimateBlueScreenSimulator
                     }
                 }
 
-                if (bs.GetBool("font_support"))
+                if (bs.GetBool("font_support") || ((saveBsconfig.FilterIndex == 2) && (bs.GetString("os") == "Windows 2000")))
                 {
-                    filedata += "\n\n[format]";
-                    filedata += "\nfontfamily=" + bs.GetFont().FontFamily.Name + ";";
-                    filedata += "\nsize=" + bs.GetFont().Size.ToString() + ";";
-                    filedata += "\nstyle=" + bs.GetFont().Style.ToString() + ";";
+                    if (bs.GetString("os") != "Windows 2000")
+                    {
+                        filedata += "\n\n[format]";
+                        filedata += "\nfontfamily=" + bs.GetFont().FontFamily.Name + ";";
+                        filedata += "\nsize=" + bs.GetFont().Size.ToString() + ";";
+                        filedata += "\nstyle=" + bs.GetFont().Style.ToString() + ";";
+                    } else
+                    {
+                        // Added to support saving to version 2.0 format
+                        filedata += "\n\n[format]";
+                        filedata += "\nfontfamily=Lucida Console;";
+                        filedata += "\nsize=8;";
+                        filedata += "\nstyle=Bold;";
+                    }
                 }
             }
-            File.WriteAllText(filename, filedata);
-            MessageBox.Show("Blue screen configuration saved successfully", "Blue screen simulator 2.x configuration file creator", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            finished = true;
-            Thread.CurrentThread.Abort();
         }
 
         private void SaveConfig(object sender, EventArgs e)
@@ -1155,6 +1387,7 @@ namespace UltimateBlueScreenSimulator
             tv.Dispose();
         }
 
+        /* TODO: Remove devbuild text from the stable release 2.1 */
         private void button4_Click(object sender, EventArgs e)
         {
             if (Program.f1.enableeggs)
@@ -1176,9 +1409,12 @@ namespace UltimateBlueScreenSimulator
                 "Microsoft originally planned to replace a blue screen with a black one as early as Windows 8",
                 "Every major Windows release, up until Windows 11, has had some sort of a blue screen",
                 "Blue is a color that symbolises peace",
-                "Windows 2000 blue screen doesn't use rasterized fonts, because I figured it looked 'close enough' to the original",
+                "Windows 2000 blue screen didn't use rasterized fonts in previous versions, because I figured it looked 'close enough' to the original",
                 "If you use the 'choose' button when setting a culprit file, you might see some weird filenames...",
                 "The background of the logo graphic in the about screen displays the three primary colors used in these error screens",
+                "This program isn't a copy of FlyTech's work, instead it was developed from scratch, because of the limitations I saw when trying out FlyTech's blue screen simulator.",
+                "You can use progress tuner to make more realistic progress indicators for modern blue screens",
+                "This is a development build, meaning there are things that might not work correctly",
                 "target: void"
             };
                 Random r = new Random();
@@ -1223,6 +1459,11 @@ namespace UltimateBlueScreenSimulator
             helpTip.SetToolTip(resetButton, "Reset all settings in this configuration");
             helpTip.SetToolTip(removeCfg, "Removes the configuration, meaning it will no longer be accessible in the main menu or any other part of the program.");
             osName.Text = "Select a configuration to modify/remove it";
+        }
+
+        private void saveBsconfig_FileOk(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
         }
     }
 }

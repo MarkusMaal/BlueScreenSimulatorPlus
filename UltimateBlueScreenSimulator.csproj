@@ -355,6 +355,7 @@
   <ItemGroup>
     <Content Include="bsodgen_npJ_icon.ico" />
     <Content Include="bssp2.ico" />
+    <Content Include="legacy_template.txt" />
     <None Include="Resources\bsodbanner2.png" />
     <None Include="Resources\round_corners.png" />
     <None Include="Resources\rasters3.bmp" />
