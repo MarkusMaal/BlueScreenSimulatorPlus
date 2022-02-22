@@ -147,7 +147,7 @@ namespace UltimateBlueScreenSimulator.Properties {
         ///software and other kinds of works.
         ///
         ///  The licenses for most software and other practical works are designed
-        ///to take away yo [rest of string was truncated]&quot;;.
+        ///to [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string COPYING {
             get {
@@ -392,6 +392,20 @@ namespace UltimateBlueScreenSimulator.Properties {
             get {
                 object obj = ResourceManager.GetObject("win2_splash", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check to make sure any new hardware or software is properly installed.
+        ///If this is a new installation, ask your hardware or software manufacturer
+        ///for any Windows updates you might need.;Run the driver verifier against any new (or suspect) drivers.
+        ///If that doesn&apos;t reveal the corrupting driver, try enabling special pool.
+        ///Both of these features are intended to catch the corruption at an earlier
+        ///point where the offending driver can be identified.;If you need to use Safe Mode to remove or disable components, [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string xpMsg {
+            get {
+                return ResourceManager.GetString("xpMsg", resourceCulture);
             }
         }
     }

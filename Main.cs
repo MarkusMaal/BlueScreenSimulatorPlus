@@ -1200,14 +1200,34 @@ namespace UltimateBlueScreenSimulator
 
         private void ComboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-            try
+            if (windowVersion.SelectedIndex != -1)
             {
-                if (windowVersion.SelectedIndex != -1)
+                me.SetString("code", comboBox1.SelectedItem.ToString());
+                if ((me.GetString("os") == "Windows XP") && me.GetBool("auto"))
                 {
-                    me.SetString("code", comboBox1.SelectedItem.ToString());
+                    string[] xpmsg = Properties.Resources.xpMsg.Split(';');
+                    if (me.GetString("code").Contains("007F"))
+                    {
+                        me.SetText("Troubleshooting introduction", xpmsg[3]);
+                        me.SetText("Troubleshooting", string.Format("{0}\r\n\r\n{1}", xpmsg[9], xpmsg[10]));
+                    }
+                    else if (me.GetString("code").Contains("00C5"))
+                    {
+                        me.SetText("Troubleshooting introduction", xpmsg[0]);
+                        me.SetText("Troubleshooting", string.Format("{0}\r\n\r\n{1}\r\n\r\n{2}\r\n\r\n{3}\r\n\r\n{4}", xpmsg[1], xpmsg[2], xpmsg[3], xpmsg[4], xpmsg[5]));
+                    }
+                    else if (me.GetString("code").Contains("008E"))
+                    {
+                        me.SetText("Troubleshooting introduction", xpmsg[3]);
+                        me.SetText("Troubleshooting", string.Format("{0}\r\n\r\n{1}", xpmsg[7], xpmsg[8]));
+                    }
+                    else
+                    {
+                        me.SetText("Troubleshooting introduction", xpmsg[3]);
+                        me.SetText("Troubleshooting", string.Format("{0}\r\n\r\n{1}", xpmsg[0], xpmsg[5]));
+                    }
                 }
             }
-            catch { }
         }
 
         private void TextBox2_TextChanged(object sender, EventArgs e)

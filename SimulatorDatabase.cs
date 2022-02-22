@@ -959,6 +959,7 @@ namespace SimulatorDatabase
                     PushText("Culprit file", "The problem seems to be caused by the following file: ");
                     PushText("Physical memory dump", "Beginning dump of physical memory\r\nPhysical memory dump complete.");
                     PushText("Technical support", "Contact your system administrator or technical support group for further\r\nassistance.");
+                    SetBool("auto", true);
                     SetFont("Lucida Console", 9.7f, FontStyle.Regular);
                     SetString("friendlyname", "Windows XP (640x480, Standard)");
                     string[] inspirb = { "RRRRRRRR", "RRRRRRRR", "RRRRRRRR" };

@@ -205,4 +205,33 @@
   <data name="COPYING" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\COPYING;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1257</value>
   </data>
+  <data name="xpMsg" xml:space="preserve">
+    <value>Check to make sure any new hardware or software is properly installed.
+If this is a new installation, ask your hardware or software manufacturer
+for any Windows updates you might need.;Run the driver verifier against any new (or suspect) drivers.
+If that doesn't reveal the corrupting driver, try enabling special pool.
+Both of these features are intended to catch the corruption at an earlier
+point where the offending driver can be identified.;If you need to use Safe Mode to remove or disable components,
+restart your computer, press F8 to select Advanced Startup Options,
+and then select Safe Mode.;If this is the first time you've seen this Stop error screen,
+restart your computer. If this screen appears again, follow
+these steps:;Check to make sure any new hardware or software is properly installed.
+If this is a new installation, ask your hardware or software manufacturer
+for any Windows updates you might need.;If problems continue, disable or remove any newly installed hardware
+or software. Disable BIOS memory options such as caching or shadowing.;If you need to use Safe Mode to remove or disable components, restart
+your computer, press F8 to select Advanced Startup Options, and then
+select Safe Mode.;;Check to be sure you have adequate disk space. If a driver is
+identified in the Stop message, disable the driver or check
+with the manufacturer for driver updates. Try changing video
+adapters.;Check with your hardware vendor for any BIOS updates. Disable
+BIOS memory options such as caching or shadowing. If you need
+to use Safe Mode to remove or disable components, restart your
+computer, press F8 to select Advanced Startup Options, and then
+select Safe Mode.;Run a system diagnostic utility supplied by your hardware manufacturer.
+In particular, run a memory check, and check for faulty or mismatched
+memory. Try changing video adapters.;Disable or remove any newly installed hardware and drivers. Disable or
+remove any newly installed software. If you need to use Safe Mode to
+remove or disable components, restart your computer, press F8 to select
+Advanced Startup Options, and then select Safe Mode.</value>
+  </data>
 </root>
