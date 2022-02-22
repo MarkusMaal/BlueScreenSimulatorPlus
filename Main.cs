@@ -1685,11 +1685,14 @@ namespace UltimateBlueScreenSimulator
             customMessageLabel2.Visible = customCheckBox.Checked;
             customMessageText.Visible = customCheckBox.Checked;
             comboBox1.Visible = !customCheckBox.Checked;
-            customMessageText.Text = me.GetString("code").Split(' ')[0];
-            customMessageCode.Text = me.GetString("code").Split('(')[1].Split('x')[1].Replace(")", "");
-            if (!customCheckBox.Checked)
+            if (me.GetString("code").Contains("x"))
             {
-                me.SetString("code", comboBox1.SelectedItem.ToString());
+                customMessageText.Text = me.GetString("code").Split(' ')[0];
+                customMessageCode.Text = me.GetString("code").Split('(')[1].Split('x')[1].Replace(")", "");
+                if (!customCheckBox.Checked)
+                {
+                    me.SetString("code", comboBox1.SelectedItem.ToString());
+                }
             }
         }
 
