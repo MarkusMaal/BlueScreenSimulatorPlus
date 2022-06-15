@@ -75,3 +75,5 @@ bin\Release
 	 
 System\Windows\Forms
 	 * AliasedLabel.cs                  - A custom control that is used in Windows XP and CE blue screens
+
+TEST

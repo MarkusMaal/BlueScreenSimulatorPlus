@@ -69,3 +69,4 @@ C:\Users\marku\source\repos\BlueScreenSimulatorPlus\obj\Release\UltimateBlueScre
 C:\Users\marku\source\repos\BlueScreenSimulatorPlus\obj\Release\UltimateBlueScreenSimulator.csproj.CoreCompileInputs.cache
 C:\Users\marku\source\repos\BlueScreenSimulatorPlus\obj\Release\UltimateBlueScreenSimulator.exe
 C:\Users\marku\source\repos\BlueScreenSimulatorPlus\obj\Release\UltimateBlueScreenSimulator.pdb
+C:\Users\marku\source\repos\BlueScreenSimulatorPlus\obj\Release\UltimateBlueScreenSimulator.ProgressTuner.resources
