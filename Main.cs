@@ -202,7 +202,6 @@ namespace UltimateBlueScreenSimulator
                 advNTButton.Visible = true;
                 eCodeEditButton.Visible = true;
                 progressTunerToolStripMenuItem.Enabled = true;
-                progressTuneButton.Visible = true;
             }
             else if (me.GetString("os") == "Windows XP")
             {

@@ -45,7 +45,6 @@ namespace UltimateBlueScreenSimulator
             // screenUpdater
             // 
             this.screenUpdater.Enabled = true;
-            this.screenUpdater.Interval = 25;
             this.screenUpdater.Tick += new System.EventHandler(this.Timer1_Tick);
             // 
             // tardisFade
