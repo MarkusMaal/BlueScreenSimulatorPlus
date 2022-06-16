@@ -155,10 +155,10 @@ namespace UltimateBlueScreenSimulator
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Navy;
             this.ClientSize = new System.Drawing.Size(640, 480);
+            this.Controls.Add(this.technicalCode);
             this.Controls.Add(this.introductionText);
             this.Controls.Add(this.errorCode);
             this.Controls.Add(this.supportInfo);
-            this.Controls.Add(this.technicalCode);
             this.Controls.Add(this.dumpLabel);
             this.Controls.Add(this.waterMarkText);
             this.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(186)));

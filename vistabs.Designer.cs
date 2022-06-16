@@ -34,17 +34,18 @@ namespace UltimateBlueScreenSimulator
             this.screenUpdater = new System.Windows.Forms.Timer(this.components);
             this.tardisFade = new System.Windows.Forms.Timer(this.components);
             this.rainBowScreen = new System.Windows.Forms.Timer(this.components);
+            this.technicalCode = new System.Windows.Forms.AliasedLabel();
+            this.dumpText = new System.Windows.Forms.AliasedLabel();
             this.introductionText = new System.Windows.Forms.AliasedLabel();
             this.errorCode = new System.Windows.Forms.AliasedLabel();
             this.supportInfo = new System.Windows.Forms.AliasedLabel();
-            this.technicalCode = new System.Windows.Forms.AliasedLabel();
             this.waterMarkText = new System.Windows.Forms.AliasedLabel();
-            this.dumpText = new System.Windows.Forms.AliasedLabel();
             this.SuspendLayout();
             // 
             // screenUpdater
             // 
             this.screenUpdater.Enabled = true;
+            this.screenUpdater.Interval = 250;
             this.screenUpdater.Tick += new System.EventHandler(this.Timer1_Tick);
             // 
             // tardisFade
@@ -56,6 +57,36 @@ namespace UltimateBlueScreenSimulator
             // 
             this.rainBowScreen.Interval = 10;
             this.rainBowScreen.Tick += new System.EventHandler(this.RainBowScreen_Tick);
+            // 
+            // technicalCode
+            // 
+            this.technicalCode.AutoSize = true;
+            this.technicalCode.BackColor = System.Drawing.Color.Navy;
+            this.technicalCode.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.technicalCode.Font = new System.Drawing.Font("Consolas", 9F);
+            this.technicalCode.ForeColor = System.Drawing.Color.White;
+            this.technicalCode.Location = new System.Drawing.Point(-1, 331);
+            this.technicalCode.Margin = new System.Windows.Forms.Padding(3, 20, 3, 0);
+            this.technicalCode.MaximumSize = new System.Drawing.Size(641, 0);
+            this.technicalCode.Name = "technicalCode";
+            this.technicalCode.Size = new System.Drawing.Size(490, 14);
+            this.technicalCode.TabIndex = 11;
+            this.technicalCode.Text = "*** STOP: 0xDEADDEAD (0x00000000, 0x00000000, 0x00000000, 0x00000000)";
+            // 
+            // dumpText
+            // 
+            this.dumpText.AutoSize = true;
+            this.dumpText.BackColor = System.Drawing.Color.Navy;
+            this.dumpText.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.dumpText.Font = new System.Drawing.Font("Consolas", 9F);
+            this.dumpText.ForeColor = System.Drawing.Color.White;
+            this.dumpText.Location = new System.Drawing.Point(-1, 373);
+            this.dumpText.Margin = new System.Windows.Forms.Padding(3, 20, 3, 0);
+            this.dumpText.MaximumSize = new System.Drawing.Size(641, 0);
+            this.dumpText.Name = "dumpText";
+            this.dumpText.Size = new System.Drawing.Size(84, 14);
+            this.dumpText.TabIndex = 12;
+            this.dumpText.Text = "Sample Text";
             // 
             // introductionText
             // 
@@ -103,21 +134,6 @@ namespace UltimateBlueScreenSimulator
             this.supportInfo.Text = "You are not supposed to see this text under any condition. If you see this text, " +
     "please let the cops know immediately.";
             // 
-            // technicalCode
-            // 
-            this.technicalCode.AutoSize = true;
-            this.technicalCode.BackColor = System.Drawing.Color.Navy;
-            this.technicalCode.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.technicalCode.Font = new System.Drawing.Font("Consolas", 9F);
-            this.technicalCode.ForeColor = System.Drawing.Color.White;
-            this.technicalCode.Location = new System.Drawing.Point(-1, 331);
-            this.technicalCode.Margin = new System.Windows.Forms.Padding(3, 20, 3, 0);
-            this.technicalCode.MaximumSize = new System.Drawing.Size(641, 0);
-            this.technicalCode.Name = "technicalCode";
-            this.technicalCode.Size = new System.Drawing.Size(490, 14);
-            this.technicalCode.TabIndex = 11;
-            this.technicalCode.Text = "*** STOP: 0xDEADDEAD (0x00000000, 0x00000000, 0x00000000, 0x00000000)";
-            // 
             // waterMarkText
             // 
             this.waterMarkText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -129,21 +145,6 @@ namespace UltimateBlueScreenSimulator
             this.waterMarkText.Size = new System.Drawing.Size(151, 15);
             this.waterMarkText.TabIndex = 7;
             this.waterMarkText.Text = "blue screen simulator plus";
-            // 
-            // dumpText
-            // 
-            this.dumpText.AutoSize = true;
-            this.dumpText.BackColor = System.Drawing.Color.Navy;
-            this.dumpText.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.dumpText.Font = new System.Drawing.Font("Consolas", 9F);
-            this.dumpText.ForeColor = System.Drawing.Color.White;
-            this.dumpText.Location = new System.Drawing.Point(-1, 373);
-            this.dumpText.Margin = new System.Windows.Forms.Padding(3, 20, 3, 0);
-            this.dumpText.MaximumSize = new System.Drawing.Size(641, 0);
-            this.dumpText.Name = "dumpText";
-            this.dumpText.Size = new System.Drawing.Size(84, 14);
-            this.dumpText.TabIndex = 12;
-            this.dumpText.Text = "Sample Text";
             // 
             // Vistabs
             // 
