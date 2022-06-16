@@ -166,7 +166,7 @@
             this.logoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.logoPictureBox.TabIndex = 12;
             this.logoPictureBox.TabStop = false;
-            this.logoPictureBox.Click += new System.EventHandler(this.logoPictureBox_Click);
+            this.logoPictureBox.Click += new System.EventHandler(this.LogoPictureBox_Click);
             // 
             // logoDisplayFlowPanel
             // 
@@ -283,7 +283,7 @@
             this.srcCodeButton.TabIndex = 0;
             this.srcCodeButton.Text = "Source code";
             this.srcCodeButton.UseVisualStyleBackColor = true;
-            this.srcCodeButton.Click += new System.EventHandler(this.button2_Click);
+            this.srcCodeButton.Click += new System.EventHandler(this.Button2_Click);
             // 
             // copyingButton
             // 
@@ -293,7 +293,7 @@
             this.copyingButton.TabIndex = 1;
             this.copyingButton.Text = "Copying";
             this.copyingButton.UseVisualStyleBackColor = true;
-            this.copyingButton.Click += new System.EventHandler(this.button3_Click);
+            this.copyingButton.Click += new System.EventHandler(this.Button3_Click);
             // 
             // rndFactButton
             // 
@@ -303,7 +303,7 @@
             this.rndFactButton.TabIndex = 2;
             this.rndFactButton.Text = "Random factoid";
             this.rndFactButton.UseVisualStyleBackColor = true;
-            this.rndFactButton.Click += new System.EventHandler(this.button4_Click);
+            this.rndFactButton.Click += new System.EventHandler(this.Button4_Click);
             // 
             // aboutSettingsTabControl
             // 
@@ -628,7 +628,7 @@
             this.selectAllBox.TextAlign = System.Drawing.ContentAlignment.TopRight;
             this.helpTip.SetToolTip(this.selectAllBox, "Selects all configurations at once");
             this.selectAllBox.UseVisualStyleBackColor = true;
-            this.selectAllBox.CheckedChanged += new System.EventHandler(this.selectAllBox_CheckedChanged);
+            this.selectAllBox.CheckedChanged += new System.EventHandler(this.SelectAllBox_CheckedChanged);
             // 
             // randomnessCheckBox
             // 
@@ -640,7 +640,7 @@
             this.randomnessCheckBox.Text = "Add randomness to progress counters in legacy configurations [?]";
             this.helpTip.SetToolTip(this.randomnessCheckBox, resources.GetString("randomnessCheckBox.ToolTip"));
             this.randomnessCheckBox.UseVisualStyleBackColor = true;
-            this.randomnessCheckBox.CheckedChanged += new System.EventHandler(this.randomnessCheckBox_CheckedChanged);
+            this.randomnessCheckBox.CheckedChanged += new System.EventHandler(this.RandomnessCheckBox_CheckedChanged);
             // 
             // devFlowPanel
             // 
@@ -725,7 +725,7 @@
             this.button2.TabIndex = 24;
             this.button2.Text = "[TEST] Progress Tuner";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click_1);
+            this.button2.Click += new System.EventHandler(this.Button2_Click_1);
             // 
             // multiDisplayBox
             // 

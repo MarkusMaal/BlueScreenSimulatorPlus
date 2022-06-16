@@ -17,7 +17,7 @@ namespace UltimateBlueScreenSimulator
         public int tab_id = 0;
         public bool DevBuild = false;
         public bool finished = false;
-        Random r = new Random();
+        readonly Random r = new Random();
         public AboutSettingsDialog()
         {
             InitializeComponent();
@@ -1402,14 +1402,14 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void Button2_Click(object sender, EventArgs e)
         {
             Process p = new Process();
             p.StartInfo.FileName = "https://github.com/MarkusMaal/BlueScreenSimulatorPlus";
             p.Start();
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void Button3_Click(object sender, EventArgs e)
         {
             TextView tv = new TextView
             {
@@ -1421,7 +1421,7 @@ namespace UltimateBlueScreenSimulator
         }
 
         /* DONE: Remove devbuild text from the stable release 2.1 */
-        private void button4_Click(object sender, EventArgs e)
+        private void Button4_Click(object sender, EventArgs e)
         {
             if (Program.f1.enableeggs)
             {
@@ -1455,19 +1455,19 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void button2_Click_1(object sender, EventArgs e)
+        private void Button2_Click_1(object sender, EventArgs e)
         {
             ProgressTuner pt = new ProgressTuner();
             pt.Show();
             MessageBox.Show("Testing ended");
         }
 
-        private void randomnessCheckBox_CheckedChanged(object sender, EventArgs e)
+        private void RandomnessCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             Program.randomness = randomnessCheckBox.Checked;
         }
 
-        private void selectAllBox_CheckedChanged(object sender, EventArgs e)
+        private void SelectAllBox_CheckedChanged(object sender, EventArgs e)
         {
             if (selectAllBox.Checked)
             {
@@ -1494,7 +1494,7 @@ namespace UltimateBlueScreenSimulator
             osName.Text = "Select a configuration to modify/remove it";
         }
 
-        private void logoPictureBox_Click(object sender, EventArgs e)
+        private void LogoPictureBox_Click(object sender, EventArgs e)
         {
             if (Program.f1.enableeggs)
             {
