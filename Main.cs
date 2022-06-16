@@ -680,32 +680,32 @@ namespace UltimateBlueScreenSimulator
         //random function
         private void Button3_Click(object sender, EventArgs e)
         {
-            Program.loadfinished = false;
-            Gen g = new Gen();
-            g.Show();
-            Thread.Sleep(10);
-            RandFunction();
-            button1.PerformClick();
+            if (MessageBox.Show("This will change random settings on various blue screens. Are you sure you want to continue?", "I'm feeling unlucky", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
+            {
+                Program.loadfinished = false;
+                Gen g = new Gen();
+                g.Show();
+                Thread.Sleep(10);
+                RandFunction();
+                button1.PerformClick();
+            }
         }
 
         internal void RandFunction()
         {
-            List<BlueScreen> new_screens = new List<BlueScreen>();
-            foreach (BlueScreen bs in Program.bluescreens)
+            Random r = new Random();
+            for (int i = 0; i < Program.bluescreens.Count; i++)
             {
-                Random r = new Random();
-                foreach (string kvp in bs.AllBools().Keys.ToArray<string>())
+                foreach (string kvp in Program.bluescreens[i].AllBools().Keys.ToArray<string>())
                 {
                     bool value = r.Next(0, 1) == 1;
-                    bs.SetBool(kvp, value);
+                    Program.bluescreens[i].SetBool(kvp, value);
                 }
-                bs.SetString("code", comboBox1.Items[r.Next(0, comboBox1.Items.Count - 1)].ToString());
-                bs.SetString("screen_mode", comboBox2.Items[r.Next(0, comboBox2.Items.Count - 1)].ToString());
-                bs.SetBool("windowed", true);
+                Program.bluescreens[i].SetString("code", comboBox1.Items[r.Next(0, comboBox1.Items.Count - 1)].ToString());
+                if (Program.bluescreens[i].GetString("os") != "Windows 3.1x") { Program.bluescreens[i].SetString("screen_mode", comboBox2.Items[r.Next(0, comboBox2.Items.Count - 1)].ToString()); }
+                Program.bluescreens[i].SetBool("windowed", true);
                 Thread.Sleep(16);
-                new_screens.Add(bs);
             }
-            Program.bluescreens = new_screens;
             windowVersion.SelectedIndex = SetRnd(windowVersion.Items.Count - 1);
             if (enableeggs)
             {
