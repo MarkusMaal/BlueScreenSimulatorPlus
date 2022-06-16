@@ -37,7 +37,6 @@
             this.veriFileTimer = new System.Windows.Forms.Timer(this.components);
             this.appMarketedVersionLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // splashEmoticon
@@ -119,18 +118,6 @@
             this.label1.Text = "advanced bugcheck simulation technology";
             this.label1.UseWaitCursor = true;
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.label2.ForeColor = System.Drawing.Color.Yellow;
-            this.label2.Location = new System.Drawing.Point(389, 6);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(69, 13);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "beta release";
-            this.label2.UseWaitCursor = true;
-            // 
             // Splash
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -139,7 +126,6 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(90)))));
             this.BackgroundImage = global::UltimateBlueScreenSimulator.Properties.Resources.round_corners;
             this.ClientSize = new System.Drawing.Size(471, 149);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.appMarketedVersionLabel);
             this.Controls.Add(this.SplashText);
@@ -171,6 +157,5 @@
         internal System.Windows.Forms.Timer veriFileTimer;
         private System.Windows.Forms.Label appMarketedVersionLabel;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
     }
 }
