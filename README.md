@@ -1,8 +1,7 @@
-# BlueScreenSimulatorPlus (experimental branch)
-Open source code for BSSP. This is an enhanced blue screen simulator application for Windows. Use Visual Studio to recompile.
-This is an unfinished code for the next version of blue screen simulator plus.<br/>
+# BlueScreenSimulatorPlus (master branch)
+Open source code for BSSP. This is an enhanced blue screen simulator application for Windows. Use Visual Studio to recompile.<br/>
 <br/>
-Codename: *Waffles*, Version 2.1 (development build), {} markus' software // {} markuse tarkvara<br/>
+Codename: *Waffles*, Version 2.1, {} markus' software // {} markuse tarkvara<br/>
 <br/>
 The following section contains quick documentation for each file in the project.<br/>
 <br/>
