@@ -15,7 +15,7 @@ namespace UltimateBlueScreenSimulator
         //If this flag is set, then help tabs are hidden and setting tabs are visible
         public bool SettingTab = false;
         public int tab_id = 0;
-        public bool DevBuild = true;
+        public bool DevBuild = false;
         public bool finished = false;
         public AboutSettingsDialog()
         {
@@ -26,7 +26,7 @@ namespace UltimateBlueScreenSimulator
             if (DevBuild) { this.labelProductName.Text += " [Development Build]"; }
             this.labelVersion.Text = String.Format("Version {0} with Verifile 1.1", AssemblyVersion);
             this.labelCopyright.Text = AssemblyCopyright;
-            this.labelCompanyName.Text = "Codename *Waffles*\nLanguage: C# (.NET framework, Windows Forms)\nCreated by: Markus Maal (TheMarkusGuy/MarkusTegelane)\n\nThis program can only be provided free of charge (if you had to pay for this, please ask for a refund). This program is provided as is, without a warranty.\n2020 Markuse tarkvara (Markus' software)";
+            this.labelCompanyName.Text = "Codename *Waffles*\nLanguage: C# (.NET framework, Windows Forms)\nCreated by: Markus Maal a.k.a. mmaal (markustegelane)\n\nThis program can only be provided free of charge (if you had to pay for this, please ask for a refund). This program is provided as is, without a warranty.\n2022 Markuse tarkvara (Markus' software)";
         }
 
         #region Assembly Attribute Accessors
@@ -1419,7 +1419,7 @@ namespace UltimateBlueScreenSimulator
             tv.Dispose();
         }
 
-        /* TODO: Remove devbuild text from the stable release 2.1 */
+        /* DONE: Remove devbuild text from the stable release 2.1 */
         private void button4_Click(object sender, EventArgs e)
         {
             if (Program.f1.enableeggs)
@@ -1446,7 +1446,7 @@ namespace UltimateBlueScreenSimulator
                 "The background of the logo graphic in the about screen displays the three primary colors used in these error screens",
                 "This program isn't a copy of FlyTech's work, instead it was developed from scratch, because of the limitations I saw when trying out FlyTech's blue screen simulator.",
                 "You can use progress tuner to make more realistic progress indicators for modern blue screens",
-                "This is a development build, meaning there are things that might not work correctly",
+                "There is no random factoid here",
                 "target: void"
             };
                 Random r = new Random();
