@@ -166,6 +166,7 @@
             this.logoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.logoPictureBox.TabIndex = 12;
             this.logoPictureBox.TabStop = false;
+            this.logoPictureBox.Click += new System.EventHandler(this.logoPictureBox_Click);
             // 
             // logoDisplayFlowPanel
             // 
@@ -1083,7 +1084,6 @@
             this.saveBsconfig.Filter = "Bluescreen simulator 2.1 configuration files|*.bs2cfg;*.bs2|Bluescreen simulator " +
     "2.0 configuration files|*.bs2cfg;*.bs2|Bluescreen simulator 1.x configuration fi" +
     "les|*.bscfg;*.bsc";
-            this.saveBsconfig.FileOk += new System.ComponentModel.CancelEventHandler(this.saveBsconfig_FileOk);
             // 
             // loadBsconfig
             // 

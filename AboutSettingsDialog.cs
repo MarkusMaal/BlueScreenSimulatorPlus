@@ -17,6 +17,7 @@ namespace UltimateBlueScreenSimulator
         public int tab_id = 0;
         public bool DevBuild = false;
         public bool finished = false;
+        Random r = new Random();
         public AboutSettingsDialog()
         {
             InitializeComponent();
@@ -1493,9 +1494,28 @@ namespace UltimateBlueScreenSimulator
             osName.Text = "Select a configuration to modify/remove it";
         }
 
-        private void saveBsconfig_FileOk(object sender, System.ComponentModel.CancelEventArgs e)
+        private void logoPictureBox_Click(object sender, EventArgs e)
         {
-
+            if (Program.f1.enableeggs)
+            {
+                if (r.Next(0, 255) == 13)
+                {
+                    logoPictureBox.Image = Properties.Resources.success;
+                    foreach (BlueScreen bs in Program.bluescreens)
+                    {
+                        if (bs.GetString("os") == "Windows 10")
+                        {
+                            bs.SetText("Information text with dump", "Your P");
+                            bs.SetText("Information text without dump", "Your P");
+                            bs.SetText("Additional information", "");
+                            bs.SetText("Culprit file", "");
+                            bs.SetText("Error code", "");
+                            bs.SetText("Progress", "");
+                            bs.SetBool("qr", false);
+                        }
+                    }
+                }
+            }
         }
     }
 }
