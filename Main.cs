@@ -922,7 +922,7 @@ namespace UltimateBlueScreenSimulator
             if (System.IO.File.Exists("BSSP.exe"))
             {
                 updateCheckerTimer.Enabled = false;
-                MessageBox.Show("Thank you for installing the latest version of Blue screen simulator plus :)\n\nWhat's new?\n * Typo fixed in the Windows 8/10 blue screen\n * Minor improvements\n * Executable description\n ? Added few easter eggs\n ? Beta version of the dark mode (betadark)\n ? Beta version of the Windows 7 black screen (blackscreen)", "Update was successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Thank you for installing the latest version of Blue screen simulator plus :)\n\nWhat's new?\n+ Added progress tuning capability for Windows 8+ blue screens\n+ Non-linear progress incrementation for Windows 8+ blue screens\n+ Added ability to specify custom NT error messages\n+ Stealth option for prank mode\n+ Save configurations as legacy formats (including 1.x and 2.0)\n+ Ability to modify all configurations at once\n+ Windows Vista and 7 are now separated instead of being one option\n* Updated about screen\n* Windows 11 screen is now blue\n* Windows 11 is now properly detected\n* More realistic Windows 2000 blue screen\n* Fixed bugs related to the \"I'm feeling unlucky\" button\n? Additional easter eggs", "Update was successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 int tries = 0;
                 while (System.IO.File.Exists("BSSP.exe"))
                 {
@@ -947,7 +947,7 @@ namespace UltimateBlueScreenSimulator
                 if (System.IO.File.Exists("vercheck.txt"))
                 {
                     string[] lines = System.IO.File.ReadAllLines("vercheck.txt");
-                    if (Convert.ToDouble(lines[0].Replace(".", ",").Replace("\r", "").Replace("\n", "").Trim()) > 2.0)
+                    if (Convert.ToDouble(lines[0].Replace(".", ",").Replace("\r", "").Replace("\n", "").Trim()) > 2.1)
                     {
                         updateCheckerTimer.Enabled = false;
                         System.IO.File.Delete("vercheck.txt");
