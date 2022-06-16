@@ -288,6 +288,8 @@
             // devPCBox
             // 
             this.devPCBox.AutoSize = true;
+            this.devPCBox.Checked = true;
+            this.devPCBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.devPCBox.Location = new System.Drawing.Point(152, 26);
             this.devPCBox.Name = "devPCBox";
             this.devPCBox.Size = new System.Drawing.Size(175, 17);
@@ -906,7 +908,7 @@
             this.simulatorToolStripMenuItem.Margin = new System.Windows.Forms.Padding(5, 0, 0, 0);
             this.simulatorToolStripMenuItem.Name = "simulatorToolStripMenuItem";
             this.simulatorToolStripMenuItem.Padding = new System.Windows.Forms.Padding(0);
-            this.simulatorToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
+            this.simulatorToolStripMenuItem.Size = new System.Drawing.Size(62, 19);
             this.simulatorToolStripMenuItem.Text = "Common";
             this.simulatorToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.simulatorToolStripMenuItem.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
@@ -915,7 +917,7 @@
             // simulateToolStripMenuItem
             // 
             this.simulateToolStripMenuItem.Name = "simulateToolStripMenuItem";
-            this.simulateToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.simulateToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.simulateToolStripMenuItem.Text = "&Simulate";
             this.simulateToolStripMenuItem.Click += new System.EventHandler(this.SimulateToolStripMenuItem_Click);
             // 
@@ -925,7 +927,7 @@
             this.autoUpdateToolStripMenuItem,
             this.simulatorSettingsToolStripMenuItem});
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.settingsToolStripMenuItem.Text = "Settings";
             this.settingsToolStripMenuItem.DropDownOpening += new System.EventHandler(this.SimulatorToolStripMenuItem_DropDownOpening);
             // 
@@ -933,7 +935,7 @@
             // 
             this.autoUpdateToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.autoUpdateToolStripMenuItem.Name = "autoUpdateToolStripMenuItem";
-            this.autoUpdateToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.autoUpdateToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.autoUpdateToolStripMenuItem.Text = "Auto&Update";
             this.autoUpdateToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.autoUpdateToolStripMenuItem.Click += new System.EventHandler(this.AutoUpdateToolStripMenuItem_Click);
@@ -942,7 +944,7 @@
             // 
             this.simulatorSettingsToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.simulatorSettingsToolStripMenuItem.Name = "simulatorSettingsToolStripMenuItem";
-            this.simulatorSettingsToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.simulatorSettingsToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.simulatorSettingsToolStripMenuItem.Text = "Si&mulator settings";
             this.simulatorSettingsToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.simulatorSettingsToolStripMenuItem.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
@@ -952,26 +954,26 @@
             // 
             this.toolStripSeparator1.AutoSize = false;
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 3);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(138, 3);
             // 
             // nightThemeToolStripMenuItem
             // 
             this.nightThemeToolStripMenuItem.CheckOnClick = true;
             this.nightThemeToolStripMenuItem.Name = "nightThemeToolStripMenuItem";
-            this.nightThemeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.nightThemeToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.nightThemeToolStripMenuItem.Text = "Night theme";
             this.nightThemeToolStripMenuItem.CheckStateChanged += new System.EventHandler(this.LightSwitch);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(138, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.exitToolStripMenuItem.Text = "E&xit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
@@ -986,7 +988,7 @@
             this.prankModeToolStripMenuItem});
             this.advancedToolStripMenuItem.Name = "advancedToolStripMenuItem";
             this.advancedToolStripMenuItem.Padding = new System.Windows.Forms.Padding(0);
-            this.advancedToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
+            this.advancedToolStripMenuItem.Size = new System.Drawing.Size(64, 19);
             this.advancedToolStripMenuItem.Text = "Advanced";
             this.advancedToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.advancedToolStripMenuItem.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
@@ -995,40 +997,40 @@
             // blueScreenHacksToolStripMenuItem
             // 
             this.blueScreenHacksToolStripMenuItem.Name = "blueScreenHacksToolStripMenuItem";
-            this.blueScreenHacksToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.blueScreenHacksToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
             this.blueScreenHacksToolStripMenuItem.Text = "Additional &options";
             this.blueScreenHacksToolStripMenuItem.Click += new System.EventHandler(this.BlueScreenHacksToolStripMenuItem_Click);
             // 
             // codeCustomizationToolStripMenuItem
             // 
             this.codeCustomizationToolStripMenuItem.Name = "codeCustomizationToolStripMenuItem";
-            this.codeCustomizationToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.codeCustomizationToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
             this.codeCustomizationToolStripMenuItem.Text = "&Code customization";
             this.codeCustomizationToolStripMenuItem.Click += new System.EventHandler(this.CodeCustomizationToolStripMenuItem_Click);
             // 
             // advancedNTOptionsToolStripMenuItem
             // 
             this.advancedNTOptionsToolStripMenuItem.Name = "advancedNTOptionsToolStripMenuItem";
-            this.advancedNTOptionsToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.advancedNTOptionsToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
             this.advancedNTOptionsToolStripMenuItem.Text = "Advanced &NT options";
             this.advancedNTOptionsToolStripMenuItem.Click += new System.EventHandler(this.AdvancedNTOptionsToolStripMenuItem_Click);
             // 
             // progressTunerToolStripMenuItem
             // 
             this.progressTunerToolStripMenuItem.Name = "progressTunerToolStripMenuItem";
-            this.progressTunerToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.progressTunerToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
             this.progressTunerToolStripMenuItem.Text = "Progress &Tuner";
             this.progressTunerToolStripMenuItem.Click += new System.EventHandler(this.progressTunerToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(187, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(185, 6);
             // 
             // prankModeToolStripMenuItem
             // 
             this.prankModeToolStripMenuItem.Name = "prankModeToolStripMenuItem";
-            this.prankModeToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.prankModeToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
             this.prankModeToolStripMenuItem.Text = "&Prank mode";
             this.prankModeToolStripMenuItem.Click += new System.EventHandler(this.PrankModeToolStripMenuItem_Click);
             // 
@@ -1042,7 +1044,7 @@
             this.aboutToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Padding = new System.Windows.Forms.Padding(0);
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(36, 19);
             this.helpToolStripMenuItem.Text = "Help";
             this.helpToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.helpToolStripMenuItem.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
@@ -1052,33 +1054,33 @@
             // 
             this.contentsToolStripMenuItem.Name = "contentsToolStripMenuItem";
             this.contentsToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1;
-            this.contentsToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.contentsToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.contentsToolStripMenuItem.Text = "User manual";
             this.contentsToolStripMenuItem.Click += new System.EventHandler(this.ContentsToolStripMenuItem_Click);
             // 
             // quickHelpToolStripMenuItem
             // 
             this.quickHelpToolStripMenuItem.Name = "quickHelpToolStripMenuItem";
-            this.quickHelpToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.quickHelpToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.quickHelpToolStripMenuItem.Text = "&Quick help";
             this.quickHelpToolStripMenuItem.Click += new System.EventHandler(this.QuickHelpToolStripMenuItem_Click);
             // 
             // commandLineSyntaxToolStripMenuItem
             // 
             this.commandLineSyntaxToolStripMenuItem.Name = "commandLineSyntaxToolStripMenuItem";
-            this.commandLineSyntaxToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.commandLineSyntaxToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.commandLineSyntaxToolStripMenuItem.Text = "Command line s&yntax";
             this.commandLineSyntaxToolStripMenuItem.Click += new System.EventHandler(this.CommandLineSyntaxToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(186, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(187, 6);
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.aboutToolStripMenuItem.Text = "A&bout";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
             // 
