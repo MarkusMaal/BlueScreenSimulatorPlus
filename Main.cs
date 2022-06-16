@@ -1223,7 +1223,7 @@ namespace UltimateBlueScreenSimulator
                     else
                     {
                         me.SetText("Troubleshooting introduction", xpmsg[3]);
-                        me.SetText("Troubleshooting", string.Format("{0}\r\n\r\n{1}", xpmsg[0], xpmsg[5]));
+                        me.SetText("Troubleshooting", string.Format("{0}\r\n\r\n{1}\r\n{2}", xpmsg[0], xpmsg[5], xpmsg[6]));
                     }
                 }
             }
