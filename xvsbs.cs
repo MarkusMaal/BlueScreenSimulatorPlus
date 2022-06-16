@@ -107,6 +107,8 @@ namespace UltimateBlueScreenSimulator
                 if (colors[0] > 255) { colors[0] -= 255; }
                 if (colors[1] > 255) { colors[1] -= 255; }
                 if (colors[2] > 255) { colors[2] -= 255; }
+                technicalCode.Location = new Point(supportInfo.Location.X, supportInfo.ClientRectangle.Height + supportInfo.ClientRectangle.Top + errorCode.ClientRectangle.Top + errorCode.ClientRectangle.Height + introductionText.ClientRectangle.Height + introductionText.ClientRectangle.Top + 54);
+                dumpLabel.Location = new Point(technicalCode.Location.X, technicalCode.Location.Y + 48);
                 waterMarkText.ForeColor = Color.FromArgb(colors[0], colors[1], colors[2]);
                 Program.loadfinished = true;
                 if (fullscreen)

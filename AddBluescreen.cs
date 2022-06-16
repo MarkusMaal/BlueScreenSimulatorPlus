@@ -62,9 +62,14 @@ namespace UltimateBlueScreenSimulator
                     friendlyBox.Text = "Windows XP (640x480, Standard)";
                     iconBox.SelectedIndex = 1;
                     break;
-                case "Windows Vista/7":
-                    osBox.Text = "Windows Vista/7";
-                    friendlyBox.Text = "Windows Vista/7 (640x480, ClearType)";
+                case "Windows Vista":
+                    osBox.Text = "Windows Vista";
+                    friendlyBox.Text = "Windows Vista (640x480, Standard)";
+                    iconBox.SelectedIndex = 1;
+                    break;
+                case "Windows 7":
+                    osBox.Text = "Windows 7";
+                    friendlyBox.Text = "Windows 7 (640x480, ClearType)";
                     iconBox.SelectedIndex = 1;
                     break;
                 case "Windows Boot Manager":

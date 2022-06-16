@@ -117,13 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="supportInfo.Text" xml:space="preserve">
-    <value>Check for viruses on your computer. Remove any newly installed
-hard drives or hard drive controllers. Check your hard drive
-to make sure it is properly configured and terminated.
-Run CHKDSK /F to check for hard drive corruption, and then
-restart your computer.</value>
-  </data>
   <metadata name="screenUpdater.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>

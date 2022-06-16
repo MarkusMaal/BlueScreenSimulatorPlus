@@ -8,6 +8,8 @@ using Microsoft.Win32;
 using SimulatorDatabase;
 using System.Threading;
 using System.Net.NetworkInformation;
+using System.Collections.Generic;
+
 namespace UltimateBlueScreenSimulator
 {
     public partial class Main : Form
@@ -133,6 +135,9 @@ namespace UltimateBlueScreenSimulator
             dumpBox.Enabled = true;
             eCodeEditButton.Visible = false;
             devPCBox.Visible = false;
+            progressTuneButton.Visible = false;
+            progressTunerToolStripMenuItem.Enabled = false;
+            blackScreenBox.Visible = false;
             try
             {
                 // set current bluescreen
@@ -153,6 +158,10 @@ namespace UltimateBlueScreenSimulator
                 winMode.Visible = true;
                 memoryBox.Visible = true;
                 eCodeEditButton.Visible = true;
+                blackScreenBox.Visible = true;
+                progressTuneButton.Visible = true;
+                progressTunerToolStripMenuItem.Enabled = true;
+                blackScreenBox.Checked = me.GetBool("blackscreen");
             }
             else if (me.GetString("os") == "Windows 10")
             {
@@ -166,7 +175,9 @@ namespace UltimateBlueScreenSimulator
                 winMode.Visible = true;
                 memoryBox.Visible = true;
                 eCodeEditButton.Visible = true;
+                progressTunerToolStripMenuItem.Enabled = true;
                 devPCBox.Visible = true;
+                progressTuneButton.Visible = true;
             }
             else if (me.GetString("os") == "Windows 8/8.1")
             {
@@ -176,8 +187,10 @@ namespace UltimateBlueScreenSimulator
                 winMode.Visible = true;
                 memoryBox.Visible = true;
                 eCodeEditButton.Visible = true;
+                progressTunerToolStripMenuItem.Enabled = true;
+                progressTuneButton.Visible = true;
             }
-            else if (me.GetString("os") == "Windows Vista/7")
+            else if ((me.GetString("os") == "Windows Vista") || (me.GetString("os") == "Windows 7"))
             {
                 errorCode.Visible = true;
                 winMode.Visible = true;
@@ -188,6 +201,7 @@ namespace UltimateBlueScreenSimulator
                 addInfFile.Enabled = true;
                 advNTButton.Visible = true;
                 eCodeEditButton.Visible = true;
+                progressTunerToolStripMenuItem.Enabled = true;
             }
             else if (me.GetString("os") == "Windows XP")
             {
@@ -206,6 +220,7 @@ namespace UltimateBlueScreenSimulator
                 winMode.Visible = true;
                 checkBox1.Checked = true;
                 eCodeEditButton.Visible = true;
+                advNTButton.Visible = true;
             }
             else if (me.GetString("os") == "Windows 9x/Me")
             {
@@ -240,6 +255,15 @@ namespace UltimateBlueScreenSimulator
                 winMode.Visible = true;
                 winPanel.Visible = true;
             }
+            bool inlist = false;
+            foreach (string item in comboBox1.Items)
+            {
+                if (item == me.GetString("code"))
+                {
+                    inlist = true;
+                }
+            }
+            customCheckBox.Checked = !inlist;
             codeCustomizationToolStripMenuItem.Enabled = eCodeEditButton.Visible;
             advancedNTOptionsToolStripMenuItem.Enabled = advNTButton.Visible;
             // load options for current bluescreen
@@ -302,9 +326,11 @@ namespace UltimateBlueScreenSimulator
             ntPanel.Visible = false;
             if (windowVersion.Items.Count > 0) { windowVersion.SelectedIndex = 0; }
             string winver = "";
+            int os_build = 0;
             try
             {
                 winver = Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion", "ProductName", "").ToString();
+                os_build = Convert.ToInt32(Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion", "CurrentBuild", "0").ToString());
             }
             catch
             {
@@ -315,12 +341,12 @@ namespace UltimateBlueScreenSimulator
                 specificos = "";
             }
             //this code identifies Windows 11
-            if (winver.Contains("Windows 11"))
+            if (os_build >= 22000)
             {
                 SetOS("Windows 11");
             }
             //this code identifies Windows 10
-            if (winver.Contains("Windows 10"))
+            else if (winver.Contains("Windows 10"))
             {
                 SetOS("Windows 10");
             }
@@ -329,10 +355,15 @@ namespace UltimateBlueScreenSimulator
             {
                 SetOS("Windows 8");
             }
-            //this code identifies Windows 7 or Windows Vista
-            else if ((winver.Contains("Windows 7")) || (winver.Contains("Windows Vista")))
+            //this code identifies Windows 7
+            else if (winver.Contains("Windows 7"))
             {
-                SetOS("Windows Vista/7");
+                SetOS("Windows 7");
+            }
+            //this code identifies Windows Vista
+            else if (winver.Contains("Windows Vista"))
+            {
+                SetOS("Windows Vista");
             }
             //this code identifies Windows XP
             else if (winver.Contains("Windows XP"))
@@ -551,8 +582,6 @@ namespace UltimateBlueScreenSimulator
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            //displays "Generating..." when a bluescreen is being generated
-            //label10.Text = "Generating...";
             if (enableeggs == true)
             {
                 if (textBox2.Text.ToLower().Contains("null"))
@@ -651,46 +680,43 @@ namespace UltimateBlueScreenSimulator
         //random function
         private void Button3_Click(object sender, EventArgs e)
         {
-            Program.loadfinished = false;
-            Gen g = new Gen();
-            g.Show();
-            Thread.Sleep(10);
-            RandFunction();
-            button1.PerformClick();
+            if (MessageBox.Show("This will change random settings on various blue screens. Are you sure you want to continue?", "I'm feeling unlucky", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
+            {
+                Program.loadfinished = false;
+                Gen g = new Gen();
+                g.Show();
+                Thread.Sleep(10);
+                RandFunction();
+                button1.PerformClick();
+            }
         }
 
         internal void RandFunction()
         {
-            try
+            Random r = new Random();
+            for (int i = 0; i < Program.bluescreens.Count; i++)
             {
-                windowVersion.SelectedIndex = SetRnd(windowVersion.Items.Count - 1);
-                autoBox.Checked = Convert.ToBoolean(SetRnd(2) - 1);
-                greenBox.Checked = Convert.ToBoolean(SetRnd(2) - 1);
-                serverBox.Checked = Convert.ToBoolean(SetRnd(2) - 1);
-                qrBox.Checked = Convert.ToBoolean(SetRnd(2) - 1);
-                comboBox1.SelectedIndex = SetRnd(comboBox1.Items.Count - 1);
-                comboBox2.SelectedIndex = SetRnd(comboBox2.Items.Count - 1);
-                amdBox.Checked = Convert.ToBoolean(SetRnd(2) - 1);
-                stackBox.Checked = Convert.ToBoolean(SetRnd(2) - 1);
-                acpiBox.Checked = Convert.ToBoolean(SetRnd(2) - 1);
-                blinkBox.Checked = Convert.ToBoolean(SetRnd(2) - 1); ;
-                checkBox1.Checked = Convert.ToBoolean(SetRnd(2) - 1);
-                checkBox2.Checked = Convert.ToBoolean(SetRnd(2) - 1);
-                if (enableeggs)
+                foreach (string kvp in Program.bluescreens[i].AllBools().Keys.ToArray<string>())
                 {
-                    if (textBox1.Text == "blackscreen")
-                    {
-                        windowVersion.Items.Add("Windows Vista/7 BOOTMGR (1024x768, ClearType)");
-                        windowVersion.SelectedIndex = windowVersion.Items.Count - 1;
-                    }
+                    bool value = r.Next(0, 1) == 1;
+                    Program.bluescreens[i].SetBool(kvp, value);
                 }
-                textBox2.Text = me.GenFile();
-                if (windowVersion.SelectedIndex == 4) { checkBox1.Checked = true; }
+                Program.bluescreens[i].SetString("code", comboBox1.Items[r.Next(0, comboBox1.Items.Count - 1)].ToString());
+                if (Program.bluescreens[i].GetString("os") != "Windows 3.1x") { Program.bluescreens[i].SetString("screen_mode", comboBox2.Items[r.Next(0, comboBox2.Items.Count - 1)].ToString()); }
+                Program.bluescreens[i].SetBool("windowed", true);
+                Thread.Sleep(16);
             }
-            catch (Exception ex)
+            windowVersion.SelectedIndex = SetRnd(windowVersion.Items.Count - 1);
+            if (enableeggs)
             {
-                Console.WriteLine("\nUnspecified error: " + ex.Message + "\n");
+                if (textBox1.Text == "blackscreen")
+                {
+                    windowVersion.Items.Add("Windows Vista/7 BOOTMGR (1024x768, ClearType)");
+                    windowVersion.SelectedIndex = windowVersion.Items.Count - 1;
+                }
             }
+            textBox2.Text = me.GenFile();
+            if (windowVersion.SelectedIndex == 4) { checkBox1.Checked = true; }
         }
 
         int SetRnd(int limit)
@@ -896,7 +922,7 @@ namespace UltimateBlueScreenSimulator
             if (System.IO.File.Exists("BSSP.exe"))
             {
                 updateCheckerTimer.Enabled = false;
-                MessageBox.Show("Thank you for installing the latest version of Blue screen simulator plus :)\n\nWhat's new?\n * Typo fixed in the Windows 8/10 blue screen\n * Minor improvements\n * Executable description\n ? Added few easter eggs\n ? Beta version of the dark mode (betadark)\n ? Beta version of the Windows 7 black screen (blackscreen)", "Update was successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Thank you for installing the latest version of Blue screen simulator plus :)\n\nWhat's new?\n+ Added progress tuning capability for Windows 8+ blue screens\n+ Non-linear progress incrementation for Windows 8+ blue screens\n+ Added ability to specify custom NT error messages\n+ Stealth option for prank mode\n+ Save configurations as legacy formats (including 1.x and 2.0)\n+ Ability to modify all configurations at once\n+ Windows Vista and 7 are now separated instead of being one option\n* Updated about screen\n* Windows 11 screen is now blue\n* Windows 11 is now properly detected\n* More realistic Windows 2000 blue screen\n* Fixed bugs related to the \"I'm feeling unlucky\" button\n? Additional easter eggs", "Update was successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 int tries = 0;
                 while (System.IO.File.Exists("BSSP.exe"))
                 {
@@ -921,7 +947,7 @@ namespace UltimateBlueScreenSimulator
                 if (System.IO.File.Exists("vercheck.txt"))
                 {
                     string[] lines = System.IO.File.ReadAllLines("vercheck.txt");
-                    if (Convert.ToDouble(lines[0].Replace(".", ",").Replace("\r", "").Replace("\n", "").Trim()) > 2.0)
+                    if (Convert.ToDouble(lines[0].Replace(".", ",").Replace("\r", "").Replace("\n", "").Trim()) > 2.1)
                     {
                         updateCheckerTimer.Enabled = false;
                         System.IO.File.Delete("vercheck.txt");
@@ -993,7 +1019,7 @@ namespace UltimateBlueScreenSimulator
             {
                 try
                 {
-                    System.IO.File.WriteAllText("settings.cfg", "UpdateClose=" + postponeupdate.ToString() + "\nHashVerify=" + hashverify.ToString() + "\nAutoUpdate=" + autoupdate.ToString() + "\nShowCursor=" + showcursor.ToString() + "\nScaleMode=" + GMode + "\nMultiMode=" + Program.multidisplaymode.ToString() + "\nSeecrets=" + enableeggs.ToString() + "\nServer=" + Program.update_server);
+                    System.IO.File.WriteAllText("settings.cfg", "UpdateClose=" + postponeupdate.ToString() + "\nHashVerify=" + hashverify.ToString() + "\nAutoUpdate=" + autoupdate.ToString() + "\nShowCursor=" + showcursor.ToString() + "\nScaleMode=" + GMode + "\nMultiMode=" + Program.multidisplaymode.ToString() + "\nSeecrets=" + enableeggs.ToString() + "\nServer=" + Program.update_server + "\nRandomness=" + Program.randomness);
                 } catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
@@ -1173,14 +1199,34 @@ namespace UltimateBlueScreenSimulator
 
         private void ComboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-            try
+            if (windowVersion.SelectedIndex != -1)
             {
-                if (windowVersion.SelectedIndex != -1)
+                me.SetString("code", comboBox1.SelectedItem.ToString());
+                if ((me.GetString("os") == "Windows XP") && me.GetBool("auto"))
                 {
-                    me.SetString("code", comboBox1.SelectedItem.ToString());
+                    string[] xpmsg = Properties.Resources.xpMsg.Split(';');
+                    if (me.GetString("code").Contains("007F"))
+                    {
+                        me.SetText("Troubleshooting introduction", xpmsg[3]);
+                        me.SetText("Troubleshooting", string.Format("{0}\r\n\r\n{1}", xpmsg[9], xpmsg[10]));
+                    }
+                    else if (me.GetString("code").Contains("00C5"))
+                    {
+                        me.SetText("Troubleshooting introduction", xpmsg[0]);
+                        me.SetText("Troubleshooting", string.Format("{0}\r\n\r\n{1}\r\n\r\n{2}\r\n\r\n{3}\r\n\r\n{4}", xpmsg[1], xpmsg[2], xpmsg[3], xpmsg[4], xpmsg[5]));
+                    }
+                    else if (me.GetString("code").Contains("008E"))
+                    {
+                        me.SetText("Troubleshooting introduction", xpmsg[3]);
+                        me.SetText("Troubleshooting", string.Format("{0}\r\n\r\n{1}", xpmsg[7], xpmsg[8]));
+                    }
+                    else
+                    {
+                        me.SetText("Troubleshooting introduction", xpmsg[3]);
+                        me.SetText("Troubleshooting", string.Format("{0}\r\n\r\n{1}\r\n{2}", xpmsg[0], xpmsg[5], xpmsg[6]));
+                    }
                 }
             }
-            catch { }
         }
 
         private void TextBox2_TextChanged(object sender, EventArgs e)
@@ -1197,7 +1243,7 @@ namespace UltimateBlueScreenSimulator
                 }
             }
             me.SetString("culprit", textBox2.Text);
-            if ((me.GetString("os") == "Windows XP") || (me.GetString("os") == "Windows Vista/7"))
+            if ((me.GetString("os") == "Windows XP") || (me.GetString("os") == "Windows Vista") || (me.GetString("os") == "Windows 7"))
             {
                 try
                 {
@@ -1461,9 +1507,16 @@ namespace UltimateBlueScreenSimulator
         {
             if (!bsod_starter.IsAlive)
             {
-                waitPopup.Enabled = false;
-                this.WindowState = FormWindowState.Normal;
-                this.Show();
+                if (!closecuzhidden)
+                {
+                    waitPopup.Enabled = false;
+                    this.WindowState = FormWindowState.Normal;
+                    this.Show();
+                }
+                else
+                {
+                    this.Close();
+                }
             }
         }
 
@@ -1587,6 +1640,69 @@ namespace UltimateBlueScreenSimulator
                 settingsToolStripMenuItem.DropDown.BackColor = SystemColors.Menu;
                 settingsToolStripMenuItem.DropDown.ForeColor = SystemColors.MenuText;
             }
+        }
+
+        private void blackScreenBox_CheckedChanged(object sender, EventArgs e)
+        {
+            me.SetBool("blackscreen", blackScreenBox.Checked);
+        }
+
+        private void button4_Click_1(object sender, EventArgs e)
+        {
+            ProgressTuner pt = new ProgressTuner();
+            pt.KFrames = me.AllProgress();
+            pt.Text = string.Format("Progress tuner - {0}", me.GetString("friendlyname"));
+            if (pt.KFrames.Count > 0)
+            {
+                pt.progressTrackBar.Maximum = me.GetInt("progressmillis");
+            }
+            pt.ReloadBitmap();
+            pt.SetLabelText();
+            if (this.nightThemeToolStripMenuItem.Checked)
+            {
+                pt.BackColor = Color.Black;
+                pt.ForeColor = Color.White;
+            }
+            pt.totalTimeText.Text = ((float)me.GetInt("progressmillis") / 100f).ToString().Replace(",", ".");
+            if (pt.ShowDialog() == DialogResult.OK)
+            {
+                me.SetAllProgression(pt.KFrames.Keys.ToArray<int>(), pt.KFrames.Values.ToArray<int>());
+                me.SetInt("progressmillis", pt.progressTrackBar.Maximum);
+            }
+            pt.Dispose();
+        }
+
+        private void progressTunerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            progressTuneButton.PerformClick();
+        }
+
+        private void customCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            customMessageCode.Visible = customCheckBox.Checked;
+            customMessageLabel1.Visible = customCheckBox.Checked;
+            customMessageLabel2.Visible = customCheckBox.Checked;
+            customMessageText.Visible = customCheckBox.Checked;
+            comboBox1.Visible = !customCheckBox.Checked;
+            if (me.GetString("code").Contains("x"))
+            {
+                customMessageText.Text = me.GetString("code").Split(' ')[0];
+                customMessageCode.Text = me.GetString("code").Split('(')[1].Split('x')[1].Replace(")", "");
+                if (!customCheckBox.Checked)
+                {
+                    me.SetString("code", comboBox1.SelectedItem.ToString());
+                }
+            }
+        }
+
+        private void customMessageText_TextChanged(object sender, EventArgs e)
+        {
+            me.SetString("code", string.Format("{0} (0x{1})", customMessageText.Text, customMessageCode.Text));
+        }
+
+        private void customMessageCode_TextChanged(object sender, EventArgs e)
+        {
+            me.SetString("code", string.Format("{0} (0x{1})", customMessageText.Text, customMessageCode.Text));
         }
     }
 }

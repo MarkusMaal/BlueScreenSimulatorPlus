@@ -188,6 +188,7 @@ namespace UltimateBlueScreenSimulator
             blinkProps.Visible = false;
             fontProps.Visible = false;
             timeoutProps.Visible = false;
+            xpMsgChooser.Visible = false;
             qrProps.Visible = false;
             specificProps.Text = "";
             previewLabel.Text = "Preview: ";
@@ -233,6 +234,17 @@ namespace UltimateBlueScreenSimulator
                     HideAllProps();
                     stringProps.Visible = true;
                     specificProps.Text = "String properties";
+                    if ((me.GetString("os") == "Windows XP") && (selection.Contains("Troubleshooting")))
+                    {
+                        stringEditor.Enabled = !me.GetBool("auto");
+                        autoRadio.Checked = me.GetBool("auto");
+                        manualRadio.Checked = !me.GetBool("auto");
+                        xpMsgChooser.Visible = true;
+                    } else
+                    {
+                        stringEditor.Enabled = true;
+                        xpMsgChooser.Visible = false;
+                    }
                 }
                 else if (selection.StartsWith("String: "))
                 {
@@ -486,6 +498,24 @@ namespace UltimateBlueScreenSimulator
         private void LinkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             MessageBox.Show("They have been moved to a new location. The new location is Settings > Simulator settings > Save/Load configurations", "About the save and load button", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void autoRadio_CheckedChanged(object sender, EventArgs e)
+        {
+            if (autoRadio.Checked)
+            {
+                me.SetBool("auto", true);
+                stringEditor.Enabled = false;
+            }
+        }
+
+        private void manualRadio_CheckedChanged(object sender, EventArgs e)
+        {
+            if (manualRadio.Checked)
+            {
+                me.SetBool("auto", false);
+                stringEditor.Enabled = true;
+            }
         }
     }
 }

@@ -123,6 +123,11 @@
   <data name="hashBox.ToolTip" xml:space="preserve">
     <value>Generates a hash of the downloaded file and checks it against the original hash from the server. If they match, the installation continues, if they don't, installation will fail. It is recommended to leave this setting enabled.</value>
   </data>
+  <data name="randomnessCheckBox.ToolTip" xml:space="preserve">
+    <value>If this is checked, then while loading configuration files made with older versions of Blue Screen Simulator Plus,
+a bit of randomness is added to progress counters, which is how the 2.1 handles it by default. Note that enabling
+this may result in behaviour, which is unintended by the original configuration file author.</value>
+  </data>
   <data name="addCfg.ToolTip" xml:space="preserve">
     <value>This will let you add your own configuration for any operating system available and setup your own custom settings that are separated from other configurations. This will also carry over, if you save configurations.</value>
   </data>

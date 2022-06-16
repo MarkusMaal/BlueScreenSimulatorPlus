@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StringEdit));
-            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("Property name", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("Value", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup3 = new System.Windows.Forms.ListViewGroup("Property name", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup4 = new System.Windows.Forms.ListViewGroup("Value", System.Windows.Forms.HorizontalAlignment.Left);
             this.AllIcons = new System.Windows.Forms.ImageList(this.components);
             this.labelProps = new System.Windows.Forms.Label();
             this.MessageView = new System.Windows.Forms.ListView();
@@ -43,6 +43,9 @@
             this.colorButton = new System.Windows.Forms.Button();
             this.colorPreview = new System.Windows.Forms.Label();
             this.specificPropsFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.xpMsgChooser = new System.Windows.Forms.FlowLayoutPanel();
+            this.autoRadio = new System.Windows.Forms.RadioButton();
+            this.manualRadio = new System.Windows.Forms.RadioButton();
             this.qrProps = new System.Windows.Forms.Panel();
             this.browseButton = new System.Windows.Forms.Button();
             this.filenameLabel = new System.Windows.Forms.Label();
@@ -69,6 +72,7 @@
             this.stringProps.SuspendLayout();
             this.colorProps.SuspendLayout();
             this.specificPropsFlowLayoutPanel.SuspendLayout();
+            this.xpMsgChooser.SuspendLayout();
             this.qrProps.SuspendLayout();
             this.radioFlowLayoutPanel.SuspendLayout();
             this.timeoutProps.SuspendLayout();
@@ -105,13 +109,13 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MessageView.FullRowSelect = true;
             this.MessageView.GridLines = true;
-            listViewGroup1.Header = "Property name";
-            listViewGroup1.Name = "listViewGroup1";
-            listViewGroup2.Header = "Value";
-            listViewGroup2.Name = "listViewGroup2";
+            listViewGroup3.Header = "Property name";
+            listViewGroup3.Name = "listViewGroup1";
+            listViewGroup4.Header = "Value";
+            listViewGroup4.Name = "listViewGroup2";
             this.MessageView.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup1,
-            listViewGroup2});
+            listViewGroup3,
+            listViewGroup4});
             this.MessageView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.MessageView.HideSelection = false;
             this.MessageView.LargeImageList = this.AllIcons;
@@ -119,7 +123,7 @@
             this.MessageView.MultiSelect = false;
             this.MessageView.Name = "MessageView";
             this.MessageView.ShowGroups = false;
-            this.MessageView.Size = new System.Drawing.Size(256, 322);
+            this.MessageView.Size = new System.Drawing.Size(256, 287);
             this.MessageView.SmallImageList = this.AllIcons;
             this.MessageView.TabIndex = 0;
             this.MessageView.UseCompatibleStateImageBehavior = false;
@@ -138,7 +142,7 @@
             // 
             this.buttonOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonOK.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.buttonOK.Location = new System.Drawing.Point(610, 377);
+            this.buttonOK.Location = new System.Drawing.Point(610, 342);
             this.buttonOK.Name = "buttonOK";
             this.buttonOK.Size = new System.Drawing.Size(75, 23);
             this.buttonOK.TabIndex = 8;
@@ -149,7 +153,7 @@
             // stringProps
             // 
             this.stringProps.Controls.Add(this.stringEditor);
-            this.stringProps.Location = new System.Drawing.Point(3, 330);
+            this.stringProps.Location = new System.Drawing.Point(3, 3);
             this.stringProps.Name = "stringProps";
             this.stringProps.Size = new System.Drawing.Size(400, 175);
             this.stringProps.TabIndex = 6;
@@ -168,7 +172,7 @@
             // 
             this.colorProps.Controls.Add(this.colorButton);
             this.colorProps.Controls.Add(this.colorPreview);
-            this.colorProps.Location = new System.Drawing.Point(3, 282);
+            this.colorProps.Location = new System.Drawing.Point(3, 493);
             this.colorProps.Name = "colorProps";
             this.colorProps.Size = new System.Drawing.Size(394, 42);
             this.colorProps.TabIndex = 5;
@@ -198,23 +202,58 @@
             // 
             this.specificPropsFlowLayoutPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.specificPropsFlowLayoutPanel.Controls.Add(this.stringProps);
+            this.specificPropsFlowLayoutPanel.Controls.Add(this.xpMsgChooser);
             this.specificPropsFlowLayoutPanel.Controls.Add(this.qrProps);
             this.specificPropsFlowLayoutPanel.Controls.Add(this.timeoutProps);
             this.specificPropsFlowLayoutPanel.Controls.Add(this.fontProps);
             this.specificPropsFlowLayoutPanel.Controls.Add(this.blinkProps);
             this.specificPropsFlowLayoutPanel.Controls.Add(this.colorProps);
-            this.specificPropsFlowLayoutPanel.Controls.Add(this.stringProps);
             this.specificPropsFlowLayoutPanel.Location = new System.Drawing.Point(276, 39);
             this.specificPropsFlowLayoutPanel.Name = "specificPropsFlowLayoutPanel";
-            this.specificPropsFlowLayoutPanel.Size = new System.Drawing.Size(404, 323);
+            this.specificPropsFlowLayoutPanel.Size = new System.Drawing.Size(404, 288);
             this.specificPropsFlowLayoutPanel.TabIndex = 2;
+            // 
+            // xpMsgChooser
+            // 
+            this.xpMsgChooser.Controls.Add(this.autoRadio);
+            this.xpMsgChooser.Controls.Add(this.manualRadio);
+            this.xpMsgChooser.Location = new System.Drawing.Point(3, 184);
+            this.xpMsgChooser.Name = "xpMsgChooser";
+            this.xpMsgChooser.Size = new System.Drawing.Size(401, 24);
+            this.xpMsgChooser.TabIndex = 7;
+            this.xpMsgChooser.Visible = false;
+            // 
+            // autoRadio
+            // 
+            this.autoRadio.AutoSize = true;
+            this.autoRadio.Checked = true;
+            this.autoRadio.Location = new System.Drawing.Point(3, 3);
+            this.autoRadio.Name = "autoRadio";
+            this.autoRadio.Size = new System.Drawing.Size(47, 17);
+            this.autoRadio.TabIndex = 0;
+            this.autoRadio.TabStop = true;
+            this.autoRadio.Text = "Auto";
+            this.autoRadio.UseVisualStyleBackColor = true;
+            this.autoRadio.CheckedChanged += new System.EventHandler(this.autoRadio_CheckedChanged);
+            // 
+            // manualRadio
+            // 
+            this.manualRadio.AutoSize = true;
+            this.manualRadio.Location = new System.Drawing.Point(56, 3);
+            this.manualRadio.Name = "manualRadio";
+            this.manualRadio.Size = new System.Drawing.Size(60, 17);
+            this.manualRadio.TabIndex = 1;
+            this.manualRadio.Text = "Manual";
+            this.manualRadio.UseVisualStyleBackColor = true;
+            this.manualRadio.CheckedChanged += new System.EventHandler(this.manualRadio_CheckedChanged);
             // 
             // qrProps
             // 
             this.qrProps.Controls.Add(this.browseButton);
             this.qrProps.Controls.Add(this.filenameLabel);
             this.qrProps.Controls.Add(this.radioFlowLayoutPanel);
-            this.qrProps.Location = new System.Drawing.Point(3, 3);
+            this.qrProps.Location = new System.Drawing.Point(3, 214);
             this.qrProps.Name = "qrProps";
             this.qrProps.Size = new System.Drawing.Size(394, 71);
             this.qrProps.TabIndex = 1;
@@ -290,7 +329,7 @@
             // 
             this.timeoutProps.Controls.Add(this.timeoutBox);
             this.timeoutProps.Controls.Add(this.secondsLabel);
-            this.timeoutProps.Location = new System.Drawing.Point(3, 80);
+            this.timeoutProps.Location = new System.Drawing.Point(3, 291);
             this.timeoutProps.Name = "timeoutProps";
             this.timeoutProps.Size = new System.Drawing.Size(394, 29);
             this.timeoutProps.TabIndex = 2;
@@ -317,7 +356,7 @@
             // 
             this.fontProps.Controls.Add(this.fontChangeButton);
             this.fontProps.Controls.Add(this.fontPreview);
-            this.fontProps.Location = new System.Drawing.Point(3, 115);
+            this.fontProps.Location = new System.Drawing.Point(3, 326);
             this.fontProps.Name = "fontProps";
             this.fontProps.Size = new System.Drawing.Size(394, 84);
             this.fontProps.TabIndex = 3;
@@ -348,7 +387,7 @@
             this.blinkProps.Controls.Add(this.speedTrackbar);
             this.blinkProps.Controls.Add(this.blinkingDash);
             this.blinkProps.Controls.Add(this.previewLabel);
-            this.blinkProps.Location = new System.Drawing.Point(3, 205);
+            this.blinkProps.Location = new System.Drawing.Point(3, 416);
             this.blinkProps.Name = "blinkProps";
             this.blinkProps.Size = new System.Drawing.Size(394, 71);
             this.blinkProps.TabIndex = 4;
@@ -400,7 +439,7 @@
             // 
             this.whereTheButtonsLink.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.whereTheButtonsLink.AutoSize = true;
-            this.whereTheButtonsLink.Location = new System.Drawing.Point(12, 383);
+            this.whereTheButtonsLink.Location = new System.Drawing.Point(12, 348);
             this.whereTheButtonsLink.Name = "whereTheButtonsLink";
             this.whereTheButtonsLink.Size = new System.Drawing.Size(189, 13);
             this.whereTheButtonsLink.TabIndex = 7;
@@ -412,7 +451,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(697, 412);
+            this.ClientSize = new System.Drawing.Size(697, 377);
             this.Controls.Add(this.whereTheButtonsLink);
             this.Controls.Add(this.specificPropsFlowLayoutPanel);
             this.Controls.Add(this.buttonOK);
@@ -430,6 +469,8 @@
             this.stringProps.PerformLayout();
             this.colorProps.ResumeLayout(false);
             this.specificPropsFlowLayoutPanel.ResumeLayout(false);
+            this.xpMsgChooser.ResumeLayout(false);
+            this.xpMsgChooser.PerformLayout();
             this.qrProps.ResumeLayout(false);
             this.qrProps.PerformLayout();
             this.radioFlowLayoutPanel.ResumeLayout(false);
@@ -481,5 +522,8 @@
         private System.Windows.Forms.OpenFileDialog customQRBrowser;
         private System.Windows.Forms.LinkLabel whereTheButtonsLink;
         internal System.Windows.Forms.ImageList AllIcons;
+        private System.Windows.Forms.FlowLayoutPanel xpMsgChooser;
+        private System.Windows.Forms.RadioButton autoRadio;
+        private System.Windows.Forms.RadioButton manualRadio;
     }
 }

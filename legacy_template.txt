@@ -1,0 +1,91 @@
+﻿*** Blue screen simulator plus 1.11 ***
+FACE :(
+MODERN 16:113:170,255:255:255
+W2K 0:0:128,255:255:255
+NT34 0:0:168,170:170:170
+W9XME 0:0:170,255:255:255
+W9XME_HL 170:170:170,0:0:170
+--STRINGBUILD START--
+Windows//System is busy. //WARNING!//An error has occurred. To continue:
+
+Press Enter to return to Windows, or
+
+Press CTRL+ALT+DEL to restart your computer. If you do this,
+you will lose any unsaved information in all open applications.
+
+Error: {0}//Press any key//Altough you can use CTRL+ALT+DEL to quit an application that has
+stopped responding to the system, there is no application in this
+state.
+To quit an application, use the application's quit or exit command,
+or choose the Close command from the Control menu.
+*  Press any key to return to Windows
+*  Press CTRL+ALT+DEL again to restart your computer. You will
+lose any unsaved information in all applications.//100//A fatal exception 0E has occurred at {0}:{1}. The current
+application will be terminated.
+
+*  Press any key to terminate current application
+*  Press CTRL+ALT+DEL again to restart your computer. You will
+   lose any unsaved information in all applications.//A fatal exception 0E has occurred at {0}:{1} in VXD VMM(01) +
+{2}. The current application will be terminated.
+
+*  Press any key to terminate current application
+*  Press CTRL+ALT+DEL again to restart your computer. You will
+   lose any unsaved information in all applications.//The system is busy waiting for the Close Program dialog box to be
+displayed.  You can wait and see if it appears, or you can restart
+your computer.
+
+*  Press any key to return to Windows and wait.
+*  Press CTRL+ALT+DEL again to restart your computer. You will
+   lose any unsaved information in programs that are running.//The system is either busy or has become unstable. You can wait and
+see if it becomes available again, or you can restart your computer.
+
+*  Press any key to return to Windows and wait.
+*  Press CTRL+ALT+DEL again to restart your computer. You will
+   lose any unsaved information in programs that are running.
+//A problem has occurred and Windows CE has been shut down to prevent damage to your
+computer.//If you will try to restart your computer, press Ctrl+Alt+Delete.//Technical information://*** STOP: {0} ({1})//The computer will restart automatically
+after {0} seconds.//30//*** STOP: {0} ({1})//CPUID: {0} 6.3.3 irql:lf SYSVER 0xf0000565//Dll Base DateStmp - Name//{0} {1} - {2}//Address  dword dump   Build [1381]                            - Name//{0} {1} {2} {3} {4} {5}           - {6}//Restart and set the recovery options in the system control panel
+or the /CRASHDEBUG system start option.//*** STOP: {0} ({1})//If this is the first time you've seen this Stop error screen,
+restart your computer. If this screen appears again, follow
+these steps://A problem has been detected and Windows has been shut down to prevent damage
+to your computer.//Check for viruses on your computer. Remove any newly installed
+hard drives or hard drive controllers. Check your hard drive
+to make sure it is properly configured and terminated.
+Run CHKDSK /F to check for hard drive corruption, and then
+restart your computer.
+//Refer to your Getting Started manual for more information on
+troubleshooting Stop errors.//If this is the first time you've seen this Stop error screen,
+restart your computer. If this screen appears again, follow
+these steps://Check to make sure any new hardware or software is properly installed.
+If this is a new installation, ask your hardware or software manufacturer
+for any Windows updates you might need.
+
+If problems continue, disable or remove any newly installed hardware
+or software. Disable BIOS memory options such as caching or shadowing.
+If you need to use Safe mode to remove or disable components, restart
+your computer, press F8 to select Advanced Startup Options, and then
+select Safe Mode.//Technical information://*** STOP: {0} ({1})//Beginning dump of physical memory
+Physical memory dump complete.//Contact your system administrator or technical support group for further
+assistance.
+Contact your system admin or technical support group for further assistance.//Dumping physical memory to disk:{0}//Your PC ran into a problem and needs to restart. We're just
+collecting some error info, and then you can restart. ({0}%
+complete)//Your PC ran into a problem that it couldn't
+handle and now it needs to restart.//You can search for the error online: {0}//Your PC ran into a problem and needs to restart. We're just
+collecting some error info, and then you can restart.//Your PC ran into a problem and needs to restart. We're just
+collecting some error info, and then we'll restart for you.//For more information about this issue and possible fixes, visit http://windows.com/stopcode//What failed: {0}//{0}% complete//If you call a support person, give them this info:
+
+Stop code: {0}//--STRINGBUILD END--
+--FONT START--
+emotiFont: Segoe UI,Size=102,Units=3,GdiCharSet=1,GdiVerticalFont=False,Bold=False,Italic=False,Underline=False
+modernTextFont: Segoe UI,Size=20,Units=3,GdiCharSet=1,GdiVerticalFont=False,Bold=False,Italic=False,Underline=False
+modernDetailFont: Segoe UI,Size=11,Units=3,GdiCharSet=1,GdiVerticalFont=False,Bold=False,Italic=False,Underline=False
+label50: Consolas,Size=9,4,Units=3,GdiCharSet=1,GdiVerticalFont=False,Bold=False,Italic=False,Underline=False
+label49: Lucida Console,Size=10,4,Units=3,GdiCharSet=1,GdiVerticalFont=False,Bold=False,Italic=False,Underline=False
+label39: Lucida Console,Size=8,Units=3,GdiCharSet=1,GdiVerticalFont=False,Bold=True,Italic=False,Underline=False
+label26: Lucida Console,Size=10,4,Units=3,GdiCharSet=1,GdiVerticalFont=False,Bold=False,Italic=False,Underline=False
+--FONT END--
+--MISC START--
+qrSize: 110
+qrType: Default
+qrPath: 
+--MISC END--

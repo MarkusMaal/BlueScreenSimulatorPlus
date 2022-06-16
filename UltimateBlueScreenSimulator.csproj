@@ -151,6 +151,12 @@
       <DependentUpon>PrankMode.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
+    <Compile Include="ProgressTuner.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProgressTuner.Designer.cs">
+      <DependentUpon>ProgressTuner.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SimulatorDatabase.cs" />
     <Compile Include="Splash.cs">
@@ -270,6 +276,9 @@
     <EmbeddedResource Include="PrankMode.resx">
       <DependentUpon>PrankMode.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ProgressTuner.resx">
+      <DependentUpon>ProgressTuner.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -314,8 +323,6 @@
       <DependentUpon>xvsbs.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
-    <None Include="bin\Release\default.bscfg" />
-    <None Include="bin\Release\final.bat" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -327,50 +334,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\bsodqr.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\BSSP manual.pdf" />
-    <None Include="Resources\COPYING" />
-    <None Include="Resources\rasters.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\rasterNT.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\rasters2.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\NTERRORDATABASE.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="bsodgen_npJ_icon.ico" />
     <Content Include="bssp2.ico" />
-    <None Include="Resources\bsodbanner2.png" />
-    <None Include="Resources\round_corners.png" />
-    <None Include="Resources\rasters3.bmp" />
-    <None Include="Resources\doscii.png" />
-    <None Include="Resources\win2_splash.bmp" />
-    <None Include="Resources\win1_splash.bmp" />
-    <None Include="Resources\win1_splash.png" />
-    <None Include="Resources\untitled.wav" />
-    <None Include="Resources\dummy.png" />
-    <None Include="Resources\CULPRIT_FILES.txt" />
-    <None Include="Resources\corner_br1.png" />
-    <None Include="Resources\corner_tr.png" />
-    <None Include="Resources\corner_tl.png" />
-    <None Include="Resources\corner_br.png" />
-    <None Include="Resources\corner_bl.png" />
-    <None Include="Resources\MarkusTegelane_element_brandpic.png" />
-    <None Include="Resources\verifile.png" />
-    <None Include="Resources\msoftware.png" />
-    <None Include="Resources\bsodbanner.png" />
-    <None Include="Resources\success.gif" />
-    <None Include="Resources\pending.gif" />
-    <None Include="Resources\failure.gif" />
-    <None Include="Resources\current1.gif" />
-    <None Include="Resources\current.gif" />
-    <None Include="Resources\bsodqr_transparent.png" />
+    <Content Include="legacy_template.txt" />
+    <None Include="Resources\bsodbanner21.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

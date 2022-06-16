@@ -120,6 +120,7 @@ namespace SimulatorDatabase
         readonly IDictionary<string, bool> bools;
         readonly IDictionary<string, int> ints;
         readonly IDictionary<string, string> strings;
+        readonly IDictionary<int, int> progression;
 
         private readonly Random r;
 
@@ -140,6 +141,7 @@ namespace SimulatorDatabase
             this.bools = new Dictionary<string, bool>();
             this.ints = new Dictionary<string, int>();
             this.strings = new Dictionary<string, string>();
+            this.progression = new Dictionary<int, int>();
             this.font = new Font("Lucida Console", 10.4f, FontStyle.Regular);
             if (autosetup) { SetOSSpecificDefaults(); }
         }
@@ -147,6 +149,7 @@ namespace SimulatorDatabase
         public IDictionary<string, bool> AllBools() { return this.bools; }
         public IDictionary<string, int> AllInts() { return this.ints; }
         public IDictionary<string, string> AllStrings() { return this.strings; }
+        public IDictionary<int, int> AllProgress() { return this.progression; }
 
         // blue screen properties
         public bool GetBool(string name)
@@ -208,6 +211,12 @@ namespace SimulatorDatabase
             this.titles.Clear();
             this.texts.Clear();
         }
+
+        public void ClearProgress()
+        {
+            this.progression.Clear();
+        }
+
         public void SetString(string name, string value)
         {
             switch (name)
@@ -348,6 +357,39 @@ namespace SimulatorDatabase
         }
 
 
+
+        // progress keyframes
+        public int GetProgression(int name)
+        {
+            if (this.progression.ContainsKey(name))
+            {
+                return this.progression[name];
+            }
+            else
+            {
+                return 0;
+            }
+        }
+        public void SetProgression(int name, int value)
+        {
+            if (this.progression.ContainsKey(name))
+            {
+                this.progression[name] = value;
+            }
+            else
+            {
+                this.progression.Add(name, value);
+            }
+        }
+
+        public void SetAllProgression(int[] keys, int[] values)
+        {
+            this.progression.Clear();
+            for (int i = 0; i < keys.Length; i++)
+            {
+                this.progression[keys[i]] = values[i];
+            }
+        }
 
         //GenAddress uses the last function to generate multiple error address codes
         public string GenAddress(int count, int places, bool lower)
@@ -491,7 +533,10 @@ namespace SimulatorDatabase
                 case "Windows 8/8.1":
                     SetupWin8(new WXBS());
                     break;
-                case "Windows Vista/7":
+                case "Windows 7":
+                    SetupVista(new Vistabs());
+                    break;
+                case "Windows Vista":
                     SetupVista(new Vistabs());
                     break;
                 case "Windows XP":
@@ -623,12 +668,8 @@ namespace SimulatorDatabase
                 bs.fullscreen = !this.GetBool("windowed");
                 bs.waterMarkText.Visible = this.GetBool("watermark");
                 if (this.GetBool("show_file")) { bs.whatfail = this.GetString("culprit"); }
-                bs.errorCode.Text = "*** STOP: " + this.GetString("code").Split(' ')[1].ToString().Replace(")", "").Replace("(", "").ToString() + " (" +
-                                    GenHex(8, this.GetString("ecode1")) + ", " +
-                                    GenHex(8, this.GetString("ecode2")) + ", " +
-                                    GenHex(8, this.GetString("ecode3")) + ", " +
-                                    GenHex(8, this.GetString("ecode4")) + ")";
-                bs.errorCode.Text = bs.errorCode.Text + "\n" + this.GetString("code").Split(' ')[0].ToString();
+                bs.errorCode = string.Format(this.GetTexts()["Error code formatting"].Replace("{1}", "0x{1},0x{2},0x{3},0x{4}"), this.GetString("code").Split(' ')[1].ToString().Replace(")", "").Replace("(", "").ToString(), GenHex(8, this.GetString("ecode1")), GenHex(8, this.GetString("ecode2")), GenHex(8, this.GetString("ecode3")), GenHex(8, this.GetString("ecode4")));
+                bs.errorCode = bs.errorCode + "\n" + this.GetString("code").Split(' ')[0].ToString();
             }
             catch (Exception ex)
             {
@@ -699,6 +740,7 @@ namespace SimulatorDatabase
             bs.close = GetBool("autoclose");
             bs.green = GetBool("insider");
             bs.server = GetBool("server");
+            bs.maxprogressmillis = GetInt("progressmillis");
             bs.w11 = w11;
             bs.memCodes.Text = "0x" + GenHex(16, GetString("ecode1")) + "\r\n0x" +
                                 GenHex(16, GetString("ecode2")) + "\r\n0x" +
@@ -732,6 +774,7 @@ namespace SimulatorDatabase
             bs.emoticonLabel.Text = this.GetString("emoticon");
             bs.BackColor = this.GetTheme(true);
             bs.ForeColor = this.GetTheme(false);
+            bs.maxprogressmillis = GetInt("progressmillis");
             bs.qr = false;
             bs.w8 = true;
             bs.close = GetBool("autoclose");
@@ -895,13 +938,16 @@ namespace SimulatorDatabase
                     PushText("Troubleshooting introduction", "If this is the first time you've seen this Stop error screen,\r\nrestart your computer. If this screen appears again, follow\r\nthese steps: ");
                     PushText("Troubleshooting text", "Check for viruses on your computer. Remove any newly installed\r\nhard drives or hard drive controllers. Check your hard drive\r\nto make sure it is properly configured and terminated.\r\nRun CHKDSK /F to check for hard drive corruption, and then\r\nrestart your computer.");
                     PushText("Additional troubleshooting information", "Refer to your Getting Started manual for more information on\r\ntroubleshooting Stop errors.");
+                    PushText("File information", "*** Address {0} base at {1}, DateStamp {2} - {3}");
                     SetFont("Lucida Console", 8.0f, FontStyle.Bold);
                     SetString("friendlyname", "Windows 2000 Professional/Server Family (640x480, Standard)");
                     SetTheme(RGB(0, 0, 128), RGB(255, 255, 255));
-
+                    string[] inspirw2k = { "RRRRRRRR", "RRRRRRRR", "RRRRRRRR" };
+                    SetString("culprit", GenFile(true));
+                    PushFile(GetString("culprit"), inspirw2k);
                     SetString("code", "IRQL_NOT_LESS_OR_EQUAL (0x0000000A)");
                     SetBool("show_description", true);
-                    SetBool("font_support", true);
+                    SetBool("font_support", false);
                     break;
                 case "Windows XP":
                     this.icon = "3D flag";
@@ -913,6 +959,7 @@ namespace SimulatorDatabase
                     PushText("Culprit file", "The problem seems to be caused by the following file: ");
                     PushText("Physical memory dump", "Beginning dump of physical memory\r\nPhysical memory dump complete.");
                     PushText("Technical support", "Contact your system administrator or technical support group for further\r\nassistance.");
+                    SetBool("auto", true);
                     SetFont("Lucida Console", 9.7f, FontStyle.Regular);
                     SetString("friendlyname", "Windows XP (640x480, Standard)");
                     string[] inspirb = { "RRRRRRRR", "RRRRRRRR", "RRRRRRRR" };
@@ -925,7 +972,34 @@ namespace SimulatorDatabase
                     SetBool("show_description", true);
                     SetBool("font_support", true);
                     break;
-                case "Windows Vista/7":
+                case "Windows Vista":
+                    this.icon = "3D flag";
+                    PushText("A problem has been detected...", "A problem has been detected and Windows has been shut down to prevent damage\r\nto your computer.");
+                    PushText("Troubleshooting introduction", "If this is the first time you've seen this Stop error screen,\r\nrestart your computer. If this screen appears again, follow\r\nthese steps:");
+                    PushText("Troubleshooting", "Check to make sure any new hardware or software is properly installed.\r\nIf this is a new installation, ask your hardware or software manufacturer\r\nfor any Windows updates you might need.\r\n\r\nIf problems continue, disable or remove any newly installed hardware\r\nor software. Disable BIOS memory options such as caching or shadowing.\r\nIf you need to use Safe mode to remove or disable components, restart\r\nyour computer, press F8 to select Advanced Startup Options, and then\r\nselect Safe Mode.");
+                    PushText("Technical information", "Technical information:");
+                    PushText("Technical information formatting", "*** STOP: {0} ({1})");
+                    PushText("Collecting data for crash dump", "Collecting data for crash dump ...");
+                    PushText("Initializing crash dump", "Initializing disk for crash dump ...");
+                    PushText("Begin dump", "Beginning dump of physical memory.");
+                    PushText("End dump", "Physical memory dump complete.");
+                    PushText("Physical memory dump", "Dumping physical memory to disk:{0}");
+                    PushText("Culprit file", "The problem seems to be caused by the following file: ");
+                    PushText("Culprit file memory address", "***  {0} - Address {1} base at {2}, DateStamp {3}");
+                    PushText("Technical support", "Contact your system admin or technical support group for further assistance.");
+                    SetFont("Lucida Console", 9.4f, FontStyle.Regular);
+                    SetString("friendlyname", "Windows Vista (640x480, Standard)");
+                    SetTheme(RGB(0, 0, 128), RGB(255, 255, 255));
+
+                    SetBool("autoclose", true);
+                    SetString("code", "IRQL_NOT_LESS_OR_EQUAL (0x0000000A)");
+                    string[] inspir = { "RRRRRRRR", "RRRRRRRR", "RRRRRRRR" };
+                    SetString("culprit", GenFile(true));
+                    PushFile(GetString("culprit"), inspir);
+                    SetBool("show_description", true);
+                    SetBool("font_support", true);
+                    break;
+                case "Windows 7":
                     this.icon = "3D flag";
                     PushText("A problem has been detected...", "A problem has been detected and Windows has been shut down to prevent damage\r\nto your computer.");
                     PushText("Troubleshooting introduction", "If this is the first time you've seen this Stop error screen,\r\nrestart your computer. If this screen appears again, follow\r\nthese steps:");
@@ -941,14 +1015,14 @@ namespace SimulatorDatabase
                     PushText("Culprit file memory address", "***  {0} - Address {1} base at {2}, DateStamp {3}");
                     PushText("Technical support", "Contact your system admin or technical support group for further assistance.");
                     SetFont("Consolas", 9.4f, FontStyle.Regular);
-                    SetString("friendlyname", "Windows Vista/7 (640x480, ClearType)");
+                    SetString("friendlyname", "Windows 7 (640x480, ClearType)");
                     SetTheme(RGB(0, 0, 128), RGB(255, 255, 255));
 
                     SetBool("autoclose", true);
                     SetString("code", "IRQL_NOT_LESS_OR_EQUAL (0x0000000A)");
-                    string[] inspir = { "RRRRRRRR", "RRRRRRRR", "RRRRRRRR" };
+                    string[] inspirc = { "RRRRRRRR", "RRRRRRRR", "RRRRRRRR" };
                     SetString("culprit", GenFile(true));
-                    PushFile(GetString("culprit"), inspir);
+                    PushFile(GetString("culprit"), inspirc);
                     SetBool("show_description", true);
                     SetBool("font_support", true);
                     break;
@@ -966,6 +1040,7 @@ namespace SimulatorDatabase
 
                     SetBool("autoclose", true);
                     SetString("code", "IRQL_NOT_LESS_OR_EQUAL (0x0000000A)");
+                    SetDefaultProgression();
                     SetBool("show_description", true);
                     SetBool("font_support", true);
                     break;
@@ -989,10 +1064,12 @@ namespace SimulatorDatabase
                     SetBool("winxplus", true);
                     SetBool("autoclose", true);
                     SetBool("qr", true);
+                    SetBool("device", true);
                     SetString("qr_file", "local:0");
                     SetString("code", "IRQL_NOT_LESS_OR_EQUAL (0x0000000A)");
                     SetBool("show_description", true);
                     SetBool("font_support", true);
+                    SetDefaultProgression();
                     break;
                 case "Windows 11":
                     this.icon = "2D window";
@@ -1005,21 +1082,44 @@ namespace SimulatorDatabase
                     PushText("Progress", "{0}% complete");
                     SetInt("qr_size", 110);
                     SetString("qr_file", "local:0");
-                    SetFont("Segoe UI Light", 19.4f, FontStyle.Regular);
-                    SetTheme(RGB(0, 0, 0), RGB(255, 255, 255));
+                    SetFont("Segoe UI Semilight", 19.4f, FontStyle.Regular);
+                    SetTheme(RGB(0, 0, 128), RGB(255, 255, 255));
                     SetString("friendlyname", "Windows 11 (Native, ClearType)");
                     SetInt("margin-x", 9);
                     SetInt("margin-y", 12);
 
                     SetBool("winxplus", true);
                     SetBool("autoclose", true);
+                    SetBool("blackscreen", false);
                     SetBool("qr", true);
                     SetString("qr_file", "local:0");
                     SetString("code", "IRQL_NOT_LESS_OR_EQUAL (0x0000000A)");
+                    SetDefaultProgression();
                     SetBool("show_description", true);
                     SetBool("font_support", true);
                     break;
             }
+        }
+
+        public void SetDefaultProgression()
+        {
+            int totalmillis = 100;
+            int percent = 0;
+            while (percent < 100)
+            {
+                int val = r.Next(0, 9);
+                if (val + percent > 100)
+                {
+                    val = 100 - percent;
+                }
+                if (val != 0)
+                {
+                    SetProgression(totalmillis, val);
+                    percent += val;
+                }
+                totalmillis += 100;
+            }
+            SetInt("progressmillis", totalmillis);
         }
     }
 }

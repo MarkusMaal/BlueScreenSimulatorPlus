@@ -9,6 +9,7 @@ namespace UltimateBlueScreenSimulator
     public partial class PrankMode : Form
     {
         readonly string releaseId = Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion", "ProductName", "").ToString();
+        readonly int buildNumber = Convert.ToInt32(Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion", "CurrentBuild", "0").ToString());
 
         string MsgBoxMessage = "Enter a message here.";
         string MsgBoxTitle = "Enter a title here";
@@ -333,18 +334,32 @@ namespace UltimateBlueScreenSimulator
         private void Button3_Click(object sender, EventArgs e)
         {
             this.Close();
+            Program.f1.closecuzhidden = false;
         }
 
         private void Button2_Click(object sender, EventArgs e)
         {
+            string messageA = "The program will now be hidden. Once the prank has been triggered, the program will reopen itself.";
+            string messageB = "The program will now be hidden. Once the prank has been triggered, the program will reopen iteself and then close after exiting the blue screen.";
+            string message = "You are not " + /* garbage, please trust me on this! */
+                             "supposed " /*ly, they were hanging out... */ +
+                             /*...*/ "to " + "see " /* who actually did this! */ +
+                             "this " + /* message was for you */ ", John!";
+            message = messageB;
+            if (closePrank.Checked)
+            {
+                message = messageA;
+            }
             //this confirms the action
-            if (MessageBox.Show("The program will now be hidden. Once the prank has been triggered, the program will reopen itself.", "Prank mode will begin if you click OK", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.OK)
+            if (MessageBox.Show(message, "Prank mode will begin if you click OK", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.OK)
             {
                 //this gets the Windows product name
                 string winver = releaseId;
+
                 //this makes sure that the blue screen type matches the OS
                 if (bestMatchRadio.Checked == true)
                 {
+                    if (buildNumber >= 22000) { winver = "Windows 11"; }
                     Program.f1.winMode.Checked = false;
                     for (int i = 0; i < Program.bluescreens.Count; i++)
                     {
@@ -398,11 +413,6 @@ namespace UltimateBlueScreenSimulator
         private void MaskedTextBox1_TextChanged(object sender, EventArgs e)
         {
             time = timerBox.Text.Split(':');
-        }
-
-        private void RadioButton1_CheckedChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void RadioButton15_CheckedChanged(object sender, EventArgs e)
@@ -493,6 +503,19 @@ namespace UltimateBlueScreenSimulator
             {
                 letCloseBox.Enabled = !blackninja.Contains(me.GetString("os"));
                 letCloseBox.Checked = true;
+            }
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            Program.f1.closecuzhidden = !closePrank.Checked;
+        }
+
+        private void PrankMode_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (Program.f1.Visible)
+            {
+                Program.f1.closecuzhidden = false;
             }
         }
     }

@@ -293,7 +293,7 @@ namespace UltimateBlueScreenSimulator
             List<string> blacklist = new List<string>();
             List<string> whitelist = new List<string>();
             string[] bl = { "Windows 3.1x", "Windows 1.x/2.x", "Windows CE" };
-            string[] wl = { "Windows NT 3.x/4.0", "Windows Vista/7", "Windows XP" };
+            string[] wl = { "Windows NT 3.x/4.0", "Windows Vista", "Windows 7", "Windows XP", "Windows 2000" };
             blacklist.AddRange(bl);
             whitelist.AddRange(wl);
             if (blacklist.Contains(me.GetString("os")))

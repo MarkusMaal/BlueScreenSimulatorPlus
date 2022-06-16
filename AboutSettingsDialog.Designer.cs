@@ -65,21 +65,25 @@
             this.noUpdatesRadio = new System.Windows.Forms.RadioButton();
             this.updatePanelHeading = new System.Windows.Forms.Label();
             this.simulatorSettingsPanel = new System.Windows.Forms.TabPage();
+            this.label1 = new System.Windows.Forms.Label();
+            this.selectAllBox = new System.Windows.Forms.CheckBox();
+            this.randomnessCheckBox = new System.Windows.Forms.CheckBox();
             this.devFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.devSplashButton = new System.Windows.Forms.Button();
             this.devDictEditButton = new System.Windows.Forms.Button();
             this.devNewAllButton = new System.Windows.Forms.Button();
             this.devNukeAllButton = new System.Windows.Forms.Button();
             this.devRestartApp = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.multiDisplayBox = new System.Windows.Forms.ComboBox();
             this.multiDisplayLabel = new System.Windows.Forms.Label();
             this.configEditingButtonsFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.resetButton = new System.Windows.Forms.Button();
             this.resetHackButton = new System.Windows.Forms.Button();
-            this.addCfg = new System.Windows.Forms.Button();
             this.removeCfg = new System.Windows.Forms.Button();
             this.saveCfg = new System.Windows.Forms.Button();
             this.loadCfg = new System.Windows.Forms.Button();
+            this.addCfg = new System.Windows.Forms.Button();
             this.osName = new System.Windows.Forms.Label();
             this.configList = new System.Windows.Forms.ListBox();
             this.eggHunterButton = new System.Windows.Forms.CheckBox();
@@ -154,7 +158,7 @@
             // logoPictureBox
             // 
             this.logoPictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.logoPictureBox.Image = global::UltimateBlueScreenSimulator.Properties.Resources.bsodbanner2;
+            this.logoPictureBox.Image = global::UltimateBlueScreenSimulator.Properties.Resources.bsodbanner21;
             this.logoPictureBox.Location = new System.Drawing.Point(3, 3);
             this.logoPictureBox.Name = "logoPictureBox";
             this.aboutTable.SetRowSpan(this.logoPictureBox, 7);
@@ -162,6 +166,7 @@
             this.logoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.logoPictureBox.TabIndex = 12;
             this.logoPictureBox.TabStop = false;
+            this.logoPictureBox.Click += new System.EventHandler(this.LogoPictureBox_Click);
             // 
             // logoDisplayFlowPanel
             // 
@@ -278,7 +283,7 @@
             this.srcCodeButton.TabIndex = 0;
             this.srcCodeButton.Text = "Source code";
             this.srcCodeButton.UseVisualStyleBackColor = true;
-            this.srcCodeButton.Click += new System.EventHandler(this.button2_Click);
+            this.srcCodeButton.Click += new System.EventHandler(this.Button2_Click);
             // 
             // copyingButton
             // 
@@ -288,7 +293,7 @@
             this.copyingButton.TabIndex = 1;
             this.copyingButton.Text = "Copying";
             this.copyingButton.UseVisualStyleBackColor = true;
-            this.copyingButton.Click += new System.EventHandler(this.button3_Click);
+            this.copyingButton.Click += new System.EventHandler(this.Button3_Click);
             // 
             // rndFactButton
             // 
@@ -298,7 +303,7 @@
             this.rndFactButton.TabIndex = 2;
             this.rndFactButton.Text = "Random factoid";
             this.rndFactButton.UseVisualStyleBackColor = true;
-            this.rndFactButton.Click += new System.EventHandler(this.button4_Click);
+            this.rndFactButton.Click += new System.EventHandler(this.Button4_Click);
             // 
             // aboutSettingsTabControl
             // 
@@ -579,6 +584,9 @@
             // 
             // simulatorSettingsPanel
             // 
+            this.simulatorSettingsPanel.Controls.Add(this.label1);
+            this.simulatorSettingsPanel.Controls.Add(this.selectAllBox);
+            this.simulatorSettingsPanel.Controls.Add(this.randomnessCheckBox);
             this.simulatorSettingsPanel.Controls.Add(this.devFlowPanel);
             this.simulatorSettingsPanel.Controls.Add(this.multiDisplayBox);
             this.simulatorSettingsPanel.Controls.Add(this.multiDisplayLabel);
@@ -599,6 +607,41 @@
             this.simulatorSettingsPanel.Text = "Simulator settings";
             this.simulatorSettingsPanel.UseVisualStyleBackColor = true;
             // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.label1.Location = new System.Drawing.Point(377, 95);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(1, 96);
+            this.label1.TabIndex = 26;
+            // 
+            // selectAllBox
+            // 
+            this.selectAllBox.AutoSize = true;
+            this.selectAllBox.CheckAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.selectAllBox.Location = new System.Drawing.Point(378, 191);
+            this.selectAllBox.Name = "selectAllBox";
+            this.selectAllBox.Size = new System.Drawing.Size(153, 17);
+            this.selectAllBox.TabIndex = 25;
+            this.selectAllBox.Text = "Select all configurations [?]";
+            this.selectAllBox.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.helpTip.SetToolTip(this.selectAllBox, "Selects all configurations at once");
+            this.selectAllBox.UseVisualStyleBackColor = true;
+            this.selectAllBox.CheckedChanged += new System.EventHandler(this.SelectAllBox_CheckedChanged);
+            // 
+            // randomnessCheckBox
+            // 
+            this.randomnessCheckBox.AutoSize = true;
+            this.randomnessCheckBox.Location = new System.Drawing.Point(20, 192);
+            this.randomnessCheckBox.Name = "randomnessCheckBox";
+            this.randomnessCheckBox.Size = new System.Drawing.Size(333, 17);
+            this.randomnessCheckBox.TabIndex = 24;
+            this.randomnessCheckBox.Text = "Add randomness to progress counters in legacy configurations [?]";
+            this.helpTip.SetToolTip(this.randomnessCheckBox, resources.GetString("randomnessCheckBox.ToolTip"));
+            this.randomnessCheckBox.UseVisualStyleBackColor = true;
+            this.randomnessCheckBox.CheckedChanged += new System.EventHandler(this.RandomnessCheckBox_CheckedChanged);
+            // 
             // devFlowPanel
             // 
             this.devFlowPanel.AutoScroll = true;
@@ -607,6 +650,7 @@
             this.devFlowPanel.Controls.Add(this.devNewAllButton);
             this.devFlowPanel.Controls.Add(this.devNukeAllButton);
             this.devFlowPanel.Controls.Add(this.devRestartApp);
+            this.devFlowPanel.Controls.Add(this.button2);
             this.devFlowPanel.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
             this.devFlowPanel.Location = new System.Drawing.Point(158, 3);
             this.devFlowPanel.Name = "devFlowPanel";
@@ -619,7 +663,7 @@
             // 
             this.devSplashButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.devSplashButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.devSplashButton.Location = new System.Drawing.Point(341, 3);
+            this.devSplashButton.Location = new System.Drawing.Point(439, 3);
             this.devSplashButton.Name = "devSplashButton";
             this.devSplashButton.Size = new System.Drawing.Size(82, 34);
             this.devSplashButton.TabIndex = 22;
@@ -631,7 +675,7 @@
             // 
             this.devDictEditButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.devDictEditButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.devDictEditButton.Location = new System.Drawing.Point(272, 3);
+            this.devDictEditButton.Location = new System.Drawing.Point(370, 3);
             this.devDictEditButton.Name = "devDictEditButton";
             this.devDictEditButton.Size = new System.Drawing.Size(63, 34);
             this.devDictEditButton.TabIndex = 19;
@@ -643,7 +687,7 @@
             // 
             this.devNewAllButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.devNewAllButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.devNewAllButton.Location = new System.Drawing.Point(202, 3);
+            this.devNewAllButton.Location = new System.Drawing.Point(300, 3);
             this.devNewAllButton.Name = "devNewAllButton";
             this.devNewAllButton.Size = new System.Drawing.Size(64, 34);
             this.devNewAllButton.TabIndex = 20;
@@ -655,7 +699,7 @@
             // 
             this.devNukeAllButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.devNukeAllButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.devNukeAllButton.Location = new System.Drawing.Point(99, 3);
+            this.devNukeAllButton.Location = new System.Drawing.Point(197, 3);
             this.devNukeAllButton.Name = "devNukeAllButton";
             this.devNukeAllButton.Size = new System.Drawing.Size(97, 34);
             this.devNukeAllButton.TabIndex = 21;
@@ -665,13 +709,23 @@
             // 
             // devRestartApp
             // 
-            this.devRestartApp.Location = new System.Drawing.Point(3, 3);
+            this.devRestartApp.Location = new System.Drawing.Point(101, 3);
             this.devRestartApp.Name = "devRestartApp";
             this.devRestartApp.Size = new System.Drawing.Size(90, 34);
             this.devRestartApp.TabIndex = 23;
             this.devRestartApp.Text = "[DEV] Restart Application";
             this.devRestartApp.UseVisualStyleBackColor = true;
             this.devRestartApp.Click += new System.EventHandler(this.RestartAll);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(3, 3);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(92, 34);
+            this.button2.TabIndex = 24;
+            this.button2.Text = "[TEST] Progress Tuner";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.Button2_Click_1);
             // 
             // multiDisplayBox
             // 
@@ -684,7 +738,7 @@
             "Blank other screens",
             "Mirror primary screen",
             "Freeze secondary screens"});
-            this.multiDisplayBox.Location = new System.Drawing.Point(143, 256);
+            this.multiDisplayBox.Location = new System.Drawing.Point(143, 262);
             this.multiDisplayBox.Name = "multiDisplayBox";
             this.multiDisplayBox.Size = new System.Drawing.Size(370, 21);
             this.multiDisplayBox.TabIndex = 18;
@@ -693,7 +747,7 @@
             // multiDisplayLabel
             // 
             this.multiDisplayLabel.AutoSize = true;
-            this.multiDisplayLabel.Location = new System.Drawing.Point(17, 259);
+            this.multiDisplayLabel.Location = new System.Drawing.Point(17, 265);
             this.multiDisplayLabel.Name = "multiDisplayLabel";
             this.multiDisplayLabel.Size = new System.Drawing.Size(116, 13);
             this.multiDisplayLabel.TabIndex = 17;
@@ -704,14 +758,14 @@
             this.configEditingButtonsFlowPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.configEditingButtonsFlowPanel.Controls.Add(this.resetButton);
             this.configEditingButtonsFlowPanel.Controls.Add(this.resetHackButton);
-            this.configEditingButtonsFlowPanel.Controls.Add(this.addCfg);
             this.configEditingButtonsFlowPanel.Controls.Add(this.removeCfg);
             this.configEditingButtonsFlowPanel.Controls.Add(this.saveCfg);
             this.configEditingButtonsFlowPanel.Controls.Add(this.loadCfg);
+            this.configEditingButtonsFlowPanel.Controls.Add(this.addCfg);
             this.configEditingButtonsFlowPanel.FlowDirection = System.Windows.Forms.FlowDirection.BottomUp;
-            this.configEditingButtonsFlowPanel.Location = new System.Drawing.Point(226, 97);
+            this.configEditingButtonsFlowPanel.Location = new System.Drawing.Point(227, 97);
             this.configEditingButtonsFlowPanel.Name = "configEditingButtonsFlowPanel";
-            this.configEditingButtonsFlowPanel.Size = new System.Drawing.Size(305, 91);
+            this.configEditingButtonsFlowPanel.Size = new System.Drawing.Size(302, 91);
             this.configEditingButtonsFlowPanel.TabIndex = 16;
             // 
             // resetButton
@@ -720,7 +774,7 @@
             this.resetButton.ForeColor = System.Drawing.SystemColors.ControlText;
             this.resetButton.Location = new System.Drawing.Point(3, 65);
             this.resetButton.Name = "resetButton";
-            this.resetButton.Size = new System.Drawing.Size(141, 23);
+            this.resetButton.Size = new System.Drawing.Size(145, 23);
             this.resetButton.TabIndex = 12;
             this.resetButton.Text = "Reset everything [?]";
             this.helpTip.SetToolTip(this.resetButton, "Reset all settings in this configuration");
@@ -733,30 +787,18 @@
             this.resetHackButton.ForeColor = System.Drawing.SystemColors.ControlText;
             this.resetHackButton.Location = new System.Drawing.Point(3, 36);
             this.resetHackButton.Name = "resetHackButton";
-            this.resetHackButton.Size = new System.Drawing.Size(141, 23);
+            this.resetHackButton.Size = new System.Drawing.Size(145, 23);
             this.resetHackButton.TabIndex = 13;
             this.resetHackButton.Text = "Reset hacks [?]";
-            this.helpTip.SetToolTip(this.resetHackButton, "Deletes any custom hacks for this configuration");
+            this.helpTip.SetToolTip(this.resetHackButton, "Deletes everything under the \'additional options\' menu for this configuration");
             this.resetHackButton.UseVisualStyleBackColor = true;
             this.resetHackButton.Click += new System.EventHandler(this.ResetConfig);
-            // 
-            // addCfg
-            // 
-            this.addCfg.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.addCfg.Location = new System.Drawing.Point(3, 7);
-            this.addCfg.Name = "addCfg";
-            this.addCfg.Size = new System.Drawing.Size(141, 23);
-            this.addCfg.TabIndex = 14;
-            this.addCfg.Text = "Add configuration [?]";
-            this.helpTip.SetToolTip(this.addCfg, resources.GetString("addCfg.ToolTip"));
-            this.addCfg.UseVisualStyleBackColor = true;
-            this.addCfg.Click += new System.EventHandler(this.AddConfig);
             // 
             // removeCfg
             // 
             this.removeCfg.Enabled = false;
             this.removeCfg.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.removeCfg.Location = new System.Drawing.Point(150, 65);
+            this.removeCfg.Location = new System.Drawing.Point(3, 7);
             this.removeCfg.Name = "removeCfg";
             this.removeCfg.Size = new System.Drawing.Size(145, 23);
             this.removeCfg.TabIndex = 15;
@@ -769,7 +811,7 @@
             // saveCfg
             // 
             this.saveCfg.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.saveCfg.Location = new System.Drawing.Point(150, 36);
+            this.saveCfg.Location = new System.Drawing.Point(154, 65);
             this.saveCfg.Name = "saveCfg";
             this.saveCfg.Size = new System.Drawing.Size(145, 23);
             this.saveCfg.TabIndex = 16;
@@ -782,7 +824,7 @@
             // loadCfg
             // 
             this.loadCfg.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.loadCfg.Location = new System.Drawing.Point(150, 7);
+            this.loadCfg.Location = new System.Drawing.Point(154, 36);
             this.loadCfg.Name = "loadCfg";
             this.loadCfg.Size = new System.Drawing.Size(145, 23);
             this.loadCfg.TabIndex = 17;
@@ -791,12 +833,24 @@
             this.loadCfg.UseVisualStyleBackColor = true;
             this.loadCfg.Click += new System.EventHandler(this.BrowseConfig);
             // 
+            // addCfg
+            // 
+            this.addCfg.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.addCfg.Location = new System.Drawing.Point(154, 7);
+            this.addCfg.Name = "addCfg";
+            this.addCfg.Size = new System.Drawing.Size(145, 23);
+            this.addCfg.TabIndex = 14;
+            this.addCfg.Text = "Add configuration [?]";
+            this.helpTip.SetToolTip(this.addCfg, resources.GetString("addCfg.ToolTip"));
+            this.addCfg.UseVisualStyleBackColor = true;
+            this.addCfg.Click += new System.EventHandler(this.AddConfig);
+            // 
             // osName
             // 
             this.osName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.osName.Location = new System.Drawing.Point(226, 64);
+            this.osName.Location = new System.Drawing.Point(228, 64);
             this.osName.Name = "osName";
-            this.osName.Size = new System.Drawing.Size(295, 30);
+            this.osName.Size = new System.Drawing.Size(301, 30);
             this.osName.TabIndex = 11;
             this.osName.Text = "Select a configuration to modify/remove it";
             // 
@@ -810,7 +864,7 @@
             this.configList.Location = new System.Drawing.Point(20, 64);
             this.configList.Name = "configList";
             this.configList.ScrollAlwaysVisible = true;
-            this.configList.Size = new System.Drawing.Size(200, 124);
+            this.configList.Size = new System.Drawing.Size(201, 124);
             this.configList.TabIndex = 9;
             this.configList.SelectedIndexChanged += new System.EventHandler(this.ConfigSelector);
             // 
@@ -819,7 +873,7 @@
             this.eggHunterButton.AutoSize = true;
             this.eggHunterButton.Checked = true;
             this.eggHunterButton.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.eggHunterButton.Location = new System.Drawing.Point(20, 232);
+            this.eggHunterButton.Location = new System.Drawing.Point(20, 238);
             this.eggHunterButton.Name = "eggHunterButton";
             this.eggHunterButton.Size = new System.Drawing.Size(132, 17);
             this.eggHunterButton.TabIndex = 8;
@@ -832,9 +886,9 @@
             // 
             this.simulatorSettingsNotice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.simulatorSettingsNotice.Location = new System.Drawing.Point(17, 309);
+            this.simulatorSettingsNotice.Location = new System.Drawing.Point(17, 319);
             this.simulatorSettingsNotice.Name = "simulatorSettingsNotice";
-            this.simulatorSettingsNotice.Size = new System.Drawing.Size(496, 43);
+            this.simulatorSettingsNotice.Size = new System.Drawing.Size(493, 37);
             this.simulatorSettingsNotice.TabIndex = 7;
             this.simulatorSettingsNotice.Text = "Scaling mode does not affect modern Windows blue screens, as they use the native " +
     "resolution of your monitor without scaling. Setting up multi-monitor behaviour i" +
@@ -852,7 +906,7 @@
             "Nearest neighbour (sharpest, but blocky)",
             "Alternate bicubic (less artifacting)",
             "Alternate bilinear (sharper)"});
-            this.scalingModeBox.Location = new System.Drawing.Point(143, 285);
+            this.scalingModeBox.Location = new System.Drawing.Point(143, 291);
             this.scalingModeBox.Name = "scalingModeBox";
             this.scalingModeBox.Size = new System.Drawing.Size(370, 21);
             this.scalingModeBox.TabIndex = 6;
@@ -863,7 +917,7 @@
             // scalingModeLabel
             // 
             this.scalingModeLabel.AutoSize = true;
-            this.scalingModeLabel.Location = new System.Drawing.Point(17, 288);
+            this.scalingModeLabel.Location = new System.Drawing.Point(17, 294);
             this.scalingModeLabel.Name = "scalingModeLabel";
             this.scalingModeLabel.Size = new System.Drawing.Size(120, 13);
             this.scalingModeLabel.TabIndex = 5;
@@ -874,7 +928,7 @@
             this.hideInFullscreenButton.AutoSize = true;
             this.hideInFullscreenButton.Checked = true;
             this.hideInFullscreenButton.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.hideInFullscreenButton.Location = new System.Drawing.Point(20, 209);
+            this.hideInFullscreenButton.Location = new System.Drawing.Point(20, 215);
             this.hideInFullscreenButton.Name = "hideInFullscreenButton";
             this.hideInFullscreenButton.Size = new System.Drawing.Size(288, 17);
             this.hideInFullscreenButton.TabIndex = 4;
@@ -1027,7 +1081,9 @@
             // 
             // saveBsconfig
             // 
-            this.saveBsconfig.Filter = "Bluescreen simulator 2.x configuration files|*.bs2cfg;*.bs2";
+            this.saveBsconfig.Filter = "Bluescreen simulator 2.1 configuration files|*.bs2cfg;*.bs2|Bluescreen simulator " +
+    "2.0 configuration files|*.bs2cfg;*.bs2|Bluescreen simulator 1.x configuration fi" +
+    "les|*.bscfg;*.bsc";
             // 
             // loadBsconfig
             // 
@@ -1161,5 +1217,9 @@
         private System.Windows.Forms.Button srcCodeButton;
         private System.Windows.Forms.Button copyingButton;
         private System.Windows.Forms.Button rndFactButton;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.CheckBox randomnessCheckBox;
+        private System.Windows.Forms.CheckBox selectAllBox;
+        private System.Windows.Forms.Label label1;
     }
 }
