@@ -335,6 +335,7 @@
             // 
             // customMessageLabel2
             // 
+            this.customMessageLabel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.customMessageLabel2.AutoSize = true;
             this.customMessageLabel2.Location = new System.Drawing.Point(366, 6);
             this.customMessageLabel2.Name = "customMessageLabel2";
@@ -345,6 +346,7 @@
             // 
             // customMessageCode
             // 
+            this.customMessageCode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.customMessageCode.Location = new System.Drawing.Point(296, 2);
             this.customMessageCode.MaxLength = 8;
             this.customMessageCode.Name = "customMessageCode";
@@ -356,6 +358,7 @@
             // 
             // customMessageLabel1
             // 
+            this.customMessageLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.customMessageLabel1.AutoSize = true;
             this.customMessageLabel1.Location = new System.Drawing.Point(274, 5);
             this.customMessageLabel1.Name = "customMessageLabel1";
@@ -366,6 +369,8 @@
             // 
             // customMessageText
             // 
+            this.customMessageText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.customMessageText.Location = new System.Drawing.Point(103, 3);
             this.customMessageText.Name = "customMessageText";
             this.customMessageText.Size = new System.Drawing.Size(168, 20);
@@ -375,8 +380,9 @@
             // 
             // customCheckBox
             // 
+            this.customCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.customCheckBox.AutoSize = true;
-            this.customCheckBox.Location = new System.Drawing.Point(386, 5);
+            this.customCheckBox.Location = new System.Drawing.Point(387, 5);
             this.customCheckBox.Name = "customCheckBox";
             this.customCheckBox.Size = new System.Drawing.Size(76, 17);
             this.customCheckBox.TabIndex = 7;
