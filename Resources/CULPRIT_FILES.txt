@@ -13,6 +13,7 @@ Beep.SYS:BEEP Driver
 bindflt.sys:Windows Bind Filter Driver 
 BOOTVID.dll:VGA Boot Driver
 bowser.sys:NT Lan Manager Datagram Receiver Driver
+buttrfly.sys:Butterfly Device Driver
 cdd.dll:Canonical Display Driver
 cdrom.sys:SCSI CD-ROM Driver
 CEA.sys:Event Aggregation Kernel Mode Library  
@@ -36,10 +37,12 @@ dump_storahci.sys:
 dxgkrnl.sys:DirectX Graphics Kernel 
 dxgmms2.sys:DirectX Graphics MMS 
 EMVSCARD.sys:USB Smart Card Reader
+example.sys:Example Driver
 fastfat.SYS:Fast FAT File System Driver
 filecrypt.sys:Windows sandboxing and encryption filter  
 fileinfo.sys:FileInfo Filter Driver  
 FLTMGR.SYS:Microsoft Filesystem Filter Manager 
+fltrshy.sys:Filter Management Driver
 Fs_Rec.sys:File System Recognizer Driver 
 fvevol.sys:BitLocker Drive Encryption Driver
 fwpkclnt.sys:FWP/IPsec Kernel-Mode API  
@@ -52,10 +55,12 @@ HDAudBus.sys:High Definition Audio Bus Driver
 HIDCLASS.SYS:Hid Class Library 
 HIDPARSE.SYS:Hid Parsing Library  
 hidusb.sys:USB Miniport Driver for Input Devices  
+hl3eng.sys:A game that doesn't and will never exist
 HTTP.sys:HTTP Protocol Stack  
 hvservice.sys:Hypervisor Boot Driver  
 hvsocket.sys:Microsoft Hyper-V Socket Provider
 iaLPSS2i_GPIO2_CNL.sys:Intel(R) Serial IO GPIO Driver v2
+id10t.sys:ID10T Device Driver
 intelpep.sys:Intel Power Engine Plugin  
 intelppm.sys:Processor Device Driver 
 IntelTA.sys:Intel Telemetry Driver  
@@ -68,6 +73,7 @@ ks.sys:Kernel CSA Library
 ksecdd.sys:Kernel Security Support Provider Interface
 ksecpkg.sys:Kernel Security Support Provider Interface Packages
 ksthunk.sys:Kernel Streaming WOW Thunk Service  
+kwhite.sys:Kitty White
 lltdio.sys:Link-Layer Topology Mapper I/O Driver  
 luafv.sys:LUA File Virtualization Filter Driver  
 LXCORE.SYS:LX Core  
@@ -119,6 +125,7 @@ pdc.sys:Power Dependency Coordinator Driver
 peauth.sys:Protected Environment Authentication and Authorization Export Driver
 portcls.sys:Port Class (Class Driver for Port/Miniport Devices)
 PSHED.dll:Platform Specific Hardware Error Driver
+rarity.sys:Rarity
 rasl2tp.sys:RAS L2TP mini-port/call-manager driver 
 raspppoe.sys:RAS PPPoE mini-port/call-manager driver
 raspptp.sys:Peer-to-Peer Tunneling Protocol  
@@ -141,6 +148,7 @@ storahci.sys:MS AHCI Storport Miniport Driver
 storport.sys:Microsoft Storage Port Driver 
 storqosflt.sys:Storage QoS Filter
 storvsp.sys:Storage vsp Driver
+sweden.sys:Blue And Yellow
 swenum.sys:Plug and Play Software Device Enumerator
 tardis.sys:Tardis
 tbs.sys:Export driver for kernel mode TPM API  
