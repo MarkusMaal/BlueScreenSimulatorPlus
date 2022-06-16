@@ -232,7 +232,6 @@ namespace UltimateBlueScreenSimulator
             // clearButton
             // 
             this.clearButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.clearButton.Enabled = false;
             this.clearButton.Location = new System.Drawing.Point(251, 165);
             this.clearButton.Name = "clearButton";
             this.clearButton.Size = new System.Drawing.Size(60, 23);
