@@ -1064,6 +1064,7 @@ namespace SimulatorDatabase
                     SetBool("winxplus", true);
                     SetBool("autoclose", true);
                     SetBool("qr", true);
+                    SetBool("device", true);
                     SetString("qr_file", "local:0");
                     SetString("code", "IRQL_NOT_LESS_OR_EQUAL (0x0000000A)");
                     SetBool("show_description", true);
