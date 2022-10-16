@@ -1345,7 +1345,7 @@ namespace UltimateBlueScreenSimulator
         private void SetToBackupServer(object sender, EventArgs e)
         {
             primaryServerBox.Enabled = false;
-            primaryServerBox.Text = "http://markustegelane.000webhostapp.com/app";
+            primaryServerBox.Text = "http://markustegelane.tk/app";
         }
 
         private void Button1_Click(object sender, EventArgs e)
