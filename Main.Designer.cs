@@ -850,9 +850,9 @@
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(15, 378);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(150, 13);
+            this.label7.Size = new System.Drawing.Size(245, 13);
             this.label7.TabIndex = 6;
-            this.label7.Text = "Alt + F4 - Exits the blue screen";
+            this.label7.Text = "Press Escape, F7, or Alt+F4 to exit the blue screen";
             // 
             // label10
             // 

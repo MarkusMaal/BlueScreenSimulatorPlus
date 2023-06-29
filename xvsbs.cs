@@ -469,5 +469,18 @@ namespace UltimateBlueScreenSimulator
                 this.Activate();
             }
         }
+
+        private void Xvsbs_KeyDown(object sender, KeyEventArgs e)
+        {
+            if ((e.KeyCode == Keys.Escape) || (e.KeyCode == Keys.F7))
+            {
+                foreach (WindowScreen ws in wss)
+                {
+                    try { if (ws.Visible == true) { ws.Close(); } }
+                    catch { }
+                }
+                Close();
+            }
+        }
     }
 }

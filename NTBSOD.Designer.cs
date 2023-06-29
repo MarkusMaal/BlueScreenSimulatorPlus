@@ -750,6 +750,7 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.NTBSOD_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.NTBSOD_FormClosed);
             this.Load += new System.EventHandler(this.NTBSOD_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NTBSOD_KeyDown);
             this.ntContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.errorCode)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorDescription)).EndInit();

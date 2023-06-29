@@ -25,7 +25,7 @@ namespace UltimateBlueScreenSimulator
             else if (e.KeyCode == Keys.Enter)
             {
                 this.Close();
-            }
+            } else if (e.KeyCode == Keys.F7) { this.Close(); }
         }
 
         private void Initialization(object sender, EventArgs e)

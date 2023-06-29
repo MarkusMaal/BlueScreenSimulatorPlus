@@ -78,5 +78,12 @@ namespace UltimateBlueScreenSimulator
             this.Close();
         }
 
+        private void Metaerror_KeyDown(object sender, KeyEventArgs e)
+        {
+            if ((e.KeyCode == Keys.Escape) || (e.KeyCode == Keys.F7))
+            {
+                Close();
+            }
+        }
     }
 }

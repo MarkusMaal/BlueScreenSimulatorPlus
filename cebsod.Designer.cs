@@ -129,6 +129,7 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Unload);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AfterUnload);
             this.Load += new System.EventHandler(this.Initialize);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Cebsod_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -206,6 +206,7 @@ namespace UltimateBlueScreenSimulator
             this.Text = "metaerror";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Metaerror_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Metaerror_KeyDown);
             this.errorFlowPanel.ResumeLayout(false);
             this.errorFlowPanel.PerformLayout();
             this.panel1.ResumeLayout(false);

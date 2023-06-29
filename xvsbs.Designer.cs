@@ -174,6 +174,7 @@ namespace UltimateBlueScreenSimulator
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Xvsbs_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Xvsbs_FormClosed);
             this.Load += new System.EventHandler(this.Xvsbs_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Xvsbs_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

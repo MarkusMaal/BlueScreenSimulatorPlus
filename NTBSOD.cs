@@ -430,5 +430,18 @@ namespace UltimateBlueScreenSimulator
                 Console.WriteLine("Warning: \"NTSOD\" forcibly closed from external source!!!");
             }
         }
+
+        private void NTBSOD_KeyDown(object sender, KeyEventArgs e)
+        {
+            if ((e.KeyCode == Keys.Escape) || (e.KeyCode == Keys.F7))
+            {
+                foreach (WindowScreen ws in wss)
+                {
+                    try { if (ws.Visible == true) { ws.Close(); } }
+                    catch { }
+                }
+                Close();
+            }
+        }
     }
 }

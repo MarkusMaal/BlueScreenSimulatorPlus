@@ -329,11 +329,11 @@ namespace UltimateBlueScreenSimulator
             this.watermark.Font = new System.Drawing.Font("Trebuchet MS", 8F);
             this.watermark.Location = new System.Drawing.Point(11, 8);
             this.watermark.Name = "watermark";
-            this.watermark.Size = new System.Drawing.Size(136, 16);
+            this.watermark.Size = new System.Drawing.Size(135, 16);
             this.watermark.TabIndex = 2;
             this.watermark.Text = "blue screen simulator plus";
             // 
-            // win
+            // Win
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -345,11 +345,12 @@ namespace UltimateBlueScreenSimulator
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.Name = "win";
+            this.Name = "Win";
             this.Text = "Windows 1.x/2.x blue screen simulator";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Win_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Win_FormClosed);
             this.Load += new System.EventHandler(this.Win_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Win_KeyDown);
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox19)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox18)).EndInit();

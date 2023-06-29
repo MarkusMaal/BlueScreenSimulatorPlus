@@ -408,10 +408,11 @@ namespace UltimateBlueScreenSimulator
 
         private void WXBS_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Escape)
+            if ((e.KeyCode == Keys.Escape) || (e.KeyCode == Keys.F7))
             {
                 // debug here
                 Program.f1.me.GetString("a");
+                Close();
             }
         }
     }

@@ -375,7 +375,7 @@ namespace UltimateBlueScreenSimulator
 
         private void Old_bluescreen_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
+            if ((e.KeyCode == Keys.Enter) || (e.KeyCode == Keys.Escape) || (e.KeyCode == Keys.F7))
             {
                 foreach (WindowScreen ws in wss)
                 {
