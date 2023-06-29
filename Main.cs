@@ -1008,8 +1008,12 @@ namespace UltimateBlueScreenSimulator
                 }
             } catch (Exception ex)
             {
+
+                if (updateCheckerTimer.Interval != 6000)
+                {
+                    MessageBox.Show("An error has occoured.\n\nFatal exception: " + ex.Message + "\n\nStack trace\n" + ex.StackTrace, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
                 updateCheckerTimer.Enabled = false;
-                MessageBox.Show("An error has occoured.\n\nFatal exception: " + ex.Message + "\n\nStack trace\n" + ex.StackTrace, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
