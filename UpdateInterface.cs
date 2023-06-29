@@ -225,9 +225,9 @@ namespace UltimateBlueScreenSimulator
         private void CleanWait_Tick(object sender, EventArgs e)
         {
             cleanWait.Enabled = false;
-            File.SetAttributes("UltimateBlueScreenSimulator.exe", FileAttributes.Hidden);
-            File.Delete("UltimateBlueScreenSimulator.exe");
-            File.Move("BSSP_new.exe", "UltimateBlueScreenSimulator.exe");
+            File.SetAttributes("Blue screen simulator plus.exe", FileAttributes.Hidden);
+            File.Delete("Blue screen simulator plus.exe");
+            File.Move("BSSP_new.exe", "Blue screen simulator plus.exe");
             System.IO.File.WriteAllText("finish.bat", Properties.Resources.final);
             Process p = new Process();
             p.StartInfo.UseShellExecute = true;

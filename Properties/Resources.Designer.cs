@@ -245,7 +245,7 @@ namespace UltimateBlueScreenSimulator.Properties {
         ///if exist BSOD.exe goto del_loop
         ///if exist vercheck.txt goto del_loop
         ///if exist hash.txt goto del_loop
-        ///del finish.bat&amp;start UltimateBlueScreenSimulator.exe /doneupdate.
+        ///del finish.bat&amp;start "" "Blue screen simulator plus.exe" /doneupdate.
         /// </summary>
         internal static string final {
             get {
