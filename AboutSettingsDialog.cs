@@ -185,7 +185,7 @@ namespace UltimateBlueScreenSimulator
                 updateImmediatelyRadio.Checked = !Program.f1.postponeupdate;
                 updateOnCloseRadio.Checked = Program.f1.postponeupdate;
                 primaryServerBox.Text = Program.update_server;
-                if (!((primaryServerBox.Text == "http://markustegelane.tk/app") || (primaryServerBox.Text == "http://web-markustegelane.000webhostapp.com/app")))
+                if (!((primaryServerBox.Text == "http://markustegelane.tk/app") || (primaryServerBox.Text == "http://markustegelane.eu/app")))
                 {
                     primaryServerBox.Enabled = true;
                 }

@@ -602,7 +602,7 @@
             this.simulatorSettingsPanel.Controls.Add(this.simulatorSettingsHeading);
             this.simulatorSettingsPanel.Location = new System.Drawing.Point(4, 22);
             this.simulatorSettingsPanel.Name = "simulatorSettingsPanel";
-            this.simulatorSettingsPanel.Size = new System.Drawing.Size(534, 352);
+            this.simulatorSettingsPanel.Size = new System.Drawing.Size(542, 355);
             this.simulatorSettingsPanel.TabIndex = 4;
             this.simulatorSettingsPanel.Text = "Simulator settings";
             this.simulatorSettingsPanel.UseVisualStyleBackColor = true;
@@ -961,7 +961,7 @@
             this.helpPanel.Controls.Add(this.helpPanelChild);
             this.helpPanel.Location = new System.Drawing.Point(4, 22);
             this.helpPanel.Name = "helpPanel";
-            this.helpPanel.Size = new System.Drawing.Size(534, 352);
+            this.helpPanel.Size = new System.Drawing.Size(542, 355);
             this.helpPanel.TabIndex = 2;
             this.helpPanel.Text = "Help";
             this.helpPanel.UseVisualStyleBackColor = true;
@@ -974,7 +974,7 @@
             this.helpPanelChild.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.helpPanelChild.Location = new System.Drawing.Point(0, 0);
             this.helpPanelChild.Name = "helpPanelChild";
-            this.helpPanelChild.Size = new System.Drawing.Size(534, 352);
+            this.helpPanelChild.Size = new System.Drawing.Size(542, 355);
             this.helpPanelChild.TabIndex = 2;
             // 
             // helpButtonsFlowPanel
@@ -1054,7 +1054,7 @@
             this.commandLinePanel.Controls.Add(this.commandLineHelpDisplay);
             this.commandLinePanel.Location = new System.Drawing.Point(4, 22);
             this.commandLinePanel.Name = "commandLinePanel";
-            this.commandLinePanel.Size = new System.Drawing.Size(534, 352);
+            this.commandLinePanel.Size = new System.Drawing.Size(542, 355);
             this.commandLinePanel.TabIndex = 3;
             this.commandLinePanel.Text = "Command line help";
             this.commandLinePanel.UseVisualStyleBackColor = true;
@@ -1072,7 +1072,7 @@
             this.commandLineHelpDisplay.ReadOnly = true;
             this.commandLineHelpDisplay.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.commandLineHelpDisplay.ShortcutsEnabled = false;
-            this.commandLineHelpDisplay.Size = new System.Drawing.Size(534, 352);
+            this.commandLineHelpDisplay.Size = new System.Drawing.Size(542, 355);
             this.commandLineHelpDisplay.TabIndex = 0;
             // 
             // updateCheckerTimer
