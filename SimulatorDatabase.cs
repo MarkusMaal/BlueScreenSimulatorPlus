@@ -413,9 +413,8 @@ namespace SimulatorDatabase
         public string GenHex(int lettercount, string inspir)
         {
             //sleep command is used to make sure that randomization works properly
-            System.Threading.Thread.Sleep(20);
+            //System.Threading.Thread.Sleep(20);
             string output = "";
-            Random r = new Random();
             for (int i = 0; i < lettercount; i++)
             {
                 int temp = r.Next(15);
