@@ -931,7 +931,7 @@ namespace UltimateBlueScreenSimulator
             if (System.IO.File.Exists("BSSP.exe"))
             {
                 updateCheckerTimer.Enabled = false;
-                MessageBox.Show("Thank you for installing the latest version of Blue screen simulator plus :)\n\nWhat's new?\n* Fixed an issue related to downgrading", "Update was successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Thank you for installing the latest version of Blue screen simulator plus :)\n\nWhat's new?\n" + Program.changelog + "\n\nYou can find a more detailed changelog in the official BlueScreenSimulatorPlus GitHub page.", "Update was successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 int tries = 0;
                 while (System.IO.File.Exists("BSSP.exe"))
                 {

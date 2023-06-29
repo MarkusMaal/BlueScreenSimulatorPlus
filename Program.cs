@@ -124,6 +124,7 @@ namespace UltimateBlueScreenSimulator
         public static bool hidden = false;
         public static string multidisplaymode = "blank";
         public static bool randomness = false;
+        internal static string changelog = "+ You can now close blue screens by pressing Escape or F7, in addition to Alt+F4\n* Updated to .NET 4.8\n* Improved blue screen generation speed\n* Changed the name of the executable to \"Blue screen simulator plus.exe\"\n* Automatically switch to night mode if Windows dark mode is active\n* Changed default update server to markustegelane.eu\n* Minor bug fixes";
 
         public static string update_server = "http://markustegelane.eu/app";
 
