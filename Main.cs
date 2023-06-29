@@ -578,6 +578,11 @@ namespace UltimateBlueScreenSimulator
                     this.Close();
                     break;
             }
+            bool DarkMode = (int)Registry.GetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize", "AppsUseLightTheme", 1) == 0;
+            if (DarkMode)
+            {
+                nightThemeToolStripMenuItem.PerformClick();
+            }
         }
 
         private void Button1_Click(object sender, EventArgs e)
