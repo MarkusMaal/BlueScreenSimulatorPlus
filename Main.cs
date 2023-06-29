@@ -703,7 +703,7 @@ namespace UltimateBlueScreenSimulator
                 }
                 Program.bluescreens[i].SetString("code", comboBox1.Items[r.Next(0, comboBox1.Items.Count - 1)].ToString());
                 if (Program.bluescreens[i].GetString("os") != "Windows 3.1x") { Program.bluescreens[i].SetString("screen_mode", comboBox2.Items[r.Next(0, comboBox2.Items.Count - 1)].ToString()); }
-                Program.bluescreens[i].SetBool("windowed", true);
+                Program.bluescreens[i].SetBool("windowed", winMode.Checked);
                 Thread.Sleep(16);
             }
             windowVersion.SelectedIndex = SetRnd(windowVersion.Items.Count - 1);
