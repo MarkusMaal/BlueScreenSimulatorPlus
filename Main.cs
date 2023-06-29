@@ -9,6 +9,7 @@ using SimulatorDatabase;
 using System.Threading;
 using System.Net.NetworkInformation;
 using System.Collections.Generic;
+using System.Reflection;
 
 namespace UltimateBlueScreenSimulator
 {
@@ -89,6 +90,8 @@ namespace UltimateBlueScreenSimulator
         public string supporttext = "If this is the first time you've seen this Stop error screen,\nrestart your computer. If this screen appears again, follow\nthese steps:\n\nCheck to make sure any new hardware or software is properly installed.\nIf this is a new installation, ask your hardware or software manufacturer\nfor any Windows updates you might need.\n\nIf problems continue, disable or remove any newly installed hardware\nor software. Disable BIOS memory options such as caching or shadowing.\nIf you need to use Safe mode to remove or disable components, restart\nyour computer, press F8 to select Advanced Startup Options, and then\nselect Safe Mode.";
 
         internal bool displayone = false;
+        
+        string version = Assembly.GetExecutingAssembly().GetName().Version.ToString().Replace(".", "").Substring(0, 1) + "." + Assembly.GetExecutingAssembly().GetName().Version.ToString().Replace(".", "").Substring(1);
 
         public static ThreadStart ts;
         Thread bsod_starter;
@@ -439,6 +442,7 @@ namespace UltimateBlueScreenSimulator
 
         private void Initialize(object sender, EventArgs e)
         {
+            this.Text = "Blue Screen Simulator Plus " + Convert.ToDouble(version.Replace(".", ",")).ToString().Replace(",", ".");
             ts = new ThreadStart(ShowBlueScreen);
             bsod_starter = new Thread(ts);
             try
@@ -952,7 +956,7 @@ namespace UltimateBlueScreenSimulator
                 if (System.IO.File.Exists("vercheck.txt"))
                 {
                     string[] lines = System.IO.File.ReadAllLines("vercheck.txt");
-                    if (Convert.ToDouble(lines[0].Replace(".", ",").Replace("\r", "").Replace("\n", "").Trim()) > 2.11)
+                    if (Convert.ToDouble(lines[0].Replace(".", ",").Replace("\r", "").Replace("\n", "").Trim()) > Convert.ToDouble(version.Replace(".", ",")))
                     {
                         updateCheckerTimer.Enabled = false;
                         System.IO.File.Delete("vercheck.txt");
