@@ -888,6 +888,9 @@ namespace UltimateBlueScreenSimulator
                     }
                 }
             }
+            File.WriteAllText(filename, filedata);
+            finished = true;
+            Thread.CurrentThread.Abort();
         }
 
         private void SaveConfig(object sender, EventArgs e)

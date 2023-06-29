@@ -227,7 +227,13 @@ namespace UltimateBlueScreenSimulator
             cleanWait.Enabled = false;
             if (!File.Exists("Blue screen simulator plus.exe"))
             {
-                File.Move("UltimateBlueScreenSimulator.exe", "Blue screen simulator plus.exe");
+                if (File.Exists("UltimateBlueScreenSimulator.exe"))
+                {
+                    File.Move("UltimateBlueScreenSimulator.exe", "Blue screen simulator plus.exe");
+                } else if (File.Exists("Blue.screen.simulator.plus.exe"))
+                {
+                    File.Move("Blue.screen.simulator.plus.exe", "Blue screen simulator plus.exe");
+                }
             }
             File.SetAttributes("Blue screen simulator plus.exe", FileAttributes.Hidden);
             File.Delete("Blue screen simulator plus.exe");
