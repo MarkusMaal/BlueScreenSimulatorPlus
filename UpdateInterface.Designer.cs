@@ -203,10 +203,9 @@
             this.warningLabel.ForeColor = System.Drawing.Color.Red;
             this.warningLabel.Location = new System.Drawing.Point(14, 202);
             this.warningLabel.Name = "warningLabel";
-            this.warningLabel.Size = new System.Drawing.Size(434, 13);
+            this.warningLabel.Size = new System.Drawing.Size(145, 13);
             this.warningLabel.TabIndex = 4;
-            this.warningLabel.Text = "Do not turn off your computer or close this program! Doing so, will result in a f" +
-    "ailed update!!!";
+            this.warningLabel.Text = "Do not turn off your computer";
             // 
             // dloadState
             // 
@@ -242,7 +241,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(489, 234);
+            this.ClientSize = new System.Drawing.Size(489, 239);
             this.Controls.Add(this.dloadState);
             this.Controls.Add(this.warningLabel);
             this.Controls.Add(this.updateProgress);
@@ -255,7 +254,7 @@
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(478, 273);
             this.Name = "UpdateInterface";
-            this.Text = "Updater 1.1";
+            this.Text = "Updater 1.2";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.UpdateInterface_FormClosing);
             this.Load += new System.EventHandler(this.UpdateInterface_Load);
             this.updateStepsPanel.ResumeLayout(false);
