@@ -15,7 +15,7 @@ namespace UltimateBlueScreenSimulator
         //If this flag is set, then help tabs are hidden and setting tabs are visible
         public bool SettingTab = false;
         public int tab_id = 0;
-        public bool DevBuild = false;
+        public bool DevBuild = true;
         public bool finished = false;
         readonly Random r = new Random();
         public AboutSettingsDialog()
@@ -151,6 +151,7 @@ namespace UltimateBlueScreenSimulator
                 commandLinePanel.Dispose();
                 helpPanel.Dispose();
                 eggHunterButton.Checked = Program.f1.enableeggs;
+                darkDetectCheck.Checked = Program.f1.autodark;
                 if (Program.f1.GMode == "HighQualityBicubic") { scalingModeBox.SelectedIndex = 0; }
                 if (Program.f1.GMode == "HighQualityBilinear") { scalingModeBox.SelectedIndex = 1; }
                 if (Program.f1.GMode == "Bilinear") { scalingModeBox.SelectedIndex = 4; }
@@ -181,11 +182,12 @@ namespace UltimateBlueScreenSimulator
                 //Loads update configuration
                 autoUpdateRadio.Checked = Program.f1.autoupdate;
                 noUpdatesRadio.Checked = !Program.f1.autoupdate;
+                darkDetectCheck.Checked = Program.f1.autodark;
                 hashBox.Checked = Program.f1.hashverify;
                 updateImmediatelyRadio.Checked = !Program.f1.postponeupdate;
                 updateOnCloseRadio.Checked = Program.f1.postponeupdate;
                 primaryServerBox.Text = Program.update_server;
-                if (!((primaryServerBox.Text == "http://markustegelane.tk/app") || (primaryServerBox.Text == "http://markustegelane.eu/app")))
+                if (!((primaryServerBox.Text == "http://nossl.markustegelane.eu/app") || (primaryServerBox.Text == "http://markustegelane.eu/app")))
                 {
                     primaryServerBox.Enabled = true;
                 }
@@ -1348,7 +1350,7 @@ namespace UltimateBlueScreenSimulator
         private void SetToBackupServer(object sender, EventArgs e)
         {
             primaryServerBox.Enabled = false;
-            primaryServerBox.Text = "http://markustegelane.tk/app";
+            primaryServerBox.Text = "http://nossl.markustegelane.eu/app";
         }
 
         private void Button1_Click(object sender, EventArgs e)
@@ -1519,6 +1521,16 @@ namespace UltimateBlueScreenSimulator
                     }
                 }
             }
+        }
+
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+            MessageBox.Show(Program.changelog + "\n\nYou can find a more detailed changelog in the official BlueScreenSimulatorPlus GitHub page.", "What's new?", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void darkDetectCheck_CheckedChanged(object sender, EventArgs e)
+        {
+            Program.f1.autodark = darkDetectCheck.Checked;
         }
     }
 }

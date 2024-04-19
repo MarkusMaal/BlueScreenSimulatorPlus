@@ -77,6 +77,9 @@ namespace UltimateBlueScreenSimulator
         //indicates whether or not the about/settings window is visible
         public bool abopen = false;
 
+        //enable/disable automatic night theme
+        public bool autodark = true;
+
         //scaling mode string
         public string GMode = "HighQualityBicubic";
 
@@ -583,7 +586,7 @@ namespace UltimateBlueScreenSimulator
                     break;
             }
             bool DarkMode = (int)Registry.GetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize", "AppsUseLightTheme", 1) == 0;
-            if (DarkMode)
+            if (DarkMode && autodark)
             {
                 nightThemeToolStripMenuItem.PerformClick();
             }
@@ -709,6 +712,10 @@ namespace UltimateBlueScreenSimulator
                 {
                     bool value = r.Next(0, 1) == 1;
                     Program.bluescreens[i].SetBool(kvp, value);
+                }
+                if (comboBox1.Items.Count <= 0)
+                {
+                    break;
                 }
                 Program.bluescreens[i].SetString("code", comboBox1.Items[r.Next(0, comboBox1.Items.Count - 1)].ToString());
                 if (Program.bluescreens[i].GetString("os") != "Windows 3.1x") { Program.bluescreens[i].SetString("screen_mode", comboBox2.Items[r.Next(0, comboBox2.Items.Count - 1)].ToString()); }
@@ -931,7 +938,7 @@ namespace UltimateBlueScreenSimulator
             if (System.IO.File.Exists("BSSP.exe"))
             {
                 updateCheckerTimer.Enabled = false;
-                MessageBox.Show("Thank you for installing the latest version of Blue screen simulator plus :)\n\nWhat's new?\n" + Program.changelog + "\n\nYou can find a more detailed changelog in the official BlueScreenSimulatorPlus GitHub page.", "Update was successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //MessageBox.Show("Thank you for installing the latest version of Blue screen simulator plus :)\n\nWhat's new?\n" + Program.changelog + "\n\nYou can find a more detailed changelog in the official BlueScreenSimulatorPlus GitHub page.", "Update was successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 int tries = 0;
                 while (System.IO.File.Exists("BSSP.exe"))
                 {
@@ -945,7 +952,7 @@ namespace UltimateBlueScreenSimulator
                     {
                         //yo
                     }
-                    if (tries > 500)
+                    if (tries > 64)
                     {
                         break;
                     }
@@ -1032,7 +1039,7 @@ namespace UltimateBlueScreenSimulator
             {
                 try
                 {
-                    System.IO.File.WriteAllText("settings.cfg", "UpdateClose=" + postponeupdate.ToString() + "\nHashVerify=" + hashverify.ToString() + "\nAutoUpdate=" + autoupdate.ToString() + "\nShowCursor=" + showcursor.ToString() + "\nScaleMode=" + GMode + "\nMultiMode=" + Program.multidisplaymode.ToString() + "\nSeecrets=" + enableeggs.ToString() + "\nServer=" + Program.update_server + "\nRandomness=" + Program.randomness);
+                    System.IO.File.WriteAllText("settings.cfg", "UpdateClose=" + postponeupdate.ToString() + "\nHashVerify=" + hashverify.ToString() + "\nAutoUpdate=" + autoupdate.ToString() + "\nShowCursor=" + showcursor.ToString() + "\nScaleMode=" + GMode + "\nMultiMode=" + Program.multidisplaymode.ToString() + "\nSeecrets=" + enableeggs.ToString() + "\nServer=" + Program.update_server + "\nRandomness=" + Program.randomness + "\nAutoDark=" + autodark.ToString());
                 } catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);

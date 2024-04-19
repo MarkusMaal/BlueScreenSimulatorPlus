@@ -52,6 +52,5 @@ namespace UltimateBlueScreenSimulator
                 this.Close();
             }
         }
-
     }
 }

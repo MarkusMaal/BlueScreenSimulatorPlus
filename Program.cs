@@ -124,7 +124,7 @@ namespace UltimateBlueScreenSimulator
         public static bool hidden = false;
         public static string multidisplaymode = "blank";
         public static bool randomness = false;
-        internal static string changelog = "*** CRITICAL 2.121 PATCH ***\n* Fixed save configurations button not working\n* Version from GitHub contains dots in place of spaces, which the updated update manager should be able to handle\n\n*** 2.12 changelog ***\n+ You can now close blue screens by pressing Escape or F7, in addition to Alt+F4\n* Updated to .NET 4.8\n* Improved blue screen generation speed\n* Changed the name of the executable to \"Blue screen simulator plus.exe\"\n* Automatically switch to night mode if Windows dark mode is active\n* Changed default update server to markustegelane.eu\n* Minor bug fixes";
+        internal static string changelog = "+ Option to disable automatic night theme\n+ Added a warning dialog if Null.SYS is selected as a culprit file\n* Fixed certain files under Windows 2000 simulator causing OrangeScreen Exception/dictionary errors\n* Changed backup update server\n* Moved changelog to about section instead of displaying it after a successful upgrade\n* Updated splash screen";
 
         public static string update_server = "http://markustegelane.eu/app";
 
@@ -205,6 +205,10 @@ namespace UltimateBlueScreenSimulator
                         else if (element.StartsWith("Randomness="))
                         {
                             randomness = Convert.ToBoolean(element.Replace("Randomness=", ""));
+                        }
+                        else if (element.StartsWith("AutoDark="))
+                        {
+                            f1.autodark = Convert.ToBoolean(element.Replace("AutoDark=", ""));
                         }
                         // this skips checking hidden/visible OS-s
                         // this is a feature that was exclusive to 1.x

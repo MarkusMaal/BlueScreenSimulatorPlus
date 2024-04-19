@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using SimulatorDatabase;
 
@@ -161,12 +162,20 @@ namespace UltimateBlueScreenSimulator
             { WriteWord(" ", this.BackColor, this.ForeColor)
             };
             if (whatfail != "")
+            {
+                // set file information template to default value if not found for backwards compatibility with version 2.0 configuration formats
+                string addr = me.GetTexts().ContainsKey("File information") ? me.GetTexts()["File information"] : "*** Address {0} base at {1}, DateStamp {2} - {3}";
+                errorCode += "\n\n";
+                // apparently me.GetString("cuplrit") sometimes throws an exception if you change it to Beep.SYS?
+                // we do a try-catch here and just use the first value of GetFiles() dictionary if it fails
+                try
                 {
-                    // set file information template to default value if not found for backwards compatibility with version 2.0 configuration formats
-                    string addr = me.GetTexts().ContainsKey("File information") ? me.GetTexts()["File information"] : "*** Address {0} base at {1}, DateStamp {2} - {3}";
-                    errorCode += "\n\n";
                     errorCode += string.Format(addr, me.GenHex(8, me.GetFiles()[me.GetString("culprit")][0]), me.GenHex(8, me.GetFiles()[me.GetString("culprit")][1]), me.GenHex(8, me.GetFiles()[me.GetString("culprit")][2]).ToLower(), whatfail.ToLower());
+                } catch
+                {
+                    errorCode += string.Format(addr, me.GenHex(8, me.GetFiles().First().Value[0]), me.GenHex(8, me.GetFiles().First().Value[1]), me.GenHex(8, me.GetFiles().First().Value[2]).ToLower(), whatfail.ToLower());
                 }
+            }
                 errorCode = errorCode.Replace("IRQL", "DRIVER_IRQL");
 
                 foreach (string l in errorCode.Split('\n'))

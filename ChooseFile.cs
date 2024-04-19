@@ -34,6 +34,13 @@ namespace UltimateBlueScreenSimulator
 
         private void WhenUserSelectsTheDesiredFile(object sender, EventArgs e)
         {
+            if ((fileBrowser.SelectedItems[0].Text == "Null.SYS") && (Program.f1.enableeggs))
+            {
+                if (MessageBox.Show("This file will cause weird things to happen with this program. If you do not wish to have weird things happen, please disable easter eggs first. Do you still want to continue?", "Hmmmmmmmmmmmm", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.No)
+                {
+                    return;
+                }
+            }
             this.DialogResult = DialogResult.OK;
             this.Close();
         }

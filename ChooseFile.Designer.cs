@@ -38,7 +38,6 @@ namespace UltimateBlueScreenSimulator
             // fileBrowser
             // 
             this.fileBrowser.Alignment = System.Windows.Forms.ListViewAlignment.SnapToGrid;
-            this.fileBrowser.AllowColumnReorder = true;
             this.fileBrowser.AutoArrange = false;
             this.fileBrowser.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.fileBrowser.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -48,7 +47,7 @@ namespace UltimateBlueScreenSimulator
             this.fileBrowser.FullRowSelect = true;
             this.fileBrowser.GridLines = true;
             this.fileBrowser.HideSelection = false;
-            this.fileBrowser.LabelEdit = true;
+            this.fileBrowser.LabelWrap = false;
             this.fileBrowser.Location = new System.Drawing.Point(0, 0);
             this.fileBrowser.MultiSelect = false;
             this.fileBrowser.Name = "fileBrowser";

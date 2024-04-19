@@ -43,9 +43,11 @@
             this.srcCodeButton = new System.Windows.Forms.Button();
             this.copyingButton = new System.Windows.Forms.Button();
             this.rndFactButton = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.aboutSettingsTabControl = new System.Windows.Forms.TabControl();
             this.aboutPanel = new System.Windows.Forms.TabPage();
             this.updatePanel = new System.Windows.Forms.TabPage();
+            this.darkDetectCheck = new System.Windows.Forms.CheckBox();
             this.customServerButton = new System.Windows.Forms.Button();
             this.primaryServerButton = new System.Windows.Forms.Button();
             this.backupServerButton = new System.Windows.Forms.Button();
@@ -148,11 +150,11 @@
             this.aboutTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.19195F));
             this.aboutTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.572755F));
             this.aboutTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.19195F));
-            this.aboutTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 31.79191F));
-            this.aboutTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 35.78275F));
-            this.aboutTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.69649F));
+            this.aboutTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 31.19266F));
+            this.aboutTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.94495F));
+            this.aboutTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 17.12538F));
             this.aboutTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.aboutTable.Size = new System.Drawing.Size(536, 349);
+            this.aboutTable.Size = new System.Drawing.Size(536, 359);
             this.aboutTable.TabIndex = 0;
             // 
             // logoPictureBox
@@ -162,7 +164,7 @@
             this.logoPictureBox.Location = new System.Drawing.Point(3, 3);
             this.logoPictureBox.Name = "logoPictureBox";
             this.aboutTable.SetRowSpan(this.logoPictureBox, 7);
-            this.logoPictureBox.Size = new System.Drawing.Size(136, 343);
+            this.logoPictureBox.Size = new System.Drawing.Size(136, 353);
             this.logoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.logoPictureBox.TabIndex = 12;
             this.logoPictureBox.TabStop = false;
@@ -175,9 +177,9 @@
             this.logoDisplayFlowPanel.Controls.Add(this.veriFileLogo);
             this.logoDisplayFlowPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.logoDisplayFlowPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.logoDisplayFlowPanel.Location = new System.Drawing.Point(145, 159);
+            this.logoDisplayFlowPanel.Location = new System.Drawing.Point(145, 163);
             this.logoDisplayFlowPanel.Name = "logoDisplayFlowPanel";
-            this.logoDisplayFlowPanel.Size = new System.Drawing.Size(388, 107);
+            this.logoDisplayFlowPanel.Size = new System.Drawing.Size(388, 105);
             this.logoDisplayFlowPanel.TabIndex = 25;
             // 
             // markusSoftwareLogo
@@ -218,7 +220,7 @@
             // labelVersion
             // 
             this.labelVersion.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelVersion.Location = new System.Drawing.Point(148, 19);
+            this.labelVersion.Location = new System.Drawing.Point(148, 20);
             this.labelVersion.Margin = new System.Windows.Forms.Padding(6, 0, 3, 0);
             this.labelVersion.MaximumSize = new System.Drawing.Size(0, 17);
             this.labelVersion.Name = "labelVersion";
@@ -230,7 +232,7 @@
             // labelCopyright
             // 
             this.labelCopyright.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelCopyright.Location = new System.Drawing.Point(148, 36);
+            this.labelCopyright.Location = new System.Drawing.Point(148, 38);
             this.labelCopyright.Margin = new System.Windows.Forms.Padding(6, 0, 3, 0);
             this.labelCopyright.MaximumSize = new System.Drawing.Size(0, 17);
             this.labelCopyright.Name = "labelCopyright";
@@ -242,7 +244,7 @@
             // labelCompanyName
             // 
             this.labelCompanyName.Dock = System.Windows.Forms.DockStyle.Top;
-            this.labelCompanyName.Location = new System.Drawing.Point(148, 55);
+            this.labelCompanyName.Location = new System.Drawing.Point(148, 58);
             this.labelCompanyName.Margin = new System.Windows.Forms.Padding(6, 0, 3, 0);
             this.labelCompanyName.Name = "labelCompanyName";
             this.labelCompanyName.Size = new System.Drawing.Size(385, 88);
@@ -254,7 +256,7 @@
             this.okButton.BackColor = System.Drawing.SystemColors.Control;
             this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.okButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.okButton.Location = new System.Drawing.Point(458, 323);
+            this.okButton.Location = new System.Drawing.Point(458, 333);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(75, 23);
             this.okButton.TabIndex = 24;
@@ -268,10 +270,11 @@
             this.flowLayoutPanel1.Controls.Add(this.srcCodeButton);
             this.flowLayoutPanel1.Controls.Add(this.copyingButton);
             this.flowLayoutPanel1.Controls.Add(this.rndFactButton);
+            this.flowLayoutPanel1.Controls.Add(this.button3);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(145, 272);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(145, 274);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(388, 40);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(388, 50);
             this.flowLayoutPanel1.TabIndex = 26;
             this.flowLayoutPanel1.WrapContents = false;
             // 
@@ -305,6 +308,16 @@
             this.rndFactButton.UseVisualStyleBackColor = true;
             this.rndFactButton.Click += new System.EventHandler(this.Button4_Click);
             // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(309, 3);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(99, 23);
+            this.button3.TabIndex = 3;
+            this.button3.Text = "What\'s new";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click_1);
+            // 
             // aboutSettingsTabControl
             // 
             this.aboutSettingsTabControl.Controls.Add(this.aboutPanel);
@@ -318,7 +331,7 @@
             this.aboutSettingsTabControl.Name = "aboutSettingsTabControl";
             this.aboutSettingsTabControl.Padding = new System.Drawing.Point(0, 0);
             this.aboutSettingsTabControl.SelectedIndex = 0;
-            this.aboutSettingsTabControl.Size = new System.Drawing.Size(550, 381);
+            this.aboutSettingsTabControl.Size = new System.Drawing.Size(550, 391);
             this.aboutSettingsTabControl.TabIndex = 1;
             this.aboutSettingsTabControl.SelectedIndexChanged += new System.EventHandler(this.TabSwitcher);
             // 
@@ -328,13 +341,14 @@
             this.aboutPanel.Location = new System.Drawing.Point(4, 22);
             this.aboutPanel.Name = "aboutPanel";
             this.aboutPanel.Padding = new System.Windows.Forms.Padding(3);
-            this.aboutPanel.Size = new System.Drawing.Size(542, 355);
+            this.aboutPanel.Size = new System.Drawing.Size(542, 365);
             this.aboutPanel.TabIndex = 0;
             this.aboutPanel.Text = "About";
             this.aboutPanel.UseVisualStyleBackColor = true;
             // 
             // updatePanel
             // 
+            this.updatePanel.Controls.Add(this.darkDetectCheck);
             this.updatePanel.Controls.Add(this.customServerButton);
             this.updatePanel.Controls.Add(this.primaryServerButton);
             this.updatePanel.Controls.Add(this.backupServerButton);
@@ -352,10 +366,26 @@
             this.updatePanel.Location = new System.Drawing.Point(4, 22);
             this.updatePanel.Name = "updatePanel";
             this.updatePanel.Padding = new System.Windows.Forms.Padding(3);
-            this.updatePanel.Size = new System.Drawing.Size(542, 355);
+            this.updatePanel.Size = new System.Drawing.Size(542, 365);
             this.updatePanel.TabIndex = 1;
             this.updatePanel.Text = "Update settings";
             this.updatePanel.UseVisualStyleBackColor = true;
+            // 
+            // darkDetectCheck
+            // 
+            this.darkDetectCheck.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.darkDetectCheck.AutoSize = true;
+            this.darkDetectCheck.Checked = true;
+            this.darkDetectCheck.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.darkDetectCheck.Location = new System.Drawing.Point(349, 320);
+            this.darkDetectCheck.Name = "darkDetectCheck";
+            this.darkDetectCheck.Size = new System.Drawing.Size(174, 17);
+            this.darkDetectCheck.TabIndex = 14;
+            this.darkDetectCheck.Text = "Enable dark mode detection [?]";
+            this.helpTip.SetToolTip(this.darkDetectCheck, "Automatically switches the program to night mode on startup if Windows is configu" +
+        "red to use dark mode.");
+            this.darkDetectCheck.UseVisualStyleBackColor = true;
+            this.darkDetectCheck.CheckedChanged += new System.EventHandler(this.darkDetectCheck_CheckedChanged);
             // 
             // customServerButton
             // 
@@ -406,7 +436,7 @@
             this.primaryServerBox.Name = "primaryServerBox";
             this.primaryServerBox.Size = new System.Drawing.Size(503, 20);
             this.primaryServerBox.TabIndex = 10;
-            this.primaryServerBox.Text = "http://markustegelane.tk/app";
+            this.primaryServerBox.Text = "http://nossl.markustegelane.eu/app";
             this.primaryServerBox.TextChanged += new System.EventHandler(this.ChangeUpdateServer);
             // 
             // primaryServerLabel
@@ -422,7 +452,7 @@
             // noticeLabel
             // 
             this.noticeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.noticeLabel.Location = new System.Drawing.Point(11, 332);
+            this.noticeLabel.Location = new System.Drawing.Point(11, 342);
             this.noticeLabel.Name = "noticeLabel";
             this.noticeLabel.Size = new System.Drawing.Size(531, 18);
             this.noticeLabel.TabIndex = 8;
@@ -435,7 +465,7 @@
             this.updateCheckButton.AutoSize = true;
             this.updateCheckButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.updateCheckButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.updateCheckButton.Location = new System.Drawing.Point(151, 306);
+            this.updateCheckButton.Location = new System.Drawing.Point(151, 316);
             this.updateCheckButton.Name = "updateCheckButton";
             this.updateCheckButton.Padding = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.updateCheckButton.Size = new System.Drawing.Size(116, 23);
@@ -449,7 +479,7 @@
             // 
             this.unsignButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.unsignButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.unsignButton.Location = new System.Drawing.Point(20, 306);
+            this.unsignButton.Location = new System.Drawing.Point(20, 316);
             this.unsignButton.Name = "unsignButton";
             this.unsignButton.Size = new System.Drawing.Size(125, 23);
             this.unsignButton.TabIndex = 6;
@@ -602,7 +632,7 @@
             this.simulatorSettingsPanel.Controls.Add(this.simulatorSettingsHeading);
             this.simulatorSettingsPanel.Location = new System.Drawing.Point(4, 22);
             this.simulatorSettingsPanel.Name = "simulatorSettingsPanel";
-            this.simulatorSettingsPanel.Size = new System.Drawing.Size(542, 355);
+            this.simulatorSettingsPanel.Size = new System.Drawing.Size(542, 365);
             this.simulatorSettingsPanel.TabIndex = 4;
             this.simulatorSettingsPanel.Text = "Simulator settings";
             this.simulatorSettingsPanel.UseVisualStyleBackColor = true;
@@ -961,7 +991,7 @@
             this.helpPanel.Controls.Add(this.helpPanelChild);
             this.helpPanel.Location = new System.Drawing.Point(4, 22);
             this.helpPanel.Name = "helpPanel";
-            this.helpPanel.Size = new System.Drawing.Size(542, 355);
+            this.helpPanel.Size = new System.Drawing.Size(542, 365);
             this.helpPanel.TabIndex = 2;
             this.helpPanel.Text = "Help";
             this.helpPanel.UseVisualStyleBackColor = true;
@@ -974,7 +1004,7 @@
             this.helpPanelChild.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.helpPanelChild.Location = new System.Drawing.Point(0, 0);
             this.helpPanelChild.Name = "helpPanelChild";
-            this.helpPanelChild.Size = new System.Drawing.Size(542, 355);
+            this.helpPanelChild.Size = new System.Drawing.Size(542, 365);
             this.helpPanelChild.TabIndex = 2;
             // 
             // helpButtonsFlowPanel
@@ -1054,7 +1084,7 @@
             this.commandLinePanel.Controls.Add(this.commandLineHelpDisplay);
             this.commandLinePanel.Location = new System.Drawing.Point(4, 22);
             this.commandLinePanel.Name = "commandLinePanel";
-            this.commandLinePanel.Size = new System.Drawing.Size(542, 355);
+            this.commandLinePanel.Size = new System.Drawing.Size(542, 365);
             this.commandLinePanel.TabIndex = 3;
             this.commandLinePanel.Text = "Command line help";
             this.commandLinePanel.UseVisualStyleBackColor = true;
@@ -1072,7 +1102,7 @@
             this.commandLineHelpDisplay.ReadOnly = true;
             this.commandLineHelpDisplay.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.commandLineHelpDisplay.ShortcutsEnabled = false;
-            this.commandLineHelpDisplay.Size = new System.Drawing.Size(542, 355);
+            this.commandLineHelpDisplay.Size = new System.Drawing.Size(542, 365);
             this.commandLineHelpDisplay.TabIndex = 0;
             // 
             // updateCheckerTimer
@@ -1101,7 +1131,7 @@
             this.AcceptButton = this.okButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(556, 387);
+            this.ClientSize = new System.Drawing.Size(556, 397);
             this.Controls.Add(this.aboutSettingsTabControl);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -1221,5 +1251,7 @@
         private System.Windows.Forms.CheckBox randomnessCheckBox;
         private System.Windows.Forms.CheckBox selectAllBox;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.CheckBox darkDetectCheck;
     }
 }
