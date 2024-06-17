@@ -6,6 +6,8 @@ using UltimateBlueScreenSimulator;
 using System.Drawing;
 using System.Management;
 using System.Threading;
+using System.Xml.Linq;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
 
 //
 // This namespace contains classes that are shared between forms that specify
@@ -122,10 +124,13 @@ namespace SimulatorDatabase
         readonly IDictionary<string, string> strings;
         readonly IDictionary<int, int> progression;
 
+        public List<string> log1;
+
         private readonly Random r;
 
         public BlueScreen(string base_os, bool autosetup = true)
         {
+            this.log1 = new List<string>();
             this.r = new Random();
             this.background = Color.FromArgb(0, 0, 0);
             this.foreground = Color.FromArgb(255, 255, 255);
@@ -154,17 +159,34 @@ namespace SimulatorDatabase
         // blue screen properties
         public bool GetBool(string name)
         {
+            Log("Info", $"Reading bool {name}");
             if (this.bools.ContainsKey(name))
             {
                 return this.bools[name];
             }
             else
             {
+                Log("Warning", "No data, returning false");
                 return false;
             }
         }
+
+        public void Log(string e, string message)
+        {
+            log1.Add("[" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "] " +e + " - "+message);
+        }
+
+        public string GetLog()
+        {
+            log1.Reverse();
+            string ret = string.Join("\n", log1.ToArray());
+            log1.Reverse();
+            return ret;
+        }
+
         public void SetBool(string name, bool value)
         {
+            Log("Info", $"Setting bool {name} to {value}");
             if (this.bools.ContainsKey(name))
             {
                 this.bools[name] = value;
@@ -177,7 +199,7 @@ namespace SimulatorDatabase
 
         public string GetString(string name)
         {
-
+            Log("Info", $"Getting string {name}");
             switch (name)
             {
                 case "os": return this.os;
@@ -201,6 +223,7 @@ namespace SimulatorDatabase
                     }
                     else
                     {
+                        Log("Warning", "No data, returning empty string");
                         return "";
                     }
             }
@@ -208,17 +231,20 @@ namespace SimulatorDatabase
 
         public void ClearAllTitleTexts()
         {
+            Log("Info", $"Clearing all titles and texts");
             this.titles.Clear();
             this.texts.Clear();
         }
 
         public void ClearProgress()
         {
+            Log("Info", $"Clearing progress tuning data");
             this.progression.Clear();
         }
 
         public void SetString(string name, string value)
         {
+            Log("Info", $"Setting string {name} to {value}");
             switch (name)
             {
                 case "icon": this.icon = value; break;
@@ -238,27 +264,32 @@ namespace SimulatorDatabase
 
         public void SetTitle(string name, string value)
         {
+            Log("Info", $"Setting title {name} to {value}");
             this.titles[name] = value;
         }
 
         public void PushTitle(string name, string value)
         {
+            Log("Info", $"Pushing title {name} with value {value}");
             this.titles.Add(name, value);
         }
 
         public void SetText(string name, string value)
         {
+            Log("Info", $"Setting text {name} to {value}");
             this.texts[name] = value;
         }
 
         public void PushText(string name, string value)
         {
+            Log("Info", $"Pushing text {name} with value {value}");
             this.texts.Add(name, value);
         }
 
         // theming
         public Color GetTheme(bool bg, bool highlight = false)
         {
+            Log("Info", $"Getting " + (highlight ? "highlight " : "") + (bg ? "background" : "foreground") + " color" );
             if (highlight)
             {
                 if (bg) { return this.highlight_bg; } else { return this.highlight_fg; }
@@ -268,6 +299,7 @@ namespace SimulatorDatabase
 
         public void SetTheme(Color bg, Color fg, bool highlight = false)
         {
+            Log("Info", $"Setting " + (highlight ? "highlight" : "base")  + $" colors to ({bg.R}, {bg.G}, {bg.B}), ({fg.R}, {fg.G}, {fg.B})");
             if (highlight)
             {
                 this.highlight_bg = bg;
@@ -281,33 +313,39 @@ namespace SimulatorDatabase
         // error codes
         public string[] GetCodes()
         {
+            Log("Info", $"Getting error codes");
             return this.ecodes;
         }
         public void SetCodes(string code1, string code2, string code3, string code4)
         {
+            Log("Info", $"Setting error codes to {code1}, {code2}, {code3}, {code4}");
             string[] code_temp = { code1, code2, code3, code4 };
             this.ecodes = code_temp;
         }
 
         private Color RGB(int r, int g, int b)
         {
+            Log("Info", $"Getting color from values {r}, {g}, {b}");
             return Color.FromArgb(r, g, b);
         }
 
         // integers
         public int GetInt(string name)
         {
+            Log("Info", $"Getting integer value of {name}");
             if (this.ints.ContainsKey(name))
             {
                 return this.ints[name];
             }
             else
             {
+                Log("Warning", "No data, returning 1");
                 return 1;
             }
         }
         public void SetInt(string name, int value)
         {
+            Log("Info", $"Getting integer value of {name} to {value}");
             if (this.ints.ContainsKey(name))
             {
                 this.ints[name] = value;
@@ -320,16 +358,19 @@ namespace SimulatorDatabase
 
         public void SetFont(string font_family, float emsize, FontStyle style)
         {
+            Log("Info", $"Setting font as {font_family}, {emsize}pt");
             this.font = new Font(font_family, emsize, style);
         }
 
         public Font GetFont()
         {
+            Log("Info", $"Getting current font");
             return this.font;
         }
 
         public Icon GetIcon()
         {
+            Log("Info", $"Getting icon");
             ImageList windowsIcons = new StringEdit().AllIcons;
             switch (GetString("icon"))
             {
@@ -348,11 +389,13 @@ namespace SimulatorDatabase
 
         public IDictionary<string, string> GetTitles()
         {
+            Log("Info", $"Getting all titles");
             return this.titles;
         }
 
         public IDictionary<string, string> GetTexts()
         {
+            Log("Info", $"Getting all texts");
             return this.texts;
         }
 
@@ -361,17 +404,20 @@ namespace SimulatorDatabase
         // progress keyframes
         public int GetProgression(int name)
         {
+            Log("Info", $"Getting progress tuner data at {name}");
             if (this.progression.ContainsKey(name))
             {
                 return this.progression[name];
             }
             else
             {
+                Log("Warning", "No data, returning 0");
                 return 0;
             }
         }
         public void SetProgression(int name, int value)
         {
+            Log("Info", $"Setting progress tuner data at {name} to {value}");
             if (this.progression.ContainsKey(name))
             {
                 this.progression[name] = value;
@@ -384,6 +430,7 @@ namespace SimulatorDatabase
 
         public void SetAllProgression(int[] keys, int[] values)
         {
+            Log("Info", $"Setting progress tuner data to predefined array");
             this.progression.Clear();
             for (int i = 0; i < keys.Length; i++)
             {
@@ -394,6 +441,7 @@ namespace SimulatorDatabase
         //GenAddress uses the last function to generate multiple error address codes
         public string GenAddress(int count, int places, bool lower)
         {
+            Log("Info", $"Generating error {count} address code(s) with {places} place(s)" + (lower ? " in lowercase" : ""));
             string ot = "";
             string inspir = GetString("ecode1");
             for (int i = 0; i < count; i++)
@@ -414,6 +462,7 @@ namespace SimulatorDatabase
         {
             //sleep command is used to make sure that randomization works properly
             //System.Threading.Thread.Sleep(20);
+            Log("Info", $"Generating {lettercount} character hex code with template {inspir}");
             string output = "";
             for (int i = 0; i < lettercount; i++)
             {
@@ -440,6 +489,7 @@ namespace SimulatorDatabase
 
         public void PushFile(string name, string[] codes)
         {
+            Log("Info", $"Pushing culprit file {name} with error templates [{string.Join(", ", codes)}]");
             if (!codefiles.ContainsKey(name))
             {
                 codefiles.Add(name, codes);
@@ -448,16 +498,20 @@ namespace SimulatorDatabase
 
         public IDictionary<string, string[]> GetFiles()
         {
+            Log("Info", $"Getting culprit files");
             return codefiles;
         }
 
         public void ClearFiles()
         {
+            Log("Info", $"Clearing culprit files");
             codefiles.Clear();
         }
 
         public void RenameFile(string key, string renamed)
         {
+            Log("Info", $"Attempting to rename file {key} to {renamed}");
+            bool isRenamed = false;
             string[] codes;
             foreach (KeyValuePair<string, string[]> kvp in this.GetFiles())
             {
@@ -466,14 +520,20 @@ namespace SimulatorDatabase
                     codes = kvp.Value;
                     this.codefiles.Remove(key);
                     this.PushFile(renamed, codes);
+                    isRenamed = true;
                     break;
                 }
+            }
+            if (!isRenamed)
+            {
+                Log("Error", $"Couldn't rename {key}!!! Reason: File does not exist in dictionary!");
             }
         }
 
         public void SetFile(string key, int subcode, string code)
         {
-
+            Log("Info", $"Modifying file {key}");
+            bool isModified = false;
             foreach (KeyValuePair<string, string[]> kvp in this.GetFiles())
             {
                 if (key == kvp.Key)
@@ -481,8 +541,13 @@ namespace SimulatorDatabase
                     string[] codearray = kvp.Value;
                     codearray[subcode] = code;
                     this.codefiles[key] = codearray;
+                    isModified = true;
                     break;
                 }
+            }
+            if (!isModified)
+            {
+                Log("Error", $"Couldn't modify {key}!!! Reason: File does not exist in dictionary!");
             }
         }
 
@@ -490,6 +555,7 @@ namespace SimulatorDatabase
         //GenFile generates a new file for use in Windows NT blue screen
         public string GenFile(bool lower = true)
         {
+            Log("Info", "Generating a random file for NT blue screen" + (lower ? " in lowercase" : ""));
             string[] files = UltimateBlueScreenSimulator.Properties.Resources.CULPRIT_FILES.Split('\n');
             List<string> filenames = new List<string>();
             foreach (string line in files)
@@ -513,6 +579,7 @@ namespace SimulatorDatabase
 
         public void Show()
         {
+            Log("Info", "Simulation requested!");
             switch (this.os)
             {
                 case "BOOTMGR":
@@ -566,6 +633,7 @@ namespace SimulatorDatabase
         {
             try
             {
+                Log("Info", "Setting up Windows CE simulator");
                 bs.BackColor = this.GetTheme(true);
                 bs.ForeColor = this.GetTheme(false);
                 bs.Font = this.GetFont();
@@ -575,6 +643,7 @@ namespace SimulatorDatabase
             }
             catch (Exception ex)
             {
+                Log("Error", $"Error setting up Windows CE simulator. Reason: {ex.Message}");
                 MessageBox.Show(ex.Message, "A non-critical error has occoured", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             bs.me = this;
@@ -585,6 +654,7 @@ namespace SimulatorDatabase
 
         private void CheckMessageJustInCase()
         {
+            Log("Info", "Called CheckMessageJustInCase method");
             if (!Program.f1.showcursor)
             {
                 Cursor.Show();
@@ -603,6 +673,7 @@ namespace SimulatorDatabase
         {
             try
             {
+                Log("Info", "Setting up Windows NT simulator");
                 bs.BackColor = this.GetTheme(true);
                 bs.ForeColor = this.GetTheme(false);
                 if (GetBool("show_file")) { bs.whatfail = GetString("culprit"); }
@@ -615,6 +686,7 @@ namespace SimulatorDatabase
             }
             catch (Exception ex)
             {
+                Log("Error", $"Error setting up Windows NT simulator. Reason: {ex.Message}");
                 MessageBox.Show(ex.Message, "A non-critical error has occoured", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             bs.me = this;
@@ -626,6 +698,7 @@ namespace SimulatorDatabase
         {
             try
             {
+                Log("Info", "Setting up Windows 3.1x/9x/Me simulator");
                 bs.BackColor = this.GetTheme(true);
                 bs.ForeColor = this.GetTheme(false);
                 bs.window = this.GetBool("windowed");
@@ -635,6 +708,7 @@ namespace SimulatorDatabase
             }
             catch (Exception ex)
             {
+                Log("Error", $"Error setting up Windows 3.1x/9x/Me simulator. Reason: {ex.Message}");
                 MessageBox.Show(ex.Message, "A non-critical error has occoured", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             bs.me = this;
@@ -645,12 +719,14 @@ namespace SimulatorDatabase
         {
             try
             {
+                Log("Info", "Setting up Windows 1.x/2.x simulator");
                 bs.BackColor = this.GetTheme(true);
                 bs.ForeColor = this.GetTheme(false);
                 bs.window = this.GetBool("windowed");
             }
             catch (Exception ex)
             {
+                Log("Error", $"Error setting up Windows 1.x/2.x simulator. Reason: {ex.Message}");
                 MessageBox.Show(ex.Message, "A non-critical error has occoured", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             bs.me = this;
@@ -662,6 +738,7 @@ namespace SimulatorDatabase
         {
             try
             {
+                Log("Info", "Setting up Windows 2000 simulator");
                 bs.BackColor = this.GetTheme(true);
                 bs.ForeColor = this.GetTheme(false);
                 bs.fullscreen = !this.GetBool("windowed");
@@ -672,6 +749,7 @@ namespace SimulatorDatabase
             }
             catch (Exception ex)
             {
+                Log("Error", $"Error setting up Windows 2000 simulator. Reason: {ex.Message}");
                 MessageBox.Show(ex.Message, "A non-critical error has occoured", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             bs.me = this;
@@ -683,6 +761,7 @@ namespace SimulatorDatabase
         {
             try
             {
+                Log("Info", "Setting up Windows XP simulator");
                 bs.BackColor = this.GetTheme(true);
                 bs.ForeColor = this.GetTheme(false);
                 bs.fullscreen = !this.GetBool("windowed");
@@ -695,6 +774,7 @@ namespace SimulatorDatabase
             }
             catch (Exception ex)
             {
+                Log("Error", $"Error setting up Windows XP simulator. Reason: {ex.Message}");
                 MessageBox.Show(ex.Message, "A non-critical error has occoured", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             bs.me = this;
@@ -706,6 +786,7 @@ namespace SimulatorDatabase
         {
             try
             {
+                Log("Info", "Setting up Windows Vista simulator");
                 bs.BackColor = this.GetTheme(true);
                 bs.ForeColor = this.GetTheme(false);
                 bs.fullscreen = !this.GetBool("windowed");
@@ -723,6 +804,7 @@ namespace SimulatorDatabase
             }
             catch (Exception ex)
             {
+                Log("Error", $"Error setting up Windows Vista simulator. Reason: {ex.Message}");
                 MessageBox.Show(ex.Message, "A non-critical error has occoured", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             bs.me = this;
@@ -732,6 +814,7 @@ namespace SimulatorDatabase
 
         private void SetupWinXabove(WXBS bs, bool w11 = false)
         {
+            Log("Info", "Setting up Windows 8.x/10/11 simulator in SetupWinXabove method");
             bs.emoticonLabel.Text = this.GetString("emoticon");
             bs.BackColor = this.GetTheme(true);
             bs.ForeColor = this.GetTheme(false);
@@ -761,6 +844,7 @@ namespace SimulatorDatabase
             }
             catch (Exception ex)
             {
+                Log("Error", $"Error setting up Windows 8.x/10/11 simulator in SetupWinXabove method. Reason: {ex.Message}");
                 MessageBox.Show(ex.Message, "A non-critical error has occoured", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             bs.me = this;
@@ -770,6 +854,7 @@ namespace SimulatorDatabase
 
         private void SetupWin8(WXBS bs)
         {
+            Log("Info", "Setting up Windows 8.x/10/11 simulator in SetupWin8 method");
             bs.emoticonLabel.Text = this.GetString("emoticon");
             bs.BackColor = this.GetTheme(true);
             bs.ForeColor = this.GetTheme(false);
@@ -799,6 +884,7 @@ namespace SimulatorDatabase
             }
             catch (Exception ex)
             {
+                Log("Error", $"Error setting up Windows 8.x/10/11 simulator in SetupWin8 method. Reason: {ex.Message}");
                 MessageBox.Show(ex.Message, "A non-critical error has occoured", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             bs.me = this;
@@ -808,6 +894,7 @@ namespace SimulatorDatabase
 
         public void Crash(string message, string stacktrace, string type)
         {
+            Log("Warning", $"Triggered metacrash with the following info: message={message}, stacktrace={stacktrace}, type={type}");
             Metaerror me = new Metaerror
             {
                 stack_trace = stacktrace,
@@ -829,6 +916,7 @@ namespace SimulatorDatabase
         // default hacks for specific OS
         public void SetOSSpecificDefaults()
         {
+            Log("Info", $"Setting default settings with {this.os} template");
             SetBool("watermark", true);
             switch (this.os)
             {
@@ -1102,6 +1190,7 @@ namespace SimulatorDatabase
 
         public void SetDefaultProgression()
         {
+            Log("Info", "Generating default progress tuner configuration");
             int totalmillis = 100;
             int percent = 0;
             while (percent < 100)

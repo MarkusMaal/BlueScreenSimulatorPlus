@@ -266,11 +266,13 @@ namespace UltimateBlueScreenSimulator
             if (args.Contains("/c"))
             {
                 f1.GetOS();
+                f2.GetOS();
             }
 
 
             //Load Windows NT error codes from the database
             f1.comboBox1.Items.Clear();
+            f2.comboBox1.Items.Clear();
             string database = "";
             try
             {
@@ -288,6 +290,7 @@ namespace UltimateBlueScreenSimulator
                     string[] codesplit = element.Split('\t');
                     string final = codesplit[1].ToString().Substring(0, codesplit[1].ToString().Length - 1) + " (" + codesplit[0].ToString() + ")";
                     f1.comboBox1.Items.Add(final);
+                    f2.comboBox1.Items.Add(final);
                 }
             }
             catch
@@ -298,6 +301,9 @@ namespace UltimateBlueScreenSimulator
             f1.comboBox1.SelectedIndex = 9;
             f1.windowVersion.SelectedIndex = 0;
             f1.comboBox2.SelectedIndex = 0;
+            f2.comboBox1.SelectedIndex = 9;
+            f2.windowVersion.SelectedIndex = 0;
+            f2.comboBox2.SelectedIndex = 0;
             //Post update scripts
             if (args.Contains("/doneupdate"))
             {
@@ -313,8 +319,10 @@ namespace UltimateBlueScreenSimulator
             }
             //Generate random blue screen when /random flag is set
             if (args.Contains("/random")) { f1.RandFunction(); }
+            if (args.Contains("/random")) { f2.RandFunction(); }
             //Hide watermark if hwm flag is set
             if (args.Contains("/hvm")) { f1.waterBox.Checked = false; }
+            if (args.Contains("/hvm")) { f2.waterBox.Checked = false; }
             bool done = false;
             foreach (string argument in args)
             {
@@ -561,6 +569,7 @@ namespace UltimateBlueScreenSimulator
             if (args.Contains("/c"))
             {
                 f1.Crash();
+                f2.Crash();
             }
             //run application
             if (!useNewUi)

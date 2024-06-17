@@ -188,7 +188,7 @@
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(15, 73);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(472, 296);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(472, 293);
             this.flowLayoutPanel1.TabIndex = 3;
             this.flowLayoutPanel1.WrapContents = false;
             // 
@@ -802,7 +802,7 @@
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.button1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button1.Location = new System.Drawing.Point(418, 394);
+            this.button1.Location = new System.Drawing.Point(418, 391);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(68, 23);
             this.button1.TabIndex = 14;
@@ -817,7 +817,7 @@
             this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.button3.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button3.Location = new System.Drawing.Point(301, 394);
+            this.button3.Location = new System.Drawing.Point(301, 391);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(111, 23);
             this.button3.TabIndex = 13;
@@ -832,7 +832,7 @@
             this.button7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button7.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.button7.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button7.Location = new System.Drawing.Point(15, 394);
+            this.button7.Location = new System.Drawing.Point(15, 391);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(69, 23);
             this.button7.TabIndex = 12;
@@ -848,7 +848,7 @@
             // 
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(15, 378);
+            this.label7.Location = new System.Drawing.Point(15, 375);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(245, 13);
             this.label7.TabIndex = 6;
@@ -857,7 +857,7 @@
             // label10
             // 
             this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label10.Location = new System.Drawing.Point(351, 372);
+            this.label10.Location = new System.Drawing.Point(351, 369);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(134, 13);
             this.label10.TabIndex = 8;
@@ -923,7 +923,7 @@
             // simulateToolStripMenuItem
             // 
             this.simulateToolStripMenuItem.Name = "simulateToolStripMenuItem";
-            this.simulateToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.simulateToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.simulateToolStripMenuItem.Text = "&Simulate";
             this.simulateToolStripMenuItem.Click += new System.EventHandler(this.SimulateToolStripMenuItem_Click);
             // 
@@ -933,7 +933,7 @@
             this.autoUpdateToolStripMenuItem,
             this.simulatorSettingsToolStripMenuItem});
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.settingsToolStripMenuItem.Text = "Settings";
             this.settingsToolStripMenuItem.DropDownOpening += new System.EventHandler(this.SimulatorToolStripMenuItem_DropDownOpening);
             // 
@@ -941,7 +941,7 @@
             // 
             this.autoUpdateToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.autoUpdateToolStripMenuItem.Name = "autoUpdateToolStripMenuItem";
-            this.autoUpdateToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.autoUpdateToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.autoUpdateToolStripMenuItem.Text = "Auto&Update";
             this.autoUpdateToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.autoUpdateToolStripMenuItem.Click += new System.EventHandler(this.AutoUpdateToolStripMenuItem_Click);
@@ -950,7 +950,7 @@
             // 
             this.simulatorSettingsToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.simulatorSettingsToolStripMenuItem.Name = "simulatorSettingsToolStripMenuItem";
-            this.simulatorSettingsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.simulatorSettingsToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.simulatorSettingsToolStripMenuItem.Text = "Si&mulator settings";
             this.simulatorSettingsToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.simulatorSettingsToolStripMenuItem.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
@@ -960,26 +960,26 @@
             // 
             this.toolStripSeparator1.AutoSize = false;
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 3);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(138, 3);
             // 
             // nightThemeToolStripMenuItem
             // 
             this.nightThemeToolStripMenuItem.CheckOnClick = true;
             this.nightThemeToolStripMenuItem.Name = "nightThemeToolStripMenuItem";
-            this.nightThemeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.nightThemeToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.nightThemeToolStripMenuItem.Text = "Night theme";
             this.nightThemeToolStripMenuItem.CheckStateChanged += new System.EventHandler(this.LightSwitch);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(138, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.exitToolStripMenuItem.Text = "E&xit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
@@ -1098,7 +1098,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(499, 434);
+            this.ClientSize = new System.Drawing.Size(499, 431);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.button3);
