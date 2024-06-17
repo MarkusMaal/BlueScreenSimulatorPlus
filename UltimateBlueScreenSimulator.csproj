@@ -38,10 +38,14 @@
     <ApplicationIcon>bssp2.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MaterialSkin, Version=2.3.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\MaterialSkin.2.2.3.1\lib\net48\MaterialSkin.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
     <Reference Include="System.Management">
       <Private>False</Private>
       <EmbedInteropTypes>False</EmbedInteropTypes>
@@ -133,6 +137,12 @@
     </Compile>
     <Compile Include="metaerror.Designer.cs">
       <DependentUpon>metaerror.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NewUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewUI.Designer.cs">
+      <DependentUpon>NewUI.cs</DependentUpon>
     </Compile>
     <Compile Include="NTBSOD.cs">
       <SubType>Form</SubType>
@@ -269,6 +279,9 @@
     <EmbeddedResource Include="metaerror.resx">
       <DependentUpon>metaerror.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="NewUI.resx">
+      <DependentUpon>NewUI.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="NTBSOD.resx">
       <DependentUpon>NTBSOD.cs</DependentUpon>
     </EmbeddedResource>
@@ -325,6 +338,7 @@
       <DependentUpon>xvsbs.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -339,6 +353,9 @@
     <Content Include="bsodgen_npJ_icon.ico" />
     <Content Include="bssp2.ico" />
     <Content Include="legacy_template.txt" />
+    <None Include="Resources\question.png" />
+    <None Include="Resources\plus.png" />
+    <None Include="Resources\play.png" />
     <None Include="Resources\bsodbanner21.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

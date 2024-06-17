@@ -242,10 +242,11 @@ namespace UltimateBlueScreenSimulator.Properties {
         ///del BSOD.exe
         ///del vercheck.txt
         ///del hash.txt
+        ///del UltimateBlueScreenSimulator.exe
         ///if exist BSOD.exe goto del_loop
         ///if exist vercheck.txt goto del_loop
         ///if exist hash.txt goto del_loop
-        ///del finish.bat&amp;start "" "Blue screen simulator plus.exe" /doneupdate.
+        ///del finish.bat&amp;start &quot;&quot; &quot;Blue screen simulator plus.exe&quot; /doneupdate.
         /// </summary>
         internal static string final {
             get {
@@ -301,6 +302,36 @@ namespace UltimateBlueScreenSimulator.Properties {
         internal static System.Drawing.Bitmap pending {
             get {
                 object obj = ResourceManager.GetObject("pending", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap play {
+            get {
+                object obj = ResourceManager.GetObject("play", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap plus {
+            get {
+                object obj = ResourceManager.GetObject("plus", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap question {
+            get {
+                object obj = ResourceManager.GetObject("question", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
