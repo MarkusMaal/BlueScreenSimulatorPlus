@@ -176,11 +176,11 @@ namespace SimulatorDatabase
             log1.Add("[" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "] " +e + " - "+message);
         }
 
-        public string GetLog()
+        public string GetLog(bool reverse = true)
         {
-            log1.Reverse();
+            if (reverse) { log1.Reverse(); }
             string ret = string.Join("\n", log1.ToArray());
-            log1.Reverse();
+            if (reverse) { log1.Reverse(); }
             return ret;
         }
 

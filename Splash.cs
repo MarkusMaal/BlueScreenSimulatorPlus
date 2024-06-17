@@ -52,5 +52,10 @@ namespace UltimateBlueScreenSimulator
                 this.Close();
             }
         }
+
+        private void Splash_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

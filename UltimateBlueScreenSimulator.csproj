@@ -353,6 +353,7 @@
     <Content Include="bsodgen_npJ_icon.ico" />
     <Content Include="bssp2.ico" />
     <Content Include="legacy_template.txt" />
+    <None Include="Resources\bsodbanner22.png" />
     <None Include="Resources\question.png" />
     <None Include="Resources\plus.png" />
     <None Include="Resources\play.png" />

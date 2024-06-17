@@ -6,14 +6,26 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using MaterialSkin;
+using MaterialSkin.Controls;
 
 namespace UltimateBlueScreenSimulator
 {
-    public partial class BTS : Form
+    public partial class BTS : MaterialForm
     {
         public BTS()
         {
             InitializeComponent();
+            MaterialSkinManager materialSkinManager = MaterialSkinManager.Instance;
+            materialSkinManager.AddFormToManage(this);
+            materialSkinManager.Theme = Program.f2.darkMode.Checked ? MaterialSkinManager.Themes.DARK : MaterialSkinManager.Themes.LIGHT;
+
+            // Configure color schema
+            materialSkinManager.ColorScheme = new ColorScheme(
+                Primary.Indigo400, Primary.Indigo500,
+                Primary.Indigo500, Accent.Orange400,
+                TextShade.WHITE
+            );
         }
 
         private void CloseClick(object sender, EventArgs e)
@@ -56,6 +68,11 @@ namespace UltimateBlueScreenSimulator
         private void ChangeSizeModeC(object sender, EventArgs e)
         {
             ChangeAllSizeMode();
+        }
+
+        private void BTS_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

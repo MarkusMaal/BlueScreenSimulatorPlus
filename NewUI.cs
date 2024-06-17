@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Reflection.Emit;
 using System.Text;
@@ -16,6 +17,7 @@ using Microsoft.Win32;
 using SimulatorDatabase;
 using static System.Windows.Forms.Design.AxImporter;
 using Control = System.Windows.Forms.Control;
+using Panel = System.Windows.Forms.Panel;
 
 namespace UltimateBlueScreenSimulator
 {
@@ -28,18 +30,20 @@ namespace UltimateBlueScreenSimulator
 
         public static ThreadStart ts;
         Thread bsod_starter;
+        internal MaterialSkinManager materialSkinManager = MaterialSkinManager.Instance;
+
+        public bool abopen = false;
 
         public NewUI()
         {
             InitializeComponent();
-            MaterialSkinManager materialSkinManager = MaterialSkinManager.Instance;
             materialSkinManager.AddFormToManage(this);
             materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
 
             // Configure color schema
             materialSkinManager.ColorScheme = new ColorScheme(
-                Primary.Indigo400, Primary.Indigo500,
-                Primary.Indigo500, Accent.Orange400,
+                Primary.Blue800, Primary.Blue900,
+                Primary.Blue400, Accent.Indigo700,
                 TextShade.WHITE
             );
         }
@@ -47,6 +51,7 @@ namespace UltimateBlueScreenSimulator
         private void NewUi1_Load(object sender, EventArgs e)
         {
             windowVersion.Items.Clear();
+            accentBox.SelectedIndex = 6;
             for (int i = Program.bluescreens.Count - 1; i >= 0; i--)
             {
                 windowVersion.Items.Add(Program.bluescreens[i].GetString("friendlyname"));
@@ -75,7 +80,43 @@ namespace UltimateBlueScreenSimulator
             catch
             {
             }
-            /* if (specificos != "")
+            GetOS();
+        }
+
+
+
+        public void GetOS()
+        {
+            windowVersion.Items.Clear();
+            for (int i = Program.bluescreens.Count - 1; i >= 0; i--)
+            {
+                windowVersion.Items.Add(Program.bluescreens[i].GetString("friendlyname"));
+            }
+            WXOptions.Visible = false;
+            errorCode.Visible = false;
+            nineXmessage.Visible = false;
+            serverBox.Visible = false;
+            greenBox.Visible = false;
+            qrBox.Visible = false;
+            checkBox1.Visible = false;
+            winMode.Visible = false;
+            acpiBox.Visible = false;
+            amdBox.Visible = false;
+            stackBox.Visible = false;
+            checkBox2.Enabled = true;
+            ntPanel.Visible = false;
+            if (windowVersion.Items.Count > 0) { windowVersion.SelectedIndex = 0; }
+            string winver = "";
+            int os_build = 0;
+            try
+            {
+                winver = Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion", "ProductName", "").ToString();
+                os_build = Convert.ToInt32(Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion", "CurrentBuild", "0").ToString());
+            }
+            catch
+            {
+            }
+            /*if (specificos != "")
             {
                 winver = specificos;
                 specificos = "";
@@ -127,7 +168,6 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-
         void SetOS(string winver)
         {
             for (int i = 0; i < windowVersion.Items.Count; i++)
@@ -152,13 +192,16 @@ namespace UltimateBlueScreenSimulator
 
         private void materialButton2_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            Program.f1.Show();
+            if (MessageBox.Show("Are you sure? You cannot undo this action unless you restart the application completely.", "Restore old layout", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            {
+                this.Hide();
+                Program.f1.Show();
+            }
         }
 
         private void windowVersion_SelectedIndexChanged(object sender, EventArgs e)
         {
-            GetOS();
+            ReloadSelection();
         }
 
         public void Crash()
@@ -187,7 +230,7 @@ namespace UltimateBlueScreenSimulator
             Thread.CurrentThread.Abort();
         }
 
-        internal void GetOS()
+        internal void ReloadSelection()
         {
             /*if (linkLabel1.Visible)
             {
@@ -528,6 +571,10 @@ namespace UltimateBlueScreenSimulator
                     checkBox2.Checked = false;
                 }
             }
+            if (me == null)
+            {
+                return;
+            }
             me.SetString("culprit", textBox2.Text);
             if ((me.GetString("os") == "Windows XP") || (me.GetString("os") == "Windows Vista") || (me.GetString("os") == "Windows 7"))
             {
@@ -634,6 +681,383 @@ namespace UltimateBlueScreenSimulator
             if (materialTabControl1.SelectedIndex == 1)
             {
                 logIf.Text = me.GetLog();
+            }
+        }
+
+        private void autoBox_CheckedChanged(object sender, EventArgs e)
+        {
+            me.SetBool("autoclose", autoBox.Checked);
+        }
+
+        private void serverBox_CheckedChanged(object sender, EventArgs e)
+        {
+            me.SetBool("server", serverBox.Checked);
+        }
+
+        private void greenBox_CheckedChanged(object sender, EventArgs e)
+        {
+            me.SetBool("insider", greenBox.Checked);
+        }
+
+        private void qrBox_CheckedChanged(object sender, EventArgs e)
+        {
+            me.SetBool("qr", qrBox.Checked);
+        }
+
+        private void memoryBox_CheckedChanged(object sender, EventArgs e)
+        {
+            me.SetBool("extracodes", memoryBox.Checked);
+        }
+
+        private void devPCBox_CheckedChanged(object sender, EventArgs e)
+        {
+            me.SetBool("device", devPCBox.Checked);
+        }
+
+        private void blackScreenBox_CheckedChanged(object sender, EventArgs e)
+        {
+            me.SetBool("blackscreen", blackScreenBox.Checked);
+        }
+
+        private void addInfFile_CheckedChanged(object sender, EventArgs e)
+        {
+            if (addInfFile.Enabled)
+            {
+                me.SetBool("extrafile", addInfFile.Checked);
+            }
+        }
+
+        private void amdBox_CheckedChanged(object sender, EventArgs e)
+        {
+            me.SetBool("amd", amdBox.Checked);
+        }
+
+        private void stackBox_CheckedChanged(object sender, EventArgs e)
+        {
+            me.SetBool("stack_trace", stackBox.Checked);
+        }
+
+        private void blinkBox_CheckedChanged(object sender, EventArgs e)
+        {
+            me.SetBool("blink", blinkBox.Checked);
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            me.SetString("screen_mode", comboBox2.SelectedItem.ToString());
+        }
+
+        private void acpiBox_CheckedChanged(object sender, EventArgs e)
+        {
+            me.SetBool("acpi", acpiBox.Checked);
+            dumpBox.Enabled = !acpiBox.Checked;
+            dumpBox.Checked = !acpiBox.Checked;
+        }
+
+        private void waterBox_CheckedChanged(object sender, EventArgs e)
+        {
+            me.SetBool("watermark", waterBox.Checked);
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            me.SetBool("show_description", checkBox1.Checked);
+        }
+
+        private void dumpBox_CheckedChanged(object sender, EventArgs e)
+        {
+            me.SetBool("autoclose", dumpBox.Checked);
+        }
+
+        private void playSndBox_CheckedChanged(object sender, EventArgs e)
+        {
+            me.SetBool("playsound", playSndBox.Checked);
+        }
+
+        private void win1startup_CheckedChanged(object sender, EventArgs e)
+        {
+            if (win1startup.Checked)
+            {
+                me.SetString("qr_file", "local:0");
+            }
+            else if (win2startup.Checked)
+            {
+                me.SetString("qr_file", "local:1");
+            }
+            else if (nostartup.Checked)
+            {
+                me.SetString("qr_file", "local:null");
+            }
+        }
+
+        private void advOptionsButton_Click(object sender, EventArgs e)
+        {
+            if (enableeggs)
+            {
+                if (textBox2.Text == "blaster")
+                {
+                    foreach (Control c in this.Controls)
+                    {
+                        c.Text = "form";
+                    }
+                    foreach (Panel p in this.Controls.OfType<Panel>())
+                    {
+                        foreach (Control c in p.Controls)
+                        {
+                            c.Text = "panel";
+                        }
+                        foreach (Panel q in p.Controls.OfType<Panel>())
+                        {
+                            foreach (Panel r in q.Controls.OfType<Panel>())
+                            {
+                                foreach (Control f in r.Controls)
+                                {
+                                    foreach (Panel s in q.Controls.OfType<Panel>())
+                                    {
+                                        foreach (Control d in s.Controls)
+                                        {
+                                            d.Text = "spaghetti";
+                                        }
+                                        s.Text = "subsubsubpanel";
+                                    }
+                                    f.Text = "subsubpanel";
+                                }
+                            }
+                            foreach (Control c in q.Controls)
+                            {
+                                c.Text = "subpanel";
+                            }
+                        }
+                    }
+                    return;
+                }
+            }
+            StringEdit bh = new StringEdit
+            {
+                me = me
+            };
+            bh.Show();
+        }
+
+        private void eCodeEditButton_Click(object sender, EventArgs e)
+        {
+            if (enableeggs)
+            {
+                if (textBox1.Text == "RASTER_FONTS")
+                {
+                    BTS bts = new BTS();
+                    bts.Show();
+                    return;
+                }
+            }
+            IndexForm iform = new IndexForm
+            {
+                me = me,
+                c1 = me.GetCodes()[0],
+                c2 = me.GetCodes()[1],
+                c3 = me.GetCodes()[2],
+                c4 = me.GetCodes()[3]
+            };
+            iform.Show();
+        }
+
+        private void advNTButton_Click(object sender, EventArgs e)
+        {
+            int backup = windowVersion.SelectedIndex;
+            IndexForm iform = new IndexForm
+            {
+                nt_edit = true,
+                me = me
+            };
+            iform.ShowDialog();
+            iform.Dispose();
+            windowVersion.SelectedIndex = 0;
+            windowVersion.SelectedIndex = backup;
+        }
+
+        private void progressTuneButton_Click(object sender, EventArgs e)
+        {
+            ProgressTuner pt = new ProgressTuner();
+            pt.KFrames = me.AllProgress();
+            pt.Text = string.Format("Progress tuner - {0}", me.GetString("friendlyname"));
+            if (pt.KFrames.Count > 0)
+            {
+                pt.progressTrackBar.Maximum = me.GetInt("progressmillis");
+            }
+            pt.ReloadBitmap();
+            pt.SetLabelText();
+            if (this.darkMode.Checked)
+            {
+                pt.BackColor = Color.Black;
+                pt.ForeColor = Color.White;
+            }
+            pt.totalTimeText.Text = ((float)me.GetInt("progressmillis") / 100f).ToString().Replace(",", ".");
+            if (pt.ShowDialog() == DialogResult.OK)
+            {
+                me.SetAllProgression(pt.KFrames.Keys.ToArray<int>(), pt.KFrames.Values.ToArray<int>());
+                me.SetInt("progressmillis", pt.progressTrackBar.Maximum);
+            }
+            pt.Dispose();
+        }
+
+        private void darkMode_CheckedChanged(object sender, EventArgs e)
+        {
+            if (darkMode.Checked)
+            {
+                materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
+            } else
+            {
+                materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
+            }
+            Program.f1.nightThemeToolStripMenuItem.Checked = darkMode.Checked;
+        }
+
+        private void quickHelp_Popup(object sender, PopupEventArgs e)
+        {
+            if (e.AssociatedControl != null)
+            {
+                if (e.AssociatedControl is MaterialButton mb)
+                {
+                    quickHelp.ToolTipTitle = mb.Text.Replace(" [?]", "");
+                }
+                else if (e.AssociatedControl is MaterialLabel ml)
+                {
+                    quickHelp.ToolTipTitle = ml.Text.Replace(" [?]", "");
+                }
+                else if (e.AssociatedControl is MaterialCheckbox mc)
+                {
+                    quickHelp.ToolTipTitle = mc.Text.Replace(" [?]", "");
+                }
+                else if (e.AssociatedControl.Name == "button1")
+                {
+                    quickHelp.ToolTipTitle = "Simulate";
+                }
+                else if (e.AssociatedControl.Name == "button3")
+                {
+                    quickHelp.ToolTipTitle = "I'm feeling unlucky";
+                }
+                else
+                {
+                    quickHelp.ToolTipTitle = "Quick help";
+                }
+            }
+        }
+
+        private void materialButton4_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Warning: Settings is not guaranteed to work correctly with new UI. Please restore old layout unless you're testing.", "Settings", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            if (!abopen)
+            {
+                AboutSettingsDialog ab1 = new AboutSettingsDialog
+                {
+                    Text = "Settings",
+                    SettingTab = true
+                };
+                ab1.ShowDialog();
+                ab1.Dispose();
+            }
+            else
+            {
+                MessageBox.Show("Settings window is already open", "Cannot open settings", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void materialButton3_Click_1(object sender, EventArgs e)
+        {
+            if (!abopen)
+            {
+                AboutSettingsDialog ab1 = new AboutSettingsDialog
+                {
+                    Text = "Help and about",
+                    SettingTab = false
+                };
+                ab1.ShowDialog();
+                ab1.Dispose();
+            }
+            else
+            {
+                MessageBox.Show("The window is already open", "Cannot open window", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void materialButton5_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Warning: Prank mode is not guaranteed to work correctly with new UI. Please restore old layout unless you're testing.", "Prank mode", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            PrankMode pm = new PrankMode();
+            pm.Show();
+        }
+
+        private void materialButton6_Click(object sender, EventArgs e)
+        {
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                File.WriteAllText(saveFileDialog1.FileName, me.GetLog(false), Encoding.Unicode);
+            }
+        }
+
+        private void rtlSwitch_CheckedChanged(object sender, EventArgs e)
+        {
+            this.RightToLeft = rtlSwitch.Checked ? RightToLeft.Yes : RightToLeft.Inherit;
+        }
+
+        ColorScheme MakeScheme(Accent accent)
+        {
+            return new ColorScheme(Primary.Blue800, Primary.Blue900, Primary.Blue400, accent, TextShade.WHITE);
+        }
+
+        private void materialComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+            switch (accentBox.SelectedItem.ToString())
+            {
+                case "Indigo":
+                    materialSkinManager.ColorScheme = MakeScheme(Accent.Indigo700);
+                    break;
+                case "Lime":
+                    materialSkinManager.ColorScheme = MakeScheme(Accent.Lime700);
+                    break;
+                case "Red":
+                    materialSkinManager.ColorScheme = MakeScheme(Accent.Red700);
+                    break;
+                case "Pink":
+                    materialSkinManager.ColorScheme = MakeScheme(Accent.Pink700);
+                    break;
+                case "Orange":
+                    materialSkinManager.ColorScheme = MakeScheme(Accent.Orange700);
+                    break;
+                case "Amber":
+                    materialSkinManager.ColorScheme = MakeScheme(Accent.Amber700);
+                    break;
+                case "Blue":
+                    materialSkinManager.ColorScheme = MakeScheme(Accent.Blue700);
+                    break;
+                case "Cyan":
+                    materialSkinManager.ColorScheme = MakeScheme(Accent.Cyan700);
+                    break;
+                case "Deep Orange":
+                    materialSkinManager.ColorScheme = MakeScheme(Accent.DeepOrange700);
+                    break;
+                case "Deep Purple":
+                    materialSkinManager.ColorScheme = MakeScheme(Accent.DeepPurple700);
+                    break;
+                case "Green":
+                    materialSkinManager.ColorScheme = MakeScheme(Accent.Green700);
+                    break;
+                case "Light Blue":
+                    materialSkinManager.ColorScheme = MakeScheme(Accent.LightBlue700);
+                    break;
+                case "Light Green":
+                    materialSkinManager.ColorScheme = MakeScheme(Accent.LightGreen700);
+                    break;
+                case "Purple":
+                    materialSkinManager.ColorScheme = MakeScheme(Accent.Purple700);
+                    break;
+                case "Teal":
+                    materialSkinManager.ColorScheme = MakeScheme(Accent.Teal700);
+                    break;
+                case "Yellow":
+                    materialSkinManager.ColorScheme = MakeScheme(Accent.Yellow700);
+                    break;
             }
         }
     }

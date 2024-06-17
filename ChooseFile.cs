@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Windows.Forms;
+using MaterialSkin;
+using MaterialSkin.Controls;
 
 namespace UltimateBlueScreenSimulator
 {
-    public partial class ChooseFile : Form
+    public partial class ChooseFile : MaterialForm
     {
         public ChooseFile()
         {
             InitializeComponent();
+            MaterialSkinManager materialSkinManager = Program.f2.materialSkinManager;
         }
 
         private void Initialize(object sender, EventArgs e)

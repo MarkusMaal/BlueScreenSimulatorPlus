@@ -1,15 +1,18 @@
 ﻿using System;
 using System.Windows.Forms;
+using MaterialSkin;
+using MaterialSkin.Controls;
 using SimulatorDatabase;
 
 namespace UltimateBlueScreenSimulator
 {
-    public partial class AddBluescreen : Form
+    public partial class AddBluescreen : MaterialForm
     {
         string base_os = "Windows 1.x/2.x";
         public AddBluescreen()
         {
             InitializeComponent();
+            MaterialSkinManager materialSkinManager = Program.f2.materialSkinManager;
         }
 
         private void CancelClick(object sender, EventArgs e)

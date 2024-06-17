@@ -30,42 +30,45 @@ namespace UltimateBlueScreenSimulator
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChooseFile));
-            this.fileBrowser = new System.Windows.Forms.ListView();
-            this.FileName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Description = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.fileBrowser = new MaterialSkin.Controls.MaterialListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // fileBrowser
             // 
-            this.fileBrowser.Alignment = System.Windows.Forms.ListViewAlignment.SnapToGrid;
-            this.fileBrowser.AutoArrange = false;
+            this.fileBrowser.AutoSizeTable = false;
+            this.fileBrowser.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.fileBrowser.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.fileBrowser.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.FileName,
-            this.Description});
+            this.columnHeader1,
+            this.columnHeader2});
+            this.fileBrowser.Depth = 0;
             this.fileBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
             this.fileBrowser.FullRowSelect = true;
             this.fileBrowser.GridLines = true;
             this.fileBrowser.HideSelection = false;
-            this.fileBrowser.LabelWrap = false;
             this.fileBrowser.Location = new System.Drawing.Point(0, 0);
-            this.fileBrowser.MultiSelect = false;
+            this.fileBrowser.MinimumSize = new System.Drawing.Size(200, 100);
+            this.fileBrowser.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.fileBrowser.MouseState = MaterialSkin.MouseState.OUT;
             this.fileBrowser.Name = "fileBrowser";
+            this.fileBrowser.OwnerDraw = true;
             this.fileBrowser.Size = new System.Drawing.Size(588, 320);
-            this.fileBrowser.TabIndex = 0;
+            this.fileBrowser.TabIndex = 1;
             this.fileBrowser.UseCompatibleStateImageBehavior = false;
             this.fileBrowser.View = System.Windows.Forms.View.Details;
             this.fileBrowser.ItemActivate += new System.EventHandler(this.WhenUserSelectsTheDesiredFile);
             // 
-            // FileName
+            // columnHeader1
             // 
-            this.FileName.Text = "Filename";
-            this.FileName.Width = 133;
+            this.columnHeader1.Text = "Filename";
+            this.columnHeader1.Width = 250;
             // 
-            // Description
+            // columnHeader2
             // 
-            this.Description.Text = "Description";
-            this.Description.Width = 1000;
+            this.columnHeader2.Text = "Description";
+            this.columnHeader2.Width = 456;
             // 
             // ChooseFile
             // 
@@ -82,8 +85,8 @@ namespace UltimateBlueScreenSimulator
         }
 
         #endregion
-        private System.Windows.Forms.ColumnHeader FileName;
-        private System.Windows.Forms.ColumnHeader Description;
-        internal System.Windows.Forms.ListView fileBrowser;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        internal MaterialSkin.Controls.MaterialListView fileBrowser;
     }
 }

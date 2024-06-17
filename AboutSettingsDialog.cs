@@ -15,7 +15,7 @@ namespace UltimateBlueScreenSimulator
         //If this flag is set, then help tabs are hidden and setting tabs are visible
         public bool SettingTab = false;
         public int tab_id = 0;
-        public bool DevBuild = false;
+        public bool DevBuild = true;
         public bool finished = false;
         readonly Random r = new Random();
         public AboutSettingsDialog()
@@ -137,6 +137,7 @@ namespace UltimateBlueScreenSimulator
             }
             //Ping main form that the about box/help/settings dialog is open
             Program.f1.abopen = true;
+            Program.f2.abopen = true;
             //Hide settings tabs
             if (!SettingTab)
             {
@@ -374,6 +375,7 @@ namespace UltimateBlueScreenSimulator
             if (SettingTab)
             {
                 Program.f1.GetOS();
+                Program.f2.GetOS();
             }
         }
 
@@ -1432,6 +1434,7 @@ namespace UltimateBlueScreenSimulator
             {
                 string[] tips =
                 {
+                "Material Design is a design language developed by Google in 2014!",
                 "You can close a blue screen by pressing ALT+F4",
                 "There is a crash screen for a program that simulates crash screens, right?",
                 "The codename came from a song that was playing in the background during the development process",
@@ -1447,6 +1450,7 @@ namespace UltimateBlueScreenSimulator
                 "Microsoft originally planned to replace a blue screen with a black one as early as Windows 8",
                 "Every major Windows release, up until Windows 11, has had some sort of a blue screen",
                 "Blue is a color that symbolises peace",
+                "You better replace this placeholder text or else...",
                 "Windows 2000 blue screen didn't use rasterized fonts in previous versions, because I figured it looked 'close enough' to the original",
                 "If you use the 'choose' button when setting a culprit file, you might see some weird filenames...",
                 "The background of the logo graphic in the about screen displays the three primary colors used in these error screens",

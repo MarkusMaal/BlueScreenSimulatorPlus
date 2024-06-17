@@ -37,6 +37,7 @@
             this.appMarketedVersionLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.SplashText = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // splashEmoticon
@@ -89,7 +90,7 @@
             this.appMarketedVersionLabel.Name = "appMarketedVersionLabel";
             this.appMarketedVersionLabel.Size = new System.Drawing.Size(61, 64);
             this.appMarketedVersionLabel.TabIndex = 4;
-            this.appMarketedVersionLabel.Text = "2.1";
+            this.appMarketedVersionLabel.Text = "2.2";
             this.appMarketedVersionLabel.UseWaitCursor = true;
             // 
             // label1
@@ -115,6 +116,17 @@
             this.SplashText.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.SplashText.UseWaitCursor = true;
             // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.Color.Yellow;
+            this.label2.Location = new System.Drawing.Point(124, 116);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(59, 13);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "pre-release";
+            // 
             // Splash
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -123,6 +135,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(90)))));
             this.BackgroundImage = global::UltimateBlueScreenSimulator.Properties.Resources.round_corners;
             this.ClientSize = new System.Drawing.Size(471, 149);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.appMarketedVersionLabel);
             this.Controls.Add(this.SplashText);
@@ -139,8 +152,10 @@
             this.TopMost = true;
             this.TransparencyKey = System.Drawing.Color.Magenta;
             this.UseWaitCursor = true;
+            this.Load += new System.EventHandler(this.Splash_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Splash_KeyDown);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -153,5 +168,6 @@
         private System.Windows.Forms.Label appMarketedVersionLabel;
         private System.Windows.Forms.Label label1;
         internal System.Windows.Forms.Label SplashText;
+        private System.Windows.Forms.Label label2;
     }
 }
