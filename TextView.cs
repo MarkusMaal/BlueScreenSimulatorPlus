@@ -1,13 +1,17 @@
 ﻿using System;
 using System.Windows.Forms;
+using MaterialSkin;
+using MaterialSkin.Controls;
 
 namespace UltimateBlueScreenSimulator
 {
-    public partial class TextView : Form
+    public partial class TextView : MaterialForm
     {
         internal string Title = "";
         public TextView()
         {
+            MaterialSkinManager materialSkinManager = Program.f2.materialSkinManager;
+            materialSkinManager.AddFormToManage(this);
             InitializeComponent();
         }
 

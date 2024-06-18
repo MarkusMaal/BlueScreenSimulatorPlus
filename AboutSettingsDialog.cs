@@ -23,13 +23,15 @@ namespace UltimateBlueScreenSimulator
         readonly Random r = new Random();
         public AboutSettingsDialog()
         {
-            InitializeComponent();
             MaterialSkinManager materialSkinManager = Program.f2.materialSkinManager;
+            materialSkinManager.EnforceBackcolorOnAllComponents = false;
+            materialSkinManager.AddFormToManage(this);
+            InitializeComponent();
             //Get assembly information about the program
             this.Text = String.Format("About {0}", AssemblyTitle);
             this.labelProductName.Text = "Blue Screen Simulator Plus";
             if (DevBuild) { this.labelProductName.Text += " [Development Build]"; }
-            this.labelVersion.Text = String.Format("Version {0} with Verifile 1.1", AssemblyVersion);
+            this.labelVersion.Text = String.Format("Version {0} with Verifile 1.1", AssemblyVersion.Replace(".0", ""));
             this.labelCopyright.Text = AssemblyCopyright;
             this.labelCompanyName.Text = "Codename *Waffles*\nLanguage: C# (.NET framework, Windows Forms)\nCreated by: Markus Maal a.k.a. mmaal (markustegelane)\n\nThis program can only be provided free of charge (if you had to pay for this, please ask for a refund). This program is provided as is, without a warranty.\n2022 Markuse tarkvara (Markus' software)";
         }
@@ -116,7 +118,8 @@ namespace UltimateBlueScreenSimulator
 
         private void SetInitalInterface(object sender, EventArgs e)
         {
-            if (Program.f1.nightThemeToolStripMenuItem.Checked)
+            // legacy night mode
+            /*if (Program.f1.nightThemeToolStripMenuItem.Checked)
             {
                 aboutSettingsTabControl.Appearance = TabAppearance.FlatButtons;
                 this.BackColor = Color.Black;
@@ -138,7 +141,7 @@ namespace UltimateBlueScreenSimulator
                 helpDisplay.ForeColor = Color.Gray;
                 commandLineHelpDisplay.BackColor = Color.Black;
                 commandLineHelpDisplay.ForeColor = Color.Gray;
-            }
+            }*/
             //Ping main form that the about box/help/settings dialog is open
             Program.f1.abopen = true;
             Program.f2.abopen = true;
@@ -390,7 +393,6 @@ namespace UltimateBlueScreenSimulator
 
         private void OnMeResized(object sender, EventArgs e)
         {
-            helpDisplay.Size = new Size(helpPanelChild.Width, Convert.ToInt32(helpPanelChild.Height * 0.8010638));
         }
 
         private void ConfigSelector(object sender, MaterialListBoxItem e)
@@ -409,7 +411,7 @@ namespace UltimateBlueScreenSimulator
 
         private void ConfigHackEraser(object sender, EventArgs e)
         {
-            if (configList.SelectedItems.Count > 0)
+            if (configList.SelectedItem != null)
             {
                 if (MessageBox.Show("Warning: This will remove any custom settings from this configuration. ANY UNSAVED CHANGES WILL BE LOST!!! Are you sure you want to continue?", "Reset bugcheck", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                 {
@@ -446,7 +448,7 @@ namespace UltimateBlueScreenSimulator
 
         private void ResetConfig(object sender, EventArgs e)
         {
-            if (configList.SelectedItems.Count > 0)
+            if (configList.SelectedItem != null)
             {
                 if (MessageBox.Show("Warning: This will remove any setting set under the 'additional options' menu. Other settings set in the main screen will remain the same. ANY UNSAVED CHANGES WILL BE LOST!!! Are you sure you want to continue?", "Reset hacks", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                 {
@@ -479,7 +481,7 @@ namespace UltimateBlueScreenSimulator
 
         private void ConfigEraser(object sender, EventArgs e)
         {
-            if (configList.SelectedItems.Count > 0)
+            if (configList.SelectedItem != null)
             {
                 if (MessageBox.Show("Warning: This will remove this configuration from the repository. ANY UNSAVED CHANGES WILL BE LOST!!! Are you sure you want to do that?", "Delete bugcheck", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                 {
@@ -1415,7 +1417,7 @@ namespace UltimateBlueScreenSimulator
         {
             TextView tv = new TextView
             {
-                Text = Properties.Resources.COPYING.Replace("\n", "\r\n"),
+                Text = Properties.Resources.COPYING,
                 Title = "Copying"
             };
             tv.ShowDialog();
@@ -1478,8 +1480,9 @@ namespace UltimateBlueScreenSimulator
                 resetHackButton.Enabled = true;
                 resetButton.Enabled = true;
                 removeCfg.Enabled = true;
-                removeCfg.Text = "Remove configurations [?]";
+                removeCfg.Text = "Remove configs [?]";
                 configList.Enabled = false;
+                configList.SelectedItem = null;
                 helpTip.SetToolTip(resetHackButton, "Deletes everything under the 'additional options' menu for all configurations");
                 helpTip.SetToolTip(resetButton, "Reset all settings within all configurations");
                 helpTip.SetToolTip(removeCfg, "Removes all configurations. This is useful, if you're making your own custom skin packs and want only a few operating systems to be visible.");
@@ -1492,7 +1495,7 @@ namespace UltimateBlueScreenSimulator
             removeCfg.Enabled = false;
             configList.Enabled = true;
             configList.SelectedItems.Clear();
-            removeCfg.Text = "Remove configuration [?]";
+            removeCfg.Text = "Remove config [?]";
             helpTip.SetToolTip(resetHackButton, "Deletes everything under the 'additional options' menu for this configuration");
             helpTip.SetToolTip(resetButton, "Reset all settings in this configuration");
             helpTip.SetToolTip(removeCfg, "Removes the configuration, meaning it will no longer be accessible in the main menu or any other part of the program.");
@@ -1531,6 +1534,24 @@ namespace UltimateBlueScreenSimulator
         private void darkDetectCheck_CheckedChanged(object sender, EventArgs e)
         {
             Program.f1.autodark = darkDetectCheck.Checked;
+        }
+
+        private void materialButton4_Click(object sender, EventArgs e)
+        {
+            Program.loadfinished = false;
+            Gen g = new Gen();
+            g.Show();
+            Program.load_message = "Testing...";
+            Thread dummyThread = new Thread(new ThreadStart(() => {
+                for (int i = 0; i <= 100; i++)
+                {
+                    Program.load_progress = i;
+                    Thread.Sleep(50);
+                }
+                Thread.Sleep(150);
+                Program.loadfinished = true;
+            }));
+            dummyThread.Start();
         }
     }
 }

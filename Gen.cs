@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Windows.Forms;
+using MaterialSkin;
+using MaterialSkin.Controls;
 
 namespace UltimateBlueScreenSimulator
 {
-    public partial class Gen : Form
+    public partial class Gen : MaterialForm
     {
         public Gen()
         {
+            MaterialSkinManager materialSkinManager = Program.f2.materialSkinManager;
+            materialSkinManager.AddFormToManage(this);
             InitializeComponent();
         }
 
@@ -52,7 +56,7 @@ namespace UltimateBlueScreenSimulator
 
         private void Gen_Load(object sender, EventArgs e)
         {
-
+            genLabel.BackColor = this.BackColor;
         }
     }
 }

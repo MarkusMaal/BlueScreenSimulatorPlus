@@ -169,7 +169,7 @@
             // methodTitleLabel
             // 
             this.methodTitleLabel.AutoSize = true;
-            this.methodTitleLabel.Location = new System.Drawing.Point(12, 9);
+            this.methodTitleLabel.Location = new System.Drawing.Point(12, 72);
             this.methodTitleLabel.Name = "methodTitleLabel";
             this.methodTitleLabel.Size = new System.Drawing.Size(217, 13);
             this.methodTitleLabel.TabIndex = 0;
@@ -264,7 +264,7 @@
             this.tableLayoutPanel1.Controls.Add(this.c1_2, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.c1_1, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.codeSelection, 0, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(15, 104);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(23, 187);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 4;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 52.17391F));
@@ -1175,7 +1175,7 @@
             // methodLabel
             // 
             this.methodLabel.AutoSize = true;
-            this.methodLabel.Location = new System.Drawing.Point(12, 31);
+            this.methodLabel.Location = new System.Drawing.Point(12, 94);
             this.methodLabel.Name = "methodLabel";
             this.methodLabel.Size = new System.Drawing.Size(453, 13);
             this.methodLabel.TabIndex = 2;
@@ -1185,7 +1185,7 @@
             // 
             this.chooseCode1.AutoSize = true;
             this.chooseCode1.Checked = true;
-            this.chooseCode1.Location = new System.Drawing.Point(12, 60);
+            this.chooseCode1.Location = new System.Drawing.Point(12, 123);
             this.chooseCode1.Name = "chooseCode1";
             this.chooseCode1.Size = new System.Drawing.Size(59, 17);
             this.chooseCode1.TabIndex = 0;
@@ -1197,7 +1197,7 @@
             // chooseCode2
             // 
             this.chooseCode2.AutoSize = true;
-            this.chooseCode2.Location = new System.Drawing.Point(77, 60);
+            this.chooseCode2.Location = new System.Drawing.Point(77, 123);
             this.chooseCode2.Name = "chooseCode2";
             this.chooseCode2.Size = new System.Drawing.Size(59, 17);
             this.chooseCode2.TabIndex = 1;
@@ -1208,7 +1208,7 @@
             // chooseCode4
             // 
             this.chooseCode4.AutoSize = true;
-            this.chooseCode4.Location = new System.Drawing.Point(207, 60);
+            this.chooseCode4.Location = new System.Drawing.Point(207, 123);
             this.chooseCode4.Name = "chooseCode4";
             this.chooseCode4.Size = new System.Drawing.Size(59, 17);
             this.chooseCode4.TabIndex = 3;
@@ -1219,7 +1219,7 @@
             // chooseCode3
             // 
             this.chooseCode3.AutoSize = true;
-            this.chooseCode3.Location = new System.Drawing.Point(142, 60);
+            this.chooseCode3.Location = new System.Drawing.Point(142, 123);
             this.chooseCode3.Name = "chooseCode3";
             this.chooseCode3.Size = new System.Drawing.Size(59, 17);
             this.chooseCode3.TabIndex = 2;
@@ -1231,7 +1231,7 @@
             // 
             this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.okButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.okButton.Location = new System.Drawing.Point(617, 190);
+            this.okButton.Location = new System.Drawing.Point(633, 270);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(75, 23);
             this.okButton.TabIndex = 5;
@@ -1244,7 +1244,7 @@
             this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cancelButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.cancelButton.Location = new System.Drawing.Point(536, 190);
+            this.cancelButton.Location = new System.Drawing.Point(552, 270);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 4;
@@ -1256,7 +1256,7 @@
             // 
             this.nullButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.nullButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.nullButton.Location = new System.Drawing.Point(515, 57);
+            this.nullButton.Location = new System.Drawing.Point(531, 120);
             this.nullButton.Name = "nullButton";
             this.nullButton.Size = new System.Drawing.Size(72, 23);
             this.nullButton.TabIndex = 6;
@@ -1268,7 +1268,7 @@
             // 
             this.randomButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.randomButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.randomButton.Location = new System.Drawing.Point(596, 57);
+            this.randomButton.Location = new System.Drawing.Point(612, 120);
             this.randomButton.Name = "randomButton";
             this.randomButton.Size = new System.Drawing.Size(86, 23);
             this.randomButton.TabIndex = 7;
@@ -1288,9 +1288,9 @@
             this.panel1.Controls.Add(this.tableLayoutPanel2);
             this.panel1.Controls.Add(this.ntEntryChooser);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Location = new System.Drawing.Point(3, 64);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(707, 225);
+            this.panel1.Size = new System.Drawing.Size(717, 236);
             this.panel1.TabIndex = 8;
             this.panel1.Visible = false;
             // 
@@ -1298,7 +1298,7 @@
             // 
             this.ntOKButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ntOKButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.ntOKButton.Location = new System.Drawing.Point(622, 194);
+            this.ntOKButton.Location = new System.Drawing.Point(632, 205);
             this.ntOKButton.Name = "ntOKButton";
             this.ntOKButton.Size = new System.Drawing.Size(75, 23);
             this.ntOKButton.TabIndex = 14;
@@ -1316,9 +1316,9 @@
             this.ntCodeChooser.Controls.Add(this.button21);
             this.ntCodeChooser.Controls.Add(this.button22);
             this.ntCodeChooser.Controls.Add(this.button23);
-            this.ntCodeChooser.Location = new System.Drawing.Point(424, 65);
+            this.ntCodeChooser.Location = new System.Drawing.Point(424, 77);
             this.ntCodeChooser.Name = "ntCodeChooser";
-            this.ntCodeChooser.Size = new System.Drawing.Size(273, 27);
+            this.ntCodeChooser.Size = new System.Drawing.Size(283, 27);
             this.ntCodeChooser.TabIndex = 13;
             this.ntCodeChooser.WrapContents = false;
             // 
@@ -1393,7 +1393,7 @@
             // 
             this.ntRandomButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ntRandomButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.ntRandomButton.Location = new System.Drawing.Point(521, 115);
+            this.ntRandomButton.Location = new System.Drawing.Point(531, 127);
             this.ntRandomButton.Name = "ntRandomButton";
             this.ntRandomButton.Size = new System.Drawing.Size(86, 23);
             this.ntRandomButton.TabIndex = 9;
@@ -1405,7 +1405,7 @@
             // 
             this.ntNullButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ntNullButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.ntNullButton.Location = new System.Drawing.Point(611, 115);
+            this.ntNullButton.Location = new System.Drawing.Point(621, 127);
             this.ntNullButton.Name = "ntNullButton";
             this.ntNullButton.Size = new System.Drawing.Size(86, 23);
             this.ntNullButton.TabIndex = 8;
@@ -1416,7 +1416,7 @@
             // fileLabel
             // 
             this.fileLabel.AutoSize = true;
-            this.fileLabel.Location = new System.Drawing.Point(421, 43);
+            this.fileLabel.Location = new System.Drawing.Point(421, 55);
             this.fileLabel.Name = "fileLabel";
             this.fileLabel.Size = new System.Drawing.Size(26, 13);
             this.fileLabel.TabIndex = 5;
@@ -1426,9 +1426,9 @@
             // 
             this.chooseFileButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chooseFileButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.chooseFileButton.Location = new System.Drawing.Point(642, 38);
+            this.chooseFileButton.Location = new System.Drawing.Point(632, 50);
             this.chooseFileButton.Name = "chooseFileButton";
-            this.chooseFileButton.Size = new System.Drawing.Size(55, 23);
+            this.chooseFileButton.Size = new System.Drawing.Size(75, 23);
             this.chooseFileButton.TabIndex = 4;
             this.chooseFileButton.Text = "Choose";
             this.chooseFileButton.UseVisualStyleBackColor = true;
@@ -1439,9 +1439,9 @@
             this.fileBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.fileBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.fileBox.Location = new System.Drawing.Point(453, 39);
+            this.fileBox.Location = new System.Drawing.Point(453, 51);
             this.fileBox.Name = "fileBox";
-            this.fileBox.Size = new System.Drawing.Size(183, 21);
+            this.fileBox.Size = new System.Drawing.Size(178, 21);
             this.fileBox.TabIndex = 3;
             this.fileBox.TextChanged += new System.EventHandler(this.FileRenamer);
             // 
@@ -1493,7 +1493,7 @@
             this.tableLayoutPanel2.Controls.Add(this.randomLabel, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.codeLabel, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.ntr1, 1, 1);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(17, 43);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(17, 53);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 4;
@@ -2028,7 +2028,7 @@
             this.ntEntryChooser.FormattingEnabled = true;
             this.ntEntryChooser.Location = new System.Drawing.Point(19, 16);
             this.ntEntryChooser.Name = "ntEntryChooser";
-            this.ntEntryChooser.Size = new System.Drawing.Size(678, 21);
+            this.ntEntryChooser.Size = new System.Drawing.Size(688, 21);
             this.ntEntryChooser.TabIndex = 1;
             this.ntEntryChooser.SelectedIndexChanged += new System.EventHandler(this.NTEntryChooser);
             // 
@@ -2037,7 +2037,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
-            this.ClientSize = new System.Drawing.Size(707, 225);
+            this.ClientSize = new System.Drawing.Size(723, 303);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.randomButton);
             this.Controls.Add(this.nullButton);

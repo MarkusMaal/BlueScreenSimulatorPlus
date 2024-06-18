@@ -11,8 +11,9 @@ namespace UltimateBlueScreenSimulator
         string base_os = "Windows 1.x/2.x";
         public AddBluescreen()
         {
-            InitializeComponent();
             MaterialSkinManager materialSkinManager = Program.f2.materialSkinManager;
+            materialSkinManager.AddFormToManage(this);
+            InitializeComponent();
         }
 
         private void CancelClick(object sender, EventArgs e)

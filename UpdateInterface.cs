@@ -6,10 +6,12 @@ using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Security.Cryptography;
+using MaterialSkin.Controls;
+using MaterialSkin;
 
 namespace UltimateBlueScreenSimulator
 {
-    public partial class UpdateInterface : Form
+    public partial class UpdateInterface : MaterialForm
     {
         public bool finalize = false;
         WebClient webClient;               // Our WebClient that will be doing the downloading for us
@@ -18,6 +20,8 @@ namespace UltimateBlueScreenSimulator
 
         public UpdateInterface()
         {
+            MaterialSkinManager materialSkinManager = Program.f2.materialSkinManager;
+            materialSkinManager.AddFormToManage(this);
             InitializeComponent();
         }
 

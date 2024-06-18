@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using MaterialSkin;
+using MaterialSkin.Controls;
 using SimulatorDatabase;
 
 namespace UltimateBlueScreenSimulator
 {
-    public partial class IndexForm : Form
+    public partial class IndexForm : MaterialForm
     {
         internal BlueScreen me;
         public string c1 = "RRRRRRRRRRRRRRRR";
@@ -20,6 +22,8 @@ namespace UltimateBlueScreenSimulator
 
         public IndexForm()
         {
+            MaterialSkinManager materialSkinManager = Program.f2.materialSkinManager;
+            materialSkinManager.AddFormToManage(this);
             InitializeComponent();
         }
 

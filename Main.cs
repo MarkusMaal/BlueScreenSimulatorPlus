@@ -1531,11 +1531,25 @@ namespace UltimateBlueScreenSimulator
                 {
                     waitPopup.Enabled = false;
                     this.WindowState = FormWindowState.Normal;
-                    this.Show();
+                    if (Program.useNewUi) // show new ui instead of this form if it's enabled when resuming from prank mode
+                    {
+                        Program.f2.Show();
+                    }
+                    else
+                    {
+                        this.Show();
+                    }
                 }
                 else
                 {
-                    this.Close();
+                    if (Program.useNewUi)
+                    {
+                        Application.Exit();
+                    }
+                    else
+                    {
+                        this.Close();
+                    }
                 }
             }
         }
@@ -1679,7 +1693,7 @@ namespace UltimateBlueScreenSimulator
             pt.Text = string.Format("Progress tuner - {0}", me.GetString("friendlyname"));
             if (pt.KFrames.Count > 0)
             {
-                pt.progressTrackBar.Maximum = me.GetInt("progressmillis");
+                pt.progressTrackBar.RangeMax = me.GetInt("progressmillis");
             }
             pt.ReloadBitmap();
             pt.SetLabelText();
@@ -1692,7 +1706,7 @@ namespace UltimateBlueScreenSimulator
             if (pt.ShowDialog() == DialogResult.OK)
             {
                 me.SetAllProgression(pt.KFrames.Keys.ToArray<int>(), pt.KFrames.Values.ToArray<int>());
-                me.SetInt("progressmillis", pt.progressTrackBar.Maximum);
+                me.SetInt("progressmillis", pt.progressTrackBar.RangeMax);
             }
             pt.Dispose();
         }

@@ -1,4 +1,6 @@
 ﻿
+using MaterialSkin.Controls;
+
 namespace UltimateBlueScreenSimulator
 {
     partial class Gen
@@ -31,52 +33,62 @@ namespace UltimateBlueScreenSimulator
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Gen));
-            this.genProgressBar = new System.Windows.Forms.ProgressBar();
-            this.genLabel = new System.Windows.Forms.Label();
+            this.genProgressBar = new MaterialSkin.Controls.MaterialProgressBar();
             this.genTimer = new System.Windows.Forms.Timer(this.components);
+            this.genLabel = new MaterialSkin.Controls.MaterialLabel();
             this.SuspendLayout();
             // 
             // genProgressBar
             // 
             this.genProgressBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.genProgressBar.Location = new System.Drawing.Point(12, 29);
+            this.genProgressBar.Depth = 0;
+            this.genProgressBar.Location = new System.Drawing.Point(9, 53);
+            this.genProgressBar.MouseState = MaterialSkin.MouseState.HOVER;
             this.genProgressBar.Name = "genProgressBar";
-            this.genProgressBar.Size = new System.Drawing.Size(250, 11);
+            this.genProgressBar.Size = new System.Drawing.Size(265, 5);
             this.genProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
             this.genProgressBar.TabIndex = 0;
-            // 
-            // genLabel
-            // 
-            this.genLabel.AutoSize = true;
-            this.genLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.genLabel.Location = new System.Drawing.Point(8, 9);
-            this.genLabel.Name = "genLabel";
-            this.genLabel.Size = new System.Drawing.Size(169, 17);
-            this.genLabel.TabIndex = 1;
-            this.genLabel.Text = "Generating blue screen...";
+            this.genProgressBar.UseWaitCursor = true;
             // 
             // genTimer
             // 
             this.genTimer.Enabled = true;
             this.genTimer.Tick += new System.EventHandler(this.ProgressChecker);
             // 
+            // genLabel
+            // 
+            this.genLabel.AutoSize = true;
+            this.genLabel.Depth = 0;
+            this.genLabel.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.genLabel.Location = new System.Drawing.Point(6, 21);
+            this.genLabel.MouseState = MaterialSkin.MouseState.HOVER;
+            this.genLabel.Name = "genLabel";
+            this.genLabel.Size = new System.Drawing.Size(174, 19);
+            this.genLabel.TabIndex = 1;
+            this.genLabel.Text = "Generating blue screen...";
+            // 
             // Gen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(270, 48);
+            this.ClientSize = new System.Drawing.Size(286, 43);
             this.Controls.Add(this.genLabel);
             this.Controls.Add(this.genProgressBar);
-            this.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.Cursor = System.Windows.Forms.Cursors.WaitCursor;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormStyle = MaterialSkin.Controls.MaterialForm.FormStyles.StatusAndActionBar_None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Gen";
+            this.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
+            this.Sizable = false;
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.UseWaitCursor = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PreventUserClosing);
             this.Load += new System.EventHandler(this.Gen_Load);
             this.ResumeLayout(false);
@@ -86,8 +98,8 @@ namespace UltimateBlueScreenSimulator
 
         #endregion
 
-        private System.Windows.Forms.ProgressBar genProgressBar;
-        private System.Windows.Forms.Label genLabel;
+        private MaterialProgressBar genProgressBar;
         private System.Windows.Forms.Timer genTimer;
+        private MaterialLabel genLabel;
     }
 }

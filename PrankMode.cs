@@ -22,6 +22,7 @@ namespace UltimateBlueScreenSimulator
         MessageBoxIcon MsgBoxIcon = MessageBoxIcon.Exclamation;
         MessageBoxButtons MsgBoxType = MessageBoxButtons.OK;
         BlueScreen me;
+        bool newUi = false;
         readonly List<string> blackninja = new List<string>
         {
             "Windows Vista/7",
@@ -366,7 +367,18 @@ namespace UltimateBlueScreenSimulator
                         if (winver.Contains(Program.bluescreens[i].GetString("os")))
                         {
                             Program.f1.me = Program.bluescreens[i];
-                            Program.f1.windowVersion.SelectedIndex = Program.f1.windowVersion.Items.Count - 1 - i;
+                            if (!Program.useNewUi)
+                            {
+                                Program.f1.windowVersion.SelectedIndex = Program.f1.windowVersion.Items.Count - 1 - i;
+                            } else
+                            {
+                                Program.f1.windowVersion.Items.Clear();
+                                foreach (string wv in Program.f2.windowVersion.Items)
+                                {
+                                    Program.f1.windowVersion.Items.Add(wv);
+                                }
+                                Program.f1.windowVersion.SelectedIndex = Program.f2.windowVersion.Items.Count - 1 - i;
+                            }
                         }
                     }
                 }
@@ -402,7 +414,15 @@ namespace UltimateBlueScreenSimulator
                     Program.f1.MsgBoxMessage = MsgBoxMessage;
                     Program.f1.MsgBoxTitle = MsgBoxTitle;
                 }
-                Program.f1.Hide();
+                if (Program.f2.Visible == true)
+                {
+                    Program.f2.Hide();
+                    newUi = true;
+                }
+                else
+                {
+                    Program.f1.Hide();
+                }
                 Program.f1.waterBox.Checked = false;
                 Program.f1.prankModeTimer.Enabled = true;
                 Program.f1.lockout = !letCloseBox.Checked;

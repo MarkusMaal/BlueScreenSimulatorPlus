@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using MaterialSkin;
+using MaterialSkin.Controls;
 using SimulatorDatabase;
 
 namespace UltimateBlueScreenSimulator
 {
-    public partial class StringEdit : Form
+    public partial class StringEdit : MaterialForm
     {
         internal BlueScreen me;
         private string editable = "";
@@ -15,6 +17,8 @@ namespace UltimateBlueScreenSimulator
         private bool theme_hl = false;
         public StringEdit()
         {
+            MaterialSkinManager materialSkinManager = Program.f2.materialSkinManager;
+            materialSkinManager.AddFormToManage(this);
             InitializeComponent();
         }
 
@@ -23,7 +27,8 @@ namespace UltimateBlueScreenSimulator
             HideAllProps();
             MessageView.Clear();
             UpdateMessageView();
-            if (Program.f1.nightThemeToolStripMenuItem.Checked)
+            // legacy method for applying night theme
+            /*if (Program.f1.nightThemeToolStripMenuItem.Checked)
             {
                 this.BackColor = Color.Black;
                 this.ForeColor = Color.Gray;
@@ -47,7 +52,7 @@ namespace UltimateBlueScreenSimulator
                 stringEditor.BackColor = Color.Black;
                 stringEditor.ForeColor = Color.Gray;
                 stringEditor.BorderStyle = BorderStyle.FixedSingle;
-            }
+            }*/
         }
 
         private ListViewItem GetColorListViewItem(string title, Color color)
@@ -72,7 +77,7 @@ namespace UltimateBlueScreenSimulator
         {
             MessageView.Columns.Add("Property");
             MessageView.Columns.Add("Value");
-            MessageView.Columns[0].Width = 120;
+            MessageView.Columns[0].Width = 250;
             MessageView.Columns[1].Width = 150;
             IDictionary<string, string> titles = me.GetTitles();
             IDictionary<string, string> texts = me.GetTexts();
@@ -409,21 +414,6 @@ namespace UltimateBlueScreenSimulator
             this.Close();
         }
 
-        private void TrackBar1_Scroll(object sender, EventArgs e)
-        {
-            if (blinkingDash.Text == "_")
-            {
-                me.SetInt("blink_speed", speedTrackbar.Value);
-                blinkywinky.Interval = speedTrackbar.Value;
-            } else
-            {
-                me.SetInt("qr_size", speedTrackbar.Value);
-                blinkingDash.Text = me.GetInt("qr_size").ToString();
-            }
-            MessageView.Clear();
-            UpdateMessageView();
-        }
-
         private void Blinkywinky_Tick(object sender, EventArgs e)
         {
             blinkingDash.Visible = !blinkingDash.Visible;
@@ -516,6 +506,27 @@ namespace UltimateBlueScreenSimulator
                 me.SetBool("auto", false);
                 stringEditor.Enabled = true;
             }
+        }
+
+        private void speedTrackbar_onValueChanged(object sender, int newValue)
+        {
+            if (newValue == 0)
+            {
+                newValue = 1;
+                speedTrackbar.Value = 1;
+            }
+            if (blinkingDash.Text == "_")
+            {
+                me.SetInt("blink_speed", speedTrackbar.Value);
+                blinkywinky.Interval = speedTrackbar.Value;
+            }
+            else
+            {
+                me.SetInt("qr_size", speedTrackbar.Value);
+                blinkingDash.Text = me.GetInt("qr_size").ToString();
+            }
+            MessageView.Clear();
+            UpdateMessageView();
         }
     }
 }

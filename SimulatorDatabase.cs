@@ -371,19 +371,17 @@ namespace SimulatorDatabase
         public Icon GetIcon()
         {
             Log("Info", $"Getting icon");
-            ImageList windowsIcons = new StringEdit().AllIcons;
             switch (GetString("icon"))
             {
-                case "2D flag":
-                    return Icon.FromHandle(((Bitmap)windowsIcons.Images[0]).GetHicon());
                 case "3D flag":
-                    return Icon.FromHandle(((Bitmap)windowsIcons.Images[1]).GetHicon());
+                    return UltimateBlueScreenSimulator.Properties.Resources.Tatice_Operating_Systems_Windows;
                 case "3D window":
-                    return Icon.FromHandle(((Bitmap)windowsIcons.Images[2]).GetHicon());
+                    return UltimateBlueScreenSimulator.Properties.Resources.Dakirby309_Windows_8_Metro_Folders_OS_Windows_8_Metro;
                 case "2D window":
-                    return Icon.FromHandle(((Bitmap)windowsIcons.Images[3]).GetHicon());
+                    return UltimateBlueScreenSimulator.Properties.Resources.new_windows_logo__2_;
+                case "2D flag":
                 default:
-                    return Icon.FromHandle(((Bitmap)windowsIcons.Images[0]).GetHicon());
+                    return UltimateBlueScreenSimulator.Properties.Resources.artage_io_48148_1564916990;
             }
         }
 

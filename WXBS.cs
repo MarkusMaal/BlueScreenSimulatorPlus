@@ -331,7 +331,7 @@ namespace UltimateBlueScreenSimulator
         {
             if (Program.f1.closecuzhidden == true)
             {
-                try { Program.f1.Close(); } catch { }
+                Application.Exit();
             }
             if (Program.f1.showmsg == true)
             {

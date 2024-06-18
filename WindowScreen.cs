@@ -40,7 +40,7 @@ namespace UltimateBlueScreenSimulator
             {
                 try
                 {
-                    Program.f1.Close();
+                    Application.Exit();
                 } catch { }
             }
             if ((screenDisplay != null) && (screenDisplay.Image != null))

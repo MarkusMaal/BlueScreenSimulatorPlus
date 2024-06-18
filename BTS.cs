@@ -15,17 +15,9 @@ namespace UltimateBlueScreenSimulator
     {
         public BTS()
         {
-            InitializeComponent();
-            MaterialSkinManager materialSkinManager = MaterialSkinManager.Instance;
+            MaterialSkinManager materialSkinManager = Program.f2.materialSkinManager;
             materialSkinManager.AddFormToManage(this);
-            materialSkinManager.Theme = Program.f2.darkMode.Checked ? MaterialSkinManager.Themes.DARK : MaterialSkinManager.Themes.LIGHT;
-
-            // Configure color schema
-            materialSkinManager.ColorScheme = new ColorScheme(
-                Primary.Indigo400, Primary.Indigo500,
-                Primary.Indigo500, Accent.Orange400,
-                TextShade.WHITE
-            );
+            InitializeComponent();
         }
 
         private void CloseClick(object sender, EventArgs e)

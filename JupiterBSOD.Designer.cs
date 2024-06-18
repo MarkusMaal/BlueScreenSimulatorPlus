@@ -35,6 +35,7 @@
             this.ProgressLabel = new System.Windows.Forms.Label();
             this.timecounter = new System.Windows.Forms.Timer(this.components);
             this.Watermark = new System.Windows.Forms.Label();
+            this.screenUpdater = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // HeaderLabel
@@ -83,6 +84,11 @@
             this.Watermark.TabIndex = 3;
             this.Watermark.Text = "blue screen simulator plus";
             // 
+            // screenUpdater
+            // 
+            this.screenUpdater.Enabled = true;
+            this.screenUpdater.Tick += new System.EventHandler(this.screenUpdater_Tick);
+            // 
             // JupiterBSOD
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -102,6 +108,8 @@
             this.Text = "JupiterBSOD";
             this.TopMost = true;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.JupiterBSOD_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.JupiterBSOD_FormClosed);
             this.Load += new System.EventHandler(this.JupiterBSOD_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.JupiterBSOD_KeyDown);
             this.ResumeLayout(false);
@@ -116,5 +124,6 @@
         private System.Windows.Forms.Label ProgressLabel;
         private System.Windows.Forms.Timer timecounter;
         private System.Windows.Forms.Label Watermark;
+        private System.Windows.Forms.Timer screenUpdater;
     }
 }

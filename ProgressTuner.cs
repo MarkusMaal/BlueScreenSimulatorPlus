@@ -3,16 +3,20 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
 using System.Windows.Forms;
+using MaterialSkin;
+using MaterialSkin.Controls;
 
 namespace UltimateBlueScreenSimulator
 {
-    public partial class ProgressTuner : Form
+    public partial class ProgressTuner : MaterialForm
     {
         internal IDictionary<int, int> KFrames = new Dictionary<int, int>();
         Bitmap bmp = new Bitmap(1000, 10);
         int last = 0;
         public ProgressTuner()
         {
+            MaterialSkinManager materialSkinManager = Program.f2.materialSkinManager;
+            materialSkinManager.AddFormToManage(this);
             InitializeComponent();
         }
 
@@ -20,7 +24,7 @@ namespace UltimateBlueScreenSimulator
         {
             try
             {
-                progressTrackBar.Maximum = Convert.ToInt32(100 * float.Parse(totalTimeText.Text, CultureInfo.InvariantCulture.NumberFormat));
+                progressTrackBar.RangeMax = Convert.ToInt32(100 * float.Parse(totalTimeText.Text, CultureInfo.InvariantCulture.NumberFormat));
                 ReloadBitmap();
             } catch {}
         }
@@ -32,7 +36,7 @@ namespace UltimateBlueScreenSimulator
             {
                 bmp.Dispose();
             } catch { }
-            bmp = new Bitmap((int)((float)progressTrackBar.Maximum / 10f), 10);
+            bmp = new Bitmap((int)((float)progressTrackBar.RangeMax / 10f), 10);
             foreach (float position in KFrames.Keys)
             {
                 for (int i = 0; i < 10; i++)
@@ -43,18 +47,6 @@ namespace UltimateBlueScreenSimulator
             }
             progressVisualization.Image = bmp;
 
-        }
-
-        private void progressTrackBar_Scroll(object sender, EventArgs e)
-        {
-            SetLabelText();
-            if (KFrames.ContainsKey(progressTrackBar.Value))
-            {
-                incPercent.Text = KFrames[progressTrackBar.Value].ToString();
-            } else
-            {
-                incPercent.Text = "0";
-            }
         }
 
         internal void SetLabelText()
@@ -82,6 +74,7 @@ namespace UltimateBlueScreenSimulator
                     try
                     {
                         progressTrackBar.Value = position;
+                        progressTrackBar_Scroll(sender, progressTrackBar.Value);
                     } catch { }
                     break;
                 }
@@ -99,6 +92,7 @@ namespace UltimateBlueScreenSimulator
                 }
             }
             progressTrackBar.Value = minimum;
+            progressTrackBar_Scroll(sender, progressTrackBar.Value);
         }
 
         private void AddKeyFrame_Click(object sender, EventArgs e)
@@ -133,6 +127,7 @@ namespace UltimateBlueScreenSimulator
             try
             {
                 progressTrackBar.Value += last;
+                progressTrackBar_Scroll(sender, progressTrackBar.Value);
             }
             catch { }
             repeatButton.Enabled = true;
@@ -162,6 +157,19 @@ namespace UltimateBlueScreenSimulator
 
         private void ProgressTuner_Load(object sender, EventArgs e)
         {
+        }
+
+        private void progressTrackBar_Scroll(object sender, int newValue)
+        {
+            SetLabelText();
+            if (KFrames.ContainsKey(progressTrackBar.Value))
+            {
+                incPercent.Text = KFrames[progressTrackBar.Value].ToString();
+            }
+            else
+            {
+                incPercent.Text = "0";
+            }
         }
     }
 }

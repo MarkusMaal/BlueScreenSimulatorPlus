@@ -85,6 +85,16 @@ namespace UltimateBlueScreenSimulator.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon artage_io_48148_1564916990 {
+            get {
+                object obj = ResourceManager.GetObject("artage_io_48148_1564916990", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
         internal static System.IO.UnmanagedMemoryStream beep {
@@ -217,6 +227,16 @@ namespace UltimateBlueScreenSimulator.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon Dakirby309_Windows_8_Metro_Folders_OS_Windows_8_Metro {
+            get {
+                object obj = ResourceManager.GetObject("Dakirby309_Windows_8_Metro_Folders_OS_Windows_8_Metro", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap doscii {
@@ -281,6 +301,16 @@ namespace UltimateBlueScreenSimulator.Properties {
             get {
                 object obj = ResourceManager.GetObject("msoftware", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon new_windows_logo__2_ {
+            get {
+                object obj = ResourceManager.GetObject("new_windows_logo__2_", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
             }
         }
         
@@ -403,6 +433,16 @@ namespace UltimateBlueScreenSimulator.Properties {
             get {
                 object obj = ResourceManager.GetObject("success", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon Tatice_Operating_Systems_Windows {
+            get {
+                object obj = ResourceManager.GetObject("Tatice_Operating_Systems_Windows", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
             }
         }
         

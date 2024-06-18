@@ -891,7 +891,7 @@ namespace UltimateBlueScreenSimulator
             pt.Text = string.Format("Progress tuner - {0}", me.GetString("friendlyname"));
             if (pt.KFrames.Count > 0)
             {
-                pt.progressTrackBar.Maximum = me.GetInt("progressmillis");
+                pt.progressTrackBar.RangeMax = me.GetInt("progressmillis");
             }
             pt.ReloadBitmap();
             pt.SetLabelText();
@@ -904,7 +904,7 @@ namespace UltimateBlueScreenSimulator
             if (pt.ShowDialog() == DialogResult.OK)
             {
                 me.SetAllProgression(pt.KFrames.Keys.ToArray<int>(), pt.KFrames.Values.ToArray<int>());
-                me.SetInt("progressmillis", pt.progressTrackBar.Maximum);
+                me.SetInt("progressmillis", pt.progressTrackBar.RangeMax);
             }
             pt.Dispose();
         }
@@ -992,7 +992,6 @@ namespace UltimateBlueScreenSimulator
 
         private void materialButton5_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Warning: Prank mode is not guaranteed to work correctly with new UI. Please restore old layout unless you're testing.", "Prank mode", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             PrankMode pm = new PrankMode();
             pm.Show();
         }
