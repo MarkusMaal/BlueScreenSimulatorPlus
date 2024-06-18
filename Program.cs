@@ -272,7 +272,10 @@ namespace UltimateBlueScreenSimulator
 
             //Load Windows NT error codes from the database
             f1.comboBox1.Items.Clear();
-            f2.comboBox1.Items.Clear();
+            if (useNewUi)
+            {
+                f2.comboBox1.Items.Clear();
+            }
             string database = "";
             try
             {
@@ -290,7 +293,10 @@ namespace UltimateBlueScreenSimulator
                     string[] codesplit = element.Split('\t');
                     string final = codesplit[1].ToString().Substring(0, codesplit[1].ToString().Length - 1) + " (" + codesplit[0].ToString() + ")";
                     f1.comboBox1.Items.Add(final);
-                    f2.comboBox1.Items.Add(final);
+                    if (useNewUi)
+                    {
+                        f2.comboBox1.Items.Add(final);
+                    }
                 }
             }
             catch
@@ -301,9 +307,12 @@ namespace UltimateBlueScreenSimulator
             f1.comboBox1.SelectedIndex = 9;
             f1.windowVersion.SelectedIndex = 0;
             f1.comboBox2.SelectedIndex = 0;
-            f2.comboBox1.SelectedIndex = 9;
-            f2.windowVersion.SelectedIndex = 0;
-            f2.comboBox2.SelectedIndex = 0;
+            if (useNewUi)
+            {
+                f2.comboBox1.SelectedIndex = 9;
+                f2.windowVersion.SelectedIndex = 0;
+                f2.comboBox2.SelectedIndex = 0;
+            }
             //Post update scripts
             if (args.Contains("/doneupdate"))
             {
@@ -759,6 +768,7 @@ namespace UltimateBlueScreenSimulator
             Program.bluescreens.Add(new BlueScreen("Windows XP"));
             Program.bluescreens.Add(new BlueScreen("Windows Vista"));
             Program.bluescreens.Add(new BlueScreen("Windows 7"));
+            Program.bluescreens.Add(new BlueScreen("Windows 8 Beta"));
             Program.bluescreens.Add(new BlueScreen("Windows 8/8.1"));
             Program.bluescreens.Add(new BlueScreen("Windows 10"));
             Program.bluescreens.Add(new BlueScreen("Windows 11"));

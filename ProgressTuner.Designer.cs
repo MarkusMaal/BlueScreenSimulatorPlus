@@ -268,6 +268,7 @@ namespace UltimateBlueScreenSimulator
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Text = "Progress tuner - Test mode";
+            this.Load += new System.EventHandler(this.ProgressTuner_Load);
             ((System.ComponentModel.ISupportInitialize)(this.progressTrackBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.progressVisualization)).EndInit();
             this.ResumeLayout(false);

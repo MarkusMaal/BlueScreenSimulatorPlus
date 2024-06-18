@@ -114,6 +114,12 @@
     <Compile Include="DictEdit.Designer.cs">
       <DependentUpon>DictEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="JupiterBSOD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="JupiterBSOD.Designer.cs">
+      <DependentUpon>JupiterBSOD.cs</DependentUpon>
+    </Compile>
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -266,6 +272,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DictEdit.resx">
       <DependentUpon>DictEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JupiterBSOD.resx">
+      <DependentUpon>JupiterBSOD.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>

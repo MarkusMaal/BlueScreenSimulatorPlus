@@ -7,10 +7,13 @@ using SimulatorDatabase;
 using System.Collections.Generic;
 using System.Threading;
 using System.Diagnostics;
+using MaterialSkin.Controls;
+using MaterialSkin;
+using System.Windows.Controls;
 
 namespace UltimateBlueScreenSimulator
 {
-    partial class AboutSettingsDialog : Form
+    partial class AboutSettingsDialog : MaterialForm
     {
         //If this flag is set, then help tabs are hidden and setting tabs are visible
         public bool SettingTab = false;
@@ -21,6 +24,7 @@ namespace UltimateBlueScreenSimulator
         public AboutSettingsDialog()
         {
             InitializeComponent();
+            MaterialSkinManager materialSkinManager = Program.f2.materialSkinManager;
             //Get assembly information about the program
             this.Text = String.Format("About {0}", AssemblyTitle);
             this.labelProductName.Text = "Blue Screen Simulator Plus";
@@ -117,7 +121,7 @@ namespace UltimateBlueScreenSimulator
                 aboutSettingsTabControl.Appearance = TabAppearance.FlatButtons;
                 this.BackColor = Color.Black;
                 this.ForeColor = Color.Gray;
-                foreach (Panel p in aboutSettingsTabControl.TabPages)
+                foreach (System.Windows.Forms.Panel p in aboutSettingsTabControl.TabPages)
                 {
                     p.BackColor = this.BackColor;
                     p.ForeColor = this.ForeColor;
@@ -129,7 +133,7 @@ namespace UltimateBlueScreenSimulator
                 primaryServerBox.BorderStyle = BorderStyle.FixedSingle;
                 configList.BackColor = Color.Black;
                 configList.ForeColor = Color.Gray;
-                configList.BorderStyle = BorderStyle.FixedSingle;
+                //configList.BorderStyle = BorderStyle.FixedSingle;
                 helpDisplay.BackColor = Color.Black;
                 helpDisplay.ForeColor = Color.Gray;
                 commandLineHelpDisplay.BackColor = Color.Black;
@@ -218,12 +222,11 @@ namespace UltimateBlueScreenSimulator
                         break;
                 }
                 hideInFullscreenButton.Checked = !Program.f1.showcursor;
-                configList.ClearSelected();
                 configList.Items.Clear();
                 randomnessCheckBox.Checked = Program.randomness;
                 foreach (BlueScreen bs in Program.bluescreens)
                 {
-                    configList.Items.Add(bs.GetString("friendlyname"));
+                    configList.Items.Add(new MaterialListBoxItem(bs.GetString("friendlyname")));
                 }
                 devFlowPanel.Visible = DevBuild;
             }
@@ -247,7 +250,8 @@ namespace UltimateBlueScreenSimulator
 
         private void QuickHelp_SystemRequirements(object sender, EventArgs e)
         {
-            helpDisplay.Text = "System requirements:\n\nOS: Windows XP or later (Windows 8 or later recommended)\n150MB of available RAM (recommended minimum)\n50MB of available RAM (absolute minimum)\nx86 or compatible processor\nRead-Write storage media\nMicrosoft.NET Framework 4.0\n1000bps or  internet connection (for updates and online help functionality)\nScreen resolution: 1024x720 or higher (1280x720 or higher recommended)".Replace("\n", Environment.NewLine);
+            helpDisplay.Text = "We're no strangers to love\r\nYou know the rules and so do I (do I)\r\nA full commitment's what I'm thinking of\r\nYou wouldn't get this from any other guy\r\n\r\nI just wanna tell you how I'm feeling\r\nGotta make you understand\r\n\r\nNever gonna give you up\r\nNever gonna let you down\r\nNever gonna run around and desert you\r\nNever gonna make you cry\r\nNever gonna say goodbye\r\nNever gonna tell a lie and hurt you\r\n\r\nWe've known each other for so long\r\nYour heart's been aching, but you're too shy to say it (say it)\r\nInside, we both know what's been going on (going on)\r\nWe know the game and we're gonna play it\r\n\r\nAnd if you ask me how I'm feeling\r\nDon't tell me you're too blind to see\r\n\r\nNever gonna give you up\r\nNever gonna let you down\r\nNever gonna run around and desert you\r\nNever gonna make you cry\r\nNever gonna say goodbye\r\nNever gonna tell a lie and hurt you\r\n\r\nNever gonna give you up\r\nNever gonna let you down\r\nNever gonna run around and desert you\r\nNever gonna make you cry\r\nNever gonna say goodbye\r\nNever gonna tell a lie and hurt you\r\n\r\n(Ooh, give you up)\r\n(Ooh, give you up)\r\n(Ooh) Never gonna give, never gonna give (give you up)\r\n(Ooh) Never gonna give, never gonna give (give you up)\r\n\r\nWe've known each other for so long\r\nYour heart's been aching, but you're too shy to say it (to say it)\r\nInside, we both know what's been going on (going on)\r\nWe know the game and we're gonna play it\r\n\r\nI just wanna tell you how I'm feeling\r\nGotta make you understand\r\n\r\nNever gonna give you up\r\nNever gonna let you down\r\nNever gonna run around and desert you\r\nNever gonna make you cry\r\nNever gonna say goodbye\r\nNever gonna tell a lie and hurt you\r\n\r\nNever gonna give you up\r\nNever gonna let you down\r\nNever gonna run around and desert you\r\nNever gonna make you cry\r\nNever gonna say goodbye\r\nNever gonna tell a lie and hurt you\r\n\r\nNever gonna give you up\r\nNever gonna let you down\r\nNever gonna run around and desert you\r\nNever gonna make you cry\r\nNever gonna say goodbye\r\nNever gonna tell a lie and hurt you";
+            //helpDisplay.Text = "System requirements:\n\nOS: Windows XP or later (Windows 8 or later recommended)\n150MB of available RAM (recommended minimum)\n50MB of available RAM (absolute minimum)\nx86 or compatible processor\nRead-Write storage media\nMicrosoft.NET Framework 4.0\n1000bps or  internet connection (for updates and online help functionality)\nScreen resolution: 1024x720 or higher (1280x720 or higher recommended)".Replace("\n", Environment.NewLine);
         }
 
         //Closes the dialog and sets dialogresult to ok
@@ -389,23 +393,23 @@ namespace UltimateBlueScreenSimulator
             helpDisplay.Size = new Size(helpPanelChild.Width, Convert.ToInt32(helpPanelChild.Height * 0.8010638));
         }
 
-        private void ConfigSelector(object sender, EventArgs e)
+        private void ConfigSelector(object sender, MaterialListBoxItem e)
         {
-            if (configList.SelectedIndices.Count > 0)
+            if (e != null)
             {
                 osName.Text = string.Format("Selected configuration: {0}", Program.bluescreens[configList.SelectedIndex].GetString("friendlyname"));
             } else
             {
                 osName.Text = "Select a configuration to modify/remove it";
             }
-            resetButton.Enabled = (configList.SelectedIndices.Count > 0);
-            resetHackButton.Enabled = (configList.SelectedIndices.Count > 0);
-            removeCfg.Enabled = (configList.SelectedIndices.Count > 0);
+            resetButton.Enabled = (e != null);
+            resetHackButton.Enabled = (e != null);
+            removeCfg.Enabled = (e != null);
         }
 
         private void ConfigHackEraser(object sender, EventArgs e)
         {
-            if (configList.SelectedIndices.Count > 0)
+            if (configList.SelectedItems.Count > 0)
             {
                 if (MessageBox.Show("Warning: This will remove any custom settings from this configuration. ANY UNSAVED CHANGES WILL BE LOST!!! Are you sure you want to continue?", "Reset bugcheck", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                 {
@@ -424,13 +428,12 @@ namespace UltimateBlueScreenSimulator
             {
                 if (MessageBox.Show("Would you restore default configurations?", "Seecret factory defaults option", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    configList.ClearSelected();
                     configList.Items.Clear();
                     Program.bluescreens.Clear();
                     Program.ReRe();
                     foreach (BlueScreen bs in Program.bluescreens)
                     {
-                        configList.Items.Add(bs.GetString("friendlyname"));
+                        configList.Items.Add(new MaterialListBoxItem(bs.GetString("friendlyname")));
                     }
                     MessageBox.Show("Configurations were reset", "Seecret factory defaults", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -443,7 +446,7 @@ namespace UltimateBlueScreenSimulator
 
         private void ResetConfig(object sender, EventArgs e)
         {
-            if (configList.SelectedIndices.Count > 0)
+            if (configList.SelectedItems.Count > 0)
             {
                 if (MessageBox.Show("Warning: This will remove any setting set under the 'additional options' menu. Other settings set in the main screen will remain the same. ANY UNSAVED CHANGES WILL BE LOST!!! Are you sure you want to continue?", "Reset hacks", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                 {
@@ -455,12 +458,10 @@ namespace UltimateBlueScreenSimulator
                 {
                     MessageBox.Show("Reason: The user clicked no", "No changes were made", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
-                configList.ClearSelected();
             } else
             {
                 if (MessageBox.Show("Would you like to reset everything under the 'additional options' menu to defaults for all configurations?", "Seecret factory hacks defaults", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    configList.ClearSelected();
                     configList.Items.Clear();
                     foreach (BlueScreen bs in Program.bluescreens)
                     {
@@ -478,17 +479,16 @@ namespace UltimateBlueScreenSimulator
 
         private void ConfigEraser(object sender, EventArgs e)
         {
-            if (configList.SelectedIndices.Count > 0)
+            if (configList.SelectedItems.Count > 0)
             {
                 if (MessageBox.Show("Warning: This will remove this configuration from the repository. ANY UNSAVED CHANGES WILL BE LOST!!! Are you sure you want to do that?", "Delete bugcheck", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                 {
 
                     Program.bluescreens.Remove(Program.bluescreens[configList.SelectedIndex]);
-                    configList.ClearSelected();
                     configList.Items.Clear();
                     foreach (BlueScreen bs in Program.bluescreens)
                     {
-                        configList.Items.Add(bs.GetString("friendlyname"));
+                        configList.Items.Add(new MaterialListBoxItem(bs.GetString("friendlyname")));
                     }
                     MessageBox.Show("Config removed successfully", "Configuration deletion", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -500,7 +500,6 @@ namespace UltimateBlueScreenSimulator
             {
                 if (MessageBox.Show("Would you like to remove all configurations?", "Nuke mode", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                 {
-                    configList.ClearSelected();
                     configList.Items.Clear();
                     Program.bluescreens.Clear();
                     resetHackButton.Enabled = false;
@@ -518,11 +517,10 @@ namespace UltimateBlueScreenSimulator
         {
             if (new AddBluescreen().ShowDialog() == DialogResult.OK)
             {
-                configList.ClearSelected();
                 configList.Items.Clear();
                 foreach (BlueScreen bs in Program.bluescreens)
                 {
-                    configList.Items.Add(bs.GetString("friendlyname"));
+                    configList.Items.Add(new MaterialListBoxItem(bs.GetString("friendlyname")));
                 }
             }
         }
@@ -1304,11 +1302,10 @@ namespace UltimateBlueScreenSimulator
         {
             Program.bluescreens.Clear();
             Program.ReRe();
-            configList.ClearSelected();
             configList.Items.Clear();
             foreach (BlueScreen bs in Program.bluescreens)
             {
-                configList.Items.Add(bs.GetString("friendlyname"));
+                configList.Items.Add(new MaterialListBoxItem(bs.GetString("friendlyname")));
             }
         }
 
@@ -1330,11 +1327,10 @@ namespace UltimateBlueScreenSimulator
         private void DevNukeAll(object sender, EventArgs e)
         {
             Program.bluescreens.Clear();
-            configList.ClearSelected();
             configList.Items.Clear();
             foreach (BlueScreen bs in Program.bluescreens)
             {
-                configList.Items.Add(bs.GetString("friendlyname"));
+                configList.Items.Add(new MaterialListBoxItem(bs.GetString("friendlyname")));
             }
         }
 
@@ -1366,7 +1362,7 @@ namespace UltimateBlueScreenSimulator
             {
                 // online user manual
                 Process p = new Process();
-                p.StartInfo.FileName = "https://markustegelane.ml/bssp/help.pdf";
+                p.StartInfo.FileName = "https://markustegelane.eu/bssp/help.pdf";
                 p.Start();
             }
             else
@@ -1397,11 +1393,10 @@ namespace UltimateBlueScreenSimulator
             if (finished)
             {
                 this.Enabled = true;
-                configList.ClearSelected();
                 configList.Items.Clear();
                 foreach (BlueScreen bs in Program.bluescreens)
                 {
-                    configList.Items.Add(bs.GetString("friendlyname"));
+                    configList.Items.Add(new MaterialListBoxItem(bs.GetString("friendlyname")));
                 }
                 loadBsconfig.FileName = "";
                 saveBsconfig.FileName = "";
@@ -1480,7 +1475,6 @@ namespace UltimateBlueScreenSimulator
         {
             if (selectAllBox.Checked)
             {
-                configList.ClearSelected();
                 resetHackButton.Enabled = true;
                 resetButton.Enabled = true;
                 removeCfg.Enabled = true;
@@ -1490,12 +1484,14 @@ namespace UltimateBlueScreenSimulator
                 helpTip.SetToolTip(resetButton, "Reset all settings within all configurations");
                 helpTip.SetToolTip(removeCfg, "Removes all configurations. This is useful, if you're making your own custom skin packs and want only a few operating systems to be visible.");
                 osName.Text = "All selected";
+                configList.SelectedItems.Clear();
                 return;
             }
             resetHackButton.Enabled = false;
             resetButton.Enabled = false;
             removeCfg.Enabled = false;
             configList.Enabled = true;
+            configList.SelectedItems.Clear();
             removeCfg.Text = "Remove configuration [?]";
             helpTip.SetToolTip(resetHackButton, "Deletes everything under the 'additional options' menu for this configuration");
             helpTip.SetToolTip(resetButton, "Reset all settings in this configuration");

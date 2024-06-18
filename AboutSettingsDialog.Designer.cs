@@ -1,4 +1,7 @@
-﻿namespace UltimateBlueScreenSimulator
+﻿
+using MaterialSkin;
+using MaterialSkin.Controls;
+namespace UltimateBlueScreenSimulator
 {
     partial class AboutSettingsDialog
     {
@@ -87,7 +90,7 @@
             this.loadCfg = new System.Windows.Forms.Button();
             this.addCfg = new System.Windows.Forms.Button();
             this.osName = new System.Windows.Forms.Label();
-            this.configList = new System.Windows.Forms.ListBox();
+            this.configList = new MaterialSkin.Controls.MaterialListBox();
             this.eggHunterButton = new System.Windows.Forms.CheckBox();
             this.simulatorSettingsNotice = new System.Windows.Forms.Label();
             this.scalingModeBox = new System.Windows.Forms.ComboBox();
@@ -98,10 +101,10 @@
             this.helpPanel = new System.Windows.Forms.TabPage();
             this.helpPanelChild = new System.Windows.Forms.FlowLayoutPanel();
             this.helpButtonsFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.howToGetHelpButton = new System.Windows.Forms.Button();
-            this.purposesOfThisProgramButton = new System.Windows.Forms.Button();
-            this.systemRequirementsButton = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.howToGetHelpButton = new MaterialSkin.Controls.MaterialButton();
+            this.purposesOfThisProgramButton = new MaterialSkin.Controls.MaterialButton();
+            this.systemRequirementsButton1 = new MaterialSkin.Controls.MaterialButton();
+            this.materialButton1 = new MaterialSkin.Controls.MaterialButton();
             this.helpDisplay = new System.Windows.Forms.TextBox();
             this.commandLinePanel = new System.Windows.Forms.TabPage();
             this.commandLineHelpDisplay = new System.Windows.Forms.TextBox();
@@ -154,7 +157,7 @@
             this.aboutTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.94495F));
             this.aboutTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 17.12538F));
             this.aboutTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.aboutTable.Size = new System.Drawing.Size(536, 359);
+            this.aboutTable.Size = new System.Drawing.Size(653, 382);
             this.aboutTable.TabIndex = 0;
             // 
             // logoPictureBox
@@ -164,7 +167,7 @@
             this.logoPictureBox.Location = new System.Drawing.Point(3, 3);
             this.logoPictureBox.Name = "logoPictureBox";
             this.aboutTable.SetRowSpan(this.logoPictureBox, 7);
-            this.logoPictureBox.Size = new System.Drawing.Size(136, 353);
+            this.logoPictureBox.Size = new System.Drawing.Size(167, 376);
             this.logoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.logoPictureBox.TabIndex = 12;
             this.logoPictureBox.TabStop = false;
@@ -177,9 +180,9 @@
             this.logoDisplayFlowPanel.Controls.Add(this.veriFileLogo);
             this.logoDisplayFlowPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.logoDisplayFlowPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.logoDisplayFlowPanel.Location = new System.Drawing.Point(145, 163);
+            this.logoDisplayFlowPanel.Location = new System.Drawing.Point(176, 173);
             this.logoDisplayFlowPanel.Name = "logoDisplayFlowPanel";
-            this.logoDisplayFlowPanel.Size = new System.Drawing.Size(388, 105);
+            this.logoDisplayFlowPanel.Size = new System.Drawing.Size(474, 113);
             this.logoDisplayFlowPanel.TabIndex = 25;
             // 
             // markusSoftwareLogo
@@ -208,11 +211,11 @@
             // labelProductName
             // 
             this.labelProductName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelProductName.Location = new System.Drawing.Point(148, 0);
+            this.labelProductName.Location = new System.Drawing.Point(179, 0);
             this.labelProductName.Margin = new System.Windows.Forms.Padding(6, 0, 3, 0);
             this.labelProductName.MaximumSize = new System.Drawing.Size(0, 17);
             this.labelProductName.Name = "labelProductName";
-            this.labelProductName.Size = new System.Drawing.Size(385, 17);
+            this.labelProductName.Size = new System.Drawing.Size(471, 17);
             this.labelProductName.TabIndex = 19;
             this.labelProductName.Text = "Product Name";
             this.labelProductName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -220,11 +223,11 @@
             // labelVersion
             // 
             this.labelVersion.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelVersion.Location = new System.Drawing.Point(148, 20);
+            this.labelVersion.Location = new System.Drawing.Point(179, 21);
             this.labelVersion.Margin = new System.Windows.Forms.Padding(6, 0, 3, 0);
             this.labelVersion.MaximumSize = new System.Drawing.Size(0, 17);
             this.labelVersion.Name = "labelVersion";
-            this.labelVersion.Size = new System.Drawing.Size(385, 17);
+            this.labelVersion.Size = new System.Drawing.Size(471, 17);
             this.labelVersion.TabIndex = 0;
             this.labelVersion.Text = "Version";
             this.labelVersion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -232,11 +235,11 @@
             // labelCopyright
             // 
             this.labelCopyright.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelCopyright.Location = new System.Drawing.Point(148, 38);
+            this.labelCopyright.Location = new System.Drawing.Point(179, 40);
             this.labelCopyright.Margin = new System.Windows.Forms.Padding(6, 0, 3, 0);
             this.labelCopyright.MaximumSize = new System.Drawing.Size(0, 17);
             this.labelCopyright.Name = "labelCopyright";
-            this.labelCopyright.Size = new System.Drawing.Size(385, 17);
+            this.labelCopyright.Size = new System.Drawing.Size(471, 17);
             this.labelCopyright.TabIndex = 21;
             this.labelCopyright.Text = "Copyright";
             this.labelCopyright.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -244,10 +247,10 @@
             // labelCompanyName
             // 
             this.labelCompanyName.Dock = System.Windows.Forms.DockStyle.Top;
-            this.labelCompanyName.Location = new System.Drawing.Point(148, 58);
+            this.labelCompanyName.Location = new System.Drawing.Point(179, 61);
             this.labelCompanyName.Margin = new System.Windows.Forms.Padding(6, 0, 3, 0);
             this.labelCompanyName.Name = "labelCompanyName";
-            this.labelCompanyName.Size = new System.Drawing.Size(385, 88);
+            this.labelCompanyName.Size = new System.Drawing.Size(471, 88);
             this.labelCompanyName.TabIndex = 22;
             // 
             // okButton
@@ -256,7 +259,7 @@
             this.okButton.BackColor = System.Drawing.SystemColors.Control;
             this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.okButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.okButton.Location = new System.Drawing.Point(458, 333);
+            this.okButton.Location = new System.Drawing.Point(575, 356);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(75, 23);
             this.okButton.TabIndex = 24;
@@ -272,9 +275,9 @@
             this.flowLayoutPanel1.Controls.Add(this.rndFactButton);
             this.flowLayoutPanel1.Controls.Add(this.button3);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(145, 274);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(176, 292);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(388, 50);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(474, 54);
             this.flowLayoutPanel1.TabIndex = 26;
             this.flowLayoutPanel1.WrapContents = false;
             // 
@@ -320,18 +323,20 @@
             // 
             // aboutSettingsTabControl
             // 
+            this.aboutSettingsTabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.aboutSettingsTabControl.Controls.Add(this.aboutPanel);
             this.aboutSettingsTabControl.Controls.Add(this.updatePanel);
             this.aboutSettingsTabControl.Controls.Add(this.simulatorSettingsPanel);
             this.aboutSettingsTabControl.Controls.Add(this.helpPanel);
             this.aboutSettingsTabControl.Controls.Add(this.commandLinePanel);
-            this.aboutSettingsTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.aboutSettingsTabControl.Location = new System.Drawing.Point(3, 3);
+            this.aboutSettingsTabControl.Location = new System.Drawing.Point(3, 67);
             this.aboutSettingsTabControl.Margin = new System.Windows.Forms.Padding(0);
             this.aboutSettingsTabControl.Name = "aboutSettingsTabControl";
             this.aboutSettingsTabControl.Padding = new System.Drawing.Point(0, 0);
             this.aboutSettingsTabControl.SelectedIndex = 0;
-            this.aboutSettingsTabControl.Size = new System.Drawing.Size(550, 391);
+            this.aboutSettingsTabControl.Size = new System.Drawing.Size(667, 414);
             this.aboutSettingsTabControl.TabIndex = 1;
             this.aboutSettingsTabControl.SelectedIndexChanged += new System.EventHandler(this.TabSwitcher);
             // 
@@ -341,7 +346,7 @@
             this.aboutPanel.Location = new System.Drawing.Point(4, 22);
             this.aboutPanel.Name = "aboutPanel";
             this.aboutPanel.Padding = new System.Windows.Forms.Padding(3);
-            this.aboutPanel.Size = new System.Drawing.Size(542, 365);
+            this.aboutPanel.Size = new System.Drawing.Size(659, 388);
             this.aboutPanel.TabIndex = 0;
             this.aboutPanel.Text = "About";
             this.aboutPanel.UseVisualStyleBackColor = true;
@@ -366,7 +371,7 @@
             this.updatePanel.Location = new System.Drawing.Point(4, 22);
             this.updatePanel.Name = "updatePanel";
             this.updatePanel.Padding = new System.Windows.Forms.Padding(3);
-            this.updatePanel.Size = new System.Drawing.Size(542, 365);
+            this.updatePanel.Size = new System.Drawing.Size(659, 388);
             this.updatePanel.TabIndex = 1;
             this.updatePanel.Text = "Update settings";
             this.updatePanel.UseVisualStyleBackColor = true;
@@ -377,7 +382,8 @@
             this.darkDetectCheck.AutoSize = true;
             this.darkDetectCheck.Checked = true;
             this.darkDetectCheck.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.darkDetectCheck.Location = new System.Drawing.Point(349, 320);
+            this.darkDetectCheck.Location = new System.Drawing.Point(465, 407);
+            this.darkDetectCheck.Margin = new System.Windows.Forms.Padding(0);
             this.darkDetectCheck.Name = "darkDetectCheck";
             this.darkDetectCheck.Size = new System.Drawing.Size(174, 17);
             this.darkDetectCheck.TabIndex = 14;
@@ -391,7 +397,7 @@
             // 
             this.customServerButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.customServerButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.customServerButton.Location = new System.Drawing.Point(449, 245);
+            this.customServerButton.Location = new System.Drawing.Point(565, 245);
             this.customServerButton.Name = "customServerButton";
             this.customServerButton.Size = new System.Drawing.Size(74, 23);
             this.customServerButton.TabIndex = 13;
@@ -405,7 +411,7 @@
             // 
             this.primaryServerButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.primaryServerButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.primaryServerButton.Location = new System.Drawing.Point(299, 245);
+            this.primaryServerButton.Location = new System.Drawing.Point(415, 245);
             this.primaryServerButton.Name = "primaryServerButton";
             this.primaryServerButton.Size = new System.Drawing.Size(71, 23);
             this.primaryServerButton.TabIndex = 12;
@@ -418,7 +424,7 @@
             // 
             this.backupServerButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.backupServerButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.backupServerButton.Location = new System.Drawing.Point(373, 245);
+            this.backupServerButton.Location = new System.Drawing.Point(489, 245);
             this.backupServerButton.Name = "backupServerButton";
             this.backupServerButton.Size = new System.Drawing.Size(74, 23);
             this.backupServerButton.TabIndex = 11;
@@ -434,7 +440,7 @@
             this.primaryServerBox.Enabled = false;
             this.primaryServerBox.Location = new System.Drawing.Point(20, 272);
             this.primaryServerBox.Name = "primaryServerBox";
-            this.primaryServerBox.Size = new System.Drawing.Size(503, 20);
+            this.primaryServerBox.Size = new System.Drawing.Size(619, 20);
             this.primaryServerBox.TabIndex = 10;
             this.primaryServerBox.Text = "http://nossl.markustegelane.eu/app";
             this.primaryServerBox.TextChanged += new System.EventHandler(this.ChangeUpdateServer);
@@ -452,7 +458,7 @@
             // noticeLabel
             // 
             this.noticeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.noticeLabel.Location = new System.Drawing.Point(11, 342);
+            this.noticeLabel.Location = new System.Drawing.Point(127, 429);
             this.noticeLabel.Name = "noticeLabel";
             this.noticeLabel.Size = new System.Drawing.Size(531, 18);
             this.noticeLabel.TabIndex = 8;
@@ -465,7 +471,7 @@
             this.updateCheckButton.AutoSize = true;
             this.updateCheckButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.updateCheckButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.updateCheckButton.Location = new System.Drawing.Point(151, 316);
+            this.updateCheckButton.Location = new System.Drawing.Point(151, 403);
             this.updateCheckButton.Name = "updateCheckButton";
             this.updateCheckButton.Padding = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.updateCheckButton.Size = new System.Drawing.Size(116, 23);
@@ -479,7 +485,7 @@
             // 
             this.unsignButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.unsignButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.unsignButton.Location = new System.Drawing.Point(20, 316);
+            this.unsignButton.Location = new System.Drawing.Point(20, 403);
             this.unsignButton.Name = "unsignButton";
             this.unsignButton.Size = new System.Drawing.Size(125, 23);
             this.unsignButton.TabIndex = 6;
@@ -552,6 +558,7 @@
             this.hashBox.Checked = true;
             this.hashBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.hashBox.Location = new System.Drawing.Point(20, 128);
+            this.hashBox.Margin = new System.Windows.Forms.Padding(0);
             this.hashBox.Name = "hashBox";
             this.hashBox.Size = new System.Drawing.Size(198, 17);
             this.hashBox.TabIndex = 2;
@@ -632,7 +639,7 @@
             this.simulatorSettingsPanel.Controls.Add(this.simulatorSettingsHeading);
             this.simulatorSettingsPanel.Location = new System.Drawing.Point(4, 22);
             this.simulatorSettingsPanel.Name = "simulatorSettingsPanel";
-            this.simulatorSettingsPanel.Size = new System.Drawing.Size(542, 365);
+            this.simulatorSettingsPanel.Size = new System.Drawing.Size(659, 388);
             this.simulatorSettingsPanel.TabIndex = 4;
             this.simulatorSettingsPanel.Text = "Simulator settings";
             this.simulatorSettingsPanel.UseVisualStyleBackColor = true;
@@ -641,7 +648,7 @@
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.label1.Location = new System.Drawing.Point(377, 95);
+            this.label1.Location = new System.Drawing.Point(493, 95);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(1, 96);
             this.label1.TabIndex = 26;
@@ -651,6 +658,7 @@
             this.selectAllBox.AutoSize = true;
             this.selectAllBox.CheckAlign = System.Drawing.ContentAlignment.TopLeft;
             this.selectAllBox.Location = new System.Drawing.Point(378, 191);
+            this.selectAllBox.Margin = new System.Windows.Forms.Padding(0);
             this.selectAllBox.Name = "selectAllBox";
             this.selectAllBox.Size = new System.Drawing.Size(153, 17);
             this.selectAllBox.TabIndex = 25;
@@ -664,6 +672,7 @@
             // 
             this.randomnessCheckBox.AutoSize = true;
             this.randomnessCheckBox.Location = new System.Drawing.Point(20, 192);
+            this.randomnessCheckBox.Margin = new System.Windows.Forms.Padding(0);
             this.randomnessCheckBox.Name = "randomnessCheckBox";
             this.randomnessCheckBox.Size = new System.Drawing.Size(333, 17);
             this.randomnessCheckBox.TabIndex = 24;
@@ -684,7 +693,7 @@
             this.devFlowPanel.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
             this.devFlowPanel.Location = new System.Drawing.Point(158, 3);
             this.devFlowPanel.Name = "devFlowPanel";
-            this.devFlowPanel.Size = new System.Drawing.Size(373, 58);
+            this.devFlowPanel.Size = new System.Drawing.Size(497, 58);
             this.devFlowPanel.TabIndex = 23;
             this.devFlowPanel.Visible = false;
             this.devFlowPanel.WrapContents = false;
@@ -770,7 +779,7 @@
             "Freeze secondary screens"});
             this.multiDisplayBox.Location = new System.Drawing.Point(143, 262);
             this.multiDisplayBox.Name = "multiDisplayBox";
-            this.multiDisplayBox.Size = new System.Drawing.Size(370, 21);
+            this.multiDisplayBox.Size = new System.Drawing.Size(486, 21);
             this.multiDisplayBox.TabIndex = 18;
             this.multiDisplayBox.SelectedIndexChanged += new System.EventHandler(this.MultiDisplaySetup);
             // 
@@ -793,7 +802,7 @@
             this.configEditingButtonsFlowPanel.Controls.Add(this.loadCfg);
             this.configEditingButtonsFlowPanel.Controls.Add(this.addCfg);
             this.configEditingButtonsFlowPanel.FlowDirection = System.Windows.Forms.FlowDirection.BottomUp;
-            this.configEditingButtonsFlowPanel.Location = new System.Drawing.Point(227, 97);
+            this.configEditingButtonsFlowPanel.Location = new System.Drawing.Point(343, 97);
             this.configEditingButtonsFlowPanel.Name = "configEditingButtonsFlowPanel";
             this.configEditingButtonsFlowPanel.Size = new System.Drawing.Size(302, 91);
             this.configEditingButtonsFlowPanel.TabIndex = 16;
@@ -878,7 +887,9 @@
             // osName
             // 
             this.osName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.osName.Location = new System.Drawing.Point(228, 64);
+            this.osName.BackColor = System.Drawing.Color.Transparent;
+            this.osName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.osName.Location = new System.Drawing.Point(344, 64);
             this.osName.Name = "osName";
             this.osName.Size = new System.Drawing.Size(301, 30);
             this.osName.TabIndex = 11;
@@ -888,15 +899,19 @@
             // 
             this.configList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.configList.BackColor = System.Drawing.Color.White;
+            this.configList.BorderColor = System.Drawing.Color.LightGray;
+            this.configList.Depth = 0;
             this.configList.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.configList.FormattingEnabled = true;
-            this.configList.ItemHeight = 20;
             this.configList.Location = new System.Drawing.Point(20, 64);
+            this.configList.MouseState = MaterialSkin.MouseState.HOVER;
             this.configList.Name = "configList";
-            this.configList.ScrollAlwaysVisible = true;
-            this.configList.Size = new System.Drawing.Size(201, 124);
+            this.configList.SelectedIndex = -1;
+            this.configList.SelectedItem = null;
+            this.configList.ShowScrollBar = true;
+            this.configList.Size = new System.Drawing.Size(317, 124);
             this.configList.TabIndex = 9;
-            this.configList.SelectedIndexChanged += new System.EventHandler(this.ConfigSelector);
+            this.configList.SelectedIndexChanged += new MaterialSkin.Controls.MaterialListBox.SelectedIndexChangedEventHandler(this.ConfigSelector);
             // 
             // eggHunterButton
             // 
@@ -904,6 +919,7 @@
             this.eggHunterButton.Checked = true;
             this.eggHunterButton.CheckState = System.Windows.Forms.CheckState.Checked;
             this.eggHunterButton.Location = new System.Drawing.Point(20, 238);
+            this.eggHunterButton.Margin = new System.Windows.Forms.Padding(0);
             this.eggHunterButton.Name = "eggHunterButton";
             this.eggHunterButton.Size = new System.Drawing.Size(132, 17);
             this.eggHunterButton.TabIndex = 8;
@@ -918,7 +934,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.simulatorSettingsNotice.Location = new System.Drawing.Point(17, 319);
             this.simulatorSettingsNotice.Name = "simulatorSettingsNotice";
-            this.simulatorSettingsNotice.Size = new System.Drawing.Size(493, 37);
+            this.simulatorSettingsNotice.Size = new System.Drawing.Size(609, 37);
             this.simulatorSettingsNotice.TabIndex = 7;
             this.simulatorSettingsNotice.Text = "Scaling mode does not affect modern Windows blue screens, as they use the native " +
     "resolution of your monitor without scaling. Setting up multi-monitor behaviour i" +
@@ -938,7 +954,7 @@
             "Alternate bilinear (sharper)"});
             this.scalingModeBox.Location = new System.Drawing.Point(143, 291);
             this.scalingModeBox.Name = "scalingModeBox";
-            this.scalingModeBox.Size = new System.Drawing.Size(370, 21);
+            this.scalingModeBox.Size = new System.Drawing.Size(486, 21);
             this.scalingModeBox.TabIndex = 6;
             this.helpTip.SetToolTip(this.scalingModeBox, "Specifies how blue screens in full screen mode should be scaled. Bicubic scaling " +
         "is recommended.");
@@ -959,6 +975,7 @@
             this.hideInFullscreenButton.Checked = true;
             this.hideInFullscreenButton.CheckState = System.Windows.Forms.CheckState.Checked;
             this.hideInFullscreenButton.Location = new System.Drawing.Point(20, 215);
+            this.hideInFullscreenButton.Margin = new System.Windows.Forms.Padding(0);
             this.hideInFullscreenButton.Name = "hideInFullscreenButton";
             this.hideInFullscreenButton.Size = new System.Drawing.Size(288, 17);
             this.hideInFullscreenButton.TabIndex = 4;
@@ -991,7 +1008,7 @@
             this.helpPanel.Controls.Add(this.helpPanelChild);
             this.helpPanel.Location = new System.Drawing.Point(4, 22);
             this.helpPanel.Name = "helpPanel";
-            this.helpPanel.Size = new System.Drawing.Size(542, 365);
+            this.helpPanel.Size = new System.Drawing.Size(659, 388);
             this.helpPanel.TabIndex = 2;
             this.helpPanel.Text = "Help";
             this.helpPanel.UseVisualStyleBackColor = true;
@@ -1004,66 +1021,115 @@
             this.helpPanelChild.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.helpPanelChild.Location = new System.Drawing.Point(0, 0);
             this.helpPanelChild.Name = "helpPanelChild";
-            this.helpPanelChild.Size = new System.Drawing.Size(542, 365);
+            this.helpPanelChild.Size = new System.Drawing.Size(659, 388);
             this.helpPanelChild.TabIndex = 2;
             // 
             // helpButtonsFlowPanel
             // 
             this.helpButtonsFlowPanel.Controls.Add(this.howToGetHelpButton);
             this.helpButtonsFlowPanel.Controls.Add(this.purposesOfThisProgramButton);
-            this.helpButtonsFlowPanel.Controls.Add(this.systemRequirementsButton);
-            this.helpButtonsFlowPanel.Controls.Add(this.button1);
+            this.helpButtonsFlowPanel.Controls.Add(this.systemRequirementsButton1);
+            this.helpButtonsFlowPanel.Controls.Add(this.materialButton1);
             this.helpButtonsFlowPanel.Location = new System.Drawing.Point(3, 3);
             this.helpButtonsFlowPanel.Name = "helpButtonsFlowPanel";
-            this.helpButtonsFlowPanel.Size = new System.Drawing.Size(534, 37);
+            this.helpButtonsFlowPanel.Size = new System.Drawing.Size(655, 36);
             this.helpButtonsFlowPanel.TabIndex = 1;
             // 
             // howToGetHelpButton
             // 
-            this.howToGetHelpButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.howToGetHelpButton.Location = new System.Drawing.Point(8, 6);
-            this.howToGetHelpButton.Margin = new System.Windows.Forms.Padding(8, 6, 3, 3);
+            this.howToGetHelpButton.AutoEllipsis = true;
+            this.howToGetHelpButton.AutoSize = false;
+            this.howToGetHelpButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.howToGetHelpButton.CharacterCasing = MaterialSkin.Controls.MaterialButton.CharacterCasingEnum.Normal;
+            this.howToGetHelpButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Dense;
+            this.howToGetHelpButton.Depth = 0;
+            this.howToGetHelpButton.DrawShadows = false;
+            this.howToGetHelpButton.HighEmphasis = true;
+            this.howToGetHelpButton.Icon = null;
+            this.howToGetHelpButton.Location = new System.Drawing.Point(3, 0);
+            this.howToGetHelpButton.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.howToGetHelpButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.howToGetHelpButton.Name = "howToGetHelpButton";
-            this.howToGetHelpButton.Size = new System.Drawing.Size(104, 23);
-            this.howToGetHelpButton.TabIndex = 0;
-            this.howToGetHelpButton.Text = "How to get help";
+            this.howToGetHelpButton.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.howToGetHelpButton.Size = new System.Drawing.Size(124, 32);
+            this.howToGetHelpButton.TabIndex = 4;
+            this.howToGetHelpButton.Text = "How to get help?";
+            this.howToGetHelpButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.howToGetHelpButton.UseAccentColor = false;
             this.howToGetHelpButton.UseVisualStyleBackColor = true;
             this.howToGetHelpButton.Click += new System.EventHandler(this.QuickHelp_Help);
             // 
             // purposesOfThisProgramButton
             // 
-            this.purposesOfThisProgramButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.purposesOfThisProgramButton.Location = new System.Drawing.Point(117, 6);
-            this.purposesOfThisProgramButton.Margin = new System.Windows.Forms.Padding(2, 6, 3, 3);
+            this.purposesOfThisProgramButton.AutoEllipsis = true;
+            this.purposesOfThisProgramButton.AutoSize = false;
+            this.purposesOfThisProgramButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.purposesOfThisProgramButton.CharacterCasing = MaterialSkin.Controls.MaterialButton.CharacterCasingEnum.Normal;
+            this.purposesOfThisProgramButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Dense;
+            this.purposesOfThisProgramButton.Depth = 0;
+            this.purposesOfThisProgramButton.DrawShadows = false;
+            this.purposesOfThisProgramButton.HighEmphasis = true;
+            this.purposesOfThisProgramButton.Icon = null;
+            this.purposesOfThisProgramButton.Location = new System.Drawing.Point(133, 0);
+            this.purposesOfThisProgramButton.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.purposesOfThisProgramButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.purposesOfThisProgramButton.Name = "purposesOfThisProgramButton";
-            this.purposesOfThisProgramButton.Size = new System.Drawing.Size(141, 23);
-            this.purposesOfThisProgramButton.TabIndex = 1;
+            this.purposesOfThisProgramButton.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.purposesOfThisProgramButton.Size = new System.Drawing.Size(177, 32);
+            this.purposesOfThisProgramButton.TabIndex = 5;
             this.purposesOfThisProgramButton.Text = "Purposes of this program";
+            this.purposesOfThisProgramButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.purposesOfThisProgramButton.UseAccentColor = false;
             this.purposesOfThisProgramButton.UseVisualStyleBackColor = true;
             this.purposesOfThisProgramButton.Click += new System.EventHandler(this.QuickHelp_Purpose);
             // 
-            // systemRequirementsButton
+            // systemRequirementsButton1
             // 
-            this.systemRequirementsButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.systemRequirementsButton.Location = new System.Drawing.Point(263, 6);
-            this.systemRequirementsButton.Margin = new System.Windows.Forms.Padding(2, 6, 3, 3);
-            this.systemRequirementsButton.Name = "systemRequirementsButton";
-            this.systemRequirementsButton.Size = new System.Drawing.Size(122, 23);
-            this.systemRequirementsButton.TabIndex = 2;
-            this.systemRequirementsButton.Text = "System requirements";
-            this.systemRequirementsButton.UseVisualStyleBackColor = true;
-            this.systemRequirementsButton.Click += new System.EventHandler(this.QuickHelp_SystemRequirements);
+            this.systemRequirementsButton1.AutoEllipsis = true;
+            this.systemRequirementsButton1.AutoSize = false;
+            this.systemRequirementsButton1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.systemRequirementsButton1.CharacterCasing = MaterialSkin.Controls.MaterialButton.CharacterCasingEnum.Normal;
+            this.systemRequirementsButton1.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Dense;
+            this.systemRequirementsButton1.Depth = 0;
+            this.systemRequirementsButton1.DrawShadows = false;
+            this.systemRequirementsButton1.HighEmphasis = true;
+            this.systemRequirementsButton1.Icon = null;
+            this.systemRequirementsButton1.Location = new System.Drawing.Point(316, 0);
+            this.systemRequirementsButton1.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.systemRequirementsButton1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.systemRequirementsButton1.Name = "systemRequirementsButton1";
+            this.systemRequirementsButton1.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.systemRequirementsButton1.Size = new System.Drawing.Size(149, 32);
+            this.systemRequirementsButton1.TabIndex = 6;
+            this.systemRequirementsButton1.Text = "System requirements";
+            this.systemRequirementsButton1.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.systemRequirementsButton1.UseAccentColor = false;
+            this.systemRequirementsButton1.UseVisualStyleBackColor = true;
+            this.systemRequirementsButton1.Click += new System.EventHandler(this.QuickHelp_SystemRequirements);
             // 
-            // button1
+            // materialButton1
             // 
-            this.button1.Location = new System.Drawing.Point(390, 6);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 6, 3, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(94, 23);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "User manual";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.UserManualButtonClick);
+            this.materialButton1.AutoEllipsis = true;
+            this.materialButton1.AutoSize = false;
+            this.materialButton1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.materialButton1.CharacterCasing = MaterialSkin.Controls.MaterialButton.CharacterCasingEnum.Normal;
+            this.materialButton1.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Dense;
+            this.materialButton1.Depth = 0;
+            this.materialButton1.DrawShadows = false;
+            this.materialButton1.HighEmphasis = true;
+            this.materialButton1.Icon = null;
+            this.materialButton1.Location = new System.Drawing.Point(471, 0);
+            this.materialButton1.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.materialButton1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialButton1.Name = "materialButton1";
+            this.materialButton1.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.materialButton1.Size = new System.Drawing.Size(101, 32);
+            this.materialButton1.TabIndex = 6;
+            this.materialButton1.Text = "User manual";
+            this.materialButton1.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.materialButton1.UseAccentColor = false;
+            this.materialButton1.UseVisualStyleBackColor = true;
+            this.materialButton1.Click += new System.EventHandler(this.UserManualButtonClick);
             // 
             // helpDisplay
             // 
@@ -1071,12 +1137,13 @@
             this.helpDisplay.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.helpDisplay.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.helpDisplay.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.helpDisplay.Location = new System.Drawing.Point(0, 43);
+            this.helpDisplay.Location = new System.Drawing.Point(0, 42);
             this.helpDisplay.Margin = new System.Windows.Forms.Padding(0);
             this.helpDisplay.Multiline = true;
             this.helpDisplay.Name = "helpDisplay";
             this.helpDisplay.ReadOnly = true;
-            this.helpDisplay.Size = new System.Drawing.Size(534, 286);
+            this.helpDisplay.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.helpDisplay.Size = new System.Drawing.Size(658, 323);
             this.helpDisplay.TabIndex = 0;
             // 
             // commandLinePanel
@@ -1084,7 +1151,7 @@
             this.commandLinePanel.Controls.Add(this.commandLineHelpDisplay);
             this.commandLinePanel.Location = new System.Drawing.Point(4, 22);
             this.commandLinePanel.Name = "commandLinePanel";
-            this.commandLinePanel.Size = new System.Drawing.Size(542, 365);
+            this.commandLinePanel.Size = new System.Drawing.Size(659, 388);
             this.commandLinePanel.TabIndex = 3;
             this.commandLinePanel.Text = "Command line help";
             this.commandLinePanel.UseVisualStyleBackColor = true;
@@ -1102,7 +1169,7 @@
             this.commandLineHelpDisplay.ReadOnly = true;
             this.commandLineHelpDisplay.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.commandLineHelpDisplay.ShortcutsEnabled = false;
-            this.commandLineHelpDisplay.Size = new System.Drawing.Size(542, 365);
+            this.commandLineHelpDisplay.Size = new System.Drawing.Size(659, 388);
             this.commandLineHelpDisplay.TabIndex = 0;
             // 
             // updateCheckerTimer
@@ -1131,7 +1198,7 @@
             this.AcceptButton = this.okButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(556, 397);
+            this.ClientSize = new System.Drawing.Size(672, 484);
             this.Controls.Add(this.aboutSettingsTabControl);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -1205,10 +1272,7 @@
         private System.Windows.Forms.Label simulatorSettingsHeading;
         private System.Windows.Forms.TextBox commandLineHelpDisplay;
         private System.Windows.Forms.FlowLayoutPanel helpButtonsFlowPanel;
-        private System.Windows.Forms.Button howToGetHelpButton;
         private System.Windows.Forms.TextBox helpDisplay;
-        private System.Windows.Forms.Button purposesOfThisProgramButton;
-        private System.Windows.Forms.Button systemRequirementsButton;
         private System.Windows.Forms.Timer updateCheckerTimer;
         private System.Windows.Forms.Label noticeLabel;
         private System.Windows.Forms.Label simulatorSettingsNotice;
@@ -1217,7 +1281,7 @@
         private System.Windows.Forms.PictureBox markusSoftwareLogo;
         private System.Windows.Forms.PictureBox veriFileLogo;
         private System.Windows.Forms.FlowLayoutPanel helpPanelChild;
-        private System.Windows.Forms.ListBox configList;
+        private MaterialSkin.Controls.MaterialListBox configList;
         private System.Windows.Forms.Label osName;
         private System.Windows.Forms.Button resetButton;
         private System.Windows.Forms.Button resetHackButton;
@@ -1238,7 +1302,6 @@
         private System.Windows.Forms.Button primaryServerButton;
         private System.Windows.Forms.Button backupServerButton;
         private System.Windows.Forms.Button customServerButton;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button devSplashButton;
         private System.Windows.Forms.FlowLayoutPanel devFlowPanel;
         private System.Windows.Forms.Button devRestartApp;
@@ -1253,5 +1316,9 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.CheckBox darkDetectCheck;
+        private MaterialSkin.Controls.MaterialButton howToGetHelpButton;
+        private MaterialSkin.Controls.MaterialButton purposesOfThisProgramButton;
+        private MaterialSkin.Controls.MaterialButton systemRequirementsButton1;
+        private MaterialSkin.Controls.MaterialButton materialButton1;
     }
 }

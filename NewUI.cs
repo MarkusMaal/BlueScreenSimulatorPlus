@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Reflection.Emit;
 using System.Text;
 using System.Threading;
@@ -28,11 +29,15 @@ namespace UltimateBlueScreenSimulator
         //enable/disable easter eggs
         public bool enableeggs = true;
 
+        public readonly bool betabuild = true;
+
         public static ThreadStart ts;
         Thread bsod_starter;
         internal MaterialSkinManager materialSkinManager = MaterialSkinManager.Instance;
 
         public bool abopen = false;
+        string version = Assembly.GetExecutingAssembly().GetName().Version.ToString().Replace(".", "").Substring(0, 1) + "." + Assembly.GetExecutingAssembly().GetName().Version.ToString().Replace(".", "").Substring(1);
+
 
         public NewUI()
         {
@@ -50,6 +55,11 @@ namespace UltimateBlueScreenSimulator
 
         private void NewUi1_Load(object sender, EventArgs e)
         {
+            this.Text = "Blue Screen Simulator Plus " + Convert.ToDouble(version.Replace(".", ",")).ToString().Replace(",", ".");
+            if (betabuild)
+            {
+                this.Text += "          // UNDER CONSTRUCTION //";
+            }
             windowVersion.Items.Clear();
             accentBox.SelectedIndex = 6;
             for (int i = Program.bluescreens.Count - 1; i >= 0; i--)
@@ -181,13 +191,14 @@ namespace UltimateBlueScreenSimulator
 
         private void NewUi1_ResizeEnd(object sender, EventArgs e)
         {
-            this.errorCode.Width = this.Width - 20;
-            WXOptions.Width = this.Width - 20;
-            ntPanel.Width = this.Width - 20;
-            nineXmessage.Width = this.Width - 20;
-            winPanel.Width = this.Width - 20;
-            errorCode.Width = this.Width - 20;
-            flowLayoutPanel4.Width = this.Width - 20;
+            int sub = 35;
+            this.errorCode.Width = this.Width - sub;
+            WXOptions.Width = this.Width - sub;
+            ntPanel.Width = this.Width - sub;
+            nineXmessage.Width = this.Width - sub;
+            winPanel.Width = this.Width - sub;
+            errorCode.Width = this.Width - sub;
+            flowLayoutPanel4.Width = this.Width - sub;
         }
 
         private void materialButton2_Click(object sender, EventArgs e)
@@ -281,114 +292,112 @@ namespace UltimateBlueScreenSimulator
                 me.Crash(ex.Message, ex.StackTrace, "OrangeScreen");
             }
             // set control visibility for specific OS-es
-            if (me.GetString("os") == "Windows 11")
+            switch (me.GetString("os"))
             {
-                WXOptions.Visible = true;
-                serverBox.Visible = true;
-                qrBox.Visible = true;
-                errorCode.Visible = true;
-                autoBox.Checked = true;
-                checkBox1.Visible = true;
-                winMode.Visible = true;
-                memoryBox.Visible = true;
-                eCodeEditButton.Visible = true;
-                blackScreenBox.Visible = true;
-                progressTuneButton.Visible = true;
-                //progressTunerToolStripMenuItem.Enabled = true;
-                blackScreenBox.Checked = me.GetBool("blackscreen");
-            }
-            else if (me.GetString("os") == "Windows 10")
-            {
-                WXOptions.Visible = true;
-                serverBox.Visible = true;
-                greenBox.Visible = true;
-                qrBox.Visible = true;
-                errorCode.Visible = true;
-                autoBox.Checked = true;
-                checkBox1.Visible = true;
-                winMode.Visible = true;
-                memoryBox.Visible = true;
-                eCodeEditButton.Visible = true;
-                //progressTunerToolStripMenuItem.Enabled = true;
-                devPCBox.Visible = true;
-                progressTuneButton.Visible = true;
-            }
-            else if (me.GetString("os") == "Windows 8/8.1")
-            {
-                WXOptions.Visible = true;
-                errorCode.Visible = true;
-                checkBox1.Visible = true;
-                winMode.Visible = true;
-                memoryBox.Visible = true;
-                eCodeEditButton.Visible = true;
-                //progressTunerToolStripMenuItem.Enabled = true;
-                progressTuneButton.Visible = true;
-            }
-            else if ((me.GetString("os") == "Windows Vista") || (me.GetString("os") == "Windows 7"))
-            {
-                errorCode.Visible = true;
-                winMode.Visible = true;
-                acpiBox.Visible = true;
-                checkBox1.Visible = true;
-                autoBox.Visible = true;
-                dumpBox.Visible = true;
-                addInfFile.Enabled = true;
-                advNTButton.Visible = true;
-                eCodeEditButton.Visible = true;
-                //progressTunerToolStripMenuItem.Enabled = true;
-            }
-            else if (me.GetString("os") == "Windows XP")
-            {
-                errorCode.Visible = true;
-                winMode.Visible = true;
-                checkBox1.Visible = true;
-                autoBox.Visible = true;
-                dumpBox.Visible = true;
-                addInfFile.Enabled = true;
-                advNTButton.Visible = true;
-                eCodeEditButton.Visible = true;
-            }
-            else if (me.GetString("os") == "Windows 2000")
-            {
-                errorCode.Visible = true;
-                winMode.Visible = true;
-                checkBox1.Checked = true;
-                eCodeEditButton.Visible = true;
-                advNTButton.Visible = true;
-            }
-            else if (me.GetString("os") == "Windows 9x/Me")
-            {
-                nineXmessage.Visible = true;
-                winMode.Visible = true;
-                eCodeEditButton.Visible = true;
-            }
-            else if (me.GetString("os") == "Windows CE")
-            {
-                winMode.Visible = true;
-                errorCode.Visible = true;
-                checkBox2.Checked = false;
-                checkBox2.Enabled = false;
-                textBox2.Enabled = false;
-            }
-            else if (me.GetString("os") == "Windows NT 3.x/4.0")
-            {
-                errorCode.Visible = true;
-                amdBox.Visible = true;
-                stackBox.Visible = true;
-                ntPanel.Visible = true;
-                winMode.Visible = true;
-                advNTButton.Visible = true;
-                eCodeEditButton.Visible = true;
-            }
-            else if (me.GetString("os") == "Windows 3.1x")
-            {
-                winMode.Visible = true;
-            }
-            else if (me.GetString("os") == "Windows 1.x/2.x")
-            {
-                winMode.Visible = true;
-                winPanel.Visible = true;
-                playSndBox.Visible = true;
+                case "Windows 11":
+                    WXOptions.Visible = true;
+                    serverBox.Visible = true;
+                    qrBox.Visible = true;
+                    errorCode.Visible = true;
+                    autoBox.Checked = true;
+                    checkBox1.Visible = true;
+                    winMode.Visible = true;
+                    memoryBox.Visible = true;
+                    eCodeEditButton.Visible = true;
+                    blackScreenBox.Visible = true;
+                    progressTuneButton.Visible = true;
+                    blackScreenBox.Checked = me.GetBool("blackscreen");
+                    break;
+                case "Windows 10":
+                    WXOptions.Visible = true;
+                    serverBox.Visible = true;
+                    greenBox.Visible = true;
+                    qrBox.Visible = true;
+                    errorCode.Visible = true;
+                    autoBox.Checked = true;
+                    checkBox1.Visible = true;
+                    winMode.Visible = true;
+                    memoryBox.Visible = true;
+                    eCodeEditButton.Visible = true;
+                    devPCBox.Visible = true;
+                    progressTuneButton.Visible = true;
+                    break;
+                case "Windows 8/8.1":
+                    WXOptions.Visible = true;
+                    errorCode.Visible = true;
+                    checkBox1.Visible = true;
+                    winMode.Visible = true;
+                    memoryBox.Visible = true;
+                    eCodeEditButton.Visible = true;
+                    progressTuneButton.Visible = true;
+                    break;
+                case "Windows 8 Beta":
+                    WXOptions.Visible = true;
+                    errorCode.Visible = true;
+                    checkBox1.Visible = true;
+                    winMode.Visible = true;
+                    memoryBox.Visible = true;
+                    eCodeEditButton.Visible = true;
+                    break;
+                case "Windows Vista":
+                case "Windows 7":
+                    errorCode.Visible = true;
+                    winMode.Visible = true;
+                    acpiBox.Visible = true;
+                    checkBox1.Visible = true;
+                    autoBox.Visible = true;
+                    dumpBox.Visible = true;
+                    addInfFile.Enabled = true;
+                    advNTButton.Visible = true;
+                    eCodeEditButton.Visible = true;
+                    //progressTunerToolStripMenuItem.Enabled = true;
+                    break;
+                case "Windows XP":
+                    errorCode.Visible = true;
+                    winMode.Visible = true;
+                    checkBox1.Visible = true;
+                    autoBox.Visible = true;
+                    dumpBox.Visible = true;
+                    addInfFile.Enabled = true;
+                    advNTButton.Visible = true;
+                    eCodeEditButton.Visible = true;
+                    break;
+                case "Windows 2000":
+                    errorCode.Visible = true;
+                    winMode.Visible = true;
+                    checkBox1.Checked = true;
+                    eCodeEditButton.Visible = true;
+                    advNTButton.Visible = true;
+                    break;
+                case "Windows 9x/Me":
+                    nineXmessage.Visible = true;
+                    winMode.Visible = true;
+                    eCodeEditButton.Visible = true;
+                    break;
+                case "Windows CE":
+                    winMode.Visible = true;
+                    errorCode.Visible = true;
+                    checkBox2.Checked = false;
+                    checkBox2.Enabled = false;
+                    textBox2.Enabled = false;
+                    break;
+                case "Windows NT 3.x/4.0":
+                    errorCode.Visible = true;
+                    amdBox.Visible = true;
+                    stackBox.Visible = true;
+                    ntPanel.Visible = true;
+                    winMode.Visible = true;
+                    advNTButton.Visible = true;
+                    eCodeEditButton.Visible = true;
+                    break;
+                case "Windows 3.1x":
+                    winMode.Visible = true;
+                    break;
+                case "Windows 1.x/2.x":
+                    winMode.Visible = true;
+                    winPanel.Visible = true;
+                    playSndBox.Visible = true;
+                    break;
             }
             bool inlist = false;
             foreach (string item in comboBox1.Items)
@@ -945,7 +954,6 @@ namespace UltimateBlueScreenSimulator
 
         private void materialButton4_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Warning: Settings is not guaranteed to work correctly with new UI. Please restore old layout unless you're testing.", "Settings", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             if (!abopen)
             {
                 AboutSettingsDialog ab1 = new AboutSettingsDialog
@@ -955,6 +963,7 @@ namespace UltimateBlueScreenSimulator
                 };
                 ab1.ShowDialog();
                 ab1.Dispose();
+                abopen = false;
             }
             else
             {
@@ -973,6 +982,7 @@ namespace UltimateBlueScreenSimulator
                 };
                 ab1.ShowDialog();
                 ab1.Dispose();
+                abopen = false;
             }
             else
             {
@@ -1059,6 +1069,11 @@ namespace UltimateBlueScreenSimulator
                     materialSkinManager.ColorScheme = MakeScheme(Accent.Yellow700);
                     break;
             }
+        }
+
+        private void materialListBox2_SelectedIndexChanged(object sender, MaterialListBoxItem selectedItem)
+        {
+
         }
     }
 }

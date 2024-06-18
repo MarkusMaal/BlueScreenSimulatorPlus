@@ -80,6 +80,11 @@ namespace UltimateBlueScreenSimulator
                     friendlyBox.Text = "Windows Boot Manager (1024x768, Standard)";
                     iconBox.SelectedIndex = 1;
                     break;
+                case "Windows 8 Beta":
+                    osBox.Text = "Windows 8 Beta";
+                    friendlyBox.Text = "Windows 8 Beta (Native, ClearType)";
+                    iconBox.SelectedIndex = 2;
+                    break;
                 case "Windows 8/8.1":
                     osBox.Text = "Windows 8/8.1";
                     friendlyBox.Text = "Windows 8/8.1 (Native, ClearType)";

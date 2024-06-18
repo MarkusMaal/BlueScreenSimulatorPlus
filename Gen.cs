@@ -49,5 +49,10 @@ namespace UltimateBlueScreenSimulator
                 genProgressBar.Style = ProgressBarStyle.Marquee;
             }
         }
+
+        private void Gen_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

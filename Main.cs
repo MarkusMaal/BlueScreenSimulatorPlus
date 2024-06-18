@@ -185,7 +185,7 @@ namespace UltimateBlueScreenSimulator
                 devPCBox.Visible = true;
                 progressTuneButton.Visible = true;
             }
-            else if (me.GetString("os") == "Windows 8/8.1")
+            else if (me.GetString("os").StartsWith("Windows 8"))
             {
                 WXOptions.Visible = true;
                 errorCode.Visible = true;
@@ -1669,6 +1669,11 @@ namespace UltimateBlueScreenSimulator
 
         private void button4_Click_1(object sender, EventArgs e)
         {
+            if (me.GetString("os") == "Windows 8 Beta")
+            {
+                MessageBox.Show("Progress tuner is not available for this OS, dummy!", "Progress tuner", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             ProgressTuner pt = new ProgressTuner();
             pt.KFrames = me.AllProgress();
             pt.Text = string.Format("Progress tuner - {0}", me.GetString("friendlyname"));

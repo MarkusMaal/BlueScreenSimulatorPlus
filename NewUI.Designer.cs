@@ -64,7 +64,7 @@
             this.button3 = new MaterialSkin.Controls.MaterialFloatingActionButton();
             this.materialTabControl1 = new MaterialSkin.Controls.MaterialTabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.materialCard1 = new MaterialSkin.Controls.MaterialCard();
+            this.materialCard1 = new System.Windows.Forms.Panel();
             this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             this.windowVersion = new MaterialSkin.Controls.MaterialComboBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -86,6 +86,8 @@
             this.comboBox2 = new MaterialSkin.Controls.MaterialComboBox();
             this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.materialLabel8 = new MaterialSkin.Controls.MaterialLabel();
+            this.accentBox = new MaterialSkin.Controls.MaterialComboBox();
             this.rtlSwitch = new MaterialSkin.Controls.MaterialSwitch();
             this.darkMode = new MaterialSkin.Controls.MaterialSwitch();
             this.materialLabel7 = new MaterialSkin.Controls.MaterialLabel();
@@ -99,8 +101,7 @@
             this.materialDrawer1 = new MaterialSkin.Controls.MaterialDrawer();
             this.label7 = new MaterialSkin.Controls.MaterialLabel();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.accentBox = new MaterialSkin.Controls.MaterialComboBox();
-            this.materialLabel8 = new MaterialSkin.Controls.MaterialLabel();
+            this.materialListBox1 = new MaterialSkin.Controls.MaterialListBox();
             this.winPanel.SuspendLayout();
             this.ntPanel.SuspendLayout();
             this.materialTabControl1.SuspendLayout();
@@ -690,7 +691,7 @@
             this.button1.Depth = 0;
             this.button1.Icon = global::UltimateBlueScreenSimulator.Properties.Resources.play;
             this.button1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.button1.Location = new System.Drawing.Point(708, 707);
+            this.button1.Location = new System.Drawing.Point(675, 691);
             this.button1.Mini = true;
             this.button1.MouseState = MaterialSkin.MouseState.HOVER;
             this.button1.Name = "button1";
@@ -707,7 +708,7 @@
             this.button3.Depth = 0;
             this.button3.Icon = global::UltimateBlueScreenSimulator.Properties.Resources.question;
             this.button3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.button3.Location = new System.Drawing.Point(662, 707);
+            this.button3.Location = new System.Drawing.Point(629, 691);
             this.button3.Mini = true;
             this.button3.MouseState = MaterialSkin.MouseState.HOVER;
             this.button3.Name = "button3";
@@ -734,7 +735,7 @@
             this.materialTabControl1.Name = "materialTabControl1";
             this.materialTabControl1.SelectedIndex = 0;
             this.materialTabControl1.ShowToolTips = true;
-            this.materialTabControl1.Size = new System.Drawing.Size(748, 636);
+            this.materialTabControl1.Size = new System.Drawing.Size(715, 620);
             this.materialTabControl1.TabIndex = 8;
             this.materialTabControl1.SelectedIndexChanged += new System.EventHandler(this.materialTabControl1_SelectedIndexChanged);
             // 
@@ -744,7 +745,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(724, 568);
+            this.tabPage1.Size = new System.Drawing.Size(707, 591);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Simulator";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -755,17 +756,16 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.materialCard1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.materialCard1.Controls.Add(this.materialListBox1);
             this.materialCard1.Controls.Add(this.materialLabel1);
             this.materialCard1.Controls.Add(this.windowVersion);
             this.materialCard1.Controls.Add(this.flowLayoutPanel1);
-            this.materialCard1.Depth = 0;
             this.materialCard1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.materialCard1.Location = new System.Drawing.Point(3, 3);
             this.materialCard1.Margin = new System.Windows.Forms.Padding(14);
-            this.materialCard1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialCard1.Name = "materialCard1";
             this.materialCard1.Padding = new System.Windows.Forms.Padding(14);
-            this.materialCard1.Size = new System.Drawing.Size(718, 799);
+            this.materialCard1.Size = new System.Drawing.Size(685, 783);
             this.materialCard1.TabIndex = 6;
             // 
             // materialLabel1
@@ -814,7 +814,7 @@
             this.windowVersion.MaxDropDownItems = 4;
             this.windowVersion.MouseState = MaterialSkin.MouseState.OUT;
             this.windowVersion.Name = "windowVersion";
-            this.windowVersion.Size = new System.Drawing.Size(601, 49);
+            this.windowVersion.Size = new System.Drawing.Size(568, 49);
             this.windowVersion.StartIndex = 0;
             this.windowVersion.TabIndex = 0;
             this.windowVersion.SelectedIndexChanged += new System.EventHandler(this.windowVersion_SelectedIndexChanged);
@@ -840,7 +840,7 @@
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(6, 64);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(709, 732);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(676, 716);
             this.flowLayoutPanel1.TabIndex = 3;
             // 
             // WXOptions
@@ -1170,17 +1170,72 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(740, 607);
+            this.tabPage2.Size = new System.Drawing.Size(788, 724);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "[dev] UI setup";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // materialLabel8
+            // 
+            this.materialLabel8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.materialLabel8.AutoSize = true;
+            this.materialLabel8.Depth = 0;
+            this.materialLabel8.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel8.Location = new System.Drawing.Point(481, 651);
+            this.materialLabel8.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel8.Name = "materialLabel8";
+            this.materialLabel8.Size = new System.Drawing.Size(88, 19);
+            this.materialLabel8.TabIndex = 8;
+            this.materialLabel8.Text = "Accent color";
+            // 
+            // accentBox
+            // 
+            this.accentBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.accentBox.AutoResize = false;
+            this.accentBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.accentBox.Depth = 0;
+            this.accentBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.accentBox.DropDownHeight = 118;
+            this.accentBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.accentBox.DropDownWidth = 121;
+            this.accentBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.accentBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.accentBox.FormattingEnabled = true;
+            this.accentBox.IntegralHeight = false;
+            this.accentBox.ItemHeight = 29;
+            this.accentBox.Items.AddRange(new object[] {
+            "Amber",
+            "Blue",
+            "Cyan",
+            "Deep Orange",
+            "Deep Purple",
+            "Green",
+            "Indigo",
+            "Light Blue",
+            "Light Green",
+            "Lime",
+            "Orange",
+            "Pink",
+            "Purple",
+            "Red",
+            "Teal",
+            "Yellow"});
+            this.accentBox.Location = new System.Drawing.Point(575, 644);
+            this.accentBox.MaxDropDownItems = 4;
+            this.accentBox.MouseState = MaterialSkin.MouseState.OUT;
+            this.accentBox.Name = "accentBox";
+            this.accentBox.Size = new System.Drawing.Size(189, 35);
+            this.accentBox.StartIndex = 0;
+            this.accentBox.TabIndex = 7;
+            this.accentBox.UseTallSize = false;
+            this.accentBox.SelectedIndexChanged += new System.EventHandler(this.materialComboBox1_SelectedIndexChanged);
             // 
             // rtlSwitch
             // 
             this.rtlSwitch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.rtlSwitch.AutoSize = true;
             this.rtlSwitch.Depth = 0;
-            this.rtlSwitch.Location = new System.Drawing.Point(452, 12);
+            this.rtlSwitch.Location = new System.Drawing.Point(484, 12);
             this.rtlSwitch.Margin = new System.Windows.Forms.Padding(0);
             this.rtlSwitch.MouseLocation = new System.Drawing.Point(-1, -1);
             this.rtlSwitch.MouseState = MaterialSkin.MouseState.HOVER;
@@ -1197,7 +1252,7 @@
             this.darkMode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.darkMode.AutoSize = true;
             this.darkMode.Depth = 0;
-            this.darkMode.Location = new System.Drawing.Point(592, 12);
+            this.darkMode.Location = new System.Drawing.Point(624, 12);
             this.darkMode.Margin = new System.Windows.Forms.Padding(0);
             this.darkMode.MouseLocation = new System.Drawing.Point(-1, -1);
             this.darkMode.MouseState = MaterialSkin.MouseState.HOVER;
@@ -1234,7 +1289,7 @@
             this.logIf.Location = new System.Drawing.Point(17, 224);
             this.logIf.MouseState = MaterialSkin.MouseState.HOVER;
             this.logIf.Name = "logIf";
-            this.logIf.Size = new System.Drawing.Size(715, 333);
+            this.logIf.Size = new System.Drawing.Size(747, 411);
             this.logIf.TabIndex = 3;
             this.logIf.Text = "Logging interface 1.0";
             // 
@@ -1248,7 +1303,7 @@
             this.materialLabel6.Location = new System.Drawing.Point(17, 64);
             this.materialLabel6.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel6.Name = "materialLabel6";
-            this.materialLabel6.Size = new System.Drawing.Size(723, 80);
+            this.materialLabel6.Size = new System.Drawing.Size(755, 80);
             this.materialLabel6.TabIndex = 2;
             this.materialLabel6.Text = "Future versions of blue screen simulator plus will have this layout. However, cur" +
     "rently not all of the functionality is available. To switch to the old layout, p" +
@@ -1384,7 +1439,7 @@
             this.label7.AutoSize = true;
             this.label7.Depth = 0;
             this.label7.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.label7.Location = new System.Drawing.Point(10, 727);
+            this.label7.Location = new System.Drawing.Point(10, 711);
             this.label7.MouseState = MaterialSkin.MouseState.HOVER;
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(348, 19);
@@ -1395,66 +1450,25 @@
             // 
             this.saveFileDialog1.Filter = "Log files|*.log";
             // 
-            // accentBox
+            // materialListBox1
             // 
-            this.accentBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.accentBox.AutoResize = false;
-            this.accentBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.accentBox.Depth = 0;
-            this.accentBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.accentBox.DropDownHeight = 118;
-            this.accentBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.accentBox.DropDownWidth = 121;
-            this.accentBox.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.accentBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.accentBox.FormattingEnabled = true;
-            this.accentBox.IntegralHeight = false;
-            this.accentBox.ItemHeight = 29;
-            this.accentBox.Items.AddRange(new object[] {
-            "Amber",
-            "Blue",
-            "Cyan",
-            "Deep Orange",
-            "Deep Purple",
-            "Green",
-            "Indigo",
-            "Light Blue",
-            "Light Green",
-            "Lime",
-            "Orange",
-            "Pink",
-            "Purple",
-            "Red",
-            "Teal",
-            "Yellow"});
-            this.accentBox.Location = new System.Drawing.Point(543, 566);
-            this.accentBox.MaxDropDownItems = 4;
-            this.accentBox.MouseState = MaterialSkin.MouseState.OUT;
-            this.accentBox.Name = "accentBox";
-            this.accentBox.Size = new System.Drawing.Size(189, 35);
-            this.accentBox.StartIndex = 0;
-            this.accentBox.TabIndex = 7;
-            this.accentBox.UseTallSize = false;
-            this.accentBox.SelectedIndexChanged += new System.EventHandler(this.materialComboBox1_SelectedIndexChanged);
-            // 
-            // materialLabel8
-            // 
-            this.materialLabel8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.materialLabel8.AutoSize = true;
-            this.materialLabel8.Depth = 0;
-            this.materialLabel8.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel8.Location = new System.Drawing.Point(449, 573);
-            this.materialLabel8.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel8.Name = "materialLabel8";
-            this.materialLabel8.Size = new System.Drawing.Size(88, 19);
-            this.materialLabel8.TabIndex = 8;
-            this.materialLabel8.Text = "Accent color";
+            this.materialListBox1.BackColor = System.Drawing.Color.White;
+            this.materialListBox1.BorderColor = System.Drawing.Color.LightGray;
+            this.materialListBox1.Depth = 0;
+            this.materialListBox1.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.materialListBox1.Location = new System.Drawing.Point(765, 262);
+            this.materialListBox1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialListBox1.Name = "materialListBox1";
+            this.materialListBox1.SelectedIndex = -1;
+            this.materialListBox1.SelectedItem = null;
+            this.materialListBox1.Size = new System.Drawing.Size(75, 23);
+            this.materialListBox1.TabIndex = 4;
             // 
             // NewUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(748, 717);
+            this.ClientSize = new System.Drawing.Size(715, 701);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button1);
@@ -1467,7 +1481,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "NewUI";
             this.Padding = new System.Windows.Forms.Padding(3, 72, 3, 3);
-            this.Text = "Blue Screen Simulator Plus 2.2          // UNDER CONSTRUCTION //";
+            this.Text = "Blue Screen Simulator Plus {asmver}          // UNDER CONSTRUCTION //";
             this.Load += new System.EventHandler(this.NewUi1_Load);
             this.ResizeEnd += new System.EventHandler(this.NewUi1_ResizeEnd);
             this.winPanel.ResumeLayout(false);
@@ -1506,7 +1520,7 @@
         private MaterialSkin.Controls.MaterialRadioButton nostartup;
         private MaterialSkin.Controls.MaterialTabControl materialTabControl1;
         private System.Windows.Forms.TabPage tabPage1;
-        private MaterialSkin.Controls.MaterialCard materialCard1;
+        private System.Windows.Forms.Panel materialCard1;
         private MaterialSkin.Controls.MaterialLabel materialLabel1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.FlowLayoutPanel WXOptions;
@@ -1567,5 +1581,6 @@
         public MaterialSkin.Controls.MaterialSwitch darkMode;
         private MaterialSkin.Controls.MaterialLabel materialLabel8;
         private MaterialSkin.Controls.MaterialComboBox accentBox;
+        private MaterialSkin.Controls.MaterialListBox materialListBox1;
     }
 }

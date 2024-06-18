@@ -177,6 +177,7 @@ namespace UltimateBlueScreenSimulator
             "Windows Vista",
             "Windows 7",
             "Windows Boot Manager",
+            "Windows 8 Beta",
             "Windows 8/8.1",
             "Windows 10",
             "Windows 11"});
@@ -199,7 +200,7 @@ namespace UltimateBlueScreenSimulator
             this.iconBox.DropDownHeight = 118;
             this.iconBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.iconBox.DropDownWidth = 121;
-            this.iconBox.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.iconBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.iconBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.iconBox.FormattingEnabled = true;
             this.iconBox.IntegralHeight = false;

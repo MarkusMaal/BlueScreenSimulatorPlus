@@ -599,6 +599,9 @@ namespace SimulatorDatabase
                 case "Windows 8/8.1":
                     SetupWin8(new WXBS());
                     break;
+                case "Windows 8 Beta":
+                    SetupWin8Beta(new JupiterBSOD());
+                    break;
                 case "Windows 7":
                     SetupVista(new Vistabs());
                     break;
@@ -627,6 +630,26 @@ namespace SimulatorDatabase
                     SetupWin(new Win());
                     break;
             }
+        }
+
+        private void SetupWin8Beta(JupiterBSOD bs)
+        {
+            try
+            {
+                Log("Info", "Setting up Windows 8 Beta simulator");
+                bs.BackColor = this.GetTheme(true);
+                bs.ForeColor = this.GetTheme(false);
+                bs.Font = this.GetFont();
+            }
+            catch (Exception ex)
+            {
+                Log("Error", $"Error setting up Windows 8 Beta simulator. Reason: {ex.Message}");
+                MessageBox.Show(ex.Message, "A non-critical error has occoured", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            bs.me = this;
+            bs.ShowDialog();
+            CheckMessageJustInCase();
+            Thread.CurrentThread.Abort();
         }
 
         private void SetupCE(Cebsod bs)
@@ -1111,6 +1134,23 @@ namespace SimulatorDatabase
                     SetString("culprit", GenFile(true));
                     PushFile(GetString("culprit"), inspirc);
                     SetBool("show_description", true);
+                    SetBool("font_support", true);
+                    break;
+                case "Windows 8 Beta":
+                    this.icon = "3D flag";
+                    PushText("Your computer needs to restart", "Your computer needs to restart.");
+                    PushText("Information text with dump", "It encountered a problem and will restart automatically.");
+                    PushText("Error code", "Error: {0}");
+                    PushText("Progress", "Collecting problem information:    {0} seconds remaining");
+                    SetFont("Segoe UI", 26f, FontStyle.Regular);
+                    SetTheme(RGB(0, 0, 0), RGB(255, 255, 255));
+                    SetString("friendlyname", "Windows 8 Beta (Native, ClearType)");
+                    SetInt("margin-x", 250);
+                    SetInt("margin-y", 220);
+                    SetInt("timer", 10);
+                    SetBool("autoclose", true);
+                    SetBool("countdown", true);
+                    SetString("code", "IRQL_NOT_LESS_OR_EQUAL (0x0000000A)");
                     SetBool("font_support", true);
                     break;
                 case "Windows 8/8.1":

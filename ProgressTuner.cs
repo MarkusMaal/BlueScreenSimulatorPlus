@@ -159,5 +159,9 @@ namespace UltimateBlueScreenSimulator
                 SetLabelText();
             }
         }
+
+        private void ProgressTuner_Load(object sender, EventArgs e)
+        {
+        }
     }
 }
