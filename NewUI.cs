@@ -55,7 +55,12 @@ namespace UltimateBlueScreenSimulator
 
         private void NewUi1_Load(object sender, EventArgs e)
         {
-            this.Text = "Blue Screen Simulator Plus " + Convert.ToDouble(version.Replace(".", ",")).ToString().Replace(",", ".");
+            string verStr = Convert.ToDouble(version.Replace(".", ",")).ToString().Replace(",", ".");
+            if (!verStr.Contains("."))
+            {
+                verStr += ".0";
+            }
+            this.Text = $"Blue Screen Simulator Plus {verStr}";
             if (betabuild)
             {
                 this.Text += "          // UNDER CONSTRUCTION //";

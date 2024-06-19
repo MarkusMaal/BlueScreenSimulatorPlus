@@ -90,7 +90,7 @@
             this.appMarketedVersionLabel.Name = "appMarketedVersionLabel";
             this.appMarketedVersionLabel.Size = new System.Drawing.Size(61, 64);
             this.appMarketedVersionLabel.TabIndex = 4;
-            this.appMarketedVersionLabel.Text = "2.2";
+            this.appMarketedVersionLabel.Text = "3.0";
             this.appMarketedVersionLabel.UseWaitCursor = true;
             // 
             // label1

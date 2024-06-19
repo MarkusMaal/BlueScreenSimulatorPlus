@@ -691,7 +691,7 @@
             this.button1.Depth = 0;
             this.button1.Icon = global::UltimateBlueScreenSimulator.Properties.Resources.play;
             this.button1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.button1.Location = new System.Drawing.Point(707, 769);
+            this.button1.Location = new System.Drawing.Point(723, 808);
             this.button1.Mini = true;
             this.button1.MouseState = MaterialSkin.MouseState.HOVER;
             this.button1.Name = "button1";
@@ -708,7 +708,7 @@
             this.button3.Depth = 0;
             this.button3.Icon = global::UltimateBlueScreenSimulator.Properties.Resources.question;
             this.button3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.button3.Location = new System.Drawing.Point(661, 769);
+            this.button3.Location = new System.Drawing.Point(677, 808);
             this.button3.Mini = true;
             this.button3.MouseState = MaterialSkin.MouseState.HOVER;
             this.button3.Name = "button3";
@@ -735,7 +735,7 @@
             this.materialTabControl1.Name = "materialTabControl1";
             this.materialTabControl1.SelectedIndex = 0;
             this.materialTabControl1.ShowToolTips = true;
-            this.materialTabControl1.Size = new System.Drawing.Size(747, 698);
+            this.materialTabControl1.Size = new System.Drawing.Size(763, 737);
             this.materialTabControl1.TabIndex = 8;
             this.materialTabControl1.SelectedIndexChanged += new System.EventHandler(this.materialTabControl1_SelectedIndexChanged);
             // 
@@ -745,7 +745,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(739, 669);
+            this.tabPage1.Size = new System.Drawing.Size(755, 708);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Simulator";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -755,6 +755,7 @@
             this.materialCard1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.materialCard1.BackColor = System.Drawing.Color.Transparent;
             this.materialCard1.Controls.Add(this.materialListBox1);
             this.materialCard1.Controls.Add(this.materialLabel1);
             this.materialCard1.Controls.Add(this.windowVersion);
@@ -764,7 +765,7 @@
             this.materialCard1.Margin = new System.Windows.Forms.Padding(14);
             this.materialCard1.Name = "materialCard1";
             this.materialCard1.Padding = new System.Windows.Forms.Padding(14);
-            this.materialCard1.Size = new System.Drawing.Size(717, 861);
+            this.materialCard1.Size = new System.Drawing.Size(733, 900);
             this.materialCard1.TabIndex = 6;
             // 
             // materialListBox1
@@ -827,7 +828,7 @@
             this.windowVersion.MaxDropDownItems = 4;
             this.windowVersion.MouseState = MaterialSkin.MouseState.OUT;
             this.windowVersion.Name = "windowVersion";
-            this.windowVersion.Size = new System.Drawing.Size(600, 49);
+            this.windowVersion.Size = new System.Drawing.Size(616, 49);
             this.windowVersion.StartIndex = 0;
             this.windowVersion.TabIndex = 0;
             this.windowVersion.SelectedIndexChanged += new System.EventHandler(this.windowVersion_SelectedIndexChanged);
@@ -853,7 +854,7 @@
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(6, 64);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(708, 794);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(724, 833);
             this.flowLayoutPanel1.TabIndex = 3;
             // 
             // WXOptions
@@ -1452,7 +1453,7 @@
             this.label7.AutoSize = true;
             this.label7.Depth = 0;
             this.label7.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.label7.Location = new System.Drawing.Point(10, 789);
+            this.label7.Location = new System.Drawing.Point(10, 828);
             this.label7.MouseState = MaterialSkin.MouseState.HOVER;
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(348, 19);
@@ -1468,7 +1469,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(747, 779);
+            this.ClientSize = new System.Drawing.Size(763, 818);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button1);

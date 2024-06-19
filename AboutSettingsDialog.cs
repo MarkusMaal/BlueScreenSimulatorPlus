@@ -31,9 +31,14 @@ namespace UltimateBlueScreenSimulator
             this.Text = String.Format("About {0}", AssemblyTitle);
             this.labelProductName.Text = "Blue Screen Simulator Plus";
             if (DevBuild) { this.labelProductName.Text += " [Development Build]"; }
-            this.labelVersion.Text = String.Format("Version {0} with Verifile 1.1", AssemblyVersion.Replace(".0", ""));
+            string asmVer = AssemblyVersion.Replace(".0", "");
+            if (!asmVer.Contains("."))
+            {
+                asmVer += ".0";
+            }
+            this.labelVersion.Text = String.Format("Version {0} with Verifile 1.1", asmVer);
             this.labelCopyright.Text = AssemblyCopyright;
-            this.labelCompanyName.Text = "Codename *Waffles*\nLanguage: C# (.NET framework, Windows Forms)\nCreated by: Markus Maal a.k.a. mmaal (markustegelane)\n\nThis program can only be provided free of charge (if you had to pay for this, please ask for a refund). This program is provided as is, without a warranty.\n2022 Markuse tarkvara (Markus' software)";
+            this.labelCompanyName.Text = "Codename ModestIndigo\nLanguage: C# (.NET framework, Windows Forms)\nCreated by: Markus Maal a.k.a. mmaal (markustegelane)\n\nThis program can only be provided free of charge (if you had to pay for this, please ask for a refund). This program is provided as is, without a warranty.\n2022 Markuse tarkvara (Markus' software)";
         }
 
         #region Assembly Attribute Accessors
