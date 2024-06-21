@@ -138,9 +138,7 @@ namespace UltimateBlueScreenSimulator
         public static void Main(string[] args)
         {
             //Application initialization
-            Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
             verificate = Verikey(args);
             if (bad) { return; }
             if (!verificate) { return; }

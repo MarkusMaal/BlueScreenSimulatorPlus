@@ -32,8 +32,8 @@ namespace UltimateBlueScreenSimulator
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StringEdit));
-            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("Property name", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("Value", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup3 = new System.Windows.Forms.ListViewGroup("Property name", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup4 = new System.Windows.Forms.ListViewGroup("Value", System.Windows.Forms.HorizontalAlignment.Left);
             this.AllIcons = new System.Windows.Forms.ImageList(this.components);
             this.labelProps = new MaterialSkin.Controls.MaterialLabel();
             this.MessageView = new MaterialSkin.Controls.MaterialListView();
@@ -43,7 +43,7 @@ namespace UltimateBlueScreenSimulator
             this.stringEditor = new MaterialSkin.Controls.MaterialMultiLineTextBox();
             this.colorProps = new System.Windows.Forms.Panel();
             this.colorButton = new MaterialSkin.Controls.MaterialButton();
-            this.colorPreview = new MaterialSkin.Controls.MaterialLabel();
+            this.colorPreview = new System.Windows.Forms.Label();
             this.specificPropsFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.xpMsgChooser = new System.Windows.Forms.FlowLayoutPanel();
             this.autoRadio = new MaterialSkin.Controls.MaterialRadioButton();
@@ -116,13 +116,13 @@ namespace UltimateBlueScreenSimulator
             this.MessageView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.MessageView.Depth = 0;
             this.MessageView.FullRowSelect = true;
-            listViewGroup1.Header = "Property name";
-            listViewGroup1.Name = "listViewGroup1";
-            listViewGroup2.Header = "Value";
-            listViewGroup2.Name = "listViewGroup2";
+            listViewGroup3.Header = "Property name";
+            listViewGroup3.Name = "listViewGroup1";
+            listViewGroup4.Header = "Value";
+            listViewGroup4.Name = "listViewGroup2";
             this.MessageView.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup1,
-            listViewGroup2});
+            listViewGroup3,
+            listViewGroup4});
             this.MessageView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.MessageView.HideSelection = false;
             this.MessageView.LargeImageList = this.AllIcons;
@@ -134,7 +134,7 @@ namespace UltimateBlueScreenSimulator
             this.MessageView.Name = "MessageView";
             this.MessageView.OwnerDraw = true;
             this.MessageView.ShowGroups = false;
-            this.MessageView.Size = new System.Drawing.Size(333, 418);
+            this.MessageView.Size = new System.Drawing.Size(365, 479);
             this.MessageView.SmallImageList = this.AllIcons;
             this.MessageView.TabIndex = 0;
             this.MessageView.UseCompatibleStateImageBehavior = false;
@@ -146,7 +146,7 @@ namespace UltimateBlueScreenSimulator
             this.specificProps.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.specificProps.Depth = 0;
             this.specificProps.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.specificProps.Location = new System.Drawing.Point(351, 30);
+            this.specificProps.Location = new System.Drawing.Point(383, 30);
             this.specificProps.MouseState = MaterialSkin.MouseState.HOVER;
             this.specificProps.Name = "specificProps";
             this.specificProps.Size = new System.Drawing.Size(403, 22);
@@ -162,7 +162,7 @@ namespace UltimateBlueScreenSimulator
             this.buttonOK.ForeColor = System.Drawing.SystemColors.ControlText;
             this.buttonOK.HighEmphasis = true;
             this.buttonOK.Icon = null;
-            this.buttonOK.Location = new System.Drawing.Point(669, 477);
+            this.buttonOK.Location = new System.Drawing.Point(701, 538);
             this.buttonOK.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.buttonOK.MouseState = MaterialSkin.MouseState.HOVER;
             this.buttonOK.Name = "buttonOK";
@@ -237,10 +237,8 @@ namespace UltimateBlueScreenSimulator
             // 
             this.colorPreview.BackColor = System.Drawing.Color.Black;
             this.colorPreview.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.colorPreview.Depth = 0;
-            this.colorPreview.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.colorPreview.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.colorPreview.Location = new System.Drawing.Point(11, 10);
-            this.colorPreview.MouseState = MaterialSkin.MouseState.HOVER;
             this.colorPreview.Name = "colorPreview";
             this.colorPreview.Size = new System.Drawing.Size(39, 23);
             this.colorPreview.TabIndex = 2;
@@ -256,9 +254,9 @@ namespace UltimateBlueScreenSimulator
             this.specificPropsFlowLayoutPanel.Controls.Add(this.fontProps);
             this.specificPropsFlowLayoutPanel.Controls.Add(this.blinkProps);
             this.specificPropsFlowLayoutPanel.Controls.Add(this.colorProps);
-            this.specificPropsFlowLayoutPanel.Location = new System.Drawing.Point(351, 52);
+            this.specificPropsFlowLayoutPanel.Location = new System.Drawing.Point(383, 52);
             this.specificPropsFlowLayoutPanel.Name = "specificPropsFlowLayoutPanel";
-            this.specificPropsFlowLayoutPanel.Size = new System.Drawing.Size(404, 420);
+            this.specificPropsFlowLayoutPanel.Size = new System.Drawing.Size(404, 481);
             this.specificPropsFlowLayoutPanel.TabIndex = 2;
             // 
             // xpMsgChooser
@@ -563,7 +561,7 @@ namespace UltimateBlueScreenSimulator
             // 
             this.whereTheButtonsLink.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.whereTheButtonsLink.AutoSize = true;
-            this.whereTheButtonsLink.Location = new System.Drawing.Point(12, 482);
+            this.whereTheButtonsLink.Location = new System.Drawing.Point(12, 543);
             this.whereTheButtonsLink.Name = "whereTheButtonsLink";
             this.whereTheButtonsLink.Size = new System.Drawing.Size(189, 13);
             this.whereTheButtonsLink.TabIndex = 7;
@@ -575,7 +573,7 @@ namespace UltimateBlueScreenSimulator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(761, 512);
+            this.ClientSize = new System.Drawing.Size(793, 573);
             this.Controls.Add(this.whereTheButtonsLink);
             this.Controls.Add(this.specificPropsFlowLayoutPanel);
             this.Controls.Add(this.buttonOK);
@@ -620,7 +618,7 @@ namespace UltimateBlueScreenSimulator
         private MaterialSkin.Controls.MaterialMultiLineTextBox stringEditor;
         private System.Windows.Forms.Panel colorProps;
         private MaterialSkin.Controls.MaterialButton colorButton;
-        private MaterialSkin.Controls.MaterialLabel colorPreview;
+        private System.Windows.Forms.Label colorPreview;
         private System.Windows.Forms.FlowLayoutPanel specificPropsFlowLayoutPanel;
         private System.Windows.Forms.ColorDialog colorChooser;
         private System.Windows.Forms.Panel blinkProps;

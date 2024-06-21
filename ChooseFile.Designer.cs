@@ -46,15 +46,14 @@ namespace UltimateBlueScreenSimulator
             this.fileBrowser.Depth = 0;
             this.fileBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
             this.fileBrowser.FullRowSelect = true;
-            this.fileBrowser.GridLines = true;
             this.fileBrowser.HideSelection = false;
-            this.fileBrowser.Location = new System.Drawing.Point(0, 0);
+            this.fileBrowser.Location = new System.Drawing.Point(3, 64);
             this.fileBrowser.MinimumSize = new System.Drawing.Size(200, 100);
             this.fileBrowser.MouseLocation = new System.Drawing.Point(-1, -1);
             this.fileBrowser.MouseState = MaterialSkin.MouseState.OUT;
             this.fileBrowser.Name = "fileBrowser";
             this.fileBrowser.OwnerDraw = true;
-            this.fileBrowser.Size = new System.Drawing.Size(588, 320);
+            this.fileBrowser.Size = new System.Drawing.Size(582, 253);
             this.fileBrowser.TabIndex = 1;
             this.fileBrowser.UseCompatibleStateImageBehavior = false;
             this.fileBrowser.View = System.Windows.Forms.View.Details;

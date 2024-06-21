@@ -106,19 +106,9 @@ namespace UltimateBlueScreenSimulator.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap bsodbanner21 {
+        internal static System.Drawing.Bitmap bsodbanner3 {
             get {
-                object obj = ResourceManager.GetObject("bsodbanner21", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap bsodbanner22 {
-            get {
-                object obj = ResourceManager.GetObject("bsodbanner22", resourceCulture);
+                object obj = ResourceManager.GetObject("bsodbanner3", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -419,9 +409,9 @@ namespace UltimateBlueScreenSimulator.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap round_corners {
+        internal static System.Drawing.Bitmap splash_bg {
             get {
-                object obj = ResourceManager.GetObject("round_corners", resourceCulture);
+                object obj = ResourceManager.GetObject("splash_bg", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -31,6 +31,7 @@ namespace UltimateBlueScreenSimulator
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProgressTuner));
             this.progressTrackBar = new MaterialSkin.Controls.MaterialSlider();
             this.totalTimeText = new MaterialSkin.Controls.MaterialTextBox();
             this.label1 = new MaterialSkin.Controls.MaterialLabel();
@@ -392,6 +393,7 @@ namespace UltimateBlueScreenSimulator
             this.Controls.Add(this.totalTimeText);
             this.Controls.Add(this.progressTrackBar);
             this.FormStyle = MaterialSkin.Controls.MaterialForm.FormStyles.ActionBar_None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(700, 260);
             this.Name = "ProgressTuner";
             this.Padding = new System.Windows.Forms.Padding(3, 24, 3, 3);

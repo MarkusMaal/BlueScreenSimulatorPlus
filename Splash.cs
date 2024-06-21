@@ -55,7 +55,7 @@ namespace UltimateBlueScreenSimulator
 
         private void Splash_Load(object sender, EventArgs e)
         {
-
+            Application.EnableVisualStyles();
         }
     }
 }

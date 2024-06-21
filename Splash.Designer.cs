@@ -55,6 +55,7 @@
             // splashPlus
             // 
             this.splashPlus.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.splashPlus.BackColor = System.Drawing.Color.Transparent;
             this.splashPlus.Font = new System.Drawing.Font("Segoe UI", 32F);
             this.splashPlus.ForeColor = System.Drawing.Color.Lime;
             this.splashPlus.Location = new System.Drawing.Point(95, -10);
@@ -67,6 +68,7 @@
             // appNameLabel
             // 
             this.appNameLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.appNameLabel.BackColor = System.Drawing.Color.Transparent;
             this.appNameLabel.Font = new System.Drawing.Font("Segoe UI", 16F);
             this.appNameLabel.Location = new System.Drawing.Point(121, 54);
             this.appNameLabel.Name = "appNameLabel";
@@ -83,6 +85,7 @@
             // appMarketedVersionLabel
             // 
             this.appMarketedVersionLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.appMarketedVersionLabel.BackColor = System.Drawing.Color.Transparent;
             this.appMarketedVersionLabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.appMarketedVersionLabel.Font = new System.Drawing.Font("Segoe UI", 24F);
             this.appMarketedVersionLabel.ForeColor = System.Drawing.Color.MediumBlue;
@@ -96,6 +99,7 @@
             // label1
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Segoe UI Semilight", 8.5F);
             this.label1.ForeColor = System.Drawing.Color.DarkGray;
             this.label1.Location = new System.Drawing.Point(124, 85);
@@ -108,7 +112,7 @@
             // SplashText
             // 
             this.SplashText.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.SplashText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.SplashText.BackColor = System.Drawing.Color.Transparent;
             this.SplashText.Font = new System.Drawing.Font("Segoe UI", 8F);
             this.SplashText.Location = new System.Drawing.Point(20, 129);
             this.SplashText.Name = "SplashText";
@@ -136,7 +140,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.BackgroundImage = global::UltimateBlueScreenSimulator.Properties.Resources.round_corners;
+            this.BackgroundImage = global::UltimateBlueScreenSimulator.Properties.Resources.splash_bg;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(471, 149);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -145,6 +150,7 @@
             this.Controls.Add(this.appNameLabel);
             this.Controls.Add(this.splashPlus);
             this.Controls.Add(this.splashEmoticon);
+            this.DoubleBuffered = true;
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

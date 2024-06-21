@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using MaterialSkin;
+using MaterialSkin.Controls;
 using Microsoft.Win32;
 using SimulatorDatabase;
 
 namespace UltimateBlueScreenSimulator
 {
-    public partial class PrankMode : Form
+    public partial class PrankMode : MaterialForm
     {
         readonly string releaseId = Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion", "ProductName", "").ToString();
         readonly int buildNumber = Convert.ToInt32(Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion", "CurrentBuild", "0").ToString());
@@ -35,12 +37,15 @@ namespace UltimateBlueScreenSimulator
         };
         public PrankMode()
         {
+            MaterialSkinManager materialSkinManager = Program.f2.materialSkinManager;
+            materialSkinManager.AddFormToManage(this);
             InitializeComponent();
         }
 
         private void PrankMode_Load(object sender, EventArgs e)
         {
-            if (Program.f1.nightThemeToolStripMenuItem.Checked)
+            // old method for setting night theme
+            /*if (Program.f1.nightThemeToolStripMenuItem.Checked)
             {
                 this.BackColor = System.Drawing.Color.Black;
                 this.ForeColor = System.Drawing.Color.Gray;
@@ -57,7 +62,7 @@ namespace UltimateBlueScreenSimulator
                 timerBox.ForeColor = this.ForeColor;
                 timerBox.BorderStyle = BorderStyle.FixedSingle;
 
-            }
+            }*/
             string winver = releaseId;
             if (bestMatchRadio.Checked == true)
             {

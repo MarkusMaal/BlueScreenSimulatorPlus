@@ -46,7 +46,7 @@ namespace UltimateBlueScreenSimulator
             this.genProgressBar.Location = new System.Drawing.Point(9, 53);
             this.genProgressBar.MouseState = MaterialSkin.MouseState.HOVER;
             this.genProgressBar.Name = "genProgressBar";
-            this.genProgressBar.Size = new System.Drawing.Size(265, 5);
+            this.genProgressBar.Size = new System.Drawing.Size(281, 5);
             this.genProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
             this.genProgressBar.TabIndex = 0;
             this.genProgressBar.UseWaitCursor = true;
@@ -67,12 +67,13 @@ namespace UltimateBlueScreenSimulator
             this.genLabel.Size = new System.Drawing.Size(174, 19);
             this.genLabel.TabIndex = 1;
             this.genLabel.Text = "Generating blue screen...";
+            this.genLabel.UseWaitCursor = true;
             // 
             // Gen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(286, 43);
+            this.ClientSize = new System.Drawing.Size(302, 82);
             this.Controls.Add(this.genLabel);
             this.Controls.Add(this.genProgressBar);
             this.Cursor = System.Windows.Forms.Cursors.WaitCursor;

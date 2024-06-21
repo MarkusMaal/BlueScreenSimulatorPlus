@@ -248,6 +248,7 @@
     </Compile>
     <EmbeddedResource Include="AboutSettingsDialog.resx">
       <DependentUpon>AboutSettingsDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="AddBluescreen.resx">
       <DependentUpon>AddBluescreen.cs</DependentUpon>
@@ -362,6 +363,8 @@
     <Content Include="bsodgen_npJ_icon.ico" />
     <Content Include="bssp2.ico" />
     <Content Include="legacy_template.txt" />
+    <None Include="Resources\splash_bg.png" />
+    <None Include="Resources\bsodbanner3.png" />
     <None Include="Resources\new-windows-logo %282%29.ico" />
     <None Include="Resources\artage-io-48148_1564916990.ico" />
     <None Include="Resources\Tatice-Operating-Systems-Windows.ico" />

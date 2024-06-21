@@ -177,7 +177,7 @@ namespace UltimateBlueScreenSimulator
         {
             foreach (Control c in tableLayoutPanel1.Controls)
             {
-                if (c is TextBox box)
+                if (c is MaterialTextBox box)
                 {
                     if (c.Name.StartsWith("textBox") && c.Focused)
                     {
@@ -193,7 +193,7 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        void MakeText (TextBox tb, KeyEventArgs e)
+        void MakeText (MaterialTextBox tb, KeyEventArgs e)
         {
             switch (e.KeyCode)
             {
@@ -276,7 +276,8 @@ namespace UltimateBlueScreenSimulator
 
         private void Initialize(object sender, EventArgs e)
         {
-            if (Program.f1.nightThemeToolStripMenuItem.Checked)
+            // old method of setting night theme
+            /*if (Program.f1.nightThemeToolStripMenuItem.Checked)
             {
                 this.BackColor = System.Drawing.Color.Black;
                 this.ForeColor = System.Drawing.Color.Gray;
@@ -293,7 +294,7 @@ namespace UltimateBlueScreenSimulator
                 fileBox.BackColor = System.Drawing.Color.Black;
                 fileBox.ForeColor = System.Drawing.Color.Gray;
                 fileBox.BorderStyle = BorderStyle.FixedSingle;
-            }
+            }*/
             List<string> blacklist = new List<string>();
             List<string> whitelist = new List<string>();
             string[] bl = { "Windows 3.1x", "Windows 1.x/2.x", "Windows CE" };
@@ -341,22 +342,28 @@ namespace UltimateBlueScreenSimulator
             {
                 for (var i = 16; i > 8; i--)
                 {
-                    Button btn = (Button)tableLayoutPanel1.Controls["button" + i.ToString()];
-                    Button nullbtn = (Button)tableLayoutPanel1.Controls["null" + i.ToString()];
-                    TextBox txtbox = (TextBox)tableLayoutPanel1.Controls["textBox" + i.ToString()];
+                    MaterialButton btn = (MaterialButton)tableLayoutPanel1.Controls["button" + i.ToString()];
+                    MaterialButton nullbtn = (MaterialButton)tableLayoutPanel1.Controls["null" + i.ToString()];
+                    MaterialTextBox txtbox = (MaterialTextBox)tableLayoutPanel1.Controls["textBox" + i.ToString()];
                     btn.Enabled = false;
                     nullbtn.Enabled = false;
                     txtbox.Enabled = false;
                 }
-                return "0x" + c1.Substring(0, 8) + ", 0x" + c2.Substring(0, 8) + ", 0x" + c3.Substring(0, 8) + ", 0x" + c4.Substring(0, 8);
+                try
+                {
+                    return "0x" + c1.Substring(0, 8) + ", 0x" + c2.Substring(0, 8) + ", 0x" + c3.Substring(0, 8) + ", 0x" + c4.Substring(0, 8);
+                } catch
+                {
+                    return "0xDEADDEAD, 0xDEADDEAD, 0xDEADDEAD, 0xDEADDEAD";
+                }
             }
             else if (me.GetString("os") == "Windows CE")
             {
                 for (var i = 16; i > 6; i--)
                 {
-                    Button btn = (Button)tableLayoutPanel1.Controls["button" + i.ToString()];
-                    Button nullbtn = (Button)tableLayoutPanel1.Controls["null" + i.ToString()];
-                    TextBox txtbox = (TextBox)tableLayoutPanel1.Controls["textBox" + i.ToString()];
+                    MaterialButton btn = (MaterialButton)tableLayoutPanel1.Controls["button" + i.ToString()];
+                    MaterialButton nullbtn = (MaterialButton)tableLayoutPanel1.Controls["null" + i.ToString()];
+                    MaterialTextBox txtbox = (MaterialTextBox)tableLayoutPanel1.Controls["textBox" + i.ToString()];
                     btn.Enabled = false;
                     nullbtn.Enabled = false;
                     txtbox.Enabled = false;
@@ -371,18 +378,18 @@ namespace UltimateBlueScreenSimulator
                 chooseCode4.Enabled = false;
                 for (var i = 3; i <= 8; i++)
                 {
-                    Button btn = (Button)tableLayoutPanel1.Controls["button" + i.ToString()];
-                    Button nullbtn = (Button)tableLayoutPanel1.Controls["null" + i.ToString()];
-                    TextBox txtbox = (TextBox)tableLayoutPanel1.Controls["textBox" + i.ToString()];
+                    MaterialButton btn = (MaterialButton)tableLayoutPanel1.Controls["button" + i.ToString()];
+                    MaterialButton nullbtn = (MaterialButton)tableLayoutPanel1.Controls["null" + i.ToString()];
+                    MaterialTextBox txtbox = (MaterialTextBox)tableLayoutPanel1.Controls["textBox" + i.ToString()];
                     btn.Enabled = true;
                     nullbtn.Enabled = true;
                     txtbox.Enabled = true;
                 }
                 for (var i = 16; i > maximum; i--)
                 {
-                    Button btn = (Button)tableLayoutPanel1.Controls["button" + i.ToString()];
-                    Button nullbtn = (Button)tableLayoutPanel1.Controls["null" + i.ToString()];
-                    TextBox txtbox = (TextBox)tableLayoutPanel1.Controls["textBox" + i.ToString()];
+                    MaterialButton btn = (MaterialButton)tableLayoutPanel1.Controls["button" + i.ToString()];
+                    MaterialButton nullbtn = (MaterialButton)tableLayoutPanel1.Controls["null" + i.ToString()];
+                    MaterialTextBox txtbox = (MaterialTextBox)tableLayoutPanel1.Controls["textBox" + i.ToString()];
                     btn.Enabled = false;
                     nullbtn.Enabled = false;
                     txtbox.Enabled = false;
@@ -457,7 +464,11 @@ namespace UltimateBlueScreenSimulator
             }
             foreach (KeyValuePair<string, string[]> kvp in me.GetFiles())
             {
-                string filename = ntEntryChooser.SelectedItem.ToString().Split('-')[0];
+                string filename = ntEntryChooser.SelectedItem?.ToString().Split('-')[0];
+                if (filename == null)
+                {
+                    filename = "null.sys";
+                }
                 filename = filename.Substring(0, filename.Length - 1);
                 if (kvp.Key == filename)
                 {
@@ -553,7 +564,7 @@ namespace UltimateBlueScreenSimulator
         {
             foreach (Control c in tableLayoutPanel2.Controls)
             {
-                if (c is TextBox tb)
+                if (c is MaterialTextBox tb)
                 {
                     if (tb.Focused)
                     {

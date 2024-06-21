@@ -284,6 +284,7 @@ namespace UltimateBlueScreenSimulator
             eCodeEditButton.Visible = false;
             devPCBox.Visible = false;
             playSndBox.Visible = false;
+            countdownBox.Visible = false;
             progressTuneButton.Visible = false;
             //progressTunerToolStripMenuItem.Enabled = false;
             blackScreenBox.Visible = false;
@@ -343,6 +344,7 @@ namespace UltimateBlueScreenSimulator
                     winMode.Visible = true;
                     memoryBox.Visible = true;
                     eCodeEditButton.Visible = true;
+                    countdownBox.Visible = true;
                     break;
                 case "Windows Vista":
                 case "Windows 7":
@@ -432,6 +434,7 @@ namespace UltimateBlueScreenSimulator
             playSndBox.Checked = me.GetBool("playsound");
             waterBox.Checked = me.GetBool("watermark");
             winMode.Checked = me.GetBool("windowed");
+            countdownBox.Checked = me.GetBool("countdown");
             if (acpiBox.Checked)
             {
                 dumpBox.Enabled = false;
@@ -900,11 +903,6 @@ namespace UltimateBlueScreenSimulator
             }
             pt.ReloadBitmap();
             pt.SetLabelText();
-            if (this.darkMode.Checked)
-            {
-                pt.BackColor = Color.Black;
-                pt.ForeColor = Color.White;
-            }
             pt.totalTimeText.Text = ((float)me.GetInt("progressmillis") / 100f).ToString().Replace(",", ".");
             if (pt.ShowDialog() == DialogResult.OK)
             {
@@ -1078,6 +1076,11 @@ namespace UltimateBlueScreenSimulator
         private void materialListBox2_SelectedIndexChanged(object sender, MaterialListBoxItem selectedItem)
         {
 
+        }
+
+        private void countdownBox_CheckedChanged(object sender, EventArgs e)
+        {
+            me.SetBool("countdown", countdownBox.Checked);
         }
     }
 }
