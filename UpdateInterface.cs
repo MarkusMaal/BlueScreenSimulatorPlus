@@ -20,7 +20,7 @@ namespace UltimateBlueScreenSimulator
 
         public UpdateInterface()
         {
-            MaterialSkinManager materialSkinManager = Program.f2.materialSkinManager;
+            MaterialSkinManager materialSkinManager = Program.f1.materialSkinManager;
             materialSkinManager.AddFormToManage(this);
             InitializeComponent();
         }
@@ -69,7 +69,7 @@ namespace UltimateBlueScreenSimulator
                 }
             } catch (Exception ex)
             {
-                if (Program.f1.enableeggs)
+                if (Program.gs.EnableEggs)
                 {
                     Metaerror me = new Metaerror
                     {
@@ -122,12 +122,12 @@ namespace UltimateBlueScreenSimulator
                 { 
                     dloadState.Visible = false;
                     SetStatus(DownloadStatus, "Success");
-                    if (Program.f1.hashverify == true)
+                    if (Program.gs.HashVerify)
                     { 
                         SetStatus(HashStatus, "Processing");
                         hashWait.Enabled = true;
                     }
-                    else if (Program.f1.hashverify == false)
+                    else
                     {
                         SetStatus(HashStatus, "Success");
                         SetStatus(Launchstatus, "Processing");
@@ -140,7 +140,7 @@ namespace UltimateBlueScreenSimulator
 
         private void UpdateInterface_Load(object sender, EventArgs e)
         {
-            if (Program.f1.hashverify == false) { hashCheckLabel.Text = "Hashchecking (will be skipped)"; }
+            if (Program.gs.HashVerify == false) { hashCheckLabel.Text = "Hashchecking (will be skipped)"; }
             GoodHash = File.ReadAllText("hash.txt").Trim();
             if (!finalize)
             { 
@@ -148,7 +148,7 @@ namespace UltimateBlueScreenSimulator
                 SetStatus(HashStatus, "Pending");
                 SetStatus(Launchstatus, "Pending");
                 SetStatus(TempStatus, "Pending");
-                DownloadFile(Program.update_server + "/BSSP_latest.zim", "BSSP.exe");
+                DownloadFile(Program.gs.UpdateServer + "/BSSP_latest.zim", "BSSP.exe");
             }
             if (finalize)
             {
@@ -203,7 +203,7 @@ namespace UltimateBlueScreenSimulator
                     SetStatus(HashStatus, "Pending");
                     SetStatus(Launchstatus, "Pending");
                     SetStatus(TempStatus, "Pending");
-                    DownloadFile(Program.update_server + "/BSSP_latest.zim", "BSSP.exe");
+                    DownloadFile(Program.gs.UpdateServer + "/BSSP_latest.zim", "BSSP.exe");
                 } else
                 {
                     SetStatus(Launchstatus, "Processing");

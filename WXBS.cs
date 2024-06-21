@@ -43,7 +43,7 @@ namespace UltimateBlueScreenSimulator
             {
                 if (progress < 100)
                 {
-                    e.Cancel = Program.f1.lockout;
+                    e.Cancel = Program.gs.PM_Lockout;
                 }
                 else
                 {
@@ -132,7 +132,7 @@ namespace UltimateBlueScreenSimulator
                 try { waterMarkText.ForeColor = Color.FromArgb(this.BackColor.R + 60, this.BackColor.G + 60, this.BackColor.B + 60); } catch { }
                 if (this.FormBorderStyle == FormBorderStyle.None)
                 {
-                    if (!Program.f1.showcursor)
+                    if (!Program.gs.ShowCursor)
                     {
                         Cursor.Hide();
                     }
@@ -218,7 +218,7 @@ namespace UltimateBlueScreenSimulator
                         {
                             if (!s.Primary)
                             {
-                                if (Program.multidisplaymode != "none")
+                                if (Program.gs.DisplayMode != "none")
                                 {
                                     WindowScreen ws = new WindowScreen
                                     {
@@ -227,7 +227,7 @@ namespace UltimateBlueScreenSimulator
                                         Size = new Size(s.WorkingArea.Width, s.WorkingArea.Height),
                                         primary = false
                                     };
-                                    if (Program.multidisplaymode == "freeze")
+                                    if (Program.gs.DisplayMode == "freeze")
                                     {
                                         screenUpdater.Enabled = false;
                                         Bitmap screenshot = new Bitmap(s.Bounds.Width,
@@ -253,7 +253,7 @@ namespace UltimateBlueScreenSimulator
                         {
                             WindowScreen ws = wss[i];
                             ws.Show();
-                            if (Program.multidisplaymode == "freeze")
+                            if (Program.gs.DisplayMode == "freeze")
                             {
                                 ws.screenDisplay.Image = freezescreens[i];
                             }
@@ -266,7 +266,7 @@ namespace UltimateBlueScreenSimulator
                 screenUpdater.Enabled = false;
                 progressUpdater.Enabled = false;
                 this.Hide();
-                if (Program.f1.enableeggs) { me.Crash(ex.Message, ex.StackTrace, "OrangeScreen"); }
+                if (Program.gs.EnableEggs) { me.Crash(ex.Message, ex.StackTrace, "OrangeScreen"); }
                 else { MessageBox.Show("The blue screen cannot be displayed due to an error.\n\n" + ex.Message + "\n\n" + ex.StackTrace, "E R R O R", MessageBoxButtons.OK, MessageBoxIcon.Error); }
                 this.Close();
             }
@@ -321,7 +321,7 @@ namespace UltimateBlueScreenSimulator
             } catch (Exception ex)
             {
                 progressUpdater.Enabled = false;
-                if (Program.f1.enableeggs) { me.Crash(ex.Message, ex.StackTrace, "GreenScreen"); }
+                if (Program.gs.EnableEggs) { me.Crash(ex.Message, ex.StackTrace, "GreenScreen"); }
                 else { MessageBox.Show("An error has occoured.\n\n" + ex.Message + "\n\n" + ex.StackTrace.ToString(), "E R R O R", MessageBoxButtons.OK, MessageBoxIcon.Error); }
                 
             }
@@ -329,14 +329,14 @@ namespace UltimateBlueScreenSimulator
 
         private void WXBS_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (Program.f1.closecuzhidden == true)
+            if (Program.gs.PM_CloseMainUI)
             {
                 Application.Exit();
             }
-            if (Program.f1.showmsg == true)
+            if (Program.gs.PM_ShowMessage)
             {
-                MessageBox.Show(Program.f1.MsgBoxMessage, Program.f1.MsgBoxTitle, Program.f1.MsgBoxType, Program.f1.MsgBoxIcon);
-                Program.f1.showmsg = false;
+                MessageBox.Show(Program.gs.PM_MsgText, Program.gs.PM_MsgTitle, Program.gs.PM_MsgType, Program.gs.PM_MsgIcon);
+                Program.gs.PM_ShowMessage = false;
             }
         }
 

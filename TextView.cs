@@ -10,7 +10,7 @@ namespace UltimateBlueScreenSimulator
         internal string Title = "";
         public TextView()
         {
-            MaterialSkinManager materialSkinManager = Program.f2.materialSkinManager;
+            MaterialSkinManager materialSkinManager = Program.f1.materialSkinManager;
             materialSkinManager.AddFormToManage(this);
             InitializeComponent();
         }

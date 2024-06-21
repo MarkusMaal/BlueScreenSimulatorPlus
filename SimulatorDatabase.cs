@@ -8,6 +8,7 @@ using System.Management;
 using System.Threading;
 using System.Xml.Linq;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
+using System.Runtime.CompilerServices;
 
 //
 // This namespace contains classes that are shared between forms that specify
@@ -22,7 +23,7 @@ namespace SimulatorDatabase
         public void Draw(WindowScreen ws)
         {
             // for upscaling and multidisplay support
-            if (ws.primary || Program.multidisplaymode == "mirror")
+            if (ws.primary || Program.gs.DisplayMode == "mirror")
             {
                 var frm = Form.ActiveForm;
                 if (frm is null)
@@ -36,11 +37,7 @@ namespace SimulatorDatabase
                     Bitmap newImage = new Bitmap(ws.Width, ws.Height);
                     using (Graphics g = Graphics.FromImage(newImage))
                     {
-                        if (Program.f1.GMode == "HighQualityBicubic") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic; }
-                        if (Program.f1.GMode == "HighQualityBilinear") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBilinear; }
-                        if (Program.f1.GMode == "Bilinear") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.Bilinear; }
-                        if (Program.f1.GMode == "Bicubic") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.Bicubic; }
-                        if (Program.f1.GMode == "NearestNeighbour") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor; }
+                        g.InterpolationMode = Program.gs.GetInterpolationMode();
                         g.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
                         g.DrawImage(bmp, new Rectangle(0, 0, ws.Width, ws.Height));
                     }
@@ -128,6 +125,9 @@ namespace SimulatorDatabase
 
         private readonly Random r;
 
+        ///<summary>
+        ///Blue screen template class. Requires base_os to be set to one of the preset OS templates. If desired, autosetup can be disabled, which makes it so that the template will not set default settings.
+        ///</summary>
         public BlueScreen(string base_os, bool autosetup = true)
         {
             this.log1 = new List<string>();
@@ -151,12 +151,56 @@ namespace SimulatorDatabase
             if (autosetup) { SetOSSpecificDefaults(); }
         }
 
+        ///<summary>
+        ///Returns boolean dictionary
+        ///</summary>
         public IDictionary<string, bool> AllBools() { return this.bools; }
+
+
+        ///<summary>
+        ///Returns integers dictionary
+        ///</summary>
         public IDictionary<string, int> AllInts() { return this.ints; }
+
+        ///<summary>
+        ///Returns dictionary of strings
+        ///</summary>
         public IDictionary<string, string> AllStrings() { return this.strings; }
+
+        ///<summary>
+        ///Returns dictionary of progress tuner preferences
+        ///</summary>
         public IDictionary<int, int> AllProgress() { return this.progression; }
 
+
+        ///<summary>
+        ///Logs an event
+        ///</summary>
+        ///<param name="e">Desired event type</param>
+        ///<param name="message">Description of the event</param>
+        public void Log(string e, string message)
+        {
+            log1.Add("[" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "] " +e + " - "+message);
+        }
+
+        ///<summary>
+        ///Gets all logged events
+        ///</summary>
+        ///<param name="reverse">Allows the log to be reversed, making the recent events show up first (default behaviour). If you don't want the log to be reverse, set this value to false.</param>
+        ///<returns>A string containing all logged events</returns>
+        public string GetLog(bool reverse = true)
+        {
+            if (reverse) { log1.Reverse(); }
+            string ret = string.Join("\n", log1.ToArray());
+            if (reverse) { log1.Reverse(); }
+            return ret;
+        }
+
         // blue screen properties
+        ///<summary>
+        ///Gets a single boolean value. If no matching value is found, a default value of false will be returned.
+        ///</summary>
+        ///<param name="name">Key in the dictionary</param>
         public bool GetBool(string name)
         {
             Log("Info", $"Reading bool {name}");
@@ -171,19 +215,12 @@ namespace SimulatorDatabase
             }
         }
 
-        public void Log(string e, string message)
-        {
-            log1.Add("[" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "] " +e + " - "+message);
-        }
 
-        public string GetLog(bool reverse = true)
-        {
-            if (reverse) { log1.Reverse(); }
-            string ret = string.Join("\n", log1.ToArray());
-            if (reverse) { log1.Reverse(); }
-            return ret;
-        }
-
+        ///<summary>
+        ///Sets a single boolean value. If no existing value with the name specified is found, a new entry in the dictionary will be created.
+        ///</summary>
+        ///<param name="name">Dictionary key or variable name</param>
+        ///<param name="value">The value which you set the boolean to</param>
         public void SetBool(string name, bool value)
         {
             Log("Info", $"Setting bool {name} to {value}");
@@ -197,6 +234,11 @@ namespace SimulatorDatabase
             }
         }
 
+        ///<summary>
+        ///Gets a single string value. If no matching value is found, a default value of "" will be returned.
+        ///</summary>
+        ///<returns>A string from the specified dictionary key with certain exceptions (os and icon return the corresponding variables, ecode1, ecode2, ecode3, ecode4 return value from ecodes array of specified index.</returns>
+        ///<param name="name">Key in the dictionary (except for special cases)</param>
         public string GetString(string name)
         {
             Log("Info", $"Getting string {name}");
@@ -229,19 +271,12 @@ namespace SimulatorDatabase
             }
         }
 
-        public void ClearAllTitleTexts()
-        {
-            Log("Info", $"Clearing all titles and texts");
-            this.titles.Clear();
-            this.texts.Clear();
-        }
-
-        public void ClearProgress()
-        {
-            Log("Info", $"Clearing progress tuning data");
-            this.progression.Clear();
-        }
-
+        ///<summary>
+        ///Sets a single string value. If no existing value with the name specified is found, a new entry in the dictionary will be created.
+        ///<para><strong>Special case for "os" and "icon"</strong></para><para>These strings modify the corresponding variables directly instead of modifying dictionary entries</para>
+        ///</summary>
+        ///<param name="name">Dictionary key or variable name (see special case for "os" and "icon")</param>
+        ///<param name="value">The value which you set the string to</param>
         public void SetString(string name, string value)
         {
             Log("Info", $"Setting string {name} to {value}");
@@ -262,24 +297,64 @@ namespace SimulatorDatabase
             }
         }
 
+        ///<summary>
+        ///Erases all texts and titles, which the user can access in additional options
+        ///</summary>
+        public void ClearAllTitleTexts()
+        {
+            Log("Info", $"Clearing all titles and texts");
+            this.titles.Clear();
+            this.texts.Clear();
+        }
+
+        ///<summary>
+        ///Erases all timing data for progress tuner
+        ///</summary>
+        public void ClearProgress()
+        {
+            Log("Info", $"Clearing progress tuning data");
+            this.progression.Clear();
+        }
+
+        ///<summary>
+        ///Modifies a value in the titles dictionary, which is like strings, but which can be accessed by the user under additional options (difference between titles and texts is semantic)
+        ///</summary>
+        ///<param name="name">Dictionary key or variable name</param>
+        ///<param name="value">The value which you set the string to</param>
         public void SetTitle(string name, string value)
         {
             Log("Info", $"Setting title {name} to {value}");
             this.titles[name] = value;
         }
 
+        ///<summary>
+        ///Adds a value to the titles dictionary, which is like strings, but which can be accessed by the user under additional options (difference between titles and texts is semantic)
+        ///</summary>
+        ///<param name="name">Dictionary key or variable name</param>
+        ///<param name="value">The value which you set the string to</param>
         public void PushTitle(string name, string value)
         {
             Log("Info", $"Pushing title {name} with value {value}");
             this.titles.Add(name, value);
         }
 
+
+        ///<summary>
+        ///Modifies a value in the texts dictionary, which is like strings, but which can be accessed by the user under additional options (difference between titles and texts is semantic)
+        ///</summary>
+        ///<param name="name">Dictionary key or variable name</param>
+        ///<param name="value">The value which you set the string to</param>
         public void SetText(string name, string value)
         {
             Log("Info", $"Setting text {name} to {value}");
             this.texts[name] = value;
         }
 
+        ///<summary>
+        ///Adds a value to the texts dictionary, which is like strings, but which can be accessed by the user under additional options (difference between titles and texts is semantic)
+        ///</summary>
+        ///<param name="name">Dictionary key or variable name</param>
+        ///<param name="value">The value which you set the string to</param>
         public void PushText(string name, string value)
         {
             Log("Info", $"Pushing text {name} with value {value}");
@@ -287,6 +362,11 @@ namespace SimulatorDatabase
         }
 
         // theming
+        ///<summary>
+        ///Allows you to access a specific color used by the configuration
+        ///</summary>
+        ///<param name="bg">Determines whether to get a background color or not</param>
+        ///<param name="highlight">Determines whether or not to get a highlight color</param>
         public Color GetTheme(bool bg, bool highlight = false)
         {
             Log("Info", $"Getting " + (highlight ? "highlight " : "") + (bg ? "background" : "foreground") + " color" );
@@ -297,6 +377,12 @@ namespace SimulatorDatabase
             if (bg) { return this.background; } else { return this.foreground; }
         }
 
+        ///<summary>
+        ///Allows you to set colors used by the configuration
+        ///</summary>
+        ///<param name="bg">Background color</param>
+        ///<param name="fg">Foreground color</param>
+        ///<param name="highlight">Determines if these colors are applied to highlights or normal text</param>
         public void SetTheme(Color bg, Color fg, bool highlight = false)
         {
             Log("Info", $"Setting " + (highlight ? "highlight" : "base")  + $" colors to ({bg.R}, {bg.G}, {bg.B}), ({fg.R}, {fg.G}, {fg.B})");
@@ -311,11 +397,22 @@ namespace SimulatorDatabase
         }
 
         // error codes
+        ///<summary>
+        ///Gets an array of error codes used by the configuration
+        ///</summary>
         public string[] GetCodes()
         {
             Log("Info", $"Getting error codes");
             return this.ecodes;
         }
+
+        ///<summary>
+        ///Allows you to set error codes used by the configuration
+        ///</summary>
+        ///<param name="code1">First block</param>
+        ///<param name="code2">Second block</param>
+        ///<param name="code3">Third block</param>
+        ///<param name="code4">Fourth block</param>
         public void SetCodes(string code1, string code2, string code3, string code4)
         {
             Log("Info", $"Setting error codes to {code1}, {code2}, {code3}, {code4}");
@@ -323,6 +420,12 @@ namespace SimulatorDatabase
             this.ecodes = code_temp;
         }
 
+        ///<summary>
+        ///Allows for converting r,g,b intensities to System.Drawing.Color
+        ///</summary>
+        ///<param name="r">Red intensity</param>
+        ///<param name="g">Green intensity</param>
+        ///<param name="b">Blue intensity</param>
         private Color RGB(int r, int g, int b)
         {
             Log("Info", $"Getting color from values {r}, {g}, {b}");
@@ -330,6 +433,10 @@ namespace SimulatorDatabase
         }
 
         // integers
+        ///<summary>
+        ///Gets an integer value from the ints dictionary, which may be used to store settings like timeouts, blink speed, etc.
+        ///</summary>
+        ///<param name="name">Key of the dictionary</param>
         public int GetInt(string name)
         {
             Log("Info", $"Getting integer value of {name}");
@@ -343,6 +450,12 @@ namespace SimulatorDatabase
                 return 1;
             }
         }
+
+        ///<summary>
+        ///Sets an integer value for the ints dictionary, which may be used to store settings like timeouts, blink speed, etc. If the key does not exist, a new key value pair will be pushed to the ints dictionary.
+        ///</summary>
+        ///<param name="name">Key of the dictionary</param>
+        ///<param name="value">Integer value</param>
         public void SetInt(string name, int value)
         {
             Log("Info", $"Getting integer value of {name} to {value}");
@@ -356,18 +469,31 @@ namespace SimulatorDatabase
             }
         }
 
+
+        ///<summary>
+        ///Sets the font, which is used by the selected configuration when displaying text.
+        ///</summary>
+        ///<param name="font_family">Family of the font, e.g. Arial, Segoe UI, Consolas, etc.</param>
+        ///<param name="emsize">Size of the font in points (e.g. value of 12f is 12pt)</param>
+        ///<param name="style">Special font style attributes, such as bold, italic, underline, strikethrough, etc.</param>
         public void SetFont(string font_family, float emsize, FontStyle style)
         {
             Log("Info", $"Setting font as {font_family}, {emsize}pt");
             this.font = new Font(font_family, emsize, style);
         }
 
+        ///<summary>
+        ///Gets the font, which is used by the selected configuration when displaying text.
+        ///</summary>
         public Font GetFont()
         {
             Log("Info", $"Getting current font");
             return this.font;
         }
 
+        ///<summary>
+        ///Gets the icon, which is used by the selected configuration on the taskbar and window title bar.
+        ///</summary>
         public Icon GetIcon()
         {
             Log("Info", $"Getting icon");
@@ -385,12 +511,19 @@ namespace SimulatorDatabase
             }
         }
 
+        ///<summary>
+        ///Returns all entries from the titles dictionary
+        ///</summary>
         public IDictionary<string, string> GetTitles()
         {
             Log("Info", $"Getting all titles");
             return this.titles;
         }
 
+
+        ///<summary>
+        ///Returns all entries from the texts dictionary
+        ///</summary>
         public IDictionary<string, string> GetTexts()
         {
             Log("Info", $"Getting all texts");
@@ -400,6 +533,10 @@ namespace SimulatorDatabase
 
 
         // progress keyframes
+        ///<summary>
+        ///Gets progress tuner value at a specified time index
+        ///</summary>
+        ///<param name="name">Time index (roughly 5ms)</param>
         public int GetProgression(int name)
         {
             Log("Info", $"Getting progress tuner data at {name}");
@@ -413,6 +550,12 @@ namespace SimulatorDatabase
                 return 0;
             }
         }
+
+        ///<summary>
+        ///Sets progress tuner value at a specified time index
+        ///</summary>
+        ///<param name="name">Time index (roughly 5ms)</param>
+        ///<param name="value">Value increment (e.g. if increment is 5, then a value of 25 would change to 30 at this keyframe)</param>
         public void SetProgression(int name, int value)
         {
             Log("Info", $"Setting progress tuner data at {name} to {value}");
@@ -426,6 +569,11 @@ namespace SimulatorDatabase
             }
         }
 
+        ///<summary>
+        ///Bulk applies progression based on two integer arrays (keys and values)
+        ///</summary>
+        ///<param name="keys">List of keyframe indicies</param>
+        ///<param name="values">List of value increments at specified keyframe indicies</param>
         public void SetAllProgression(int[] keys, int[] values)
         {
             Log("Info", $"Setting progress tuner data to predefined array");
@@ -436,7 +584,13 @@ namespace SimulatorDatabase
             }
         }
 
-        //GenAddress uses the last function to generate multiple error address codes
+        ///<summary>
+        ///Uses the GenHex function to generate multiple error address codes.
+        ///</summary>
+        ///<param name="count">Number of address codes to generate</param>
+        ///<param name="places">Number of places for each code (e.g. 6 places with a template RRRRRRRR might generate 259AD1 for one block)</param>
+        ///<param name="lower">Determines if the generated addresses should be in lowercase (such is the case with date codes, such as on NT4)</param>
+        ///<returns>List of generated codes as a formatted string with comma separation and with 0x in front of each generated hex code</returns>
         public string GenAddress(int count, int places, bool lower)
         {
             Log("Info", $"Generating error {count} address code(s) with {places} place(s)" + (lower ? " in lowercase" : ""));
@@ -453,9 +607,12 @@ namespace SimulatorDatabase
             if (lower) { return ot.ToLower(); }
             return ot;
         }
-        //generates hexadecimal codes
-        //lettercount sets the length of the actual hex code
-        //inspir is a string where each character represents if the value is fixed or random
+
+        ///<summary>
+        ///Generates hexadecimal codes
+        ///</summary>
+        ///<param name="lettercount">Sets the length of the actual hex code</param>
+        ///<param name="inspir">A string where each character represents if the value is fixed or random (e.g. 63RR25E0, which might return as 631725E0)</param>
         public string GenHex(int lettercount, string inspir)
         {
             //sleep command is used to make sure that randomization works properly
@@ -485,6 +642,11 @@ namespace SimulatorDatabase
             return output;
         }
 
+        ///<summary>
+        ///Adds a file to codefiles. These files are displayed on the NT4 bugcheck as well as on Windows XP/Vista/7 if additional information about culprit file is enabled.
+        ///</summary>
+        ///<param name="name">Name of file</param>
+        ///<param name="codes">Array of error code templates (e.g. ["RRR00RRR", "RRRRRRRR"])</param>
         public void PushFile(string name, string[] codes)
         {
             Log("Info", $"Pushing culprit file {name} with error templates [{string.Join(", ", codes)}]");
@@ -494,18 +656,29 @@ namespace SimulatorDatabase
             }
         }
 
+        ///<summary>
+        ///Returns the list of code files, which are displayed on NT4 bugcheck
+        ///</summary>
         public IDictionary<string, string[]> GetFiles()
         {
             Log("Info", $"Getting culprit files");
             return codefiles;
         }
 
+        ///<summary>
+        ///Clears the list of code files, which are displayed on NT4 bugcheck
+        ///</summary>
         public void ClearFiles()
         {
             Log("Info", $"Clearing culprit files");
             codefiles.Clear();
         }
 
+        ///<summary>
+        ///Renames a file in the codefiles dictionary (very scary!)
+        ///</summary>
+        ///<param name="key">Name of the file to be renamed</param>
+        ///<param name="renamed">String value which is used to rename the file</param>
         public void RenameFile(string key, string renamed)
         {
             Log("Info", $"Attempting to rename file {key} to {renamed}");
@@ -528,6 +701,12 @@ namespace SimulatorDatabase
             }
         }
 
+        ///<summary>
+        ///Modifies an error code template in the codefiles dictionary
+        ///</summary>
+        ///<param name="key">Name of the file to be renamed</param>
+        ///<param name="subcode">Index of the error code template</param>
+        ///<param name="code">New value for the specified error code template</param>
         public void SetFile(string key, int subcode, string code)
         {
             Log("Info", $"Modifying file {key}");
@@ -550,7 +729,10 @@ namespace SimulatorDatabase
         }
 
 
-        //GenFile generates a new file for use in Windows NT blue screen
+        ///<summary>
+        ///Generates a new file for use in Windows NT blue screen
+        ///</summary>
+        ///<param name="lower">Determines if the filename should be in lowercase</param>
         public string GenFile(bool lower = true)
         {
             Log("Info", "Generating a random file for NT blue screen" + (lower ? " in lowercase" : ""));
@@ -575,6 +757,9 @@ namespace SimulatorDatabase
             }
         }
 
+        ///<summary>
+        ///Attempts to simulate a crash with this configuration
+        ///</summary>
         public void Show()
         {
             Log("Info", "Simulation requested!");
@@ -630,6 +815,10 @@ namespace SimulatorDatabase
             }
         }
 
+        ///<summary>
+        ///Prepares Windows 8 Beta bugcheck for simulation
+        ///</summary>
+        ///<param name="bs">Form for the simulator</param>
         private void SetupWin8Beta(JupiterBSOD bs)
         {
             try
@@ -650,6 +839,10 @@ namespace SimulatorDatabase
             Thread.CurrentThread.Abort();
         }
 
+        ///<summary>
+        ///Prepares Windows CE blue screen for simulation
+        ///</summary>
+        ///<param name="bs">Form for the simulator</param>
         private void SetupCE(Cebsod bs)
         {
             try
@@ -673,23 +866,30 @@ namespace SimulatorDatabase
             Thread.CurrentThread.Abort();
         }
 
+        ///<summary>
+        ///Checks if a message needs to be displayed in case it hasn't already been displayed
+        ///</summary>
         private void CheckMessageJustInCase()
         {
             Log("Info", "Called CheckMessageJustInCase method");
-            if (!Program.f1.showcursor)
+            if (!Program.gs.ShowCursor)
             {
                 Cursor.Show();
             }
-            if (Program.f1.showmsg)
+            if (Program.gs.PM_ShowMessage)
             {
-                MessageBox.Show(Program.f1.MsgBoxMessage,
-                                Program.f1.MsgBoxTitle,
-                                Program.f1.MsgBoxType,
-                                Program.f1.MsgBoxIcon);
-                Program.f1.showmsg = false;
+                MessageBox.Show(Program.gs.PM_MsgText,
+                                Program.gs.PM_MsgTitle,
+                                Program.gs.PM_MsgType,
+                                Program.gs.PM_MsgIcon);
+                Program.gs.PM_ShowMessage = false;
             }
         }
 
+        ///<summary>
+        ///Prepares Windows NT blue screen for simulation
+        ///</summary>
+        ///<param name="bs">Form for the simulator</param>
         private void SetupNT(NTBSOD bs)
         {
             try
@@ -715,6 +915,10 @@ namespace SimulatorDatabase
             Thread.CurrentThread.Abort();
         }
 
+        ///<summary>
+        ///Prepares Windows 3.1x/9x/Me blue screen for simulation
+        ///</summary>
+        ///<param name="bs">Form for the simulator</param>
         private void Setup9x(Old_bluescreen bs)
         {
             try
@@ -736,6 +940,12 @@ namespace SimulatorDatabase
             bs.ShowDialog();
             Thread.CurrentThread.Abort();
         }
+
+
+        ///<summary>
+        ///Prepares Windows 1.x/2.x blue screen for simulation
+        ///</summary>
+        ///<param name="bs">Form for the simulator</param>
         private void SetupWin(Win bs)
         {
             try
@@ -755,6 +965,10 @@ namespace SimulatorDatabase
             Thread.CurrentThread.Abort();
         }
 
+        ///<summary>
+        ///Prepares Windows 2000 blue screen for simulation
+        ///</summary>
+        ///<param name="bs">Form for the simulator</param>
         private void Setup2k(W2kbs bs)
         {
             try
@@ -778,6 +992,10 @@ namespace SimulatorDatabase
             Thread.CurrentThread.Abort();
         }
 
+        ///<summary>
+        ///Prepares Windows XP blue screen for simulation
+        ///</summary>
+        ///<param name="bs">Form for the simulator</param>
         private void SetupExperience(Xvsbs bs)
         {
             try
@@ -803,6 +1021,10 @@ namespace SimulatorDatabase
             Thread.CurrentThread.Abort();
         }
 
+        ///<summary>
+        ///Prepares Windows Vista blue screen for simulation
+        ///</summary>
+        ///<param name="bs">Form for the simulator</param>
         private void SetupVista(Vistabs bs)
         {
             try
@@ -833,6 +1055,10 @@ namespace SimulatorDatabase
             Thread.CurrentThread.Abort();
         }
 
+        ///<summary>
+        ///Prepares Windows 10+ blue screen for simulation
+        ///</summary>
+        ///<param name="bs">Form for the simulator</param>
         private void SetupWinXabove(WXBS bs, bool w11 = false)
         {
             Log("Info", "Setting up Windows 8.x/10/11 simulator in SetupWinXabove method");
@@ -873,6 +1099,10 @@ namespace SimulatorDatabase
             Thread.CurrentThread.Abort();
         }
 
+        ///<summary>
+        ///Prepares Windows 8 blue screen for simulation
+        ///</summary>
+        ///<param name="bs">Form for the simulator</param>
         private void SetupWin8(WXBS bs)
         {
             Log("Info", "Setting up Windows 8.x/10/11 simulator in SetupWin8 method");
@@ -913,6 +1143,12 @@ namespace SimulatorDatabase
             Thread.CurrentThread.Abort();
         }
 
+        ///<summary>
+        ///Displays a metacrash screen
+        ///</summary>
+        ///<param name="message">Error message</param>
+        ///<param name="stacktrace">Error stack trace</param>
+        ///<param name="type">Error type (such as OrangeScreen, GreenScreen etc.)</param>
         public void Crash(string message, string stacktrace, string type)
         {
             Log("Warning", $"Triggered metacrash with the following info: message={message}, stacktrace={stacktrace}, type={type}");
@@ -934,7 +1170,9 @@ namespace SimulatorDatabase
             }
         }
 
-        // default hacks for specific OS
+        ///<summary>
+        ///Loads default configuration values for specified OS template
+        ///</summary>
         public void SetOSSpecificDefaults()
         {
             Log("Info", $"Setting default settings with {this.os} template");
@@ -1226,6 +1464,9 @@ namespace SimulatorDatabase
             }
         }
 
+        ///<summary>
+        ///Generates default progress tuner configuration
+        ///</summary>
         public void SetDefaultProgression()
         {
             Log("Info", "Generating default progress tuner configuration");

@@ -64,7 +64,7 @@ namespace UltimateBlueScreenSimulator
                         WindowScreen ws = new WindowScreen();
                         if (!s.Primary)
                         {
-                            if (Program.multidisplaymode != "none")
+                            if (Program.gs.DisplayMode != "none")
                             {
                                 ws.StartPosition = FormStartPosition.Manual;
                                 ws.Location = s.WorkingArea.Location;
@@ -91,7 +91,7 @@ namespace UltimateBlueScreenSimulator
                 Program.loadfinished = true;
                 screenUpdater.Enabled = false;
                 this.Hide();
-                if (Program.f1.enableeggs) { me.Crash(ex.Message, ex.StackTrace, "OrangeScreen"); }
+                if (Program.gs.EnableEggs) { me.Crash(ex.Message, ex.StackTrace, "OrangeScreen"); }
                 else { MessageBox.Show("The blue screen cannot be displayed due to an error.\n\n" + ex.Message + "\n\n" + ex.StackTrace, "E R R O R", MessageBoxButtons.OK, MessageBoxIcon.Error); }
                 this.Close();
             }
@@ -108,7 +108,7 @@ namespace UltimateBlueScreenSimulator
                 }
                 try
                 {
-                    if (!ws.primary && Program.multidisplaymode == "blank")
+                    if (!ws.primary && Program.gs.DisplayMode == "blank")
                     {
                         continue;
                     }
@@ -120,11 +120,7 @@ namespace UltimateBlueScreenSimulator
                         Bitmap newImage = new Bitmap(ws.Width, ws.Height);
                         using (Graphics g = Graphics.FromImage(newImage))
                         {
-                            if (Program.f1.GMode == "HighQualityBicubic") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic; }
-                            if (Program.f1.GMode == "HighQualityBilinear") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBilinear; }
-                            if (Program.f1.GMode == "Bilinear") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.Bilinear; }
-                            if (Program.f1.GMode == "Bicubic") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.Bicubic; }
-                            if (Program.f1.GMode == "NearestNeighbour") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor; }
+                            g.InterpolationMode = Program.gs.GetInterpolationMode();
                             g.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
                             g.DrawImage(bmp, new Rectangle(0, 0, ws.Width, ws.Height));
                         }
@@ -151,6 +147,10 @@ namespace UltimateBlueScreenSimulator
                     ws.Close();
                 }
                 Cursor.Show();
+            }
+            if (Program.gs.PM_CloseMainUI)
+            {
+                Application.Exit();
             }
         }
     }

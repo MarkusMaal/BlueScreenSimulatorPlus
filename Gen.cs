@@ -9,7 +9,7 @@ namespace UltimateBlueScreenSimulator
     {
         public Gen()
         {
-            MaterialSkinManager materialSkinManager = Program.f2.materialSkinManager;
+            MaterialSkinManager materialSkinManager = Program.f1.materialSkinManager;
             materialSkinManager.AddFormToManage(this);
             InitializeComponent();
         }

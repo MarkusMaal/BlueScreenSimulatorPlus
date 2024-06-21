@@ -45,7 +45,7 @@ namespace UltimateBlueScreenSimulator
                         c.ForeColor = this.ForeColor;
                     }
                 }
-                if (Program.f1.enableeggs)
+                if (Program.gs.EnableEggs)
                 {
                     if (me.GetString("culprit").ToLower() == "tardis.sys")
                     {
@@ -121,14 +121,14 @@ namespace UltimateBlueScreenSimulator
                             WindowScreen ws = new WindowScreen();
                             if (!s.Primary)
                             {
-                                if (Program.multidisplaymode != "none")
+                                if (Program.gs.DisplayMode != "none")
                                 {
                                     ws.StartPosition = FormStartPosition.Manual;
                                     ws.Location = s.WorkingArea.Location;
                                     ws.Size = new Size(s.WorkingArea.Width, s.WorkingArea.Height);
                                     ws.primary = false;
 
-                                    if (Program.multidisplaymode == "freeze")
+                                    if (Program.gs.DisplayMode == "freeze")
                                     {
                                         Bitmap screenshot = new Bitmap(s.Bounds.Width,
                                             s.Bounds.Height,
@@ -160,7 +160,7 @@ namespace UltimateBlueScreenSimulator
                         ws.Show();
                         if (!ws.primary)
                         {
-                            if (Program.multidisplaymode == "freeze")
+                            if (Program.gs.DisplayMode == "freeze")
                             {
                                 ws.screenDisplay.Image = freezescreens[i - 1];
                             }
@@ -180,7 +180,7 @@ namespace UltimateBlueScreenSimulator
             } catch (Exception ex)
             {
                 Program.loadfinished = true;
-                if (Program.f1.enableeggs) { me.Crash(ex.Message, ex.StackTrace, "OrangeScreen"); }
+                if (Program.gs.EnableEggs) { me.Crash(ex.Message, ex.StackTrace, "OrangeScreen"); }
                 else { MessageBox.Show("The blue screen cannot be displayed due to an error.\n\n" + ex.Message + "\n\n" + ex.StackTrace, "E R R O R", MessageBoxButtons.OK, MessageBoxIcon.Error); }
                 this.Close();
             }
@@ -199,7 +199,7 @@ namespace UltimateBlueScreenSimulator
             } catch (Exception ex)
             {
                 dumpTimer.Enabled = false;
-                if (Program.f1.enableeggs) { me.Crash(ex.Message, ex.StackTrace, "OrangeScreen"); }
+                if (Program.gs.EnableEggs) { me.Crash(ex.Message, ex.StackTrace, "OrangeScreen"); }
                 else { MessageBox.Show("An error occoured.\r\n\r\n" + ex.Message + "\r\n\r\n" + ex.StackTrace, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
                 this.Close();
             }
@@ -209,7 +209,7 @@ namespace UltimateBlueScreenSimulator
         {
             if (e.CloseReason == CloseReason.UserClosing)
             {
-                e.Cancel = Program.f1.lockout;
+                e.Cancel = Program.gs.PM_Lockout;
             }
             else
             {
@@ -238,7 +238,7 @@ namespace UltimateBlueScreenSimulator
         {
             if (!fullscreen)
             {
-                if (Program.f1.closecuzhidden == true)
+                if (Program.gs.PM_CloseMainUI)
                 {
                     Application.Exit();
                 }

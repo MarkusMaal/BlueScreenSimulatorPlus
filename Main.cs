@@ -10,9 +10,9 @@ using System.Threading;
 using System.Net.NetworkInformation;
 using System.Collections.Generic;
 using System.Reflection;
-
 namespace UltimateBlueScreenSimulator
 {
+    // DEPRECATED: Avoid making changes to this form unless absolutely neccessary! Use NewUI instead!
     public partial class Main : Form
     {
         internal BlueScreen me;
@@ -92,7 +92,7 @@ namespace UltimateBlueScreenSimulator
         //this variable stores troubleshooting text for Windows XP/Vista/7 blue screens
         public string supporttext = "If this is the first time you've seen this Stop error screen,\nrestart your computer. If this screen appears again, follow\nthese steps:\n\nCheck to make sure any new hardware or software is properly installed.\nIf this is a new installation, ask your hardware or software manufacturer\nfor any Windows updates you might need.\n\nIf problems continue, disable or remove any newly installed hardware\nor software. Disable BIOS memory options such as caching or shadowing.\nIf you need to use Safe mode to remove or disable components, restart\nyour computer, press F8 to select Advanced Startup Options, and then\nselect Safe Mode.";
 
-        internal bool displayone = false;
+        internal bool displayone = false; // TODO: figure out wtf is this boolean used for
         
         string version = Assembly.GetExecutingAssembly().GetName().Version.ToString().Replace(".", "").Substring(0, 1) + "." + Assembly.GetExecutingAssembly().GetName().Version.ToString().Replace(".", "").Substring(1);
 
@@ -478,7 +478,7 @@ namespace UltimateBlueScreenSimulator
             if ((autoupdate == true) && DoWeHaveInternet(1000))
             { 
                 UpdateInterface ui = new UpdateInterface();
-                ui.DownloadFile(Program.update_server + "/bssp_version.txt", "vercheck.txt");
+                ui.DownloadFile(Program.gs.UpdateServer + "/bssp_version.txt", "vercheck.txt");
                 updateCheckerTimer.Enabled = true;
                 if (System.IO.File.Exists("BSSP_latest.zim"))
                 {
@@ -640,7 +640,7 @@ namespace UltimateBlueScreenSimulator
                 Gen g = new Gen();
                 g.Show();
             }
-            Program.f1.lockout = false;
+            Program.gs.PM_Lockout = false;
             Crash();
         }
 
@@ -1039,7 +1039,7 @@ namespace UltimateBlueScreenSimulator
             {
                 try
                 {
-                    System.IO.File.WriteAllText("settings.cfg", "UpdateClose=" + postponeupdate.ToString() + "\nHashVerify=" + hashverify.ToString() + "\nAutoUpdate=" + autoupdate.ToString() + "\nShowCursor=" + showcursor.ToString() + "\nScaleMode=" + GMode + "\nMultiMode=" + Program.multidisplaymode.ToString() + "\nSeecrets=" + enableeggs.ToString() + "\nServer=" + Program.update_server + "\nRandomness=" + Program.randomness + "\nAutoDark=" + autodark.ToString());
+                    Program.gs.SaveSettings();
                 } catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
@@ -1531,25 +1531,11 @@ namespace UltimateBlueScreenSimulator
                 {
                     waitPopup.Enabled = false;
                     this.WindowState = FormWindowState.Normal;
-                    if (Program.useNewUi) // show new ui instead of this form if it's enabled when resuming from prank mode
-                    {
-                        Program.f2.Show();
-                    }
-                    else
-                    {
-                        this.Show();
-                    }
+                    Program.f1.Show();
                 }
                 else
                 {
-                    if (Program.useNewUi)
-                    {
-                        Application.Exit();
-                    }
-                    else
-                    {
-                        this.Close();
-                    }
+                    Application.Exit();
                 }
             }
         }
@@ -1603,7 +1589,7 @@ namespace UltimateBlueScreenSimulator
             {
                 // online user manual
                 Process p = new Process();
-                p.StartInfo.FileName = Program.update_server.Replace("/app", "") + "/bssp/help.pdf";
+                p.StartInfo.FileName = Program.gs.UpdateServer.Replace("/app", "") + "/bssp/help.pdf";
                 p.Start();
             } else
             {
@@ -1742,6 +1728,12 @@ namespace UltimateBlueScreenSimulator
         private void customMessageCode_TextChanged(object sender, EventArgs e)
         {
             me.SetString("code", string.Format("{0} (0x{1})", customMessageText.Text, customMessageCode.Text));
+        }
+
+        private void returnToNewinterfaceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Program.f1.Show();
+            this.Close();
         }
     }
 }

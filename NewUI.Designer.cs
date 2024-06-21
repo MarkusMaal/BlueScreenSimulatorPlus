@@ -62,6 +62,7 @@
             this.progressTuneButton = new MaterialSkin.Controls.MaterialButton();
             this.button1 = new MaterialSkin.Controls.MaterialFloatingActionButton();
             this.button3 = new MaterialSkin.Controls.MaterialFloatingActionButton();
+            this.countdownBox = new MaterialSkin.Controls.MaterialCheckbox();
             this.materialTabControl1 = new MaterialSkin.Controls.MaterialTabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.materialCard1 = new System.Windows.Forms.Panel();
@@ -102,7 +103,9 @@
             this.materialDrawer1 = new MaterialSkin.Controls.MaterialDrawer();
             this.label7 = new MaterialSkin.Controls.MaterialLabel();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.countdownBox = new MaterialSkin.Controls.MaterialCheckbox();
+            this.updateCheckerTimer = new System.Windows.Forms.Timer(this.components);
+            this.prankModeTimer = new System.Windows.Forms.Timer(this.components);
+            this.waitPopup = new System.Windows.Forms.Timer(this.components);
             this.winPanel.SuspendLayout();
             this.ntPanel.SuspendLayout();
             this.materialTabControl1.SuspendLayout();
@@ -126,9 +129,9 @@
             this.materialLabel5.Location = new System.Drawing.Point(17, 12);
             this.materialLabel5.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel5.Name = "materialLabel5";
-            this.materialLabel5.Size = new System.Drawing.Size(371, 41);
+            this.materialLabel5.Size = new System.Drawing.Size(223, 41);
             this.materialLabel5.TabIndex = 1;
-            this.materialLabel5.Text = "Experimental Material UI";
+            this.materialLabel5.Text = "Temporary tab";
             // 
             // checkBox1
             // 
@@ -692,7 +695,7 @@
             this.button1.Depth = 0;
             this.button1.Icon = global::UltimateBlueScreenSimulator.Properties.Resources.play;
             this.button1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.button1.Location = new System.Drawing.Point(686, 672);
+            this.button1.Location = new System.Drawing.Point(702, 711);
             this.button1.Mini = true;
             this.button1.MouseState = MaterialSkin.MouseState.HOVER;
             this.button1.Name = "button1";
@@ -709,7 +712,7 @@
             this.button3.Depth = 0;
             this.button3.Icon = global::UltimateBlueScreenSimulator.Properties.Resources.question;
             this.button3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.button3.Location = new System.Drawing.Point(640, 672);
+            this.button3.Location = new System.Drawing.Point(656, 711);
             this.button3.Mini = true;
             this.button3.MouseState = MaterialSkin.MouseState.HOVER;
             this.button3.Name = "button3";
@@ -720,6 +723,30 @@
             this.quickHelp.SetToolTip(this.button3, "This will generate a random blue screen");
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.materialFloatingActionButton2_Click);
+            // 
+            // countdownBox
+            // 
+            this.countdownBox.AutoSize = true;
+            this.countdownBox.Checked = true;
+            this.countdownBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.countdownBox.Depth = 0;
+            this.countdownBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.countdownBox.Location = new System.Drawing.Point(0, 410);
+            this.countdownBox.Margin = new System.Windows.Forms.Padding(0);
+            this.countdownBox.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.countdownBox.MouseState = MaterialSkin.MouseState.HOVER;
+            this.countdownBox.Name = "countdownBox";
+            this.countdownBox.ReadOnly = false;
+            this.countdownBox.Ripple = true;
+            this.countdownBox.Size = new System.Drawing.Size(191, 37);
+            this.countdownBox.TabIndex = 5;
+            this.countdownBox.Text = "Display countdown [?]";
+            this.quickHelp.SetToolTip(this.countdownBox, "On the Windows 8 Beta bugcheck, if error dumping is enabled, a countdown to compl" +
+        "etion would be displayed. However, if no dumping is enabled/available, no countd" +
+        "own would be displayed.");
+            this.countdownBox.UseVisualStyleBackColor = true;
+            this.countdownBox.Visible = false;
+            this.countdownBox.CheckedChanged += new System.EventHandler(this.countdownBox_CheckedChanged);
             // 
             // materialTabControl1
             // 
@@ -736,7 +763,7 @@
             this.materialTabControl1.Name = "materialTabControl1";
             this.materialTabControl1.SelectedIndex = 0;
             this.materialTabControl1.ShowToolTips = true;
-            this.materialTabControl1.Size = new System.Drawing.Size(726, 601);
+            this.materialTabControl1.Size = new System.Drawing.Size(742, 640);
             this.materialTabControl1.TabIndex = 8;
             this.materialTabControl1.SelectedIndexChanged += new System.EventHandler(this.materialTabControl1_SelectedIndexChanged);
             // 
@@ -746,7 +773,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(718, 572);
+            this.tabPage1.Size = new System.Drawing.Size(734, 611);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Simulator";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -765,7 +792,7 @@
             this.materialCard1.Margin = new System.Windows.Forms.Padding(14);
             this.materialCard1.Name = "materialCard1";
             this.materialCard1.Padding = new System.Windows.Forms.Padding(14);
-            this.materialCard1.Size = new System.Drawing.Size(696, 764);
+            this.materialCard1.Size = new System.Drawing.Size(712, 803);
             this.materialCard1.TabIndex = 6;
             // 
             // materialListBox1
@@ -828,7 +855,7 @@
             this.windowVersion.MaxDropDownItems = 4;
             this.windowVersion.MouseState = MaterialSkin.MouseState.OUT;
             this.windowVersion.Name = "windowVersion";
-            this.windowVersion.Size = new System.Drawing.Size(579, 49);
+            this.windowVersion.Size = new System.Drawing.Size(595, 49);
             this.windowVersion.StartIndex = 0;
             this.windowVersion.TabIndex = 0;
             this.windowVersion.SelectedIndexChanged += new System.EventHandler(this.windowVersion_SelectedIndexChanged);
@@ -855,7 +882,7 @@
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(6, 64);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(687, 697);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(703, 736);
             this.flowLayoutPanel1.TabIndex = 3;
             // 
             // WXOptions
@@ -1185,9 +1212,9 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(702, 533);
+            this.tabPage2.Size = new System.Drawing.Size(734, 611);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "[dev] UI setup";
+            this.tabPage2.Text = "Temporary tab";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // materialLabel8
@@ -1196,7 +1223,7 @@
             this.materialLabel8.AutoSize = true;
             this.materialLabel8.Depth = 0;
             this.materialLabel8.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel8.Location = new System.Drawing.Point(403, 457);
+            this.materialLabel8.Location = new System.Drawing.Point(419, 496);
             this.materialLabel8.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel8.Name = "materialLabel8";
             this.materialLabel8.Size = new System.Drawing.Size(88, 19);
@@ -1235,7 +1262,7 @@
             "Red",
             "Teal",
             "Yellow"});
-            this.accentBox.Location = new System.Drawing.Point(497, 453);
+            this.accentBox.Location = new System.Drawing.Point(513, 492);
             this.accentBox.MaxDropDownItems = 4;
             this.accentBox.MouseState = MaterialSkin.MouseState.OUT;
             this.accentBox.Name = "accentBox";
@@ -1250,7 +1277,7 @@
             this.rtlSwitch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.rtlSwitch.AutoSize = true;
             this.rtlSwitch.Depth = 0;
-            this.rtlSwitch.Location = new System.Drawing.Point(398, 12);
+            this.rtlSwitch.Location = new System.Drawing.Point(414, 12);
             this.rtlSwitch.Margin = new System.Windows.Forms.Padding(0);
             this.rtlSwitch.MouseLocation = new System.Drawing.Point(-1, -1);
             this.rtlSwitch.MouseState = MaterialSkin.MouseState.HOVER;
@@ -1267,7 +1294,7 @@
             this.darkMode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.darkMode.AutoSize = true;
             this.darkMode.Depth = 0;
-            this.darkMode.Location = new System.Drawing.Point(538, 12);
+            this.darkMode.Location = new System.Drawing.Point(554, 12);
             this.darkMode.Margin = new System.Windows.Forms.Padding(0);
             this.darkMode.MouseLocation = new System.Drawing.Point(-1, -1);
             this.darkMode.MouseState = MaterialSkin.MouseState.HOVER;
@@ -1304,7 +1331,7 @@
             this.logIf.Location = new System.Drawing.Point(17, 224);
             this.logIf.MouseState = MaterialSkin.MouseState.HOVER;
             this.logIf.Name = "logIf";
-            this.logIf.Size = new System.Drawing.Size(667, 223);
+            this.logIf.Size = new System.Drawing.Size(683, 262);
             this.logIf.TabIndex = 3;
             this.logIf.Text = "Logging interface 1.0";
             // 
@@ -1318,11 +1345,9 @@
             this.materialLabel6.Location = new System.Drawing.Point(17, 64);
             this.materialLabel6.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel6.Name = "materialLabel6";
-            this.materialLabel6.Size = new System.Drawing.Size(667, 80);
+            this.materialLabel6.Size = new System.Drawing.Size(683, 80);
             this.materialLabel6.TabIndex = 2;
-            this.materialLabel6.Text = "Future versions of blue screen simulator plus will have this layout. However, cur" +
-    "rently not all of the functionality is available. To switch to the old layout, p" +
-    "lease click the button below";
+            this.materialLabel6.Text = resources.GetString("materialLabel6.Text");
             // 
             // materialButton6
             // 
@@ -1454,7 +1479,7 @@
             this.label7.AutoSize = true;
             this.label7.Depth = 0;
             this.label7.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.label7.Location = new System.Drawing.Point(10, 692);
+            this.label7.Location = new System.Drawing.Point(10, 731);
             this.label7.MouseState = MaterialSkin.MouseState.HOVER;
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(348, 19);
@@ -1465,36 +1490,26 @@
             // 
             this.saveFileDialog1.Filter = "Log files|*.log";
             // 
-            // countdownBox
+            // updateCheckerTimer
             // 
-            this.countdownBox.AutoSize = true;
-            this.countdownBox.Checked = true;
-            this.countdownBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.countdownBox.Depth = 0;
-            this.countdownBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.countdownBox.Location = new System.Drawing.Point(0, 410);
-            this.countdownBox.Margin = new System.Windows.Forms.Padding(0);
-            this.countdownBox.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.countdownBox.MouseState = MaterialSkin.MouseState.HOVER;
-            this.countdownBox.Name = "countdownBox";
-            this.countdownBox.ReadOnly = false;
-            this.countdownBox.Ripple = true;
-            this.countdownBox.Size = new System.Drawing.Size(191, 37);
-            this.countdownBox.TabIndex = 5;
-            this.countdownBox.Text = "Display countdown [?]";
-            this.quickHelp.SetToolTip(this.countdownBox, "On the Windows 8 Beta bugcheck, if error dumping is enabled, a countdown to compl" +
-        "etion would be displayed. However, if no dumping is enabled/available, no countd" +
-        "own would be displayed.");
-            this.countdownBox.UseVisualStyleBackColor = true;
-            this.countdownBox.Visible = false;
-            this.countdownBox.CheckedChanged += new System.EventHandler(this.countdownBox_CheckedChanged);
+            this.updateCheckerTimer.Interval = 6000;
+            this.updateCheckerTimer.Tick += new System.EventHandler(this.updateCheckerTimer_Tick);
+            // 
+            // prankModeTimer
+            // 
+            this.prankModeTimer.Interval = 1000;
+            this.prankModeTimer.Tick += new System.EventHandler(this.prankModeTimer_Tick);
+            // 
+            // waitPopup
+            // 
+            this.waitPopup.Tick += new System.EventHandler(this.waitPopup_Tick);
             // 
             // NewUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(726, 682);
+            this.ClientSize = new System.Drawing.Size(742, 721);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button1);
@@ -1508,6 +1523,7 @@
             this.Name = "NewUI";
             this.Padding = new System.Windows.Forms.Padding(3, 72, 3, 3);
             this.Text = "Blue Screen Simulator Plus";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.NewUI_FormClosing);
             this.Load += new System.EventHandler(this.NewUi1_Load);
             this.ResizeEnd += new System.EventHandler(this.NewUi1_ResizeEnd);
             this.winPanel.ResumeLayout(false);
@@ -1564,8 +1580,6 @@
         private MaterialSkin.Controls.MaterialLabel customMessageLabel1;
         private MaterialSkin.Controls.MaterialCheckbox addInfFile;
         private MaterialSkin.Controls.MaterialButton materialButton1;
-        private MaterialSkin.Controls.MaterialTextBox textBox2;
-        private MaterialSkin.Controls.MaterialCheckbox checkBox2;
         private MaterialSkin.Controls.MaterialTextBox textBox1;
         private MaterialSkin.Controls.MaterialLabel materialLabel3;
         private MaterialSkin.Controls.MaterialCheckbox customCheckBox;
@@ -1578,7 +1592,6 @@
         private MaterialSkin.Controls.MaterialLabel materialLabel4;
         private MaterialSkin.Controls.MaterialCheckbox acpiBox;
         private MaterialSkin.Controls.MaterialCheckbox playSndBox;
-        private MaterialSkin.Controls.MaterialCheckbox winMode;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel4;
         private MaterialSkin.Controls.MaterialButton advOptionsButton;
         private MaterialSkin.Controls.MaterialButton eCodeEditButton;
@@ -1609,5 +1622,11 @@
         private MaterialSkin.Controls.MaterialComboBox accentBox;
         private MaterialSkin.Controls.MaterialListBox materialListBox1;
         private MaterialSkin.Controls.MaterialCheckbox countdownBox;
+        public System.Windows.Forms.Timer updateCheckerTimer;
+        internal MaterialSkin.Controls.MaterialCheckbox checkBox2;
+        internal MaterialSkin.Controls.MaterialTextBox textBox2;
+        public System.Windows.Forms.Timer prankModeTimer;
+        private System.Windows.Forms.Timer waitPopup;
+        internal MaterialSkin.Controls.MaterialCheckbox winMode;
     }
 }

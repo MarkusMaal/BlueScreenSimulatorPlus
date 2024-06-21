@@ -15,18 +15,18 @@ namespace UltimateBlueScreenSimulator
 
         private void WindowScreen_Load(object sender, EventArgs e)
         {
-            if (!Program.f1.showcursor) { Cursor.Hide(); }
+            if (!Program.gs.ShowCursor) { Cursor.Hide(); }
             if (this.primary) { this.Text += " (primary)"; }
             else { this.Text += " (secondary)"; }
         }
 
         private void WindowScreen_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (!Program.f1.lockout) { this.Hide(); }
+            if (!Program.gs.PM_Lockout) { this.Hide(); }
             // Prevent closing when Alt + F4 is pressed
             if (e.CloseReason == CloseReason.UserClosing)
             {
-                e.Cancel = Program.f1.lockout;
+                e.Cancel = Program.gs.PM_Lockout;
             }
             else
             {
@@ -36,7 +36,7 @@ namespace UltimateBlueScreenSimulator
 
         private void WindowScreen_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (Program.f1.closecuzhidden == true)
+            if (Program.gs.PM_CloseMainUI)
             {
                 try
                 {

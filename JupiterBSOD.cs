@@ -36,6 +36,10 @@ namespace UltimateBlueScreenSimulator
             this.WindowState = FormWindowState.Normal;
             this.FormBorderStyle = FormBorderStyle.Sizable;
             this.Text = me.GetString("friendlyname");
+            if (!Program.gs.ShowCursor && !me.GetBool("windowed"))
+            {
+                Cursor.Hide();
+            }
             this.Width = 1024;
             this.Height = 768;
             this.StartPosition = FormStartPosition.CenterScreen;
@@ -80,7 +84,7 @@ namespace UltimateBlueScreenSimulator
                     {
                         if (!s.Primary)
                         {
-                            if (Program.multidisplaymode != "none")
+                            if (Program.gs.DisplayMode != "none")
                             {
                                 WindowScreen ws = new WindowScreen
                                 {
@@ -89,7 +93,7 @@ namespace UltimateBlueScreenSimulator
                                     Size = new Size(s.WorkingArea.Width, s.WorkingArea.Height),
                                     primary = false
                                 };
-                                if (Program.multidisplaymode == "freeze")
+                                if (Program.gs.DisplayMode == "freeze")
                                 {
                                     screenUpdater.Enabled = false;
                                     Bitmap screenshot = new Bitmap(s.Bounds.Width,
@@ -115,7 +119,7 @@ namespace UltimateBlueScreenSimulator
                     {
                         WindowScreen ws = wss[i];
                         ws.Show();
-                        if (Program.multidisplaymode == "freeze")
+                        if (Program.gs.DisplayMode == "freeze")
                         {
                             ws.screenDisplay.Image = freezescreens[i];
                         }
@@ -174,7 +178,7 @@ namespace UltimateBlueScreenSimulator
             {
                 if (time > 0)
                 {
-                    e.Cancel = Program.f1.lockout;
+                    e.Cancel = Program.gs.PM_Lockout;
                 }
                 else
                 {
@@ -202,14 +206,14 @@ namespace UltimateBlueScreenSimulator
         // for prank mode purposes
         private void JupiterBSOD_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (Program.f1.closecuzhidden == true)
+            if (Program.gs.PM_CloseMainUI)
             {
                 Application.Exit();
             }
-            if (Program.f1.showmsg == true)
+            if (Program.gs.PM_ShowMessage)
             {
-                MessageBox.Show(Program.f1.MsgBoxMessage, Program.f1.MsgBoxTitle, Program.f1.MsgBoxType, Program.f1.MsgBoxIcon);
-                Program.f1.showmsg = false;
+                MessageBox.Show(Program.gs.PM_MsgText, Program.gs.PM_MsgTitle, Program.gs.PM_MsgType, Program.gs.PM_MsgIcon);
+                Program.gs.PM_ShowMessage = false;
             }
         }
     }

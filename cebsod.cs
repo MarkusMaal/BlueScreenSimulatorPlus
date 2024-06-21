@@ -55,7 +55,7 @@ namespace UltimateBlueScreenSimulator
             {
                 this.Icon = me.GetIcon();
                 this.Text = me.GetString("friendlyname");
-                if (Program.f1.enableeggs)
+                if (Program.gs.EnableEggs)
                 {
                     if (this.BackColor == this.ForeColor)
                     {
@@ -91,14 +91,14 @@ namespace UltimateBlueScreenSimulator
                             WindowScreen ws = new WindowScreen();
                             if (!s.Primary)
                             {
-                                if (Program.multidisplaymode != "none")
+                                if (Program.gs.DisplayMode != "none")
                                 {
                                     ws.StartPosition = FormStartPosition.Manual;
                                     ws.Location = s.WorkingArea.Location;
                                     ws.Size = new Size(s.WorkingArea.Width, s.WorkingArea.Height);
                                     ws.primary = false;
 
-                                    if (Program.multidisplaymode == "freeze")
+                                    if (Program.gs.DisplayMode == "freeze")
                                     {
                                         Bitmap screenshot = new Bitmap(s.Bounds.Width,
                                             s.Bounds.Height,
@@ -130,7 +130,7 @@ namespace UltimateBlueScreenSimulator
                         ws.Show();
                         if (!ws.primary)
                         {
-                            if (Program.multidisplaymode == "freeze")
+                            if (Program.gs.DisplayMode == "freeze")
                             {
                                 ws.screenDisplay.Image = freezescreens[i - 1];
                             }
@@ -143,7 +143,7 @@ namespace UltimateBlueScreenSimulator
                             var frm = Form.ActiveForm;
                             if (frm != null)
                             {
-                                if (ws.primary || Program.multidisplaymode == "mirror")
+                                if (ws.primary || Program.gs.DisplayMode == "mirror")
                                 {
                                     using (var bmp = new Bitmap(frm.Width, frm.Height))
                                     {
@@ -152,11 +152,7 @@ namespace UltimateBlueScreenSimulator
                                         Bitmap newImage = new Bitmap(ws.Width, ws.Height);
                                         using (Graphics g = Graphics.FromImage(newImage))
                                         {
-                                            if (Program.f1.GMode == "HighQualityBicubic") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic; }
-                                            if (Program.f1.GMode == "HighQualityBilinear") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBilinear; }
-                                            if (Program.f1.GMode == "Bilinear") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.Bilinear; }
-                                            if (Program.f1.GMode == "Bicubic") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.Bicubic; }
-                                            if (Program.f1.GMode == "NearestNeighbour") { g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor; }
+                                            g.InterpolationMode = Program.gs.GetInterpolationMode();
                                             g.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
                                             g.DrawImage(bmp, new Rectangle(0, 0, ws.Width, ws.Height));
                                         }
@@ -176,7 +172,7 @@ namespace UltimateBlueScreenSimulator
                 Program.loadfinished = true;
                 screenUpdater.Enabled = false;
                 this.Hide();
-                if (Program.f1.enableeggs) { me.Crash(ex.Message, ex.StackTrace, "OrangeScreen"); }
+                if (Program.gs.EnableEggs) { me.Crash(ex.Message, ex.StackTrace, "OrangeScreen"); }
                 else { MessageBox.Show("The blue screen cannot be displayed due to an error.\n\n" + ex.Message + "\n\n" + ex.StackTrace, "E R R O R", MessageBoxButtons.OK, MessageBoxIcon.Error); }
                 this.Close();
             }
@@ -193,7 +189,7 @@ namespace UltimateBlueScreenSimulator
             {
                 if (progress > 0)
                 {
-                    e.Cancel = Program.f1.lockout;
+                    e.Cancel = Program.gs.PM_Lockout;
                 } else
                 {
                     e.Cancel = false;
@@ -225,7 +221,7 @@ namespace UltimateBlueScreenSimulator
         {
             if (!fullscreen)
             { 
-                if (Program.f1.closecuzhidden == true)
+                if (Program.gs.PM_CloseMainUI)
                 {
                     Application.Exit();
                 }

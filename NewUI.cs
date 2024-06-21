@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -12,11 +13,13 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Forms;
+using System.Xml.Linq;
 using MaterialSkin;
 using MaterialSkin.Controls;
 using Microsoft.Win32;
 using SimulatorDatabase;
 using static System.Windows.Forms.Design.AxImporter;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 using Control = System.Windows.Forms.Control;
 using Panel = System.Windows.Forms.Panel;
 
@@ -25,9 +28,6 @@ namespace UltimateBlueScreenSimulator
     public partial class NewUI : MaterialForm
     {
         internal BlueScreen me;
-
-        //enable/disable easter eggs
-        public bool enableeggs = true;
 
         public readonly bool betabuild = true;
 
@@ -208,10 +208,11 @@ namespace UltimateBlueScreenSimulator
 
         private void materialButton2_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Are you sure? You cannot undo this action unless you restart the application completely.", "Restore old layout", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            if (MessageBox.Show("The old UI is deprecated and will not recieve any new updates. Do you still want to continue?.", "Restore old layout", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
                 this.Hide();
-                Program.f1.Show();
+                Main m = new Main();
+                m.Show();
             }
         }
 
@@ -232,7 +233,7 @@ namespace UltimateBlueScreenSimulator
             if (windowVersion.Items.Count < 1)
             {
                 Program.loadfinished = true;
-                if (enableeggs)
+                if (Program.gs.EnableEggs)
                 {
                     MessageBox.Show("Please select a Windows version! Also, how in the world did you deselect a dropdown list?", "Error displaying blue screen", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
@@ -479,7 +480,7 @@ namespace UltimateBlueScreenSimulator
                 Thread.Sleep(16);
             }
             windowVersion.SelectedIndex = SetRnd(windowVersion.Items.Count - 1);
-            if (enableeggs)
+            if (Program.gs.EnableEggs)
             {
                 if (textBox1.Text == "blackscreen")
                 {
@@ -509,7 +510,7 @@ namespace UltimateBlueScreenSimulator
 
         private void materialFloatingActionButton1_Click(object sender, EventArgs e)
         {
-            if (enableeggs == true)
+            if (Program.gs.EnableEggs)
             {
                 if (textBox2.Text.ToLower().Contains("null"))
                 {
@@ -555,7 +556,7 @@ namespace UltimateBlueScreenSimulator
                 Gen g = new Gen();
                 g.Show();
             }
-            Program.f1.lockout = false;
+            Program.gs.PM_Lockout = false;
             Crash();
         }
 
@@ -577,7 +578,7 @@ namespace UltimateBlueScreenSimulator
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
-            if (enableeggs)
+            if (Program.gs.EnableEggs)
             {
                 if (textBox2.Text.Contains("one"))
                 {
@@ -601,7 +602,7 @@ namespace UltimateBlueScreenSimulator
                 }
                 catch (Exception ex)
                 {
-                    if (enableeggs)
+                    if (Program.gs.EnableEggs)
                     {
                         me.Crash(ex.Message, ex.StackTrace, "GreenScreen");
                     }
@@ -809,7 +810,7 @@ namespace UltimateBlueScreenSimulator
 
         private void advOptionsButton_Click(object sender, EventArgs e)
         {
-            if (enableeggs)
+            if (Program.gs.EnableEggs)
             {
                 if (textBox2.Text == "blaster")
                 {
@@ -858,7 +859,7 @@ namespace UltimateBlueScreenSimulator
 
         private void eCodeEditButton_Click(object sender, EventArgs e)
         {
-            if (enableeggs)
+            if (Program.gs.EnableEggs)
             {
                 if (textBox1.Text == "RASTER_FONTS")
                 {
@@ -921,7 +922,8 @@ namespace UltimateBlueScreenSimulator
             {
                 materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
             }
-            Program.f1.nightThemeToolStripMenuItem.Checked = darkMode.Checked;
+            // used in older builds that had old interface available for some windows
+            //Program.f1.nightThemeToolStripMenuItem.Checked = darkMode.Checked;
         }
 
         private void quickHelp_Popup(object sender, PopupEventArgs e)
@@ -1081,6 +1083,231 @@ namespace UltimateBlueScreenSimulator
         private void countdownBox_CheckedChanged(object sender, EventArgs e)
         {
             me.SetBool("countdown", countdownBox.Checked);
+        }
+
+        private void updateCheckerTimer_Tick(object sender, EventArgs e)
+        {
+
+            if (System.IO.File.Exists("BSSP.exe"))
+            {
+                updateCheckerTimer.Enabled = false;
+                //MessageBox.Show("Thank you for installing the latest version of Blue screen simulator plus :)\n\nWhat's new?\n" + Program.changelog + "\n\nYou can find a more detailed changelog in the official BlueScreenSimulatorPlus GitHub page.", "Update was successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                int tries = 0;
+                while (System.IO.File.Exists("BSSP.exe"))
+                {
+                    tries += 1;
+                    try
+                    {
+                        System.IO.File.Move("BSSP.exe", Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\BSSP_old.exe");
+                        System.IO.File.Delete(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\BSSP_old.exe");
+                    }
+                    catch
+                    {
+                        //yo
+                    }
+                    if (tries > 64)
+                    {
+                        break;
+                    }
+                }
+            }
+            try
+            {
+                if (System.IO.File.Exists("vercheck.txt"))
+                {
+                    string[] lines = System.IO.File.ReadAllLines("vercheck.txt");
+                    if (Convert.ToDouble(lines[0].Replace(".", ",").Replace("\r", "").Replace("\n", "").Trim()) > Convert.ToDouble(version.Replace(".", ",")))
+                    {
+                        updateCheckerTimer.Enabled = false;
+                        System.IO.File.Delete("vercheck.txt");
+                        if (MessageBox.Show("A new version of blue screen simulator is available. Would you like to update now?", "Update available", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            System.IO.File.WriteAllText("hash.txt", lines[1].Trim());
+                            if (Program.gs.PostponeUpdate == false)
+                            {
+                                UpdateInterface ui = new UpdateInterface();
+                                ui.Show();
+                                this.Hide();
+                            }
+                            else
+                            {
+                                Program.gs.UpdateAfterExit = true;
+                                MessageBox.Show("The update has been postponed to install when the program is closed.");
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (updateCheckerTimer.Interval == 5999)
+                        {
+                            updateCheckerTimer.Interval = 6000;
+                            updateCheckerTimer.Enabled = false;
+                            System.IO.File.Delete("vercheck.txt");
+                            if (MessageBox.Show("A new version of blue screen simulator is available. Would you like to update now?", "Update available", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                            {
+                                System.IO.File.WriteAllText("hash.txt", lines[1].Trim());
+                                if (Program.gs.PostponeUpdate == false)
+                                {
+                                    UpdateInterface ui = new UpdateInterface();
+                                    ui.Show();
+                                    this.Hide();
+                                }
+                                else
+                                {
+                                    Program.gs.UpdateAfterExit = true;
+                                    MessageBox.Show("The update has been postponed to install when the program is closed.");
+                                }
+                            }
+                        }
+                        else if (updateCheckerTimer.Interval == 5998)
+                        {
+                            updateCheckerTimer.Interval = 6000;
+                            updateCheckerTimer.Enabled = false;
+                            MessageBox.Show("This version of blue screen simulator plus is up to date", "Blue screens simulator plus", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            System.IO.File.Delete("vercheck.txt");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                if (updateCheckerTimer.Interval != 6000)
+                {
+                    MessageBox.Show("An error has occoured.\n\nFatal exception: " + ex.Message + "\n\nStack trace\n" + ex.StackTrace, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                updateCheckerTimer.Enabled = false;
+            }
+        }
+
+        private void NewUI_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            try
+            {
+                try
+                {
+                    Program.gs.SaveSettings();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                if (Program.gs.UpdateAfterExit)
+                {
+                    UpdateInterface ui = new UpdateInterface();
+                    ui.Show();
+                    this.Hide();
+                    Program.gs.UpdateAfterExit = false;
+                    e.Cancel = true;
+                }
+                else
+                {
+                    e.Cancel = false;
+                }
+            }
+            catch
+            {
+                e.Cancel = false;
+            }
+            if (!e.Cancel)
+            {
+                Application.Exit();
+            }
+        }
+
+        private void prankModeTimer_Tick(object sender, EventArgs e)
+        {
+            if (Program.gs.PM_Timecatch)
+            {
+                int hrs = Program.gs.PM_Time[0];
+                int mins = Program.gs.PM_Time[1];
+                int secs = Program.gs.PM_Time[2];
+                if ((hrs == 0) && (mins == 0) && (secs == 0))
+                {
+                    me.SetBool("watermark", false);
+                    me.SetBool("windowed", false);
+                    me.SetBool("autoclose", true);
+                    Crash();
+                    waitPopup.Enabled = true;
+                    prankModeTimer.Enabled = false;
+                }
+                if (secs == 0)
+                {
+                    mins -= 1;
+                    secs = 60;
+                }
+                if (mins == -1)
+                {
+                    hrs -= 1;
+                    mins = 59;
+                }
+                if (hrs == -1)
+                {
+                    hrs = 0;
+                    mins = 0;
+                    secs = 0;
+                }
+                else
+                {
+                    secs -= 1;
+                }
+                int[] timex = { hrs, mins, secs };
+                Program.gs.PM_Time = timex;
+            }
+            else if (Program.gs.PM_UsbDevice.Length > 0)
+            {
+                foreach (USBDeviceInfo usb in USBDeviceInfo.GetUSBDevices())
+                {
+                    string usbinfo = usb.DeviceID;
+                    if ((usbinfo == Program.gs.PM_UsbDevice[0]))
+                    {
+                        me.SetBool("watermark", false);
+                        me.SetBool("windowed", false);
+                        me.SetBool("autoclose", true);
+                        Crash();
+                        waitPopup.Enabled = true;
+                        prankModeTimer.Enabled = false;
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                bool getcatch = false;
+                if (Process.GetProcessesByName(Program.gs.PM_AppName.Replace(".exe", "")).Length != 0)
+                {
+                    getcatch = true;
+                }
+                if (getcatch)
+                {
+                    me.SetBool("watermark", false);
+                    me.SetBool("windowed", false);
+                    me.SetBool("autoclose", true);
+                    Crash();
+                    waitPopup.Enabled = true;
+                    prankModeTimer.Enabled = false;
+                }
+            }
+        }
+
+        private void waitPopup_Tick(object sender, EventArgs e)
+        {
+            if (!bsod_starter.IsAlive)
+            {
+                if (!Program.gs.PM_Lockout)
+                {
+                    waitPopup.Enabled = false;
+                    this.WindowState = FormWindowState.Normal;
+                    Program.f1.Show();
+                }
+                else
+                {
+                    Application.Exit();
+                }
+            }
         }
     }
 }

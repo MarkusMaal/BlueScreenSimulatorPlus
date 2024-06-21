@@ -23,7 +23,7 @@ namespace UltimateBlueScreenSimulator
         readonly Random r = new Random();
         public AboutSettingsDialog()
         {
-            MaterialSkinManager materialSkinManager = Program.f2.materialSkinManager;
+            MaterialSkinManager materialSkinManager = Program.f1.materialSkinManager;
             materialSkinManager.EnforceBackcolorOnAllComponents = false;
             materialSkinManager.AddFormToManage(this);
             InitializeComponent();
@@ -149,13 +149,12 @@ namespace UltimateBlueScreenSimulator
             }*/
             //Ping main form that the about box/help/settings dialog is open
             Program.f1.abopen = true;
-            Program.f2.abopen = true;
             //Hide settings tabs
             if (!SettingTab)
             {
                 updatePanel.Dispose();
                 simulatorSettingsPanel.Dispose();
-                rndFactButton.Visible = Program.f1.enableeggs;
+                rndFactButton.Visible = Program.gs.EnableEggs;
             }
             //Hide help/about tabs and get settings
             if (SettingTab)
@@ -163,14 +162,14 @@ namespace UltimateBlueScreenSimulator
                 aboutPanel.Dispose();
                 commandLinePanel.Dispose();
                 helpPanel.Dispose();
-                eggHunterButton.Checked = Program.f1.enableeggs;
-                darkDetectCheck.Checked = Program.f1.autodark;
-                if (Program.f1.GMode == "HighQualityBicubic") { scalingModeBox.SelectedIndex = 0; }
-                if (Program.f1.GMode == "HighQualityBilinear") { scalingModeBox.SelectedIndex = 1; }
-                if (Program.f1.GMode == "Bilinear") { scalingModeBox.SelectedIndex = 4; }
-                if (Program.f1.GMode == "Bicubic") { scalingModeBox.SelectedIndex = 3; }
-                if (Program.f1.GMode == "NearestNeighbour") { scalingModeBox.SelectedIndex = 2; }
-                hideInFullscreenButton.Checked = !Program.f1.showcursor;
+                eggHunterButton.Checked = Program.gs.EnableEggs;
+                darkDetectCheck.Checked = Program.gs.AutoDark;
+                if (Program.gs.ScaleMode == GlobalSettings.ScaleModes.HighQualityBicubic) { scalingModeBox.SelectedIndex = 0; }
+                if (Program.gs.ScaleMode == GlobalSettings.ScaleModes.HighQualityBilinear) { scalingModeBox.SelectedIndex = 1; }
+                if (Program.gs.ScaleMode == GlobalSettings.ScaleModes.Bilinear) { scalingModeBox.SelectedIndex = 4; }
+                if (Program.gs.ScaleMode == GlobalSettings.ScaleModes.Bicubic) { scalingModeBox.SelectedIndex = 3; }
+                if (Program.gs.ScaleMode == GlobalSettings.ScaleModes.NearestNeighbour) { scalingModeBox.SelectedIndex = 2; }
+                hideInFullscreenButton.Checked = !Program.gs.ShowCursor;
             }
             aboutSettingsTabControl.SelectedIndex = tab_id;
         }
@@ -193,13 +192,13 @@ namespace UltimateBlueScreenSimulator
                     autoUpdateRadio.Enabled = false;
                 }
                 //Loads update configuration
-                autoUpdateRadio.Checked = Program.f1.autoupdate;
-                noUpdatesRadio.Checked = !Program.f1.autoupdate;
-                darkDetectCheck.Checked = Program.f1.autodark;
-                hashBox.Checked = Program.f1.hashverify;
-                updateImmediatelyRadio.Checked = !Program.f1.postponeupdate;
-                updateOnCloseRadio.Checked = Program.f1.postponeupdate;
-                primaryServerBox.Text = Program.update_server;
+                autoUpdateRadio.Checked = Program.gs.AutoUpdate;
+                noUpdatesRadio.Checked = !Program.gs.AutoUpdate;
+                darkDetectCheck.Checked = Program.gs.AutoDark;
+                hashBox.Checked = Program.gs.HashVerify;
+                updateImmediatelyRadio.Checked = !Program.gs.PostponeUpdate;
+                updateOnCloseRadio.Checked = Program.gs.PostponeUpdate;
+                primaryServerBox.Text = Program.gs.UpdateServer;
                 if (!((primaryServerBox.Text == "http://nossl.markustegelane.eu/app") || (primaryServerBox.Text == "http://markustegelane.eu/app")))
                 {
                     primaryServerBox.Enabled = true;
@@ -208,13 +207,26 @@ namespace UltimateBlueScreenSimulator
             if (aboutSettingsTabControl.SelectedTab.Text == "Simulator settings")
             {
                 //Loads simulator configuration
-                eggHunterButton.Checked = Program.f1.enableeggs;
-                if (Program.f1.GMode == "HighQualityBicubic") { scalingModeBox.SelectedIndex = 0; }
-                else if (Program.f1.GMode == "HighQualityBilinear") { scalingModeBox.SelectedIndex = 1; }
-                else if (Program.f1.GMode == "Bilinear") { scalingModeBox.SelectedIndex = 4; }
-                else if (Program.f1.GMode == "Bicubic") { scalingModeBox.SelectedIndex = 3; }
-                else if (Program.f1.GMode == "NearestNeighbour") { scalingModeBox.SelectedIndex = 2; }
-                switch (Program.multidisplaymode)
+                eggHunterButton.Checked = Program.gs.EnableEggs;
+                switch (Program.gs.ScaleMode)
+                {
+                    case GlobalSettings.ScaleModes.HighQualityBicubic:
+                        scalingModeBox.SelectedIndex = 0;
+                        break;
+                    case GlobalSettings.ScaleModes.HighQualityBilinear:
+                        scalingModeBox.SelectedIndex = 1;
+                        break;
+                    case GlobalSettings.ScaleModes.Bilinear:
+                        scalingModeBox.SelectedIndex = 4;
+                        break;
+                    case GlobalSettings.ScaleModes.Bicubic:
+                        scalingModeBox.SelectedIndex = 3;
+                        break;
+                    case GlobalSettings.ScaleModes.NearestNeighbour:
+                        scalingModeBox.SelectedIndex = 2;
+                        break;
+                }
+                switch (Program.gs.DisplayMode)
                 {
                     case "none":
                         multiDisplayBox.SelectedIndex = 0;
@@ -229,9 +241,9 @@ namespace UltimateBlueScreenSimulator
                         multiDisplayBox.SelectedIndex = 3;
                         break;
                 }
-                hideInFullscreenButton.Checked = !Program.f1.showcursor;
+                hideInFullscreenButton.Checked = !Program.gs.ShowCursor;
                 configList.Items.Clear();
-                randomnessCheckBox.Checked = Program.randomness;
+                randomnessCheckBox.Checked = Program.gs.Randomness;
                 foreach (BlueScreen bs in Program.bluescreens)
                 {
                     configList.Items.Add(new MaterialListBoxItem(bs.GetString("friendlyname")));
@@ -289,14 +301,14 @@ namespace UltimateBlueScreenSimulator
         private void CheckForUpdates(object sender, EventArgs e)
         {
             //This code starts the check for updates
-            if (Program.f1.DoWeHaveInternet(1000))
+            if (Program.DoWeHaveInternet(1000))
             {
                 if (File.Exists("vercheck.txt"))
                 {
                     File.Delete("vercheck.txt");
                 }
                 UpdateInterface ui = new UpdateInterface();
-                ui.DownloadFile(Program.update_server + "/bssp_version.txt", "vercheck.txt");
+                ui.DownloadFile(Program.gs.UpdateServer + "/bssp_version.txt", "vercheck.txt");
                 updateCheckButton.Enabled = false;
                 updateCheckButton.Text = "Checking for updates...";
                 updateCheckerTimer.Enabled = true;
@@ -322,60 +334,46 @@ namespace UltimateBlueScreenSimulator
         //Saves configuration
         private void EnableDisableUpdateSetup(object sender, EventArgs e)
         {
-            Program.f1.autoupdate = autoUpdateRadio.Checked;
+            Program.gs.AutoUpdate = autoUpdateRadio.Checked;
         }
 
         private void UpdateWhenDoneSetup(object sender, EventArgs e)
         {
-            if (updateImmediatelyRadio.Checked == true)
-            {
-                Program.f1.postponeupdate = false;
-            }
-            else
-            {
-                Program.f1.postponeupdate = true;
-            }
+            Program.gs.PostponeUpdate = updateImmediatelyRadio.Checked;
         }
 
         private void HashcheckSetup(object sender, EventArgs e)
         {
-            Program.f1.hashverify = hashBox.Checked;
+            Program.gs.HashVerify = hashBox.Checked;
         }
 
         private void ScalingModeSetup(object sender, EventArgs e)
         {
             if (scalingModeBox.SelectedIndex == 0)
             {
-                Program.f1.GMode = "HighQualityBicubic";
+                Program.gs.ScaleMode = GlobalSettings.ScaleModes.HighQualityBicubic;
             }
             else if (scalingModeBox.SelectedIndex == 1)
             {
-                Program.f1.GMode = "HighQualityBilinear";
+                Program.gs.ScaleMode = GlobalSettings.ScaleModes.HighQualityBilinear;
             }
             else if (scalingModeBox.SelectedIndex == 2)
             {
-                Program.f1.GMode = "NearestNeighbour";
+                Program.gs.ScaleMode = GlobalSettings.ScaleModes.NearestNeighbour;
             }
             else if (scalingModeBox.SelectedIndex == 4)
             {
-                Program.f1.GMode = "Bilinear";
+                Program.gs.ScaleMode = GlobalSettings.ScaleModes.Bilinear;
             }
             else if (scalingModeBox.SelectedIndex == 3)
             {
-                Program.f1.GMode = "Bicubic";
+                Program.gs.ScaleMode = GlobalSettings.ScaleModes.Bicubic;
             }
         }
 
         private void CursorVisibilitySetup(object sender, EventArgs e)
         {
-            if (hideInFullscreenButton.Checked == true)
-            {
-                Program.f1.showcursor = false;
-            }
-            else
-            {
-                Program.f1.showcursor = true;
-            }
+            Program.gs.ShowCursor = hideInFullscreenButton.Checked;
         }
 
 
@@ -387,13 +385,12 @@ namespace UltimateBlueScreenSimulator
             if (SettingTab)
             {
                 Program.f1.GetOS();
-                Program.f2.GetOS();
             }
         }
 
         private void EggHunter(object sender, EventArgs e)
         {
-            Program.f1.enableeggs = eggHunterButton.Checked;
+            Program.gs.EnableEggs = eggHunterButton.Checked;
         }
 
         private void OnMeResized(object sender, EventArgs e)
@@ -536,10 +533,10 @@ namespace UltimateBlueScreenSimulator
         {
             switch (multiDisplayBox.SelectedIndex)
             {
-                case 0: Program.multidisplaymode = "none"; break;
-                case 1: Program.multidisplaymode = "blank"; break;
-                case 2: Program.multidisplaymode = "mirror"; break;
-                case 3: Program.multidisplaymode = "freeze"; break;
+                case 0: Program.gs.DisplayMode = "none"; break;
+                case 1: Program.gs.DisplayMode = "blank"; break;
+                case 2: Program.gs.DisplayMode = "mirror"; break;
+                case 3: Program.gs.DisplayMode = "freeze"; break;
             }
         }
 
@@ -1343,7 +1340,7 @@ namespace UltimateBlueScreenSimulator
 
         private void ChangeUpdateServer(object sender, EventArgs e)
         {
-            Program.update_server = primaryServerBox.Text;
+            Program.gs.UpdateServer = primaryServerBox.Text;
         }
 
         private void SetToPrimaryServer(object sender, EventArgs e)
@@ -1365,7 +1362,7 @@ namespace UltimateBlueScreenSimulator
 
         private void UserManualButtonClick(object sender, EventArgs e)
         {
-            if (Program.f1.DoWeHaveInternet(1000))
+            if (Program.DoWeHaveInternet(1000))
             {
                 // online user manual
                 Process p = new Process();
@@ -1432,7 +1429,7 @@ namespace UltimateBlueScreenSimulator
         /* DONE: Remove devbuild text from the stable release 2.1 */
         private void Button4_Click(object sender, EventArgs e)
         {
-            if (Program.f1.enableeggs)
+            if (Program.gs.EnableEggs)
             {
                 string[] tips =
                 {
@@ -1475,7 +1472,7 @@ namespace UltimateBlueScreenSimulator
 
         private void RandomnessCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            Program.randomness = randomnessCheckBox.Checked;
+            Program.gs.Randomness = randomnessCheckBox.Checked;
         }
 
         private void SelectAllBox_CheckedChanged(object sender, EventArgs e)
@@ -1509,7 +1506,7 @@ namespace UltimateBlueScreenSimulator
 
         private void LogoPictureBox_Click(object sender, EventArgs e)
         {
-            if (Program.f1.enableeggs)
+            if (Program.gs.EnableEggs)
             {
                 if (r.Next(0, 255) == 13)
                 {
@@ -1538,7 +1535,7 @@ namespace UltimateBlueScreenSimulator
 
         private void darkDetectCheck_CheckedChanged(object sender, EventArgs e)
         {
-            Program.f1.autodark = darkDetectCheck.Checked;
+            Program.gs.AutoDark = darkDetectCheck.Checked;
         }
 
         private void materialButton4_Click(object sender, EventArgs e)

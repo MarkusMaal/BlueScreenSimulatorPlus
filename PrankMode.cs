@@ -37,7 +37,7 @@ namespace UltimateBlueScreenSimulator
         };
         public PrankMode()
         {
-            MaterialSkinManager materialSkinManager = Program.f2.materialSkinManager;
+            MaterialSkinManager materialSkinManager = Program.f1.materialSkinManager;
             materialSkinManager.AddFormToManage(this);
             InitializeComponent();
         }
@@ -340,7 +340,7 @@ namespace UltimateBlueScreenSimulator
         private void Button3_Click(object sender, EventArgs e)
         {
             this.Close();
-            Program.f1.closecuzhidden = false;
+            Program.gs.PM_CloseMainUI = false;
         }
 
         private void Button2_Click(object sender, EventArgs e)
@@ -372,18 +372,7 @@ namespace UltimateBlueScreenSimulator
                         if (winver.Contains(Program.bluescreens[i].GetString("os")))
                         {
                             Program.f1.me = Program.bluescreens[i];
-                            if (!Program.useNewUi)
-                            {
-                                Program.f1.windowVersion.SelectedIndex = Program.f1.windowVersion.Items.Count - 1 - i;
-                            } else
-                            {
-                                Program.f1.windowVersion.Items.Clear();
-                                foreach (string wv in Program.f2.windowVersion.Items)
-                                {
-                                    Program.f1.windowVersion.Items.Add(wv);
-                                }
-                                Program.f1.windowVersion.SelectedIndex = Program.f2.windowVersion.Items.Count - 1 - i;
-                            }
+                            Program.f1.windowVersion.SelectedIndex = Program.f1.windowVersion.Items.Count - 1 - i;
                         }
                     }
                 }
@@ -391,46 +380,38 @@ namespace UltimateBlueScreenSimulator
                 string[] emptydev = { };
                 if (timeRadio.Checked == true)
                 {
-                    Program.f1.timecatch = timecatch;
+                    Program.gs.PM_Timecatch = timecatch;
                     int hrs = Convert.ToInt32(time[0].Replace("00", "0").Replace("01", "1").Replace("02", "2").Replace("03", "3").Replace("04", "4").Replace("05", "5").Replace("06", "6").Replace("07", "7").Replace("08", "8").Replace("09", "9"));
                     int mins = Convert.ToInt32(time[1].Replace("00", "0").Replace("01", "1").Replace("02", "2").Replace("03", "3").Replace("04", "4").Replace("05", "5").Replace("06", "6").Replace("07", "7").Replace("08", "8").Replace("09", "9"));
                     int secs = Convert.ToInt32(time[2].Replace("00", "0").Replace("01", "1").Replace("02", "2").Replace("03", "3").Replace("04", "4").Replace("05", "5").Replace("06", "6").Replace("07", "7").Replace("08", "8").Replace("09", "9"));
                     int[] timex = { hrs, mins, secs };
-                    Program.f1.time = timex;
-                    Program.f1.usb_device = emptydev;
+                    Program.gs.PM_Time = timex;
+                    Program.gs.PM_UsbDevice = emptydev;
                     Program.f1.prankModeTimer.Interval = 1000;
                 } else if (appRadio.Checked)
                 {
-                    Program.f1.timecatch = false;
-                    Program.f1.appname = triggerAppBox.Text;
-                    Program.f1.usb_device = emptydev;
+                    Program.gs.PM_Timecatch = false;
+                    Program.gs.PM_AppName = triggerAppBox.Text;
+                    Program.gs.PM_UsbDevice = emptydev;
                     Program.f1.prankModeTimer.Interval = 1000;
                 } else
                 {
-                    Program.f1.timecatch = false;
-                    Program.f1.usb_device = devinfo;
+                    Program.gs.PM_Timecatch = false;
+                    Program.gs.PM_UsbDevice = devinfo;
                     Program.f1.prankModeTimer.Interval = 100;
                 }
                 if (friendlyMessageBox.Checked == true)
                 {
-                    Program.f1.showmsg = true;
-                    Program.f1.MsgBoxIcon = MsgBoxIcon;
-                    Program.f1.MsgBoxType = MsgBoxType;
-                    Program.f1.MsgBoxMessage = MsgBoxMessage;
-                    Program.f1.MsgBoxTitle = MsgBoxTitle;
+                    Program.gs.PM_ShowMessage  = true;
+                    Program.gs.PM_MsgIcon = MsgBoxIcon;
+                    Program.gs.PM_MsgType = MsgBoxType;
+                    Program.gs.PM_MsgText = MsgBoxMessage;
+                    Program.gs.PM_MsgTitle = MsgBoxTitle;
                 }
-                if (Program.f2.Visible == true)
-                {
-                    Program.f2.Hide();
-                    newUi = true;
-                }
-                else
-                {
-                    Program.f1.Hide();
-                }
+                Program.f1.Hide();
                 Program.f1.waterBox.Checked = false;
                 Program.f1.prankModeTimer.Enabled = true;
-                Program.f1.lockout = !letCloseBox.Checked;
+                Program.gs.PM_Lockout = !letCloseBox.Checked;
                 this.Close();
             }
         }
@@ -533,14 +514,14 @@ namespace UltimateBlueScreenSimulator
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            Program.f1.closecuzhidden = !closePrank.Checked;
+            Program.gs.PM_CloseMainUI = !closePrank.Checked;
         }
 
         private void PrankMode_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (Program.f1.Visible)
             {
-                Program.f1.closecuzhidden = false;
+                Program.gs.PM_Lockout = false;
             }
         }
     }

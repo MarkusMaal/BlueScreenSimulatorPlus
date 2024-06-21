@@ -15,7 +15,7 @@ namespace UltimateBlueScreenSimulator
         int last = 0;
         public ProgressTuner()
         {
-            MaterialSkinManager materialSkinManager = Program.f2.materialSkinManager;
+            MaterialSkinManager materialSkinManager = Program.f1.materialSkinManager;
             materialSkinManager.AddFormToManage(this);
             InitializeComponent();
         }

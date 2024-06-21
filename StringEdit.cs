@@ -17,7 +17,7 @@ namespace UltimateBlueScreenSimulator
         private bool theme_hl = false;
         public StringEdit()
         {
-            MaterialSkinManager materialSkinManager = Program.f2.materialSkinManager;
+            MaterialSkinManager materialSkinManager = Program.f1.materialSkinManager;
             materialSkinManager.AddFormToManage(this);
             InitializeComponent();
         }

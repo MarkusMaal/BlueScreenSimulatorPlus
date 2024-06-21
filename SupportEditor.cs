@@ -18,12 +18,12 @@ namespace UltimateBlueScreenSimulator
 
         private void TextBox1_TextChanged(object sender, EventArgs e)
         {
-            Program.f1.supporttext = textBox1.Text;
+            Program.gs.SupportText = textBox1.Text;
         }
 
         private void SupportEditor_Load(object sender, EventArgs e)
         {
-            textBox1.Text = Program.f1.supporttext;
+            textBox1.Text = Program.gs.SupportText;
         }
     }
 }

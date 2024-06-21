@@ -98,6 +98,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Collections.Generic;
 using SimulatorDatabase;
+using System.Net.NetworkInformation;
 
 namespace UltimateBlueScreenSimulator
 {
@@ -107,16 +108,16 @@ namespace UltimateBlueScreenSimulator
         /// The main entry point for the application.
         /// </summary>
         //Form creation
-        public static Main f1;
-        public static NewUI f2;
+        public static NewUI f1;
+        //public static Main f2;
         public static Splash spl;
         public static DrawRoutines dr;
+        public static GlobalSettings gs = new GlobalSettings();
 
         public static bool loadfinished = true;
 
         private static bool bad = false;
 
-        public static readonly bool useNewUi = true;
 
         //Command line syntax
         public static string cmds = "WARNING: Partially broken in this build!!!\n\n/? - Displays command line syntax\n/wv:xx - Set a specific configuration/os (e.g. \"XP\", spaces are not allowed)\n/h - Doesn't show main GUI. If no simulation is started or the simulation is finished, the program will close.\n/hwm - Hides watermark\n/c - Simulates a system crash\n/config:xx - Loads a configuration file (xx is the file name, spaces are not allowed)\n\n/ddesc - Disables error descriptions\n/dqr - Disables QR code on Windows 10 blue screen\n/srv - Displays Windows Server 2016 blue screen when wv is set to 10\n/dac - Disables autoclose feature (Modern blue screens only)\n/gs - Displays green screen when wv is set to 10\n/ap - Displays ACPI blue screen (Windows Vista/7 only)\n/win - Enables windowed mode\n/random - Randomizes the blue screen (does NOT randomize any custom attributes set)\n\n/desc - Forcibly enable error description\n/ac - Forcibly enable autoclose feature\n/dap - Forcibly disable ACPI error screen (Windows Vista/7)\n/damd - Forcibly display \"GenuineIntel\" on Windows NT blue screen\n/dblink - Forcibly disable blinking cursor on Windows NT blue screen\n/dgs - Forcibly disable green screen on Windows 10 blue screen\n/qr - Forcibly enable QR code on Windows 10 blue screen\n/dsrv - Forcibly disable server blue screen when version is set to Windows 10\n/stack - Forcible enable stack trace on Windows NT blue screen\n/dfile - Forcible disables potential culprit file\n\n/clr - Clears the verification certificate from this computer, causing the first use message to pop up.\n/hidesplash - Hides the splash screen";
@@ -125,11 +126,7 @@ namespace UltimateBlueScreenSimulator
         public static int load_progress = 100;
         public static string load_message = "";
         public static bool hidden = false;
-        public static string multidisplaymode = "blank";
-        public static bool randomness = false;
         internal static string changelog = "+ New user interface!\n+ Trace logging\n???\n$$$ Profit $$$";
-
-        public static string update_server = "http://markustegelane.eu/app";
 
         readonly private static ManagementObjectSearcher aa = new ManagementObjectSearcher("root\\CIMV2", "SELECT * FROM Win32_BaseBoard");
         public static List<BlueScreen> bluescreens;
@@ -159,8 +156,8 @@ namespace UltimateBlueScreenSimulator
             }
             dr = new DrawRoutines();
             //Initialize forms
-            f2 = new NewUI();
-            f1 = new Main();
+            //f2 = new Main();
+            f1 = new NewUI();
             bluescreens = new List<BlueScreen>();
             ReRe();
             //Load application configuration if it exists
@@ -168,57 +165,7 @@ namespace UltimateBlueScreenSimulator
             {
                 try
                 {
-                    string[] fc = File.ReadAllText("settings.cfg").Split('\n');
-                    foreach (string element in fc)
-                    {
-                        //Other configurations
-                        if (element.StartsWith("UpdateClose="))
-                        {
-                            f1.postponeupdate = Convert.ToBoolean(element.Replace("UpdateClose=", ""));
-                        }
-                        else if (element.StartsWith("HashVerify="))
-                        {
-                            f1.hashverify = Convert.ToBoolean(element.Replace("HashVerify=", ""));
-                        }
-                        else if (element.StartsWith("AutoUpdate="))
-                        {
-                            f1.autoupdate = Convert.ToBoolean(element.Replace("AutoUpdate=", ""));
-                        }
-                        else if (element.StartsWith("ShowCursor="))
-                        {
-                            f1.showcursor = Convert.ToBoolean(element.Replace("ShowCursor=", ""));
-                        }
-                        else if (element.StartsWith("MultiMode="))
-                        {
-                            multidisplaymode = element.Replace("MultiMode=", "");
-                        }
-                        else if (element.StartsWith("Seecrets="))
-                        {
-                            f1.enableeggs = Convert.ToBoolean(element.Replace("Seecrets=", ""));
-                        }
-                        else if (element.StartsWith("ScaleMode="))
-                        {
-                            f1.GMode = element.Replace("ScaleMode=", "");
-                        }
-                        else if (element.StartsWith("Server="))
-                        {
-                            update_server = element.Replace("Server=", "");
-                        }
-                        else if (element.StartsWith("Randomness="))
-                        {
-                            randomness = Convert.ToBoolean(element.Replace("Randomness=", ""));
-                        }
-                        else if (element.StartsWith("AutoDark="))
-                        {
-                            f1.autodark = Convert.ToBoolean(element.Replace("AutoDark=", ""));
-                        }
-                        // this skips checking hidden/visible OS-s
-                        // this is a feature that was exclusive to 1.x
-                        else if (element.Contains("\""))
-                        {
-                            break;
-                        }
-                    }
+                    gs.LoadSettings();
                 }
                 catch (Exception ex)
                 {
@@ -229,7 +176,7 @@ namespace UltimateBlueScreenSimulator
                         type = "VioletScreen"
                     };
 
-                    if (Program.f1.enableeggs)
+                    if (gs.EnableEggs)
                     {
                         switch (me.ShowDialog())
                         {
@@ -261,16 +208,11 @@ namespace UltimateBlueScreenSimulator
             if (args.Contains("/c"))
             {
                 f1.GetOS();
-                f2.GetOS();
             }
 
 
             //Load Windows NT error codes from the database
             f1.comboBox1.Items.Clear();
-            if (useNewUi)
-            {
-                f2.comboBox1.Items.Clear();
-            }
             string database = "";
             try
             {
@@ -278,7 +220,7 @@ namespace UltimateBlueScreenSimulator
             }
             catch
             {
-                f1.error = 19;
+                gs.ErrorCode = 19;
             }
             try
             {
@@ -288,26 +230,16 @@ namespace UltimateBlueScreenSimulator
                     string[] codesplit = element.Split('\t');
                     string final = codesplit[1].ToString().Substring(0, codesplit[1].ToString().Length - 1) + " (" + codesplit[0].ToString() + ")";
                     f1.comboBox1.Items.Add(final);
-                    if (useNewUi)
-                    {
-                        f2.comboBox1.Items.Add(final);
-                    }
                 }
             }
             catch
             {
-                f1.error = 20;
+                gs.ErrorCode = 20;
             }
             //Set default selection indexes for combo boxes
             f1.comboBox1.SelectedIndex = 9;
             f1.windowVersion.SelectedIndex = 0;
             f1.comboBox2.SelectedIndex = 0;
-            if (useNewUi)
-            {
-                f2.comboBox1.SelectedIndex = 9;
-                f2.windowVersion.SelectedIndex = 0;
-                f2.comboBox2.SelectedIndex = 0;
-            }
             //Post update scripts
             if (args.Contains("/doneupdate"))
             {
@@ -323,17 +255,15 @@ namespace UltimateBlueScreenSimulator
             }
             //Generate random blue screen when /random flag is set
             if (args.Contains("/random")) { f1.RandFunction(); }
-            if (args.Contains("/random")) { f2.RandFunction(); }
             //Hide watermark if hwm flag is set
             if (args.Contains("/hvm")) { f1.waterBox.Checked = false; }
-            if (args.Contains("/hvm")) { f2.waterBox.Checked = false; }
             bool done = false;
             foreach (string argument in args)
             {
                 //check argument syntax
                 if (!argument.StartsWith("/"))
                 {
-                    f1.error = 23;
+                    gs.ErrorCode = 23;
                     break;
                 }
                 //this code loads hack file if specified in arguments
@@ -352,7 +282,7 @@ namespace UltimateBlueScreenSimulator
                     }
                     else
                     {
-                        f1.error = 24;
+                        gs.ErrorCode = 24;
                     }
                 }
                 //select Windows version using /wv argument
@@ -361,7 +291,7 @@ namespace UltimateBlueScreenSimulator
                     string ecode = argument.Split(':')[1];
                     if (ecode == "")
                     {
-                        f1.error = 15;
+                        gs.ErrorCode = 15;
                     }
                     int i = 0;
                     foreach (BlueScreen bs in bluescreens)
@@ -369,7 +299,7 @@ namespace UltimateBlueScreenSimulator
                         if (bs.GetString("friendlyname").ToLower().Contains(ecode.ToLower()) || bs.GetString("os").ToLower().Contains(ecode.ToLower()))
                         {
                             f1.me = bs;
-                            f1.displayone = true;
+                            //f1.displayone = true;
                             f1.comboBox1.SelectedIndex = i;
                             done = true;
                             break;
@@ -378,7 +308,7 @@ namespace UltimateBlueScreenSimulator
                     }
                     if (!done)
                     {
-                        f1.error = 12;
+                        gs.ErrorCode = 12;
                     }
                 }
             }
@@ -529,7 +459,7 @@ namespace UltimateBlueScreenSimulator
             if (args.Contains("/?"))
             {
                 MessageBox.Show(cmds, "Command line argument usage", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                f1.error = 999;
+                gs.ErrorCode = 999;
             }
             //displays errror cuplrit file if specified in arguments
             foreach (string argument in args)
@@ -544,7 +474,7 @@ namespace UltimateBlueScreenSimulator
                     }
                     if (ecode == "")
                     {
-                        f1.error = 16;
+                        gs.ErrorCode = 16;
                     }
                     f1.textBox2.Text = ecode;
                 }
@@ -555,10 +485,10 @@ namespace UltimateBlueScreenSimulator
                 f1.WindowState = FormWindowState.Minimized;
                 f1.ShowInTaskbar = false;
                 f1.ShowIcon = false;
-                f1.closecuzhidden = true;
+                gs.PM_Lockout = true;
                 if (!args.Contains("/c"))
                 {
-                    f1.error = 1;
+                    gs.ErrorCode = 1;
                 }
             }
             if (args.Contains("/hwm"))
@@ -573,16 +503,9 @@ namespace UltimateBlueScreenSimulator
             if (args.Contains("/c"))
             {
                 f1.Crash();
-                f2.Crash();
             }
             //run application
-            if (!useNewUi)
-            {
-                Application.Run(f1);
-            } else
-            {
-                Application.Run(f2);
-            }
+            Application.Run(f1);
         }
 
         /// <summary>
@@ -768,5 +691,39 @@ namespace UltimateBlueScreenSimulator
             Program.bluescreens.Add(new BlueScreen("Windows 10"));
             Program.bluescreens.Add(new BlueScreen("Windows 11"));
         }
+
+
+        public static bool DoWeHaveInternet(long minimumSpeed)
+        {
+            if (!NetworkInterface.GetIsNetworkAvailable())
+                return false;
+
+            foreach (NetworkInterface ni in NetworkInterface.GetAllNetworkInterfaces())
+            {
+                // discard because of standard reasons
+                if ((ni.OperationalStatus != OperationalStatus.Up) ||
+                    (ni.NetworkInterfaceType == NetworkInterfaceType.Loopback) ||
+                    (ni.NetworkInterfaceType == NetworkInterfaceType.Tunnel))
+                    continue;
+
+                // this allow to filter modems, serial, etc.
+                // I use 10000000 as a minimum speed for most cases
+                if (ni.Speed < minimumSpeed)
+                    continue;
+
+                // discard virtual cards (virtual box, virtual pc, etc.)
+                if ((ni.Description.IndexOf("virtual", StringComparison.OrdinalIgnoreCase) >= 0) ||
+                    (ni.Name.IndexOf("virtual", StringComparison.OrdinalIgnoreCase) >= 0))
+                    continue;
+
+                // discard "Microsoft Loopback Adapter", it will not show as NetworkInterfaceType.Loopback but as Ethernet Card.
+                if (ni.Description.Equals("Microsoft Loopback Adapter", StringComparison.OrdinalIgnoreCase))
+                    continue;
+
+                return true;
+            }
+            return false;
+        }
+
     }
 }

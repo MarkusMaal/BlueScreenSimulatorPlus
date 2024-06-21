@@ -113,6 +113,7 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.waitPopup = new System.Windows.Forms.Timer(this.components);
+            this.returnToNewinterfaceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.flowLayoutPanel1.SuspendLayout();
             this.WXOptions.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
@@ -910,6 +911,7 @@
             this.toolStripSeparator1,
             this.nightThemeToolStripMenuItem,
             this.toolStripSeparator4,
+            this.returnToNewinterfaceToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.simulatorToolStripMenuItem.Margin = new System.Windows.Forms.Padding(5, 0, 0, 0);
             this.simulatorToolStripMenuItem.Name = "simulatorToolStripMenuItem";
@@ -923,7 +925,7 @@
             // simulateToolStripMenuItem
             // 
             this.simulateToolStripMenuItem.Name = "simulateToolStripMenuItem";
-            this.simulateToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.simulateToolStripMenuItem.Size = new System.Drawing.Size(256, 22);
             this.simulateToolStripMenuItem.Text = "&Simulate";
             this.simulateToolStripMenuItem.Click += new System.EventHandler(this.SimulateToolStripMenuItem_Click);
             // 
@@ -933,7 +935,7 @@
             this.autoUpdateToolStripMenuItem,
             this.simulatorSettingsToolStripMenuItem});
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(256, 22);
             this.settingsToolStripMenuItem.Text = "Settings";
             this.settingsToolStripMenuItem.DropDownOpening += new System.EventHandler(this.SimulatorToolStripMenuItem_DropDownOpening);
             // 
@@ -960,26 +962,26 @@
             // 
             this.toolStripSeparator1.AutoSize = false;
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(138, 3);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(253, 3);
             // 
             // nightThemeToolStripMenuItem
             // 
             this.nightThemeToolStripMenuItem.CheckOnClick = true;
             this.nightThemeToolStripMenuItem.Name = "nightThemeToolStripMenuItem";
-            this.nightThemeToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.nightThemeToolStripMenuItem.Size = new System.Drawing.Size(256, 22);
             this.nightThemeToolStripMenuItem.Text = "Night theme";
             this.nightThemeToolStripMenuItem.CheckStateChanged += new System.EventHandler(this.LightSwitch);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(138, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(253, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(256, 22);
             this.exitToolStripMenuItem.Text = "E&xit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
@@ -1093,6 +1095,15 @@
             // waitPopup
             // 
             this.waitPopup.Tick += new System.EventHandler(this.WaitPopup_Tick);
+            // 
+            // returnToNewinterfaceToolStripMenuItem
+            // 
+            this.returnToNewinterfaceToolStripMenuItem.Name = "returnToNewinterfaceToolStripMenuItem";
+            this.returnToNewinterfaceToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
+            | System.Windows.Forms.Keys.F4)));
+            this.returnToNewinterfaceToolStripMenuItem.Size = new System.Drawing.Size(256, 22);
+            this.returnToNewinterfaceToolStripMenuItem.Text = "Restore new &interface";
+            this.returnToNewinterfaceToolStripMenuItem.Click += new System.EventHandler(this.returnToNewinterfaceToolStripMenuItem_Click);
             // 
             // Main
             // 
@@ -1230,6 +1241,7 @@
         private System.Windows.Forms.Label customMessageLabel1;
         private System.Windows.Forms.TextBox customMessageText;
         private System.Windows.Forms.CheckBox customCheckBox;
+        private System.Windows.Forms.ToolStripMenuItem returnToNewinterfaceToolStripMenuItem;
     }
 }
 

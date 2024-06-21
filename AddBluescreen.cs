@@ -11,7 +11,7 @@ namespace UltimateBlueScreenSimulator
         string base_os = "Windows 1.x/2.x";
         public AddBluescreen()
         {
-            MaterialSkinManager materialSkinManager = Program.f2.materialSkinManager;
+            MaterialSkinManager materialSkinManager = Program.f1.materialSkinManager;
             materialSkinManager.AddFormToManage(this);
             InitializeComponent();
         }
@@ -135,7 +135,7 @@ namespace UltimateBlueScreenSimulator
 
         private void JustifyWindowsWarriors(object sender, EventArgs e)
         {
-            if (Program.f1.enableeggs)
+            if (Program.gs.EnableEggs)
             {
                 if (osBox.Text.Contains("Linux"))
                 {

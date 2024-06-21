@@ -22,7 +22,7 @@ namespace UltimateBlueScreenSimulator
 
         public IndexForm()
         {
-            MaterialSkinManager materialSkinManager = Program.f2.materialSkinManager;
+            MaterialSkinManager materialSkinManager = Program.f1.materialSkinManager;
             materialSkinManager.AddFormToManage(this);
             InitializeComponent();
         }
@@ -263,7 +263,7 @@ namespace UltimateBlueScreenSimulator
                 }
             } else
             {
-                if (Program.f1.enableeggs)
+                if (Program.gs.EnableEggs)
                 {
                     MessageBox.Show("Nothing useful here.", "NT advanced options", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 } else
