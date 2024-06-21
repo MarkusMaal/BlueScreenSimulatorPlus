@@ -66,7 +66,6 @@ namespace UltimateBlueScreenSimulator
                 this.Text += "          // UNDER CONSTRUCTION //";
             }
             windowVersion.Items.Clear();
-            accentBox.SelectedIndex = 6;
             for (int i = Program.bluescreens.Count - 1; i >= 0; i--)
             {
                 windowVersion.Items.Add(Program.bluescreens[i].GetString("friendlyname"));
@@ -96,6 +95,13 @@ namespace UltimateBlueScreenSimulator
             {
             }
             GetOS();
+            bool DarkMode = (int)Registry.GetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize", "AppsUseLightTheme", 1) == 0;
+            Program.gs.NightTheme = DarkMode;
+            if (Program.gs.AutoDark && DarkMode)
+            {
+                materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
+            }
+            Program.gs.ApplyScheme();
         }
 
 
@@ -206,15 +212,6 @@ namespace UltimateBlueScreenSimulator
             flowLayoutPanel4.Width = this.Width - sub;
         }
 
-        private void materialButton2_Click(object sender, EventArgs e)
-        {
-            if (MessageBox.Show("The old UI is deprecated and will not recieve any new updates. Do you still want to continue?.", "Restore old layout", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
-            {
-                this.Hide();
-                Main m = new Main();
-                m.Show();
-            }
-        }
 
         private void windowVersion_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -696,9 +693,75 @@ namespace UltimateBlueScreenSimulator
 
         private void materialTabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (materialTabControl1.SelectedIndex == 1)
+            switch (materialTabControl1.SelectedIndex)
             {
-                logIf.Text = me.GetLog();
+                case 1:
+                    logIf.Text = Program.gs.GetLog();
+                    break;
+                case 2:
+                    materialTabControl1.SelectedIndex = 0;
+                    materialTabControl1.TabPages[0].Show();
+                    this.Hide();
+                    if (!abopen)
+                    {
+                        AboutSettingsDialog ab1 = new AboutSettingsDialog
+                        {
+                            Text = "Settings",
+                            SettingTab = true,
+                            StartPosition = FormStartPosition.Manual,
+                            Location = this.Location,
+                            Size = this.Size
+                        };
+                        ab1.ShowDialog();
+                        ab1.Dispose();
+                        abopen = false;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Settings window is already open", "Cannot open settings", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    this.Show();
+                    break;
+                case 3:
+                    materialTabControl1.SelectedIndex = 0;
+                    materialTabControl1.TabPages[0].Show();
+                    this.Hide();
+                    if (!abopen)
+                    {
+                        AboutSettingsDialog ab1 = new AboutSettingsDialog
+                        {
+                            Text = "Help and about",
+                            SettingTab = false,
+                            StartPosition = FormStartPosition.Manual,
+                            Location = this.Location,
+                            Size = this.Size
+                        };
+                        ab1.ShowDialog();
+                        ab1.Dispose();
+                        abopen = false;
+                    }
+                    else
+                    {
+                        MessageBox.Show("The window is already open", "Cannot open window", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    this.Show();
+                    break;
+                case 4:
+                    materialTabControl1.SelectedIndex = 0;
+                    materialTabControl1.TabPages[0].Show();
+                    PrankMode pm = new PrankMode();
+                    pm.Show();
+                    break;
+                case 5:
+                    materialTabControl1.SelectedIndex = 0;
+                    materialTabControl1.TabPages[0].Show();
+                    if (MessageBox.Show("The old UI is deprecated and will not recieve any new updates. Do you still want to continue?.", "Restore old layout", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                    {
+                        this.Hide();
+                        Main m = new Main();
+                        m.Show();
+                    }
+                    break;
             }
         }
 
@@ -913,19 +976,6 @@ namespace UltimateBlueScreenSimulator
             pt.Dispose();
         }
 
-        private void darkMode_CheckedChanged(object sender, EventArgs e)
-        {
-            if (darkMode.Checked)
-            {
-                materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
-            } else
-            {
-                materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
-            }
-            // used in older builds that had old interface available for some windows
-            //Program.f1.nightThemeToolStripMenuItem.Checked = darkMode.Checked;
-        }
-
         private void quickHelp_Popup(object sender, PopupEventArgs e)
         {
             if (e.AssociatedControl != null)
@@ -957,55 +1007,11 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void materialButton4_Click(object sender, EventArgs e)
-        {
-            if (!abopen)
-            {
-                AboutSettingsDialog ab1 = new AboutSettingsDialog
-                {
-                    Text = "Settings",
-                    SettingTab = true
-                };
-                ab1.ShowDialog();
-                ab1.Dispose();
-                abopen = false;
-            }
-            else
-            {
-                MessageBox.Show("Settings window is already open", "Cannot open settings", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
-
-        private void materialButton3_Click_1(object sender, EventArgs e)
-        {
-            if (!abopen)
-            {
-                AboutSettingsDialog ab1 = new AboutSettingsDialog
-                {
-                    Text = "Help and about",
-                    SettingTab = false
-                };
-                ab1.ShowDialog();
-                ab1.Dispose();
-                abopen = false;
-            }
-            else
-            {
-                MessageBox.Show("The window is already open", "Cannot open window", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
-
-        private void materialButton5_Click(object sender, EventArgs e)
-        {
-            PrankMode pm = new PrankMode();
-            pm.Show();
-        }
-
         private void materialButton6_Click(object sender, EventArgs e)
         {
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                File.WriteAllText(saveFileDialog1.FileName, me.GetLog(false), Encoding.Unicode);
+                File.WriteAllText(saveFileDialog1.FileName, Program.gs.GetLog(false), Encoding.Unicode);
             }
         }
 
@@ -1017,67 +1023,6 @@ namespace UltimateBlueScreenSimulator
         ColorScheme MakeScheme(Accent accent)
         {
             return new ColorScheme(Primary.Blue800, Primary.Blue900, Primary.Blue400, accent, TextShade.WHITE);
-        }
-
-        private void materialComboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
-            switch (accentBox.SelectedItem.ToString())
-            {
-                case "Indigo":
-                    materialSkinManager.ColorScheme = MakeScheme(Accent.Indigo700);
-                    break;
-                case "Lime":
-                    materialSkinManager.ColorScheme = MakeScheme(Accent.Lime700);
-                    break;
-                case "Red":
-                    materialSkinManager.ColorScheme = MakeScheme(Accent.Red700);
-                    break;
-                case "Pink":
-                    materialSkinManager.ColorScheme = MakeScheme(Accent.Pink700);
-                    break;
-                case "Orange":
-                    materialSkinManager.ColorScheme = MakeScheme(Accent.Orange700);
-                    break;
-                case "Amber":
-                    materialSkinManager.ColorScheme = MakeScheme(Accent.Amber700);
-                    break;
-                case "Blue":
-                    materialSkinManager.ColorScheme = MakeScheme(Accent.Blue700);
-                    break;
-                case "Cyan":
-                    materialSkinManager.ColorScheme = MakeScheme(Accent.Cyan700);
-                    break;
-                case "Deep Orange":
-                    materialSkinManager.ColorScheme = MakeScheme(Accent.DeepOrange700);
-                    break;
-                case "Deep Purple":
-                    materialSkinManager.ColorScheme = MakeScheme(Accent.DeepPurple700);
-                    break;
-                case "Green":
-                    materialSkinManager.ColorScheme = MakeScheme(Accent.Green700);
-                    break;
-                case "Light Blue":
-                    materialSkinManager.ColorScheme = MakeScheme(Accent.LightBlue700);
-                    break;
-                case "Light Green":
-                    materialSkinManager.ColorScheme = MakeScheme(Accent.LightGreen700);
-                    break;
-                case "Purple":
-                    materialSkinManager.ColorScheme = MakeScheme(Accent.Purple700);
-                    break;
-                case "Teal":
-                    materialSkinManager.ColorScheme = MakeScheme(Accent.Teal700);
-                    break;
-                case "Yellow":
-                    materialSkinManager.ColorScheme = MakeScheme(Accent.Yellow700);
-                    break;
-            }
-        }
-
-        private void materialListBox2_SelectedIndexChanged(object sender, MaterialListBoxItem selectedItem)
-        {
-
         }
 
         private void countdownBox_CheckedChanged(object sender, EventArgs e)
@@ -1306,6 +1251,17 @@ namespace UltimateBlueScreenSimulator
                 else
                 {
                     Application.Exit();
+                }
+            }
+        }
+
+        private void NewUI_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (Program.gs.EnableEggs)
+            {
+                if ((e.KeyCode == Keys.C) && e.Control && e.Alt)
+                {
+                    new ClickIt().Show();
                 }
             }
         }

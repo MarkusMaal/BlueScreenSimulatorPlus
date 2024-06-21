@@ -154,6 +154,7 @@ namespace UltimateBlueScreenSimulator
             {
                 updatePanel.Dispose();
                 simulatorSettingsPanel.Dispose();
+                appearancePanel.Dispose();
                 rndFactButton.Visible = Program.gs.EnableEggs;
             }
             //Hide help/about tabs and get settings
@@ -164,6 +165,8 @@ namespace UltimateBlueScreenSimulator
                 helpPanel.Dispose();
                 eggHunterButton.Checked = Program.gs.EnableEggs;
                 darkDetectCheck.Checked = Program.gs.AutoDark;
+                accentBox.SelectedIndex = (int)Program.gs.ColorScheme;
+                darkMode.Checked = Program.gs.NightTheme;
                 if (Program.gs.ScaleMode == GlobalSettings.ScaleModes.HighQualityBicubic) { scalingModeBox.SelectedIndex = 0; }
                 if (Program.gs.ScaleMode == GlobalSettings.ScaleModes.HighQualityBilinear) { scalingModeBox.SelectedIndex = 1; }
                 if (Program.gs.ScaleMode == GlobalSettings.ScaleModes.Bilinear) { scalingModeBox.SelectedIndex = 4; }
@@ -1554,6 +1557,30 @@ namespace UltimateBlueScreenSimulator
                 Program.loadfinished = true;
             }));
             dummyThread.Start();
+        }
+
+        private void accentBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Program.gs.ColorScheme = (GlobalSettings.ColorSchemes)accentBox.SelectedIndex;
+            Program.gs.ApplyScheme();
+        }
+
+        private void darkMode_CheckedChanged(object sender, EventArgs e)
+        {
+            Program.gs.NightTheme = darkMode.Checked;
+            if (darkMode.Checked)
+            {
+                Program.f1.materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
+            }
+            else
+            {
+                Program.f1.materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
+            }
+        }
+
+        private void rtlSwitch_CheckedChanged(object sender, EventArgs e)
+        {
+            Program.f1.RightToLeft = rtlSwitch.Checked ? RightToLeft.Yes : RightToLeft.Inherit;
         }
     }
 }

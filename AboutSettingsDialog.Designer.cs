@@ -53,7 +53,6 @@ namespace UltimateBlueScreenSimulator
             this.materialCard5 = new System.Windows.Forms.Panel();
             this.updatePanel = new System.Windows.Forms.TabPage();
             this.materialCard6 = new System.Windows.Forms.Panel();
-            this.darkDetectCheck = new MaterialSkin.Controls.MaterialCheckbox();
             this.updatePanelHeading = new MaterialSkin.Controls.MaterialLabel();
             this.customServerButton = new MaterialSkin.Controls.MaterialButton();
             this.updateSettingsFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
@@ -113,6 +112,15 @@ namespace UltimateBlueScreenSimulator
             this.commandLinePanel = new System.Windows.Forms.TabPage();
             this.materialCard3 = new System.Windows.Forms.Panel();
             this.commandLineHelpDisplay = new MaterialSkin.Controls.MaterialMultiLineTextBox2();
+            this.appearancePanel = new System.Windows.Forms.TabPage();
+            this.darkDetectCheck = new MaterialSkin.Controls.MaterialCheckbox();
+            this.materialSwitch1 = new MaterialSkin.Controls.MaterialSwitch();
+            this.rtlSwitch = new MaterialSkin.Controls.MaterialSwitch();
+            this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
+            this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
+            this.materialLabel8 = new MaterialSkin.Controls.MaterialLabel();
+            this.accentBox = new MaterialSkin.Controls.MaterialComboBox();
+            this.darkMode = new MaterialSkin.Controls.MaterialSwitch();
             this.helpTip = new System.Windows.Forms.ToolTip(this.components);
             this.updateCheckerTimer = new System.Windows.Forms.Timer(this.components);
             this.saveBsconfig = new System.Windows.Forms.SaveFileDialog();
@@ -142,6 +150,7 @@ namespace UltimateBlueScreenSimulator
             this.materialCard1.SuspendLayout();
             this.commandLinePanel.SuspendLayout();
             this.materialCard3.SuspendLayout();
+            this.appearancePanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // aboutTable
@@ -426,6 +435,7 @@ namespace UltimateBlueScreenSimulator
             this.aboutSettingsTabControl.Controls.Add(this.simulatorSettingsPanel);
             this.aboutSettingsTabControl.Controls.Add(this.helpPanel);
             this.aboutSettingsTabControl.Controls.Add(this.commandLinePanel);
+            this.aboutSettingsTabControl.Controls.Add(this.appearancePanel);
             this.aboutSettingsTabControl.Depth = 0;
             this.aboutSettingsTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.aboutSettingsTabControl.Location = new System.Drawing.Point(3, 64);
@@ -474,7 +484,6 @@ namespace UltimateBlueScreenSimulator
             // 
             // materialCard6
             // 
-            this.materialCard6.Controls.Add(this.darkDetectCheck);
             this.materialCard6.Controls.Add(this.updatePanelHeading);
             this.materialCard6.Controls.Add(this.customServerButton);
             this.materialCard6.Controls.Add(this.updateSettingsFlowPanel);
@@ -496,28 +505,6 @@ namespace UltimateBlueScreenSimulator
             this.materialCard6.Name = "materialCard6";
             this.materialCard6.Size = new System.Drawing.Size(720, 481);
             this.materialCard6.TabIndex = 15;
-            // 
-            // darkDetectCheck
-            // 
-            this.darkDetectCheck.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.darkDetectCheck.AutoSize = true;
-            this.darkDetectCheck.Checked = true;
-            this.darkDetectCheck.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.darkDetectCheck.Depth = 0;
-            this.darkDetectCheck.Location = new System.Drawing.Point(455, 425);
-            this.darkDetectCheck.Margin = new System.Windows.Forms.Padding(0);
-            this.darkDetectCheck.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.darkDetectCheck.MouseState = MaterialSkin.MouseState.HOVER;
-            this.darkDetectCheck.Name = "darkDetectCheck";
-            this.darkDetectCheck.ReadOnly = false;
-            this.darkDetectCheck.Ripple = true;
-            this.darkDetectCheck.Size = new System.Drawing.Size(251, 37);
-            this.darkDetectCheck.TabIndex = 14;
-            this.darkDetectCheck.Text = "Enable dark mode detection [?]";
-            this.helpTip.SetToolTip(this.darkDetectCheck, "Automatically switches the program to night mode on startup if Windows is configu" +
-        "red to use dark mode.");
-            this.darkDetectCheck.UseVisualStyleBackColor = true;
-            this.darkDetectCheck.CheckedChanged += new System.EventHandler(this.darkDetectCheck_CheckedChanged);
             // 
             // updatePanelHeading
             // 
@@ -1641,6 +1628,172 @@ namespace UltimateBlueScreenSimulator
             this.commandLineHelpDisplay.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.commandLineHelpDisplay.UseSystemPasswordChar = false;
             // 
+            // appearancePanel
+            // 
+            this.appearancePanel.BackColor = System.Drawing.Color.Transparent;
+            this.appearancePanel.Controls.Add(this.darkDetectCheck);
+            this.appearancePanel.Controls.Add(this.materialSwitch1);
+            this.appearancePanel.Controls.Add(this.rtlSwitch);
+            this.appearancePanel.Controls.Add(this.materialLabel2);
+            this.appearancePanel.Controls.Add(this.materialLabel1);
+            this.appearancePanel.Controls.Add(this.materialLabel8);
+            this.appearancePanel.Controls.Add(this.accentBox);
+            this.appearancePanel.Controls.Add(this.darkMode);
+            this.appearancePanel.Location = new System.Drawing.Point(4, 22);
+            this.appearancePanel.Name = "appearancePanel";
+            this.appearancePanel.Size = new System.Drawing.Size(726, 487);
+            this.appearancePanel.TabIndex = 5;
+            this.appearancePanel.Text = "Appearance";
+            // 
+            // darkDetectCheck
+            // 
+            this.darkDetectCheck.AutoSize = true;
+            this.darkDetectCheck.Checked = true;
+            this.darkDetectCheck.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.darkDetectCheck.Depth = 0;
+            this.darkDetectCheck.Location = new System.Drawing.Point(20, 85);
+            this.darkDetectCheck.Margin = new System.Windows.Forms.Padding(0);
+            this.darkDetectCheck.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.darkDetectCheck.MouseState = MaterialSkin.MouseState.HOVER;
+            this.darkDetectCheck.Name = "darkDetectCheck";
+            this.darkDetectCheck.ReadOnly = false;
+            this.darkDetectCheck.Ripple = true;
+            this.darkDetectCheck.Size = new System.Drawing.Size(251, 37);
+            this.darkDetectCheck.TabIndex = 16;
+            this.darkDetectCheck.Text = "Enable dark mode detection [?]";
+            this.helpTip.SetToolTip(this.darkDetectCheck, "Automatically switches the program to night mode on startup if Windows is configu" +
+        "red to use dark mode.");
+            this.darkDetectCheck.UseVisualStyleBackColor = true;
+            // 
+            // materialSwitch1
+            // 
+            this.materialSwitch1.AutoSize = true;
+            this.materialSwitch1.Checked = true;
+            this.materialSwitch1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.materialSwitch1.Depth = 0;
+            this.materialSwitch1.Enabled = false;
+            this.materialSwitch1.Location = new System.Drawing.Point(20, 273);
+            this.materialSwitch1.Margin = new System.Windows.Forms.Padding(0);
+            this.materialSwitch1.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.materialSwitch1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialSwitch1.Name = "materialSwitch1";
+            this.materialSwitch1.Ripple = true;
+            this.materialSwitch1.Size = new System.Drawing.Size(162, 37);
+            this.materialSwitch1.TabIndex = 15;
+            this.materialSwitch1.Text = "Tooltips (TBD)";
+            this.materialSwitch1.UseVisualStyleBackColor = true;
+            // 
+            // rtlSwitch
+            // 
+            this.rtlSwitch.AutoSize = true;
+            this.rtlSwitch.Depth = 0;
+            this.rtlSwitch.Location = new System.Drawing.Point(20, 236);
+            this.rtlSwitch.Margin = new System.Windows.Forms.Padding(0);
+            this.rtlSwitch.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.rtlSwitch.MouseState = MaterialSkin.MouseState.HOVER;
+            this.rtlSwitch.Name = "rtlSwitch";
+            this.rtlSwitch.Ripple = true;
+            this.rtlSwitch.Size = new System.Drawing.Size(139, 37);
+            this.rtlSwitch.TabIndex = 15;
+            this.rtlSwitch.Text = "Forced RTL";
+            this.rtlSwitch.UseVisualStyleBackColor = true;
+            this.rtlSwitch.CheckedChanged += new System.EventHandler(this.rtlSwitch_CheckedChanged);
+            // 
+            // materialLabel2
+            // 
+            this.materialLabel2.AutoSize = true;
+            this.materialLabel2.Depth = 0;
+            this.materialLabel2.Font = new System.Drawing.Font("Roboto", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel2.FontType = MaterialSkin.MaterialSkinManager.fontType.H5;
+            this.materialLabel2.Location = new System.Drawing.Point(21, 198);
+            this.materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel2.Name = "materialLabel2";
+            this.materialLabel2.Size = new System.Drawing.Size(136, 29);
+            this.materialLabel2.TabIndex = 14;
+            this.materialLabel2.Text = "Accessibility";
+            // 
+            // materialLabel1
+            // 
+            this.materialLabel1.AutoSize = true;
+            this.materialLabel1.Depth = 0;
+            this.materialLabel1.Font = new System.Drawing.Font("Roboto", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel1.FontType = MaterialSkin.MaterialSkinManager.fontType.H5;
+            this.materialLabel1.Location = new System.Drawing.Point(24, 19);
+            this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel1.Name = "materialLabel1";
+            this.materialLabel1.Size = new System.Drawing.Size(94, 29);
+            this.materialLabel1.TabIndex = 14;
+            this.materialLabel1.Text = "Theming";
+            // 
+            // materialLabel8
+            // 
+            this.materialLabel8.AutoSize = true;
+            this.materialLabel8.Depth = 0;
+            this.materialLabel8.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel8.Location = new System.Drawing.Point(26, 123);
+            this.materialLabel8.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel8.Name = "materialLabel8";
+            this.materialLabel8.Size = new System.Drawing.Size(88, 19);
+            this.materialLabel8.TabIndex = 13;
+            this.materialLabel8.Text = "Accent color";
+            // 
+            // accentBox
+            // 
+            this.accentBox.AutoResize = false;
+            this.accentBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.accentBox.Depth = 0;
+            this.accentBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.accentBox.DropDownHeight = 118;
+            this.accentBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.accentBox.DropDownWidth = 121;
+            this.accentBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.accentBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.accentBox.FormattingEnabled = true;
+            this.accentBox.IntegralHeight = false;
+            this.accentBox.ItemHeight = 29;
+            this.accentBox.Items.AddRange(new object[] {
+            "Amber",
+            "Blue",
+            "Cyan",
+            "Deep Orange",
+            "Deep Purple",
+            "Green",
+            "Indigo",
+            "Light Blue",
+            "Light Green",
+            "Lime",
+            "Orange",
+            "Pink",
+            "Purple",
+            "Red",
+            "Teal",
+            "Yellow"});
+            this.accentBox.Location = new System.Drawing.Point(29, 146);
+            this.accentBox.MaxDropDownItems = 4;
+            this.accentBox.MouseState = MaterialSkin.MouseState.OUT;
+            this.accentBox.Name = "accentBox";
+            this.accentBox.Size = new System.Drawing.Size(189, 35);
+            this.accentBox.StartIndex = 0;
+            this.accentBox.TabIndex = 12;
+            this.accentBox.UseTallSize = false;
+            this.accentBox.SelectedIndexChanged += new System.EventHandler(this.accentBox_SelectedIndexChanged);
+            // 
+            // darkMode
+            // 
+            this.darkMode.AutoSize = true;
+            this.darkMode.Depth = 0;
+            this.darkMode.Location = new System.Drawing.Point(20, 48);
+            this.darkMode.Margin = new System.Windows.Forms.Padding(0);
+            this.darkMode.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.darkMode.MouseState = MaterialSkin.MouseState.HOVER;
+            this.darkMode.Name = "darkMode";
+            this.darkMode.Ripple = true;
+            this.darkMode.Size = new System.Drawing.Size(140, 37);
+            this.darkMode.TabIndex = 11;
+            this.darkMode.Text = "Night mode";
+            this.darkMode.UseVisualStyleBackColor = true;
+            this.darkMode.CheckedChanged += new System.EventHandler(this.darkMode_CheckedChanged);
+            // 
             // updateCheckerTimer
             // 
             this.updateCheckerTimer.Tick += new System.EventHandler(this.UpdateTimer_Tick);
@@ -1708,6 +1861,8 @@ namespace UltimateBlueScreenSimulator
             this.materialCard1.ResumeLayout(false);
             this.commandLinePanel.ResumeLayout(false);
             this.materialCard3.ResumeLayout(false);
+            this.appearancePanel.ResumeLayout(false);
+            this.appearancePanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1780,7 +1935,6 @@ namespace UltimateBlueScreenSimulator
         private MaterialCheckbox randomnessCheckBox;
         private MaterialCheckbox selectAllBox;
         private MaterialLabel label1;
-        private MaterialCheckbox darkDetectCheck;
         private MaterialSkin.Controls.MaterialButton howToGetHelpButton;
         private MaterialSkin.Controls.MaterialButton purposesOfThisProgramButton;
         private MaterialSkin.Controls.MaterialButton systemRequirementsButton1;
@@ -1800,5 +1954,14 @@ namespace UltimateBlueScreenSimulator
         private System.Windows.Forms.Panel materialCard6;
         private System.Windows.Forms.Panel materialCard7;
         private MaterialButton materialButton4;
+        private System.Windows.Forms.TabPage appearancePanel;
+        private MaterialLabel materialLabel1;
+        private MaterialLabel materialLabel8;
+        private MaterialComboBox accentBox;
+        public MaterialSwitch darkMode;
+        private MaterialSwitch materialSwitch1;
+        private MaterialSwitch rtlSwitch;
+        private MaterialLabel materialLabel2;
+        private MaterialCheckbox darkDetectCheck;
     }
 }

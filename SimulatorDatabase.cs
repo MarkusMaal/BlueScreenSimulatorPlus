@@ -121,8 +121,6 @@ namespace SimulatorDatabase
         readonly IDictionary<string, string> strings;
         readonly IDictionary<int, int> progression;
 
-        public List<string> log1;
-
         private readonly Random r;
 
         ///<summary>
@@ -130,7 +128,6 @@ namespace SimulatorDatabase
         ///</summary>
         public BlueScreen(string base_os, bool autosetup = true)
         {
-            this.log1 = new List<string>();
             this.r = new Random();
             this.background = Color.FromArgb(0, 0, 0);
             this.foreground = Color.FromArgb(255, 255, 255);
@@ -180,20 +177,7 @@ namespace SimulatorDatabase
         ///<param name="message">Description of the event</param>
         public void Log(string e, string message)
         {
-            log1.Add("[" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "] " +e + " - "+message);
-        }
-
-        ///<summary>
-        ///Gets all logged events
-        ///</summary>
-        ///<param name="reverse">Allows the log to be reversed, making the recent events show up first (default behaviour). If you don't want the log to be reverse, set this value to false.</param>
-        ///<returns>A string containing all logged events</returns>
-        public string GetLog(bool reverse = true)
-        {
-            if (reverse) { log1.Reverse(); }
-            string ret = string.Join("\n", log1.ToArray());
-            if (reverse) { log1.Reverse(); }
-            return ret;
+            Program.gs.Log(e, message, this.strings.Keys.Contains("friendlyname") ? this.strings["friendlyname"] : "");
         }
 
         // blue screen properties

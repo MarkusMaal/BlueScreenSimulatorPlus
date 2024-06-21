@@ -139,11 +139,13 @@ namespace UltimateBlueScreenSimulator
             verificate = Verikey(args);
             if (bad) { return; }
             if (!verificate) { return; }
+            gs.Log("Info", "Verifile passed");
             //If hidesplash flag is not set, display the splash screen
             if (!args.Contains("/hidesplash"))
             {
                 if (!args.Contains("/finalize_update"))
                 {
+                    gs.Log("Info", "Finalising update");
                     hidden = true;
                     spl = new Splash();
                     spl.ShowDialog();
@@ -154,10 +156,13 @@ namespace UltimateBlueScreenSimulator
                     }
                 }
             }
+            gs.Log("Info", "Initializing draw routines");
             dr = new DrawRoutines();
             //Initialize forms
             //f2 = new Main();
+            gs.Log("Info", "Creating initial form");
             f1 = new NewUI();
+            gs.Log("Info", "Initializing configurations list");
             bluescreens = new List<BlueScreen>();
             ReRe();
             //Load application configuration if it exists
@@ -169,6 +174,7 @@ namespace UltimateBlueScreenSimulator
                 }
                 catch (Exception ex)
                 {
+                    gs.Log("Critical", $"VioletScreen exception: {ex.Message}\n{ex.StackTrace}");
                     Metaerror me = new Metaerror()
                     {
                         message = ex.Message,
@@ -212,6 +218,7 @@ namespace UltimateBlueScreenSimulator
 
 
             //Load Windows NT error codes from the database
+            gs.Log("Info", $"Initializing NT error code database");
             f1.comboBox1.Items.Clear();
             string database = "";
             try
@@ -247,6 +254,7 @@ namespace UltimateBlueScreenSimulator
             }
             if (args.Contains("/finalize_update"))
             {
+                gs.Log("Info", $"Performing update (Stage 2)");
                 UpdateInterface ui = new UpdateInterface
                 {
                     finalize = true
@@ -270,6 +278,7 @@ namespace UltimateBlueScreenSimulator
                 if (argument.Contains("/config:"))
                 {
                     string filename = argument.Split(':')[1];
+                    gs.Log("Info", $"Loading configuration file: {filename}");
                     if (File.Exists(filename))
                     {
                         if (filename != "")
@@ -316,6 +325,7 @@ namespace UltimateBlueScreenSimulator
             //sets other optional flags
             if (args.Contains("/ddesc"))
             {
+                gs.Log("Info", "Forcing show_description to disabled state");
                 foreach (BlueScreen bs in bluescreens)
                 {
                     bs.SetBool("show_description", false);
@@ -323,6 +333,7 @@ namespace UltimateBlueScreenSimulator
             }
             if (args.Contains("/desc"))
             {
+                gs.Log("Info", "Forcing show_description to enabled state");
                 foreach (BlueScreen bs in bluescreens)
                 {
                     bs.SetBool("show_description", true);
@@ -330,6 +341,7 @@ namespace UltimateBlueScreenSimulator
             }
             if (args.Contains("/dac"))
             {
+                gs.Log("Info", "Forcing autoclose to disabled state");
                 foreach (BlueScreen bs in bluescreens)
                 {
                     bs.SetBool("autoclose", false);
@@ -337,6 +349,7 @@ namespace UltimateBlueScreenSimulator
             }
             if (args.Contains("/ac"))
             {
+                gs.Log("Info", "Forcing autoclose to enabled state");
                 foreach (BlueScreen bs in bluescreens)
                 {
                     bs.SetBool("autoclose", true);
@@ -344,6 +357,7 @@ namespace UltimateBlueScreenSimulator
             }
             if (args.Contains("/ap"))
             {
+                gs.Log("Info", "Forcing acpi to enabled state");
                 foreach (BlueScreen bs in bluescreens)
                 {
                     bs.SetBool("acpi", true);
@@ -351,6 +365,7 @@ namespace UltimateBlueScreenSimulator
             }
             if (args.Contains("/dap"))
             {
+                gs.Log("Info", "Forcing acpi to disabled state");
                 foreach (BlueScreen bs in bluescreens)
                 {
                     bs.SetBool("acpi", false);
@@ -358,6 +373,7 @@ namespace UltimateBlueScreenSimulator
             }
             if (args.Contains("/amd"))
             {
+                gs.Log("Info", "Forcing amd to enabled state");
                 foreach (BlueScreen bs in bluescreens)
                 {
                     bs.SetBool("amd", true);
@@ -365,6 +381,7 @@ namespace UltimateBlueScreenSimulator
             }
             if (args.Contains("/damd"))
             {
+                gs.Log("Info", "Forcing amd to disabled state");
                 foreach (BlueScreen bs in bluescreens)
                 {
                     bs.SetBool("amd", false);
@@ -372,6 +389,7 @@ namespace UltimateBlueScreenSimulator
             }
             if (args.Contains("/blink"))
             {
+                gs.Log("Info", "Forcing blink to enabled state");
                 foreach (BlueScreen bs in bluescreens)
                 {
                     bs.SetBool("blink", true);
@@ -379,6 +397,7 @@ namespace UltimateBlueScreenSimulator
             }
             if (args.Contains("/dblink"))
             {
+                gs.Log("Info", "Forcing blink to disabled state");
                 foreach (BlueScreen bs in bluescreens)
                 {
                     bs.SetBool("blink", false);
@@ -386,6 +405,7 @@ namespace UltimateBlueScreenSimulator
             }
             if (args.Contains("/gs"))
             {
+                gs.Log("Info", "Forcing insider to enabled state");
                 foreach (BlueScreen bs in bluescreens)
                 {
                     bs.SetBool("insider", true);
@@ -393,6 +413,7 @@ namespace UltimateBlueScreenSimulator
             }
             if (args.Contains("/dgs"))
             {
+                gs.Log("Info", "Forcing insider to disabled state");
                 foreach (BlueScreen bs in bluescreens)
                 {
                     bs.SetBool("insider", false);
@@ -400,6 +421,7 @@ namespace UltimateBlueScreenSimulator
             }
             if (args.Contains("/qr"))
             {
+                gs.Log("Info", "Forcing qr to enabled state");
                 foreach (BlueScreen bs in bluescreens)
                 {
                     bs.SetBool("qr", true);
@@ -407,6 +429,7 @@ namespace UltimateBlueScreenSimulator
             }
             if (args.Contains("/dqr"))
             {
+                gs.Log("Info", "Forcing qr to disabled state");
                 foreach (BlueScreen bs in bluescreens)
                 {
                     bs.SetBool("qr", false);
@@ -414,6 +437,7 @@ namespace UltimateBlueScreenSimulator
             }
             if (args.Contains("/srv"))
             {
+                gs.Log("Info", "Forcing server to enabled state");
                 foreach (BlueScreen bs in bluescreens)
                 {
                     bs.SetBool("server", true);
@@ -421,6 +445,7 @@ namespace UltimateBlueScreenSimulator
             }
             if (args.Contains("/dsrv"))
             {
+                gs.Log("Info", "Forcing server to disabled state");
                 foreach (BlueScreen bs in bluescreens)
                 {
                     bs.SetBool("server", false);
@@ -428,6 +453,7 @@ namespace UltimateBlueScreenSimulator
             }
             if (args.Contains("/stack"))
             {
+                gs.Log("Info", "Forcing stack_trace to enabled state");
                 foreach (BlueScreen bs in bluescreens)
                 {
                     bs.SetBool("stack_trace", true);
@@ -435,6 +461,7 @@ namespace UltimateBlueScreenSimulator
             }
             if (args.Contains("/dstack"))
             {
+                gs.Log("Info", "Forcing stack_trace to disabled state");
                 foreach (BlueScreen bs in bluescreens)
                 {
                     bs.SetBool("stack_trace", false);
@@ -442,6 +469,7 @@ namespace UltimateBlueScreenSimulator
             }
             if (args.Contains("/win"))
             {
+                gs.Log("Info", "Forcing windowed to enabled state");
                 foreach (BlueScreen bs in bluescreens)
                 {
                     bs.SetBool("windowed", true);
@@ -449,6 +477,7 @@ namespace UltimateBlueScreenSimulator
             }
             if (args.Contains("/dfile"))
             {
+                gs.Log("Info", "Forcing culprit file to disabled state");
                 foreach (BlueScreen bs in bluescreens)
                 {
                     bs.SetBool("show_file", false);
@@ -466,6 +495,7 @@ namespace UltimateBlueScreenSimulator
             {
                 if (argument.StartsWith("/file:"))
                 {
+                    gs.Log("Info", "Setting culprit file");
                     f1.checkBox2.Checked = true;
                     string ecode = argument.Split(':')[1].ToString();
                     foreach (BlueScreen bs in bluescreens)
@@ -482,6 +512,7 @@ namespace UltimateBlueScreenSimulator
             //hide main interface if /h flag is set
             if (args.Contains("/h"))
             {
+                gs.Log("Info", "Hiding main interface");
                 f1.WindowState = FormWindowState.Minimized;
                 f1.ShowInTaskbar = false;
                 f1.ShowIcon = false;
@@ -493,6 +524,7 @@ namespace UltimateBlueScreenSimulator
             }
             if (args.Contains("/hwm"))
             {
+                gs.Log("Info", "Forcing watermark to disabled state");
                 foreach (BlueScreen bs in bluescreens)
                 {
                     bs.SetBool("watermark", false);
@@ -502,6 +534,7 @@ namespace UltimateBlueScreenSimulator
             //Simulate crash if /c flag is set
             if (args.Contains("/c"))
             {
+                gs.Log("Info", "Starting simulation from command line");
                 f1.Crash();
             }
             //run application
@@ -522,12 +555,15 @@ namespace UltimateBlueScreenSimulator
             {
                 if (Program.Verifile() != File.ReadAllText(Environment.GetEnvironmentVariable("USERPROFILE") + @"\bssp2_firstlaunch.txt"))
                 {
+                    gs.Log("Error", "Verifile attestation result: TAMPERED");
                     if (args.Contains("/c") && args.Contains("/hwm"))
                     {
                         MessageBox.Show("A malicious program or script tried to potentially fool you into thinking that your system crashed. Due to signature verification failure, this program has to close.\n\n\nWhat should I do?\n\nIf you did not download the Bluescreen simulator plus yourself, please scan your computer for potential viruses or malware\nIf you DID download blue screen simulator plus, then the problem is most likely caused by a recent hardware change, which can invalidate the signature. To recreate the signature, run following commands in command prompt:\ncd \"" + AppDomain.CurrentDomain.BaseDirectory + "\"\nBlue screen simulator plus.exe /clr\n\nAfter that, you should be able to relaunch the program after clicking \"OK\".", "Ultimate blue screen simulator plus", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                     bad = true;
                     return false;
+                } else {
+                    gs.Log("Info", "Verifile attestation result: VERIFIED");
                 }
             }
             if (!verifi)
@@ -535,8 +571,12 @@ namespace UltimateBlueScreenSimulator
                 bool preversion = false;
                 if (File.Exists(Environment.GetEnvironmentVariable("USERPROFILE") + @"\bssp_firstlaunch.txt"))
                 {
+                    gs.Log("Warning", "Verifile attestation result: LEGACY");
                     preversion = true;
                     File.Delete(Environment.GetEnvironmentVariable("USERPROFILE") + @"\bssp_firstlaunch.txt");
+                } else
+                {
+                    gs.Log("Warning", "Verifile attestation result: FOREIGN");
                 }
                 string usetype = "";
                 if (preversion) { usetype = "version of the "; }
@@ -546,6 +586,7 @@ namespace UltimateBlueScreenSimulator
                 }
                 else
                 {
+                    gs.Log("Info", "Registering Verifile data");
                     WriteFile();
                     return true;
                 }

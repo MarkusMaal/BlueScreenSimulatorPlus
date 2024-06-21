@@ -11,11 +11,13 @@ namespace UltimateBlueScreenSimulator
         internal string[] args = { " " };
         public Splash()
         {
+            Program.gs.Log("Info", "Initializing splash screen");
             InitializeComponent();
         }
 
         private void Timer1_Tick(object sender, EventArgs e)
         {
+            Program.gs.Log("Info", "Exiting splash screen");
             veriFileTimer.Enabled = false;
             Program.verificate = true;
             if (!File.Exists(Environment.GetEnvironmentVariable("USERPROFILE") + @"\bssp2_firstlaunch.txt")) { Program.verificate = false; }
@@ -55,6 +57,7 @@ namespace UltimateBlueScreenSimulator
 
         private void Splash_Load(object sender, EventArgs e)
         {
+            Program.gs.Log("Info", "Enabling visual styles");
             Application.EnableVisualStyles();
         }
     }

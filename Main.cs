@@ -10,6 +10,7 @@ using System.Threading;
 using System.Net.NetworkInformation;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Windows.Media.Animation;
 namespace UltimateBlueScreenSimulator
 {
     // DEPRECATED: Avoid making changes to this form unless absolutely neccessary! Use NewUI instead!
@@ -1063,7 +1064,10 @@ namespace UltimateBlueScreenSimulator
             }
             if (!e.Cancel)
             {
-                Application.Exit();
+                if (!Program.f1.Visible)
+                {
+                    Application.Exit();
+                }
             }
         }
 
