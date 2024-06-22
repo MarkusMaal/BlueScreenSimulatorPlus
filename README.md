@@ -1,7 +1,7 @@
 # BlueScreenSimulatorPlus (experimental branch)
 Open source code for BSSP. This is an enhanced blue screen simulator application for Windows. Use Visual Studio to recompile.
 
-Codename: ModestBlue
+Codename: ModestIndigo
 
 Version 3.0
 
@@ -108,7 +108,7 @@ Logs can be dumped with the GetLog method. There's also an optional "reverse" ar
 
 You can define a bluescreen using the SimulatorDatabase namespace. Here's an example
 
-```
+```C#
 using SimulatorDatabase;
 using System.Drawing;
 	
@@ -177,12 +177,12 @@ The following section contains quick documentation for each file in the project.
 * metaerror.cs                     - BSSP crash screen
 * PrankMode.cs                     - Prank mode interface
 * ProgressTuner.cs                 - Progress tuner interface
+* StringEdit.cs                    - Blue screen hacks a.k.a. additional options
 * TextView.cs                      - Text document viewer
 * UpdateInterface.cs               - Interface for update download and installation
 
 #### Legacy interfaces
 * Main.cs                          - Old layout
-* StringEdit.cs                    - Blue screen hacks a.k.a. additional options
 * SupportEditor.cs                 - Windows XP/Vista/7 blue screen support text modification interface (old beta)
 
 #### Load screens
