@@ -119,8 +119,7 @@
             this.materialLabel5.Font = new System.Drawing.Font("Roboto", 34F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.materialLabel5.FontType = MaterialSkin.MaterialSkinManager.fontType.H4;
             this.materialLabel5.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.materialLabel5.Location = new System.Drawing.Point(21, 15);
-            this.materialLabel5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.materialLabel5.Location = new System.Drawing.Point(16, 12);
             this.materialLabel5.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel5.Name = "materialLabel5";
             this.materialLabel5.Size = new System.Drawing.Size(142, 41);
@@ -134,7 +133,7 @@
             this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox1.Depth = 0;
             this.checkBox1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.checkBox1.Location = new System.Drawing.Point(0, 440);
+            this.checkBox1.Location = new System.Drawing.Point(0, 376);
             this.checkBox1.Margin = new System.Windows.Forms.Padding(0);
             this.checkBox1.MouseLocation = new System.Drawing.Point(-1, -1);
             this.checkBox1.MouseState = MaterialSkin.MouseState.HOVER;
@@ -156,7 +155,7 @@
             this.dumpBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.dumpBox.Depth = 0;
             this.dumpBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.dumpBox.Location = new System.Drawing.Point(850, 0);
+            this.dumpBox.Location = new System.Drawing.Point(638, 0);
             this.dumpBox.Margin = new System.Windows.Forms.Padding(0);
             this.dumpBox.MouseLocation = new System.Drawing.Point(-1, -1);
             this.dumpBox.MouseState = MaterialSkin.MouseState.HOVER;
@@ -176,8 +175,7 @@
             this.winPanel.Controls.Add(this.win1startup);
             this.winPanel.Controls.Add(this.win2startup);
             this.winPanel.Controls.Add(this.nostartup);
-            this.winPanel.Location = new System.Drawing.Point(854, 41);
-            this.winPanel.Margin = new System.Windows.Forms.Padding(4);
+            this.winPanel.Location = new System.Drawing.Point(641, 40);
             this.winPanel.Name = "winPanel";
             this.winPanel.Size = new System.Drawing.Size(239, 111);
             this.winPanel.TabIndex = 7;
@@ -330,7 +328,7 @@
             this.memoryBox.AutoSize = true;
             this.memoryBox.Depth = 0;
             this.memoryBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.memoryBox.Location = new System.Drawing.Point(594, 0);
+            this.memoryBox.Location = new System.Drawing.Point(0, 37);
             this.memoryBox.Margin = new System.Windows.Forms.Padding(0);
             this.memoryBox.MouseLocation = new System.Drawing.Point(-1, -1);
             this.memoryBox.MouseState = MaterialSkin.MouseState.HOVER;
@@ -350,7 +348,7 @@
             this.devPCBox.AutoSize = true;
             this.devPCBox.Depth = 0;
             this.devPCBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.devPCBox.Location = new System.Drawing.Point(0, 37);
+            this.devPCBox.Location = new System.Drawing.Point(209, 37);
             this.devPCBox.Margin = new System.Windows.Forms.Padding(0);
             this.devPCBox.MouseLocation = new System.Drawing.Point(-1, -1);
             this.devPCBox.MouseState = MaterialSkin.MouseState.HOVER;
@@ -370,7 +368,7 @@
             this.blackScreenBox.AutoSize = true;
             this.blackScreenBox.Depth = 0;
             this.blackScreenBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.blackScreenBox.Location = new System.Drawing.Point(218, 37);
+            this.blackScreenBox.Location = new System.Drawing.Point(427, 37);
             this.blackScreenBox.Margin = new System.Windows.Forms.Padding(0);
             this.blackScreenBox.MouseLocation = new System.Drawing.Point(-1, -1);
             this.blackScreenBox.MouseState = MaterialSkin.MouseState.HOVER;
@@ -389,7 +387,7 @@
             this.checkBox2.AutoSize = true;
             this.checkBox2.Depth = 0;
             this.checkBox2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.checkBox2.Location = new System.Drawing.Point(4, 102);
+            this.checkBox2.Location = new System.Drawing.Point(3, 83);
             this.checkBox2.Margin = new System.Windows.Forms.Padding(0);
             this.checkBox2.MouseLocation = new System.Drawing.Point(-1, -1);
             this.checkBox2.MouseState = MaterialSkin.MouseState.HOVER;
@@ -412,13 +410,12 @@
             this.textBox1.Depth = 0;
             this.textBox1.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.textBox1.LeadingIcon = null;
-            this.textBox1.Location = new System.Drawing.Point(140, 54);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.textBox1.Location = new System.Drawing.Point(105, 44);
             this.textBox1.MaxLength = 50;
             this.textBox1.MouseState = MaterialSkin.MouseState.OUT;
             this.textBox1.Multiline = false;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(691, 36);
+            this.textBox1.Size = new System.Drawing.Size(518, 36);
             this.textBox1.TabIndex = 4;
             this.textBox1.Text = "";
             this.quickHelp.SetToolTip(this.textBox1, "Search for the error code from the NT error message list");
@@ -431,7 +428,7 @@
             this.customCheckBox.AutoSize = true;
             this.customCheckBox.Depth = 0;
             this.customCheckBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.customCheckBox.Location = new System.Drawing.Point(708, 6);
+            this.customCheckBox.Location = new System.Drawing.Point(503, 5);
             this.customCheckBox.Margin = new System.Windows.Forms.Padding(0);
             this.customCheckBox.MouseLocation = new System.Drawing.Point(-1, -1);
             this.customCheckBox.MouseState = MaterialSkin.MouseState.HOVER;
@@ -450,10 +447,9 @@
             this.ntPanel.Controls.Add(this.amdBox);
             this.ntPanel.Controls.Add(this.stackBox);
             this.ntPanel.Controls.Add(this.blinkBox);
-            this.ntPanel.Location = new System.Drawing.Point(4, 294);
-            this.ntPanel.Margin = new System.Windows.Forms.Padding(4);
+            this.ntPanel.Location = new System.Drawing.Point(3, 251);
             this.ntPanel.Name = "ntPanel";
-            this.ntPanel.Size = new System.Drawing.Size(842, 45);
+            this.ntPanel.Size = new System.Drawing.Size(632, 37);
             this.ntPanel.TabIndex = 2;
             this.quickHelp.SetToolTip(this.ntPanel, "Displays \"AUTHENTICAMD\" instead of \"GENUINEINTEL\" on the NT blue screen");
             // 
@@ -520,7 +516,7 @@
             this.acpiBox.AutoSize = true;
             this.acpiBox.Depth = 0;
             this.acpiBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.acpiBox.Location = new System.Drawing.Point(0, 403);
+            this.acpiBox.Location = new System.Drawing.Point(0, 339);
             this.acpiBox.Margin = new System.Windows.Forms.Padding(0);
             this.acpiBox.MouseLocation = new System.Drawing.Point(-1, -1);
             this.acpiBox.MouseState = MaterialSkin.MouseState.HOVER;
@@ -539,7 +535,7 @@
             this.playSndBox.AutoSize = true;
             this.playSndBox.Depth = 0;
             this.playSndBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.playSndBox.Location = new System.Drawing.Point(850, 156);
+            this.playSndBox.Location = new System.Drawing.Point(638, 154);
             this.playSndBox.Margin = new System.Windows.Forms.Padding(0);
             this.playSndBox.MouseLocation = new System.Drawing.Point(-1, -1);
             this.playSndBox.MouseState = MaterialSkin.MouseState.HOVER;
@@ -560,7 +556,7 @@
             this.waterBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.waterBox.Depth = 0;
             this.waterBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.waterBox.Location = new System.Drawing.Point(850, 193);
+            this.waterBox.Location = new System.Drawing.Point(638, 191);
             this.waterBox.Margin = new System.Windows.Forms.Padding(0);
             this.waterBox.MouseLocation = new System.Drawing.Point(-1, -1);
             this.waterBox.MouseState = MaterialSkin.MouseState.HOVER;
@@ -579,7 +575,7 @@
             this.winMode.AutoSize = true;
             this.winMode.Depth = 0;
             this.winMode.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.winMode.Location = new System.Drawing.Point(850, 230);
+            this.winMode.Location = new System.Drawing.Point(638, 228);
             this.winMode.Margin = new System.Windows.Forms.Padding(0);
             this.winMode.MouseLocation = new System.Drawing.Point(-1, -1);
             this.winMode.MouseState = MaterialSkin.MouseState.HOVER;
@@ -601,8 +597,8 @@
             this.advOptionsButton.HighEmphasis = true;
             this.advOptionsButton.Icon = null;
             this.advOptionsButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.advOptionsButton.Location = new System.Drawing.Point(5, 8);
-            this.advOptionsButton.Margin = new System.Windows.Forms.Padding(5, 8, 5, 8);
+            this.advOptionsButton.Location = new System.Drawing.Point(4, 6);
+            this.advOptionsButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.advOptionsButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.advOptionsButton.Name = "advOptionsButton";
             this.advOptionsButton.NoAccentTextColor = System.Drawing.Color.Empty;
@@ -623,13 +619,8 @@
             this.eCodeEditButton.HighEmphasis = true;
             this.eCodeEditButton.Icon = null;
             this.eCodeEditButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-<<<<<<< HEAD
-            this.eCodeEditButton.Location = new System.Drawing.Point(5, 60);
-            this.eCodeEditButton.Margin = new System.Windows.Forms.Padding(5, 8, 5, 8);
-=======
-            this.eCodeEditButton.Location = new System.Drawing.Point(193, 6);
+            this.eCodeEditButton.Location = new System.Drawing.Point(4, 54);
             this.eCodeEditButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
->>>>>>> 69c21f0 (Fix for dark mode detection)
             this.eCodeEditButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.eCodeEditButton.Name = "eCodeEditButton";
             this.eCodeEditButton.NoAccentTextColor = System.Drawing.Color.Empty;
@@ -652,13 +643,8 @@
             this.advNTButton.HighEmphasis = true;
             this.advNTButton.Icon = null;
             this.advNTButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-<<<<<<< HEAD
-            this.advNTButton.Location = new System.Drawing.Point(5, 112);
-            this.advNTButton.Margin = new System.Windows.Forms.Padding(5, 8, 5, 8);
-=======
-            this.advNTButton.Location = new System.Drawing.Point(374, 6);
+            this.advNTButton.Location = new System.Drawing.Point(4, 102);
             this.advNTButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
->>>>>>> 69c21f0 (Fix for dark mode detection)
             this.advNTButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.advNTButton.Name = "advNTButton";
             this.advNTButton.NoAccentTextColor = System.Drawing.Color.Empty;
@@ -681,13 +667,8 @@
             this.progressTuneButton.HighEmphasis = true;
             this.progressTuneButton.Icon = null;
             this.progressTuneButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-<<<<<<< HEAD
-            this.progressTuneButton.Location = new System.Drawing.Point(5, 164);
-            this.progressTuneButton.Margin = new System.Windows.Forms.Padding(5, 8, 5, 8);
-=======
-            this.progressTuneButton.Location = new System.Drawing.Point(4, 54);
+            this.progressTuneButton.Location = new System.Drawing.Point(4, 150);
             this.progressTuneButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
->>>>>>> 69c21f0 (Fix for dark mode detection)
             this.progressTuneButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.progressTuneButton.Name = "progressTuneButton";
             this.progressTuneButton.NoAccentTextColor = System.Drawing.Color.Empty;
@@ -707,16 +688,11 @@
             this.button1.Depth = 0;
             this.button1.Icon = global::UltimateBlueScreenSimulator.Properties.Resources.play;
             this.button1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-<<<<<<< HEAD
-            this.button1.Location = new System.Drawing.Point(0, 64);
-            this.button1.Margin = new System.Windows.Forms.Padding(4);
-=======
-            this.button1.Location = new System.Drawing.Point(692, 750);
->>>>>>> 69c21f0 (Fix for dark mode detection)
+            this.button1.Location = new System.Drawing.Point(16, 91);
             this.button1.Mini = true;
             this.button1.MouseState = MaterialSkin.MouseState.HOVER;
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(53, 53);
+            this.button1.Size = new System.Drawing.Size(40, 43);
             this.button1.TabIndex = 6;
             this.button1.Text = "Simulate";
             this.quickHelp.SetToolTip(this.button1, "Starts the simulation");
@@ -729,16 +705,11 @@
             this.button3.Depth = 0;
             this.button3.Icon = global::UltimateBlueScreenSimulator.Properties.Resources.question;
             this.button3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-<<<<<<< HEAD
-            this.button3.Location = new System.Drawing.Point(0, 125);
-            this.button3.Margin = new System.Windows.Forms.Padding(4);
-=======
-            this.button3.Location = new System.Drawing.Point(646, 750);
->>>>>>> 69c21f0 (Fix for dark mode detection)
+            this.button3.Location = new System.Drawing.Point(16, 141);
             this.button3.Mini = true;
             this.button3.MouseState = MaterialSkin.MouseState.HOVER;
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(66, 66);
+            this.button3.Size = new System.Drawing.Size(50, 54);
             this.button3.TabIndex = 7;
             this.button3.Text = "I\'m feeling unlucky";
             this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
@@ -753,7 +724,7 @@
             this.countdownBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.countdownBox.Depth = 0;
             this.countdownBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.countdownBox.Location = new System.Drawing.Point(0, 477);
+            this.countdownBox.Location = new System.Drawing.Point(0, 413);
             this.countdownBox.Margin = new System.Windows.Forms.Padding(0);
             this.countdownBox.MouseLocation = new System.Drawing.Point(-1, -1);
             this.countdownBox.MouseState = MaterialSkin.MouseState.HOVER;
@@ -781,34 +752,23 @@
             this.materialTabControl1.Controls.Add(this.tabPage5);
             this.materialTabControl1.Depth = 0;
             this.materialTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.materialTabControl1.Location = new System.Drawing.Point(4, 90);
-            this.materialTabControl1.Margin = new System.Windows.Forms.Padding(4);
+            this.materialTabControl1.Location = new System.Drawing.Point(3, 73);
             this.materialTabControl1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialTabControl1.Multiline = true;
             this.materialTabControl1.Name = "materialTabControl1";
             this.materialTabControl1.SelectedIndex = 0;
             this.materialTabControl1.ShowToolTips = true;
-<<<<<<< HEAD
-            this.materialTabControl1.Size = new System.Drawing.Size(957, 653);
-=======
-            this.materialTabControl1.Size = new System.Drawing.Size(732, 679);
->>>>>>> 69c21f0 (Fix for dark mode detection)
+            this.materialTabControl1.Size = new System.Drawing.Size(738, 577);
             this.materialTabControl1.TabIndex = 8;
             this.materialTabControl1.SelectedIndexChanged += new System.EventHandler(this.materialTabControl1_SelectedIndexChanged);
             // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.materialCard1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 28);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
+            this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
-<<<<<<< HEAD
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage1.Size = new System.Drawing.Size(949, 621);
-=======
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(724, 650);
->>>>>>> 69c21f0 (Fix for dark mode detection)
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage1.Size = new System.Drawing.Size(730, 548);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Simulator";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -822,16 +782,11 @@
             this.materialCard1.Controls.Add(this.windowVersion);
             this.materialCard1.Controls.Add(this.flowLayoutPanel1);
             this.materialCard1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialCard1.Location = new System.Drawing.Point(4, 4);
-            this.materialCard1.Margin = new System.Windows.Forms.Padding(18);
+            this.materialCard1.Location = new System.Drawing.Point(3, 3);
+            this.materialCard1.Margin = new System.Windows.Forms.Padding(14, 15, 14, 15);
             this.materialCard1.Name = "materialCard1";
-<<<<<<< HEAD
-            this.materialCard1.Padding = new System.Windows.Forms.Padding(18);
-            this.materialCard1.Size = new System.Drawing.Size(902, 626);
-=======
-            this.materialCard1.Padding = new System.Windows.Forms.Padding(14);
-            this.materialCard1.Size = new System.Drawing.Size(702, 842);
->>>>>>> 69c21f0 (Fix for dark mode detection)
+            this.materialCard1.Padding = new System.Windows.Forms.Padding(14, 15, 14, 15);
+            this.materialCard1.Size = new System.Drawing.Size(696, 555);
             this.materialCard1.TabIndex = 6;
             // 
             // materialLabel1
@@ -841,8 +796,7 @@
             this.materialLabel1.Depth = 0;
             this.materialLabel1.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.materialLabel1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.materialLabel1.Location = new System.Drawing.Point(11, 31);
-            this.materialLabel1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.materialLabel1.Location = new System.Drawing.Point(8, 25);
             this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel1.Name = "materialLabel1";
             this.materialLabel1.Size = new System.Drawing.Size(91, 19);
@@ -877,16 +831,11 @@
             "Windows Vista/7 BOOTMGR (1024x768, ClearType)",
             "Windows Vista/7 BOOTMGR (1024x768, ClearType)",
             "Windows XP (640x480, Standard)"});
-            this.windowVersion.Location = new System.Drawing.Point(131, 11);
-            this.windowVersion.Margin = new System.Windows.Forms.Padding(4);
+            this.windowVersion.Location = new System.Drawing.Point(98, 9);
             this.windowVersion.MaxDropDownItems = 4;
             this.windowVersion.MouseState = MaterialSkin.MouseState.OUT;
             this.windowVersion.Name = "windowVersion";
-<<<<<<< HEAD
-            this.windowVersion.Size = new System.Drawing.Size(790, 49);
-=======
-            this.windowVersion.Size = new System.Drawing.Size(585, 49);
->>>>>>> 69c21f0 (Fix for dark mode detection)
+            this.windowVersion.Size = new System.Drawing.Size(614, 49);
             this.windowVersion.StartIndex = 0;
             this.windowVersion.TabIndex = 0;
             this.windowVersion.SelectedIndexChanged += new System.EventHandler(this.windowVersion_SelectedIndexChanged);
@@ -911,14 +860,9 @@
             this.flowLayoutPanel1.Controls.Add(this.winMode);
             this.flowLayoutPanel1.Controls.Add(this.flowLayoutPanel4);
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(8, 80);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(6, 65);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-<<<<<<< HEAD
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(890, 542);
-=======
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(693, 775);
->>>>>>> 69c21f0 (Fix for dark mode detection)
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(688, 486);
             this.flowLayoutPanel1.TabIndex = 3;
             // 
             // WXOptions
@@ -932,10 +876,9 @@
             this.WXOptions.Controls.Add(this.memoryBox);
             this.WXOptions.Controls.Add(this.devPCBox);
             this.WXOptions.Controls.Add(this.blackScreenBox);
-            this.WXOptions.Location = new System.Drawing.Point(4, 4);
-            this.WXOptions.Margin = new System.Windows.Forms.Padding(4);
+            this.WXOptions.Location = new System.Drawing.Point(3, 3);
             this.WXOptions.Name = "WXOptions";
-            this.WXOptions.Size = new System.Drawing.Size(803, 74);
+            this.WXOptions.Size = new System.Drawing.Size(594, 74);
             this.WXOptions.TabIndex = 0;
             // 
             // errorCode
@@ -954,10 +897,9 @@
             this.errorCode.Controls.Add(this.customCheckBox);
             this.errorCode.Controls.Add(this.comboBox1);
             this.errorCode.Controls.Add(this.materialLabel2);
-            this.errorCode.Location = new System.Drawing.Point(4, 86);
-            this.errorCode.Margin = new System.Windows.Forms.Padding(4);
+            this.errorCode.Location = new System.Drawing.Point(3, 83);
             this.errorCode.Name = "errorCode";
-            this.errorCode.Size = new System.Drawing.Size(840, 200);
+            this.errorCode.Size = new System.Drawing.Size(630, 162);
             this.errorCode.TabIndex = 1;
             // 
             // button2
@@ -969,8 +911,8 @@
             this.button2.Enabled = false;
             this.button2.HighEmphasis = true;
             this.button2.Icon = null;
-            this.button2.Location = new System.Drawing.Point(730, 104);
-            this.button2.Margin = new System.Windows.Forms.Padding(5, 8, 5, 8);
+            this.button2.Location = new System.Drawing.Point(526, 84);
+            this.button2.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.button2.MouseState = MaterialSkin.MouseState.HOVER;
             this.button2.Name = "button2";
             this.button2.NoAccentTextColor = System.Drawing.Color.Empty;
@@ -989,13 +931,12 @@
             this.customMessageText.Depth = 0;
             this.customMessageText.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.customMessageText.LeadingIcon = null;
-            this.customMessageText.Location = new System.Drawing.Point(182, 6);
-            this.customMessageText.Margin = new System.Windows.Forms.Padding(4);
+            this.customMessageText.Location = new System.Drawing.Point(136, 5);
             this.customMessageText.MaxLength = 50;
             this.customMessageText.MouseState = MaterialSkin.MouseState.OUT;
             this.customMessageText.Multiline = false;
             this.customMessageText.Name = "customMessageText";
-            this.customMessageText.Size = new System.Drawing.Size(290, 36);
+            this.customMessageText.Size = new System.Drawing.Size(218, 36);
             this.customMessageText.TabIndex = 10;
             this.customMessageText.Text = "";
             this.customMessageText.TrailingIcon = null;
@@ -1010,13 +951,12 @@
             this.customMessageCode.Depth = 0;
             this.customMessageCode.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.customMessageCode.LeadingIcon = null;
-            this.customMessageCode.Location = new System.Drawing.Point(516, 8);
-            this.customMessageCode.Margin = new System.Windows.Forms.Padding(4);
+            this.customMessageCode.Location = new System.Drawing.Point(387, 6);
             this.customMessageCode.MaxLength = 50;
             this.customMessageCode.MouseState = MaterialSkin.MouseState.OUT;
             this.customMessageCode.Multiline = false;
             this.customMessageCode.Name = "customMessageCode";
-            this.customMessageCode.Size = new System.Drawing.Size(125, 36);
+            this.customMessageCode.Size = new System.Drawing.Size(94, 36);
             this.customMessageCode.TabIndex = 10;
             this.customMessageCode.Text = "";
             this.customMessageCode.TrailingIcon = null;
@@ -1030,8 +970,7 @@
             this.customMessageLabel2.Depth = 0;
             this.customMessageLabel2.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.customMessageLabel2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.customMessageLabel2.Location = new System.Drawing.Point(649, 16);
-            this.customMessageLabel2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.customMessageLabel2.Location = new System.Drawing.Point(487, 13);
             this.customMessageLabel2.MouseState = MaterialSkin.MouseState.HOVER;
             this.customMessageLabel2.Name = "customMessageLabel2";
             this.customMessageLabel2.Size = new System.Drawing.Size(7, 19);
@@ -1045,8 +984,7 @@
             this.customMessageLabel1.Depth = 0;
             this.customMessageLabel1.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.customMessageLabel1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.customMessageLabel1.Location = new System.Drawing.Point(480, 15);
-            this.customMessageLabel1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.customMessageLabel1.Location = new System.Drawing.Point(360, 12);
             this.customMessageLabel1.MouseState = MaterialSkin.MouseState.HOVER;
             this.customMessageLabel1.Name = "customMessageLabel1";
             this.customMessageLabel1.Size = new System.Drawing.Size(23, 19);
@@ -1059,7 +997,7 @@
             this.addInfFile.AutoSize = true;
             this.addInfFile.Depth = 0;
             this.addInfFile.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.addInfFile.Location = new System.Drawing.Point(4, 149);
+            this.addInfFile.Location = new System.Drawing.Point(3, 121);
             this.addInfFile.Margin = new System.Windows.Forms.Padding(0);
             this.addInfFile.MouseLocation = new System.Drawing.Point(-1, -1);
             this.addInfFile.MouseState = MaterialSkin.MouseState.HOVER;
@@ -1082,12 +1020,12 @@
             this.materialButton1.HighEmphasis = true;
             this.materialButton1.Icon = null;
             this.materialButton1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.materialButton1.Location = new System.Drawing.Point(915, 101);
-            this.materialButton1.Margin = new System.Windows.Forms.Padding(5, 8, 5, 8);
+            this.materialButton1.Location = new System.Drawing.Point(686, 82);
+            this.materialButton1.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.materialButton1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialButton1.Name = "materialButton1";
             this.materialButton1.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.materialButton1.Size = new System.Drawing.Size(132, 45);
+            this.materialButton1.Size = new System.Drawing.Size(99, 37);
             this.materialButton1.TabIndex = 7;
             this.materialButton1.Text = "C&hoose";
             this.materialButton1.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -1102,15 +1040,14 @@
             this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox2.Depth = 0;
             this.textBox2.Enabled = false;
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.6F);
+            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.textBox2.LeadingIcon = null;
-            this.textBox2.Location = new System.Drawing.Point(285, 102);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(4);
+            this.textBox2.Location = new System.Drawing.Point(214, 83);
             this.textBox2.MaxLength = 50;
             this.textBox2.MouseState = MaterialSkin.MouseState.OUT;
             this.textBox2.Multiline = false;
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(409, 36);
+            this.textBox2.Size = new System.Drawing.Size(307, 36);
             this.textBox2.TabIndex = 6;
             this.textBox2.Text = "vga.sys";
             this.textBox2.TrailingIcon = null;
@@ -1123,8 +1060,7 @@
             this.materialLabel3.Depth = 0;
             this.materialLabel3.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.materialLabel3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.materialLabel3.Location = new System.Drawing.Point(12, 59);
-            this.materialLabel3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.materialLabel3.Location = new System.Drawing.Point(9, 48);
             this.materialLabel3.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel3.Name = "materialLabel3";
             this.materialLabel3.Size = new System.Drawing.Size(95, 19);
@@ -1147,12 +1083,11 @@
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.IntegralHeight = false;
             this.comboBox1.ItemHeight = 29;
-            this.comboBox1.Location = new System.Drawing.Point(182, 6);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.comboBox1.Location = new System.Drawing.Point(136, 5);
             this.comboBox1.MaxDropDownItems = 4;
             this.comboBox1.MouseState = MaterialSkin.MouseState.OUT;
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(500, 35);
+            this.comboBox1.Size = new System.Drawing.Size(376, 35);
             this.comboBox1.StartIndex = 0;
             this.comboBox1.TabIndex = 1;
             this.comboBox1.UseTallSize = false;
@@ -1164,8 +1099,7 @@
             this.materialLabel2.Depth = 0;
             this.materialLabel2.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.materialLabel2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.materialLabel2.Location = new System.Drawing.Point(12, 12);
-            this.materialLabel2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.materialLabel2.Location = new System.Drawing.Point(9, 10);
             this.materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel2.Name = "materialLabel2";
             this.materialLabel2.Size = new System.Drawing.Size(130, 19);
@@ -1176,10 +1110,9 @@
             // 
             this.nineXmessage.Controls.Add(this.materialLabel4);
             this.nineXmessage.Controls.Add(this.comboBox2);
-            this.nineXmessage.Location = new System.Drawing.Point(4, 347);
-            this.nineXmessage.Margin = new System.Windows.Forms.Padding(4);
+            this.nineXmessage.Location = new System.Drawing.Point(3, 294);
             this.nineXmessage.Name = "nineXmessage";
-            this.nineXmessage.Size = new System.Drawing.Size(840, 52);
+            this.nineXmessage.Size = new System.Drawing.Size(630, 42);
             this.nineXmessage.TabIndex = 3;
             // 
             // materialLabel4
@@ -1187,11 +1120,11 @@
             this.materialLabel4.Depth = 0;
             this.materialLabel4.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.materialLabel4.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.materialLabel4.Location = new System.Drawing.Point(4, 4);
-            this.materialLabel4.Margin = new System.Windows.Forms.Padding(4);
+            this.materialLabel4.Location = new System.Drawing.Point(3, 3);
+            this.materialLabel4.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.materialLabel4.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel4.Name = "materialLabel4";
-            this.materialLabel4.Size = new System.Drawing.Size(199, 44);
+            this.materialLabel4.Size = new System.Drawing.Size(149, 36);
             this.materialLabel4.TabIndex = 0;
             this.materialLabel4.Text = "9x/Me error message:";
             this.materialLabel4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1218,12 +1151,11 @@
             "Driver error",
             "System is busy",
             "System is unresponsive (Warning)"});
-            this.comboBox2.Location = new System.Drawing.Point(211, 4);
-            this.comboBox2.Margin = new System.Windows.Forms.Padding(4);
+            this.comboBox2.Location = new System.Drawing.Point(158, 3);
             this.comboBox2.MaxDropDownItems = 4;
             this.comboBox2.MouseState = MaterialSkin.MouseState.OUT;
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(614, 35);
+            this.comboBox2.Size = new System.Drawing.Size(462, 35);
             this.comboBox2.StartIndex = 0;
             this.comboBox2.TabIndex = 1;
             this.comboBox2.UseTallSize = false;
@@ -1237,16 +1169,9 @@
             this.flowLayoutPanel4.Controls.Add(this.eCodeEditButton);
             this.flowLayoutPanel4.Controls.Add(this.advNTButton);
             this.flowLayoutPanel4.Controls.Add(this.progressTuneButton);
-<<<<<<< HEAD
-            this.flowLayoutPanel4.Location = new System.Drawing.Point(854, 271);
-            this.flowLayoutPanel4.Margin = new System.Windows.Forms.Padding(4);
+            this.flowLayoutPanel4.Location = new System.Drawing.Point(641, 268);
             this.flowLayoutPanel4.Name = "flowLayoutPanel4";
-            this.flowLayoutPanel4.Size = new System.Drawing.Size(248, 208);
-=======
-            this.flowLayoutPanel4.Location = new System.Drawing.Point(3, 641);
-            this.flowLayoutPanel4.Name = "flowLayoutPanel4";
-            this.flowLayoutPanel4.Size = new System.Drawing.Size(616, 96);
->>>>>>> 69c21f0 (Fix for dark mode detection)
+            this.flowLayoutPanel4.Size = new System.Drawing.Size(246, 192);
             this.flowLayoutPanel4.TabIndex = 10;
             // 
             // tabPage2
@@ -1254,16 +1179,10 @@
             this.tabPage2.Controls.Add(this.logIf);
             this.tabPage2.Controls.Add(this.materialLabel5);
             this.tabPage2.Controls.Add(this.materialButton6);
-            this.tabPage2.Location = new System.Drawing.Point(4, 28);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
+            this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
-<<<<<<< HEAD
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage2.Size = new System.Drawing.Size(757, 473);
-=======
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(724, 650);
->>>>>>> 69c21f0 (Fix for dark mode detection)
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage2.Size = new System.Drawing.Size(710, 502);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Trace log";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -1278,16 +1197,11 @@
             this.logIf.Depth = 0;
             this.logIf.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.logIf.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.logIf.Location = new System.Drawing.Point(21, 78);
-            this.logIf.Margin = new System.Windows.Forms.Padding(4);
+            this.logIf.Location = new System.Drawing.Point(16, 63);
             this.logIf.MouseState = MaterialSkin.MouseState.HOVER;
             this.logIf.Name = "logIf";
             this.logIf.ReadOnly = true;
-<<<<<<< HEAD
-            this.logIf.Size = new System.Drawing.Size(854, 679);
-=======
-            this.logIf.Size = new System.Drawing.Size(699, 582);
->>>>>>> 69c21f0 (Fix for dark mode detection)
+            this.logIf.Size = new System.Drawing.Size(640, 552);
             this.logIf.TabIndex = 3;
             this.logIf.Text = "Logging interface 1.0";
             // 
@@ -1301,8 +1215,8 @@
             this.materialButton6.HighEmphasis = true;
             this.materialButton6.Icon = null;
             this.materialButton6.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.materialButton6.Location = new System.Drawing.Point(696, 21);
-            this.materialButton6.Margin = new System.Windows.Forms.Padding(5, 8, 5, 8);
+            this.materialButton6.Location = new System.Drawing.Point(522, 17);
+            this.materialButton6.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.materialButton6.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialButton6.Name = "materialButton6";
             this.materialButton6.NoAccentTextColor = System.Drawing.Color.Empty;
@@ -1316,90 +1230,40 @@
             // 
             // tabPage3
             // 
-            this.tabPage3.Location = new System.Drawing.Point(4, 28);
-            this.tabPage3.Margin = new System.Windows.Forms.Padding(4);
+            this.tabPage3.Location = new System.Drawing.Point(4, 25);
             this.tabPage3.Name = "tabPage3";
-<<<<<<< HEAD
-            this.tabPage3.Size = new System.Drawing.Size(757, 473);
-=======
-            this.tabPage3.Size = new System.Drawing.Size(724, 650);
->>>>>>> 69c21f0 (Fix for dark mode detection)
+            this.tabPage3.Size = new System.Drawing.Size(710, 502);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Settings";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // aboutTab
             // 
-            this.aboutTab.Location = new System.Drawing.Point(4, 28);
-            this.aboutTab.Margin = new System.Windows.Forms.Padding(4);
+            this.aboutTab.Location = new System.Drawing.Point(4, 25);
             this.aboutTab.Name = "aboutTab";
-<<<<<<< HEAD
-            this.aboutTab.Size = new System.Drawing.Size(757, 473);
-=======
-            this.aboutTab.Size = new System.Drawing.Size(724, 650);
->>>>>>> 69c21f0 (Fix for dark mode detection)
+            this.aboutTab.Size = new System.Drawing.Size(710, 502);
             this.aboutTab.TabIndex = 3;
             this.aboutTab.Text = "About";
             this.aboutTab.UseVisualStyleBackColor = true;
             // 
             // tabPage4
             // 
-            this.tabPage4.Location = new System.Drawing.Point(4, 28);
-            this.tabPage4.Margin = new System.Windows.Forms.Padding(4);
+            this.tabPage4.Location = new System.Drawing.Point(4, 25);
             this.tabPage4.Name = "tabPage4";
-<<<<<<< HEAD
-            this.tabPage4.Size = new System.Drawing.Size(757, 473);
-=======
-            this.tabPage4.Size = new System.Drawing.Size(724, 650);
->>>>>>> 69c21f0 (Fix for dark mode detection)
+            this.tabPage4.Size = new System.Drawing.Size(730, 548);
             this.tabPage4.TabIndex = 4;
             this.tabPage4.Text = "Prank mode";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
             // tabPage5
             // 
-            this.tabPage5.Location = new System.Drawing.Point(4, 28);
-            this.tabPage5.Margin = new System.Windows.Forms.Padding(4);
+            this.tabPage5.Location = new System.Drawing.Point(4, 25);
             this.tabPage5.Name = "tabPage5";
-<<<<<<< HEAD
-            this.tabPage5.Size = new System.Drawing.Size(757, 473);
-=======
-            this.tabPage5.Size = new System.Drawing.Size(724, 650);
->>>>>>> 69c21f0 (Fix for dark mode detection)
+            this.tabPage5.Size = new System.Drawing.Size(730, 548);
             this.tabPage5.TabIndex = 5;
             this.tabPage5.Text = "Restore old UI";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
-<<<<<<< HEAD
-            // tabPage6
-            // 
-            this.tabPage6.Controls.Add(this.rtlSwitch);
-            this.tabPage6.Location = new System.Drawing.Point(4, 28);
-            this.tabPage6.Margin = new System.Windows.Forms.Padding(4);
-            this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Size = new System.Drawing.Size(757, 473);
-            this.tabPage6.TabIndex = 6;
-            this.tabPage6.Text = "[dev] Temporary";
-            this.tabPage6.UseVisualStyleBackColor = true;
-            // 
-            // rtlSwitch
-            // 
-            this.rtlSwitch.AutoSize = true;
-            this.rtlSwitch.Depth = 0;
-            this.rtlSwitch.Location = new System.Drawing.Point(11, 10);
-            this.rtlSwitch.Margin = new System.Windows.Forms.Padding(0);
-            this.rtlSwitch.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.rtlSwitch.MouseState = MaterialSkin.MouseState.HOVER;
-            this.rtlSwitch.Name = "rtlSwitch";
-            this.rtlSwitch.Ripple = true;
-            this.rtlSwitch.Size = new System.Drawing.Size(130, 37);
-            this.rtlSwitch.TabIndex = 7;
-            this.rtlSwitch.Text = "Force RTL";
-            this.rtlSwitch.UseVisualStyleBackColor = true;
-            this.rtlSwitch.CheckedChanged += new System.EventHandler(this.rtlSwitch_CheckedChanged);
-            // 
-=======
->>>>>>> 69c21f0 (Fix for dark mode detection)
             // materialDrawer1
             // 
             this.materialDrawer1.AutoHide = false;
@@ -1410,12 +1274,11 @@
             this.materialDrawer1.HighlightWithAccent = true;
             this.materialDrawer1.IndicatorWidth = 0;
             this.materialDrawer1.IsOpen = false;
-            this.materialDrawer1.Location = new System.Drawing.Point(-371, 677);
-            this.materialDrawer1.Margin = new System.Windows.Forms.Padding(4);
+            this.materialDrawer1.Location = new System.Drawing.Point(-278, 550);
             this.materialDrawer1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialDrawer1.Name = "materialDrawer1";
             this.materialDrawer1.ShowIconsWhenHidden = false;
-            this.materialDrawer1.Size = new System.Drawing.Size(371, 221);
+            this.materialDrawer1.Size = new System.Drawing.Size(278, 180);
             this.materialDrawer1.TabIndex = 9;
             this.materialDrawer1.Text = "materialDrawer1";
             this.materialDrawer1.UseColors = false;
@@ -1426,12 +1289,7 @@
             this.label7.AutoSize = true;
             this.label7.Depth = 0;
             this.label7.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-<<<<<<< HEAD
-            this.label7.Location = new System.Drawing.Point(10, 597);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-=======
-            this.label7.Location = new System.Drawing.Point(10, 770);
->>>>>>> 69c21f0 (Fix for dark mode detection)
+            this.label7.Location = new System.Drawing.Point(8, 524);
             this.label7.MouseState = MaterialSkin.MouseState.HOVER;
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(348, 19);
@@ -1458,16 +1316,9 @@
             // 
             // NewUI
             // 
-<<<<<<< HEAD
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(965, 747);
-=======
-            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(732, 760);
->>>>>>> 69c21f0 (Fix for dark mode detection)
+            this.ClientSize = new System.Drawing.Size(744, 653);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button1);
@@ -1478,9 +1329,8 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
             this.FormStyle = MaterialSkin.Controls.MaterialForm.FormStyles.ActionBar_48;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "NewUI";
-            this.Padding = new System.Windows.Forms.Padding(4, 90, 4, 4);
+            this.Padding = new System.Windows.Forms.Padding(3, 73, 3, 3);
             this.Text = "Blue Screen Simulator Plus";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.NewUI_FormClosing);
             this.Load += new System.EventHandler(this.NewUi1_Load);
