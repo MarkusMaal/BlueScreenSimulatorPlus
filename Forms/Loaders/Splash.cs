@@ -23,7 +23,7 @@ namespace UltimateBlueScreenSimulator
             if (!File.Exists(Environment.GetEnvironmentVariable("USERPROFILE") + @"\bssp2_firstlaunch.txt")) { Program.verificate = false; }
             if (Program.verificate == true)
             {
-                if (Program.Verifile() != File.ReadAllText(Environment.GetEnvironmentVariable("USERPROFILE") + @"\bssp2_firstlaunch.txt"))
+                if (Program.verifile.Vfile() != File.ReadAllText(Environment.GetEnvironmentVariable("USERPROFILE") + @"\bssp2_firstlaunch.txt"))
                 {
                     if (args.Contains("/c") && args.Contains("/hwm"))
                     {
@@ -40,11 +40,10 @@ namespace UltimateBlueScreenSimulator
                 }
                 else
                 {
-                    Program.WriteFile();
+                    Program.verifile.WriteFile();
                     Program.verificate = true;
                 }
             }
-            this.Close();
         }
 
         private void Splash_KeyDown(object sender, KeyEventArgs e)

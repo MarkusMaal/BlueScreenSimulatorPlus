@@ -20,7 +20,10 @@ namespace UltimateBlueScreenSimulator
         int time = 0;
         public JupiterBSOD()
         {
-            InitializeComponent();
+            if (Program.verificate)
+            {
+                InitializeComponent();
+            }
         }
 
         private void JupiterBSOD_KeyDown(object sender, KeyEventArgs e)
@@ -38,100 +41,114 @@ namespace UltimateBlueScreenSimulator
 
         private void JupiterBSOD_Load(object sender, EventArgs e)
         {
-            this.WindowState = FormWindowState.Normal;
-            this.FormBorderStyle = FormBorderStyle.Sizable;
-            this.Text = me.GetString("friendlyname");
-            if (!Program.gs.ShowCursor && !me.GetBool("windowed"))
+            try
             {
-                Cursor.Hide();
-            }
-            this.Width = 1024;
-            this.Height = 768;
-            this.StartPosition = FormStartPosition.CenterScreen;
-            Watermark.Visible = me.GetBool("watermark");
-            texts = me.GetTexts();
-            time = me.GetInt("timer");
-            HeaderLabel.Text = texts["Your computer needs to restart"];
-            DetailsLabel.Text = string.Format(texts["Information text with dump"] + "\n" + texts["Error code"], me.GetString("code").Split(' ')[1].Replace(")", "").Replace("(", ""));
-
-            ProgressLabel.Text = string.Format(texts["Progress"], time);
-
-            Font basefont = new Font(me.GetFont().FontFamily, me.GetFont().Size * 96f / CreateGraphics().DpiX, me.GetFont().Style, Font.Unit, Font.GdiCharSet, Font.GdiVerticalFont);
-
-            HeaderLabel.Font = basefont;
-            DetailsLabel.Font = new Font(basefont.FontFamily, basefont.Size - DpiDelta(16f), basefont.Style);
-            ProgressLabel.Font = new Font(basefont.FontFamily, basefont.Size - DpiDelta(10.5f), basefont.Style);
-
-            int mx = me.GetInt("margin-x");
-            int my = me.GetInt("margin-y");
-            
-            HeaderLabel.Location = new Point(mx, my);
-            DetailsLabel.Location = new Point(mx, my + 52);
-            ProgressLabel.Location = new Point(mx, my + 208);
-            if (me.GetBool("countdown"))
-            {
-                timecounter.Start();
-            }
-            else
-            {
-                ProgressLabel.Visible = false;
-                time = 0;
-            }
-            this.Icon = me.GetIcon();
-            if (!me.GetBool("windowed"))
-            {
-                this.FormBorderStyle = FormBorderStyle.None;
-                this.WindowState = FormWindowState.Maximized;
-                // for multimonitor support
-                if (Screen.AllScreens.Length > 1)
+                this.WindowState = FormWindowState.Normal;
+                this.FormBorderStyle = FormBorderStyle.Sizable;
+                this.Text = me.GetString("friendlyname");
+                if (!Program.gs.ShowCursor && !me.GetBool("windowed"))
                 {
-                    foreach (Screen s in Screen.AllScreens)
-                    {
-                        if (!s.Primary)
-                        {
-                            if (Program.gs.DisplayMode != "none")
-                            {
-                                WindowScreen ws = new WindowScreen
-                                {
-                                    StartPosition = FormStartPosition.Manual,
-                                    Location = s.WorkingArea.Location,
-                                    Size = new Size(s.WorkingArea.Width, s.WorkingArea.Height),
-                                    primary = false
-                                };
-                                if (Program.gs.DisplayMode == "freeze")
-                                {
-                                    screenUpdater.Enabled = false;
-                                    Bitmap screenshot = new Bitmap(s.Bounds.Width,
-                                        s.Bounds.Height,
-                                        System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-                                    Graphics gfxScreenshot = Graphics.FromImage(screenshot);
-                                    gfxScreenshot.CopyFromScreen(
-                                        s.Bounds.X,
-                                        s.Bounds.Y,
-                                        0,
-                                        0,
-                                        s.Bounds.Size,
-                                        CopyPixelOperation.SourceCopy
-                                        );
-                                    freezescreens.Add(screenshot);
+                    Cursor.Hide();
+                }
+                this.Width = 1024;
+                this.Height = 768;
+                this.StartPosition = FormStartPosition.CenterScreen;
+                Watermark.Visible = me.GetBool("watermark");
+                texts = me.GetTexts();
+                time = me.GetInt("timer");
+                HeaderLabel.Text = texts["Your computer needs to restart"];
+                DetailsLabel.Text = string.Format(texts["Information text with dump"] + "\n" + texts["Error code"], me.GetString("code").Split(' ')[1].Replace(")", "").Replace("(", ""));
 
+                ProgressLabel.Text = string.Format(texts["Progress"], time);
+
+                Font basefont = new Font(me.GetFont().FontFamily, me.GetFont().Size * 96f / CreateGraphics().DpiX, me.GetFont().Style, Font.Unit, Font.GdiCharSet, Font.GdiVerticalFont);
+
+                HeaderLabel.Font = basefont;
+                DetailsLabel.Font = new Font(basefont.FontFamily, basefont.Size - DpiDelta(16f), basefont.Style);
+                ProgressLabel.Font = new Font(basefont.FontFamily, basefont.Size - DpiDelta(10.5f), basefont.Style);
+
+                int mx = me.GetInt("margin-x");
+                int my = me.GetInt("margin-y");
+
+                HeaderLabel.Location = new Point(mx, my);
+                DetailsLabel.Location = new Point(mx, my + 52);
+                ProgressLabel.Location = new Point(mx, my + 208);
+                if (me.GetBool("countdown"))
+                {
+                    timecounter.Start();
+                }
+                else
+                {
+                    ProgressLabel.Visible = false;
+                    time = 0;
+                }
+                this.Icon = me.GetIcon();
+                if (!me.GetBool("windowed"))
+                {
+                    this.FormBorderStyle = FormBorderStyle.None;
+                    this.WindowState = FormWindowState.Maximized;
+                    // for multimonitor support
+                    if (Screen.AllScreens.Length > 1)
+                    {
+                        foreach (Screen s in Screen.AllScreens)
+                        {
+                            if (!s.Primary)
+                            {
+                                if (Program.gs.DisplayMode != "none")
+                                {
+                                    WindowScreen ws = new WindowScreen
+                                    {
+                                        StartPosition = FormStartPosition.Manual,
+                                        Location = s.WorkingArea.Location,
+                                        Size = new Size(s.WorkingArea.Width, s.WorkingArea.Height),
+                                        primary = false
+                                    };
+                                    if (Program.gs.DisplayMode == "freeze")
+                                    {
+                                        screenUpdater.Enabled = false;
+                                        Bitmap screenshot = new Bitmap(s.Bounds.Width,
+                                            s.Bounds.Height,
+                                            System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+                                        Graphics gfxScreenshot = Graphics.FromImage(screenshot);
+                                        gfxScreenshot.CopyFromScreen(
+                                            s.Bounds.X,
+                                            s.Bounds.Y,
+                                            0,
+                                            0,
+                                            s.Bounds.Size,
+                                            CopyPixelOperation.SourceCopy
+                                            );
+                                        freezescreens.Add(screenshot);
+
+                                    }
+                                    wss.Add(ws);
                                 }
-                                wss.Add(ws);
+                            }
+                        }
+                        for (int i = 0; i < wss.Count; i++)
+                        {
+                            WindowScreen ws = wss[i];
+                            ws.Show();
+                            if (Program.gs.DisplayMode == "freeze")
+                            {
+                                ws.screenDisplay.Image = freezescreens[i];
                             }
                         }
                     }
-                    for (int i = 0; i < wss.Count; i++)
-                    {
-                        WindowScreen ws = wss[i];
-                        ws.Show();
-                        if (Program.gs.DisplayMode == "freeze")
-                        {
-                            ws.screenDisplay.Image = freezescreens[i];
-                        }
-                    }
+                }
+                Program.loadfinished = true;
+            } catch (Exception ex)
+            {
+                if (!Program.verificate)
+                {
+                    Application.Exit();
+                }
+                else
+                {
+                    me.Crash(ex.Message, ex.StackTrace, "YellowScreen");
+                    this.Close();
                 }
             }
-            Program.loadfinished = true;
         }
 
         private void Timecounter_Tick(object sender, EventArgs e)

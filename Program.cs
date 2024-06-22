@@ -5,23 +5,12 @@
  * Version 3.0 (pre-release)
  *
  * {} markus' software // {} markuse tarkvara
- * 
- *         /
- *        / 
- * +-----/  This program uses Verifile
- * \    /|  Signature verification technology
- * |\  / |
- * +-\/--+
- * 
  */
 
 using System;
 using System.Linq;
 using System.Windows.Forms;
 using System.IO;
-using System.Management;
-using System.Security.Cryptography;
-using System.Text;
 using System.Collections.Generic;
 using SimulatorDatabase;
 using System.Net.NetworkInformation;
@@ -42,11 +31,9 @@ namespace UltimateBlueScreenSimulator
 
         public static bool loadfinished = true;
 
-        private static bool bad = false;
-
 
         //Command line syntax
-        public static string cmds = "WARNING: Partially broken in this build!!!\n\n/? - Displays command line syntax\n/wv:xx - Set a specific configuration/os (e.g. \"XP\", spaces are not allowed)\n/h - Doesn't show main GUI. If no simulation is started or the simulation is finished, the program will close.\n/hwm - Hides watermark\n/c - Simulates a system crash\n/config:xx - Loads a configuration file (xx is the file name, spaces are not allowed)\n\n/ddesc - Disables error descriptions\n/dqr - Disables QR code on Windows 10 blue screen\n/srv - Displays Windows Server 2016 blue screen when wv is set to 10\n/dac - Disables autoclose feature (Modern blue screens only)\n/gs - Displays green screen when wv is set to 10\n/ap - Displays ACPI blue screen (Windows Vista/7 only)\n/win - Enables windowed mode\n/random - Randomizes the blue screen (does NOT randomize any custom attributes set)\n\n/desc - Forcibly enable error description\n/ac - Forcibly enable autoclose feature\n/dap - Forcibly disable ACPI error screen (Windows Vista/7)\n/damd - Forcibly display \"GenuineIntel\" on Windows NT blue screen\n/dblink - Forcibly disable blinking cursor on Windows NT blue screen\n/dgs - Forcibly disable green screen on Windows 10 blue screen\n/qr - Forcibly enable QR code on Windows 10 blue screen\n/dsrv - Forcibly disable server blue screen when version is set to Windows 10\n/stack - Forcible enable stack trace on Windows NT blue screen\n/dfile - Forcible disables potential culprit file\n\n/clr - Clears the verification certificate from this computer, causing the first use message to pop up.\n/hidesplash - Hides the splash screen";
+        public static string cmds = "/? - Displays command line syntax\n/wv xx - Set a specific configuration/os (e.g. \"XP\", spaces require the value to be surrounded with double quotes)\n/h - Doesn't show main GUI. If no simulation is started or the simulation is finished, the program will close.\n/hwm - Hides watermark\n/c - Simulates a system crash\n/config xx - Loads a configuration file (xx is the file name, if there are spaces, you must use double quotes)\n\n/ddesc - Disables error descriptions\n/dqr - Disables QR code on Windows 10 blue screen\n/srv - Displays Windows Server 2016 blue screen when wv is set to 10\n/dac - Disables autoclose feature (Modern blue screens only)\n/gs - Displays green screen when wv is set to 10\n/ap - Displays ACPI blue screen (Windows Vista/7 only)\n/win - Enables windowed mode\n/random - Randomizes the blue screen (does NOT randomize any custom attributes set)\n\n/desc - Forcibly enable error description\n/ac - Forcibly enable autoclose feature\n/dap - Forcibly disable ACPI error screen (Windows Vista/7)\n/damd - Forcibly display \"GenuineIntel\" on Windows NT blue screen\n/dblink - Forcibly disable blinking cursor on Windows NT blue screen\n/dgs - Forcibly disable green screen on Windows 10 blue screen\n/qr - Forcibly enable QR code on Windows 10 blue screen\n/dsrv - Forcibly disable server blue screen when version is set to Windows 10\n/stack - Forcible enable stack trace on Windows NT blue screen\n/dfile - Forcible disables potential culprit file\n/ctd - Forcibly enables countdown\n\n/clr - Clears the verification certificate from this computer, causing the first use message to pop up.\n/hidesplash - Hides the splash screen";
 
         internal static bool verificate = false;
         public static int load_progress = 100;
@@ -54,33 +41,60 @@ namespace UltimateBlueScreenSimulator
         public static bool hidden = false;
         internal static string changelog = "+ New user interface!\n+ Trace logging\n???\n$$$ Profit $$$";
 
-        readonly private static ManagementObjectSearcher aa = new ManagementObjectSearcher("root\\CIMV2", "SELECT * FROM Win32_BaseBoard");
         public static List<BlueScreen> bluescreens;
+        public static bool hide_splash = false;
+        public static bool halt = false;
+
+        public static Verifile verifile;
 
         [STAThread]
-        public static void Main(string[] args)
+        public static int Main(string[] args)
         {
+            CLIProcessor clip = new CLIProcessor(args);
             //Application initialization
             Application.SetCompatibleTextRenderingDefault(false);
-            verificate = Verikey(args);
-            if (bad) { return; }
-            if (!verificate) { return; }
-            gs.Log("Info", "Verifile passed");
+            verifile = new Verifile();
+            verificate = verifile.Verify;
+            if (verifile.Bad) { return 1; }
+            if (!verificate) { return 1; }
             //If hidesplash flag is not set, display the splash screen
-            if (!args.Contains("/hidesplash"))
+            hide_splash = clip.CheckNoSplash();
+            if (!hide_splash)
             {
-                if (!args.Contains("/finalize_update"))
+                hidden = true;
+                spl = new Splash();
+                if (clip.CheckPreviewSplash())
                 {
-                    gs.Log("Info", "Finalising update");
-                    hidden = true;
-                    spl = new Splash();
                     spl.ShowDialog();
-                    spl.Dispose();
-                    if (args.Contains("/preview_splash"))
-                    {
-                        return;
-                    }
+                    return 0;
                 }
+                else
+                {
+                    spl.Show();
+                }
+            } else
+            {
+                Application.EnableVisualStyles();
+            }
+            gs.Log("Info", "Verifile passed");
+            if (gs.SingleSim != "")
+            {
+                bluescreens = new List<BlueScreen>();
+                dr = new DrawRoutines();
+                ReRe();
+                f1 = new NewUI();
+                gs.ScaleMode = GlobalSettings.ScaleModes.NearestNeighbour;
+                //gs.PM_Lockout = true;
+                System.Threading.Thread th = new System.Threading.Thread(new System.Threading.ThreadStart(() => {
+
+                    // initialize BlueScreen object
+                    f1.me = new BlueScreen(gs.SingleSim);
+                    // display the crash screen
+                    f1.me.Show();
+                }));
+                th.Start();
+                th.Join();
+                return 0;
             }
             gs.Log("Info", "Initializing draw routines");
             dr = new DrawRoutines();
@@ -91,6 +105,14 @@ namespace UltimateBlueScreenSimulator
             gs.Log("Info", "Initializing configurations list");
             bluescreens = new List<BlueScreen>();
             ReRe();
+            //Set default selection indexes for combo boxes
+            f1.windowVersion.SelectedIndex = 0;
+            f1.comboBox2.SelectedIndex = 0;
+            clip.ProcessArgs();
+            if (halt)
+            {
+                return 0;
+            }
             //Load application configuration if it exists
             if (File.Exists("settings.cfg"))
             {
@@ -100,46 +122,8 @@ namespace UltimateBlueScreenSimulator
                 }
                 catch (Exception ex)
                 {
-                    gs.Log("Critical", $"VioletScreen exception: {ex.Message}\n{ex.StackTrace}");
-                    Metaerror me = new Metaerror()
-                    {
-                        message = ex.Message,
-                        stack_trace = ex.StackTrace,
-                        type = "VioletScreen"
-                    };
-
-                    if (gs.EnableEggs)
-                    {
-                        switch (me.ShowDialog())
-                        {
-                            case DialogResult.Abort:
-                                return;
-                            case DialogResult.Retry:
-                                Application.Restart();
-                                return;
-                            case DialogResult.Ignore:
-                                break;
-                        }
-                    }
-                    else { MessageBox.Show("There was a problem with the settings file.\n\n" + ex.Message + "\n\n" + ex.StackTrace, "E R R O R", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+                    DisplayMetaError(ex, "VioletScreen");
                 }
-            }
-
-            //Clear verification certificate if clr flag is set
-            if (args.Contains("/clr"))
-            {
-                if ((!args.Contains("/hidesplash")) || (!args.Contains("/finalize_update")))
-                {
-                    spl.Close();
-                }
-                File.Delete(Environment.GetEnvironmentVariable("USERPROFILE") + @"\bssp2_firstlaunch.txt");
-                MessageBox.Show("Signature verification file deleted. The program will now close.", "Ultimate blue screen simulator plus", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-
-            if (args.Contains("/c"))
-            {
-                f1.GetOS();
             }
 
 
@@ -164,483 +148,17 @@ namespace UltimateBlueScreenSimulator
                     string final = codesplit[1].ToString().Substring(0, codesplit[1].ToString().Length - 1) + " (" + codesplit[0].ToString() + ")";
                     f1.comboBox1.Items.Add(final);
                 }
+                f1.comboBox1.SelectedIndex = 9;
             }
             catch
             {
                 gs.ErrorCode = 20;
             }
-            //Set default selection indexes for combo boxes
-            f1.comboBox1.SelectedIndex = 9;
-            f1.windowVersion.SelectedIndex = 0;
-            f1.comboBox2.SelectedIndex = 0;
-            //Post update scripts
-            if (args.Contains("/doneupdate"))
-            {
-                System.IO.File.Delete("BSSP.exe");
-            }
-            if (args.Contains("/finalize_update"))
-            {
-                gs.Log("Info", $"Performing update (Stage 2)");
-                UpdateInterface ui = new UpdateInterface
-                {
-                    finalize = true
-                };
-                Application.Run(ui);
-            }
-            //Generate random blue screen when /random flag is set
-            if (args.Contains("/random")) { f1.RandFunction(); }
-            //Hide watermark if hwm flag is set
-            if (args.Contains("/hvm")) { f1.waterBox.Checked = false; }
-            bool done = false;
-            foreach (string argument in args)
-            {
-                //check argument syntax
-                if (!argument.StartsWith("/"))
-                {
-                    gs.ErrorCode = 23;
-                    break;
-                }
-                //this code loads hack file if specified in arguments
-                if (argument.Contains("/config:"))
-                {
-                    string filename = argument.Split(':')[1];
-                    gs.Log("Info", $"Loading configuration file: {filename}");
-                    if (File.Exists(filename))
-                    {
-                        if (filename != "")
-                        {
-                            AboutSettingsDialog abb = new AboutSettingsDialog();
-                            abb.LoadConfig(filename);
-                            abb.Close();
-                            abb.Dispose();
-                        }
-                    }
-                    else
-                    {
-                        gs.ErrorCode = 24;
-                    }
-                }
-                //select Windows version using /wv argument
-                if (argument.Contains("/wv"))
-                {
-                    string ecode = argument.Split(':')[1];
-                    if (ecode == "")
-                    {
-                        gs.ErrorCode = 15;
-                    }
-                    int i = 0;
-                    foreach (BlueScreen bs in bluescreens)
-                    {
-                        if (bs.GetString("friendlyname").ToLower().Contains(ecode.ToLower()) || bs.GetString("os").ToLower().Contains(ecode.ToLower()))
-                        {
-                            f1.me = bs;
-                            //f1.displayone = true;
-                            f1.comboBox1.SelectedIndex = i;
-                            done = true;
-                            break;
-                        }
-                        i++;
-                    }
-                    if (!done)
-                    {
-                        gs.ErrorCode = 12;
-                    }
-                }
-            }
-
-            //sets other optional flags
-            if (args.Contains("/ddesc"))
-            {
-                gs.Log("Info", "Forcing show_description to disabled state");
-                foreach (BlueScreen bs in bluescreens)
-                {
-                    bs.SetBool("show_description", false);
-                }
-            }
-            if (args.Contains("/desc"))
-            {
-                gs.Log("Info", "Forcing show_description to enabled state");
-                foreach (BlueScreen bs in bluescreens)
-                {
-                    bs.SetBool("show_description", true);
-                }
-            }
-            if (args.Contains("/dac"))
-            {
-                gs.Log("Info", "Forcing autoclose to disabled state");
-                foreach (BlueScreen bs in bluescreens)
-                {
-                    bs.SetBool("autoclose", false);
-                }
-            }
-            if (args.Contains("/ac"))
-            {
-                gs.Log("Info", "Forcing autoclose to enabled state");
-                foreach (BlueScreen bs in bluescreens)
-                {
-                    bs.SetBool("autoclose", true);
-                }
-            }
-            if (args.Contains("/ap"))
-            {
-                gs.Log("Info", "Forcing acpi to enabled state");
-                foreach (BlueScreen bs in bluescreens)
-                {
-                    bs.SetBool("acpi", true);
-                }
-            }
-            if (args.Contains("/dap"))
-            {
-                gs.Log("Info", "Forcing acpi to disabled state");
-                foreach (BlueScreen bs in bluescreens)
-                {
-                    bs.SetBool("acpi", false);
-                }
-            }
-            if (args.Contains("/amd"))
-            {
-                gs.Log("Info", "Forcing amd to enabled state");
-                foreach (BlueScreen bs in bluescreens)
-                {
-                    bs.SetBool("amd", true);
-                }
-            }
-            if (args.Contains("/damd"))
-            {
-                gs.Log("Info", "Forcing amd to disabled state");
-                foreach (BlueScreen bs in bluescreens)
-                {
-                    bs.SetBool("amd", false);
-                }
-            }
-            if (args.Contains("/blink"))
-            {
-                gs.Log("Info", "Forcing blink to enabled state");
-                foreach (BlueScreen bs in bluescreens)
-                {
-                    bs.SetBool("blink", true);
-                }
-            }
-            if (args.Contains("/dblink"))
-            {
-                gs.Log("Info", "Forcing blink to disabled state");
-                foreach (BlueScreen bs in bluescreens)
-                {
-                    bs.SetBool("blink", false);
-                }
-            }
-            if (args.Contains("/gs"))
-            {
-                gs.Log("Info", "Forcing insider to enabled state");
-                foreach (BlueScreen bs in bluescreens)
-                {
-                    bs.SetBool("insider", true);
-                }
-            }
-            if (args.Contains("/dgs"))
-            {
-                gs.Log("Info", "Forcing insider to disabled state");
-                foreach (BlueScreen bs in bluescreens)
-                {
-                    bs.SetBool("insider", false);
-                }
-            }
-            if (args.Contains("/qr"))
-            {
-                gs.Log("Info", "Forcing qr to enabled state");
-                foreach (BlueScreen bs in bluescreens)
-                {
-                    bs.SetBool("qr", true);
-                }
-            }
-            if (args.Contains("/dqr"))
-            {
-                gs.Log("Info", "Forcing qr to disabled state");
-                foreach (BlueScreen bs in bluescreens)
-                {
-                    bs.SetBool("qr", false);
-                }
-            }
-            if (args.Contains("/srv"))
-            {
-                gs.Log("Info", "Forcing server to enabled state");
-                foreach (BlueScreen bs in bluescreens)
-                {
-                    bs.SetBool("server", true);
-                }
-            }
-            if (args.Contains("/dsrv"))
-            {
-                gs.Log("Info", "Forcing server to disabled state");
-                foreach (BlueScreen bs in bluescreens)
-                {
-                    bs.SetBool("server", false);
-                }
-            }
-            if (args.Contains("/stack"))
-            {
-                gs.Log("Info", "Forcing stack_trace to enabled state");
-                foreach (BlueScreen bs in bluescreens)
-                {
-                    bs.SetBool("stack_trace", true);
-                }
-            }
-            if (args.Contains("/dstack"))
-            {
-                gs.Log("Info", "Forcing stack_trace to disabled state");
-                foreach (BlueScreen bs in bluescreens)
-                {
-                    bs.SetBool("stack_trace", false);
-                }
-            }
-            if (args.Contains("/win"))
-            {
-                gs.Log("Info", "Forcing windowed to enabled state");
-                foreach (BlueScreen bs in bluescreens)
-                {
-                    bs.SetBool("windowed", true);
-                }
-            }
-            if (args.Contains("/dfile"))
-            {
-                gs.Log("Info", "Forcing culprit file to disabled state");
-                foreach (BlueScreen bs in bluescreens)
-                {
-                    bs.SetBool("show_file", false);
-                    bs.SetString("culprit", "");
-                }
-            }
-            //displays help
-            if (args.Contains("/?"))
-            {
-                MessageBox.Show(cmds, "Command line argument usage", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                gs.ErrorCode = 999;
-            }
-            //displays errror cuplrit file if specified in arguments
-            foreach (string argument in args)
-            {
-                if (argument.StartsWith("/file:"))
-                {
-                    gs.Log("Info", "Setting culprit file");
-                    f1.checkBox2.Checked = true;
-                    string ecode = argument.Split(':')[1].ToString();
-                    foreach (BlueScreen bs in bluescreens)
-                    {
-                        bs.SetString("culprit", ecode);
-                    }
-                    if (ecode == "")
-                    {
-                        gs.ErrorCode = 16;
-                    }
-                    f1.textBox2.Text = ecode;
-                }
-            }
-            //hide main interface if /h flag is set
-            if (args.Contains("/h"))
-            {
-                gs.Log("Info", "Hiding main interface");
-                f1.WindowState = FormWindowState.Minimized;
-                f1.ShowInTaskbar = false;
-                f1.ShowIcon = false;
-                gs.PM_Lockout = true;
-                if (!args.Contains("/c"))
-                {
-                    gs.ErrorCode = 1;
-                }
-            }
-            if (args.Contains("/hwm"))
-            {
-                gs.Log("Info", "Forcing watermark to disabled state");
-                foreach (BlueScreen bs in bluescreens)
-                {
-                    bs.SetBool("watermark", false);
-                }
-            }
-
-            //Simulate crash if /c flag is set
-            if (args.Contains("/c"))
-            {
-                gs.Log("Info", "Starting simulation from command line");
-                f1.Crash();
-            }
             //run application
             Application.Run(f1);
+            return gs.ErrorCode;
         }
 
-        /// <summary>
-        /// Computer verification system
-        /// </summary>
-        /// <param name="args">key array</param>
-        /// <returns>boolean</returns>
-        // Verifile
-        internal static bool Verikey(string[] args)
-        {
-            bool verifi = true;
-            if (!File.Exists(Environment.GetEnvironmentVariable("USERPROFILE") + @"\bssp2_firstlaunch.txt")) { verifi = false; }
-            if (verifi == true)
-            {
-                if (Program.Verifile() != File.ReadAllText(Environment.GetEnvironmentVariable("USERPROFILE") + @"\bssp2_firstlaunch.txt"))
-                {
-                    gs.Log("Error", "Verifile attestation result: TAMPERED");
-                    if (args.Contains("/c") && args.Contains("/hwm"))
-                    {
-                        MessageBox.Show("A malicious program or script tried to potentially fool you into thinking that your system crashed. Due to signature verification failure, this program has to close.\n\n\nWhat should I do?\n\nIf you did not download the Bluescreen simulator plus yourself, please scan your computer for potential viruses or malware\nIf you DID download blue screen simulator plus, then the problem is most likely caused by a recent hardware change, which can invalidate the signature. To recreate the signature, run following commands in command prompt:\ncd \"" + AppDomain.CurrentDomain.BaseDirectory + "\"\nBlue screen simulator plus.exe /clr\n\nAfter that, you should be able to relaunch the program after clicking \"OK\".", "Ultimate blue screen simulator plus", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
-                    bad = true;
-                    return false;
-                } else {
-                    gs.Log("Info", "Verifile attestation result: VERIFIED");
-                }
-            }
-            if (!verifi)
-            {
-                bool preversion = false;
-                if (File.Exists(Environment.GetEnvironmentVariable("USERPROFILE") + @"\bssp_firstlaunch.txt"))
-                {
-                    gs.Log("Warning", "Verifile attestation result: LEGACY");
-                    preversion = true;
-                    File.Delete(Environment.GetEnvironmentVariable("USERPROFILE") + @"\bssp_firstlaunch.txt");
-                } else
-                {
-                    gs.Log("Warning", "Verifile attestation result: FOREIGN");
-                }
-                string usetype = "";
-                if (preversion) { usetype = "version of the "; }
-                if (MessageBox.Show("It looks like you are using this " + usetype + "program for the very first time. If you did not start this program, dont worry. This program is not malicious, but you should click \"No\" below and scan your computer for viruses/malicious programs.\n\n\nThis program can only be used for non-harmful purposes, such as:\n\n* Screenshotting blue screens from different operating systems (for use in a video, article, etc)\n* Non-harmful pranking purposes (ie pranking a friend, relative, etc)\n* Having fun tweaking different blue screens\n* Learning about different blue screens from different operating systems\n* Other testing or reviewing purposes\n\n\nBy clicking or selecting \"Yes\" you accept that you DO NOT use this program maliciously (ie as a part of a malicious program, a way of sacrificing productivity, etc). A verification signature will be created preventing this message from popping up in this computer. \n\nIf you click or select \"No\" then the program will close. The popup will reappear once you relaunch the program from this computer and user account.", "Welcome to Blue screen simulator plus", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.No)
-                {
-                    return false;
-                }
-                else
-                {
-                    gs.Log("Info", "Registering Verifile data");
-                    WriteFile();
-                    return true;
-                }
-            }
-            return verifi;
-        }
-        internal static string Verifile()
-        {
-            string verificatable = Q();
-            return verificatable;
-        }
-
-        internal static void WriteFile()
-        {
-            string verificatable = Q();
-            if (verificatable == "error")
-            {
-                return;
-            }
-            else
-            { 
-                File.WriteAllText(Environment.GetEnvironmentVariable("USERPROFILE") + "\\bssp2_firstlaunch.txt", verificatable, Encoding.ASCII);
-            }
-
-        }
-        static string Q()
-        {
-            string gg = "CPI" + Ff();
-            try
-            { 
-                return (H(J(gg.Substring(1, gg.Length - 2) + gg.Substring(0, 1) + gg.Substring(gg.Length - 1, 1))).ToLower() + J(Uu()).ToLower() + J(B)).ToLower();
-            } catch
-            {
-                MessageBox.Show("Unable to write signature information. To remove first use message, please run the application as administrator at least once.", "Verifile error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return "error";
-            }
-        }
-
-        static string Uu()
-        {
-            using (ManagementObjectSearcher o = new ManagementObjectSearcher("SELECT * FROM Win32_BIOS"))
-
-            using (ManagementObjectCollection moc = o.Get())
-
-            {
-
-                StringBuilder t = new StringBuilder();
-                foreach (ManagementObject mo in moc)
-
-                {
-
-                    string[] BIOSVersions = (string[])mo["BIOSVersion"];
-                    foreach (string version in BIOSVersions)
-                    {
-                        t.AppendLine(string.Format("{0}", version));
-                    }
-
-                }
-                return t.ToString().Split('\n')[0].ToString();
-            }
-        }
-
-        public static string Ff()
-        {
-            string l = string.Empty;
-            ManagementClass mc = new ManagementClass("win32_processor");
-            ManagementObjectCollection moc = mc.GetInstances();
-
-            foreach (ManagementObject mo in moc)
-            {
-                if (l == "")
-                {
-                    try { 
-                    l = mo.Properties["processorID"].Value.ToString();
-                    } catch
-                    {
-                        l = "a";
-                    }
-                    break;
-                }
-            }
-            return l;
-        }
-        public static string J(string z)
-        {
-            SHA1 cx = SHA1.Create();
-            byte[] xx = Encoding.ASCII.GetBytes(z);
-            byte[] hash = cx.ComputeHash(xx);
-
-            StringBuilder t = new StringBuilder();
-            for (int i = 0; i < hash.Length; i++)
-            {
-                t.Append(hash[i].ToString("X2"));
-            }
-            return t.ToString();
-        }
-        public static string H(string z)
-        {
-            MD5 cx = MD5.Create();
-            byte[] xx = Encoding.ASCII.GetBytes(z);
-            byte[] hash = cx.ComputeHash(xx);
-
-            StringBuilder t = new StringBuilder();
-            for (int i = 0; i < hash.Length; i++)
-            {
-                t.Append(hash[i].ToString("X2"));
-            }
-            return t.ToString();
-        }
-        static public string B
-        {
-            get
-            {
-                try
-                {
-                    foreach (ManagementObject queryObj in aa.Get())
-                    {
-                        return queryObj["Product"].ToString();
-                    }
-                    return "";
-                }
-                catch
-                {
-                    return "";
-                }
-            }
-        }
-        
         static public void ReRe()
         {
             Program.bluescreens.Clear();
@@ -659,6 +177,31 @@ namespace UltimateBlueScreenSimulator
             Program.bluescreens.Add(new BlueScreen("Windows 11"));
         }
 
+        static private void DisplayMetaError(Exception ex, string type)
+        {
+            gs.Log("Critical", $"{type} exception: {ex.Message}\n{ex.StackTrace}");
+            Metaerror me = new Metaerror()
+            {
+                message = ex.Message,
+                stack_trace = ex.StackTrace,
+                type = "VioletScreen"
+            };
+
+            if (gs.EnableEggs)
+            {
+                switch (me.ShowDialog())
+                {
+                    case DialogResult.Abort:
+                        return;
+                    case DialogResult.Retry:
+                        Application.Restart();
+                        return;
+                    case DialogResult.Ignore:
+                        break;
+                }
+            }
+            else { MessageBox.Show("There was a problem with the settings file.\n\n" + ex.Message + "\n\n" + ex.StackTrace, "E R R O R", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+        }
 
         public static bool DoWeHaveInternet(long minimumSpeed)
         {

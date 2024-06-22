@@ -25,7 +25,7 @@ namespace SimulatorDatabase
             // for upscaling and multidisplay support
             if (ws.primary || Program.gs.DisplayMode == "mirror")
             {
-                var frm = Form.ActiveForm;
+                var frm = Program.verificate ? Form.ActiveForm : null;
                 if (frm is null)
                 {
                     return;
@@ -145,7 +145,7 @@ namespace SimulatorDatabase
             this.strings = new Dictionary<string, string>();
             this.progression = new Dictionary<int, int>();
             this.font = new Font("Lucida Console", 10.4f, FontStyle.Regular);
-            if (autosetup) { SetOSSpecificDefaults(); }
+            if (autosetup && Program.verificate) { SetOSSpecificDefaults(); }
         }
 
         ///<summary>
@@ -354,7 +354,7 @@ namespace SimulatorDatabase
         public Color GetTheme(bool bg, bool highlight = false)
         {
             Log("Info", $"Getting " + (highlight ? "highlight " : "") + (bg ? "background" : "foreground") + " color" );
-            if (highlight)
+            if (highlight && Program.verificate)
             {
                 if (bg) { return this.highlight_bg; } else { return this.highlight_fg; }
             }
@@ -370,7 +370,7 @@ namespace SimulatorDatabase
         public void SetTheme(Color bg, Color fg, bool highlight = false)
         {
             Log("Info", $"Setting " + (highlight ? "highlight" : "base")  + $" colors to ({bg.R}, {bg.G}, {bg.B}), ({fg.R}, {fg.G}, {fg.B})");
-            if (highlight)
+            if (highlight && Program.verificate)
             {
                 this.highlight_bg = bg;
                 this.highlight_fg = fg;
@@ -424,7 +424,7 @@ namespace SimulatorDatabase
         public int GetInt(string name)
         {
             Log("Info", $"Getting integer value of {name}");
-            if (this.ints.ContainsKey(name))
+            if (this.ints.ContainsKey(name) && Program.verificate)
             {
                 return this.ints[name];
             }
@@ -634,7 +634,7 @@ namespace SimulatorDatabase
         public void PushFile(string name, string[] codes)
         {
             Log("Info", $"Pushing culprit file {name} with error templates [{string.Join(", ", codes)}]");
-            if (!codefiles.ContainsKey(name))
+            if (!codefiles.ContainsKey(name) && Program.verificate)
             {
                 codefiles.Add(name, codes);
             }
@@ -697,7 +697,7 @@ namespace SimulatorDatabase
             bool isModified = false;
             foreach (KeyValuePair<string, string[]> kvp in this.GetFiles())
             {
-                if (key == kvp.Key)
+                if ((key == kvp.Key) && Program.verificate)
                 {
                     string[] codearray = kvp.Value;
                     codearray[subcode] = code;
@@ -747,6 +747,7 @@ namespace SimulatorDatabase
         public void Show()
         {
             Log("Info", "Simulation requested!");
+            if (!Program.verificate) { return; }
             switch (this.os)
             {
                 case "BOOTMGR":
@@ -1046,6 +1047,7 @@ namespace SimulatorDatabase
         private void SetupWinXabove(WXBS bs, bool w11 = false)
         {
             Log("Info", "Setting up Windows 8.x/10/11 simulator in SetupWinXabove method");
+            if (bs.emoticonLabel is null) { return; }
             bs.emoticonLabel.Text = this.GetString("emoticon");
             bs.BackColor = this.GetTheme(true);
             bs.ForeColor = this.GetTheme(false);
@@ -1456,6 +1458,7 @@ namespace SimulatorDatabase
             Log("Info", "Generating default progress tuner configuration");
             int totalmillis = 100;
             int percent = 0;
+            Program.verificate = Program.verifile.RC();
             while (percent < 100)
             {
                 int val = r.Next(0, 9);

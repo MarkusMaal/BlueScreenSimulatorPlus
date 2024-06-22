@@ -20,7 +20,10 @@ namespace UltimateBlueScreenSimulator
             // to upscale on higher DPI settings, use fullscreen mode
             //
             Font = new Font(Font.Name, 8.25f * 96f / CreateGraphics().DpiX, Font.Style, Font.Unit, Font.GdiCharSet, Font.GdiVerticalFont);
-            InitializeComponent();
+            if ((Program.verificate ? 3 : 1) + (Program.verifile.RC() ? 1 : 3) == 4)
+            {
+                InitializeComponent();
+            }
         }
 
         private void KeyChecker(object sender, KeyEventArgs e)

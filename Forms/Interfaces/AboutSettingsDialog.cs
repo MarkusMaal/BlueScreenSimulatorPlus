@@ -1576,6 +1576,7 @@ namespace UltimateBlueScreenSimulator
             {
                 Program.f1.materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
             }
+            Program.f1.RelocateButtons();
         }
 
         private void rtlSwitch_CheckedChanged(object sender, EventArgs e)

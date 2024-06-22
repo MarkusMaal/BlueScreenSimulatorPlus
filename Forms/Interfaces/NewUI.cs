@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.Design;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
@@ -53,15 +54,24 @@ namespace UltimateBlueScreenSimulator
             );
         }
 
-        private void RelocateButtons()
+        internal void RelocateButtons()
         {
             button1.Location = new Point(this.Width - button1.Width - 10, this.Height - button1.Height - 10);
             button3.Location = new Point(button1.Location.X - (button1.Width) - 5, button1.Location.Y);
             label7.Location = new Point(label7.Location.X, button1.Location.Y + label7.Height / 2);
+            flowLayoutPanel1.BackColor = this.BackColor;
+            foreach (Control c in flowLayoutPanel1.Controls)
+            {
+                c.BackColor = this.BackColor;
+            }
         }
 
         private void NewUi1_Load(object sender, EventArgs e)
         {
+            if (Program.gs.ErrorCode != 0)
+            {
+                ProcessErrors();
+            }
             RelocateButtons();
             string verStr = Convert.ToDouble(version.Replace(".", ",")).ToString().Replace(",", ".");
             if (!verStr.Contains("."))
@@ -102,12 +112,34 @@ namespace UltimateBlueScreenSimulator
             catch
             {
             }
-            GetOS();
+            if (Program.gs.DisplayOne)
+            {
+                windowVersion.Items.Clear();
+                for (int i = Program.bluescreens.Count - 1; i >= 0; i--)
+                {
+                    windowVersion.Items.Add(Program.bluescreens[i].GetString("friendlyname"));
+                }
+                windowVersion.SelectedItem = me.GetString("friendlyname");
+                //windowVersion.Visible = false;
+                //label1.Text = "Selected preset: " + windowVersion.SelectedItem.ToString();
+                //linkLabel1.Location = new Point(label1.Location.X + label1.Width, linkLabel1.Location.Y);
+                //linkLabel1.Visible = true;
+            } else
+            {
+                GetOS();
+            }
+            if (Program.gs.PM_CloseMainUI)
+            {
+                this.WindowState = FormWindowState.Minimized;
+                this.Hide();
+                return;
+            }
             bool DarkMode = (int)Registry.GetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize", "AppsUseLightTheme", 1) == 0;
             Program.gs.NightTheme = Program.gs.AutoDark && DarkMode;
             if (Program.gs.AutoDark && DarkMode)
             {
                 materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
+                RelocateButtons();
             }
             Program.gs.ApplyScheme();
         }
@@ -298,7 +330,10 @@ namespace UltimateBlueScreenSimulator
             try
             {
                 // set current bluescreen
-                me = Program.bluescreens[Program.bluescreens.Count - 1 - windowVersion.SelectedIndex];
+                if (!Program.gs.DisplayOne)
+                {
+                    me = Program.bluescreens[Program.bluescreens.Count - 1 - windowVersion.SelectedIndex];
+                }
             }
             catch (Exception ex)
             {
@@ -559,6 +594,7 @@ namespace UltimateBlueScreenSimulator
             if (Program.loadfinished && this.Visible)
             {
                 Program.loadfinished = false;
+                Program.load_progress = 100;
                 Gen g = new Gen();
                 g.Show();
             }
@@ -624,7 +660,10 @@ namespace UltimateBlueScreenSimulator
         {
             textBox2.Enabled = checkBox2.Checked;
             button2.Enabled = checkBox2.Checked;
-            me.SetBool("show_file", checkBox2.Checked);
+            if (me != null)
+            {
+                me.SetBool("show_file", checkBox2.Checked);
+            }
         }
 
         private void materialFloatingActionButton2_Click(object sender, EventArgs e)
@@ -1267,6 +1306,98 @@ namespace UltimateBlueScreenSimulator
                 {
                     new ClickIt().Show();
                 }
+            }
+        }
+
+        private void NewUI_Shown(object sender, EventArgs e)
+        {
+            this.Enabled = true;
+            if ((Program.spl != null) && (Program.spl.Visible))
+            {
+                Program.spl.Close();
+                Program.spl.Dispose();
+            }
+        }
+
+        private void ProcessErrors()
+        {
+            switch (Program.gs.ErrorCode)
+            {
+                case 0:
+                    break;
+                case 1:
+                    MessageBox.Show("No command specified in hidden mode\nAre you missing the /c argument?\n\n0x001: COMMAND_DEADLOCK", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 2:
+                    MessageBox.Show("Specified file is either corrupted or not a valid blue screen simulator plus hack file.\n\n0x002: HEADER_MISSING", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 3:
+                    MessageBox.Show("Specified file is either corrupted or incompatible with this version of blue screen simulator plus.\n\n0x003: INCOMPATIBLE_HACK", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 4:
+                    MessageBox.Show("Specified file is either corrupt or does not exist.\n\n0x004: FILE_MISSING", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 5:
+                    MessageBox.Show("Specified file is either corrupted or incompatible with this version of blue screen simulator plus.\n\n0x005: MISSING_ATTRIBUTES", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 6:
+                    MessageBox.Show("Specified file is either corrupted or incompatible with this version of blue screen simulator plus.\n\n0x006: FACE_TOO_LONG", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 7:
+                    MessageBox.Show("Specified file is either corrupted or incompatible with this version of blue screen simulator plus.\n\n0x007: FACE_TOO_SHORT", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 8:
+                    MessageBox.Show("Specified file is either corrupted or incompatible with this version of blue screen simulator plus.\n\n0x008: RGB_OUT_OF_RANGE", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 9:
+                    MessageBox.Show("Specified file is either corrupted or incompatible with this version of blue screen simulator plus.\n\n0x009: RGB_VALUE_NEGATIVE", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 10:
+                    MessageBox.Show("A supported Windows version could not be identified.\n\n0x00A: PRODUCT_NAME_NOT_LISTED", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 11:
+                    MessageBox.Show("Windows version could not be identified.\nAre you using a compatibility layer?\n\n0x00B: PRODUCT_NAME_MISSING", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 12:
+                    MessageBox.Show("Cannot find the Windows version specified\n\n0x00C: WINVER_NOT_FOUND", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 13:
+                    MessageBox.Show("Cannot find the error code specified\n\n0x00D: NTCODE_NOT_FOUND", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 14:
+                    MessageBox.Show("Cannot find the error code specified\n\n0x00D: 9XCODE_NOT_FOUND", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 15:
+                    MessageBox.Show("The syntax of the command is incorrect\n\n0x00E: BAD_SYNTAX", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 16:
+                    MessageBox.Show("The syntax of the command is incorrect\n\n0x00F: BAD_SYNTAX", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 17:
+                    MessageBox.Show("The syntax of the command is incorrect\n\n0x010: BAD_SYNTAX", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 18:
+                    MessageBox.Show("The syntax of the command is incorrect\n\n0x011: BAD_SYNTAX", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 19:
+                    MessageBox.Show("Internal database could not be loaded\n\n0x012: NT_DATABASE_MISSING", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 20:
+                    MessageBox.Show("Internal database seems to be corrupted\n\n0x013: NT_DATABASE_CORRUPTED", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 23:
+                    MessageBox.Show("The syntax of the command is incorrect\n\n0x016: COMMAND_ARGUMENT_INVALID", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 24:
+                    MessageBox.Show("Specified hack file does not exist\n\n0x014: HACK_FILE_NON_EXISTENT", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 25:
+                    MessageBox.Show("Specified hack file is either corrupted or incompatible with this version of blue screen simulator plus.\n\n0x015: HACK_FILE_INCOMPATIBLE", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                default:
+                    Application.Exit();
+                    this.Close();
+                    break;
             }
         }
     }

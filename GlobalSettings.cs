@@ -28,13 +28,15 @@ namespace UltimateBlueScreenSimulator
         private bool enableeggs = true;
         private bool randomness = false;
         private bool autodark = true;
+        private string singlesim = "";
         private string update_server = "http://markustegelane.eu/app/";
 
         // runtime settings (these are not persistent)
-        private int errorcode = -1;
+        private int errorcode = 0;
         private bool realpostpone = false;
         private bool nighttheme = false;
         private string supporttext = "If this is the first time you've seen this Stop error screen,\nrestart your computer. If this screen appears again, follow\nthese steps:\n\nCheck to make sure any new hardware or software is properly installed.\nIf this is a new installation, ask your hardware or software manufacturer\nfor any Windows updates you might need.\n\nIf problems continue, disable or remove any newly installed hardware\nor software. Disable BIOS memory options such as caching or shadowing.\nIf you need to use Safe mode to remove or disable components, restart\nyour computer, press F8 to select Advanced Startup Options, and then\nselect Safe Mode.";
+        private bool displayone = false;
 
         // prank mode
         private MessageBoxIcon MsgBoxIcon;
@@ -149,6 +151,14 @@ namespace UltimateBlueScreenSimulator
         public bool EnableEggs {
             get { return enableeggs; }
             set { enableeggs = value; }
+        }
+
+        ///<summary>
+        ///This value allows for selecting a configuration through command line arguments
+        ///</summary>
+        public bool DisplayOne {
+            get { return displayone; }
+            set { displayone = value; }
         }
 
         ///<summary>
@@ -287,6 +297,14 @@ namespace UltimateBlueScreenSimulator
         public bool NightTheme {
             get { return nighttheme; }
             set { nighttheme = value; }
+        }
+
+        ///<summary>
+        ///Allows the program to be run as a single simulator based on the specified OS template (e.g. Windows Vista, Windows 10, etc.)
+        ///</summary>
+        public string SingleSim {
+            get { return singlesim; }
+            set { singlesim = value; }
         }
 
 

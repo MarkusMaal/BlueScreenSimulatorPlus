@@ -79,6 +79,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CLIProcessor.cs" />
     <Compile Include="Forms\Interfaces\AboutSettingsDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -271,6 +272,7 @@
     <Compile Include="Forms\Simulators\xvsbs.Designer.cs">
       <DependentUpon>xvsbs.cs</DependentUpon>
     </Compile>
+    <Compile Include="Verifile.cs" />
     <EmbeddedResource Include="Forms\Interfaces\AboutSettingsDialog.resx">
       <DependentUpon>AboutSettingsDialog.cs</DependentUpon>
       <SubType>Designer</SubType>

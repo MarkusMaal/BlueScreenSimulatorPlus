@@ -26,12 +26,14 @@ namespace UltimateBlueScreenSimulator
         readonly List<Bitmap> freezescreens = new List<Bitmap>();
         public WXBS()
         {
-            InitializeComponent();
+            if (Program.verifile.RC() && Program.verificate)
+            {
+                InitializeComponent();
+            }
         }
 
         private void FlowLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
-
         }
 
         private void WXBS_FormClosing(object sender, FormClosingEventArgs e)
@@ -132,7 +134,7 @@ namespace UltimateBlueScreenSimulator
                 try { waterMarkText.ForeColor = Color.FromArgb(this.BackColor.R + 60, this.BackColor.G + 60, this.BackColor.B + 60); } catch { }
                 if (this.FormBorderStyle == FormBorderStyle.None)
                 {
-                    if (!Program.gs.ShowCursor)
+                    if (!Program.gs.ShowCursor && Program.verificate)
                     {
                         Cursor.Hide();
                     }
@@ -279,6 +281,7 @@ namespace UltimateBlueScreenSimulator
                 if (!oldmode) { progressmillis++; }
                 if (!w8close)
                 {
+                    if (!Program.verificate) { throw new NotImplementedException(); }
                     if ((oldmode && (progress >= 100)) || (progressmillis == maxprogressmillis))
                     {
                         progressUpdater.Enabled = false;

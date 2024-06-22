@@ -10,7 +10,10 @@ namespace UltimateBlueScreenSimulator
         public bool primary = true;
         public WindowScreen()
         {
-            InitializeComponent();
+            if (Program.verificate)
+            {
+                InitializeComponent();
+            }
         }
 
         private void WindowScreen_Load(object sender, EventArgs e)

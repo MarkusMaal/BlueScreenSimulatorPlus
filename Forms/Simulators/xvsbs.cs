@@ -25,7 +25,10 @@ namespace UltimateBlueScreenSimulator
         readonly List<Bitmap> freezescreens = new List<Bitmap>();
         public Xvsbs()
         {
-            InitializeComponent();
+            if (Program.verificate)
+            {
+                InitializeComponent();
+            }
         }
 
         private void Xvsbs_Load(object sender, EventArgs e)

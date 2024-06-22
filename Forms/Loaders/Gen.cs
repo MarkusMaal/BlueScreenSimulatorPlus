@@ -52,11 +52,13 @@ namespace UltimateBlueScreenSimulator
             {
                 genProgressBar.Style = ProgressBarStyle.Marquee;
             }
+            genProgressBar.Refresh();
         }
 
         private void Gen_Load(object sender, EventArgs e)
         {
             genLabel.BackColor = this.BackColor;
+            genProgressBar.MarqueeAnimationSpeed = 30;
         }
     }
 }
