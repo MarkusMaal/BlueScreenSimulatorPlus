@@ -93,8 +93,6 @@
             this.aboutTab = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.tabPage6 = new System.Windows.Forms.TabPage();
-            this.rtlSwitch = new MaterialSkin.Controls.MaterialSwitch();
             this.materialDrawer1 = new MaterialSkin.Controls.MaterialDrawer();
             this.label7 = new MaterialSkin.Controls.MaterialLabel();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
@@ -112,7 +110,6 @@
             this.nineXmessage.SuspendLayout();
             this.flowLayoutPanel4.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            this.tabPage6.SuspendLayout();
             this.SuspendLayout();
             // 
             // materialLabel5
@@ -626,8 +623,13 @@
             this.eCodeEditButton.HighEmphasis = true;
             this.eCodeEditButton.Icon = null;
             this.eCodeEditButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+<<<<<<< HEAD
             this.eCodeEditButton.Location = new System.Drawing.Point(5, 60);
             this.eCodeEditButton.Margin = new System.Windows.Forms.Padding(5, 8, 5, 8);
+=======
+            this.eCodeEditButton.Location = new System.Drawing.Point(193, 6);
+            this.eCodeEditButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+>>>>>>> 69c21f0 (Fix for dark mode detection)
             this.eCodeEditButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.eCodeEditButton.Name = "eCodeEditButton";
             this.eCodeEditButton.NoAccentTextColor = System.Drawing.Color.Empty;
@@ -650,8 +652,13 @@
             this.advNTButton.HighEmphasis = true;
             this.advNTButton.Icon = null;
             this.advNTButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+<<<<<<< HEAD
             this.advNTButton.Location = new System.Drawing.Point(5, 112);
             this.advNTButton.Margin = new System.Windows.Forms.Padding(5, 8, 5, 8);
+=======
+            this.advNTButton.Location = new System.Drawing.Point(374, 6);
+            this.advNTButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+>>>>>>> 69c21f0 (Fix for dark mode detection)
             this.advNTButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.advNTButton.Name = "advNTButton";
             this.advNTButton.NoAccentTextColor = System.Drawing.Color.Empty;
@@ -674,8 +681,13 @@
             this.progressTuneButton.HighEmphasis = true;
             this.progressTuneButton.Icon = null;
             this.progressTuneButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+<<<<<<< HEAD
             this.progressTuneButton.Location = new System.Drawing.Point(5, 164);
             this.progressTuneButton.Margin = new System.Windows.Forms.Padding(5, 8, 5, 8);
+=======
+            this.progressTuneButton.Location = new System.Drawing.Point(4, 54);
+            this.progressTuneButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+>>>>>>> 69c21f0 (Fix for dark mode detection)
             this.progressTuneButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.progressTuneButton.Name = "progressTuneButton";
             this.progressTuneButton.NoAccentTextColor = System.Drawing.Color.Empty;
@@ -695,8 +707,12 @@
             this.button1.Depth = 0;
             this.button1.Icon = global::UltimateBlueScreenSimulator.Properties.Resources.play;
             this.button1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+<<<<<<< HEAD
             this.button1.Location = new System.Drawing.Point(0, 64);
             this.button1.Margin = new System.Windows.Forms.Padding(4);
+=======
+            this.button1.Location = new System.Drawing.Point(692, 750);
+>>>>>>> 69c21f0 (Fix for dark mode detection)
             this.button1.Mini = true;
             this.button1.MouseState = MaterialSkin.MouseState.HOVER;
             this.button1.Name = "button1";
@@ -713,8 +729,12 @@
             this.button3.Depth = 0;
             this.button3.Icon = global::UltimateBlueScreenSimulator.Properties.Resources.question;
             this.button3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+<<<<<<< HEAD
             this.button3.Location = new System.Drawing.Point(0, 125);
             this.button3.Margin = new System.Windows.Forms.Padding(4);
+=======
+            this.button3.Location = new System.Drawing.Point(646, 750);
+>>>>>>> 69c21f0 (Fix for dark mode detection)
             this.button3.Mini = true;
             this.button3.MouseState = MaterialSkin.MouseState.HOVER;
             this.button3.Name = "button3";
@@ -759,7 +779,6 @@
             this.materialTabControl1.Controls.Add(this.aboutTab);
             this.materialTabControl1.Controls.Add(this.tabPage4);
             this.materialTabControl1.Controls.Add(this.tabPage5);
-            this.materialTabControl1.Controls.Add(this.tabPage6);
             this.materialTabControl1.Depth = 0;
             this.materialTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.materialTabControl1.Location = new System.Drawing.Point(4, 90);
@@ -769,7 +788,11 @@
             this.materialTabControl1.Name = "materialTabControl1";
             this.materialTabControl1.SelectedIndex = 0;
             this.materialTabControl1.ShowToolTips = true;
+<<<<<<< HEAD
             this.materialTabControl1.Size = new System.Drawing.Size(957, 653);
+=======
+            this.materialTabControl1.Size = new System.Drawing.Size(732, 679);
+>>>>>>> 69c21f0 (Fix for dark mode detection)
             this.materialTabControl1.TabIndex = 8;
             this.materialTabControl1.SelectedIndexChanged += new System.EventHandler(this.materialTabControl1_SelectedIndexChanged);
             // 
@@ -779,8 +802,13 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 28);
             this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage1.Name = "tabPage1";
+<<<<<<< HEAD
             this.tabPage1.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage1.Size = new System.Drawing.Size(949, 621);
+=======
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(724, 650);
+>>>>>>> 69c21f0 (Fix for dark mode detection)
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Simulator";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -797,8 +825,13 @@
             this.materialCard1.Location = new System.Drawing.Point(4, 4);
             this.materialCard1.Margin = new System.Windows.Forms.Padding(18);
             this.materialCard1.Name = "materialCard1";
+<<<<<<< HEAD
             this.materialCard1.Padding = new System.Windows.Forms.Padding(18);
             this.materialCard1.Size = new System.Drawing.Size(902, 626);
+=======
+            this.materialCard1.Padding = new System.Windows.Forms.Padding(14);
+            this.materialCard1.Size = new System.Drawing.Size(702, 842);
+>>>>>>> 69c21f0 (Fix for dark mode detection)
             this.materialCard1.TabIndex = 6;
             // 
             // materialLabel1
@@ -849,7 +882,11 @@
             this.windowVersion.MaxDropDownItems = 4;
             this.windowVersion.MouseState = MaterialSkin.MouseState.OUT;
             this.windowVersion.Name = "windowVersion";
+<<<<<<< HEAD
             this.windowVersion.Size = new System.Drawing.Size(790, 49);
+=======
+            this.windowVersion.Size = new System.Drawing.Size(585, 49);
+>>>>>>> 69c21f0 (Fix for dark mode detection)
             this.windowVersion.StartIndex = 0;
             this.windowVersion.TabIndex = 0;
             this.windowVersion.SelectedIndexChanged += new System.EventHandler(this.windowVersion_SelectedIndexChanged);
@@ -877,7 +914,11 @@
             this.flowLayoutPanel1.Location = new System.Drawing.Point(8, 80);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+<<<<<<< HEAD
             this.flowLayoutPanel1.Size = new System.Drawing.Size(890, 542);
+=======
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(693, 775);
+>>>>>>> 69c21f0 (Fix for dark mode detection)
             this.flowLayoutPanel1.TabIndex = 3;
             // 
             // WXOptions
@@ -1196,10 +1237,16 @@
             this.flowLayoutPanel4.Controls.Add(this.eCodeEditButton);
             this.flowLayoutPanel4.Controls.Add(this.advNTButton);
             this.flowLayoutPanel4.Controls.Add(this.progressTuneButton);
+<<<<<<< HEAD
             this.flowLayoutPanel4.Location = new System.Drawing.Point(854, 271);
             this.flowLayoutPanel4.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel4.Name = "flowLayoutPanel4";
             this.flowLayoutPanel4.Size = new System.Drawing.Size(248, 208);
+=======
+            this.flowLayoutPanel4.Location = new System.Drawing.Point(3, 641);
+            this.flowLayoutPanel4.Name = "flowLayoutPanel4";
+            this.flowLayoutPanel4.Size = new System.Drawing.Size(616, 96);
+>>>>>>> 69c21f0 (Fix for dark mode detection)
             this.flowLayoutPanel4.TabIndex = 10;
             // 
             // tabPage2
@@ -1210,8 +1257,13 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 28);
             this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage2.Name = "tabPage2";
+<<<<<<< HEAD
             this.tabPage2.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage2.Size = new System.Drawing.Size(757, 473);
+=======
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(724, 650);
+>>>>>>> 69c21f0 (Fix for dark mode detection)
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Trace log";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -1231,7 +1283,11 @@
             this.logIf.MouseState = MaterialSkin.MouseState.HOVER;
             this.logIf.Name = "logIf";
             this.logIf.ReadOnly = true;
+<<<<<<< HEAD
             this.logIf.Size = new System.Drawing.Size(854, 679);
+=======
+            this.logIf.Size = new System.Drawing.Size(699, 582);
+>>>>>>> 69c21f0 (Fix for dark mode detection)
             this.logIf.TabIndex = 3;
             this.logIf.Text = "Logging interface 1.0";
             // 
@@ -1263,7 +1319,11 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 28);
             this.tabPage3.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage3.Name = "tabPage3";
+<<<<<<< HEAD
             this.tabPage3.Size = new System.Drawing.Size(757, 473);
+=======
+            this.tabPage3.Size = new System.Drawing.Size(724, 650);
+>>>>>>> 69c21f0 (Fix for dark mode detection)
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Settings";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -1273,7 +1333,11 @@
             this.aboutTab.Location = new System.Drawing.Point(4, 28);
             this.aboutTab.Margin = new System.Windows.Forms.Padding(4);
             this.aboutTab.Name = "aboutTab";
+<<<<<<< HEAD
             this.aboutTab.Size = new System.Drawing.Size(757, 473);
+=======
+            this.aboutTab.Size = new System.Drawing.Size(724, 650);
+>>>>>>> 69c21f0 (Fix for dark mode detection)
             this.aboutTab.TabIndex = 3;
             this.aboutTab.Text = "About";
             this.aboutTab.UseVisualStyleBackColor = true;
@@ -1283,7 +1347,11 @@
             this.tabPage4.Location = new System.Drawing.Point(4, 28);
             this.tabPage4.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage4.Name = "tabPage4";
+<<<<<<< HEAD
             this.tabPage4.Size = new System.Drawing.Size(757, 473);
+=======
+            this.tabPage4.Size = new System.Drawing.Size(724, 650);
+>>>>>>> 69c21f0 (Fix for dark mode detection)
             this.tabPage4.TabIndex = 4;
             this.tabPage4.Text = "Prank mode";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -1293,11 +1361,16 @@
             this.tabPage5.Location = new System.Drawing.Point(4, 28);
             this.tabPage5.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage5.Name = "tabPage5";
+<<<<<<< HEAD
             this.tabPage5.Size = new System.Drawing.Size(757, 473);
+=======
+            this.tabPage5.Size = new System.Drawing.Size(724, 650);
+>>>>>>> 69c21f0 (Fix for dark mode detection)
             this.tabPage5.TabIndex = 5;
             this.tabPage5.Text = "Restore old UI";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
+<<<<<<< HEAD
             // tabPage6
             // 
             this.tabPage6.Controls.Add(this.rtlSwitch);
@@ -1325,6 +1398,8 @@
             this.rtlSwitch.UseVisualStyleBackColor = true;
             this.rtlSwitch.CheckedChanged += new System.EventHandler(this.rtlSwitch_CheckedChanged);
             // 
+=======
+>>>>>>> 69c21f0 (Fix for dark mode detection)
             // materialDrawer1
             // 
             this.materialDrawer1.AutoHide = false;
@@ -1351,8 +1426,12 @@
             this.label7.AutoSize = true;
             this.label7.Depth = 0;
             this.label7.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+<<<<<<< HEAD
             this.label7.Location = new System.Drawing.Point(10, 597);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+=======
+            this.label7.Location = new System.Drawing.Point(10, 770);
+>>>>>>> 69c21f0 (Fix for dark mode detection)
             this.label7.MouseState = MaterialSkin.MouseState.HOVER;
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(348, 19);
@@ -1379,9 +1458,16 @@
             // 
             // NewUI
             // 
+<<<<<<< HEAD
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(965, 747);
+=======
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.AutoScroll = true;
+            this.ClientSize = new System.Drawing.Size(732, 760);
+>>>>>>> 69c21f0 (Fix for dark mode detection)
             this.Controls.Add(this.label7);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button1);
@@ -1419,8 +1505,6 @@
             this.flowLayoutPanel4.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            this.tabPage6.ResumeLayout(false);
-            this.tabPage6.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1497,7 +1581,5 @@
         private System.Windows.Forms.TabPage aboutTab;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.TabPage tabPage5;
-        private System.Windows.Forms.TabPage tabPage6;
-        private MaterialSkin.Controls.MaterialSwitch rtlSwitch;
     }
 }

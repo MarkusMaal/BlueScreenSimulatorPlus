@@ -104,7 +104,7 @@ namespace UltimateBlueScreenSimulator
             }
             GetOS();
             bool DarkMode = (int)Registry.GetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize", "AppsUseLightTheme", 1) == 0;
-            Program.gs.NightTheme = DarkMode;
+            Program.gs.NightTheme = Program.gs.AutoDark && DarkMode;
             if (Program.gs.AutoDark && DarkMode)
             {
                 materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
@@ -1022,11 +1022,6 @@ namespace UltimateBlueScreenSimulator
             {
                 File.WriteAllText(saveFileDialog1.FileName, Program.gs.GetLog(false), Encoding.Unicode);
             }
-        }
-
-        private void rtlSwitch_CheckedChanged(object sender, EventArgs e)
-        {
-            this.RightToLeft = rtlSwitch.Checked ? RightToLeft.Yes : RightToLeft.Inherit;
         }
 
         ColorScheme MakeScheme(Accent accent)
