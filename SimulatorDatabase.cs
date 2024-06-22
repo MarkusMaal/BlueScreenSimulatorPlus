@@ -1427,10 +1427,10 @@ namespace SimulatorDatabase
                     PushText("Culprit file", "What failed: {0}");
                     PushText("Error code", "If you call a support person, give them this info:\r\n\r\nStop code: {0}");
                     PushText("Progress", "{0}% complete");
-                    SetInt("qr_size", 110);
+                    SetInt("qr_size", 150);
                     SetString("qr_file", "local:0");
-                    SetFont("Segoe UI Semilight", 19.4f, FontStyle.Regular);
-                    SetTheme(RGB(0, 0, 128), RGB(255, 255, 255));
+                    SetFont("Segoe UI Semilight", 18.4f, FontStyle.Regular);
+                    SetTheme(RGB(22, 60, 141), RGB(255, 255, 255));
                     SetString("friendlyname", "Windows 11 (Native, ClearType)");
                     SetInt("margin-x", 9);
                     SetInt("margin-y", 12);

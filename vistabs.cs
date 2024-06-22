@@ -27,8 +27,16 @@ namespace UltimateBlueScreenSimulator
         string state = "0";
         readonly List<WindowScreen> wss = new List<WindowScreen>();
         readonly List<Bitmap> freezescreens = new List<Bitmap>();
+        Font commonFont;
         public Vistabs()
         {
+            //
+            // forcibly disable DPI scaling for these legacy configurations
+            // otherwise, the font won't be pixel perfect
+            //
+            // to upscale on higher DPI settings, use fullscreen mode
+            //
+            
             InitializeComponent();
         }
 
@@ -74,9 +82,10 @@ namespace UltimateBlueScreenSimulator
                     }
                 }
                 float HeightInPixels;
+                commonFont = new Font(me.GetFont().FontFamily, me.GetFont().Size * 96f / CreateGraphics().DpiX, me.GetFont().Style, Font.Unit, Font.GdiCharSet, Font.GdiVerticalFont);
                 using (Graphics g = this.CreateGraphics())
                 {
-                    var points = me.GetFont().SizeInPoints;
+                    var points = commonFont.SizeInPoints;
                     HeightInPixels = points * g.DpiX / 72;
                 }
 
@@ -88,7 +97,7 @@ namespace UltimateBlueScreenSimulator
                 {
                     if (c is Label && (c.Name != "waterMarkText"))
                     {
-                        c.Font = me.GetFont();
+                        c.Font = commonFont;
                     }
                 }
                 if (me.GetBool("extrafile") && (me.GetBool("show_file")))

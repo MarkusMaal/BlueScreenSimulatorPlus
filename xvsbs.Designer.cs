@@ -85,7 +85,7 @@ namespace UltimateBlueScreenSimulator
             this.errorCode.Location = new System.Drawing.Point(-1, 58);
             this.errorCode.Margin = new System.Windows.Forms.Padding(3, 20, 3, 0);
             this.errorCode.Name = "errorCode";
-            this.errorCode.Size = new System.Drawing.Size(382, 18);
+            this.errorCode.Size = new System.Drawing.Size(477, 22);
             this.errorCode.TabIndex = 9;
             this.errorCode.Text = "The end-user manually generated the crash dump.";
             this.errorCode.UseCompatibleTextRendering = true;
@@ -115,7 +115,7 @@ namespace UltimateBlueScreenSimulator
             this.technicalCode.Location = new System.Drawing.Point(-1, 312);
             this.technicalCode.Margin = new System.Windows.Forms.Padding(3, 20, 3, 0);
             this.technicalCode.Name = "technicalCode";
-            this.technicalCode.Size = new System.Drawing.Size(559, 18);
+            this.technicalCode.Size = new System.Drawing.Size(698, 22);
             this.technicalCode.TabIndex = 11;
             this.technicalCode.Text = "*** STOP: 0xDEADDEAD (0x00000000, 0x00000000, 0x00000000, 0x00000000)";
             this.technicalCode.UseCompatibleTextRendering = true;
@@ -139,7 +139,7 @@ namespace UltimateBlueScreenSimulator
             this.waterMarkText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.waterMarkText.Location = new System.Drawing.Point(-1, 0);
             this.waterMarkText.Name = "waterMarkText";
-            this.waterMarkText.Size = new System.Drawing.Size(148, 15);
+            this.waterMarkText.Size = new System.Drawing.Size(176, 18);
             this.waterMarkText.TabIndex = 7;
             this.waterMarkText.Text = "bluescreen simulator plus";
             // 
@@ -151,8 +151,7 @@ namespace UltimateBlueScreenSimulator
             // 
             // Xvsbs
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.Navy;
             this.ClientSize = new System.Drawing.Size(640, 480);
             this.Controls.Add(this.technicalCode);

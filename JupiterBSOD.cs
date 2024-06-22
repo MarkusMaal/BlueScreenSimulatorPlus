@@ -31,6 +31,11 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
+        private float DpiDelta(float emSize)
+        {
+            return (emSize * 96f / CreateGraphics().DpiX);
+        }
+
         private void JupiterBSOD_Load(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Normal;
@@ -51,11 +56,11 @@ namespace UltimateBlueScreenSimulator
 
             ProgressLabel.Text = string.Format(texts["Progress"], time);
 
-            Font basefont = me.GetFont();
+            Font basefont = new Font(me.GetFont().FontFamily, me.GetFont().Size * 96f / CreateGraphics().DpiX, me.GetFont().Style, Font.Unit, Font.GdiCharSet, Font.GdiVerticalFont);
 
             HeaderLabel.Font = basefont;
-            DetailsLabel.Font = new Font(basefont.FontFamily, basefont.Size - 16f, basefont.Style);
-            ProgressLabel.Font = new Font(basefont.FontFamily, basefont.Size - 10.5f, basefont.Style);
+            DetailsLabel.Font = new Font(basefont.FontFamily, basefont.Size - DpiDelta(16f), basefont.Style);
+            ProgressLabel.Font = new Font(basefont.FontFamily, basefont.Size - DpiDelta(10.5f), basefont.Style);
 
             int mx = me.GetInt("margin-x");
             int my = me.GetInt("margin-y");

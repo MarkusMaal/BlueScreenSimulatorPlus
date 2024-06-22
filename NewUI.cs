@@ -53,8 +53,16 @@ namespace UltimateBlueScreenSimulator
             );
         }
 
+        private void RelocateButtons()
+        {
+            button1.Location = new Point(this.Width - button1.Width - 10, this.Height - button1.Height - 10);
+            button3.Location = new Point(button1.Location.X - (button1.Width) - 5, button1.Location.Y);
+            label7.Location = new Point(label7.Location.X, button1.Location.Y + label7.Height / 2);
+        }
+
         private void NewUi1_Load(object sender, EventArgs e)
         {
+            RelocateButtons();
             string verStr = Convert.ToDouble(version.Replace(".", ",")).ToString().Replace(",", ".");
             if (!verStr.Contains("."))
             {
@@ -210,6 +218,7 @@ namespace UltimateBlueScreenSimulator
             winPanel.Width = this.Width - sub;
             errorCode.Width = this.Width - sub;
             flowLayoutPanel4.Width = this.Width - sub;
+            RelocateButtons();
         }
 
 

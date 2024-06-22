@@ -80,7 +80,7 @@
             this.Watermark.ForeColor = System.Drawing.Color.DimGray;
             this.Watermark.Location = new System.Drawing.Point(12, 9);
             this.Watermark.Name = "Watermark";
-            this.Watermark.Size = new System.Drawing.Size(145, 15);
+            this.Watermark.Size = new System.Drawing.Size(181, 20);
             this.Watermark.TabIndex = 3;
             this.Watermark.Text = "blue screen simulator plus";
             // 
@@ -91,8 +91,7 @@
             // 
             // JupiterBSOD
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(1024, 768);
             this.Controls.Add(this.Watermark);

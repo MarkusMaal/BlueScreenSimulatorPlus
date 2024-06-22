@@ -69,7 +69,7 @@ namespace UltimateBlueScreenSimulator
             this.technicalCode.Margin = new System.Windows.Forms.Padding(3, 20, 3, 0);
             this.technicalCode.MaximumSize = new System.Drawing.Size(641, 0);
             this.technicalCode.Name = "technicalCode";
-            this.technicalCode.Size = new System.Drawing.Size(490, 14);
+            this.technicalCode.Size = new System.Drawing.Size(560, 18);
             this.technicalCode.TabIndex = 11;
             this.technicalCode.Text = "*** STOP: 0xDEADDEAD (0x00000000, 0x00000000, 0x00000000, 0x00000000)";
             // 
@@ -84,7 +84,7 @@ namespace UltimateBlueScreenSimulator
             this.dumpText.Margin = new System.Windows.Forms.Padding(3, 20, 3, 0);
             this.dumpText.MaximumSize = new System.Drawing.Size(641, 0);
             this.dumpText.Name = "dumpText";
-            this.dumpText.Size = new System.Drawing.Size(84, 14);
+            this.dumpText.Size = new System.Drawing.Size(96, 18);
             this.dumpText.TabIndex = 12;
             this.dumpText.Text = "Sample Text";
             // 
@@ -98,7 +98,7 @@ namespace UltimateBlueScreenSimulator
             this.introductionText.Location = new System.Drawing.Point(-1, 15);
             this.introductionText.MaximumSize = new System.Drawing.Size(641, 0);
             this.introductionText.Name = "introductionText";
-            this.introductionText.Size = new System.Drawing.Size(539, 28);
+            this.introductionText.Size = new System.Drawing.Size(616, 36);
             this.introductionText.TabIndex = 8;
             this.introductionText.Text = "A problem has been detected and Windows has been shut down to prevent damage\nto y" +
     "our computer.";
@@ -114,7 +114,7 @@ namespace UltimateBlueScreenSimulator
             this.errorCode.Margin = new System.Windows.Forms.Padding(3, 20, 3, 0);
             this.errorCode.MaximumSize = new System.Drawing.Size(641, 0);
             this.errorCode.Name = "errorCode";
-            this.errorCode.Size = new System.Drawing.Size(336, 14);
+            this.errorCode.Size = new System.Drawing.Size(384, 18);
             this.errorCode.TabIndex = 9;
             this.errorCode.Text = "The end-user manually generated the crash dump.";
             // 
@@ -129,7 +129,7 @@ namespace UltimateBlueScreenSimulator
             this.supportInfo.Margin = new System.Windows.Forms.Padding(3, 20, 3, 0);
             this.supportInfo.MaximumSize = new System.Drawing.Size(641, 0);
             this.supportInfo.Name = "supportInfo";
-            this.supportInfo.Size = new System.Drawing.Size(623, 28);
+            this.supportInfo.Size = new System.Drawing.Size(608, 36);
             this.supportInfo.TabIndex = 10;
             this.supportInfo.Text = "You are not supposed to see this text under any condition. If you see this text, " +
     "please let the cops know immediately.";
@@ -142,14 +142,13 @@ namespace UltimateBlueScreenSimulator
             this.waterMarkText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.waterMarkText.Location = new System.Drawing.Point(489, 0);
             this.waterMarkText.Name = "waterMarkText";
-            this.waterMarkText.Size = new System.Drawing.Size(151, 15);
+            this.waterMarkText.Size = new System.Drawing.Size(180, 18);
             this.waterMarkText.TabIndex = 7;
             this.waterMarkText.Text = "blue screen simulator plus";
             // 
             // Vistabs
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.Navy;
             this.ClientSize = new System.Drawing.Size(640, 480);
             this.Controls.Add(this.technicalCode);

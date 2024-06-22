@@ -85,12 +85,14 @@ namespace UltimateBlueScreenSimulator
                 catch
                 {
                 }
-
+                // for DPI awereness
+                Font commonFont = new Font(me.GetFont().FontFamily, me.GetFont().Size * 96f / CreateGraphics().DpiX, me.GetFont().Style, Font.Unit, Font.GdiCharSet, Font.GdiVerticalFont);
                 foreach (Control c in this.Controls)
                 {
                     if (c is Label && (c.Name != "waterMarkText"))
                     {
-                        c.Font = me.GetFont();
+                        //c.Font = me.GetFont();
+                        c.Font = commonFont;
                     }
                 }
                 if (!fullscreen) { this.FormBorderStyle = FormBorderStyle.FixedSingle; this.ShowInTaskbar = true; this.ShowIcon = true; }

@@ -121,7 +121,7 @@
             this.waterMarkText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(198)))), ((int)(((byte)(198)))), ((int)(((byte)(198)))));
             this.waterMarkText.Location = new System.Drawing.Point(1, 464);
             this.waterMarkText.Name = "waterMarkText";
-            this.waterMarkText.Size = new System.Drawing.Size(148, 15);
+            this.waterMarkText.Size = new System.Drawing.Size(176, 18);
             this.waterMarkText.TabIndex = 8;
             this.waterMarkText.Text = "bluescreen simulator plus";
             // 
@@ -608,8 +608,7 @@
             // 
             // W2kbs
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 14F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.Navy;
             this.ClientSize = new System.Drawing.Size(640, 480);
             this.Controls.Add(this.waterMarkText);

@@ -13,6 +13,13 @@ namespace UltimateBlueScreenSimulator
         internal BlueScreen me;
         public BootMgr()
         {
+            //
+            // forcibly disable DPI scaling for these legacy configurations
+            // otherwise, the font won't be pixel perfect
+            //
+            // to upscale on higher DPI settings, use fullscreen mode
+            //
+            Font = new Font(Font.Name, 8.25f * 96f / CreateGraphics().DpiX, Font.Style, Font.Unit, Font.GdiCharSet, Font.GdiVerticalFont);
             InitializeComponent();
         }
 

@@ -21,9 +21,18 @@ namespace UltimateBlueScreenSimulator
         readonly List<Bitmap> freezescreens = new List<Bitmap>();
         internal BlueScreen me = Program.bluescreens[0];
         IDictionary<string, string> txt;
+        private int charsize;
         readonly string[] letters = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ":", ",", ".", "+", "*", "(", ")", "[", "]", "{", "}", "/", "\\", "-", "_", " " };
         public NTBSOD()
         {
+            //
+            // forcibly disable DPI scaling for these legacy configurations
+            // otherwise, the character set will be rendered incorrectly
+            //
+            // to upscale on higher DPI settings, use fullscreen mode
+            //
+            Font = new Font(Font.Name, 8.25f * 96f / CreateGraphics().DpiX, Font.Style, Font.Unit, Font.GdiCharSet, Font.GdiVerticalFont);
+            charsize = 8;
             InitializeComponent();
         }
 
@@ -41,6 +50,14 @@ namespace UltimateBlueScreenSimulator
         {
             try
             {
+                foreach (Control c in ntContainer.Controls)
+                {
+                    if (c is TableLayoutPanel)
+                    {
+                        continue;
+                    }
+                    c.Height = charsize;
+                }
                 this.Icon = me.GetIcon();
                 this.Text = me.GetString("friendlyname");
                 txt = me.GetTexts();
@@ -282,7 +299,7 @@ namespace UltimateBlueScreenSimulator
                 Bitmap target = new Bitmap(cropRect.Width, cropRect.Height);
                 using (Graphics g = Graphics.FromImage(target))
                 {
-                    g.DrawImage(src, new Rectangle(0, 0, target.Width, target.Height),
+                    g.DrawImage(src, new Rectangle(0, 0, charsize, charsize),
                                      cropRect,
                                      GraphicsUnit.Pixel);
                 }
@@ -302,12 +319,12 @@ namespace UltimateBlueScreenSimulator
 
         private Bitmap Merge(Bitmap bmp, Bitmap bmp2)
         {
-            Bitmap ne = new Bitmap(bmp.Width + 8, bmp.Height);
+            Bitmap ne = new Bitmap(bmp.Width + charsize, bmp.Height);
 
             using (Graphics grfx = Graphics.FromImage(ne))
             {
                 grfx.DrawImage(bmp, 0, 0);
-                grfx.DrawImage(bmp2, ne.Width - 8, 0);
+                grfx.DrawImage(bmp2, ne.Width - charsize, 0);
             }
             bmp.Dispose();
             bmp2.Dispose();

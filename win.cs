@@ -28,6 +28,13 @@ namespace UltimateBlueScreenSimulator
         Bitmap splash = Properties.Resources.win1_splash;
         public Win()
         {
+            //
+            // forcibly disable DPI scaling for these legacy configurations
+            // otherwise, the character set will be rendered incorrectly
+            //
+            // to upscale on higher DPI settings, use fullscreen mode
+            //
+            Font = new Font(Font.Name, 8.25f * 96f / CreateGraphics().DpiX, Font.Style, Font.Unit, Font.GdiCharSet, Font.GdiVerticalFont);
             InitializeComponent();
         }
 
@@ -112,7 +119,7 @@ namespace UltimateBlueScreenSimulator
 
         public Bitmap CreateNonIndexedImage(Image src)
         {
-            Bitmap newBmp = new Bitmap(src.Width, src.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+            Bitmap newBmp = new Bitmap(this.Width, this.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
 
             using (Graphics gfx = Graphics.FromImage(newBmp))
             {
@@ -156,9 +163,11 @@ namespace UltimateBlueScreenSimulator
                     int z = 1;
                     for (int y = 0; y < 224; y += 12)
                     {
-                        Bitmap bmp = new Bitmap(pictureBox1.Width, 12);
+                        int wdth = this.Width;
+                        int hght = 12;
+                        Bitmap bmp = new Bitmap(wdth, hght);
 
-                        Rectangle cropRect = new Rectangle(0, y, pictureBox1.Width, 12);
+                        Rectangle cropRect = new Rectangle(0, y, wdth, hght);
                         using (Graphics g = Graphics.FromImage(bmp))
                         {
                             g.DrawImage(splash, new Rectangle(0, 0, bmp.Width, bmp.Height), cropRect, GraphicsUnit.Pixel);

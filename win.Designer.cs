@@ -109,27 +109,27 @@ namespace UltimateBlueScreenSimulator
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 20;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 12F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 12F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 12F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 12F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 12F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 12F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 12F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 12F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 12F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 12F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 12F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 12F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 12F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 12F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 12F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 12F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 12F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 12F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 12F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 12F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(624, 229);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(832, 230);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // pictureBox19
@@ -139,7 +139,7 @@ namespace UltimateBlueScreenSimulator
             this.pictureBox19.Location = new System.Drawing.Point(0, 216);
             this.pictureBox19.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox19.Name = "pictureBox19";
-            this.pictureBox19.Size = new System.Drawing.Size(624, 12);
+            this.pictureBox19.Size = new System.Drawing.Size(832, 12);
             this.pictureBox19.TabIndex = 38;
             this.pictureBox19.TabStop = false;
             // 
@@ -149,7 +149,7 @@ namespace UltimateBlueScreenSimulator
             this.pictureBox18.Location = new System.Drawing.Point(0, 204);
             this.pictureBox18.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox18.Name = "pictureBox18";
-            this.pictureBox18.Size = new System.Drawing.Size(624, 12);
+            this.pictureBox18.Size = new System.Drawing.Size(832, 12);
             this.pictureBox18.TabIndex = 37;
             this.pictureBox18.TabStop = false;
             // 
@@ -159,7 +159,7 @@ namespace UltimateBlueScreenSimulator
             this.pictureBox17.Location = new System.Drawing.Point(0, 192);
             this.pictureBox17.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox17.Name = "pictureBox17";
-            this.pictureBox17.Size = new System.Drawing.Size(624, 12);
+            this.pictureBox17.Size = new System.Drawing.Size(832, 12);
             this.pictureBox17.TabIndex = 36;
             this.pictureBox17.TabStop = false;
             // 
@@ -169,7 +169,7 @@ namespace UltimateBlueScreenSimulator
             this.pictureBox16.Location = new System.Drawing.Point(0, 180);
             this.pictureBox16.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox16.Name = "pictureBox16";
-            this.pictureBox16.Size = new System.Drawing.Size(624, 12);
+            this.pictureBox16.Size = new System.Drawing.Size(832, 12);
             this.pictureBox16.TabIndex = 35;
             this.pictureBox16.TabStop = false;
             // 
@@ -179,7 +179,7 @@ namespace UltimateBlueScreenSimulator
             this.pictureBox15.Location = new System.Drawing.Point(0, 168);
             this.pictureBox15.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox15.Name = "pictureBox15";
-            this.pictureBox15.Size = new System.Drawing.Size(624, 12);
+            this.pictureBox15.Size = new System.Drawing.Size(832, 12);
             this.pictureBox15.TabIndex = 34;
             this.pictureBox15.TabStop = false;
             // 
@@ -189,7 +189,7 @@ namespace UltimateBlueScreenSimulator
             this.pictureBox14.Location = new System.Drawing.Point(0, 156);
             this.pictureBox14.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox14.Name = "pictureBox14";
-            this.pictureBox14.Size = new System.Drawing.Size(624, 12);
+            this.pictureBox14.Size = new System.Drawing.Size(832, 12);
             this.pictureBox14.TabIndex = 33;
             this.pictureBox14.TabStop = false;
             // 
@@ -199,7 +199,7 @@ namespace UltimateBlueScreenSimulator
             this.pictureBox13.Location = new System.Drawing.Point(0, 144);
             this.pictureBox13.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox13.Name = "pictureBox13";
-            this.pictureBox13.Size = new System.Drawing.Size(624, 12);
+            this.pictureBox13.Size = new System.Drawing.Size(832, 12);
             this.pictureBox13.TabIndex = 32;
             this.pictureBox13.TabStop = false;
             // 
@@ -209,7 +209,7 @@ namespace UltimateBlueScreenSimulator
             this.pictureBox12.Location = new System.Drawing.Point(0, 132);
             this.pictureBox12.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox12.Name = "pictureBox12";
-            this.pictureBox12.Size = new System.Drawing.Size(624, 12);
+            this.pictureBox12.Size = new System.Drawing.Size(832, 12);
             this.pictureBox12.TabIndex = 31;
             this.pictureBox12.TabStop = false;
             // 
@@ -219,7 +219,7 @@ namespace UltimateBlueScreenSimulator
             this.pictureBox11.Location = new System.Drawing.Point(0, 120);
             this.pictureBox11.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox11.Name = "pictureBox11";
-            this.pictureBox11.Size = new System.Drawing.Size(624, 12);
+            this.pictureBox11.Size = new System.Drawing.Size(832, 12);
             this.pictureBox11.TabIndex = 30;
             this.pictureBox11.TabStop = false;
             // 
@@ -229,7 +229,7 @@ namespace UltimateBlueScreenSimulator
             this.pictureBox10.Location = new System.Drawing.Point(0, 108);
             this.pictureBox10.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox10.Name = "pictureBox10";
-            this.pictureBox10.Size = new System.Drawing.Size(624, 12);
+            this.pictureBox10.Size = new System.Drawing.Size(832, 12);
             this.pictureBox10.TabIndex = 29;
             this.pictureBox10.TabStop = false;
             // 
@@ -239,7 +239,7 @@ namespace UltimateBlueScreenSimulator
             this.pictureBox9.Location = new System.Drawing.Point(0, 96);
             this.pictureBox9.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox9.Name = "pictureBox9";
-            this.pictureBox9.Size = new System.Drawing.Size(624, 12);
+            this.pictureBox9.Size = new System.Drawing.Size(832, 12);
             this.pictureBox9.TabIndex = 28;
             this.pictureBox9.TabStop = false;
             // 
@@ -249,7 +249,7 @@ namespace UltimateBlueScreenSimulator
             this.pictureBox8.Location = new System.Drawing.Point(0, 84);
             this.pictureBox8.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox8.Name = "pictureBox8";
-            this.pictureBox8.Size = new System.Drawing.Size(624, 12);
+            this.pictureBox8.Size = new System.Drawing.Size(832, 12);
             this.pictureBox8.TabIndex = 27;
             this.pictureBox8.TabStop = false;
             // 
@@ -259,7 +259,7 @@ namespace UltimateBlueScreenSimulator
             this.pictureBox7.Location = new System.Drawing.Point(0, 72);
             this.pictureBox7.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(624, 12);
+            this.pictureBox7.Size = new System.Drawing.Size(832, 12);
             this.pictureBox7.TabIndex = 26;
             this.pictureBox7.TabStop = false;
             // 
@@ -269,7 +269,7 @@ namespace UltimateBlueScreenSimulator
             this.pictureBox6.Location = new System.Drawing.Point(0, 60);
             this.pictureBox6.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(624, 12);
+            this.pictureBox6.Size = new System.Drawing.Size(832, 12);
             this.pictureBox6.TabIndex = 25;
             this.pictureBox6.TabStop = false;
             // 
@@ -279,7 +279,7 @@ namespace UltimateBlueScreenSimulator
             this.pictureBox5.Location = new System.Drawing.Point(0, 48);
             this.pictureBox5.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(624, 12);
+            this.pictureBox5.Size = new System.Drawing.Size(832, 12);
             this.pictureBox5.TabIndex = 24;
             this.pictureBox5.TabStop = false;
             // 
@@ -289,7 +289,7 @@ namespace UltimateBlueScreenSimulator
             this.pictureBox4.Location = new System.Drawing.Point(0, 36);
             this.pictureBox4.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(624, 12);
+            this.pictureBox4.Size = new System.Drawing.Size(832, 12);
             this.pictureBox4.TabIndex = 23;
             this.pictureBox4.TabStop = false;
             // 
@@ -299,7 +299,7 @@ namespace UltimateBlueScreenSimulator
             this.pictureBox3.Location = new System.Drawing.Point(0, 24);
             this.pictureBox3.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(624, 12);
+            this.pictureBox3.Size = new System.Drawing.Size(832, 12);
             this.pictureBox3.TabIndex = 22;
             this.pictureBox3.TabStop = false;
             // 
@@ -309,7 +309,7 @@ namespace UltimateBlueScreenSimulator
             this.pictureBox2.Location = new System.Drawing.Point(0, 12);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(624, 12);
+            this.pictureBox2.Size = new System.Drawing.Size(832, 12);
             this.pictureBox2.TabIndex = 21;
             this.pictureBox2.TabStop = false;
             // 
@@ -319,7 +319,7 @@ namespace UltimateBlueScreenSimulator
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(624, 12);
+            this.pictureBox1.Size = new System.Drawing.Size(832, 12);
             this.pictureBox1.TabIndex = 20;
             this.pictureBox1.TabStop = false;
             // 
@@ -327,16 +327,16 @@ namespace UltimateBlueScreenSimulator
             // 
             this.watermark.AutoSize = true;
             this.watermark.Font = new System.Drawing.Font("Trebuchet MS", 8F);
-            this.watermark.Location = new System.Drawing.Point(11, 8);
+            this.watermark.Location = new System.Drawing.Point(15, 10);
+            this.watermark.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.watermark.Name = "watermark";
-            this.watermark.Size = new System.Drawing.Size(135, 16);
+            this.watermark.Size = new System.Drawing.Size(172, 18);
             this.watermark.TabIndex = 2;
             this.watermark.Text = "blue screen simulator plus";
             // 
             // Win
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(170)))));
             this.ClientSize = new System.Drawing.Size(624, 229);
             this.Controls.Add(this.watermark);
@@ -344,6 +344,7 @@ namespace UltimateBlueScreenSimulator
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "Win";
             this.Text = "Windows 1.x/2.x blue screen simulator";

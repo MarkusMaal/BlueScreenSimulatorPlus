@@ -69,13 +69,14 @@ namespace UltimateBlueScreenSimulator
                 technicalCode.Text = me.GetTexts()["Technical information formatting"].Replace("{0}", codez[0].ToString()).Replace("{1}", codez[1]).ToString();
                 techinfoLabel.Text = me.GetTexts()["Technical information"];
                 infoLabel.Text = me.GetTexts()["A problem has occurred..."] + "\n" + me.GetTexts()["CTRL+ALT+DEL message"];
+                Font commonFont = new Font(me.GetFont().FontFamily, me.GetFont().Size * 96f / CreateGraphics().DpiX, me.GetFont().Style, Font.Unit, Font.GdiCharSet, Font.GdiVerticalFont);
                 foreach (Control c in this.Controls)
                 {
                     if (c is Label)
                     {
                         if (c.Name != "waterMarkText")
                         {
-                            c.Font = me.GetFont();
+                            c.Font = commonFont;
                         }
                     }
                 }
