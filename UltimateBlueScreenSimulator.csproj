@@ -51,7 +51,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>bssp2.ico</ApplicationIcon>
+    <ApplicationIcon>bssp3_icon.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
@@ -196,6 +196,11 @@
       <DependentUpon>ProgressTuner.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="SimulatorDatabase.cs" />
     <Compile Include="Forms\Loaders\Splash.cs">
       <SubType>Form</SubType>
@@ -327,14 +332,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="Forms\Loaders\Splash.resx">
       <DependentUpon>Splash.cs</DependentUpon>
     </EmbeddedResource>
@@ -382,9 +382,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="bsodgen_npJ_icon.ico" />
-    <Content Include="bssp2.ico" />
-    <Content Include="legacy_template.txt" />
+    <Content Include="bssp3_icon.ico" />
+    <None Include="Resources\legacy_template.txt" />
     <None Include="Resources\splash_bg.png" />
     <None Include="Resources\bsodbanner3.png" />
     <None Include="Resources\new-windows-logo %282%29.ico" />

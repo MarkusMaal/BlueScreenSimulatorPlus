@@ -275,6 +275,30 @@ namespace UltimateBlueScreenSimulator.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to *** Blue screen simulator plus 1.11 ***
+        ///FACE :(
+        ///MODERN 16:113:170,255:255:255
+        ///W2K 0:0:128,255:255:255
+        ///NT34 0:0:168,170:170:170
+        ///W9XME 0:0:170,255:255:255
+        ///W9XME_HL 170:170:170,0:0:170
+        ///--STRINGBUILD START--
+        ///Windows//System is busy. //WARNING!//An error has occurred. To continue:
+        ///
+        ///Press Enter to return to Windows, or
+        ///
+        ///Press CTRL+ALT+DEL to restart your computer. If you do this,
+        ///you will lose any unsaved information in all open applications.
+        ///
+        ///Error: {0}//Press any key//Altough you can use CTRL+ALT+DEL to quit an [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string legacy_template {
+            get {
+                return ResourceManager.GetString("legacy_template", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap MarkusTegelane_element_brandpic {
