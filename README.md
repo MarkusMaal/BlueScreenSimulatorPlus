@@ -23,6 +23,7 @@ This documentation is contained within the readme and is meant for people who wa
 * [Logging events](#logging-events)
 * [Blue screen class](#blue-screen-class)
 * [Developer mode](#developer-mode)
+* [Processing args](#processing-args)
 * [File structure](#file-structure)
 	* [Interfaces](#interfaces)
 	* [Legacy interfaces](#legacy-interfaces)
@@ -34,6 +35,7 @@ This documentation is contained within the readme and is meant for people who wa
 	* [Assets](#assets)
 	* [Properties](#properties)
 	* [Custom controls](#custom-controls)
+* [Verifile](#verifile)
 
 ### Global settings
 Settings can be defined inside the GlobalSettings class. Each setting has a summary, which is displayed if IntelliSense is enabled for your code editor.
@@ -164,6 +166,32 @@ The following developer options may be available:
 
 ***Important***: Developer mode should only be enabled on beta builds. It should be disabled before releasing stable versions.
 
+### Processing args
+
+You can use CLIProcessor class to process args. You can initialize it like so:
+
+```C#
+namespace UltimateBlueScreenSimulator {
+	static class Program {
+		[STAThread]
+		public static void Main (string[] args) {
+			CLIProcessor clip = new CLIProcessor(args);
+			clip.ProcessArgs();
+		}
+	}
+}
+```
+
+After calling the ProcessArgs method, several other methods may also be executed, here's a list of them:
+
+* ProcessFlag        - Goes through every arg with a slash in front, e.g. /? (private)
+* ProcessValue       - This may be called if a flag has a value next to it (private)
+* PostProcess        - This is called after every other arg is processed (private)
+* ForceBool          - Forces a certain key in bools dictionary to specific value (private)
+* ExitSplash         - Exits splash screen (internal)
+* CheckNoSplash      - Checks if the /hidesplash or /finalize_update flags have been passed (public)
+* CheckPreviewSplash - Checks if the /preview_splash flag has been passed (public)
+
 ### File structure
 
 The following section contains quick documentation for each file in the project.
@@ -202,9 +230,11 @@ The following section contains quick documentation for each file in the project.
 * xvsbs.cs                         - Windows XP/Vista blue screen simulator
 
 #### Special classes
+* CLIProcessor.cs                  - A class used for handling command line arguments
 * SimulatorDatabase.cs             - A namespace with a blue screen class, which gets used by other parts of the program
 * GlobalSettings.cs				   - A class used for storing/manipulating runtime and permanent settings
 * Program.cs                       - Program initialization code
+* Verifile.cs                      - Signature verification system
 
 #### Miscellaneous
 * DictEdit.cs                      - [DEVTOOL] Quick and Dirty Dictionary Editor
@@ -253,3 +283,21 @@ The following section contains quick documentation for each file in the project.
 
 #### Custom controls
 * AliasedLabel.cs                  - A custom control that is used in Windows XP and CE blue screens
+
+### Verifile
+
+Verifile 1.2 is a system to prevent the program from being used by malicious actors without user's consent. You can perform a verifile attestation by creating the verifile object and recieving value of Verify getter.
+
+```C#
+	Verifile vf = new Verifile();
+	bool status = vf.Verify;
+	if (status) {
+		// Verified
+	} else {
+		// Failed
+	}
+```
+
+**Warning**: Each Verifile attestation takes processing time. Please consider carefully whether or not you need to run the verification.
+
+Global Verifile state is stored as Program.verificate, but note that this value can be easily tampered and as such isn't a secure method of verification.
