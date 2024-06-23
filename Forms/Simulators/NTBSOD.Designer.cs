@@ -148,6 +148,9 @@
             // 
             // ntContainer
             // 
+            this.ntContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ntContainer.Controls.Add(this.errorCode);
             this.ntContainer.Controls.Add(this.errorDescription);
             this.ntContainer.Controls.Add(this.cpuID);
@@ -160,47 +163,46 @@
             this.ntContainer.Controls.Add(this.tablerow_4);
             this.ntContainer.Controls.Add(this.troubleShoot1);
             this.ntContainer.Controls.Add(this.troubleShoot2);
-            this.ntContainer.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.ntContainer.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.ntContainer.Location = new System.Drawing.Point(0, 11);
-            this.ntContainer.Margin = new System.Windows.Forms.Padding(4, 4, 0, 4);
+            this.ntContainer.Location = new System.Drawing.Point(0, 9);
+            this.ntContainer.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.ntContainer.Name = "ntContainer";
-            this.ntContainer.Size = new System.Drawing.Size(624, 430);
+            this.ntContainer.Size = new System.Drawing.Size(640, 471);
             this.ntContainer.TabIndex = 5;
             // 
             // errorCode
             // 
             this.errorCode.Location = new System.Drawing.Point(0, 0);
-            this.errorCode.Margin = new System.Windows.Forms.Padding(0, 0, 4, 0);
+            this.errorCode.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.errorCode.Name = "errorCode";
-            this.errorCode.Size = new System.Drawing.Size(624, 8);
+            this.errorCode.Size = new System.Drawing.Size(499, 6);
             this.errorCode.TabIndex = 2;
             this.errorCode.TabStop = false;
             // 
             // errorDescription
             // 
-            this.errorDescription.Location = new System.Drawing.Point(0, 8);
-            this.errorDescription.Margin = new System.Windows.Forms.Padding(0, 0, 4, 0);
+            this.errorDescription.Location = new System.Drawing.Point(0, 6);
+            this.errorDescription.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.errorDescription.Name = "errorDescription";
-            this.errorDescription.Size = new System.Drawing.Size(624, 8);
+            this.errorDescription.Size = new System.Drawing.Size(499, 6);
             this.errorDescription.TabIndex = 3;
             this.errorDescription.TabStop = false;
             // 
             // cpuID
             // 
-            this.cpuID.Location = new System.Drawing.Point(0, 28);
-            this.cpuID.Margin = new System.Windows.Forms.Padding(0, 12, 4, 0);
+            this.cpuID.Location = new System.Drawing.Point(0, 22);
+            this.cpuID.Margin = new System.Windows.Forms.Padding(0, 10, 3, 0);
             this.cpuID.Name = "cpuID";
-            this.cpuID.Size = new System.Drawing.Size(624, 8);
+            this.cpuID.Size = new System.Drawing.Size(499, 6);
             this.cpuID.TabIndex = 4;
             this.cpuID.TabStop = false;
             // 
             // tableHeader
             // 
-            this.tableHeader.Location = new System.Drawing.Point(0, 48);
-            this.tableHeader.Margin = new System.Windows.Forms.Padding(0, 12, 4, 0);
+            this.tableHeader.Location = new System.Drawing.Point(0, 38);
+            this.tableHeader.Margin = new System.Windows.Forms.Padding(0, 10, 3, 0);
             this.tableHeader.Name = "tableHeader";
-            this.tableHeader.Size = new System.Drawing.Size(624, 8);
+            this.tableHeader.Size = new System.Drawing.Size(499, 6);
             this.tableHeader.TabIndex = 5;
             this.tableHeader.TabStop = false;
             // 
@@ -211,12 +213,12 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel3, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel2, 0, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 56);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0, 0, 4, 4);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 44);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0, 0, 3, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(624, 166);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(499, 133);
             this.tableLayoutPanel1.TabIndex = 6;
             // 
             // flowLayoutPanel3
@@ -242,189 +244,189 @@
             this.flowLayoutPanel3.Controls.Add(this.stackTrace2_19);
             this.flowLayoutPanel3.Controls.Add(this.stackTrace2_20);
             this.flowLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel3.Location = new System.Drawing.Point(320, 0);
+            this.flowLayoutPanel3.Location = new System.Drawing.Point(256, 0);
             this.flowLayoutPanel3.Margin = new System.Windows.Forms.Padding(0);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(401, 166);
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(321, 133);
             this.flowLayoutPanel3.TabIndex = 1;
             // 
             // stackTrace2_1
             // 
             this.stackTrace2_1.Location = new System.Drawing.Point(0, 0);
-            this.stackTrace2_1.Margin = new System.Windows.Forms.Padding(0, 0, 4, 0);
+            this.stackTrace2_1.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.stackTrace2_1.Name = "stackTrace2_1";
-            this.stackTrace2_1.Size = new System.Drawing.Size(313, 8);
+            this.stackTrace2_1.Size = new System.Drawing.Size(250, 6);
             this.stackTrace2_1.TabIndex = 20;
             this.stackTrace2_1.TabStop = false;
             // 
             // stackTrace2_2
             // 
-            this.stackTrace2_2.Location = new System.Drawing.Point(0, 8);
-            this.stackTrace2_2.Margin = new System.Windows.Forms.Padding(0, 0, 4, 0);
+            this.stackTrace2_2.Location = new System.Drawing.Point(0, 6);
+            this.stackTrace2_2.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.stackTrace2_2.Name = "stackTrace2_2";
-            this.stackTrace2_2.Size = new System.Drawing.Size(313, 8);
+            this.stackTrace2_2.Size = new System.Drawing.Size(250, 6);
             this.stackTrace2_2.TabIndex = 21;
             this.stackTrace2_2.TabStop = false;
             // 
             // stackTrace2_3
             // 
-            this.stackTrace2_3.Location = new System.Drawing.Point(0, 16);
-            this.stackTrace2_3.Margin = new System.Windows.Forms.Padding(0, 0, 4, 0);
+            this.stackTrace2_3.Location = new System.Drawing.Point(0, 12);
+            this.stackTrace2_3.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.stackTrace2_3.Name = "stackTrace2_3";
-            this.stackTrace2_3.Size = new System.Drawing.Size(313, 8);
+            this.stackTrace2_3.Size = new System.Drawing.Size(250, 6);
             this.stackTrace2_3.TabIndex = 22;
             this.stackTrace2_3.TabStop = false;
             // 
             // stackTrace2_4
             // 
-            this.stackTrace2_4.Location = new System.Drawing.Point(0, 24);
-            this.stackTrace2_4.Margin = new System.Windows.Forms.Padding(0, 0, 4, 0);
+            this.stackTrace2_4.Location = new System.Drawing.Point(0, 18);
+            this.stackTrace2_4.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.stackTrace2_4.Name = "stackTrace2_4";
-            this.stackTrace2_4.Size = new System.Drawing.Size(313, 8);
+            this.stackTrace2_4.Size = new System.Drawing.Size(250, 6);
             this.stackTrace2_4.TabIndex = 23;
             this.stackTrace2_4.TabStop = false;
             // 
             // stackTrace2_5
             // 
-            this.stackTrace2_5.Location = new System.Drawing.Point(0, 32);
-            this.stackTrace2_5.Margin = new System.Windows.Forms.Padding(0, 0, 4, 0);
+            this.stackTrace2_5.Location = new System.Drawing.Point(0, 24);
+            this.stackTrace2_5.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.stackTrace2_5.Name = "stackTrace2_5";
-            this.stackTrace2_5.Size = new System.Drawing.Size(313, 8);
+            this.stackTrace2_5.Size = new System.Drawing.Size(250, 6);
             this.stackTrace2_5.TabIndex = 24;
             this.stackTrace2_5.TabStop = false;
             // 
             // stackTrace2_6
             // 
-            this.stackTrace2_6.Location = new System.Drawing.Point(0, 40);
-            this.stackTrace2_6.Margin = new System.Windows.Forms.Padding(0, 0, 4, 0);
+            this.stackTrace2_6.Location = new System.Drawing.Point(0, 30);
+            this.stackTrace2_6.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.stackTrace2_6.Name = "stackTrace2_6";
-            this.stackTrace2_6.Size = new System.Drawing.Size(313, 8);
+            this.stackTrace2_6.Size = new System.Drawing.Size(250, 6);
             this.stackTrace2_6.TabIndex = 25;
             this.stackTrace2_6.TabStop = false;
             // 
             // stackTrace2_7
             // 
-            this.stackTrace2_7.Location = new System.Drawing.Point(0, 48);
-            this.stackTrace2_7.Margin = new System.Windows.Forms.Padding(0, 0, 4, 0);
+            this.stackTrace2_7.Location = new System.Drawing.Point(0, 36);
+            this.stackTrace2_7.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.stackTrace2_7.Name = "stackTrace2_7";
-            this.stackTrace2_7.Size = new System.Drawing.Size(313, 8);
+            this.stackTrace2_7.Size = new System.Drawing.Size(250, 6);
             this.stackTrace2_7.TabIndex = 26;
             this.stackTrace2_7.TabStop = false;
             // 
             // stackTrace2_8
             // 
-            this.stackTrace2_8.Location = new System.Drawing.Point(0, 56);
-            this.stackTrace2_8.Margin = new System.Windows.Forms.Padding(0, 0, 4, 0);
+            this.stackTrace2_8.Location = new System.Drawing.Point(0, 42);
+            this.stackTrace2_8.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.stackTrace2_8.Name = "stackTrace2_8";
-            this.stackTrace2_8.Size = new System.Drawing.Size(313, 8);
+            this.stackTrace2_8.Size = new System.Drawing.Size(250, 6);
             this.stackTrace2_8.TabIndex = 27;
             this.stackTrace2_8.TabStop = false;
             // 
             // stackTrace2_9
             // 
-            this.stackTrace2_9.Location = new System.Drawing.Point(0, 64);
-            this.stackTrace2_9.Margin = new System.Windows.Forms.Padding(0, 0, 4, 0);
+            this.stackTrace2_9.Location = new System.Drawing.Point(0, 48);
+            this.stackTrace2_9.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.stackTrace2_9.Name = "stackTrace2_9";
-            this.stackTrace2_9.Size = new System.Drawing.Size(313, 8);
+            this.stackTrace2_9.Size = new System.Drawing.Size(250, 6);
             this.stackTrace2_9.TabIndex = 28;
             this.stackTrace2_9.TabStop = false;
             // 
             // stackTrace2_10
             // 
-            this.stackTrace2_10.Location = new System.Drawing.Point(0, 72);
-            this.stackTrace2_10.Margin = new System.Windows.Forms.Padding(0, 0, 4, 0);
+            this.stackTrace2_10.Location = new System.Drawing.Point(0, 54);
+            this.stackTrace2_10.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.stackTrace2_10.Name = "stackTrace2_10";
-            this.stackTrace2_10.Size = new System.Drawing.Size(313, 8);
+            this.stackTrace2_10.Size = new System.Drawing.Size(250, 6);
             this.stackTrace2_10.TabIndex = 29;
             this.stackTrace2_10.TabStop = false;
             // 
             // stackTrace2_11
             // 
-            this.stackTrace2_11.Location = new System.Drawing.Point(0, 80);
-            this.stackTrace2_11.Margin = new System.Windows.Forms.Padding(0, 0, 4, 0);
+            this.stackTrace2_11.Location = new System.Drawing.Point(0, 60);
+            this.stackTrace2_11.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.stackTrace2_11.Name = "stackTrace2_11";
-            this.stackTrace2_11.Size = new System.Drawing.Size(313, 8);
+            this.stackTrace2_11.Size = new System.Drawing.Size(250, 6);
             this.stackTrace2_11.TabIndex = 30;
             this.stackTrace2_11.TabStop = false;
             // 
             // stackTrace2_12
             // 
-            this.stackTrace2_12.Location = new System.Drawing.Point(0, 88);
-            this.stackTrace2_12.Margin = new System.Windows.Forms.Padding(0, 0, 4, 0);
+            this.stackTrace2_12.Location = new System.Drawing.Point(0, 66);
+            this.stackTrace2_12.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.stackTrace2_12.Name = "stackTrace2_12";
-            this.stackTrace2_12.Size = new System.Drawing.Size(313, 8);
+            this.stackTrace2_12.Size = new System.Drawing.Size(250, 6);
             this.stackTrace2_12.TabIndex = 31;
             this.stackTrace2_12.TabStop = false;
             // 
             // stackTrace2_13
             // 
-            this.stackTrace2_13.Location = new System.Drawing.Point(0, 96);
-            this.stackTrace2_13.Margin = new System.Windows.Forms.Padding(0, 0, 4, 0);
+            this.stackTrace2_13.Location = new System.Drawing.Point(0, 72);
+            this.stackTrace2_13.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.stackTrace2_13.Name = "stackTrace2_13";
-            this.stackTrace2_13.Size = new System.Drawing.Size(313, 8);
+            this.stackTrace2_13.Size = new System.Drawing.Size(250, 6);
             this.stackTrace2_13.TabIndex = 32;
             this.stackTrace2_13.TabStop = false;
             // 
             // stackTrace2_14
             // 
-            this.stackTrace2_14.Location = new System.Drawing.Point(0, 104);
-            this.stackTrace2_14.Margin = new System.Windows.Forms.Padding(0, 0, 4, 0);
+            this.stackTrace2_14.Location = new System.Drawing.Point(0, 78);
+            this.stackTrace2_14.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.stackTrace2_14.Name = "stackTrace2_14";
-            this.stackTrace2_14.Size = new System.Drawing.Size(313, 8);
+            this.stackTrace2_14.Size = new System.Drawing.Size(250, 6);
             this.stackTrace2_14.TabIndex = 33;
             this.stackTrace2_14.TabStop = false;
             // 
             // stackTrace2_15
             // 
-            this.stackTrace2_15.Location = new System.Drawing.Point(0, 112);
-            this.stackTrace2_15.Margin = new System.Windows.Forms.Padding(0, 0, 4, 0);
+            this.stackTrace2_15.Location = new System.Drawing.Point(0, 84);
+            this.stackTrace2_15.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.stackTrace2_15.Name = "stackTrace2_15";
-            this.stackTrace2_15.Size = new System.Drawing.Size(313, 8);
+            this.stackTrace2_15.Size = new System.Drawing.Size(250, 6);
             this.stackTrace2_15.TabIndex = 34;
             this.stackTrace2_15.TabStop = false;
             // 
             // stackTrace2_16
             // 
-            this.stackTrace2_16.Location = new System.Drawing.Point(0, 120);
-            this.stackTrace2_16.Margin = new System.Windows.Forms.Padding(0, 0, 4, 0);
+            this.stackTrace2_16.Location = new System.Drawing.Point(0, 90);
+            this.stackTrace2_16.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.stackTrace2_16.Name = "stackTrace2_16";
-            this.stackTrace2_16.Size = new System.Drawing.Size(313, 8);
+            this.stackTrace2_16.Size = new System.Drawing.Size(250, 6);
             this.stackTrace2_16.TabIndex = 35;
             this.stackTrace2_16.TabStop = false;
             // 
             // stackTrace2_17
             // 
-            this.stackTrace2_17.Location = new System.Drawing.Point(0, 128);
-            this.stackTrace2_17.Margin = new System.Windows.Forms.Padding(0, 0, 4, 0);
+            this.stackTrace2_17.Location = new System.Drawing.Point(0, 96);
+            this.stackTrace2_17.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.stackTrace2_17.Name = "stackTrace2_17";
-            this.stackTrace2_17.Size = new System.Drawing.Size(313, 8);
+            this.stackTrace2_17.Size = new System.Drawing.Size(250, 6);
             this.stackTrace2_17.TabIndex = 36;
             this.stackTrace2_17.TabStop = false;
             // 
             // stackTrace2_18
             // 
-            this.stackTrace2_18.Location = new System.Drawing.Point(0, 136);
-            this.stackTrace2_18.Margin = new System.Windows.Forms.Padding(0, 0, 4, 0);
+            this.stackTrace2_18.Location = new System.Drawing.Point(0, 102);
+            this.stackTrace2_18.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.stackTrace2_18.Name = "stackTrace2_18";
-            this.stackTrace2_18.Size = new System.Drawing.Size(313, 8);
+            this.stackTrace2_18.Size = new System.Drawing.Size(250, 6);
             this.stackTrace2_18.TabIndex = 37;
             this.stackTrace2_18.TabStop = false;
             // 
             // stackTrace2_19
             // 
-            this.stackTrace2_19.Location = new System.Drawing.Point(0, 144);
-            this.stackTrace2_19.Margin = new System.Windows.Forms.Padding(0, 0, 4, 0);
+            this.stackTrace2_19.Location = new System.Drawing.Point(0, 108);
+            this.stackTrace2_19.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.stackTrace2_19.Name = "stackTrace2_19";
-            this.stackTrace2_19.Size = new System.Drawing.Size(313, 8);
+            this.stackTrace2_19.Size = new System.Drawing.Size(250, 6);
             this.stackTrace2_19.TabIndex = 38;
             this.stackTrace2_19.TabStop = false;
             // 
             // stackTrace2_20
             // 
-            this.stackTrace2_20.Location = new System.Drawing.Point(0, 152);
-            this.stackTrace2_20.Margin = new System.Windows.Forms.Padding(0, 0, 4, 0);
+            this.stackTrace2_20.Location = new System.Drawing.Point(0, 114);
+            this.stackTrace2_20.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.stackTrace2_20.Name = "stackTrace2_20";
-            this.stackTrace2_20.Size = new System.Drawing.Size(313, 8);
+            this.stackTrace2_20.Size = new System.Drawing.Size(250, 6);
             this.stackTrace2_20.TabIndex = 39;
             this.stackTrace2_20.TabStop = false;
             // 
@@ -454,249 +456,249 @@
             this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(320, 166);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(256, 133);
             this.flowLayoutPanel2.TabIndex = 0;
             // 
             // stackTrace1_1
             // 
             this.stackTrace1_1.Location = new System.Drawing.Point(0, 0);
-            this.stackTrace1_1.Margin = new System.Windows.Forms.Padding(0, 0, 4, 0);
+            this.stackTrace1_1.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.stackTrace1_1.Name = "stackTrace1_1";
-            this.stackTrace1_1.Size = new System.Drawing.Size(313, 8);
+            this.stackTrace1_1.Size = new System.Drawing.Size(250, 6);
             this.stackTrace1_1.TabIndex = 0;
             this.stackTrace1_1.TabStop = false;
             // 
             // stackTrace1_2
             // 
-            this.stackTrace1_2.Location = new System.Drawing.Point(0, 8);
-            this.stackTrace1_2.Margin = new System.Windows.Forms.Padding(0, 0, 4, 0);
+            this.stackTrace1_2.Location = new System.Drawing.Point(0, 6);
+            this.stackTrace1_2.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.stackTrace1_2.Name = "stackTrace1_2";
-            this.stackTrace1_2.Size = new System.Drawing.Size(313, 8);
+            this.stackTrace1_2.Size = new System.Drawing.Size(250, 6);
             this.stackTrace1_2.TabIndex = 1;
             this.stackTrace1_2.TabStop = false;
             // 
             // stackTrace1_3
             // 
-            this.stackTrace1_3.Location = new System.Drawing.Point(0, 16);
-            this.stackTrace1_3.Margin = new System.Windows.Forms.Padding(0, 0, 4, 0);
+            this.stackTrace1_3.Location = new System.Drawing.Point(0, 12);
+            this.stackTrace1_3.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.stackTrace1_3.Name = "stackTrace1_3";
-            this.stackTrace1_3.Size = new System.Drawing.Size(313, 8);
+            this.stackTrace1_3.Size = new System.Drawing.Size(250, 6);
             this.stackTrace1_3.TabIndex = 2;
             this.stackTrace1_3.TabStop = false;
             // 
             // stackTrace1_4
             // 
-            this.stackTrace1_4.Location = new System.Drawing.Point(0, 24);
-            this.stackTrace1_4.Margin = new System.Windows.Forms.Padding(0, 0, 4, 0);
+            this.stackTrace1_4.Location = new System.Drawing.Point(0, 18);
+            this.stackTrace1_4.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.stackTrace1_4.Name = "stackTrace1_4";
-            this.stackTrace1_4.Size = new System.Drawing.Size(313, 8);
+            this.stackTrace1_4.Size = new System.Drawing.Size(250, 6);
             this.stackTrace1_4.TabIndex = 3;
             this.stackTrace1_4.TabStop = false;
             // 
             // stackTrace1_5
             // 
-            this.stackTrace1_5.Location = new System.Drawing.Point(0, 32);
-            this.stackTrace1_5.Margin = new System.Windows.Forms.Padding(0, 0, 4, 0);
+            this.stackTrace1_5.Location = new System.Drawing.Point(0, 24);
+            this.stackTrace1_5.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.stackTrace1_5.Name = "stackTrace1_5";
-            this.stackTrace1_5.Size = new System.Drawing.Size(313, 8);
+            this.stackTrace1_5.Size = new System.Drawing.Size(250, 6);
             this.stackTrace1_5.TabIndex = 4;
             this.stackTrace1_5.TabStop = false;
             // 
             // stackTrace1_6
             // 
-            this.stackTrace1_6.Location = new System.Drawing.Point(0, 40);
-            this.stackTrace1_6.Margin = new System.Windows.Forms.Padding(0, 0, 4, 0);
+            this.stackTrace1_6.Location = new System.Drawing.Point(0, 30);
+            this.stackTrace1_6.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.stackTrace1_6.Name = "stackTrace1_6";
-            this.stackTrace1_6.Size = new System.Drawing.Size(313, 8);
+            this.stackTrace1_6.Size = new System.Drawing.Size(250, 6);
             this.stackTrace1_6.TabIndex = 5;
             this.stackTrace1_6.TabStop = false;
             // 
             // stackTrace1_7
             // 
-            this.stackTrace1_7.Location = new System.Drawing.Point(0, 48);
-            this.stackTrace1_7.Margin = new System.Windows.Forms.Padding(0, 0, 4, 0);
+            this.stackTrace1_7.Location = new System.Drawing.Point(0, 36);
+            this.stackTrace1_7.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.stackTrace1_7.Name = "stackTrace1_7";
-            this.stackTrace1_7.Size = new System.Drawing.Size(313, 8);
+            this.stackTrace1_7.Size = new System.Drawing.Size(250, 6);
             this.stackTrace1_7.TabIndex = 6;
             this.stackTrace1_7.TabStop = false;
             // 
             // stackTrace1_8
             // 
-            this.stackTrace1_8.Location = new System.Drawing.Point(0, 56);
-            this.stackTrace1_8.Margin = new System.Windows.Forms.Padding(0, 0, 4, 0);
+            this.stackTrace1_8.Location = new System.Drawing.Point(0, 42);
+            this.stackTrace1_8.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.stackTrace1_8.Name = "stackTrace1_8";
-            this.stackTrace1_8.Size = new System.Drawing.Size(313, 8);
+            this.stackTrace1_8.Size = new System.Drawing.Size(250, 6);
             this.stackTrace1_8.TabIndex = 7;
             this.stackTrace1_8.TabStop = false;
             // 
             // stackTrace1_9
             // 
-            this.stackTrace1_9.Location = new System.Drawing.Point(0, 64);
-            this.stackTrace1_9.Margin = new System.Windows.Forms.Padding(0, 0, 4, 0);
+            this.stackTrace1_9.Location = new System.Drawing.Point(0, 48);
+            this.stackTrace1_9.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.stackTrace1_9.Name = "stackTrace1_9";
-            this.stackTrace1_9.Size = new System.Drawing.Size(313, 8);
+            this.stackTrace1_9.Size = new System.Drawing.Size(250, 6);
             this.stackTrace1_9.TabIndex = 8;
             this.stackTrace1_9.TabStop = false;
             // 
             // stackTrace1_10
             // 
-            this.stackTrace1_10.Location = new System.Drawing.Point(0, 72);
-            this.stackTrace1_10.Margin = new System.Windows.Forms.Padding(0, 0, 4, 0);
+            this.stackTrace1_10.Location = new System.Drawing.Point(0, 54);
+            this.stackTrace1_10.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.stackTrace1_10.Name = "stackTrace1_10";
-            this.stackTrace1_10.Size = new System.Drawing.Size(313, 8);
+            this.stackTrace1_10.Size = new System.Drawing.Size(250, 6);
             this.stackTrace1_10.TabIndex = 9;
             this.stackTrace1_10.TabStop = false;
             // 
             // stackTrace1_11
             // 
-            this.stackTrace1_11.Location = new System.Drawing.Point(0, 80);
-            this.stackTrace1_11.Margin = new System.Windows.Forms.Padding(0, 0, 4, 0);
+            this.stackTrace1_11.Location = new System.Drawing.Point(0, 60);
+            this.stackTrace1_11.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.stackTrace1_11.Name = "stackTrace1_11";
-            this.stackTrace1_11.Size = new System.Drawing.Size(313, 8);
+            this.stackTrace1_11.Size = new System.Drawing.Size(250, 6);
             this.stackTrace1_11.TabIndex = 10;
             this.stackTrace1_11.TabStop = false;
             // 
             // stackTrace1_12
             // 
-            this.stackTrace1_12.Location = new System.Drawing.Point(0, 88);
-            this.stackTrace1_12.Margin = new System.Windows.Forms.Padding(0, 0, 4, 0);
+            this.stackTrace1_12.Location = new System.Drawing.Point(0, 66);
+            this.stackTrace1_12.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.stackTrace1_12.Name = "stackTrace1_12";
-            this.stackTrace1_12.Size = new System.Drawing.Size(313, 8);
+            this.stackTrace1_12.Size = new System.Drawing.Size(250, 6);
             this.stackTrace1_12.TabIndex = 11;
             this.stackTrace1_12.TabStop = false;
             // 
             // stackTrace1_13
             // 
-            this.stackTrace1_13.Location = new System.Drawing.Point(0, 96);
-            this.stackTrace1_13.Margin = new System.Windows.Forms.Padding(0, 0, 4, 0);
+            this.stackTrace1_13.Location = new System.Drawing.Point(0, 72);
+            this.stackTrace1_13.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.stackTrace1_13.Name = "stackTrace1_13";
-            this.stackTrace1_13.Size = new System.Drawing.Size(313, 8);
+            this.stackTrace1_13.Size = new System.Drawing.Size(250, 6);
             this.stackTrace1_13.TabIndex = 12;
             this.stackTrace1_13.TabStop = false;
             // 
             // stackTrace1_14
             // 
-            this.stackTrace1_14.Location = new System.Drawing.Point(0, 104);
-            this.stackTrace1_14.Margin = new System.Windows.Forms.Padding(0, 0, 4, 0);
+            this.stackTrace1_14.Location = new System.Drawing.Point(0, 78);
+            this.stackTrace1_14.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.stackTrace1_14.Name = "stackTrace1_14";
-            this.stackTrace1_14.Size = new System.Drawing.Size(313, 8);
+            this.stackTrace1_14.Size = new System.Drawing.Size(250, 6);
             this.stackTrace1_14.TabIndex = 13;
             this.stackTrace1_14.TabStop = false;
             // 
             // stackTrace1_15
             // 
-            this.stackTrace1_15.Location = new System.Drawing.Point(0, 112);
-            this.stackTrace1_15.Margin = new System.Windows.Forms.Padding(0, 0, 4, 0);
+            this.stackTrace1_15.Location = new System.Drawing.Point(0, 84);
+            this.stackTrace1_15.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.stackTrace1_15.Name = "stackTrace1_15";
-            this.stackTrace1_15.Size = new System.Drawing.Size(313, 8);
+            this.stackTrace1_15.Size = new System.Drawing.Size(250, 6);
             this.stackTrace1_15.TabIndex = 14;
             this.stackTrace1_15.TabStop = false;
             // 
             // stackTrace1_16
             // 
-            this.stackTrace1_16.Location = new System.Drawing.Point(0, 120);
-            this.stackTrace1_16.Margin = new System.Windows.Forms.Padding(0, 0, 4, 0);
+            this.stackTrace1_16.Location = new System.Drawing.Point(0, 90);
+            this.stackTrace1_16.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.stackTrace1_16.Name = "stackTrace1_16";
-            this.stackTrace1_16.Size = new System.Drawing.Size(313, 8);
+            this.stackTrace1_16.Size = new System.Drawing.Size(250, 6);
             this.stackTrace1_16.TabIndex = 15;
             this.stackTrace1_16.TabStop = false;
             // 
             // stackTrace1_17
             // 
-            this.stackTrace1_17.Location = new System.Drawing.Point(0, 128);
-            this.stackTrace1_17.Margin = new System.Windows.Forms.Padding(0, 0, 4, 0);
+            this.stackTrace1_17.Location = new System.Drawing.Point(0, 96);
+            this.stackTrace1_17.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.stackTrace1_17.Name = "stackTrace1_17";
-            this.stackTrace1_17.Size = new System.Drawing.Size(313, 8);
+            this.stackTrace1_17.Size = new System.Drawing.Size(250, 6);
             this.stackTrace1_17.TabIndex = 16;
             this.stackTrace1_17.TabStop = false;
             // 
             // stackTrace1_18
             // 
-            this.stackTrace1_18.Location = new System.Drawing.Point(0, 136);
-            this.stackTrace1_18.Margin = new System.Windows.Forms.Padding(0, 0, 4, 0);
+            this.stackTrace1_18.Location = new System.Drawing.Point(0, 102);
+            this.stackTrace1_18.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.stackTrace1_18.Name = "stackTrace1_18";
-            this.stackTrace1_18.Size = new System.Drawing.Size(313, 8);
+            this.stackTrace1_18.Size = new System.Drawing.Size(250, 6);
             this.stackTrace1_18.TabIndex = 17;
             this.stackTrace1_18.TabStop = false;
             // 
             // stackTrace1_19
             // 
-            this.stackTrace1_19.Location = new System.Drawing.Point(0, 144);
-            this.stackTrace1_19.Margin = new System.Windows.Forms.Padding(0, 0, 4, 0);
+            this.stackTrace1_19.Location = new System.Drawing.Point(0, 108);
+            this.stackTrace1_19.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.stackTrace1_19.Name = "stackTrace1_19";
-            this.stackTrace1_19.Size = new System.Drawing.Size(313, 8);
+            this.stackTrace1_19.Size = new System.Drawing.Size(250, 6);
             this.stackTrace1_19.TabIndex = 18;
             this.stackTrace1_19.TabStop = false;
             // 
             // stackTrace1_20
             // 
-            this.stackTrace1_20.Location = new System.Drawing.Point(0, 152);
-            this.stackTrace1_20.Margin = new System.Windows.Forms.Padding(0, 0, 4, 0);
+            this.stackTrace1_20.Location = new System.Drawing.Point(0, 114);
+            this.stackTrace1_20.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.stackTrace1_20.Name = "stackTrace1_20";
-            this.stackTrace1_20.Size = new System.Drawing.Size(313, 8);
+            this.stackTrace1_20.Size = new System.Drawing.Size(250, 6);
             this.stackTrace1_20.TabIndex = 19;
             this.stackTrace1_20.TabStop = false;
             // 
             // table2
             // 
-            this.table2.Location = new System.Drawing.Point(0, 238);
-            this.table2.Margin = new System.Windows.Forms.Padding(0, 12, 0, 0);
+            this.table2.Location = new System.Drawing.Point(0, 190);
+            this.table2.Margin = new System.Windows.Forms.Padding(0, 10, 0, 0);
             this.table2.Name = "table2";
-            this.table2.Size = new System.Drawing.Size(828, 8);
+            this.table2.Size = new System.Drawing.Size(662, 6);
             this.table2.TabIndex = 7;
             this.table2.TabStop = false;
             // 
             // tablerow_1
             // 
-            this.tablerow_1.Location = new System.Drawing.Point(0, 246);
+            this.tablerow_1.Location = new System.Drawing.Point(0, 196);
             this.tablerow_1.Margin = new System.Windows.Forms.Padding(0);
             this.tablerow_1.Name = "tablerow_1";
-            this.tablerow_1.Size = new System.Drawing.Size(828, 8);
+            this.tablerow_1.Size = new System.Drawing.Size(662, 6);
             this.tablerow_1.TabIndex = 8;
             this.tablerow_1.TabStop = false;
             // 
             // tablerow_2
             // 
-            this.tablerow_2.Location = new System.Drawing.Point(0, 254);
+            this.tablerow_2.Location = new System.Drawing.Point(0, 202);
             this.tablerow_2.Margin = new System.Windows.Forms.Padding(0);
             this.tablerow_2.Name = "tablerow_2";
-            this.tablerow_2.Size = new System.Drawing.Size(828, 8);
+            this.tablerow_2.Size = new System.Drawing.Size(662, 6);
             this.tablerow_2.TabIndex = 9;
             this.tablerow_2.TabStop = false;
             // 
             // tablerow_3
             // 
-            this.tablerow_3.Location = new System.Drawing.Point(0, 262);
+            this.tablerow_3.Location = new System.Drawing.Point(0, 208);
             this.tablerow_3.Margin = new System.Windows.Forms.Padding(0);
             this.tablerow_3.Name = "tablerow_3";
-            this.tablerow_3.Size = new System.Drawing.Size(828, 8);
+            this.tablerow_3.Size = new System.Drawing.Size(662, 6);
             this.tablerow_3.TabIndex = 10;
             this.tablerow_3.TabStop = false;
             // 
             // tablerow_4
             // 
-            this.tablerow_4.Location = new System.Drawing.Point(0, 270);
+            this.tablerow_4.Location = new System.Drawing.Point(0, 214);
             this.tablerow_4.Margin = new System.Windows.Forms.Padding(0);
             this.tablerow_4.Name = "tablerow_4";
-            this.tablerow_4.Size = new System.Drawing.Size(828, 8);
+            this.tablerow_4.Size = new System.Drawing.Size(662, 6);
             this.tablerow_4.TabIndex = 11;
             this.tablerow_4.TabStop = false;
             // 
             // troubleShoot1
             // 
-            this.troubleShoot1.Location = new System.Drawing.Point(0, 290);
-            this.troubleShoot1.Margin = new System.Windows.Forms.Padding(0, 12, 4, 0);
+            this.troubleShoot1.Location = new System.Drawing.Point(0, 230);
+            this.troubleShoot1.Margin = new System.Windows.Forms.Padding(0, 10, 3, 0);
             this.troubleShoot1.Name = "troubleShoot1";
-            this.troubleShoot1.Size = new System.Drawing.Size(828, 8);
+            this.troubleShoot1.Size = new System.Drawing.Size(662, 6);
             this.troubleShoot1.TabIndex = 12;
             this.troubleShoot1.TabStop = false;
             // 
             // troubleShoot2
             // 
-            this.troubleShoot2.Location = new System.Drawing.Point(0, 298);
-            this.troubleShoot2.Margin = new System.Windows.Forms.Padding(0, 0, 4, 0);
+            this.troubleShoot2.Location = new System.Drawing.Point(0, 236);
+            this.troubleShoot2.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.troubleShoot2.Name = "troubleShoot2";
-            this.troubleShoot2.Size = new System.Drawing.Size(828, 8);
+            this.troubleShoot2.Size = new System.Drawing.Size(662, 6);
             this.troubleShoot2.TabIndex = 13;
             this.troubleShoot2.TabStop = false;
             // 
@@ -706,10 +708,9 @@
             this.blinkyThing.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(170)))), ((int)(((byte)(170)))), ((int)(((byte)(170)))));
             this.blinkyThing.ErrorImage = null;
             this.blinkyThing.ImageLocation = "";
-            this.blinkyThing.Location = new System.Drawing.Point(-104, 9);
-            this.blinkyThing.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.blinkyThing.Location = new System.Drawing.Point(-12, 7);
             this.blinkyThing.Name = "blinkyThing";
-            this.blinkyThing.Size = new System.Drawing.Size(9, 2);
+            this.blinkyThing.Size = new System.Drawing.Size(7, 2);
             this.blinkyThing.TabIndex = 12;
             this.blinkyThing.TabStop = false;
             // 
@@ -724,26 +725,23 @@
             this.waterMarkText.AutoSize = true;
             this.waterMarkText.Font = new System.Drawing.Font("Arial", 5F);
             this.waterMarkText.ForeColor = System.Drawing.Color.LightGray;
-            this.waterMarkText.Location = new System.Drawing.Point(513, -1);
-            this.waterMarkText.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.waterMarkText.Location = new System.Drawing.Point(552, -1);
             this.waterMarkText.Name = "waterMarkText";
-            this.waterMarkText.Size = new System.Drawing.Size(111, 12);
+            this.waterMarkText.Size = new System.Drawing.Size(88, 7);
             this.waterMarkText.TabIndex = 14;
             this.waterMarkText.Text = "bluescreen simulator plus";
             // 
             // NTBSOD
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(168)))));
-            this.ClientSize = new System.Drawing.Size(624, 441);
+            this.ClientSize = new System.Drawing.Size(640, 480);
             this.Controls.Add(this.waterMarkText);
             this.Controls.Add(this.blinkyThing);
             this.Controls.Add(this.ntContainer);
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.Name = "NTBSOD";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -820,7 +818,6 @@
         private System.Windows.Forms.PictureBox cpuID;
         private System.Windows.Forms.FlowLayoutPanel ntContainer;
         private System.Windows.Forms.PictureBox tableHeader;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
         private System.Windows.Forms.PictureBox stackTrace2_1;
         private System.Windows.Forms.PictureBox stackTrace2_2;
@@ -873,5 +870,6 @@
         private System.Windows.Forms.PictureBox blinkyThing;
         private System.Windows.Forms.Timer screenUpdater;
         public System.Windows.Forms.Label waterMarkText;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Security.AccessControl;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 using ms = MaterialSkin; // alias to ms to avoid conflict with ColorScheme
 
@@ -592,6 +593,14 @@ namespace UltimateBlueScreenSimulator
             if (source != "")
             {
                 msg += $" @{source}";
+            }
+            if (message.Length < 70)
+            {
+                Program.load_message = message;
+                if (message.Length % 6 == 0)
+                {
+                    Thread.Sleep(5);
+                }
             }
             log1.Add(msg);
         }

@@ -173,9 +173,9 @@
             this.winPanel.Controls.Add(this.win1startup);
             this.winPanel.Controls.Add(this.win2startup);
             this.winPanel.Controls.Add(this.nostartup);
-            this.winPanel.Location = new System.Drawing.Point(641, 3);
+            this.winPanel.Location = new System.Drawing.Point(3, 490);
             this.winPanel.Name = "winPanel";
-            this.winPanel.Size = new System.Drawing.Size(239, 111);
+            this.winPanel.Size = new System.Drawing.Size(637, 37);
             this.winPanel.TabIndex = 7;
             // 
             // win1startup
@@ -202,7 +202,7 @@
             this.win2startup.AutoSize = true;
             this.win2startup.Depth = 0;
             this.win2startup.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.win2startup.Location = new System.Drawing.Point(0, 37);
+            this.win2startup.Location = new System.Drawing.Point(239, 0);
             this.win2startup.Margin = new System.Windows.Forms.Padding(0);
             this.win2startup.MouseLocation = new System.Drawing.Point(-1, -1);
             this.win2startup.MouseState = MaterialSkin.MouseState.HOVER;
@@ -220,7 +220,7 @@
             this.nostartup.AutoSize = true;
             this.nostartup.Depth = 0;
             this.nostartup.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.nostartup.Location = new System.Drawing.Point(0, 74);
+            this.nostartup.Location = new System.Drawing.Point(478, 0);
             this.nostartup.Margin = new System.Windows.Forms.Padding(0);
             this.nostartup.MouseLocation = new System.Drawing.Point(-1, -1);
             this.nostartup.MouseState = MaterialSkin.MouseState.HOVER;
@@ -533,7 +533,7 @@
             this.playSndBox.AutoSize = true;
             this.playSndBox.Depth = 0;
             this.playSndBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.playSndBox.Location = new System.Drawing.Point(638, 117);
+            this.playSndBox.Location = new System.Drawing.Point(643, 0);
             this.playSndBox.Margin = new System.Windows.Forms.Padding(0);
             this.playSndBox.MouseLocation = new System.Drawing.Point(-1, -1);
             this.playSndBox.MouseState = MaterialSkin.MouseState.HOVER;
@@ -554,7 +554,7 @@
             this.waterBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.waterBox.Depth = 0;
             this.waterBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.waterBox.Location = new System.Drawing.Point(638, 154);
+            this.waterBox.Location = new System.Drawing.Point(643, 37);
             this.waterBox.Margin = new System.Windows.Forms.Padding(0);
             this.waterBox.MouseLocation = new System.Drawing.Point(-1, -1);
             this.waterBox.MouseState = MaterialSkin.MouseState.HOVER;
@@ -573,7 +573,7 @@
             this.winMode.AutoSize = true;
             this.winMode.Depth = 0;
             this.winMode.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.winMode.Location = new System.Drawing.Point(638, 191);
+            this.winMode.Location = new System.Drawing.Point(643, 74);
             this.winMode.Margin = new System.Windows.Forms.Padding(0);
             this.winMode.MouseLocation = new System.Drawing.Point(-1, -1);
             this.winMode.MouseState = MaterialSkin.MouseState.HOVER;
@@ -686,7 +686,7 @@
             this.button1.Depth = 0;
             this.button1.Icon = global::UltimateBlueScreenSimulator.Properties.Resources.play;
             this.button1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.button1.Location = new System.Drawing.Point(32, 130);
+            this.button1.Location = new System.Drawing.Point(48, 169);
             this.button1.Mini = true;
             this.button1.MouseState = MaterialSkin.MouseState.HOVER;
             this.button1.Name = "button1";
@@ -703,7 +703,7 @@
             this.button3.Depth = 0;
             this.button3.Icon = global::UltimateBlueScreenSimulator.Properties.Resources.question;
             this.button3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.button3.Location = new System.Drawing.Point(32, 180);
+            this.button3.Location = new System.Drawing.Point(48, 219);
             this.button3.Mini = true;
             this.button3.MouseState = MaterialSkin.MouseState.HOVER;
             this.button3.Name = "button3";
@@ -756,7 +756,7 @@
             this.materialTabControl1.Name = "materialTabControl1";
             this.materialTabControl1.SelectedIndex = 0;
             this.materialTabControl1.ShowToolTips = true;
-            this.materialTabControl1.Size = new System.Drawing.Size(754, 616);
+            this.materialTabControl1.Size = new System.Drawing.Size(770, 655);
             this.materialTabControl1.TabIndex = 8;
             this.materialTabControl1.SelectedIndexChanged += new System.EventHandler(this.materialTabControl1_SelectedIndexChanged);
             // 
@@ -768,7 +768,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(746, 587);
+            this.tabPage1.Size = new System.Drawing.Size(762, 626);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Simulator";
             // 
@@ -818,7 +818,7 @@
             this.windowVersion.MaxDropDownItems = 4;
             this.windowVersion.MouseState = MaterialSkin.MouseState.OUT;
             this.windowVersion.Name = "windowVersion";
-            this.windowVersion.Size = new System.Drawing.Size(630, 49);
+            this.windowVersion.Size = new System.Drawing.Size(646, 49);
             this.windowVersion.StartIndex = 0;
             this.windowVersion.TabIndex = 0;
             this.windowVersion.SelectedIndexChanged += new System.EventHandler(this.windowVersion_SelectedIndexChanged);
@@ -845,7 +845,7 @@
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(9, 62);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(704, 525);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(720, 564);
             this.flowLayoutPanel1.TabIndex = 3;
             // 
             // WXOptions
@@ -1152,7 +1152,7 @@
             this.flowLayoutPanel4.Controls.Add(this.eCodeEditButton);
             this.flowLayoutPanel4.Controls.Add(this.advNTButton);
             this.flowLayoutPanel4.Controls.Add(this.progressTuneButton);
-            this.flowLayoutPanel4.Location = new System.Drawing.Point(641, 231);
+            this.flowLayoutPanel4.Location = new System.Drawing.Point(646, 114);
             this.flowLayoutPanel4.Name = "flowLayoutPanel4";
             this.flowLayoutPanel4.Size = new System.Drawing.Size(246, 192);
             this.flowLayoutPanel4.TabIndex = 10;
@@ -1214,7 +1214,7 @@
             // 
             this.tabPage3.Location = new System.Drawing.Point(4, 25);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(730, 548);
+            this.tabPage3.Size = new System.Drawing.Size(746, 587);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Settings";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -1223,7 +1223,7 @@
             // 
             this.aboutTab.Location = new System.Drawing.Point(4, 25);
             this.aboutTab.Name = "aboutTab";
-            this.aboutTab.Size = new System.Drawing.Size(730, 548);
+            this.aboutTab.Size = new System.Drawing.Size(746, 587);
             this.aboutTab.TabIndex = 3;
             this.aboutTab.Text = "About";
             this.aboutTab.UseVisualStyleBackColor = true;
@@ -1232,7 +1232,7 @@
             // 
             this.tabPage4.Location = new System.Drawing.Point(4, 25);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(730, 548);
+            this.tabPage4.Size = new System.Drawing.Size(746, 587);
             this.tabPage4.TabIndex = 4;
             this.tabPage4.Text = "Prank mode";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -1241,7 +1241,7 @@
             // 
             this.tabPage5.Location = new System.Drawing.Point(4, 25);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(730, 548);
+            this.tabPage5.Size = new System.Drawing.Size(746, 587);
             this.tabPage5.TabIndex = 5;
             this.tabPage5.Text = "Restore old UI";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -1271,7 +1271,7 @@
             this.label7.AutoSize = true;
             this.label7.Depth = 0;
             this.label7.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.label7.Location = new System.Drawing.Point(21, 563);
+            this.label7.Location = new System.Drawing.Point(21, 602);
             this.label7.MouseState = MaterialSkin.MouseState.HOVER;
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(348, 19);
@@ -1300,7 +1300,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(760, 692);
+            this.ClientSize = new System.Drawing.Size(776, 731);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button1);

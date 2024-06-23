@@ -26,7 +26,7 @@ namespace UltimateBlueScreenSimulator
         readonly List<Bitmap> freezescreens = new List<Bitmap>();
         public WXBS()
         {
-            if (Program.verifile.RC() && Program.verificate)
+            if (new Verifile().RC() && Program.verificate)
             {
                 InitializeComponent();
             }

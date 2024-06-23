@@ -50,6 +50,23 @@ namespace UltimateBlueScreenSimulator
         {
             try
             {
+                //this.Width = (int)(640f * 96f / CreateGraphics().DpiX);
+                //this.Height = (int)(480f * 96f / CreateGraphics().DpiY);
+                ntContainer.Top = (int)(9f * 96f / CreateGraphics().DpiY);
+                //ntContainer.Height = (int)(133f * 96f / CreateGraphics().DpiY);
+                ntContainer.Width = this.Width;
+                errorCode.Width = this.Width;
+                errorDescription.Width = this.Width;
+                cpuID.Width = this.Width;
+                tableHeader.Width = this.Width;
+                tableLayoutPanel1.ColumnStyles[1].SizeType = SizeType.Absolute;
+                tableLayoutPanel1.ColumnStyles[0].SizeType = SizeType.Absolute;
+                tableLayoutPanel1.ColumnStyles[0].Width = this.Width / 2;
+                tableLayoutPanel1.ColumnStyles[1].Width = this.Width / 2;
+                tableLayoutPanel1.Width = this.Width;
+                tableLayoutPanel1.Height = 160;
+                flowLayoutPanel2.Width = this.Width / 2;
+                flowLayoutPanel3.Width = this.Width / 2;
                 foreach (Control c in ntContainer.Controls)
                 {
                     if (c is TableLayoutPanel)
@@ -57,6 +74,16 @@ namespace UltimateBlueScreenSimulator
                         continue;
                     }
                     c.Height = charsize;
+                }
+                foreach (Control c in flowLayoutPanel2.Controls)
+                {
+                    c.Height = charsize;
+                    c.Width = this.Width / 2;
+                }
+                foreach (Control c in flowLayoutPanel3.Controls)
+                {
+                    c.Height = charsize;
+                    c.Width = this.Width / 2;
                 }
                 this.Icon = me.GetIcon();
                 this.Text = me.GetString("friendlyname");

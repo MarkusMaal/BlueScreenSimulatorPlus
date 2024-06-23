@@ -14,6 +14,8 @@ using System.IO;
 using System.Collections.Generic;
 using SimulatorDatabase;
 using System.Net.NetworkInformation;
+using System.Threading;
+using System.Runtime.Remoting.Messaging;
 
 namespace UltimateBlueScreenSimulator
 {
@@ -37,55 +39,37 @@ namespace UltimateBlueScreenSimulator
 
         internal static bool verificate = false;
         public static int load_progress = 100;
-        public static string load_message = "";
+        public static string load_message = "Initializing...";
         public static bool hidden = false;
         internal static string changelog = "+ New user interface!\n+ Trace logging\n???\n$$$ Profit $$$";
 
         public static List<BlueScreen> bluescreens;
         public static bool hide_splash = false;
         public static bool halt = false;
+        
 
         public static Verifile verifile;
+        public static Thread splt;
+        public static CLIProcessor clip;
 
         [STAThread]
         public static int Main(string[] args)
         {
-            CLIProcessor clip = new CLIProcessor(args);
+            //gs.SingleSim = "Windows 11";
+            clip = new CLIProcessor(args);
             //Application initialization
             Application.SetCompatibleTextRenderingDefault(false);
             verifile = new Verifile();
             verificate = verifile.Verify;
-            if (verifile.Bad) { return 1; }
-            if (!verificate) { return 1; }
-            //If hidesplash flag is not set, display the splash screen
-            hide_splash = clip.CheckNoSplash();
-            if (!hide_splash)
-            {
-                hidden = true;
-                spl = new Splash();
-                if (clip.CheckPreviewSplash())
-                {
-                    spl.ShowDialog();
-                    return 0;
-                }
-                else
-                {
-                    spl.Show();
-                }
-            } else
-            {
-                Application.EnableVisualStyles();
-            }
             gs.Log("Info", "Verifile passed");
-            if (gs.SingleSim != "")
+            if ((gs.SingleSim != "") && verificate)
             {
                 bluescreens = new List<BlueScreen>();
                 dr = new DrawRoutines();
                 ReRe();
                 f1 = new NewUI();
-                gs.ScaleMode = GlobalSettings.ScaleModes.NearestNeighbour;
                 //gs.PM_Lockout = true;
-                System.Threading.Thread th = new System.Threading.Thread(new System.Threading.ThreadStart(() => {
+                Thread th = new Thread(new ThreadStart(() => {
 
                     // initialize BlueScreen object
                     f1.me = new BlueScreen(gs.SingleSim);
@@ -96,6 +80,24 @@ namespace UltimateBlueScreenSimulator
                 th.Join();
                 return 0;
             }
+            //If hidesplash flag is not set, display the splash screen
+            hide_splash = clip.CheckNoSplash();
+            if (!hide_splash)
+            {
+                hidden = true;
+                splt = new Thread(ShowLoading);
+                splt.Start();
+                if (clip.CheckPreviewSplash())
+                {
+                    halt = true;
+                }
+            }
+            else
+            {
+                Application.EnableVisualStyles();
+            }
+            // this delay makes sure that the splash screen is actually displayed
+            Thread.Sleep(100);
             gs.Log("Info", "Initializing draw routines");
             dr = new DrawRoutines();
             //Initialize forms
@@ -159,22 +161,37 @@ namespace UltimateBlueScreenSimulator
             return gs.ErrorCode;
         }
 
+        private static void ShowLoading()
+        {
+            spl = new Splash
+            {
+                args = clip.args
+            };
+            spl.ShowDialog();
+        }
+
         static public void ReRe()
         {
-            Program.bluescreens.Clear();
-            Program.bluescreens.Add(new BlueScreen("Windows 1.x/2.x"));
-            Program.bluescreens.Add(new BlueScreen("Windows 3.1x"));
-            Program.bluescreens.Add(new BlueScreen("Windows 9x/Me"));
-            Program.bluescreens.Add(new BlueScreen("Windows CE"));
-            Program.bluescreens.Add(new BlueScreen("Windows NT 3.x/4.0"));
-            Program.bluescreens.Add(new BlueScreen("Windows 2000"));
-            Program.bluescreens.Add(new BlueScreen("Windows XP"));
-            Program.bluescreens.Add(new BlueScreen("Windows Vista"));
-            Program.bluescreens.Add(new BlueScreen("Windows 7"));
-            Program.bluescreens.Add(new BlueScreen("Windows 8 Beta"));
-            Program.bluescreens.Add(new BlueScreen("Windows 8/8.1"));
-            Program.bluescreens.Add(new BlueScreen("Windows 10"));
-            Program.bluescreens.Add(new BlueScreen("Windows 11"));
+            if (gs.ErrorCode != 500)
+            {
+                Program.bluescreens.Clear();
+                Program.bluescreens.Add(new BlueScreen("Windows 1.x/2.x"));
+                Program.bluescreens.Add(new BlueScreen("Windows 3.1x"));
+                Program.bluescreens.Add(new BlueScreen("Windows 9x/Me"));
+                Program.bluescreens.Add(new BlueScreen("Windows CE"));
+                Program.bluescreens.Add(new BlueScreen("Windows NT 3.x/4.0"));
+                Program.bluescreens.Add(new BlueScreen("Windows 2000"));
+                Program.bluescreens.Add(new BlueScreen("Windows XP"));
+                Program.bluescreens.Add(new BlueScreen("Windows Vista"));
+                Program.bluescreens.Add(new BlueScreen("Windows 7"));
+                Program.bluescreens.Add(new BlueScreen("Windows 8 Beta"));
+                Program.bluescreens.Add(new BlueScreen("Windows 8/8.1"));
+                Program.bluescreens.Add(new BlueScreen("Windows 10"));
+                Program.bluescreens.Add(new BlueScreen("Windows 11"));
+            } else
+            {
+                halt = true;
+            }
         }
 
         static private void DisplayMetaError(Exception ex, string type)

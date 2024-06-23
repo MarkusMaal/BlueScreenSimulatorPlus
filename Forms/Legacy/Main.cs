@@ -923,11 +923,7 @@ namespace UltimateBlueScreenSimulator
 
         private void Form1_Shown(object sender, EventArgs e)
         {
-            if ((Program.spl != null) && (Program.spl.Visible))
-            {
-                Program.spl.Close();
-                Program.spl.Dispose();
-            }
+            Program.clip.ExitSplash();
             lockout = false;
         }
 

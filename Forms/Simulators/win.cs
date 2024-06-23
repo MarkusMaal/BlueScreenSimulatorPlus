@@ -34,7 +34,7 @@ namespace UltimateBlueScreenSimulator
             //
             // to upscale on higher DPI settings, use fullscreen mode
             //
-            Font = new Font(Font.Name, 8.25f * 96f / CreateGraphics().DpiX, Font.Style, Font.Unit, Font.GdiCharSet, Font.GdiVerticalFont);
+            //Font = new Font(Font.Name, 8.25f * 96f / CreateGraphics().DpiX, Font.Style, Font.Unit, Font.GdiCharSet, Font.GdiVerticalFont);
             InitializeComponent();
         }
 
@@ -123,7 +123,8 @@ namespace UltimateBlueScreenSimulator
 
             using (Graphics gfx = Graphics.FromImage(newBmp))
             {
-                gfx.DrawImage(src, 0, 0);
+                gfx.PageUnit = GraphicsUnit.Pixel;
+                gfx.DrawImage(src, 0, 0, src.Width, src.Height);
             }
             src.Dispose();
             return newBmp;
@@ -160,17 +161,20 @@ namespace UltimateBlueScreenSimulator
                     {
                         splash = Changecolor(me.GetTheme(false), Changecolor(me.GetTheme(true), CreateNonIndexedImage(splash), Color.FromArgb(19, 19, 19)), Color.FromArgb(255, 255, 255));
                     }
+                    // forces the bitmap to be resized to window dimensions
+                    
+                    splash = new Bitmap(splash, this.Width, this.Height);
                     int z = 1;
                     for (int y = 0; y < 224; y += 12)
                     {
-                        int wdth = this.Width;
+                        int wdth = splash.Width;
                         int hght = 12;
                         Bitmap bmp = new Bitmap(wdth, hght);
 
                         Rectangle cropRect = new Rectangle(0, y, wdth, hght);
                         using (Graphics g = Graphics.FromImage(bmp))
                         {
-                            g.DrawImage(splash, new Rectangle(0, 0, bmp.Width, bmp.Height), cropRect, GraphicsUnit.Pixel);
+                            g.DrawImage(splash, new Rectangle(0, 0, this.Width, bmp.Height), cropRect, GraphicsUnit.Pixel);
                         }
                         ((PictureBox)tableLayoutPanel1.Controls["pictureBox" + z.ToString()]).Image = bmp;
                         z++;

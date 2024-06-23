@@ -271,9 +271,14 @@ namespace UltimateBlueScreenSimulator
             if (windowVersion.Items.Count < 1)
             {
                 Program.loadfinished = true;
-                if (Program.gs.EnableEggs)
+                if (Program.gs.EnableEggs && (Program.gs.ErrorCode != 500))
                 {
                     MessageBox.Show("Please select a Windows version! Also, how in the world did you deselect a dropdown list?", "Error displaying blue screen", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else if (Program.gs.ErrorCode == 500)
+                {
+                    Thread.CurrentThread.Abort();
+                    return;
                 }
                 else
                 {
@@ -768,7 +773,10 @@ namespace UltimateBlueScreenSimulator
                     {
                         MessageBox.Show("Settings window is already open", "Cannot open settings", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
-                    this.Show();
+                    if (!this.IsDisposed)
+                    {
+                        this.Show();
+                    }
                     break;
                 case 3:
                     materialTabControl1.SelectedIndex = 0;
@@ -1311,22 +1319,28 @@ namespace UltimateBlueScreenSimulator
 
         private void NewUI_Shown(object sender, EventArgs e)
         {
-            this.Enabled = true;
-            if ((Program.spl != null) && (Program.spl.Visible))
+            this.Enabled = Program.verificate;
+            button1.Visible = Program.verificate;
+            button3.Visible = Program.verificate;
+            if (Program.verificate)
             {
-                Program.spl.Close();
-                Program.spl.Dispose();
+                Program.clip.ExitSplash();
             }
+            this.TopMost = true;
+            this.TopMost = false;
         }
 
         private void ProcessErrors()
         {
+            Program.clip.ExitSplash();
             switch (Program.gs.ErrorCode)
             {
                 case 0:
                     break;
                 case 1:
                     MessageBox.Show("No command specified in hidden mode\nAre you missing the /c argument?\n\n0x001: COMMAND_DEADLOCK", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Program.halt = true;
+                    Application.Exit();
                     break;
                 case 2:
                     MessageBox.Show("Specified file is either corrupted or not a valid blue screen simulator plus hack file.\n\n0x002: HEADER_MISSING", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);

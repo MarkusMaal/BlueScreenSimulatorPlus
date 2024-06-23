@@ -12,7 +12,7 @@ namespace UltimateBlueScreenSimulator
     ///</summary>
     internal class CLIProcessor
     {
-        private readonly string[] args;
+        internal readonly string[] args;
         private bool checkvalue;
 
         public CLIProcessor(string[] args)
@@ -132,6 +132,17 @@ namespace UltimateBlueScreenSimulator
                     break;
             }
         }
+        ///<summary>
+        ///Closes the splash screen
+        ///</summary>
+        internal void ExitSplash()
+        {
+            if (!CheckNoSplash())
+            {
+                Program.splt.Abort();
+                Program.splt.Join();
+            }
+        }
 
         ///<summary>
         ///Processes a command line parameter which has a slash in front of it
@@ -161,6 +172,7 @@ namespace UltimateBlueScreenSimulator
             switch (arg.Substring(1))
             {
                 case "?":
+                    ExitSplash();
                     MessageBox.Show(Program.cmds, "Command line argument usage", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Program.gs.ErrorCode = 999;
                     Program.halt = true;
@@ -171,20 +183,13 @@ namespace UltimateBlueScreenSimulator
                     break;
                 case "clr":
                     //Clears Verifile verification certificate
-                    if ((!args.Contains("/hidesplash")) || (!args.Contains("/finalize_update")))
-                    {
-                        Program.spl.Close();
-                    }
+                    ExitSplash();
                     File.Delete(Environment.GetEnvironmentVariable("USERPROFILE") + @"\bssp2_firstlaunch.txt");
                     MessageBox.Show("Signature verification file deleted. The program will now close.", "Ultimate blue screen simulator plus", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Application.Exit();
                     break;
                 case "c":
-                    if ((Program.spl != null) && (Program.spl.Visible))
-                    {
-                        Program.spl.Close();
-                        Program.spl.Dispose();
-                    }
+                    ExitSplash();
                     Program.f1.GetOS();
                     break;
                 case "doneupdate":

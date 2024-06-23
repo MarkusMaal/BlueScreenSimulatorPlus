@@ -1455,10 +1455,10 @@ namespace SimulatorDatabase
         ///</summary>
         public void SetDefaultProgression()
         {
+            //Program.verificate = Program.verifile.RC();
             Log("Info", "Generating default progress tuner configuration");
             int totalmillis = 100;
             int percent = 0;
-            Program.verificate = Program.verifile.RC();
             while (percent < 100)
             {
                 int val = r.Next(0, 9);
