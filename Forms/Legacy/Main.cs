@@ -148,7 +148,7 @@ namespace UltimateBlueScreenSimulator
             try
             {
                 // set current bluescreen
-                me = Program.bluescreens[Program.bluescreens.Count - 1 - windowVersion.SelectedIndex];
+                me = Program.templates.GetAt(Program.templates.Count - 1 - windowVersion.SelectedIndex);
             } catch (Exception ex)
             {
                 me.Crash(ex.Message, ex.StackTrace, "OrangeScreen");
@@ -314,9 +314,9 @@ namespace UltimateBlueScreenSimulator
         public void GetOS()
         {
             windowVersion.Items.Clear();
-            for (int i = Program.bluescreens.Count - 1; i >= 0 ; i--)
+            for (int i = Program.templates.Count - 1; i >= 0 ; i--)
             {
-                windowVersion.Items.Add(Program.bluescreens[i].GetString("friendlyname"));
+                windowVersion.Items.Add(Program.templates.GetAt(i).GetString("friendlyname"));
             }
             WXOptions.Visible = false;
             errorCode.Visible = false;
@@ -463,9 +463,9 @@ namespace UltimateBlueScreenSimulator
             if (displayone)
             {
                 windowVersion.Items.Clear();
-                for (int i = Program.bluescreens.Count - 1; i >= 0; i--)
+                for (int i = Program.templates.Count - 1; i >= 0; i--)
                 {
-                    windowVersion.Items.Add(Program.bluescreens[i].GetString("friendlyname"));
+                    windowVersion.Items.Add(Program.templates.GetAt(i).GetString("friendlyname"));
                 }
                 windowVersion.SelectedItem = me.GetString("friendlyname");
                 windowVersion.Visible = false;
@@ -707,20 +707,20 @@ namespace UltimateBlueScreenSimulator
         internal void RandFunction()
         {
             Random r = new Random();
-            for (int i = 0; i < Program.bluescreens.Count; i++)
+            for (int i = 0; i < Program.templates.Count; i++)
             {
-                foreach (string kvp in Program.bluescreens[i].AllBools().Keys.ToArray<string>())
+                foreach (string kvp in Program.templates.GetAt(i).AllBools().Keys.ToArray<string>())
                 {
                     bool value = r.Next(0, 1) == 1;
-                    Program.bluescreens[i].SetBool(kvp, value);
+                    Program.templates.GetAt(i).SetBool(kvp, value);
                 }
                 if (comboBox1.Items.Count <= 0)
                 {
                     break;
                 }
-                Program.bluescreens[i].SetString("code", comboBox1.Items[r.Next(0, comboBox1.Items.Count - 1)].ToString());
-                if (Program.bluescreens[i].GetString("os") != "Windows 3.1x") { Program.bluescreens[i].SetString("screen_mode", comboBox2.Items[r.Next(0, comboBox2.Items.Count - 1)].ToString()); }
-                Program.bluescreens[i].SetBool("windowed", winMode.Checked);
+                Program.templates.GetAt(i).SetString("code", comboBox1.Items[r.Next(0, comboBox1.Items.Count - 1)].ToString());
+                if (Program.templates.GetAt(i).GetString("os") != "Windows 3.1x") { Program.templates.GetAt(i).SetString("screen_mode", comboBox2.Items[r.Next(0, comboBox2.Items.Count - 1)].ToString()); }
+                Program.templates.GetAt(i).SetBool("windowed", winMode.Checked);
                 Thread.Sleep(16);
             }
             windowVersion.SelectedIndex = SetRnd(windowVersion.Items.Count - 1);

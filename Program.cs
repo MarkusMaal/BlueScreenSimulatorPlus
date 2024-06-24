@@ -8,14 +8,11 @@
  */
 
 using System;
-using System.Linq;
 using System.Windows.Forms;
 using System.IO;
-using System.Collections.Generic;
 using SimulatorDatabase;
 using System.Net.NetworkInformation;
 using System.Threading;
-using System.Runtime.Remoting.Messaging;
 
 namespace UltimateBlueScreenSimulator
 {
@@ -43,14 +40,14 @@ namespace UltimateBlueScreenSimulator
         public static bool hidden = false;
         internal static string changelog = "+ New user interface!\n+ Trace logging\n???\n$$$ Profit $$$";
 
-        public static List<BlueScreen> bluescreens;
         public static bool hide_splash = false;
         public static bool halt = false;
         
-
+        // initialize global objects
         public static Verifile verifile;
         public static Thread splt;
         public static CLIProcessor clip;
+        public static TemplateRegistry templates;
 
         [STAThread]
         public static int Main(string[] args)
@@ -64,9 +61,8 @@ namespace UltimateBlueScreenSimulator
             gs.Log("Info", "Verifile passed");
             if ((gs.SingleSim != "") && verificate)
             {
-                bluescreens = new List<BlueScreen>();
+                templates = new TemplateRegistry();
                 dr = new DrawRoutines();
-                ReRe();
                 f1 = new NewUI();
                 //gs.PM_Lockout = true;
                 Thread th = new Thread(new ThreadStart(() => {
@@ -105,8 +101,7 @@ namespace UltimateBlueScreenSimulator
             gs.Log("Info", "Creating initial form");
             f1 = new NewUI();
             gs.Log("Info", "Initializing configurations list");
-            bluescreens = new List<BlueScreen>();
-            ReRe();
+            templates = new TemplateRegistry();
             //Set default selection indexes for combo boxes
             f1.windowVersion.SelectedIndex = 0;
             f1.comboBox2.SelectedIndex = 0;
@@ -161,6 +156,9 @@ namespace UltimateBlueScreenSimulator
             return gs.ErrorCode;
         }
 
+        /// <summary>
+        /// Displays the splash screen
+        /// </summary>
         private static void ShowLoading()
         {
             spl = new Splash
@@ -170,30 +168,11 @@ namespace UltimateBlueScreenSimulator
             spl.ShowDialog();
         }
 
-        static public void ReRe()
-        {
-            if (gs.ErrorCode != 500)
-            {
-                Program.bluescreens.Clear();
-                Program.bluescreens.Add(new BlueScreen("Windows 1.x/2.x"));
-                Program.bluescreens.Add(new BlueScreen("Windows 3.1x"));
-                Program.bluescreens.Add(new BlueScreen("Windows 9x/Me"));
-                Program.bluescreens.Add(new BlueScreen("Windows CE"));
-                Program.bluescreens.Add(new BlueScreen("Windows NT 3.x/4.0"));
-                Program.bluescreens.Add(new BlueScreen("Windows 2000"));
-                Program.bluescreens.Add(new BlueScreen("Windows XP"));
-                Program.bluescreens.Add(new BlueScreen("Windows Vista"));
-                Program.bluescreens.Add(new BlueScreen("Windows 7"));
-                Program.bluescreens.Add(new BlueScreen("Windows 8 Beta"));
-                Program.bluescreens.Add(new BlueScreen("Windows 8/8.1"));
-                Program.bluescreens.Add(new BlueScreen("Windows 10"));
-                Program.bluescreens.Add(new BlueScreen("Windows 11"));
-            } else
-            {
-                halt = true;
-            }
-        }
-
+        /// <summary>
+        /// Displays a meta-error
+        /// </summary>
+        /// <param name="ex">Caught exception</param>
+        /// <param name="type">Error type (e.g. VioletScreen)</param>
         static private void DisplayMetaError(Exception ex, string type)
         {
             gs.Log("Critical", $"{type} exception: {ex.Message}\n{ex.StackTrace}");
@@ -201,7 +180,7 @@ namespace UltimateBlueScreenSimulator
             {
                 message = ex.Message,
                 stack_trace = ex.StackTrace,
-                type = "VioletScreen"
+                type = type
             };
 
             if (gs.EnableEggs)
@@ -220,6 +199,11 @@ namespace UltimateBlueScreenSimulator
             else { MessageBox.Show("There was a problem with the settings file.\n\n" + ex.Message + "\n\n" + ex.StackTrace, "E R R O R", MessageBoxButtons.OK, MessageBoxIcon.Error); }
         }
 
+        /// <summary>
+        /// Checks for internet connectivity
+        /// </summary>
+        /// <param name="minimumSpeed">Minimum speed to be considered connected</param>
+        /// <returns>Returns true if connected</returns>
         public static bool DoWeHaveInternet(long minimumSpeed)
         {
             if (!NetworkInterface.GetIsNetworkAvailable())

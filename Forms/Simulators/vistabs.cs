@@ -16,7 +16,7 @@ namespace UltimateBlueScreenSimulator
         bool inr = false;
         bool ing = false;
         bool inb = false;
-        internal BlueScreen me = Program.bluescreens[0];
+        internal BlueScreen me = Program.templates.GetAt(0);
         string h1;
         string h2;
         string h3;

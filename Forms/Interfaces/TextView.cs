@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 using MaterialSkin;
 using MaterialSkin.Controls;
@@ -13,6 +14,7 @@ namespace UltimateBlueScreenSimulator
             MaterialSkinManager materialSkinManager = Program.f1.materialSkinManager;
             materialSkinManager.AddFormToManage(this);
             InitializeComponent();
+            Font = new Font(Font.Name, 8.25f * 96f / CreateGraphics().DpiX, Font.Style, Font.Unit, Font.GdiCharSet, Font.GdiVerticalFont);
         }
 
         private void TextView_Load(object sender, EventArgs e)

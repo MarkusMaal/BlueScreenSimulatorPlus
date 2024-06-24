@@ -21,7 +21,7 @@ namespace UltimateBlueScreenSimulator
         private int progressmillis = 0;
         private bool oldmode = true;
         internal int maxprogressmillis = 0;
-        internal BlueScreen me = Program.bluescreens[0];
+        internal BlueScreen me = Program.templates.GetAt(0);
         readonly List<WindowScreen> wss = new List<WindowScreen>();
         readonly List<Bitmap> freezescreens = new List<Bitmap>();
         public WXBS()

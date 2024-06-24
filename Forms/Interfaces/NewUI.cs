@@ -52,6 +52,7 @@ namespace UltimateBlueScreenSimulator
                 Primary.Blue400, Accent.Indigo700,
                 TextShade.WHITE
             );
+            Font = new Font(Font.Name, 8.25f * 96f / CreateGraphics().DpiX, Font.Style, Font.Unit, Font.GdiCharSet, Font.GdiVerticalFont);
         }
 
         internal void RelocateButtons()
@@ -84,9 +85,9 @@ namespace UltimateBlueScreenSimulator
                 this.Text += "          // UNDER CONSTRUCTION //";
             }
             windowVersion.Items.Clear();
-            for (int i = Program.bluescreens.Count - 1; i >= 0; i--)
+            for (int i = Program.templates.Count - 1; i >= 0; i--)
             {
-                windowVersion.Items.Add(Program.bluescreens[i].GetString("friendlyname"));
+                windowVersion.Items.Add(Program.templates.GetAt(i).GetString("friendlyname"));
             }
             //WXOptions.Visible = false;
             errorCode.Visible = false;
@@ -115,9 +116,9 @@ namespace UltimateBlueScreenSimulator
             if (Program.gs.DisplayOne)
             {
                 windowVersion.Items.Clear();
-                for (int i = Program.bluescreens.Count - 1; i >= 0; i--)
+                for (int i = Program.templates.Count - 1; i >= 0; i--)
                 {
-                    windowVersion.Items.Add(Program.bluescreens[i].GetString("friendlyname"));
+                    windowVersion.Items.Add(Program.templates.GetAt(i).GetString("friendlyname"));
                 }
                 windowVersion.SelectedItem = me.GetString("friendlyname");
                 //windowVersion.Visible = false;
@@ -149,9 +150,9 @@ namespace UltimateBlueScreenSimulator
         public void GetOS()
         {
             windowVersion.Items.Clear();
-            for (int i = Program.bluescreens.Count - 1; i >= 0; i--)
+            for (int i = Program.templates.Count - 1; i >= 0; i--)
             {
-                windowVersion.Items.Add(Program.bluescreens[i].GetString("friendlyname"));
+                windowVersion.Items.Add(Program.templates.GetAt(i).GetString("friendlyname"));
             }
             WXOptions.Visible = false;
             errorCode.Visible = false;
@@ -337,7 +338,7 @@ namespace UltimateBlueScreenSimulator
                 // set current bluescreen
                 if (!Program.gs.DisplayOne)
                 {
-                    me = Program.bluescreens[Program.bluescreens.Count - 1 - windowVersion.SelectedIndex];
+                    me = Program.templates.GetAt(Program.templates.Count - 1 - windowVersion.SelectedIndex);
                 }
             }
             catch (Exception ex)
@@ -507,22 +508,22 @@ namespace UltimateBlueScreenSimulator
         internal void RandFunction()
         {
             Random r = new Random();
-            for (int i = 0; i < Program.bluescreens.Count; i++)
+            for (int i = 0; i < Program.templates.Count; i++)
             {
-                foreach (string kvp in Program.bluescreens[i].AllBools().Keys.ToArray<string>())
+                foreach (string kvp in Program.templates.GetAt(i).AllBools().Keys.ToArray<string>())
                 {
                     bool value = r.Next(0, 1) == 1;
-                    Program.bluescreens[i].SetBool(kvp, value);
+                    Program.templates.GetAt(i).SetBool(kvp, value);
                 }
                 if (comboBox1.Items.Count <= 0)
                 {
                     break;
                 }
-                Program.bluescreens[i].SetString("code", comboBox1.Items[r.Next(0, comboBox1.Items.Count - 1)].ToString());
-                if (Program.bluescreens[i].GetString("os") != "Windows 3.1x") {
-                    Program.bluescreens[i].SetString("screen_mode", comboBox2.Items[r.Next(0, comboBox2.Items.Count - 1)].ToString());
+                Program.templates.GetAt(i).SetString("code", comboBox1.Items[r.Next(0, comboBox1.Items.Count - 1)].ToString());
+                if (Program.templates.GetAt(i).GetString("os") != "Windows 3.1x") {
+                    Program.templates.GetAt(i).SetString("screen_mode", comboBox2.Items[r.Next(0, comboBox2.Items.Count - 1)].ToString());
                 }
-                Program.bluescreens[i].SetBool("windowed", winMode.Checked);
+                Program.templates.GetAt(i).SetBool("windowed", winMode.Checked);
                 Thread.Sleep(16);
             }
             windowVersion.SelectedIndex = SetRnd(windowVersion.Items.Count - 1);
@@ -600,8 +601,13 @@ namespace UltimateBlueScreenSimulator
             {
                 Program.loadfinished = false;
                 Program.load_progress = 100;
-                Gen g = new Gen();
-                g.Show();
+                Gen g;
+                Thread gt;
+                gt = new Thread(() => {
+                    g = new Gen();
+                    g.ShowDialog();
+                });
+                gt.Start();
             }
             Program.gs.PM_Lockout = false;
             Crash();
@@ -754,16 +760,12 @@ namespace UltimateBlueScreenSimulator
                 case 2:
                     materialTabControl1.SelectedIndex = 0;
                     materialTabControl1.TabPages[0].Show();
-                    this.Hide();
                     if (!abopen)
                     {
                         AboutSettingsDialog ab1 = new AboutSettingsDialog
                         {
                             Text = "Settings",
-                            SettingTab = true,
-                            StartPosition = FormStartPosition.Manual,
-                            Location = this.Location,
-                            Size = this.Size
+                            SettingTab = true
                         };
                         ab1.ShowDialog();
                         ab1.Dispose();
@@ -773,34 +775,24 @@ namespace UltimateBlueScreenSimulator
                     {
                         MessageBox.Show("Settings window is already open", "Cannot open settings", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
-                    if (!this.IsDisposed)
-                    {
-                        this.Show();
-                    }
                     break;
                 case 3:
                     materialTabControl1.SelectedIndex = 0;
                     materialTabControl1.TabPages[0].Show();
-                    this.Hide();
                     if (!abopen)
                     {
                         AboutSettingsDialog ab1 = new AboutSettingsDialog
                         {
                             Text = "Help and about",
-                            SettingTab = false,
-                            StartPosition = FormStartPosition.Manual,
-                            Location = this.Location,
-                            Size = this.Size
+                            SettingTab = false
                         };
                         ab1.ShowDialog();
-                        ab1.Dispose();
                         abopen = false;
                     }
                     else
                     {
                         MessageBox.Show("The window is already open", "Cannot open window", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
-                    this.Show();
                     break;
                 case 4:
                     materialTabControl1.SelectedIndex = 0;
@@ -1413,6 +1405,10 @@ namespace UltimateBlueScreenSimulator
                     this.Close();
                     break;
             }
+        }
+
+        private void autoBox_Paint(object sender, PaintEventArgs e)
+        {
         }
     }
 }

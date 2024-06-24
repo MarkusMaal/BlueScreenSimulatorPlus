@@ -1,16 +1,15 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 using MaterialSkin;
 using MaterialSkin.Controls;
 
 namespace UltimateBlueScreenSimulator
 {
-    public partial class Gen : MaterialForm
+    public partial class Gen : Form
     {
         public Gen()
         {
-            MaterialSkinManager materialSkinManager = Program.f1.materialSkinManager;
-            materialSkinManager.AddFormToManage(this);
             InitializeComponent();
         }
 
@@ -28,7 +27,6 @@ namespace UltimateBlueScreenSimulator
 
         private void ProgressChecker(object sender, EventArgs e)
         {
-            this.Text = Program.load_message;
             if (Program.loadfinished)
             {
                 this.Dispose();
@@ -50,15 +48,17 @@ namespace UltimateBlueScreenSimulator
             }
             else
             {
-                genProgressBar.Style = ProgressBarStyle.Marquee;
+                genProgressBar.Value = 100;
             }
-            genProgressBar.Refresh();
         }
 
         private void Gen_Load(object sender, EventArgs e)
         {
             genLabel.BackColor = this.BackColor;
-            genProgressBar.MarqueeAnimationSpeed = 30;
+            if (Program.gs.NightTheme)
+            {
+                this.BackColor = Color.Black;
+            }
         }
     }
 }

@@ -24,6 +24,7 @@ This documentation is contained within the readme and is meant for people who wa
 * [Blue screen class](#blue-screen-class)
 * [Developer mode](#developer-mode)
 * [Processing args](#processing-args)
+* [Template registry](#template-registry)
 * [File structure](#file-structure)
 	* [Interfaces](#interfaces)
 	* [Legacy interfaces](#legacy-interfaces)
@@ -191,6 +192,39 @@ After calling the ProcessArgs method, several other methods may also be executed
 * ExitSplash         - Exits splash screen (internal)
 * CheckNoSplash      - Checks if the /hidesplash or /finalize_update flags have been passed (public)
 * CheckPreviewSplash - Checks if the /preview_splash flag has been passed (public)
+
+### Template registry
+List of configurations is globally managed by TemplateRegistry. It allows you to add/remove/modify configurations, save/load them as a file and more. By default, the global template registry is stored in program as a static variable `templates`, however you can initialize a new TemplateRegistry using the following code:
+
+```C#
+	TemplateRegistry tr = new TemplateRegistry();
+```
+
+#### Changing the default list of configurations
+You can add or remove default configurations by modifying the `defaults` variable assignment in the TemplateRegistry constructor.
+
+#### Manipulating templates
+* Deleting all configurations can be done by calling the `Clear()` method directly on a template registry object.
+* Defaults can be restored by calling the `Reset()` method (no need to call `Clear()`)
+* Adding a template requires calling the `AddTemplate` method, which takes 1 or 3 arguments
+	* baseOS is the name of the OS template is based on
+	* friendlyname (optional) is the name of the configuration displayed to the user
+	* template (optional) is the name of the OS which the default settings will be based on (usually template == baseOS)
+* Getting the last BlueScreen object from the list can be done by calling the `GetLast()` method
+* Getting all BlueScreen objects as an array can be done by calling the `GetAll()` method
+* To get a specific BlueScreen object at a specific index, you can call the `GetAt` method with 1 argument, which is the index
+* Resetting an entire template can be done by calling the `ResetTemplate` method with 1 argument, which is the index
+* Resetting all settings under the additional options menu can be done by calling the `ResetHacks` method with 1 argument, which is the index
+* Removing a specific configuration can be done by calling the `RemoveAt` method with 1 argument, which is the index
+* Saving configurations to a file can be done by calling the `SaveData` method with 2 arguments
+	* filename is the full path to the saved file (including extension)
+	* filterIndex is the file format index (corresponding to the `filters` dictionary)
+* Loading configurations from a file can be done by calling the `LoadData` with the file path as the argument
+* The total number of configurations can be recieved by getting `Count` on the TemplateRegistry object, e.g.
+	```C#
+	tr.Count
+	```
+**Note** : To modify a configuration, you can just get the configuration and make all changes to it, since the object is still the same, because no copying is done, the changes will still get applied.
 
 ### File structure
 

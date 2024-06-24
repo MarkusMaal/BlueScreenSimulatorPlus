@@ -11,7 +11,7 @@ namespace UltimateBlueScreenSimulator
         public string errorCode = "0E : 016F : BFF9B3D4";
         public bool window = false;
         public string screenmode = "System error";
-        internal BlueScreen me = Program.bluescreens[0];
+        internal BlueScreen me = Program.templates.GetAt(0);
         readonly List<WindowScreen> wss = new List<WindowScreen>();
         readonly List<Bitmap> freezescreens = new List<Bitmap>();
         IDictionary<string, string> titles;

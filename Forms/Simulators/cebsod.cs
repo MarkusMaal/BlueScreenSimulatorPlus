@@ -13,7 +13,7 @@ namespace UltimateBlueScreenSimulator
         bool inr = false;
         bool ing = false;
         bool inb = false;
-        internal BlueScreen me = Program.bluescreens[0];
+        internal BlueScreen me = Program.templates.GetAt(0);
         readonly List<WindowScreen> wss = new List<WindowScreen>();
         readonly List<Bitmap> freezescreens = new List<Bitmap>();
 

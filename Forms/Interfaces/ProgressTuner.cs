@@ -18,6 +18,7 @@ namespace UltimateBlueScreenSimulator
             MaterialSkinManager materialSkinManager = Program.f1.materialSkinManager;
             materialSkinManager.AddFormToManage(this);
             InitializeComponent();
+            Font = new Font(Font.Name, 8.25f * 96f / CreateGraphics().DpiX, Font.Style, Font.Unit, Font.GdiCharSet, Font.GdiVerticalFont);
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)

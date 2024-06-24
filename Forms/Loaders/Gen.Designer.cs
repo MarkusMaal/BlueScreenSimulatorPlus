@@ -58,13 +58,12 @@ namespace UltimateBlueScreenSimulator
             // 
             // genLabel
             // 
-            this.genLabel.AutoSize = true;
             this.genLabel.Depth = 0;
             this.genLabel.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.genLabel.Location = new System.Drawing.Point(6, 21);
             this.genLabel.MouseState = MaterialSkin.MouseState.HOVER;
             this.genLabel.Name = "genLabel";
-            this.genLabel.Size = new System.Drawing.Size(174, 19);
+            this.genLabel.Size = new System.Drawing.Size(300, 19);
             this.genLabel.TabIndex = 1;
             this.genLabel.Text = "Generating blue screen...";
             this.genLabel.UseWaitCursor = true;
@@ -73,12 +72,11 @@ namespace UltimateBlueScreenSimulator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(318, 57);
+            this.ClientSize = new System.Drawing.Size(318, 76);
             this.Controls.Add(this.genLabel);
             this.Controls.Add(this.genProgressBar);
             this.Cursor = System.Windows.Forms.Cursors.WaitCursor;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.FormStyle = MaterialSkin.Controls.MaterialForm.FormStyles.StatusAndActionBar_None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -86,14 +84,12 @@ namespace UltimateBlueScreenSimulator
             this.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.Sizable = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.UseWaitCursor = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PreventUserClosing);
             this.Load += new System.EventHandler(this.Gen_Load);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 

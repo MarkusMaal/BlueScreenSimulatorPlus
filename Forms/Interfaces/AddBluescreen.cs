@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 using MaterialSkin;
 using MaterialSkin.Controls;
@@ -14,6 +15,7 @@ namespace UltimateBlueScreenSimulator
             MaterialSkinManager materialSkinManager = Program.f1.materialSkinManager;
             materialSkinManager.AddFormToManage(this);
             InitializeComponent();
+            Font = new Font(Font.Name, 8.25f * 96f / CreateGraphics().DpiX, Font.Style, Font.Unit, Font.GdiCharSet, Font.GdiVerticalFont);
         }
 
         private void CancelClick(object sender, EventArgs e)
@@ -124,11 +126,8 @@ namespace UltimateBlueScreenSimulator
 
         private void MakeBluescreen(object sender, EventArgs e)
         {
-            BlueScreen my_config = new BlueScreen(base_os);
-            my_config.SetString("friendlyname", friendlyBox.Text);
-            my_config.SetString("icon", iconBox.SelectedItem.ToString());
-            my_config.SetString("os", osBox.Text);
-            Program.bluescreens.Add(my_config);
+            Program.templates.AddTemplate(base_os, friendlyBox.Text, osBox.Text);
+            Program.templates.GetLast().SetString("icon", iconBox.SelectedItem.ToString());
             this.DialogResult = DialogResult.OK;
             this.Close();
         }

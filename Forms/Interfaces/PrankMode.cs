@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 using MaterialSkin;
 using MaterialSkin.Controls;
@@ -40,6 +41,7 @@ namespace UltimateBlueScreenSimulator
             MaterialSkinManager materialSkinManager = Program.f1.materialSkinManager;
             materialSkinManager.AddFormToManage(this);
             InitializeComponent();
+            Font = new Font(Font.Name, 8.25f * 96f / CreateGraphics().DpiX, Font.Style, Font.Unit, Font.GdiCharSet, Font.GdiVerticalFont);
         }
 
         private void PrankMode_Load(object sender, EventArgs e)
@@ -166,7 +168,7 @@ namespace UltimateBlueScreenSimulator
                         }
                     }
                 }
-                me = Program.bluescreens[contain];
+                me = Program.templates.GetAt(contain);
                 if (contain == -1)
                 {
                     bestMatchRadio.Checked = false;
@@ -176,7 +178,7 @@ namespace UltimateBlueScreenSimulator
                     MessageBox.Show("Due to blue screen simulator plus configuration or the specific version of Windows you are using, it is not possible to use a bluescreen similar to one that your Windows version uses. If this is what you want to do, please enable your Windows version in BSSP settings or settings file. If this message still pops up, then use a different Windows version.", "Unable to autodetect Windows version", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
             }
-            letCloseBox.Enabled = !blackninja.Contains(Program.bluescreens[contain].GetString("os"));
+            letCloseBox.Enabled = !blackninja.Contains(Program.templates.GetAt(contain).GetString("os"));
         }
 
         private void RadioButton3_CheckedChanged(object sender, EventArgs e)
@@ -367,11 +369,11 @@ namespace UltimateBlueScreenSimulator
                 {
                     if (buildNumber >= 22000) { winver = "Windows 11"; }
                     Program.f1.winMode.Checked = false;
-                    for (int i = 0; i < Program.bluescreens.Count; i++)
+                    for (int i = 0; i < Program.templates.Count; i++)
                     {
-                        if (winver.Contains(Program.bluescreens[i].GetString("os")))
+                        if (winver.Contains(Program.templates.GetAt(i).GetString("os")))
                         {
-                            Program.f1.me = Program.bluescreens[i];
+                            Program.f1.me = Program.templates.GetAt(i);
                             Program.f1.windowVersion.SelectedIndex = Program.f1.windowVersion.Items.Count - 1 - i;
                         }
                     }

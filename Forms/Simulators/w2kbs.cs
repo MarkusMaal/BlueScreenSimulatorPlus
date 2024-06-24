@@ -14,7 +14,7 @@ namespace UltimateBlueScreenSimulator
         public string whatfail = "";
         readonly List<WindowScreen> wss = new List<WindowScreen>();
         readonly List<Bitmap> freezescreens = new List<Bitmap>();
-        internal BlueScreen me = Program.bluescreens[0];
+        internal BlueScreen me = Program.templates.GetAt(0);
         string state = "0";
         bool inr = false;
         bool ing = false;

@@ -50,7 +50,7 @@ namespace UltimateBlueScreenSimulator
         private void ForceBool(string name, bool value)
         {
             Program.gs.Log("Info", $"Forcing {name} to {(value?"enabled":"disabled")} state");
-            foreach (BlueScreen bs in Program.bluescreens)
+            foreach (BlueScreen bs in Program.templates.GetAll())
             {
                 bs.SetBool(name, value);
             }
@@ -79,7 +79,7 @@ namespace UltimateBlueScreenSimulator
                     }
                     int i = 0;
                     bool done = false;
-                    foreach (BlueScreen bs in Program.bluescreens)
+                    foreach (BlueScreen bs in Program.templates.GetAll())
                     {
                         if (bs.GetString("friendlyname").ToLower().Contains(ecode.ToLower()) || bs.GetString("os").ToLower().Contains(ecode.ToLower()))
                         {
@@ -105,7 +105,7 @@ namespace UltimateBlueScreenSimulator
                         if (filename != "")
                         {
                             AboutSettingsDialog abb = new AboutSettingsDialog();
-                            abb.LoadConfig(filename);
+                            Program.templates.LoadConfig(filename);
                             abb.Close();
                             abb.Dispose();
                         }
@@ -120,7 +120,7 @@ namespace UltimateBlueScreenSimulator
                     Program.gs.Log("Info", "Setting culprit file");
                     Program.f1.checkBox2.Checked = true;
                     ecode = value;
-                    foreach (BlueScreen bs in Program.bluescreens)
+                    foreach (BlueScreen bs in Program.templates.GetAll())
                     {
                         bs.SetString("culprit", ecode);
                     }

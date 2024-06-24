@@ -272,6 +272,7 @@
     <Compile Include="Forms\Simulators\xvsbs.Designer.cs">
       <DependentUpon>xvsbs.cs</DependentUpon>
     </Compile>
+    <Compile Include="TemplateRegistry.cs" />
     <Compile Include="Verifile.cs" />
     <EmbeddedResource Include="Forms\Interfaces\AboutSettingsDialog.resx">
       <DependentUpon>AboutSettingsDialog.cs</DependentUpon>
