@@ -76,6 +76,7 @@ namespace UltimateBlueScreenSimulator
             this.materialCard7 = new System.Windows.Forms.Panel();
             this.simulatorSettingsHeading = new MaterialSkin.Controls.MaterialLabel();
             this.devFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.materialButton6 = new MaterialSkin.Controls.MaterialButton();
             this.devSplashButton = new MaterialSkin.Controls.MaterialButton();
             this.devDictEditButton = new MaterialSkin.Controls.MaterialButton();
             this.devNewAllButton = new MaterialSkin.Controls.MaterialButton();
@@ -903,6 +904,7 @@ namespace UltimateBlueScreenSimulator
             // devFlowPanel
             // 
             this.devFlowPanel.AutoScroll = true;
+            this.devFlowPanel.Controls.Add(this.materialButton6);
             this.devFlowPanel.Controls.Add(this.devSplashButton);
             this.devFlowPanel.Controls.Add(this.devDictEditButton);
             this.devFlowPanel.Controls.Add(this.devNewAllButton);
@@ -915,6 +917,27 @@ namespace UltimateBlueScreenSimulator
             this.devFlowPanel.TabIndex = 23;
             this.devFlowPanel.Visible = false;
             this.devFlowPanel.WrapContents = false;
+            // 
+            // materialButton6
+            // 
+            this.materialButton6.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.materialButton6.CharacterCasing = MaterialSkin.Controls.MaterialButton.CharacterCasingEnum.Normal;
+            this.materialButton6.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.materialButton6.Depth = 0;
+            this.materialButton6.HighEmphasis = true;
+            this.materialButton6.Icon = null;
+            this.materialButton6.Location = new System.Drawing.Point(784, 6);
+            this.materialButton6.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.materialButton6.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialButton6.Name = "materialButton6";
+            this.materialButton6.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.materialButton6.Size = new System.Drawing.Size(277, 36);
+            this.materialButton6.TabIndex = 25;
+            this.materialButton6.Text = "[DEV] Serialize TemplateRegistry";
+            this.materialButton6.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.materialButton6.UseAccentColor = false;
+            this.materialButton6.UseVisualStyleBackColor = true;
+            this.materialButton6.Click += new System.EventHandler(this.materialButton6_Click_1);
             // 
             // devSplashButton
             // 
@@ -1334,7 +1357,8 @@ namespace UltimateBlueScreenSimulator
             this.loadCfg.Size = new System.Drawing.Size(188, 36);
             this.loadCfg.TabIndex = 17;
             this.loadCfg.Text = "Load configs [?]";
-            this.helpTip.SetToolTip(this.loadCfg, "Allows you to load configurations from a file. BSSP 1.x files also supported.");
+            this.helpTip.SetToolTip(this.loadCfg, "Allows you to load configurations from a file. BSSP 1.x and 2.x files also suppor" +
+        "ted.");
             this.loadCfg.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.loadCfg.UseAccentColor = false;
             this.loadCfg.UseVisualStyleBackColor = true;
@@ -1806,9 +1830,7 @@ namespace UltimateBlueScreenSimulator
             // 
             // loadBsconfig
             // 
-            this.loadBsconfig.Filter = "All bluescreen simulator plus configuration files|*.bscfg;*.bs2cfg;*.bsc;*.bs2|Bl" +
-    "uescreen simulator 2.x configuration files|*.bs2cfg;*.bs2|Blue screen simulator " +
-    "1.x configuration files|*.bscfg;*.bsc";
+            this.loadBsconfig.Filter = resources.GetString("loadBsconfig.Filter");
             this.loadBsconfig.Title = "Load bluescreen configuration";
             // 
             // checkIfLoadedSaved
@@ -1963,5 +1985,6 @@ namespace UltimateBlueScreenSimulator
         private MaterialSwitch rtlSwitch;
         private MaterialLabel materialLabel2;
         private MaterialCheckbox darkDetectCheck;
+        private MaterialButton materialButton6;
     }
 }

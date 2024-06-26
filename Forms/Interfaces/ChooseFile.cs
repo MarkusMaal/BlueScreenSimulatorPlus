@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using MaterialSkin;
 using MaterialSkin.Controls;
+using UltimateBlueScreenSimulator.Forms.Interfaces;
 
 namespace UltimateBlueScreenSimulator
 {
@@ -11,22 +12,12 @@ namespace UltimateBlueScreenSimulator
         {
             InitializeComponent();
             MaterialSkinManager materialSkinManager = Program.f1.materialSkinManager;
+            materialSkinManager.AddFormToManage(this);
         }
 
         private void Initialize(object sender, EventArgs e)
         {
-            foreach (string line in Properties.Resources.CULPRIT_FILES.Split('\n'))
-            {
-                if (line.Contains(":"))
-                {
-                    ListViewItem lvi = new ListViewItem
-                    {
-                        Text = line.Split(':')[0]
-                    };
-                    lvi.SubItems.Add(line.Split(':')[1]);
-                    fileBrowser.Items.Add(lvi);
-                }
-            }
+            Repopulate();
             // old method for applying night theme
             /*if (Program.f1.nightThemeToolStripMenuItem.Checked)
             {
@@ -46,7 +37,52 @@ namespace UltimateBlueScreenSimulator
                 }
             }
             this.DialogResult = DialogResult.OK;
-            this.Close();
+            Close();
+        }
+
+        private void okButton_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.OK;
+            Close();
+        }
+
+        private void fileBrowser_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            okButton.Enabled = fileBrowser.SelectedItems.Count > 0;
+        }
+
+        private void Repopulate()
+        {
+            fileBrowser.Items.Clear();
+            foreach (string line in Program.templates.CulpritFiles)
+            {
+                if (line.Contains(":"))
+                {
+                    ListViewItem lvi = new ListViewItem
+                    {
+                        Text = line.Split(':')[0]
+                    };
+                    lvi.SubItems.Add(line.Split(':')[1]);
+                    fileBrowser.Items.Add(lvi);
+                }
+            }
+        }
+
+        private void customizeFilesButton_Click(object sender, EventArgs e)
+        {
+            MessageTableEditor mte = new MessageTableEditor
+            {
+                nt_errors = false,
+                Location = this.Location,
+                Size = this.Size,
+                StartPosition = FormStartPosition.Manual
+            };
+            Hide();
+            mte.ShowDialog();
+            this.Location = mte.Location;
+            this.Size = mte.Size;
+            Repopulate();
+            Show();
         }
     }
 }

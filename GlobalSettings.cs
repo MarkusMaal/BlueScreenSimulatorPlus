@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Security.AccessControl;
-using System.Text;
 using System.Threading;
 using System.Windows.Forms;
-using ms = MaterialSkin; // alias to ms to avoid conflict with ColorScheme
+using ms = MaterialSkin;
+using System.Text.Json;
+using System.Text.Json.Serialization; // alias to ms to avoid conflict with ColorScheme
 
 namespace UltimateBlueScreenSimulator
 {
-    internal class GlobalSettings
+    public class GlobalSettings
     {
         /*
          * // Example usage
@@ -22,22 +22,31 @@ namespace UltimateBlueScreenSimulator
          */
 
         // stored settings (these are saved)
-        private bool postponeupdate = false;
-        private bool hashverify = true;
-        private bool autoupdate = true;
-        private bool showcursor = false;
-        private bool enableeggs = true;
-        private bool randomness = false;
-        private bool autodark = true;
-        private string singlesim = "";
-        private string update_server = "http://markustegelane.eu/app/";
+        private bool postponeupdate;
+        private bool hashverify;
+        private bool autoupdate;
+        private bool showcursor;
+        private bool enableeggs;
+        private bool randomness;
+        private bool autodark;
+        private string singlesim;
+        private string update_server;
 
         // runtime settings (these are not persistent)
-        private int errorcode = 0;
-        private bool realpostpone = false;
-        private bool nighttheme = false;
-        private string supporttext = "If this is the first time you've seen this Stop error screen,\nrestart your computer. If this screen appears again, follow\nthese steps:\n\nCheck to make sure any new hardware or software is properly installed.\nIf this is a new installation, ask your hardware or software manufacturer\nfor any Windows updates you might need.\n\nIf problems continue, disable or remove any newly installed hardware\nor software. Disable BIOS memory options such as caching or shadowing.\nIf you need to use Safe mode to remove or disable components, restart\nyour computer, press F8 to select Advanced Startup Options, and then\nselect Safe Mode.";
-        private bool displayone = false;
+        [JsonIgnore]
+        private int errorcode;
+
+        [JsonIgnore]
+        private bool realpostpone;
+
+        [JsonIgnore]
+        private bool nighttheme;
+
+        [JsonIgnore]
+        private string supporttext;
+
+        [JsonIgnore]
+        private bool displayone;
 
         // prank mode
         private MessageBoxIcon MsgBoxIcon;
@@ -49,28 +58,27 @@ namespace UltimateBlueScreenSimulator
         private bool closecuzhidden;
         private bool showmsg;
         private string[] usb_device;
-        private int[] time = { 0, 5, 0 };
-        private bool timecatch = true;
+        private int[] time;
+        private bool timecatch;
 
-
-
-        public List<string> log1 = new List<string>();
+        [JsonIgnore]
+        public List<string> log1;
 
 
         ///<summary>
         ///Multi-monitor display method for fullscreen mode.
         ///</summary>
-        public DisplayModes DisplayModeEnum = DisplayModes.None;
+        public DisplayModes DisplayModeEnum { get; set; }
 
         ///<summary>
         ///Scaling mode for legacy OS templates, i.e. Windows 7 and earlier.
         ///</summary>
-        public ScaleModes ScaleMode = ScaleModes.HighQualityBicubic;
+        public ScaleModes ScaleMode { get; set; }
 
         ///<summary>
         ///Accent color used by the application
         ///</summary>
-        public ColorSchemes ColorScheme = ColorSchemes.Indigo;
+        public ColorSchemes ColorScheme { get; set; }
 
         // define enums
         public enum DisplayModes
@@ -102,7 +110,33 @@ namespace UltimateBlueScreenSimulator
         ///</summary>
         public GlobalSettings()
         {
-            this.Log("Info", "Log started");
+            postponeupdate = false;
+            autoupdate = true;
+            hashverify = true;
+            showcursor = false;
+            enableeggs = true;
+            randomness = false;
+            autodark = true;
+            singlesim = "";
+            update_server = "http://markustegelane.eu/app/";
+
+            // runtime settings (these are not persistent)
+            errorcode = 0;
+            realpostpone = false;
+            nighttheme = false;
+            supporttext = "If this is the first time you've seen this Stop error screen,\nrestart your computer. If this screen appears again, follow\nthese steps:\n\nCheck to make sure any new hardware or software is properly installed.\nIf this is a new installation, ask your hardware or software manufacturer\nfor any Windows updates you might need.\n\nIf problems continue, disable or remove any newly installed hardware\nor software. Disable BIOS memory options such as caching or shadowing.\nIf you need to use Safe mode to remove or disable components, restart\nyour computer, press F8 to select Advanced Startup Options, and then\nselect Safe Mode.";
+            displayone = false;
+
+            // prank mode
+            time = new int[]{ 0, 5, 0 };
+            timecatch = true;
+
+            log1 = new List<string>();
+            Log("Info", "Log started");
+
+            DisplayModeEnum = DisplayModes.None;
+            ScaleMode = ScaleModes.HighQualityBicubic;
+            ColorScheme = ColorSchemes.Indigo;
         }
 
         ///<summary>
@@ -133,6 +167,7 @@ namespace UltimateBlueScreenSimulator
         ///<summary>
         ///Checks the hash of the executable and any dependencies when downloading updates
         ///</summary>
+        [JsonIgnore]
         public string SupportText {
             get { return supporttext; }
             set { supporttext= value; }
@@ -157,6 +192,7 @@ namespace UltimateBlueScreenSimulator
         ///<summary>
         ///This value allows for selecting a configuration through command line arguments
         ///</summary>
+        [JsonIgnore]
         public bool DisplayOne {
             get { return displayone; }
             set { displayone = value; }
@@ -190,6 +226,7 @@ namespace UltimateBlueScreenSimulator
         ///<summary>
         ///Sets the error code for current session
         ///</summary>
+        [JsonIgnore]
         public int ErrorCode {
             get { return errorcode; }
             set { errorcode = value; }
@@ -198,6 +235,7 @@ namespace UltimateBlueScreenSimulator
         ///<summary>
         ///Icon for the message box that may pop up after prank mode ends
         ///</summary>
+        [JsonIgnore]
         public MessageBoxIcon PM_MsgIcon {
             get { return MsgBoxIcon; }
             set { MsgBoxIcon = value; }
@@ -206,6 +244,7 @@ namespace UltimateBlueScreenSimulator
         ///<summary>
         ///Button layout for the message box that may pop up after prank mode ends
         ///</summary>
+        [JsonIgnore]
         public MessageBoxButtons PM_MsgType {
             get { return MsgBoxType; }
             set { MsgBoxType = value; }
@@ -214,6 +253,7 @@ namespace UltimateBlueScreenSimulator
         ///<summary>
         ///Title for the message box that may pop up after prank mode ends
         ///</summary>
+        [JsonIgnore]
         public string PM_MsgTitle {
             get { return MsgBoxTitle; }
             set { MsgBoxTitle = value; }
@@ -222,6 +262,7 @@ namespace UltimateBlueScreenSimulator
         ///<summary>
         ///Text content for the message box that may pop up after prank mode ends
         ///</summary>
+        [JsonIgnore]
         public string PM_MsgText {
             get { return MsgBoxMessage; }
             set { MsgBoxMessage = value; }
@@ -230,6 +271,7 @@ namespace UltimateBlueScreenSimulator
         ///<summary>
         ///Prevent ending the simulation by pressing Alt+F4 or any other key
         ///</summary>
+        [JsonIgnore]
         public bool PM_Lockout {
             get { return lockout; }
             set { lockout = value; }
@@ -238,6 +280,7 @@ namespace UltimateBlueScreenSimulator
         ///<summary>
         ///Prevents re-showing the main interface when exiting prank mode
         ///</summary>
+        [JsonIgnore]
         public bool PM_CloseMainUI {
             get { return closecuzhidden; }
             set { closecuzhidden = value; }
@@ -246,6 +289,7 @@ namespace UltimateBlueScreenSimulator
         ///<summary>
         ///Displays a message when exiting prank mode
         ///</summary>
+        [JsonIgnore]
         public bool PM_ShowMessage {
             get { return showmsg; }
             set { showmsg = value; }
@@ -255,6 +299,7 @@ namespace UltimateBlueScreenSimulator
         ///<summary>
         ///Specifies which process triggers prank mode (if process trigger is selected)
         ///</summary>
+        [JsonIgnore]
         public string PM_AppName {
             get { return appname; }
             set { appname = value; }
@@ -263,6 +308,7 @@ namespace UltimateBlueScreenSimulator
         ///<summary>
         ///Specifies which USB device triggers prank mode (if device trigger is selected)
         ///</summary>
+        [JsonIgnore]
         public string[] PM_UsbDevice {
             get { return usb_device; }
             set { usb_device = value; }
@@ -271,6 +317,7 @@ namespace UltimateBlueScreenSimulator
         ///<summary>
         ///Specifies the timer, which triggers prank mode (if time based trigger is selected) in [hours, minutes, seconds] format
         ///</summary>
+        [JsonIgnore]
         public int[] PM_Time {
             get { return time; }
             set { time = value; }
@@ -279,6 +326,7 @@ namespace UltimateBlueScreenSimulator
         ///<summary>
         ///Determines whether or not the trigger is time based. Device based trigger is only used if the length of PM_UsbDevice is greater than zero, otherwise application based trigger is used.
         ///</summary>
+        [JsonIgnore]
         public bool PM_Timecatch {
             get { return timecatch; }
             set { timecatch = value; }
@@ -287,6 +335,7 @@ namespace UltimateBlueScreenSimulator
         ///<summary>
         ///Starts the update process after exiting the program
         ///</summary>
+        [JsonIgnore]
         public bool UpdateAfterExit {
             get { return realpostpone; }
             set { realpostpone = value; }
@@ -295,6 +344,7 @@ namespace UltimateBlueScreenSimulator
         ///<summary>
         ///Determines if the interface should have a night theme or not
         ///</summary>
+        [JsonIgnore]
         public bool NightTheme {
             get { return nighttheme; }
             set { nighttheme = value; }
@@ -303,6 +353,7 @@ namespace UltimateBlueScreenSimulator
         ///<summary>
         ///Allows the program to be run as a single simulator based on the specified OS template (e.g. Windows Vista, Windows 10, etc.)
         ///</summary>
+        [JsonIgnore]
         public string SingleSim {
             get { return singlesim; }
             set { singlesim = value; }
@@ -314,31 +365,70 @@ namespace UltimateBlueScreenSimulator
         ///</summary>
         public void SaveSettings()
         {
-            this.Log("Info", "Saving settings");
-            StringBuilder sb = new StringBuilder();
-            sb.AppendLine($"UpdateClose={PostponeUpdate}");
-            sb.AppendLine($"HashVerify={HashVerify}");
-            sb.AppendLine($"AutoUpdate={AutoUpdate}");
-            sb.AppendLine($"ShowCursor={ShowCursor}");
-            sb.AppendLine($"ScaleMode={GetScaleModeAsString()}");
-            sb.AppendLine($"MultiMode={DisplayMode}");
-            sb.AppendLine($"Seecrets={EnableEggs}");
-            sb.AppendLine($"Server={UpdateServer}");
-            sb.AppendLine($"Randomness={Randomness}");
-            sb.AppendLine($"AutoDark={AutoDark}");
-            sb.AppendLine($"ColorScheme={ColorScheme}");
-            sb.Replace("\r\n", "\n");
-            File.WriteAllText("settings.cfg", sb.ToString().Substring(0, sb.Length - 1));
+            Log("Info", "Saving settings");
+            try
+            {
+                JsonSerializerOptions options = new JsonSerializerOptions
+                {
+                    WriteIndented = true,
+                    Converters =
+                {
+                    new JsonStringEnumConverter(JsonNamingPolicy.CamelCase)
+                }
+                };
+                string jsonString = JsonSerializer.Serialize(this, options);
+                File.WriteAllText("settings.json", jsonString);
+            }
+            catch (DllNotFoundException)
+            {
+                Program.DllError();
+                return;
+            }
+            catch (IOException)
+            {
+                Program.DllError();
+                return;
+            }
         }
 
         ///<summary>
         ///Loads application configuration settings
         ///</summary>
-        public void LoadSettings()
+        public GlobalSettings LoadSettings()
         {
-            if (File.Exists("settings.cfg"))
+            if (File.Exists("settings.json"))
             {
-                this.Log("Info", $"Loading settings");
+                GlobalSettings settings = new GlobalSettings();
+                this.Log("Info", $"Loading settings from JSON file");
+                try
+                {
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        Converters =
+                    {
+                        new JsonStringEnumConverter(JsonNamingPolicy.CamelCase)
+                    }
+                    };
+                    settings = JsonSerializer.Deserialize<GlobalSettings>(File.ReadAllText("settings.json"), options);
+                    if (File.Exists("settings.cfg"))
+                    {
+                        File.Delete("settings.cfg");
+                    }
+                }
+                catch (DllNotFoundException)
+                {
+                    Program.DllError();
+                    return this;
+                }
+                catch (IOException)
+                {
+                    Program.DllError();
+                    return this;
+                }
+                return settings;
+            } else if (File.Exists("settings.cfg"))
+            {
+                this.Log("Info", $"Loading settings from legacy configuration file");
                 string[] fc = File.ReadAllText("settings.cfg").Split('\n');
                 foreach (string element in fc)
                 {
@@ -383,10 +473,6 @@ namespace UltimateBlueScreenSimulator
                     {
                         AutoDark = Convert.ToBoolean(element.Replace("AutoDark=", ""));
                     }
-                    else if (element.StartsWith("ColorScheme="))
-                    {
-                        Enum.TryParse(element.Replace("ColorScheme=", ""), out ColorScheme);
-                    }
                     // this skips checking hidden/visible OS-s
                     // this is a feature that was exclusive to 1.x
                     else if (element.Contains("\""))
@@ -398,6 +484,7 @@ namespace UltimateBlueScreenSimulator
             {
                 this.Log("Warning", "Settings file does not exist, using defaults");
             }
+            return this;
         }
 
         ///<summary>
@@ -475,6 +562,7 @@ namespace UltimateBlueScreenSimulator
         ///<summary>
         ///Multi-monitor display method (string input/output). The value must be one of the following: none, mirror, blank or freeze, in any other case NotImplementedException is thrown.
         ///</summary>
+        [JsonIgnore]
         public string DisplayMode {
             get {
                 this.Log("Info", "Requested display mode");

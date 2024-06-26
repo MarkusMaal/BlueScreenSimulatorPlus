@@ -69,14 +69,13 @@
       <Private>False</Private>
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
-    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CLIProcessor.cs" />
@@ -91,6 +90,12 @@
     </Compile>
     <Compile Include="Forms\Interfaces\AddBluescreen.Designer.cs">
       <DependentUpon>AddBluescreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Interfaces\MessageTableEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Interfaces\MessageTableEditor.Designer.cs">
+      <DependentUpon>MessageTableEditor.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Simulators\BootMgr.cs">
       <SubType>Form</SubType>
@@ -281,6 +286,9 @@
     <EmbeddedResource Include="Forms\Interfaces\AddBluescreen.resx">
       <DependentUpon>AddBluescreen.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Interfaces\MessageTableEditor.resx">
+      <DependentUpon>MessageTableEditor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Simulators\BootMgr.resx">
       <DependentUpon>BootMgr.cs</DependentUpon>
     </EmbeddedResource>
@@ -412,4 +420,14 @@
     </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <PackageReference Include="Costura.Fody">
+      <Version>5.7.0</Version>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="System.Text.Json">
+      <Version>8.0.3</Version>
+    </PackageReference>
+  </ItemGroup>
 </Project>

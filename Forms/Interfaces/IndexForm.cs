@@ -333,6 +333,11 @@ namespace UltimateBlueScreenSimulator
             else
             {
                 this.Text = "Windows NT advanced options - " + me.GetString("friendlyname");
+
+                if (me.GetString("os") != "Windows NT 3.x/4.0")
+                {
+                    ntFlowPanel.Visible = false;
+                }
             }
             chooseCode1.Checked = false;
             chooseCode1.Checked = true;
@@ -464,6 +469,11 @@ namespace UltimateBlueScreenSimulator
             {
                 me.SetString("culprit", fileBox.Text);
             }
+            ReloadFiles();
+        }
+
+        private void ReloadFiles()
+        {
             foreach (KeyValuePair<string, string[]> kvp in me.GetFiles())
             {
                 string filename = ntEntryChooser.SelectedItem?.ToString().Split('-')[0];
@@ -474,7 +484,7 @@ namespace UltimateBlueScreenSimulator
                 filename = filename.Substring(0, filename.Length - 1);
                 if (kvp.Key == filename)
                 {
-                    me.RenameFile(filename, fileBox.Text);
+                    me.RenameFile(ntEntryChooser.SelectedIndex, fileBox.Text);
                     ntEntryChooser.Items.Clear();
                     ReAdd(fileBox.Text);
                     break;
@@ -484,15 +494,21 @@ namespace UltimateBlueScreenSimulator
 
         void SwitchBlock(int id)
         {
-            nt_id = id - 1;
-            ncodes = me.GetFiles()[fileBox.Text][nt_id];
-            foreach (Control c in ntCodeChooser.Controls)
+            try
             {
-                c.Enabled = (c.Text != id.ToString());
-                c.Visible = (Convert.ToInt32(c.Text) <= me.GetFiles()[fileBox.Text].Length);
+                nt_id = id - 1;
+                ncodes = me.GetFiles()[ntEntryChooser.SelectedIndex].Value[nt_id];
+                foreach (Control c in ntCodeChooser.Controls)
+                {
+                    c.Enabled = (c.Text != id.ToString());
+                    c.Visible = (Convert.ToInt32(c.Text) <= me.GetFiles()[ntEntryChooser.SelectedIndex].Value.Length);
+                }
+                codeLabel.Text = "Code " + id.ToString();
+                UpdateCode();
+            } catch (Exception ex)
+            {
+                MessageBox.Show($"Error switching active block!\n\n{ex.Message}\n{ex.StackTrace}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            codeLabel.Text = "Code " + id.ToString();
-            UpdateCode();
         }
 
         void UpdateCode()
@@ -505,7 +521,7 @@ namespace UltimateBlueScreenSimulator
 
         void WriteValue()
         {
-            me.SetFile(fileBox.Text, nt_id, ncodes);
+            me.SetFile(ntEntryChooser.SelectedIndex, nt_id, ncodes);
             ReAdd(fileBox.Text);
         }
 
@@ -605,6 +621,29 @@ namespace UltimateBlueScreenSimulator
         private void NTOkButtonClick(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void deleteNTfileButton_Click(object sender, EventArgs e)
+        {
+            me.RemoveFile(ntEntryChooser.SelectedIndex);
+            ReloadFiles();
+        }
+
+        private void add6Button_Click(object sender, EventArgs e)
+        {
+            me.PushFile(me.GenFile(), new string[] { "RRRRRRRR", "RRRRRRRR", "RRRRRRRR", "RRRRRRRR", "RRRRRRRR", "RRRRRRRR" });
+            ReloadFiles();
+        }
+
+        private void add2Button_Click(object sender, EventArgs e)
+        {
+            me.PushFile(me.GenFile(), new string[] { "RRRRRRRR", "RRRRRRRR" });
+            ReloadFiles();
+        }
+
+        private void fileBox_TabStopChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

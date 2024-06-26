@@ -47,7 +47,6 @@
             this.blackScreenBox = new MaterialSkin.Controls.MaterialCheckbox();
             this.checkBox2 = new MaterialSkin.Controls.MaterialCheckbox();
             this.textBox1 = new MaterialSkin.Controls.MaterialTextBox();
-            this.customCheckBox = new MaterialSkin.Controls.MaterialCheckbox();
             this.ntPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.amdBox = new MaterialSkin.Controls.MaterialCheckbox();
             this.stackBox = new MaterialSkin.Controls.MaterialCheckbox();
@@ -63,6 +62,8 @@
             this.button1 = new MaterialSkin.Controls.MaterialFloatingActionButton();
             this.button3 = new MaterialSkin.Controls.MaterialFloatingActionButton();
             this.countdownBox = new MaterialSkin.Controls.MaterialCheckbox();
+            this.button2 = new MaterialSkin.Controls.MaterialButton();
+            this.customizeCodesButton = new MaterialSkin.Controls.MaterialButton();
             this.materialTabControl1 = new MaterialSkin.Controls.MaterialTabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
@@ -70,11 +71,6 @@
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.WXOptions = new System.Windows.Forms.FlowLayoutPanel();
             this.errorCode = new System.Windows.Forms.Panel();
-            this.button2 = new MaterialSkin.Controls.MaterialButton();
-            this.customMessageText = new MaterialSkin.Controls.MaterialTextBox();
-            this.customMessageCode = new MaterialSkin.Controls.MaterialTextBox();
-            this.customMessageLabel2 = new MaterialSkin.Controls.MaterialLabel();
-            this.customMessageLabel1 = new MaterialSkin.Controls.MaterialLabel();
             this.addInfFile = new MaterialSkin.Controls.MaterialCheckbox();
             this.materialButton1 = new MaterialSkin.Controls.MaterialButton();
             this.textBox2 = new MaterialSkin.Controls.MaterialTextBox();
@@ -131,7 +127,7 @@
             this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox1.Depth = 0;
             this.checkBox1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.checkBox1.Location = new System.Drawing.Point(0, 376);
+            this.checkBox1.Location = new System.Drawing.Point(664, 0);
             this.checkBox1.Margin = new System.Windows.Forms.Padding(0);
             this.checkBox1.MouseLocation = new System.Drawing.Point(-1, -1);
             this.checkBox1.MouseState = MaterialSkin.MouseState.HOVER;
@@ -153,7 +149,7 @@
             this.dumpBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.dumpBox.Depth = 0;
             this.dumpBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.dumpBox.Location = new System.Drawing.Point(0, 450);
+            this.dumpBox.Location = new System.Drawing.Point(664, 74);
             this.dumpBox.Margin = new System.Windows.Forms.Padding(0);
             this.dumpBox.MouseLocation = new System.Drawing.Point(-1, -1);
             this.dumpBox.MouseState = MaterialSkin.MouseState.HOVER;
@@ -173,9 +169,9 @@
             this.winPanel.Controls.Add(this.win1startup);
             this.winPanel.Controls.Add(this.win2startup);
             this.winPanel.Controls.Add(this.nostartup);
-            this.winPanel.Location = new System.Drawing.Point(3, 490);
+            this.winPanel.Location = new System.Drawing.Point(667, 114);
             this.winPanel.Name = "winPanel";
-            this.winPanel.Size = new System.Drawing.Size(637, 37);
+            this.winPanel.Size = new System.Drawing.Size(239, 111);
             this.winPanel.TabIndex = 7;
             // 
             // win1startup
@@ -202,7 +198,7 @@
             this.win2startup.AutoSize = true;
             this.win2startup.Depth = 0;
             this.win2startup.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.win2startup.Location = new System.Drawing.Point(239, 0);
+            this.win2startup.Location = new System.Drawing.Point(0, 37);
             this.win2startup.Margin = new System.Windows.Forms.Padding(0);
             this.win2startup.MouseLocation = new System.Drawing.Point(-1, -1);
             this.win2startup.MouseState = MaterialSkin.MouseState.HOVER;
@@ -220,7 +216,7 @@
             this.nostartup.AutoSize = true;
             this.nostartup.Depth = 0;
             this.nostartup.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.nostartup.Location = new System.Drawing.Point(478, 0);
+            this.nostartup.Location = new System.Drawing.Point(0, 74);
             this.nostartup.Margin = new System.Windows.Forms.Padding(0);
             this.nostartup.MouseLocation = new System.Drawing.Point(-1, -1);
             this.nostartup.MouseState = MaterialSkin.MouseState.HOVER;
@@ -380,6 +376,7 @@
             this.quickHelp.SetToolTip(this.blackScreenBox, "On older versions of Windows 11, the screen was black instead of blue.");
             this.blackScreenBox.UseVisualStyleBackColor = true;
             this.blackScreenBox.CheckedChanged += new System.EventHandler(this.blackScreenBox_CheckedChanged);
+            this.blackScreenBox.MouseHover += new System.EventHandler(this.blackScreenBox_MouseHover);
             // 
             // checkBox2
             // 
@@ -414,32 +411,12 @@
             this.textBox1.MouseState = MaterialSkin.MouseState.OUT;
             this.textBox1.Multiline = false;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(518, 36);
+            this.textBox1.Size = new System.Drawing.Size(546, 36);
             this.textBox1.TabIndex = 4;
             this.textBox1.Text = "";
             this.quickHelp.SetToolTip(this.textBox1, "Search for the error code from the NT error message list");
             this.textBox1.TrailingIcon = null;
             this.textBox1.UseTallSize = false;
-            // 
-            // customCheckBox
-            // 
-            this.customCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.customCheckBox.AutoSize = true;
-            this.customCheckBox.Depth = 0;
-            this.customCheckBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.customCheckBox.Location = new System.Drawing.Point(503, 5);
-            this.customCheckBox.Margin = new System.Windows.Forms.Padding(0);
-            this.customCheckBox.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.customCheckBox.MouseState = MaterialSkin.MouseState.HOVER;
-            this.customCheckBox.Name = "customCheckBox";
-            this.customCheckBox.ReadOnly = false;
-            this.customCheckBox.Ripple = true;
-            this.customCheckBox.Size = new System.Drawing.Size(110, 37);
-            this.customCheckBox.TabIndex = 2;
-            this.customCheckBox.Text = "Custom [?]";
-            this.quickHelp.SetToolTip(this.customCheckBox, "Allows you to set custom error codes");
-            this.customCheckBox.UseVisualStyleBackColor = true;
-            this.customCheckBox.CheckedChanged += new System.EventHandler(this.customCheckBox_CheckedChanged);
             // 
             // ntPanel
             // 
@@ -448,7 +425,7 @@
             this.ntPanel.Controls.Add(this.blinkBox);
             this.ntPanel.Location = new System.Drawing.Point(3, 251);
             this.ntPanel.Name = "ntPanel";
-            this.ntPanel.Size = new System.Drawing.Size(632, 37);
+            this.ntPanel.Size = new System.Drawing.Size(658, 37);
             this.ntPanel.TabIndex = 2;
             this.quickHelp.SetToolTip(this.ntPanel, "Displays \"AUTHENTICAMD\" instead of \"GENUINEINTEL\" on the NT blue screen");
             // 
@@ -534,7 +511,7 @@
             this.playSndBox.AutoSize = true;
             this.playSndBox.Depth = 0;
             this.playSndBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.playSndBox.Location = new System.Drawing.Point(643, 0);
+            this.playSndBox.Location = new System.Drawing.Point(664, 228);
             this.playSndBox.Margin = new System.Windows.Forms.Padding(0);
             this.playSndBox.MouseLocation = new System.Drawing.Point(-1, -1);
             this.playSndBox.MouseState = MaterialSkin.MouseState.HOVER;
@@ -555,7 +532,7 @@
             this.waterBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.waterBox.Depth = 0;
             this.waterBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.waterBox.Location = new System.Drawing.Point(643, 37);
+            this.waterBox.Location = new System.Drawing.Point(664, 265);
             this.waterBox.Margin = new System.Windows.Forms.Padding(0);
             this.waterBox.MouseLocation = new System.Drawing.Point(-1, -1);
             this.waterBox.MouseState = MaterialSkin.MouseState.HOVER;
@@ -574,7 +551,7 @@
             this.winMode.AutoSize = true;
             this.winMode.Depth = 0;
             this.winMode.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.winMode.Location = new System.Drawing.Point(643, 74);
+            this.winMode.Location = new System.Drawing.Point(664, 302);
             this.winMode.Margin = new System.Windows.Forms.Padding(0);
             this.winMode.MouseLocation = new System.Drawing.Point(-1, -1);
             this.winMode.MouseState = MaterialSkin.MouseState.HOVER;
@@ -687,7 +664,7 @@
             this.button1.Depth = 0;
             this.button1.Icon = global::UltimateBlueScreenSimulator.Properties.Resources.play;
             this.button1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.button1.Location = new System.Drawing.Point(-332, -177);
+            this.button1.Location = new System.Drawing.Point(-409, -315);
             this.button1.Mini = true;
             this.button1.MouseState = MaterialSkin.MouseState.HOVER;
             this.button1.Name = "button1";
@@ -704,7 +681,7 @@
             this.button3.Depth = 0;
             this.button3.Icon = global::UltimateBlueScreenSimulator.Properties.Resources.question;
             this.button3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.button3.Location = new System.Drawing.Point(-332, -127);
+            this.button3.Location = new System.Drawing.Point(-409, -265);
             this.button3.Mini = true;
             this.button3.MouseState = MaterialSkin.MouseState.HOVER;
             this.button3.Name = "button3";
@@ -723,7 +700,7 @@
             this.countdownBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.countdownBox.Depth = 0;
             this.countdownBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.countdownBox.Location = new System.Drawing.Point(0, 413);
+            this.countdownBox.Location = new System.Drawing.Point(664, 37);
             this.countdownBox.Margin = new System.Windows.Forms.Padding(0);
             this.countdownBox.MouseLocation = new System.Drawing.Point(-1, -1);
             this.countdownBox.MouseState = MaterialSkin.MouseState.HOVER;
@@ -739,6 +716,52 @@
             this.countdownBox.UseVisualStyleBackColor = true;
             this.countdownBox.Visible = false;
             this.countdownBox.CheckedChanged += new System.EventHandler(this.countdownBox_CheckedChanged);
+            // 
+            // button2
+            // 
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.button2.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.button2.Depth = 0;
+            this.button2.Enabled = false;
+            this.button2.HighEmphasis = true;
+            this.button2.Icon = null;
+            this.button2.Location = new System.Drawing.Point(564, 84);
+            this.button2.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.button2.MouseState = MaterialSkin.MouseState.HOVER;
+            this.button2.Name = "button2";
+            this.button2.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.button2.Size = new System.Drawing.Size(88, 36);
+            this.button2.TabIndex = 11;
+            this.button2.Text = "C&hoose";
+            this.quickHelp.SetToolTip(this.button2, "Allows you to choose a culprit file from a list instead of typing one");
+            this.button2.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.button2.UseAccentColor = false;
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.materialButton3_Click);
+            // 
+            // customizeCodesButton
+            // 
+            this.customizeCodesButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.customizeCodesButton.AutoSize = false;
+            this.customizeCodesButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.customizeCodesButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.customizeCodesButton.Depth = 0;
+            this.customizeCodesButton.HighEmphasis = true;
+            this.customizeCodesButton.Icon = null;
+            this.customizeCodesButton.Location = new System.Drawing.Point(548, 4);
+            this.customizeCodesButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.customizeCodesButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.customizeCodesButton.Name = "customizeCodesButton";
+            this.customizeCodesButton.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.customizeCodesButton.Size = new System.Drawing.Size(103, 35);
+            this.customizeCodesButton.TabIndex = 11;
+            this.customizeCodesButton.Text = "Customize";
+            this.quickHelp.SetToolTip(this.customizeCodesButton, "Allows you to customize the list of error codes");
+            this.customizeCodesButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.customizeCodesButton.UseAccentColor = false;
+            this.customizeCodesButton.UseVisualStyleBackColor = true;
+            this.customizeCodesButton.Click += new System.EventHandler(this.customizeCodesButton_Click);
             // 
             // materialTabControl1
             // 
@@ -757,7 +780,7 @@
             this.materialTabControl1.Name = "materialTabControl1";
             this.materialTabControl1.SelectedIndex = 0;
             this.materialTabControl1.ShowToolTips = true;
-            this.materialTabControl1.Size = new System.Drawing.Size(786, 703);
+            this.materialTabControl1.Size = new System.Drawing.Size(709, 565);
             this.materialTabControl1.TabIndex = 8;
             this.materialTabControl1.SelectedIndexChanged += new System.EventHandler(this.materialTabControl1_SelectedIndexChanged);
             // 
@@ -769,7 +792,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(778, 674);
+            this.tabPage1.Size = new System.Drawing.Size(701, 536);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Simulator";
             // 
@@ -819,7 +842,7 @@
             this.windowVersion.MaxDropDownItems = 4;
             this.windowVersion.MouseState = MaterialSkin.MouseState.OUT;
             this.windowVersion.Name = "windowVersion";
-            this.windowVersion.Size = new System.Drawing.Size(666, 49);
+            this.windowVersion.Size = new System.Drawing.Size(573, 49);
             this.windowVersion.StartIndex = 0;
             this.windowVersion.TabIndex = 0;
             this.windowVersion.SelectedIndexChanged += new System.EventHandler(this.windowVersion_SelectedIndexChanged);
@@ -846,7 +869,7 @@
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(9, 62);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(770, 561);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(677, 384);
             this.flowLayoutPanel1.TabIndex = 3;
             // 
             // WXOptions
@@ -867,114 +890,20 @@
             // 
             // errorCode
             // 
+            this.errorCode.Controls.Add(this.customizeCodesButton);
             this.errorCode.Controls.Add(this.button2);
-            this.errorCode.Controls.Add(this.customMessageText);
-            this.errorCode.Controls.Add(this.customMessageCode);
-            this.errorCode.Controls.Add(this.customMessageLabel2);
-            this.errorCode.Controls.Add(this.customMessageLabel1);
             this.errorCode.Controls.Add(this.addInfFile);
             this.errorCode.Controls.Add(this.materialButton1);
             this.errorCode.Controls.Add(this.textBox2);
             this.errorCode.Controls.Add(this.checkBox2);
             this.errorCode.Controls.Add(this.textBox1);
             this.errorCode.Controls.Add(this.materialLabel3);
-            this.errorCode.Controls.Add(this.customCheckBox);
             this.errorCode.Controls.Add(this.comboBox1);
             this.errorCode.Controls.Add(this.materialLabel2);
             this.errorCode.Location = new System.Drawing.Point(3, 83);
             this.errorCode.Name = "errorCode";
-            this.errorCode.Size = new System.Drawing.Size(630, 162);
+            this.errorCode.Size = new System.Drawing.Size(658, 162);
             this.errorCode.TabIndex = 1;
-            // 
-            // button2
-            // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.button2.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.button2.Depth = 0;
-            this.button2.Enabled = false;
-            this.button2.HighEmphasis = true;
-            this.button2.Icon = null;
-            this.button2.Location = new System.Drawing.Point(536, 84);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.button2.MouseState = MaterialSkin.MouseState.HOVER;
-            this.button2.Name = "button2";
-            this.button2.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.button2.Size = new System.Drawing.Size(88, 36);
-            this.button2.TabIndex = 11;
-            this.button2.Text = "C&hoose";
-            this.button2.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.button2.UseAccentColor = false;
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.materialButton3_Click);
-            // 
-            // customMessageText
-            // 
-            this.customMessageText.AnimateReadOnly = false;
-            this.customMessageText.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.customMessageText.Depth = 0;
-            this.customMessageText.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.customMessageText.LeadingIcon = null;
-            this.customMessageText.Location = new System.Drawing.Point(136, 5);
-            this.customMessageText.MaxLength = 50;
-            this.customMessageText.MouseState = MaterialSkin.MouseState.OUT;
-            this.customMessageText.Multiline = false;
-            this.customMessageText.Name = "customMessageText";
-            this.customMessageText.Size = new System.Drawing.Size(218, 36);
-            this.customMessageText.TabIndex = 10;
-            this.customMessageText.Text = "";
-            this.customMessageText.TrailingIcon = null;
-            this.customMessageText.UseTallSize = false;
-            this.customMessageText.Visible = false;
-            this.customMessageText.TextChanged += new System.EventHandler(this.customMessageText_TextChanged);
-            // 
-            // customMessageCode
-            // 
-            this.customMessageCode.AnimateReadOnly = false;
-            this.customMessageCode.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.customMessageCode.Depth = 0;
-            this.customMessageCode.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.customMessageCode.LeadingIcon = null;
-            this.customMessageCode.Location = new System.Drawing.Point(387, 6);
-            this.customMessageCode.MaxLength = 50;
-            this.customMessageCode.MouseState = MaterialSkin.MouseState.OUT;
-            this.customMessageCode.Multiline = false;
-            this.customMessageCode.Name = "customMessageCode";
-            this.customMessageCode.Size = new System.Drawing.Size(94, 36);
-            this.customMessageCode.TabIndex = 10;
-            this.customMessageCode.Text = "";
-            this.customMessageCode.TrailingIcon = null;
-            this.customMessageCode.UseTallSize = false;
-            this.customMessageCode.Visible = false;
-            this.customMessageCode.TextChanged += new System.EventHandler(this.customMessageCode_TextChanged);
-            // 
-            // customMessageLabel2
-            // 
-            this.customMessageLabel2.AutoSize = true;
-            this.customMessageLabel2.Depth = 0;
-            this.customMessageLabel2.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.customMessageLabel2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.customMessageLabel2.Location = new System.Drawing.Point(487, 13);
-            this.customMessageLabel2.MouseState = MaterialSkin.MouseState.HOVER;
-            this.customMessageLabel2.Name = "customMessageLabel2";
-            this.customMessageLabel2.Size = new System.Drawing.Size(7, 19);
-            this.customMessageLabel2.TabIndex = 9;
-            this.customMessageLabel2.Text = ")";
-            this.customMessageLabel2.Visible = false;
-            // 
-            // customMessageLabel1
-            // 
-            this.customMessageLabel1.AutoSize = true;
-            this.customMessageLabel1.Depth = 0;
-            this.customMessageLabel1.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.customMessageLabel1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.customMessageLabel1.Location = new System.Drawing.Point(360, 12);
-            this.customMessageLabel1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.customMessageLabel1.Name = "customMessageLabel1";
-            this.customMessageLabel1.Size = new System.Drawing.Size(23, 19);
-            this.customMessageLabel1.TabIndex = 9;
-            this.customMessageLabel1.Text = "0x(";
-            this.customMessageLabel1.Visible = false;
             // 
             // addInfFile
             // 
@@ -1004,7 +933,7 @@
             this.materialButton1.HighEmphasis = true;
             this.materialButton1.Icon = null;
             this.materialButton1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.materialButton1.Location = new System.Drawing.Point(686, 82);
+            this.materialButton1.Location = new System.Drawing.Point(714, 82);
             this.materialButton1.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.materialButton1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialButton1.Name = "materialButton1";
@@ -1031,7 +960,7 @@
             this.textBox2.MouseState = MaterialSkin.MouseState.OUT;
             this.textBox2.Multiline = false;
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(307, 36);
+            this.textBox2.Size = new System.Drawing.Size(335, 36);
             this.textBox2.TabIndex = 6;
             this.textBox2.Text = "vga.sys";
             this.textBox2.TrailingIcon = null;
@@ -1071,7 +1000,7 @@
             this.comboBox1.MaxDropDownItems = 4;
             this.comboBox1.MouseState = MaterialSkin.MouseState.OUT;
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(376, 35);
+            this.comboBox1.Size = new System.Drawing.Size(405, 35);
             this.comboBox1.StartIndex = 0;
             this.comboBox1.TabIndex = 1;
             this.comboBox1.UseTallSize = false;
@@ -1096,7 +1025,7 @@
             this.nineXmessage.Controls.Add(this.comboBox2);
             this.nineXmessage.Location = new System.Drawing.Point(3, 294);
             this.nineXmessage.Name = "nineXmessage";
-            this.nineXmessage.Size = new System.Drawing.Size(630, 42);
+            this.nineXmessage.Size = new System.Drawing.Size(658, 42);
             this.nineXmessage.TabIndex = 3;
             // 
             // materialLabel4
@@ -1153,7 +1082,7 @@
             this.flowLayoutPanel4.Controls.Add(this.eCodeEditButton);
             this.flowLayoutPanel4.Controls.Add(this.advNTButton);
             this.flowLayoutPanel4.Controls.Add(this.progressTuneButton);
-            this.flowLayoutPanel4.Location = new System.Drawing.Point(646, 114);
+            this.flowLayoutPanel4.Location = new System.Drawing.Point(1012, 3);
             this.flowLayoutPanel4.Name = "flowLayoutPanel4";
             this.flowLayoutPanel4.Size = new System.Drawing.Size(246, 192);
             this.flowLayoutPanel4.TabIndex = 10;
@@ -1166,7 +1095,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(762, 626);
+            this.tabPage2.Size = new System.Drawing.Size(685, 497);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Trace log";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -1185,7 +1114,7 @@
             this.logIf.MouseState = MaterialSkin.MouseState.HOVER;
             this.logIf.Name = "logIf";
             this.logIf.ReadOnly = true;
-            this.logIf.Size = new System.Drawing.Size(713, 464);
+            this.logIf.Size = new System.Drawing.Size(636, 335);
             this.logIf.TabIndex = 3;
             this.logIf.Text = "Logging interface 1.0";
             // 
@@ -1198,7 +1127,7 @@
             this.materialButton6.HighEmphasis = true;
             this.materialButton6.Icon = null;
             this.materialButton6.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.materialButton6.Location = new System.Drawing.Point(585, 17);
+            this.materialButton6.Location = new System.Drawing.Point(508, 17);
             this.materialButton6.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.materialButton6.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialButton6.Name = "materialButton6";
@@ -1215,7 +1144,7 @@
             // 
             this.tabPage3.Location = new System.Drawing.Point(4, 25);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(762, 626);
+            this.tabPage3.Size = new System.Drawing.Size(685, 497);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Settings";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -1224,7 +1153,7 @@
             // 
             this.aboutTab.Location = new System.Drawing.Point(4, 25);
             this.aboutTab.Name = "aboutTab";
-            this.aboutTab.Size = new System.Drawing.Size(762, 626);
+            this.aboutTab.Size = new System.Drawing.Size(685, 497);
             this.aboutTab.TabIndex = 3;
             this.aboutTab.Text = "About";
             this.aboutTab.UseVisualStyleBackColor = true;
@@ -1233,7 +1162,7 @@
             // 
             this.tabPage4.Location = new System.Drawing.Point(4, 25);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(762, 626);
+            this.tabPage4.Size = new System.Drawing.Size(685, 497);
             this.tabPage4.TabIndex = 4;
             this.tabPage4.Text = "Prank mode";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -1242,7 +1171,7 @@
             // 
             this.tabPage5.Location = new System.Drawing.Point(4, 25);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(762, 626);
+            this.tabPage5.Size = new System.Drawing.Size(685, 497);
             this.tabPage5.TabIndex = 5;
             this.tabPage5.Text = "Restore old UI";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -1272,7 +1201,7 @@
             this.label7.AutoSize = true;
             this.label7.Depth = 0;
             this.label7.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.label7.Location = new System.Drawing.Point(14, 684);
+            this.label7.Location = new System.Drawing.Point(14, 546);
             this.label7.MouseState = MaterialSkin.MouseState.HOVER;
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(348, 19);
@@ -1300,7 +1229,7 @@
             // NewUI
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
-            this.ClientSize = new System.Drawing.Size(792, 770);
+            this.ClientSize = new System.Drawing.Size(715, 632);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button1);
@@ -1364,15 +1293,10 @@
         private MaterialSkin.Controls.MaterialCheckbox devPCBox;
         private MaterialSkin.Controls.MaterialCheckbox blackScreenBox;
         private System.Windows.Forms.Panel errorCode;
-        private MaterialSkin.Controls.MaterialTextBox customMessageText;
-        private MaterialSkin.Controls.MaterialTextBox customMessageCode;
-        private MaterialSkin.Controls.MaterialLabel customMessageLabel2;
-        private MaterialSkin.Controls.MaterialLabel customMessageLabel1;
         private MaterialSkin.Controls.MaterialCheckbox addInfFile;
         private MaterialSkin.Controls.MaterialButton materialButton1;
         private MaterialSkin.Controls.MaterialTextBox textBox1;
         private MaterialSkin.Controls.MaterialLabel materialLabel3;
-        private MaterialSkin.Controls.MaterialCheckbox customCheckBox;
         private MaterialSkin.Controls.MaterialLabel materialLabel2;
         private System.Windows.Forms.FlowLayoutPanel ntPanel;
         private MaterialSkin.Controls.MaterialCheckbox amdBox;
@@ -1411,5 +1335,6 @@
         private System.Windows.Forms.TabPage aboutTab;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.TabPage tabPage5;
+        private MaterialSkin.Controls.MaterialButton customizeCodesButton;
     }
 }

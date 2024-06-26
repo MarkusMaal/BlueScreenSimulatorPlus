@@ -177,7 +177,7 @@ namespace UltimateBlueScreenSimulator
                 // we do a try-catch here and just use the first value of GetFiles() dictionary if it fails
                 try
                 {
-                    errorCode += string.Format(addr, me.GenHex(8, me.GetFiles()[me.GetString("culprit")][0]), me.GenHex(8, me.GetFiles()[me.GetString("culprit")][1]), me.GenHex(8, me.GetFiles()[me.GetString("culprit")][2]).ToLower(), whatfail.ToLower());
+                    errorCode += string.Format(addr, me.GenHex(8, me.GetFiles()[0].Value[0]), me.GenHex(8, me.GetFiles()[0].Value[1]), me.GenHex(8, me.GetFiles()[0].Value[2]).ToLower(), whatfail.ToLower());
                 } catch
                 {
                     errorCode += string.Format(addr, me.GenHex(8, me.GetFiles().First().Value[0]), me.GenHex(8, me.GetFiles().First().Value[1]), me.GenHex(8, me.GetFiles().First().Value[2]).ToLower(), whatfail.ToLower());

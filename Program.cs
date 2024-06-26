@@ -52,108 +52,86 @@ namespace UltimateBlueScreenSimulator
         [STAThread]
         public static int Main(string[] args)
         {
-            //gs.SingleSim = "Windows 11";
-            clip = new CLIProcessor(args);
-            //Application initialization
-            Application.SetCompatibleTextRenderingDefault(false);
-            verifile = new Verifile();
-            verificate = verifile.Verify;
-            gs.Log("Info", "Verifile passed");
-            if ((gs.SingleSim != "") && verificate)
+            try
             {
-                templates = new TemplateRegistry();
-                dr = new DrawRoutines();
-                f1 = new NewUI();
-                //gs.PM_Lockout = true;
-                Thread th = new Thread(new ThreadStart(() => {
-
-                    // initialize BlueScreen object
-                    f1.me = new BlueScreen(gs.SingleSim);
-                    // display the crash screen
-                    f1.me.Show();
-                }));
-                th.Start();
-                th.Join();
-                return 0;
-            }
-            //If hidesplash flag is not set, display the splash screen
-            hide_splash = clip.CheckNoSplash();
-            if (!hide_splash)
-            {
-                hidden = true;
-                splt = new Thread(ShowLoading);
-                splt.Start();
-                if (clip.CheckPreviewSplash())
+                //gs.SingleSim = "Windows 11";
+                clip = new CLIProcessor(args);
+                //Application initialization
+                Application.SetCompatibleTextRenderingDefault(false);
+                verifile = new Verifile();
+                verificate = verifile.Verify;
+                gs.Log("Info", "Verifile passed");
+                if ((gs.SingleSim != "") && verificate)
                 {
-                    halt = true;
+                    templates = new TemplateRegistry();
+                    dr = new DrawRoutines();
+                    f1 = new NewUI();
+                    //gs.PM_Lockout = true;
+                    Thread th = new Thread(new ThreadStart(() => {
+
+                        // initialize BlueScreen object
+                        f1.me = new BlueScreen(gs.SingleSim);
+                        // display the crash screen
+                        f1.me.Show();
+                    }));
+                    th.Start();
+                    th.Join();
+                    return 0;
                 }
-            }
-            else
-            {
-                Application.EnableVisualStyles();
-            }
-            // this delay makes sure that the splash screen is actually displayed
-            Thread.Sleep(100);
-            gs.Log("Info", "Initializing draw routines");
-            dr = new DrawRoutines();
-            //Initialize forms
-            //f2 = new Main();
-            gs.Log("Info", "Creating initial form");
-            f1 = new NewUI();
-            gs.Log("Info", "Initializing configurations list");
-            templates = new TemplateRegistry();
-            //Set default selection indexes for combo boxes
-            f1.windowVersion.SelectedIndex = 0;
-            f1.comboBox2.SelectedIndex = 0;
-            clip.ProcessArgs();
-            if (halt)
-            {
-                return 0;
-            }
-            //Load application configuration if it exists
-            if (File.Exists("settings.cfg"))
-            {
+                //If hidesplash flag is not set, display the splash screen
+                hide_splash = clip.CheckNoSplash();
+                if (!hide_splash)
+                {
+                    hidden = true;
+                    splt = new Thread(ShowLoading);
+                    splt.Start();
+                    if (clip.CheckPreviewSplash())
+                    {
+                        halt = true;
+                    }
+                }
+                else
+                {
+                    Application.EnableVisualStyles();
+                }
+                // this delay makes sure that the splash screen is actually displayed
+                Thread.Sleep(100);
+                gs.Log("Info", "Initializing configurations list");
+                templates = new TemplateRegistry();
+                gs.Log("Info", "Initializing draw routines");
+                dr = new DrawRoutines();
+                //Initialize forms
+                //f2 = new Main();
+                gs.Log("Info", "Creating initial form");
+                f1 = new NewUI();
+                //Set default selection indexes for combo boxes
+                f1.windowVersion.SelectedIndex = 0;
+                f1.comboBox2.SelectedIndex = 0;
+                clip.ProcessArgs();
+                if (halt)
+                {
+                    return 0;
+                }
+                //Load application configuration if it exists
                 try
                 {
-                    gs.LoadSettings();
+                    gs = gs.LoadSettings();
                 }
                 catch (Exception ex)
                 {
                     DisplayMetaError(ex, "VioletScreen");
                 }
-            }
 
 
-            //Load Windows NT error codes from the database
-            gs.Log("Info", $"Initializing NT error code database");
-            f1.comboBox1.Items.Clear();
-            string database = "";
-            try
-            {
-                database = Properties.Resources.NTERRORDATABASE;
+                //Load Windows NT error codes from the database
+                gs.Log("Info", $"Initializing NT error code database");
+                ReloadNTErrors();
+                //run application
+                Application.Run(f1);
+                return gs.ErrorCode;
             }
-            catch
-            {
-                gs.ErrorCode = 19;
-            }
-            try
-            {
-                string[] databaselines = database.Split('\n');
-                foreach (string element in databaselines)
-                {
-                    string[] codesplit = element.Split('\t');
-                    string final = codesplit[1].ToString().Substring(0, codesplit[1].ToString().Length - 1) + " (" + codesplit[0].ToString() + ")";
-                    f1.comboBox1.Items.Add(final);
-                }
-                f1.comboBox1.SelectedIndex = 9;
-            }
-            catch
-            {
-                gs.ErrorCode = 20;
-            }
-            //run application
-            Application.Run(f1);
-            return gs.ErrorCode;
+            catch (IOException) { DllError(); return 300; }
+            catch (DllNotFoundException) { DllError(); return 300; }
         }
 
         /// <summary>
@@ -166,6 +144,36 @@ namespace UltimateBlueScreenSimulator
                 args = clip.args
             };
             spl.ShowDialog();
+        }
+
+        /// <summary>
+        /// Reloads NT error codes on the main form
+        /// </summary>
+        public static void ReloadNTErrors()
+        {
+            f1.comboBox1.Items.Clear();
+            try
+            {
+                foreach (string element in templates.NtErrors)
+                {
+                    string[] codesplit = element.Split('\t');
+                    string final = codesplit[1].ToString() + " (" + codesplit[0].ToString() + ")";
+                    f1.comboBox1.Items.Add(final);
+                }
+                f1.comboBox1.SelectedIndex = 9;
+            }
+            catch
+            {
+                gs.ErrorCode = 20;
+            }
+        }
+
+        /// <summary>
+        /// Displays an error message about missing DLL files
+        /// </summary>
+        public static void DllError()
+        {
+            MessageBox.Show("Required DLL files are missing. To use the save and load feature, all DLLs must be present in the application's working directory.", "DLL error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         /// <summary>

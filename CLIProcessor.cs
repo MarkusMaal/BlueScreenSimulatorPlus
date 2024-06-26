@@ -105,7 +105,7 @@ namespace UltimateBlueScreenSimulator
                         if (filename != "")
                         {
                             AboutSettingsDialog abb = new AboutSettingsDialog();
-                            Program.templates.LoadConfig(filename);
+                            Program.templates = Program.templates.LoadConfig(filename);
                             abb.Close();
                             abb.Dispose();
                         }

@@ -162,10 +162,15 @@ namespace UltimateBlueScreenSimulator
             this.codeLabel = new MaterialSkin.Controls.MaterialLabel();
             this.ntr1 = new MaterialSkin.Controls.MaterialButton();
             this.ntEntryChooser = new MaterialSkin.Controls.MaterialComboBox();
+            this.add2Button = new MaterialSkin.Controls.MaterialButton();
+            this.deleteNTfileButton = new MaterialSkin.Controls.MaterialButton();
+            this.add6Button = new MaterialSkin.Controls.MaterialButton();
+            this.ntFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.ntCodeChooser.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
+            this.ntFlowPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // methodTitleLabel
@@ -269,7 +274,7 @@ namespace UltimateBlueScreenSimulator
             this.tableLayoutPanel1.Controls.Add(this.c1_2, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.c1_1, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.codeSelection, 0, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(39, 226);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(55, 205);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 4;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 53.73134F));
@@ -1728,7 +1733,7 @@ namespace UltimateBlueScreenSimulator
             this.okButton.ForeColor = System.Drawing.SystemColors.ControlText;
             this.okButton.HighEmphasis = true;
             this.okButton.Icon = null;
-            this.okButton.Location = new System.Drawing.Point(684, 366);
+            this.okButton.Location = new System.Drawing.Point(716, 368);
             this.okButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.okButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.okButton.Name = "okButton";
@@ -1751,7 +1756,7 @@ namespace UltimateBlueScreenSimulator
             this.cancelButton.ForeColor = System.Drawing.SystemColors.ControlText;
             this.cancelButton.HighEmphasis = true;
             this.cancelButton.Icon = null;
-            this.cancelButton.Location = new System.Drawing.Point(580, 366);
+            this.cancelButton.Location = new System.Drawing.Point(612, 368);
             this.cancelButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.cancelButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.cancelButton.Name = "cancelButton";
@@ -1773,7 +1778,7 @@ namespace UltimateBlueScreenSimulator
             this.nullButton.ForeColor = System.Drawing.SystemColors.ControlText;
             this.nullButton.HighEmphasis = true;
             this.nullButton.Icon = null;
-            this.nullButton.Location = new System.Drawing.Point(499, 120);
+            this.nullButton.Location = new System.Drawing.Point(531, 120);
             this.nullButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.nullButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.nullButton.Name = "nullButton";
@@ -1795,7 +1800,7 @@ namespace UltimateBlueScreenSimulator
             this.randomButton.ForeColor = System.Drawing.SystemColors.ControlText;
             this.randomButton.HighEmphasis = true;
             this.randomButton.Icon = null;
-            this.randomButton.Location = new System.Drawing.Point(605, 120);
+            this.randomButton.Location = new System.Drawing.Point(637, 120);
             this.randomButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.randomButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.randomButton.Name = "randomButton";
@@ -1810,6 +1815,7 @@ namespace UltimateBlueScreenSimulator
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.ntFlowPanel);
             this.panel1.Controls.Add(this.ntOKButton);
             this.panel1.Controls.Add(this.ntCodeChooser);
             this.panel1.Controls.Add(this.ntRandomButton);
@@ -1823,7 +1829,7 @@ namespace UltimateBlueScreenSimulator
             this.panel1.ForeColor = System.Drawing.SystemColors.Control;
             this.panel1.Location = new System.Drawing.Point(3, 64);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(749, 314);
+            this.panel1.Size = new System.Drawing.Size(781, 342);
             this.panel1.TabIndex = 8;
             this.panel1.Visible = false;
             // 
@@ -1836,7 +1842,7 @@ namespace UltimateBlueScreenSimulator
             this.ntOKButton.ForeColor = System.Drawing.SystemColors.ControlText;
             this.ntOKButton.HighEmphasis = true;
             this.ntOKButton.Icon = null;
-            this.ntOKButton.Location = new System.Drawing.Point(675, 270);
+            this.ntOKButton.Location = new System.Drawing.Point(707, 298);
             this.ntOKButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.ntOKButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.ntOKButton.Name = "ntOKButton";
@@ -1862,7 +1868,7 @@ namespace UltimateBlueScreenSimulator
             this.ntCodeChooser.Controls.Add(this.button23);
             this.ntCodeChooser.Location = new System.Drawing.Point(418, 90);
             this.ntCodeChooser.Name = "ntCodeChooser";
-            this.ntCodeChooser.Size = new System.Drawing.Size(321, 62);
+            this.ntCodeChooser.Size = new System.Drawing.Size(353, 62);
             this.ntCodeChooser.TabIndex = 13;
             this.ntCodeChooser.WrapContents = false;
             // 
@@ -2002,7 +2008,7 @@ namespace UltimateBlueScreenSimulator
             this.ntRandomButton.ForeColor = System.Drawing.SystemColors.ControlText;
             this.ntRandomButton.HighEmphasis = true;
             this.ntRandomButton.Icon = null;
-            this.ntRandomButton.Location = new System.Drawing.Point(504, 158);
+            this.ntRandomButton.Location = new System.Drawing.Point(536, 158);
             this.ntRandomButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.ntRandomButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.ntRandomButton.Name = "ntRandomButton";
@@ -2024,7 +2030,7 @@ namespace UltimateBlueScreenSimulator
             this.ntNullButton.ForeColor = System.Drawing.SystemColors.ControlText;
             this.ntNullButton.HighEmphasis = true;
             this.ntNullButton.Icon = null;
-            this.ntNullButton.Location = new System.Drawing.Point(640, 158);
+            this.ntNullButton.Location = new System.Drawing.Point(672, 158);
             this.ntNullButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.ntNullButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.ntNullButton.Name = "ntNullButton";
@@ -2059,7 +2065,7 @@ namespace UltimateBlueScreenSimulator
             this.chooseFileButton.ForeColor = System.Drawing.SystemColors.ControlText;
             this.chooseFileButton.HighEmphasis = true;
             this.chooseFileButton.Icon = null;
-            this.chooseFileButton.Location = new System.Drawing.Point(660, 50);
+            this.chooseFileButton.Location = new System.Drawing.Point(692, 50);
             this.chooseFileButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.chooseFileButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.chooseFileButton.Name = "chooseFileButton";
@@ -2086,11 +2092,12 @@ namespace UltimateBlueScreenSimulator
             this.fileBox.MouseState = MaterialSkin.MouseState.OUT;
             this.fileBox.Multiline = false;
             this.fileBox.Name = "fileBox";
-            this.fileBox.Size = new System.Drawing.Size(210, 36);
+            this.fileBox.Size = new System.Drawing.Size(232, 36);
             this.fileBox.TabIndex = 3;
             this.fileBox.Text = "";
             this.fileBox.TrailingIcon = null;
             this.fileBox.UseTallSize = false;
+            this.fileBox.TabStopChanged += new System.EventHandler(this.fileBox_TabStopChanged);
             this.fileBox.TextChanged += new System.EventHandler(this.FileRenamer);
             // 
             // tableLayoutPanel2
@@ -2928,18 +2935,94 @@ namespace UltimateBlueScreenSimulator
             this.ntEntryChooser.MaxDropDownItems = 4;
             this.ntEntryChooser.MouseState = MaterialSkin.MouseState.OUT;
             this.ntEntryChooser.Name = "ntEntryChooser";
-            this.ntEntryChooser.Size = new System.Drawing.Size(720, 35);
+            this.ntEntryChooser.Size = new System.Drawing.Size(752, 35);
             this.ntEntryChooser.StartIndex = 0;
             this.ntEntryChooser.TabIndex = 1;
             this.ntEntryChooser.UseTallSize = false;
             this.ntEntryChooser.SelectedIndexChanged += new System.EventHandler(this.NTEntryChooser);
+            // 
+            // add2Button
+            // 
+            this.add2Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.add2Button.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.add2Button.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.add2Button.Depth = 0;
+            this.add2Button.HighEmphasis = true;
+            this.add2Button.Icon = null;
+            this.add2Button.Location = new System.Drawing.Point(4, 6);
+            this.add2Button.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.add2Button.MouseState = MaterialSkin.MouseState.HOVER;
+            this.add2Button.Name = "add2Button";
+            this.add2Button.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.add2Button.Size = new System.Drawing.Size(156, 36);
+            this.add2Button.TabIndex = 15;
+            this.add2Button.Text = "Add file (2 codes)";
+            this.add2Button.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.add2Button.UseAccentColor = false;
+            this.add2Button.UseVisualStyleBackColor = true;
+            this.add2Button.Click += new System.EventHandler(this.add2Button_Click);
+            // 
+            // deleteNTfileButton
+            // 
+            this.deleteNTfileButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.deleteNTfileButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.deleteNTfileButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.deleteNTfileButton.Depth = 0;
+            this.deleteNTfileButton.HighEmphasis = true;
+            this.deleteNTfileButton.Icon = null;
+            this.deleteNTfileButton.Location = new System.Drawing.Point(332, 6);
+            this.deleteNTfileButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.deleteNTfileButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.deleteNTfileButton.Name = "deleteNTfileButton";
+            this.deleteNTfileButton.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.deleteNTfileButton.Size = new System.Drawing.Size(106, 36);
+            this.deleteNTfileButton.TabIndex = 15;
+            this.deleteNTfileButton.Text = "Delete file";
+            this.deleteNTfileButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.deleteNTfileButton.UseAccentColor = false;
+            this.deleteNTfileButton.UseVisualStyleBackColor = true;
+            this.deleteNTfileButton.Click += new System.EventHandler(this.deleteNTfileButton_Click);
+            // 
+            // add6Button
+            // 
+            this.add6Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.add6Button.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.add6Button.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.add6Button.Depth = 0;
+            this.add6Button.HighEmphasis = true;
+            this.add6Button.Icon = null;
+            this.add6Button.Location = new System.Drawing.Point(168, 6);
+            this.add6Button.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.add6Button.MouseState = MaterialSkin.MouseState.HOVER;
+            this.add6Button.Name = "add6Button";
+            this.add6Button.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.add6Button.Size = new System.Drawing.Size(156, 36);
+            this.add6Button.TabIndex = 15;
+            this.add6Button.Text = "Add file (6 codes)";
+            this.add6Button.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.add6Button.UseAccentColor = false;
+            this.add6Button.UseVisualStyleBackColor = true;
+            this.add6Button.Click += new System.EventHandler(this.add6Button_Click);
+            // 
+            // ntFlowPanel
+            // 
+            this.ntFlowPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ntFlowPanel.AutoScroll = true;
+            this.ntFlowPanel.Controls.Add(this.add2Button);
+            this.ntFlowPanel.Controls.Add(this.add6Button);
+            this.ntFlowPanel.Controls.Add(this.deleteNTfileButton);
+            this.ntFlowPanel.Location = new System.Drawing.Point(3, 289);
+            this.ntFlowPanel.Name = "ntFlowPanel";
+            this.ntFlowPanel.Size = new System.Drawing.Size(693, 50);
+            this.ntFlowPanel.TabIndex = 16;
             // 
             // IndexForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
-            this.ClientSize = new System.Drawing.Size(755, 381);
+            this.ClientSize = new System.Drawing.Size(787, 409);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.randomButton);
             this.Controls.Add(this.nullButton);
@@ -2956,7 +3039,7 @@ namespace UltimateBlueScreenSimulator
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(700, 264);
+            this.MinimumSize = new System.Drawing.Size(700, 327);
             this.Name = "IndexForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
@@ -2970,6 +3053,8 @@ namespace UltimateBlueScreenSimulator
             this.ntCodeChooser.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
+            this.ntFlowPanel.ResumeLayout(false);
+            this.ntFlowPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -3108,5 +3193,9 @@ namespace UltimateBlueScreenSimulator
         private MaterialButton button22;
         private MaterialButton button23;
         private MaterialButton ntOKButton;
+        private MaterialButton add2Button;
+        private MaterialButton deleteNTfileButton;
+        private MaterialButton add6Button;
+        private System.Windows.Forms.FlowLayoutPanel ntFlowPanel;
     }
 }

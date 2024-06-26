@@ -1272,7 +1272,7 @@ namespace UltimateBlueScreenSimulator
             {
                 try
                 {
-                    me.RenameFile(me.GetFiles().ElementAt(0).Key, textBox2.Text);
+                    me.RenameFile(0, textBox2.Text);
                 } catch (Exception ex)
                 {
                     if (enableeggs)

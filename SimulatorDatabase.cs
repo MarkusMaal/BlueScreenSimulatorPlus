@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
 using UltimateBlueScreenSimulator;
 using System.Drawing;
 using System.Management;
 using System.Threading;
-using System.Xml.Linq;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
-using System.Runtime.CompilerServices;
+using System.Text.Json.Serialization;
+using System.Text.Json;
 
 //
 // This namespace contains classes that are shared between forms that specify
@@ -91,38 +89,111 @@ namespace SimulatorDatabase
     //
     // Blue screen template class
     //
+    [JsonUnmappedMemberHandling(JsonUnmappedMemberHandling.Disallow)]
     public class BlueScreen
     {
-        // constructor
-        private Color background;
-        private Color foreground;
-        private Color highlight_bg;
-        private Color highlight_fg;
+        /* this stuff is required to serialize various parts of the class correctly */
+        public IDictionary<string, int> Background {
+            get { return I_color_builder(background); }
+            set { background = I_decode_color(value); }
+        }
 
-        private string[] ecodes;
+        public IDictionary<string, int> Foreground {
+            get { return I_color_builder(foreground); }
+            set { foreground = I_decode_color(value); }
+        }
 
-        private string os;
+        public IDictionary<string, int> Highlight_BG {
+            get { return I_color_builder(highlight_bg); }
+            set { highlight_bg = I_decode_color(value); }
+        }
 
-        private Font font;
+        public IDictionary<string, int> Highlight_FG {
+            get { return I_color_builder(highlight_fg); }
+            set { highlight_fg = I_decode_color(value); }
+        }
+
+        
+        public IDictionary<string, dynamic> Font {
+            get {
+                return new Dictionary<string, dynamic>() {
+                    { "FontFamily", font.FontFamily.Name },
+                    { "Bold", font.Bold },
+                    { "Italic", font.Italic },
+                    { "Strikeout", font.Strikeout },
+                    { "Underline", font.Underline },
+                    { "Size", font.Size },
+                };
+            }
+            set {
+                font = new Font(new FontFamily(((JsonElement)value["FontFamily"]).ToString()), ((JsonElement)value["Size"]).Deserialize<float>(), FontStyle.Regular);
+                if (((JsonElement)value["Bold"]).Deserialize<bool>())
+                {
+                    font = new Font(font, font.Style ^ FontStyle.Bold);
+                }
+                if (((JsonElement)value["Italic"]).Deserialize<bool>())
+                {
+                    font = new Font(font, font.Style ^ FontStyle.Italic);
+                }
+                if (((JsonElement)value["Underline"]).Deserialize<bool>())
+                {
+                    font = new Font(font, font.Style ^ FontStyle.Underline);
+                }
+                if (((JsonElement)value["Strikeout"]).Deserialize<bool>())
+                {
+                    font = new Font(font, font.Style ^ FontStyle.Strikeout);
+                }
+            }
+        }
+
+        private IDictionary<string, int> I_color_builder(Color color)
+        {
+            return new Dictionary<string, int>()
+            {
+                {"R", color.R },
+                {"G", color.G },
+                {"B", color.B },
+            };
+        }
+
+        private Color I_decode_color(IDictionary<string, int> data)
+        {
+            return Color.FromArgb(
+                data["R"],
+                data["G"],
+                data["B"]
+                );
+        }
+
+        private Color background { get; set; }
+        private Color foreground { get; set; }
+        private Color highlight_bg { get; set; }
+        private Color highlight_fg { get; set; }
+        private Font font { get; set; }
+        public string[] ecodes { get; set; }
+
+        public string os { get; set; }
 
         // possible values:
         // 2D flag
         // 3D flag
         // 2D window
         // 3D window
-        private string icon;
+        public string icon { get; set; }
 
-        readonly IDictionary<string, string> titles;
-        readonly IDictionary<string, string> texts;
-        readonly IDictionary<string, string[]> codefiles;
+        public IDictionary<string, string> titles { get; set; }
+        public IDictionary<string, string> texts { get; set; }
+        public List<KeyValuePair<string, string[]>> codefiles { get; set; }
 
-        readonly IDictionary<string, bool> bools;
-        readonly IDictionary<string, int> ints;
-        readonly IDictionary<string, string> strings;
-        readonly IDictionary<int, int> progression;
+        public IDictionary<string, bool> bools { get; set; }
+        public IDictionary<string, int> ints { get; set; }
+        public IDictionary<string, string> strings { get; set; }
+        public IDictionary<int, int> progression { get; set; }
 
+        [JsonIgnore]
         private readonly Random r;
 
+        // constructor
         ///<summary>
         ///Blue screen template class. Requires base_os to be set to one of the preset OS templates. If desired, autosetup can be disabled, which makes it so that the template will not set default settings.
         ///</summary>
@@ -139,13 +210,30 @@ namespace SimulatorDatabase
             this.icon = "2D flag";
             this.titles = new Dictionary<string, string>();
             this.texts = new Dictionary<string, string>();
-            this.codefiles = new Dictionary<string, string[]>();
+            this.codefiles = new List<KeyValuePair<string, string[]>>();
             this.bools = new Dictionary<string, bool>();
             this.ints = new Dictionary<string, int>();
             this.strings = new Dictionary<string, string>();
             this.progression = new Dictionary<int, int>();
             this.font = new Font("Lucida Console", 10.4f, FontStyle.Regular);
             if (autosetup && Program.verificate) { SetOSSpecificDefaults(); }
+        }
+
+        [JsonConstructor]
+        public BlueScreen()
+        {
+            this.r = new Random();
+            this.background = new Color();
+            this.foreground = new Color();
+            this.highlight_bg = new Color();
+            this.highlight_fg = new Color();
+            this.titles = new Dictionary<string, string>();
+            this.texts = new Dictionary<string, string>();
+            this.codefiles = new List<KeyValuePair<string, string[]>>();
+            this.bools = new Dictionary<string, bool>();
+            this.ints = new Dictionary<string, int>();
+            this.strings = new Dictionary<string, string>();
+            this.progression = new Dictionary<int, int>();
         }
 
         ///<summary>
@@ -634,16 +722,35 @@ namespace SimulatorDatabase
         public void PushFile(string name, string[] codes)
         {
             Log("Info", $"Pushing culprit file {name} with error templates [{string.Join(", ", codes)}]");
-            if (!codefiles.ContainsKey(name) && Program.verificate)
+            
+            if (!KvpContainsKey(name, codefiles) && Program.verificate)
             {
-                codefiles.Add(name, codes);
+                codefiles.Add(new KeyValuePair<string, string[]>(name, codes));
             }
+        }
+
+        /// <summary>
+        /// Internal function for checking if KeyValuePair exists in a list
+        /// </summary>
+        /// <param name="key">Key to search for</param>
+        /// <param name="list">List to search from</param>
+        /// <returns>true if key is in list containing key value pairs</returns>
+        private bool KvpContainsKey(string key, List<KeyValuePair<string, string[]>> list)
+        {
+            foreach (KeyValuePair<string, string[]> kvp in list)
+            {
+                if (kvp.Key == key)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         ///<summary>
         ///Returns the list of code files, which are displayed on NT4 bugcheck
         ///</summary>
-        public IDictionary<string, string[]> GetFiles()
+        public List<KeyValuePair<string, string[]>> GetFiles()
         {
             Log("Info", $"Getting culprit files");
             return codefiles;
@@ -659,56 +766,74 @@ namespace SimulatorDatabase
         }
 
         ///<summary>
-        ///Renames a file in the codefiles dictionary (very scary!)
+        ///Renames a file in the codefiles list
         ///</summary>
-        ///<param name="key">Name of the file to be renamed</param>
+        ///<param name="idx">Index of the file to be renamed</param>
         ///<param name="renamed">String value which is used to rename the file</param>
-        public void RenameFile(string key, string renamed)
+        public void RenameFile(int idx, string renamed)
         {
-            Log("Info", $"Attempting to rename file {key} to {renamed}");
+            Log("Info", $"Attempting to rename file with index {idx} to {renamed}");
             bool isRenamed = false;
             string[] codes;
             foreach (KeyValuePair<string, string[]> kvp in this.GetFiles())
             {
-                if (key == kvp.Key)
+                if (GetFile(idx).Key == kvp.Key)
                 {
                     codes = kvp.Value;
-                    this.codefiles.Remove(key);
-                    this.PushFile(renamed, codes);
+                    this.codefiles[idx] = new KeyValuePair<string, string[]>(renamed, codes);
                     isRenamed = true;
                     break;
                 }
             }
             if (!isRenamed)
             {
-                Log("Error", $"Couldn't rename {key}!!! Reason: File does not exist in dictionary!");
+                Log("Error", $"Couldn't rename {idx}!!! Reason: File does not exist in List!");
             }
+        }
+
+        /// <summary>
+        /// Removes a file from the codefiles list
+        /// </summary>
+        /// <param name="idx">Index of the file</param>
+        public void RemoveFile(int idx)
+        {
+            codefiles.RemoveAt(idx);
+        }
+
+        /// <summary>
+        /// Returns a file at the specified index
+        /// </summary>
+        /// <param name="idx">Index of file</param>
+        /// <returns>KeyValuePair consisting of a filename as the key and an array of error code templates as the value</returns>
+        public KeyValuePair<string, string[]> GetFile(int idx)
+        {
+            return codefiles[idx];
         }
 
         ///<summary>
         ///Modifies an error code template in the codefiles dictionary
         ///</summary>
-        ///<param name="key">Name of the file to be renamed</param>
+        ///<param name="idx">Index of the file to be renamed</param>
         ///<param name="subcode">Index of the error code template</param>
         ///<param name="code">New value for the specified error code template</param>
-        public void SetFile(string key, int subcode, string code)
+        public void SetFile(int idx, int subcode, string code)
         {
-            Log("Info", $"Modifying file {key}");
+            Log("Info", $"Modifying file at index {idx}");
             bool isModified = false;
             foreach (KeyValuePair<string, string[]> kvp in this.GetFiles())
             {
-                if ((key == kvp.Key) && Program.verificate)
+                if ((GetFile(idx).Key == kvp.Key) && Program.verificate)
                 {
                     string[] codearray = kvp.Value;
                     codearray[subcode] = code;
-                    this.codefiles[key] = codearray;
+                    this.codefiles[idx] = new KeyValuePair<string, string[]>(GetFile(idx).Key, codearray);
                     isModified = true;
                     break;
                 }
             }
             if (!isModified)
             {
-                Log("Error", $"Couldn't modify {key}!!! Reason: File does not exist in dictionary!");
+                Log("Error", $"Couldn't modify file at index {idx}!!! Reason: File does not exist in List!");
             }
         }
 
@@ -720,24 +845,38 @@ namespace SimulatorDatabase
         public string GenFile(bool lower = true)
         {
             Log("Info", "Generating a random file for NT blue screen" + (lower ? " in lowercase" : ""));
-            string[] files = UltimateBlueScreenSimulator.Properties.Resources.CULPRIT_FILES.Split('\n');
+            string[] files;
+            if (Program.templates != null) {
+                files = Program.templates.CulpritFiles;
+            }
+            else
+            {
+                files = UltimateBlueScreenSimulator.Properties.Resources.CULPRIT_FILES.Replace("\r\n", "\n").Split('\n');
+            }
             List<string> filenames = new List<string>();
             foreach (string line in files)
             {
                 filenames.Add(line.Split(':')[0]);
             }
-            int temp = this.r.Next(filenames.Count - 1);
-            while (this.GetFiles().ContainsKey(filenames[temp]))
+            if (filenames.Count > 0)
             {
-                temp = this.r.Next(filenames.Count - 1);
-            }
-            if (!lower)
+                int temp = this.r.Next(filenames.Count - 1);
+                // dupes are fine :)
+                /*while (this.GetFiles().ContainsKey(filenames[temp]))
+                {
+                    temp = this.r.Next(filenames.Count - 1);
+                }*/
+                if (!lower)
+                {
+                    return filenames[temp];
+                }
+                else
+                {
+                    return filenames[temp].ToLower();
+                }
+            } else
             {
-                return filenames[temp];
-            }
-            else
-            {
-                return filenames[temp].ToLower();
+                return "null";
             }
         }
 
@@ -1243,9 +1382,9 @@ namespace SimulatorDatabase
                     PushText("CPUID formatting", "CPUID: {0} 6.3.3 irql:lf SYSVER 0xf0000565");
                     PushText("Stack trace heading", "Dll Base DateStmp - Name");
                     PushText("Stack trace table formatting", "{0} {1} - {2}");
-                    PushText("Memory address dump heading", "Address  dword dump   Build [1381]                            - Name");
+                    PushText("Memory address dump heading", "Address  dword dump   Build [1381]                           - Name");
 
-                    PushText("Memory address dump table", "{0} {1} {2} {3} {4} {5}           - {6}");
+                    PushText("Memory address dump table", "{0} {1} {2} {3} {4} {5}          - {6}");
                     PushText("Troubleshooting text", "Restart and set the recovery options in the system control panel\r\nor the /CRASHDEBUG system start option.");
                     SetInt("blink_speed", 100);
                     SetString("friendlyname", "Windows NT 4.0/3.x (Text mode, Standard)");

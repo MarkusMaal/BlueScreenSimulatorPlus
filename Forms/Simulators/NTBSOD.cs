@@ -92,7 +92,7 @@ namespace UltimateBlueScreenSimulator
                 if (!blink) { blinkyThing.Visible = false; }
                 Program.load_progress = 2;
                 Program.load_message = "Processing error code";
-                errorCode.Image = WriteWord(txt["Error code formatting"].Replace("{0}", error.Split(' ')[1].Replace(")", "").Replace("(", "").Replace(" ", "").ToString()).Replace("{1}", me.GenAddress(4, 8, false)).Trim(), me.GetTheme(true), me.GetTheme(false));
+                errorCode.Image = WriteWord(txt["Error code formatting"].Replace("{0}", error.Split(' ')[1].Replace(")", "").Replace("(", "").Replace(" ", "").ToString()).Replace("{1}", me.GenAddress(4, 8, false).Replace(", ", ",")).Trim(), me.GetTheme(true), me.GetTheme(false));
                 Program.load_progress = 10;
                 if (whatfail == "")
                 {
@@ -121,13 +121,13 @@ namespace UltimateBlueScreenSimulator
                         {
                             break;
                         }
-                        if (me.GetFiles().Values.ElementAt(i).Length == 6)
+                        if (me.GetFiles()[i].Value.Length == 6)
                         {
                             break;
                         }
-                        string file = me.GetFiles().Keys.ElementAt(i);
-                        string rnd1 = me.GenHex(8, me.GetFiles().Values.ElementAt(i)[0]).ToLower();
-                        string rnd2 = me.GenHex(8, me.GetFiles().Values.ElementAt(i)[1]).ToLower();
+                        string file = me.GetFiles()[i].Key;
+                        string rnd1 = me.GenHex(8, me.GetFiles()[i].Value[0]).ToLower();
+                        string rnd2 = me.GenHex(8, me.GetFiles()[i].Value[1]).ToLower();
                         ctrl.Image = WriteWord(txt["Stack trace table formatting"].Trim().Replace("{0}", rnd1).Replace("{1}", rnd2).Replace("{2}", file), me.GetTheme(true), me.GetTheme(false));
                         i++;
                         Program.load_progress += 1;
@@ -140,13 +140,13 @@ namespace UltimateBlueScreenSimulator
                         {
                             break;
                         }
-                        if (me.GetFiles().Values.ElementAt(i).Length == 6)
+                        if (me.GetFiles()[i].Value.Length == 6)
                         {
                             break;
                         }
-                        string file = me.GetFiles().Keys.ElementAt(i);
-                        string rnd1 = me.GenHex(8, me.GetFiles().Values.ElementAt(i)[0]).ToLower();
-                        string rnd2 = me.GenHex(8, me.GetFiles().Values.ElementAt(i)[1]).ToLower();
+                        string file = me.GetFiles()[i].Key;
+                        string rnd1 = me.GenHex(8, me.GetFiles()[i].Value[0]).ToLower();
+                        string rnd2 = me.GenHex(8, me.GetFiles()[i].Value[1]).ToLower();
                         ctrl.Image = WriteWord(txt["Stack trace table formatting"].Trim().Replace("{0}", rnd1).Replace("{1}", rnd2).Replace("{2}", file), me.GetTheme(true), me.GetTheme(false));
                         i++;
                         Program.load_progress += 1;
@@ -177,13 +177,13 @@ namespace UltimateBlueScreenSimulator
                         }
                         if (i < me.GetFiles().Count)
                         {
-                            string file = me.GetFiles().Keys.ElementAt(i);
-                            string r1 = me.GenHex(8, me.GetFiles().Values.ElementAt(i)[0]).ToLower();
-                            string r2 = me.GenHex(8, me.GetFiles().Values.ElementAt(i)[1]).ToLower();
-                            string r3 = me.GenHex(8, me.GetFiles().Values.ElementAt(i)[2]).ToLower();
-                            string r4 = me.GenHex(8, me.GetFiles().Values.ElementAt(i)[3]).ToLower();
-                            string r5 = me.GenHex(8, me.GetFiles().Values.ElementAt(i)[4]).ToLower();
-                            string r6 = me.GenHex(8, me.GetFiles().Values.ElementAt(i)[5]).ToLower();
+                            string file = me.GetFiles()[i].Key;
+                            string r1 = me.GenHex(8, me.GetFiles()[i].Value[0]).ToLower();
+                            string r2 = me.GenHex(8, me.GetFiles()[i].Value[1]).ToLower();
+                            string r3 = me.GenHex(8, me.GetFiles()[i].Value[2]).ToLower();
+                            string r4 = me.GenHex(8, me.GetFiles()[i].Value[3]).ToLower();
+                            string r5 = me.GenHex(8, me.GetFiles()[i].Value[4]).ToLower();
+                            string r6 = me.GenHex(8, me.GetFiles()[i].Value[5]).ToLower();
                             ((PictureBox)ntContainer.Controls["tablerow_" + n.ToString()]).Image = WriteWord(txt["Memory address dump table"].Replace("{0}", r1).Replace("{1}", r2).Replace("{2}", r3).Replace("{3}", r4).Replace("{4}", r5).Replace("{5}", r6).Replace("{6}", file), me.GetTheme(true), me.GetTheme(false));
                             i++;
                             Program.load_progress += 6;

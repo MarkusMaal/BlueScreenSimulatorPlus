@@ -3,20 +3,22 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using SimulatorDatabase;
+using System.Text.Json.Serialization;
+using System.Text.Json;
 
 namespace UltimateBlueScreenSimulator
 {
-    internal class TemplateRegistry
+    public class TemplateRegistry
     {
         private List<BlueScreen> bluescreens;
         private readonly string[] defaults;
         public bool saveFinished = false;
+        private string[] nt_errors = Properties.Resources.NTERRORDATABASE.Replace("\r\n", "\n").Split('\n');
+        private string[] culprits = Properties.Resources.CULPRIT_FILES.Replace("\r\n", "\n").Split('\n');
+
         public TemplateRegistry()
         {
             bluescreens = new List<BlueScreen>();
@@ -35,11 +37,14 @@ namespace UltimateBlueScreenSimulator
                 "Windows 10",
                 "Windows 11"};
             Reset();
-
         }
 
-        public Dictionary<string, string> filters = new Dictionary<string, string>()
+        /// <summary>
+        /// List of all available file formats
+        /// </summary>
+        public IDictionary<string, string> filters = new Dictionary<string, string>()
         {
+            { "Bluescreen simulator 3.0 configuration files", "*.json" },
             { "Bluescreen simulator 2.1 configuration files", "*.bs2cfg;*.bs2" },
             { "Bluescreen simulator 2.0 configuration files", "*.bs2cfg;*.bs2" },
             { "Bluescreen simulator 1.x configuration files", "*.bscfg;*.bsc" },
@@ -203,12 +208,37 @@ namespace UltimateBlueScreenSimulator
         public void SaveData(string filename, int filterIndex)
         {
             string filedata;
-            if (CheckFormat(filterIndex, "2.1"))
+            filterIndex--;
+            if (CheckFormat(filterIndex, "3.0"))
             {
+                try
+                {
+                    var options = new JsonSerializerOptions { WriteIndented = true };
+                    filedata = JsonSerializer.Serialize(Program.templates, options);
+                    File.WriteAllText(filename, filedata);
+                    saveFinished = true;
+                    return;
+                }
+                catch (DllNotFoundException)
+                {
+                    Program.DllError();
+                    saveFinished = true;
+                    return;
+                }
+                catch (IOException)
+                {
+                    Program.DllError();
+                    return;
+                }
+            }
+            else if (CheckFormat(filterIndex, "2.1"))
+            {
+                MessageBox.Show("Warning: Custom NT error codes and culprit files will not be saved with this format.", "Legacy format selected", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 filedata = "*** Blue screen simulator plus 2.1 ***";
             }
             else if (CheckFormat(filterIndex, "2.0"))
             {
+                MessageBox.Show("Warning: Custom NT error codes, culprit files and progress tuner data will not be saved and there won't be Windows Vista/7 separation with this format.", "Legacy format selected", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 filedata = "*** Blue screen simulator plus 2.0 ***";
             }
             else
@@ -365,10 +395,11 @@ namespace UltimateBlueScreenSimulator
         /// Loads a configuration file from the path specified
         /// </summary>
         /// <param name="filename">Full path to file</param>
-        public void LoadConfig(string filename)
+        public TemplateRegistry LoadConfig(string filename)
         {
             string filedata = File.ReadAllText(filename);
             string version = filedata.Split('\n')[0];
+            string databases = "";
             bool added_randomness = false;
             if (version.StartsWith("*** Blue screen simulator plus 1."))
             {
@@ -484,7 +515,28 @@ namespace UltimateBlueScreenSimulator
                     }
                     bluescreens.Add(bs);
                 }
+            } else
+            {
+                try
+                {
+                    // single line to load is pretty cool ngl
+                    TemplateRegistry tempreg = new TemplateRegistry();
+                    tempreg = JsonSerializer.Deserialize<TemplateRegistry>(filedata);
+                    return tempreg;
+                }
+                catch (DllNotFoundException)
+                {
+                    Program.DllError();
+                    saveFinished = true;
+                    return this;
+                }
+                catch (IOException)
+                {
+                    Program.DllError();
+                    return this;
+                }
             }
+            return this;
         }
 
 
@@ -954,8 +1006,49 @@ namespace UltimateBlueScreenSimulator
         /// <summary>
         /// Gets the total number of templates
         /// </summary>
+        [JsonIgnore]
         public int Count {
             get { return bluescreens.Count; }
+        }
+
+        /// <summary>
+        /// Allows you to get and set NT error codes (such as "0x0000000A   IRQL_NOT_LESS_OR_EQUAL").
+        /// By default, NTERRORDATABASE.txt from project resources is used.
+        /// </summary>
+        public string[] NtErrors {
+            get {
+                if (nt_errors == null)
+                {
+                    return Properties.Resources.NTERRORDATABASE.Replace("\r\n", "\n").Split('\n');
+                }
+                return nt_errors;
+            }
+            set {
+                nt_errors = value;
+            }
+        }
+
+        /// <summary>
+        /// Allows you to get and set possible culprit files (such as "CI.dll:Code Integrity Module").
+        /// By default, CULPRIT_FILES.txt from project resources is used.
+        /// </summary>
+        public string[] CulpritFiles {
+            get {
+                if (culprits == null)
+                {
+                    return Properties.Resources.CULPRIT_FILES.Replace("\r\n", "\n").Split('\n');
+                }
+                return culprits;
+            }
+            set { culprits = value; }
+        }
+
+        /// <summary>
+        /// Gets and sets all of the configuration templates. You should only use this when saving/loading configurations.
+        /// </summary>
+        public BlueScreen[] BlueScreens {
+            get { return this.bluescreens.ToArray(); }
+            set { bluescreens = value.ToList(); }
         }
     }
 }

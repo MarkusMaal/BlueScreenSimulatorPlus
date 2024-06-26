@@ -10,6 +10,8 @@ using System.Diagnostics;
 using MaterialSkin.Controls;
 using MaterialSkin;
 using System.Windows.Controls;
+using System.Text;
+using System.Text.Json;
 
 namespace UltimateBlueScreenSimulator
 {
@@ -27,6 +29,17 @@ namespace UltimateBlueScreenSimulator
             materialSkinManager.EnforceBackcolorOnAllComponents = false;
             materialSkinManager.AddFormToManage(this);
             InitializeComponent();
+            string all = "All bluescreen simulator plus configuration files|" + string.Join(";", Program.templates.filters.Values) + "|";
+            StringBuilder filters = new StringBuilder();
+            foreach (KeyValuePair<string, string> filter in Program.templates.filters)
+            {
+                filters.Append(filter.Key) // description
+                        .Append("|")
+                        .Append(filter.Value) // filter
+                        .Append("|");
+            }
+            loadBsconfig.Filter = all + filters.ToString().Substring(0, filters.Length - 1);
+            saveBsconfig.Filter = filters.ToString().Substring(0, filters.Length - 1);
             //Get assembly information about the program
             this.Text = String.Format("About {0}", AssemblyTitle);
             this.labelProductName.Text = "Blue Screen Simulator Plus";
@@ -563,7 +576,7 @@ namespace UltimateBlueScreenSimulator
 
         private void ConfigLoader(string filename)
         {
-            Program.templates.LoadConfig(filename);
+            Program.templates = Program.templates.LoadConfig(filename);
             Program.templates.saveFinished = true;
             Thread.CurrentThread.Abort();
         }
@@ -682,6 +695,7 @@ namespace UltimateBlueScreenSimulator
                 loadBsconfig.FileName = "";
                 saveBsconfig.FileName = "";
                 checkIfLoadedSaved.Enabled = false;
+                Program.ReloadNTErrors(); 
             }
         }
 
@@ -856,6 +870,18 @@ namespace UltimateBlueScreenSimulator
         private void rtlSwitch_CheckedChanged(object sender, EventArgs e)
         {
             Program.f1.RightToLeft = rtlSwitch.Checked ? RightToLeft.Yes : RightToLeft.Inherit;
+        }
+
+        private void materialButton6_Click_1(object sender, EventArgs e)
+        {
+            var options = new JsonSerializerOptions { WriteIndented = true };
+            string jsonString = JsonSerializer.Serialize(Program.templates, options);
+            TextView tv = new TextView
+            {
+                Title = "Output",
+                Text = jsonString.ToString()
+            };
+            tv.Show();
         }
     }
 }

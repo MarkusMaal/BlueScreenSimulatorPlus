@@ -1,26 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.ComponentModel.Design;
-using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Reflection.Emit;
 using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Controls;
 using System.Windows.Forms;
-using System.Xml.Linq;
 using MaterialSkin;
 using MaterialSkin.Controls;
 using Microsoft.Win32;
 using SimulatorDatabase;
-using static System.Windows.Forms.Design.AxImporter;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
+using UltimateBlueScreenSimulator.Forms.Interfaces;
 using Control = System.Windows.Forms.Control;
 using Panel = System.Windows.Forms.Panel;
 
@@ -384,6 +375,7 @@ namespace UltimateBlueScreenSimulator
                     memoryBox.Visible = true;
                     eCodeEditButton.Visible = true;
                     progressTuneButton.Visible = true;
+                    blackScreenBox.Visible = true;
                     break;
                 case "Windows 8 Beta":
                     WXOptions.Visible = true;
@@ -462,7 +454,6 @@ namespace UltimateBlueScreenSimulator
                     inlist = true;
                 }
             }
-            customCheckBox.Checked = !inlist;
             //codeCustomizationToolStripMenuItem.Enabled = eCodeEditButton.Visible;
             //advancedNTOptionsToolStripMenuItem.Enabled = advNTButton.Visible;
             // load options for current bluescreen
@@ -651,7 +642,7 @@ namespace UltimateBlueScreenSimulator
             {
                 try
                 {
-                    me.RenameFile(me.GetFiles().ElementAt(0).Key, textBox2.Text);
+                    me.RenameFile(0, textBox2.Text);
                 }
                 catch (Exception ex)
                 {
@@ -690,24 +681,6 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void customCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            customMessageCode.Visible = customCheckBox.Checked;
-            customMessageLabel1.Visible = customCheckBox.Checked;
-            customMessageLabel2.Visible = customCheckBox.Checked;
-            customMessageText.Visible = customCheckBox.Checked;
-            comboBox1.Visible = !customCheckBox.Checked;
-            if (me.GetString("code").Contains("x"))
-            {
-                customMessageText.Text = me.GetString("code").Split(' ')[0];
-                customMessageCode.Text = me.GetString("code").Split('(')[1].Split('x')[1].Replace(")", "");
-                if (!customCheckBox.Checked)
-                {
-                    me.SetString("code", comboBox1.SelectedItem.ToString());
-                }
-            }
-        }
-
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if ((windowVersion.SelectedIndex != 1) && (this.me != null))
@@ -738,16 +711,6 @@ namespace UltimateBlueScreenSimulator
                     }
                 }
             }
-        }
-
-        private void customMessageCode_TextChanged(object sender, EventArgs e)
-        {
-            me.SetString("code", string.Format("{0} (0x{1})", customMessageText.Text, customMessageCode.Text));
-        }
-
-        private void customMessageText_TextChanged(object sender, EventArgs e)
-        {
-            me.SetString("code", string.Format("{0} (0x{1})", customMessageText.Text, customMessageCode.Text));
         }
 
         private void materialTabControl1_SelectedIndexChanged(object sender, EventArgs e)
@@ -1173,16 +1136,9 @@ namespace UltimateBlueScreenSimulator
 
         private void NewUI_FormClosing(object sender, FormClosingEventArgs e)
         {
+            Program.gs.SaveSettings();
             try
             {
-                try
-                {
-                    Program.gs.SaveSettings();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
                 if (Program.gs.UpdateAfterExit)
                 {
                     UpdateInterface ui = new UpdateInterface();
@@ -1409,6 +1365,28 @@ namespace UltimateBlueScreenSimulator
 
         private void autoBox_Paint(object sender, PaintEventArgs e)
         {
+        }
+
+        private void customizeCodesButton_Click(object sender, EventArgs e)
+        {
+            MessageTableEditor mte = new MessageTableEditor();
+            mte.nt_errors = true;
+            mte.ShowDialog();
+        }
+
+        private void blackScreenBox_MouseHover(object sender, EventArgs e)
+        {
+            if (sender is MaterialCheckbox)
+            {
+                if (me.GetString("os") != "Windows 8/8.1")
+                {
+                    quickHelp.SetToolTip(blackScreenBox, "On older versions of Windows 11, the screen was black instead of blue.");
+                }
+                else
+                {
+                    quickHelp.SetToolTip(blackScreenBox, "On some later beta builds of Windows 8, the screen was black instead of blue.");
+                }
+            }
         }
     }
 }

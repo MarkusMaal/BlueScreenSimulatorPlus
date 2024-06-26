@@ -1683,6 +1683,9 @@ this may result in behaviour, which is unintended by the original configuration 
   <metadata name="loadBsconfig.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>555, 13</value>
   </metadata>
+  <data name="loadBsconfig.Filter" xml:space="preserve">
+    <value>All bluescreen simulator plus configuration files|*.bscfg;*.bs2cfg;*.bs3cfg;*.bsc;*.bs2;*.bs3|Bluescreen simulator 2.x configuration files|*.bs2cfg;*.bs2|Blue screen simulator 1.x configuration files|*.bscfg;*.bsc</value>
+  </data>
   <metadata name="checkIfLoadedSaved.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>270, 13</value>
   </metadata>

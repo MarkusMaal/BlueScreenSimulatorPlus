@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using MaterialSkin;
 using MaterialSkin.Controls;
 using SimulatorDatabase;
+using UltimateBlueScreenSimulator.Forms.Interfaces;
 
 namespace UltimateBlueScreenSimulator
 {
