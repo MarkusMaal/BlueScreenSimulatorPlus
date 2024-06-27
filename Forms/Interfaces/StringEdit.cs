@@ -208,6 +208,7 @@ namespace UltimateBlueScreenSimulator
             if (MessageView.SelectedIndices.Count > 0)
             {
                 string selection = MessageView.SelectedItems[0].Text;
+                HideAllProps();
                 if (selection == "Horizontal margin")
                 {
                     this.type = "margin-x";
@@ -359,6 +360,13 @@ namespace UltimateBlueScreenSimulator
             {
                 HideAllProps();
             }
+            ListView.SelectedIndexCollection backup = MessageView.SelectedIndices;
+            MessageView.Clear();
+            UpdateMessageView();
+            foreach (int selIdx in backup)
+            {
+                MessageView.SelectedIndices.Add(selIdx);
+            }
         }
 
         private void TextBox1_TextChanged(object sender, EventArgs e)
@@ -368,20 +376,14 @@ namespace UltimateBlueScreenSimulator
                 if (this.type == "title")
                 {
                     me.SetTitle(editable, stringEditor.Text);
-                    MessageView.Clear();
-                    UpdateMessageView();
                 }
                 else if (this.type == "text")
                 {
                     me.SetText(editable, stringEditor.Text);
-                    MessageView.Clear();
-                    UpdateMessageView();
                 }
                 else if (this.type == "string")
                 {
                     me.SetString(editable, stringEditor.Text);
-                    MessageView.Clear();
-                    UpdateMessageView();
                 }
             }
         }
@@ -439,8 +441,6 @@ namespace UltimateBlueScreenSimulator
                 try
                 {
                     me.SetInt(type, Convert.ToInt32(timeoutBox.Text));
-                    MessageView.Clear();
-                    UpdateMessageView();
                 }
                 catch
                 {
@@ -527,8 +527,6 @@ namespace UltimateBlueScreenSimulator
                 me.SetInt("qr_size", speedTrackbar.Value);
                 blinkingDash.Text = me.GetInt("qr_size").ToString();
             }
-            MessageView.Clear();
-            UpdateMessageView();
         }
     }
 }

@@ -925,7 +925,7 @@ namespace SimulatorDatabase
                     SetupCE(new Cebsod());
                     break;
                 case "Windows NT 3.x/4.0":
-                    SetupNT(new NTBSOD());
+                    SetupNT(new W2kbs());
                     break;
                 case "Windows 9x/Me":
                     Setup9x(new Old_bluescreen());
@@ -1014,7 +1014,7 @@ namespace SimulatorDatabase
         ///Prepares Windows NT blue screen for simulation
         ///</summary>
         ///<param name="bs">Form for the simulator</param>
-        private void SetupNT(NTBSOD bs)
+        private void SetupNT(W2kbs bs)
         {
             try
             {

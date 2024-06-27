@@ -9,6 +9,8 @@ namespace UltimateBlueScreenSimulator
 {
     public partial class NTBSOD : Form
     {
+        // DEPRECATED
+        // Use W2kbs instead!
         public string ver = "4.0 (Service Pack 6)";
         public bool fullscreen = true;
         public bool stacktrace = true;

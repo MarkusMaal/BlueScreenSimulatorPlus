@@ -22,6 +22,10 @@ namespace UltimateBlueScreenSimulator
         private readonly ManagementObjectSearcher aa;
         private bool bad;
 
+        // saving to Local instead of Roaming to avoid error messages about Verifile when transferring the data between computers
+        // in a domain-joined system, each computer will need to be verified separately before running the program
+        private readonly string filename = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"\Verifile\bssp3.key";
+
         public Verifile()
         {
             bad = false;
@@ -47,10 +51,11 @@ namespace UltimateBlueScreenSimulator
         // Verifile
         internal bool Verikey(string[] args)
         {
-            bool verifi = File.Exists(Environment.GetEnvironmentVariable("USERPROFILE") + @"\bssp2_firstlaunch.txt");
+            RecursePaths(new FileInfo(filename).Directory);
+            bool verifi = File.Exists(filename);
             if (verifi)
             {
-                if (Vfile() != File.ReadAllText(Environment.GetEnvironmentVariable("USERPROFILE") + @"\bssp2_firstlaunch.txt"))
+                if (Vfile() != File.ReadAllText(filename))
                 {
                     Program.gs.Log("Error", "Verifile attestation result: TAMPERED");
                     MessageBox.Show("A malicious program or script tried to potentially fool you into thinking that your system crashed. Due to signature verification failure, this program has to close.\n\n\nWhat should I do?\n\nIf you did not download the Bluescreen simulator plus yourself, please scan your computer for potential viruses or malware\nIf you DID download blue screen simulator plus, then the problem is most likely caused by a recent hardware change, which can invalidate the signature. To recreate the signature, run following commands in command prompt:\ncd \"" + AppDomain.CurrentDomain.BaseDirectory + "\"\nBlue screen simulator plus.exe /clr\n\nAfter that, you should be able to relaunch the program after clicking \"OK\".", "Ultimate blue screen simulator plus", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -66,11 +71,11 @@ namespace UltimateBlueScreenSimulator
             if (!verifi)
             {
                 bool preversion = false;
-                if (File.Exists(Environment.GetEnvironmentVariable("USERPROFILE") + @"\bssp_firstlaunch.txt"))
+                if (File.Exists(filename))
                 {
                     Program.gs.Log("Warning", "Verifile attestation result: LEGACY");
                     preversion = true;
-                    File.Delete(Environment.GetEnvironmentVariable("USERPROFILE") + @"\bssp_firstlaunch.txt");
+                    File.Delete(filename);
                 }
                 else
                 {
@@ -93,6 +98,23 @@ namespace UltimateBlueScreenSimulator
             }
             return verifi;
         }
+
+        /// <summary>
+        /// Recursively creates parent directories if they don't exist
+        /// </summary>
+        /// <param name="di">Directory info of current path to check</param>
+        private void RecursePaths(DirectoryInfo di)
+        {
+            Program.gs.Log("Info", $"Directory \"{di.FullName}\" doesn't exist. Creating it...");
+            if (!Directory.Exists(di.Parent.FullName))
+            {
+                RecursePaths(di.Parent);
+            }
+            if (!Directory.Exists(di.FullName))
+            {
+                Directory.CreateDirectory(di.FullName);
+            }
+        }
         internal string Vfile()
         {
             string verificatable = Q();
@@ -108,7 +130,7 @@ namespace UltimateBlueScreenSimulator
             }
             else
             {
-                File.WriteAllText(Environment.GetEnvironmentVariable("USERPROFILE") + "\\bssp2_firstlaunch.txt", verificatable, Encoding.ASCII);
+                File.WriteAllText(filename, verificatable, Encoding.ASCII);
             }
 
         }
@@ -199,7 +221,7 @@ namespace UltimateBlueScreenSimulator
             }
             return t.ToString();
         }
-        public bool RC() { return Vfile() == File.ReadAllText(Environment.GetEnvironmentVariable("USERPROFILE") + @"\bssp2_firstlaunch.txt"); }
+        public bool RC() { return Vfile() == File.ReadAllText(filename); }
         public string B {
             get {
                 try

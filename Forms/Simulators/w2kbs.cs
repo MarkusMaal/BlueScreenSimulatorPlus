@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Text;
+using System.Windows.Documents;
 using System.Windows.Forms;
 using SimulatorDatabase;
 
@@ -21,6 +23,15 @@ namespace UltimateBlueScreenSimulator
         bool inb = false;
         internal string errorCode;
         readonly string[] letters = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ":", ",", ".", "+", "*", "(", ")", "[", "]", "{", "}", "/", "\\", "-", "_", " ", "'" };
+
+        // NT4 specific options
+        public string ver = "4.0 (Service Pack 6)";
+        public bool stacktrace = true;
+        public bool starterror = true;
+        public bool blink = true;
+        public string processortype = "GenuineIntel";
+        public string error = "User manually initiated crash (0xDEADDEAD)";
+
         public W2kbs()
         {
             //
@@ -31,6 +42,16 @@ namespace UltimateBlueScreenSimulator
             //
             Font = new Font(Font.Name, 8.25f * 96f / CreateGraphics().DpiX, Font.Style, Font.Unit, Font.GdiCharSet, Font.GdiVerticalFont);
             InitializeComponent();
+        }
+
+        string GenSpace(int spacecount)
+        {
+            string outspace = "";
+            for (int i = 0; i < spacecount; i++)
+            {
+                outspace += " ";
+            }
+            return outspace;
         }
 
         private void W2kbs_FormClosing(object sender, FormClosingEventArgs e)
@@ -151,70 +172,168 @@ namespace UltimateBlueScreenSimulator
             }
             return img;
         }
+
+
         private void W2kbs_Load(object sender, EventArgs e)
         {
             try
             {
-            if (Program.gs.EnableEggs)
-            {
-                if (this.BackColor == this.ForeColor)
+                if (Program.TestDicts(letters, me))
                 {
-                    this.BackColor = Color.Red;
-                    rainBowScreen.Enabled = true;
+                    screenUpdater.Enabled = false;
+                    this.Close();
+                    return;
                 }
-            }
-            this.Icon = me.GetIcon();
-            this.Text = me.GetString("friendlyname");
-            List<Bitmap> lines = new List<Bitmap>
-            { WriteWord(" ", this.BackColor, this.ForeColor)
-            };
-            if (whatfail != "")
-            {
-                // set file information template to default value if not found for backwards compatibility with version 2.0 configuration formats
-                string addr = me.GetTexts().ContainsKey("File information") ? me.GetTexts()["File information"] : "*** Address {0} base at {1}, DateStamp {2} - {3}";
-                errorCode += "\n\n";
-                // apparently me.GetString("cuplrit") sometimes throws an exception if you change it to Beep.SYS?
-                // we do a try-catch here and just use the first value of GetFiles() dictionary if it fails
-                try
+                if (Program.gs.EnableEggs)
                 {
-                    errorCode += string.Format(addr, me.GenHex(8, me.GetFiles()[0].Value[0]), me.GenHex(8, me.GetFiles()[0].Value[1]), me.GenHex(8, me.GetFiles()[0].Value[2]).ToLower(), whatfail.ToLower());
-                } catch
-                {
-                    errorCode += string.Format(addr, me.GenHex(8, me.GetFiles().First().Value[0]), me.GenHex(8, me.GetFiles().First().Value[1]), me.GenHex(8, me.GetFiles().First().Value[2]).ToLower(), whatfail.ToLower());
+                    if (this.BackColor == this.ForeColor)
+                    {
+                        this.BackColor = Color.Red;
+                        rainBowScreen.Enabled = true;
+                    }
                 }
-            }
-                errorCode = errorCode.Replace("IRQL", "DRIVER_IRQL");
+                this.Icon = me.GetIcon();
+                this.Text = me.GetString("friendlyname");
+                List<Bitmap> lines = new List<Bitmap>
+                {
+                    WriteWord(" ", this.BackColor, this.ForeColor)
+                };
+                if (me.GetString("os").Equals("Windows 2000"))
+                {
+                    if (whatfail != "")
+                    {
+                        // set file information template to default value if not found for backwards compatibility with version 2.0 configuration formats
+                        string addr = me.GetTexts().ContainsKey("File information") ? me.GetTexts()["File information"] : "*** Address {0} base at {1}, DateStamp {2} - {3}";
+                        errorCode += "\n\n";
+                        // apparently me.GetString("cuplrit") sometimes throws an exception if you change it to Beep.SYS?
+                        // we do a try-catch here and just use the first value of GetFiles() dictionary if it fails
+                        try
+                        {
+                            errorCode += string.Format(addr, me.GenHex(8, me.GetFiles()[0].Value[0]), me.GenHex(8, me.GetFiles()[0].Value[1]), me.GenHex(8, me.GetFiles()[0].Value[2]).ToLower(), whatfail.ToLower());
+                        }
+                        catch
+                        {
+                            errorCode += string.Format(addr, me.GenHex(8, me.GetFiles().First().Value[0]), me.GenHex(8, me.GetFiles().First().Value[1]), me.GenHex(8, me.GetFiles().First().Value[2]).ToLower(), whatfail.ToLower());
+                        }
+                    }
+                    errorCode = errorCode.Replace("IRQL", "DRIVER_IRQL");
 
-                foreach (string l in errorCode.Split('\n'))
-                {
-                    if (l.Replace("\r", "\n").Replace("\n", "") == "") { lines.Add(WriteWord(" ", this.BackColor, this.ForeColor)); continue; }
-                    lines.Add(WriteWord(l.Replace("\r", "\n").Replace("\n", ""), this.BackColor, this.ForeColor));
-                }
-                lines.Add(WriteWord(" ", this.BackColor, this.ForeColor));
+                    foreach (string l in SafeSplit(errorCode))
+                    {
+                        if (l.Replace("\r", "\n").Replace("\n", "") == "") { lines.Add(WriteWord(" ", this.BackColor, this.ForeColor)); continue; }
+                        lines.Add(WriteWord(l.Replace("\r", "\n").Replace("\n", ""), this.BackColor, this.ForeColor));
+                    }
+                    lines.Add(WriteWord(" ", this.BackColor, this.ForeColor));
 
-                foreach (string l in me.GetTexts()["Troubleshooting introduction"].Split('\n'))
-                {
-                    if (l.Replace("\r", "\n").Replace("\n", "") == "") { lines.Add(WriteWord(" ", this.BackColor, this.ForeColor)); continue; }
-                    lines.Add(WriteWord(l.Replace("\r", "\n").Replace("\n", ""), this.BackColor, this.ForeColor));
-                }
-                lines.Add(WriteWord(" ", this.BackColor, this.ForeColor));
+                    foreach (string l in SafeSplit(me.GetTexts()["Troubleshooting introduction"]))
+                    {
+                        if (l.Replace("\r", "\n").Replace("\n", "") == "") { lines.Add(WriteWord(" ", this.BackColor, this.ForeColor)); continue; }
+                        lines.Add(WriteWord(l.Replace("\r", "\n").Replace("\n", ""), this.BackColor, this.ForeColor));
+                    }
+                    lines.Add(WriteWord(" ", this.BackColor, this.ForeColor));
 
-                foreach (string l in me.GetTexts()["Troubleshooting text"].Split('\n'))
-                {
-                    if (l.Replace("\r", "\n").Replace("\n", "") == "") { lines.Add(WriteWord(" ", this.BackColor, this.ForeColor)); continue; }
-                    lines.Add(WriteWord(l.Replace("\r", "\n").Replace("\n", ""), this.BackColor, this.ForeColor));
-                }
-                lines.Add(WriteWord(" ", this.BackColor, this.ForeColor));
+                    foreach (string l in SafeSplit(me.GetTexts()["Troubleshooting text"]))
+                    {
+                        if (l.Replace("\r", "\n").Replace("\n", "") == "") { lines.Add(WriteWord(" ", this.BackColor, this.ForeColor)); continue; }
+                        lines.Add(WriteWord(l.Replace("\r", "\n").Replace("\n", ""), this.BackColor, this.ForeColor));
+                    }
+                    lines.Add(WriteWord(" ", this.BackColor, this.ForeColor));
 
-                foreach (string l in me.GetTexts()["Additional troubleshooting information"].Split('\n'))
+                    foreach (string l in SafeSplit(me.GetTexts()["Additional troubleshooting information"]))
+                    {
+                        if (l.Replace("\r", "\n").Replace("\n", "") == "") { lines.Add(WriteWord(" ", this.BackColor, this.ForeColor)); continue; }
+                        lines.Add(WriteWord(l.Replace("\r", "\n").Replace("\n", ""), this.BackColor, this.ForeColor));
+                    }
+                }
+                else
                 {
-                    if (l.Replace("\r", "\n").Replace("\n", "") == "") { lines.Add(WriteWord(" ", this.BackColor, this.ForeColor)); continue; }
-                    lines.Add(WriteWord(l.Replace("\r", "\n").Replace("\n", ""), this.BackColor, this.ForeColor));
+                    IDictionary<string, string> txt = me.GetTexts();
+                    blinkyThing.BackColor = me.GetTheme(false);
+                    if (!blink) { blinkyThing.Visible = false; }
+                    Program.load_progress = 2;
+                    Program.load_message = "Processing error code";
+                    lines.AddRange(CreateBitmaps(txt["Error code formatting"].Replace("{0}", error.Split(' ')[1].Replace(")", "").Replace("(", "").Replace(" ", "").ToString()).Replace("{1}", me.GenAddress(4, 8, false).Replace(", ", ",")).Trim()));
+                    if (whatfail == "")
+                    {
+                        lines.AddRange(CreateBitmaps(error.Split(' ')[0].ToString()));
+                    } else
+                    {
+                        lines.AddRange(CreateBitmaps(error.Split(' ')[0].ToString() + "*** Address " + me.GenHex(8, "RRRRRRRR").ToLower() + " has base at " + me.GenHex(8, "RRRRRRRR").ToLower() + " - " + whatfail.ToLower()));
+                    }
+                    Program.load_progress = 10;
+
+                    if (stacktrace)
+                    {
+                        // hell is loose here
+                        Program.load_message = "Processing CPUID";
+                        lines.AddRange(CreateBitmaps("\n" + string.Format(txt["CPUID formatting"], processortype).Trim()));
+                        Program.load_message = "Processing stack trace heading";
+                        lines.AddRange(CreateBitmaps("\n" + txt["Stack trace heading"].Trim().PadRight(40, ' ') + txt["Stack trace heading"].Trim()));
+
+                        Program.load_progress += 5;
+                        for (int i = 0; i < me.GetFiles().Count; i+=2)
+                        {
+                            Program.load_message = "Processing table (file " + (i + 1).ToString() + ")";
+
+                            if (me.GetFiles().Count < i + 1)
+                            {
+                                break;
+                            }
+                            if (me.GetFiles()[i].Value.Length == 6)
+                            {
+                                break;
+                            }
+                            string file1 = me.GetFiles()[i].Key;
+                            string rnd1_1 = me.GenHex(8, me.GetFiles()[i].Value[0]).ToLower();
+                            string rnd1_2 = me.GenHex(8, me.GetFiles()[i].Value[1]).ToLower();
+                            string file2 = "";
+                            string rnd2_1 = "";
+                            string rnd2_2 = "";
+                            string fullrow = string.Format(txt["Stack trace table formatting"].Trim(), rnd1_1, rnd1_2, file1).PadRight(40);
+                            if (me.GetFiles().Count > i+1)
+                            {
+                                file2 = me.GetFiles()[i+1].Key;
+                                rnd2_1 = me.GenHex(8, me.GetFiles()[i+1].Value[0]).ToLower();
+                                rnd2_2 = me.GenHex(8, me.GetFiles()[i+1].Value[1]).ToLower();
+                                fullrow += string.Format(txt["Stack trace table formatting"].Trim(), rnd2_1, rnd2_2, file2);
+                            }
+                            lines.AddRange(CreateBitmaps(fullrow));
+                            Program.load_progress += 1;
+                        }
+                        Program.load_message = "Processing memory address dump heading";
+                        lines.AddRange(CreateBitmaps("\n" + txt["Memory address dump heading"]));
+                        Program.load_progress = 90;
+                        int r = 1;
+                        foreach (KeyValuePair<string, string[]> kvp in me.GetFiles())
+                        {
+                            if (kvp.Value.Length != 6)
+                            {
+                                continue;
+                            }
+                            Program.load_message = "Processing table (row " + r.ToString() + ")";
+                            string file = kvp.Key;
+                            string r1 = me.GenHex(8, kvp.Value[0]).ToLower();
+                            string r2 = me.GenHex(8, kvp.Value[1]).ToLower();
+                            string r3 = me.GenHex(8, kvp.Value[2]).ToLower();
+                            string r4 = me.GenHex(8, kvp.Value[3]).ToLower();
+                            string r5 = me.GenHex(8, kvp.Value[4]).ToLower();
+                            string r6 = me.GenHex(8, kvp.Value[5]).ToLower();
+                            string fullrow = string.Format(txt["Memory address dump table"], r1, r2, r3, r4, r5, r6, file);
+                            lines.AddRange(CreateBitmaps(fullrow));
+                            Program.load_progress += 6;
+                            r++;
+                        }
+                    }
+
+                    lines.AddRange(CreateBitmaps("\n" + txt["Troubleshooting text"]));
                 }
                 int z = 1;
                 foreach (Bitmap line in lines)
                 {
-                    ((PictureBox)tableLayoutPanel1.Controls[string.Format("pictureBox{0}", z)]).Image = line;
+                    if ((z < 50) && (z > 1))
+                    {
+                        ((PictureBox)tableLayoutPanel1.Controls[string.Format("pictureBox{0}", z)]).Image = line;
+                    }
                     z++;
                 }
                 if (!fullscreen) { this.FormBorderStyle = FormBorderStyle.FixedSingle; this.ShowInTaskbar = true; this.ShowIcon = true; }
@@ -224,6 +343,7 @@ namespace UltimateBlueScreenSimulator
                 if (colors[2] > 255) { colors[2] -= 255; }
                 waterMarkText.ForeColor = Color.FromArgb(colors[0], colors[1], colors[2]);
                 Program.loadfinished = true;
+
                 if (fullscreen)
                 {
                     if (Screen.AllScreens.Length > 1)
@@ -308,8 +428,49 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
+        private List<Bitmap> CreateBitmaps(string content)
+        {
+            List<Bitmap> lines = new List<Bitmap>();
+            foreach (string l in SafeSplit(content))
+            {
+                if (l.Replace("\r", "\n").Replace("\n", "") == "") { lines.Add(WriteWord(" ", this.BackColor, this.ForeColor)); continue; }
+                lines.Add(WriteWord(l.Replace("\r", "\n").Replace("\n", ""), this.BackColor, this.ForeColor));
+            }
+            return lines;
+        }
+
+        /// <summary>
+        /// Splits the line to separate lines to make sure it's using 80 columns
+        /// </summary>
+        /// <param name="line">Line to split</param>
+        /// <returns>Splitted line</returns>
+        private string SplitLine80(string line)
+        {
+            if (line.Length > 80)
+            {
+                return line.Substring(0, 80) + "\n" + SplitLine80(line.Substring(80));
+            }
+            return line;
+        }
+
+        /// <summary>
+        /// Splits the text by lines while making sure each line has a maximum of 80 columns
+        /// </summary>
+        /// <param name="lines">Text to split into lines</param>
+        /// <returns>Array of lines</returns>
+        private string[] SafeSplit(string lines)
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            foreach (string line in lines.Split('\n'))
+            {
+                stringBuilder.AppendLine(SplitLine80(line).Replace("\r\n", "\n"));
+            }
+            return stringBuilder.ToString().Substring(0, stringBuilder.ToString().Length - 1).Split('\n');
+        }
+
         private void Timer1_Tick(object sender, EventArgs e)
         {
+            if (screenUpdater.Interval != me.GetInt("blink_speed")) { screenUpdater.Interval = me.GetInt("blink_speed"); }
             if (fullscreen)
             {
                 foreach (WindowScreen ws in wss)
@@ -331,6 +492,17 @@ namespace UltimateBlueScreenSimulator
                 }
                 this.BringToFront();
                 this.Activate();
+            }
+            if (blink && me.GetString("os").Equals("Windows NT 3.x/4.0"))
+            {
+                if (blinkyThing.Visible == false)
+                {
+                    blinkyThing.Visible = true;
+                }
+                else
+                {
+                    blinkyThing.Visible = false;
+                }
             }
         }
 

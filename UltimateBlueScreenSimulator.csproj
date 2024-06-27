@@ -176,10 +176,10 @@
     <Compile Include="Forms\Interfaces\NewUI.Designer.cs">
       <DependentUpon>NewUI.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Simulators\NTBSOD.cs">
+    <Compile Include="Forms\Legacy\NTBSOD.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Simulators\NTBSOD.Designer.cs">
+    <Compile Include="Forms\Legacy\NTBSOD.Designer.cs">
       <DependentUpon>NTBSOD.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Simulators\old_bluescreen.cs">
@@ -329,7 +329,7 @@
     <EmbeddedResource Include="Forms\Interfaces\NewUI.resx">
       <DependentUpon>NewUI.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Simulators\NTBSOD.resx">
+    <EmbeddedResource Include="Forms\Legacy\NTBSOD.resx">
       <DependentUpon>NTBSOD.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Simulators\old_bluescreen.resx">

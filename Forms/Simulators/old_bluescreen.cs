@@ -33,6 +33,12 @@ namespace UltimateBlueScreenSimulator
         {
             try
             {
+                if (Program.TestDicts(letters, me))
+                {
+                    screenUpdater.Enabled = false;
+                    this.Close();
+                    return;
+                }
                 this.Icon = me.GetIcon();
                 this.Text = me.GetString("friendlyname");
                 string prompt;

@@ -13,6 +13,7 @@ using System.IO;
 using SimulatorDatabase;
 using System.Net.NetworkInformation;
 using System.Threading;
+using System.Collections.Generic;
 
 namespace UltimateBlueScreenSimulator
 {
@@ -242,6 +243,41 @@ namespace UltimateBlueScreenSimulator
                 return true;
             }
             return false;
+        }
+
+        /// <summary>
+        /// Allows you to test if invalid characters exist within a configuration
+        /// </summary>
+        /// <param name="letters">Character set</param>
+        /// <param name="me">Configuration template</param>
+        /// <returns>true when errors are found</returns>
+        public static bool TestDicts(string[] letters, BlueScreen me)
+        {
+            bool errors = TestDict(letters, (string[])me.GetTexts().Values) || TestDict(letters, (string[])me.GetTitles().Values);
+            if (errors)
+            {
+                loadfinished = true;
+                MessageBox.Show("Disallowed characters found! Only the following characters are allowed:\n" + string.Join("", letters), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return errors;
+        }
+
+        private static bool TestDict(string[] letters, string[] strings)
+        {
+            bool errors = false;
+            foreach (string text in strings)
+            {
+                string replacedText = text;
+                foreach (string c in letters)
+                {
+                    replacedText = replacedText.Replace(c, "");
+                }
+                if (replacedText.Replace("\r", "").Replace("\n", "") != "")
+                {
+                    errors = true;
+                }
+            }
+            return errors;
         }
 
     }
