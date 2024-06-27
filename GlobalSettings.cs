@@ -60,6 +60,7 @@ namespace UltimateBlueScreenSimulator
         private string[] usb_device;
         private int[] time;
         private bool timecatch;
+        private bool devmode;
 
         [JsonIgnore]
         public List<string> log1;
@@ -117,6 +118,7 @@ namespace UltimateBlueScreenSimulator
             enableeggs = true;
             randomness = false;
             autodark = true;
+            devmode = false;
             singlesim = "";
             update_server = "http://markustegelane.eu/app/";
 
@@ -357,6 +359,15 @@ namespace UltimateBlueScreenSimulator
         public string SingleSim {
             get { return singlesim; }
             set { singlesim = value; }
+        }
+
+        ///<summary>
+        ///Unlocks certain developer only features, such as DictEdit, Restart application, etc. Also throws exceptions rather than catching them.
+        ///</summary>
+        [JsonIgnore]
+        public bool DevBuild {
+            get { return devmode; }
+            set { devmode = value; }
         }
 
 

@@ -151,7 +151,7 @@ namespace UltimateBlueScreenSimulator
                 me = Program.templates.GetAt(Program.templates.Count - 1 - windowVersion.SelectedIndex);
             } catch (Exception ex)
             {
-                me.Crash(ex.Message, ex.StackTrace, "OrangeScreen");
+                me.Crash(ex, "OrangeScreen");
             }
             // set control visibility for specific OS-es
             if (me.GetString("os") == "Windows 11")
@@ -447,6 +447,11 @@ namespace UltimateBlueScreenSimulator
         private void Initialize(object sender, EventArgs e)
         {
             this.Text = "Blue Screen Simulator Plus " + Convert.ToDouble(version.Replace(".", ",")).ToString().Replace(",", ".");
+            comboBox2.Items.Clear();
+            foreach (string t in Program.f1.comboBox2.Items)
+            {
+                comboBox2.Items.Add(t);
+            }
             ts = new ThreadStart(ShowBlueScreen);
             bsod_starter = new Thread(ts);
             try
@@ -1277,7 +1282,7 @@ namespace UltimateBlueScreenSimulator
                 {
                     if (enableeggs)
                     {
-                        me.Crash(ex.Message, ex.StackTrace, "GreenScreen");
+                        me.Crash(ex, "GreenScreen");
                     } else
                     {
                         MessageBox.Show("An error has occoured.\n\n" + ex.Message + "\n\n" + ex.StackTrace, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);

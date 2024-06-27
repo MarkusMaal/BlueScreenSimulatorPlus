@@ -341,6 +341,10 @@ namespace UltimateBlueScreenSimulator
             }
             chooseCode1.Checked = false;
             chooseCode1.Checked = true;
+            if (me.GetBool("threepointone"))
+            {
+                add6Button.Text = "Add file (7 codes)";
+            }
         }
 
         private string DispCodes(string c1, string c2, string c3, string c4)
@@ -531,6 +535,7 @@ namespace UltimateBlueScreenSimulator
         private void Section4(object sender, EventArgs e) { SwitchBlock(4); }
         private void Section5(object sender, EventArgs e) { SwitchBlock(5); }
         private void Section6(object sender, EventArgs e) { SwitchBlock(6); }
+        private void Section7(object sender, EventArgs e) { SwitchBlock(7); }
 
         private void SetCharAt(int index, string value)
         {
@@ -631,7 +636,13 @@ namespace UltimateBlueScreenSimulator
 
         private void add6Button_Click(object sender, EventArgs e)
         {
-            me.PushFile(me.GenFile(), new string[] { "RRRRRRRR", "RRRRRRRR", "RRRRRRRR", "RRRRRRRR", "RRRRRRRR", "RRRRRRRR" });
+            if (!me.GetBool("threepointone"))
+            {
+                me.PushFile(me.GenFile(), new string[] { "RRRRRRRR", "RRRRRRRR", "RRRRRRRR", "RRRRRRRR", "RRRRRRRR", "RRRRRRRR" });
+            } else
+            {
+                me.PushFile(me.GenFile(), new string[] { "RRRRRRRR", "RRRRRRRR", "RRRRRRRR", "RRRRRRRR", "RRRRRRRR", "RRRRRRRR", "RRRRRRRR" });
+            }
             ReloadFiles();
         }
 

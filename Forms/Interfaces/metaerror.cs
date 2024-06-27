@@ -1,18 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace UltimateBlueScreenSimulator
 {
     public partial class Metaerror : Form
     {
-        internal string message = "";
-        internal string stack_trace = "";
+        internal Exception ex = null;
+        private string message = "";
+        private string stack_trace = "";
         internal string type = "GreenScreen";
         public Metaerror()
         {
@@ -40,6 +36,12 @@ namespace UltimateBlueScreenSimulator
 
         private void Metaerror_Load(object sender, EventArgs e)
         {
+            if (Program.gs.DevBuild)
+            {
+                throw ex;
+            }
+            message = ex.Message;
+            stack_trace = ex.StackTrace;
             technicalinfoLabel.Text = type + " Exception\n\n" + message + "\n\n" + stack_trace;
             switch (type)
             {

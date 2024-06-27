@@ -14,6 +14,7 @@ using SimulatorDatabase;
 using System.Net.NetworkInformation;
 using System.Threading;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace UltimateBlueScreenSimulator
 {
@@ -62,6 +63,7 @@ namespace UltimateBlueScreenSimulator
                 verifile = new Verifile();
                 verificate = verifile.Verify;
                 gs.Log("Info", "Verifile passed");
+                gs.DevBuild = true;
                 if ((gs.SingleSim != "") && verificate)
                 {
                     templates = new TemplateRegistry();
@@ -187,8 +189,7 @@ namespace UltimateBlueScreenSimulator
             gs.Log("Critical", $"{type} exception: {ex.Message}\n{ex.StackTrace}");
             Metaerror me = new Metaerror()
             {
-                message = ex.Message,
-                stack_trace = ex.StackTrace,
+                ex = ex,
                 type = type
             };
 
@@ -253,7 +254,7 @@ namespace UltimateBlueScreenSimulator
         /// <returns>true when errors are found</returns>
         public static bool TestDicts(string[] letters, BlueScreen me)
         {
-            bool errors = TestDict(letters, (string[])me.GetTexts().Values) || TestDict(letters, (string[])me.GetTitles().Values);
+            bool errors = TestDict(letters, me.GetTexts().Values.ToArray()) || TestDict(letters, me.GetTitles().Values.ToArray());
             if (errors)
             {
                 loadfinished = true;
@@ -272,7 +273,7 @@ namespace UltimateBlueScreenSimulator
                 {
                     replacedText = replacedText.Replace(c, "");
                 }
-                if (replacedText.Replace("\r", "").Replace("\n", "") != "")
+                if (replacedText.Replace("\r", "").Replace("\n", "").Replace("{", "").Replace("}", "") != "")
                 {
                     errors = true;
                 }

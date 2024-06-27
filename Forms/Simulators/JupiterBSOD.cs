@@ -145,7 +145,7 @@ namespace UltimateBlueScreenSimulator
                 }
                 else
                 {
-                    me.Crash(ex.Message, ex.StackTrace, "YellowScreen");
+                    me.Crash(ex, "YellowScreen");
                     this.Close();
                 }
             }

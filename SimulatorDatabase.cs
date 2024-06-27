@@ -18,7 +18,32 @@ namespace SimulatorDatabase
 
     public class DrawRoutines
     {
-        public void Draw(WindowScreen ws)
+        private bool BlinkState { get; set; }
+        private bool ForceWatermark { get; set; }
+
+        public DrawRoutines()
+        {
+            this.BlinkState = false;
+            this.ForceWatermark = false;
+        }
+
+        /// <summary>
+        /// Called when upscaling crash screens to fullscreen or when mirroring them to secondary displays
+        /// </summary>
+        /// <param name="ws">WindowScreen form</param>
+        /// <param name="watermark">Adds a watermark overlay on top of the processed image</param>
+        public void Draw(WindowScreen ws, bool watermark)
+        {
+            ForceWatermark = watermark;
+            Draw(ws);
+        }
+
+        /// <summary>
+        /// Called when upscaling crash screens to fullscreen or when mirroring them to secondary displays
+        /// </summary>
+        /// <param name="ws">WindowScreen form</param>
+        /// <param name="blinkcolor">If passed, a blinking caret will be displayed at the top left</param>
+        public void Draw(WindowScreen ws, Color? blinkcolor = null)
         {
             // for upscaling and multidisplay support
             if (ws.primary || Program.gs.DisplayMode == "mirror")
@@ -31,7 +56,24 @@ namespace SimulatorDatabase
                 using (Bitmap bmp = new Bitmap(frm.Width, frm.Height))
                 {
                     frm.DrawToBitmap(bmp, new Rectangle(0, 0, bmp.Width, bmp.Height));
-
+                    if (blinkcolor != null)
+                    {
+                        if (this.BlinkState)
+                        {
+                            using (Graphics b = Graphics.FromImage(bmp))
+                            {
+                                b.FillRectangle(new SolidBrush(blinkcolor ?? Color.White), new Rectangle(0, 6, 8, 2));
+                            }
+                        }
+                        this.BlinkState = !this.BlinkState;
+                    }
+                    if (ForceWatermark)
+                    {
+                        using (Graphics b = Graphics.FromImage(bmp))
+                        {
+                            b.DrawString("blue screen simulator plus", new Font("Segoe UI", 7, FontStyle.Regular), new SolidBrush(Color.FromArgb(128, Color.Blue)), new Point(2,0));
+                        }
+                    }
                     Bitmap newImage = new Bitmap(ws.Width, ws.Height);
                     using (Graphics g = Graphics.FromImage(newImage))
                     {
@@ -1274,13 +1316,12 @@ namespace SimulatorDatabase
         ///<param name="message">Error message</param>
         ///<param name="stacktrace">Error stack trace</param>
         ///<param name="type">Error type (such as OrangeScreen, GreenScreen etc.)</param>
-        public void Crash(string message, string stacktrace, string type)
+        public void Crash(Exception ex, string type)
         {
-            Log("Warning", $"Triggered metacrash with the following info: message={message}, stacktrace={stacktrace}, type={type}");
+            Log("Warning", $"Triggered metacrash with the following info: message={ex.Message}, stacktrace={ex.StackTrace}, type={type}");
             Metaerror me = new Metaerror
             {
-                stack_trace = stacktrace,
-                message = message,
+                ex = ex,
                 type = type
             };
             switch (me.ShowDialog())
@@ -1328,6 +1369,7 @@ namespace SimulatorDatabase
                     SetString("qr_file", "local:1");
                     SetBool("font_support", false);
                     SetBool("blinkblink", false);
+                    SetBool("halfres", false);
                     SetString("qr_file", "local:1");
                     break;
                 case "Windows 3.1x":
@@ -1335,7 +1377,7 @@ namespace SimulatorDatabase
                     SetTheme(RGB(170, 170, 170), RGB(0, 0, 170), true);
                     SetInt("blink_speed", 100);
                     PushTitle("Main", "Windows");
-                    PushText("No unresponsive programs", "Altough you can use CTRL+ALT+DEL to quit an application that has\r\nstopped responding to the system, there is no application in this\r\nstate.\r\nTo quit an application, use the application's quit or exit command,\r\nor choose the Close command from the Control menu.\r\n* Press any key to return to Windows\r\n* Press CTRL + ALT + DEL again to restart your computer.You will\r\nlose any unsaved information in all applications.");
+                    PushText("No unresponsive programs", "Altough you can use CTRL+ALT+DEL to quit an application that has\r\nstopped responding to the system, there is no application in this\r\nstate.\r\n\r\nTo quit an application, use the application's quit or exit command,\r\nor choose the Close command from the Control menu.\r\n\r\n* Press any key to return to Windows\r\n* Press CTRL + ALT + DEL again to restart your computer.You will\r\nlose any unsaved information in all applications.");
                     PushText("Prompt", "Press any key to continue");
                     SetString("friendlyname", "Windows 3.1 (Text mode, Standard)");
                     SetBool("font_support", false);
@@ -1351,11 +1393,15 @@ namespace SimulatorDatabase
                     PushTitle("System is busy", "System is busy. ");
                     PushTitle("Warning", "WARNING!");
                     PushText("System error", "An error has occurred. To continue:\r\n\r\nPress Enter to return to Windows, or\r\n\r\nPress CTRL + ALT + DEL to restart your computer. If you do this,\r\nyou will lose any unsaved information in all open applications.\r\n\r\nError: {0}");
+                    PushText("System error (Windows Me beta)", "An error has occurred.\r\n\r\nTo continue:\r\n\r\n*  Press any key to return to Windows, or\r\n\r\n*  Press CTRL+ALT+DEL to restart your computer.\r\n   If you do this, you will lose any unsaved information in all\r\n   open applications.\r\n\r\n\r\n                     Error: {0}");
                     PushText("Application error", "A fatal exception {2} has occurred at {0}:{1}. The current\r\napplication will be terminated.\r\n\r\n* Press any key to terminate current application\r\n* Press CTRL + ALT + DEL again to restart your computer. You will\r\n  lose any unsaved information in all applications.");
+                    PushText("Application error (Windows 95 beta)", "A fatal exception {2} has occurred at {0}:{1}. The current\r\napplication will be terminated.");
+                    PushText("Recoverable application error", "An exception {0} has occurred at {1}:{2} in VxD HSFLOP(03) +\r\n{3}.  This was called from {4}:{5} in VxD HSFLOP(03) +\r\n{6}.  It may be possible to continue normally.\r\n\r\n*  Press any key to attempt to continue.\r\n*  Press CTRL+ALT+DEL to restart your computer.  You will\r\n   lose any unsaved information in all applications. ");
                     PushText("Driver error", "A fatal exception {2} has occurred at {0}:{1} in VXD VMM(01) +\r\n{2}. The current application will be terminated.\r\n\r\n* Press any key to terminate current application\r\n* Press CTRL + ALT + DEL again to restart your computer. You will\r\n  lose any unsaved information in all applications.");
                     PushText("System is busy", "The system is busy waiting for the Close Program dialog box to be\r\ndisplayed. You can wait and see if it appears, or you can restart\r\nyour computer.\r\n\r\n* Press any key to return to Windows and wait.\r\n* Press CTRL + ALT + DEL again to restart your computer. You will\r\n  lose any unsaved information in programs that are running.");
                     PushText("System is unresponsive", "The system is either busy or has become unstable. You can wait and\r\nsee if it becomes available again, or you can restart your computer.\r\n\r\n* Press any key to return to Windows and wait.\r\n* Press CTRL + ALT + DEL again to restart your computer. You will\r\n  lose any unsaved information in programs that are running.");
                     PushText("Prompt", "Press any key to continue");
+                    PushText("Unsafe eject", "The volume that was removed has open\r\nfiles on it. Next time please check first\r\nto see if the volume can really be removed.");
                     SetString("friendlyname", "Windows 9x/Millennium Edition (Text mode, Standard)");
                     SetBool("font_support", false);
                     SetBool("blinkblink", true);
@@ -1375,6 +1421,37 @@ namespace SimulatorDatabase
 
                     SetString("code", "IRQL_NOT_LESS_OR_EQUAL (0x0000000A)");
                     break;
+                case "Windows NT 3.1":
+                    this.os = "Windows NT 3.x/4.0";
+                    SetTheme(RGB(0, 0, 160), RGB(170, 170, 170));
+                    SetBool("threepointone", true);
+                    PushText("Bootscreen", "Microsoft (R) Windows NT (TM) Version 3.1 [32320 Kb Memory]");
+                    PushText("Error code formatting", "*** STOP: {0} ({1})");
+                    PushText("Stack trace heading", "Dll Base DateStmp - Name");
+                    PushText("Stack trace table formatting", "{0} {1} - {2}");
+                    PushText("Memory address dump heading", "Address  dword dump   Build [v1.528]                         - Name");
+                    PushText("Memory address dump table", "{0} {1} {2} {3} {4} {5} {6} - {7}");
+                    PushText("Troubleshooting text", "Restart your computer. If this message reappears, do not restart.\r\nContact your system administrator or technical support group, and/or\r\nperipheral device vendor.");
+                    SetInt("blink_speed", 100);
+                    SetString("friendlyname", "Windows NT 3.1 (Text mode, Standard)");
+                    for (int n = 0; n < 10; n++)
+                    {
+                        string[] inspirn = { "RRRRRRRR", "RRRRRRRR" };
+                        PushFile(GenFile(true), inspirn);
+                    }
+                    for (int n = 0; n < 30 - this.codefiles.Count / 2; n++)
+                    {
+                        string[] inspirn = { "RRRRRRRR", "RRRRRRRR", "RRRRRRRR", "RRRRRRRR", "RRRRRRRR", "RRRRRRRR", "RRRRRRRR" };
+                        PushFile(GenFile(true), inspirn);
+                    }
+                    SetBool("font_support", false);
+                    SetBool("blinkblink", true);
+                    SetBool("blink", true);
+                    SetBool("bootscreen", true);
+
+                    SetString("code", "IRQL_NOT_LESS_OR_EQUAL (0x0000000A)");
+                    SetBool("stack_trace", true);
+                    break;
                 case "Windows NT 3.x/4.0":
                     this.icon = "2D flag";
                     SetTheme(RGB(0, 0, 160), RGB(170, 170, 170));
@@ -1387,7 +1464,7 @@ namespace SimulatorDatabase
                     PushText("Memory address dump table", "{0} {1} {2} {3} {4} {5}          - {6}");
                     PushText("Troubleshooting text", "Restart and set the recovery options in the system control panel\r\nor the /CRASHDEBUG system start option.");
                     SetInt("blink_speed", 100);
-                    SetString("friendlyname", "Windows NT 4.0/3.x (Text mode, Standard)");
+                    SetString("friendlyname", "Windows NT 4.0/3.5x (Text mode, Standard)");
                     for (int n = 0; n < 40; n++)
                     {
                         string[] inspirn = { "RRRRRRRR", "RRRRRRRR" };

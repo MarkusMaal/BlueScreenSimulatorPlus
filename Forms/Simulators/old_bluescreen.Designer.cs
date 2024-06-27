@@ -45,6 +45,11 @@
             this.line1 = new System.Windows.Forms.PictureBox();
             this.simplePanel = new System.Windows.Forms.Panel();
             this.waterMarkText = new System.Windows.Forms.Label();
+            this.line9 = new System.Windows.Forms.PictureBox();
+            this.line10 = new System.Windows.Forms.PictureBox();
+            this.line11 = new System.Windows.Forms.PictureBox();
+            this.line12 = new System.Windows.Forms.PictureBox();
+            this.line13 = new System.Windows.Forms.PictureBox();
             this.titleBorder.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.titleText)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.blinkingColor)).BeginInit();
@@ -58,6 +63,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.line3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.line1)).BeginInit();
             this.simplePanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.line9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.line10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.line11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.line12)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.line13)).BeginInit();
             this.SuspendLayout();
             // 
             // titleBorder
@@ -93,7 +103,7 @@
             this.blinkingColor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(170)))), ((int)(((byte)(170)))), ((int)(((byte)(170)))));
             this.blinkingColor.ErrorImage = null;
             this.blinkingColor.ImageLocation = "";
-            this.blinkingColor.Location = new System.Drawing.Point(404, 224);
+            this.blinkingColor.Location = new System.Drawing.Point(404, 303);
             this.blinkingColor.Name = "blinkingColor";
             this.blinkingColor.Size = new System.Drawing.Size(7, 2);
             this.blinkingColor.TabIndex = 11;
@@ -105,7 +115,7 @@
             this.anyKeyMsg.BackColor = System.Drawing.Color.Transparent;
             this.anyKeyMsg.ErrorImage = null;
             this.anyKeyMsg.ImageLocation = "";
-            this.anyKeyMsg.Location = new System.Drawing.Point(197, 211);
+            this.anyKeyMsg.Location = new System.Drawing.Point(197, 290);
             this.anyKeyMsg.Name = "anyKeyMsg";
             this.anyKeyMsg.Size = new System.Drawing.Size(204, 15);
             this.anyKeyMsg.TabIndex = 10;
@@ -117,7 +127,7 @@
             this.line7.BackColor = System.Drawing.Color.Transparent;
             this.line7.ErrorImage = null;
             this.line7.ImageLocation = "";
-            this.line7.Location = new System.Drawing.Point(36, 155);
+            this.line7.Location = new System.Drawing.Point(36, 154);
             this.line7.Name = "line7";
             this.line7.Size = new System.Drawing.Size(548, 15);
             this.line7.TabIndex = 9;
@@ -129,7 +139,7 @@
             this.line4.BackColor = System.Drawing.Color.Transparent;
             this.line4.ErrorImage = null;
             this.line4.ImageLocation = "";
-            this.line4.Location = new System.Drawing.Point(36, 104);
+            this.line4.Location = new System.Drawing.Point(36, 103);
             this.line4.Name = "line4";
             this.line4.Size = new System.Drawing.Size(548, 15);
             this.line4.TabIndex = 8;
@@ -153,7 +163,7 @@
             this.line8.BackColor = System.Drawing.Color.Transparent;
             this.line8.ErrorImage = null;
             this.line8.ImageLocation = "";
-            this.line8.Location = new System.Drawing.Point(36, 172);
+            this.line8.Location = new System.Drawing.Point(36, 171);
             this.line8.Name = "line8";
             this.line8.Size = new System.Drawing.Size(548, 15);
             this.line8.TabIndex = 6;
@@ -165,7 +175,7 @@
             this.line6.BackColor = System.Drawing.Color.Transparent;
             this.line6.ErrorImage = null;
             this.line6.ImageLocation = "";
-            this.line6.Location = new System.Drawing.Point(36, 138);
+            this.line6.Location = new System.Drawing.Point(36, 137);
             this.line6.Name = "line6";
             this.line6.Size = new System.Drawing.Size(548, 15);
             this.line6.TabIndex = 5;
@@ -177,7 +187,7 @@
             this.line5.BackColor = System.Drawing.Color.Transparent;
             this.line5.ErrorImage = null;
             this.line5.ImageLocation = "";
-            this.line5.Location = new System.Drawing.Point(36, 121);
+            this.line5.Location = new System.Drawing.Point(36, 120);
             this.line5.Name = "line5";
             this.line5.Size = new System.Drawing.Size(548, 15);
             this.line5.TabIndex = 4;
@@ -189,7 +199,7 @@
             this.line3.BackColor = System.Drawing.Color.Transparent;
             this.line3.ErrorImage = null;
             this.line3.ImageLocation = "";
-            this.line3.Location = new System.Drawing.Point(36, 87);
+            this.line3.Location = new System.Drawing.Point(36, 86);
             this.line3.Name = "line3";
             this.line3.Size = new System.Drawing.Size(548, 15);
             this.line3.TabIndex = 3;
@@ -219,11 +229,16 @@
             this.simplePanel.Controls.Add(this.line3);
             this.simplePanel.Controls.Add(this.line2);
             this.simplePanel.Controls.Add(this.line5);
+            this.simplePanel.Controls.Add(this.line13);
+            this.simplePanel.Controls.Add(this.line12);
+            this.simplePanel.Controls.Add(this.line11);
+            this.simplePanel.Controls.Add(this.line10);
+            this.simplePanel.Controls.Add(this.line9);
             this.simplePanel.Controls.Add(this.line8);
             this.simplePanel.Controls.Add(this.line6);
-            this.simplePanel.Location = new System.Drawing.Point(0, 76);
+            this.simplePanel.Location = new System.Drawing.Point(0, 36);
             this.simplePanel.Name = "simplePanel";
-            this.simplePanel.Size = new System.Drawing.Size(624, 275);
+            this.simplePanel.Size = new System.Drawing.Size(624, 324);
             this.simplePanel.TabIndex = 12;
             this.simplePanel.Paint += new System.Windows.Forms.PaintEventHandler(this.Panel2_Paint);
             // 
@@ -238,7 +253,67 @@
             this.waterMarkText.TabIndex = 13;
             this.waterMarkText.Text = "bluescreen simulator plus";
             // 
-            // old_bluescreen
+            // line9
+            // 
+            this.line9.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.line9.BackColor = System.Drawing.Color.Transparent;
+            this.line9.ErrorImage = null;
+            this.line9.ImageLocation = "";
+            this.line9.Location = new System.Drawing.Point(36, 188);
+            this.line9.Name = "line9";
+            this.line9.Size = new System.Drawing.Size(548, 15);
+            this.line9.TabIndex = 6;
+            this.line9.TabStop = false;
+            // 
+            // line10
+            // 
+            this.line10.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.line10.BackColor = System.Drawing.Color.Transparent;
+            this.line10.ErrorImage = null;
+            this.line10.ImageLocation = "";
+            this.line10.Location = new System.Drawing.Point(36, 205);
+            this.line10.Name = "line10";
+            this.line10.Size = new System.Drawing.Size(548, 15);
+            this.line10.TabIndex = 6;
+            this.line10.TabStop = false;
+            // 
+            // line11
+            // 
+            this.line11.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.line11.BackColor = System.Drawing.Color.Transparent;
+            this.line11.ErrorImage = null;
+            this.line11.ImageLocation = "";
+            this.line11.Location = new System.Drawing.Point(36, 222);
+            this.line11.Name = "line11";
+            this.line11.Size = new System.Drawing.Size(548, 15);
+            this.line11.TabIndex = 6;
+            this.line11.TabStop = false;
+            // 
+            // line12
+            // 
+            this.line12.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.line12.BackColor = System.Drawing.Color.Transparent;
+            this.line12.ErrorImage = null;
+            this.line12.ImageLocation = "";
+            this.line12.Location = new System.Drawing.Point(36, 239);
+            this.line12.Name = "line12";
+            this.line12.Size = new System.Drawing.Size(548, 15);
+            this.line12.TabIndex = 6;
+            this.line12.TabStop = false;
+            // 
+            // line13
+            // 
+            this.line13.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.line13.BackColor = System.Drawing.Color.Transparent;
+            this.line13.ErrorImage = null;
+            this.line13.ImageLocation = "";
+            this.line13.Location = new System.Drawing.Point(36, 256);
+            this.line13.Name = "line13";
+            this.line13.Size = new System.Drawing.Size(548, 15);
+            this.line13.TabIndex = 6;
+            this.line13.TabStop = false;
+            // 
+            // Old_bluescreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -251,7 +326,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.Name = "old_bluescreen";
+            this.Name = "Old_bluescreen";
             this.Text = "Windows 9x/Me blue screen simulator";
             this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Old_bluescreen_FormClosing);
@@ -271,6 +346,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.line3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.line1)).EndInit();
             this.simplePanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.line9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.line10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.line11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.line12)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.line13)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -293,5 +373,10 @@
         private System.Windows.Forms.Timer screenUpdater;
         private System.Windows.Forms.Panel simplePanel;
         public System.Windows.Forms.Label waterMarkText;
+        private System.Windows.Forms.PictureBox line10;
+        private System.Windows.Forms.PictureBox line9;
+        private System.Windows.Forms.PictureBox line11;
+        private System.Windows.Forms.PictureBox line13;
+        private System.Windows.Forms.PictureBox line12;
     }
 }

@@ -27,6 +27,7 @@ namespace UltimateBlueScreenSimulator
                 "Windows 3.1x",
                 "Windows 9x/Me",
                 "Windows CE",
+                "Windows NT 3.1",
                 "Windows NT 3.x/4.0",
                 "Windows 2000",
                 "Windows XP",

@@ -194,10 +194,11 @@ namespace UltimateBlueScreenSimulator
                 }
                 this.Icon = me.GetIcon();
                 this.Text = me.GetString("friendlyname");
-                List<Bitmap> lines = new List<Bitmap>
+                List<Bitmap> lines = new List<Bitmap>();
+                if (!me.GetBool("threepointone"))
                 {
-                    WriteWord(" ", this.BackColor, this.ForeColor)
-                };
+                    lines.Add(WriteWord(" ", this.BackColor, this.ForeColor));
+                }
                 if (me.GetString("os").Equals("Windows 2000"))
                 {
                     if (whatfail != "")
@@ -250,6 +251,16 @@ namespace UltimateBlueScreenSimulator
                     IDictionary<string, string> txt = me.GetTexts();
                     blinkyThing.BackColor = me.GetTheme(false);
                     if (!blink) { blinkyThing.Visible = false; }
+                    if (me.GetBool("threepointone") && me.GetBool("bootscreen"))
+                    {
+                        Program.load_progress = 1;
+                        Program.load_message = "Processing bootscreen";
+                        lines.AddRange(CreateBitmaps(txt["Bootscreen"] + "\n"));
+                    }
+                    if (!me.GetBool("bootscreen") && me.GetBool("threepointone"))
+                    {
+                        lines.Add(WriteWord(" ", this.BackColor, this.ForeColor));
+                    }
                     Program.load_progress = 2;
                     Program.load_message = "Processing error code";
                     lines.AddRange(CreateBitmaps(txt["Error code formatting"].Replace("{0}", error.Split(' ')[1].Replace(")", "").Replace("(", "").Replace(" ", "").ToString()).Replace("{1}", me.GenAddress(4, 8, false).Replace(", ", ",")).Trim()));
@@ -265,8 +276,11 @@ namespace UltimateBlueScreenSimulator
                     if (stacktrace)
                     {
                         // hell is loose here
-                        Program.load_message = "Processing CPUID";
-                        lines.AddRange(CreateBitmaps("\n" + string.Format(txt["CPUID formatting"], processortype).Trim()));
+                        if (!me.GetBool("threepointone"))
+                        {
+                            Program.load_message = "Processing CPUID";
+                            lines.AddRange(CreateBitmaps("\n" + string.Format(txt["CPUID formatting"], processortype).Trim()));
+                        }
                         Program.load_message = "Processing stack trace heading";
                         lines.AddRange(CreateBitmaps("\n" + txt["Stack trace heading"].Trim().PadRight(40, ' ') + txt["Stack trace heading"].Trim()));
 
@@ -302,11 +316,11 @@ namespace UltimateBlueScreenSimulator
                         }
                         Program.load_message = "Processing memory address dump heading";
                         lines.AddRange(CreateBitmaps("\n" + txt["Memory address dump heading"]));
-                        Program.load_progress = 90;
+                        Program.load_progress = !me.GetBool("threepointone") ? 90 : 80;
                         int r = 1;
                         foreach (KeyValuePair<string, string[]> kvp in me.GetFiles())
                         {
-                            if (kvp.Value.Length != 6)
+                            if ((kvp.Value.Length != 6) && (kvp.Value.Length != 7))
                             {
                                 continue;
                             }
@@ -318,19 +332,29 @@ namespace UltimateBlueScreenSimulator
                             string r4 = me.GenHex(8, kvp.Value[3]).ToLower();
                             string r5 = me.GenHex(8, kvp.Value[4]).ToLower();
                             string r6 = me.GenHex(8, kvp.Value[5]).ToLower();
-                            string fullrow = string.Format(txt["Memory address dump table"], r1, r2, r3, r4, r5, r6, file);
+                            string r7 = "";
+                            string fullrow = "";
+                            if (me.GetBool("threepointone"))
+                            {
+                                r7 = me.GenHex(8, kvp.Value[6]).ToLower();
+                                fullrow = string.Format(txt["Memory address dump table"], r1, r2, r3, r4, r5, r6, r7, file);
+                            } else
+                            {
+                                fullrow = string.Format(txt["Memory address dump table"], r1, r2, r3, r4, r5, r6, file);
+                            }
                             lines.AddRange(CreateBitmaps(fullrow));
-                            Program.load_progress += 6;
+                            Program.load_progress += !me.GetBool("threepointone") ? 6 : 1;
                             r++;
                         }
                     }
-
-                    lines.AddRange(CreateBitmaps("\n" + txt["Troubleshooting text"]));
+                    string fulltext = !me.GetBool("threepointone") ? "\n" : "";
+                    fulltext += txt["Troubleshooting text"];
+                    lines.AddRange(CreateBitmaps(fulltext));
                 }
                 int z = 1;
                 foreach (Bitmap line in lines)
                 {
-                    if ((z < 50) && (z > 1))
+                    if (z < 50)
                     {
                         ((PictureBox)tableLayoutPanel1.Controls[string.Format("pictureBox{0}", z)]).Image = line;
                     }
@@ -422,7 +446,7 @@ namespace UltimateBlueScreenSimulator
                 Program.loadfinished = true;
                 screenUpdater.Enabled = false;
                 this.Hide();
-                if (Program.gs.EnableEggs) { me.Crash(ex.Message, ex.StackTrace, "OrangeScreen"); }
+                if (Program.gs.EnableEggs && !Program.gs.DevBuild) { me.Crash(ex, "OrangeScreen"); }
                 else { MessageBox.Show("The blue screen cannot be displayed due to an error.\n\n" + ex.Message + "\n\n" + ex.StackTrace, "E R R O R", MessageBoxButtons.OK, MessageBoxIcon.Error); }
                 this.Close();
             }
@@ -482,7 +506,12 @@ namespace UltimateBlueScreenSimulator
                     }
                     try
                     {
-                        Program.dr.Draw(ws);
+                        Color? clr = null;
+                        if (me.GetBool("blink"))
+                        {
+                            clr = me.GetTheme(false);
+                        }
+                        Program.dr.Draw(ws, clr);
                     }
                     catch
                     {

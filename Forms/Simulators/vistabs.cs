@@ -235,7 +235,7 @@ namespace UltimateBlueScreenSimulator
                 Program.loadfinished = true;
                 screenUpdater.Enabled = false;
                 this.Hide();
-                if (Program.gs.EnableEggs) { me.Crash(ex.Message, ex.StackTrace, "OrangeScreen"); }
+                if (Program.gs.EnableEggs) { me.Crash(ex, "OrangeScreen"); }
                 else { MessageBox.Show("The blue screen cannot be displayed due to an error.\n\n" + ex.Message + "\n\n" + ex.StackTrace, "E R R O R", MessageBoxButtons.OK, MessageBoxIcon.Error); }
                 this.Close();
             }
@@ -321,7 +321,7 @@ namespace UltimateBlueScreenSimulator
             } catch (Exception ex)
             {
                 screenUpdater.Enabled = false;
-                me.Crash(ex.Message, ex.StackTrace, "OrangeScreen");
+                me.Crash(ex, "OrangeScreen");
                 this.Close();
             }
         }

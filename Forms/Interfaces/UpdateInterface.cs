@@ -74,8 +74,7 @@ namespace UltimateBlueScreenSimulator
                 {
                     Metaerror me = new Metaerror
                     {
-                        message = ex.Message,
-                        stack_trace = ex.StackTrace,
+                        ex = ex,
                         type = "VioletScreen"
                     };
                     switch (me.ShowDialog())

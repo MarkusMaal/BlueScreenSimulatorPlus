@@ -135,6 +135,14 @@ namespace UltimateBlueScreenSimulator
             {
                 this.Icon = me.GetIcon();
                 this.Text = me.GetString("friendlyname");
+                if (me.GetBool("halfres"))
+                {
+                    this.Height = (int)(this.Height / 2);
+                    for (int i = 1; i <= 9; i++)
+                    {
+                        tableLayoutPanel1.Controls[$"pictureBox{i}"].Visible = false;
+                    }
+                }
                 Program.load_progress = 101;
                 watermark.Visible = me.GetBool("watermark");
                 if (me.GetString("qr_file") != "local:null")
@@ -162,8 +170,13 @@ namespace UltimateBlueScreenSimulator
                         splash = Changecolor(me.GetTheme(false), Changecolor(me.GetTheme(true), CreateNonIndexedImage(splash), Color.FromArgb(19, 19, 19)), Color.FromArgb(255, 255, 255));
                     }
                     // forces the bitmap to be resized to window dimensions
-                    
-                    splash = new Bitmap(splash, this.Width, this.Height);
+                    if (!me.GetBool("halfres"))
+                    {
+                        splash = new Bitmap(splash, this.Width, this.Height);
+                    } else
+                    {
+                        splash = new Bitmap(splash, this.Width, this.Height / 2);
+                    }
                     int z = 1;
                     for (int y = 0; y < 224; y += 12)
                     {
@@ -261,7 +274,7 @@ namespace UltimateBlueScreenSimulator
                 Program.loadfinished = true;
                 screenUpdater.Enabled = false;
                 this.Hide();
-                if (Program.gs.EnableEggs) { me.Crash(ex.Message, ex.StackTrace, "OrangeScreen"); }
+                if (Program.gs.EnableEggs) { me.Crash(ex, "OrangeScreen"); }
                 else { MessageBox.Show("The blue screen cannot be displayed due to an error.\n\n" + ex.Message + "\n\n" + ex.StackTrace, "E R R O R", MessageBoxButtons.OK, MessageBoxIcon.Error); }
                 this.Close();
             }
@@ -285,7 +298,7 @@ namespace UltimateBlueScreenSimulator
                         {
                             continue;
                         }
-                        Program.dr.Draw(ws);
+                        Program.dr.Draw(ws, me.GetBool("watermark"));
                     }
                     catch
                     {

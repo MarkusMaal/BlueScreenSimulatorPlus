@@ -322,6 +322,7 @@ namespace UltimateBlueScreenSimulator
             playSndBox.Visible = false;
             countdownBox.Visible = false;
             progressTuneButton.Visible = false;
+            halfBox.Visible = false;
             //progressTunerToolStripMenuItem.Enabled = false;
             blackScreenBox.Visible = false;
             try
@@ -334,7 +335,7 @@ namespace UltimateBlueScreenSimulator
             }
             catch (Exception ex)
             {
-                me.Crash(ex.Message, ex.StackTrace, "OrangeScreen");
+                me.Crash(ex, "OrangeScreen");
             }
             // set control visibility for specific OS-es
             switch (me.GetString("os"))
@@ -430,10 +431,11 @@ namespace UltimateBlueScreenSimulator
                     break;
                 case "Windows NT 3.x/4.0":
                     errorCode.Visible = true;
-                    amdBox.Visible = true;
+                    amdBox.Visible = !me.GetBool("threepointone");
                     stackBox.Visible = true;
                     ntPanel.Visible = true;
                     winMode.Visible = true;
+                    displayOsBox.Visible = me.GetBool("threepointone");
                     advNTButton.Visible = true;
                     eCodeEditButton.Visible = true;
                     break;
@@ -444,6 +446,8 @@ namespace UltimateBlueScreenSimulator
                     winMode.Visible = true;
                     winPanel.Visible = true;
                     playSndBox.Visible = true;
+                    halfBox.Visible = true;
+                    winPanel.Enabled = !me.GetBool("halfres");
                     break;
             }
             bool inlist = false;
@@ -474,6 +478,8 @@ namespace UltimateBlueScreenSimulator
             waterBox.Checked = me.GetBool("watermark");
             winMode.Checked = me.GetBool("windowed");
             countdownBox.Checked = me.GetBool("countdown");
+            displayOsBox.Checked = me.GetBool("bootscreen");
+            halfBox.Checked = me.GetBool("halfres");
             if (acpiBox.Checked)
             {
                 dumpBox.Enabled = false;
@@ -648,7 +654,7 @@ namespace UltimateBlueScreenSimulator
                 {
                     if (Program.gs.EnableEggs)
                     {
-                        me.Crash(ex.Message, ex.StackTrace, "GreenScreen");
+                        me.Crash(ex, "GreenScreen");
                     }
                     else
                     {
@@ -766,7 +772,7 @@ namespace UltimateBlueScreenSimulator
                 case 5:
                     materialTabControl1.SelectedIndex = 0;
                     materialTabControl1.TabPages[0].Show();
-                    if (MessageBox.Show("The old UI is deprecated and will not recieve any new updates. Do you still want to continue?.", "Restore old layout", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                    if (MessageBox.Show("The old UI doesn't have all of the new features. Do you still want to continue?.", "Restore old layout", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                     {
                         this.Hide();
                         Main m = new Main();
@@ -1386,6 +1392,21 @@ namespace UltimateBlueScreenSimulator
                 {
                     quickHelp.SetToolTip(blackScreenBox, "On some later beta builds of Windows 8, the screen was black instead of blue.");
                 }
+            }
+        }
+
+        private void displayOsBox_CheckedChanged(object sender, EventArgs e)
+        {
+            me.SetBool("bootscreen", displayOsBox.Checked);
+        }
+
+        private void halfBox_CheckedChanged(object sender, EventArgs e)
+        {
+            me.SetBool("halfres", halfBox.Checked);
+            winPanel.Enabled = !halfBox.Checked;
+            if (me.GetBool("halfres"))
+            {
+                nostartup.Checked = true;
             }
         }
     }
