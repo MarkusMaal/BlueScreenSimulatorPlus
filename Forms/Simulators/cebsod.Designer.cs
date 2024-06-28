@@ -42,6 +42,7 @@
             // infoLabel
             // 
             this.infoLabel.AutoSize = true;
+            this.infoLabel.BackColor = System.Drawing.Color.Transparent;
             this.infoLabel.Font = new System.Drawing.Font("Lucida Console", 10.4F);
             this.infoLabel.Location = new System.Drawing.Point(-2, 10);
             this.infoLabel.Name = "infoLabel";
@@ -54,6 +55,7 @@
             // techinfoLabel
             // 
             this.techinfoLabel.AutoSize = true;
+            this.techinfoLabel.BackColor = System.Drawing.Color.Transparent;
             this.techinfoLabel.Font = new System.Drawing.Font("Lucida Console", 10.4F);
             this.techinfoLabel.Location = new System.Drawing.Point(-2, 69);
             this.techinfoLabel.Name = "techinfoLabel";
@@ -65,6 +67,7 @@
             // technicalCode
             // 
             this.technicalCode.AutoSize = true;
+            this.technicalCode.BackColor = System.Drawing.Color.Transparent;
             this.technicalCode.Font = new System.Drawing.Font("Lucida Console", 10.4F);
             this.technicalCode.Location = new System.Drawing.Point(-2, 101);
             this.technicalCode.Name = "technicalCode";
@@ -76,6 +79,7 @@
             // timeOut
             // 
             this.timeOut.AutoSize = true;
+            this.timeOut.BackColor = System.Drawing.Color.Transparent;
             this.timeOut.Font = new System.Drawing.Font("Lucida Console", 10.4F);
             this.timeOut.Location = new System.Drawing.Point(-2, 138);
             this.timeOut.Name = "timeOut";
@@ -94,6 +98,7 @@
             // 
             this.waterMarkText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.waterMarkText.AutoSize = true;
+            this.waterMarkText.BackColor = System.Drawing.Color.Transparent;
             this.waterMarkText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.waterMarkText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(198)))), ((int)(((byte)(198)))), ((int)(((byte)(198)))));
             this.waterMarkText.Location = new System.Drawing.Point(12, 364);

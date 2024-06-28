@@ -35,6 +35,12 @@ namespace UltimateBlueScreenSimulator
             {
                 this.Close();
             } else if (e.KeyCode == Keys.F7) { this.Close(); }
+            else if ((e.KeyCode == Keys.F2) && me.GetBool("windowed"))
+            {
+                string output = Program.dr.Screenshot(this);
+                Cursor.Show();
+                MessageBox.Show($"Image saved as {output}", "Screenshot taken", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void Initialization(object sender, EventArgs e)
@@ -55,18 +61,30 @@ namespace UltimateBlueScreenSimulator
                 bootmgrEnterContinue.BackColor = fg; bootmgrEnterContinue.ForeColor = bg; bootmgrEnterContinue.Text = txt["Continue"];
                 bootmgrEscapeExit.BackColor = fg; bootmgrEscapeExit.ForeColor = bg; bootmgrEscapeExit.Text = txt["Exit"];
 
-                bootmgrIntro.BackColor = bg; bootmgrIntro.ForeColor = fg; bootmgrIntro.Text = txt["Troubleshooting introduction"];
-                bootmgrTroubleshoot.BackColor = bg; bootmgrTroubleshoot.ForeColor = fg; bootmgrTroubleshoot.Text = txt["Troubleshooting"];
-                bootmgrConsultAdmin.BackColor = bg; bootmgrConsultAdmin.ForeColor = fg; bootmgrConsultAdmin.Text = txt["Troubleshooting without disc"];
-                bootmgrStatus.BackColor = bg; bootmgrStatus.ForeColor = fg; bootmgrStatus.Text = txt["Status"];
-                bootmgrInfo.BackColor = bg; bootmgrInfo.ForeColor = fg; bootmgrInfo.Text = txt["Info"];
+                bootmgrIntro.ForeColor = fg; bootmgrIntro.Text = txt["Troubleshooting introduction"];
+                bootmgrTroubleshoot.ForeColor = fg; bootmgrTroubleshoot.Text = txt["Troubleshooting"];
+                bootmgrConsultAdmin.ForeColor = fg; bootmgrConsultAdmin.Text = txt["Troubleshooting without disc"];
+                bootmgrStatus.ForeColor = fg; bootmgrStatus.Text = txt["Status"];
+                bootmgrInfo.ForeColor = fg; bootmgrInfo.Text = txt["Info"];
 
-                bootmgrStatusCode.BackColor = hbg; bootmgrStatusCode.ForeColor = hfg; bootmgrStatusCode.Text = me.GetString("code").ToLower();
-                bootmgrInfoDetails.BackColor = hbg; bootmgrInfoDetails.ForeColor = hfg; bootmgrInfoDetails.Text = txt["Error description"];
+                bootmgrStatusCode.BackColor = hbg != bg ? hbg : Color.Transparent; bootmgrStatusCode.ForeColor = hfg; bootmgrStatusCode.Text = me.GetString("code").ToLower();
+                bootmgrInfoDetails.BackColor = hbg != bg ? hbg : Color.Transparent; bootmgrInfoDetails.ForeColor = hfg; bootmgrInfoDetails.Text = txt["Error description"];
 
                 this.TopMost = false;
+                if (me.GetBool("rainbow"))
+                {
+                    Program.dr.DrawRainbow(this);
+                }
                 Program.loadfinished = true;
-                Program.dr.Init(this);
+                if (!me.GetBool("windowed"))
+                {
+                    Program.dr.Init(this);
+                } else
+                {
+                    this.Text = me.GetString("friendlyname");
+                    this.Icon = me.GetIcon();
+                    this.FormBorderStyle = FormBorderStyle.FixedSingle;
+                }
                 this.waterMarkText.Visible = me.GetBool("watermark");
                 int[] colors = { this.BackColor.R + 50, this.BackColor.G + 50, this.BackColor.B + 50 };
                 if (colors[0] > 255) { colors[0] -= 255; }

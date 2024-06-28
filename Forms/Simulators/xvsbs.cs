@@ -42,8 +42,8 @@ namespace UltimateBlueScreenSimulator
                 {
                     if (c is AliasedLabel)
                     {
-                        c.BackColor = this.BackColor;
-                        c.ForeColor = this.ForeColor;
+                        c.BackColor = Color.Transparent;
+                        c.ForeColor = Color.Transparent;
                     }
                 }
                 if (Program.gs.EnableEggs)
@@ -126,6 +126,10 @@ namespace UltimateBlueScreenSimulator
                     supportInfo.Location = new Point(supportInfo.Location.X, supportInfo.Location.Y + 39);
                     technicalCode.Location = new Point(technicalCode.Location.X, technicalCode.Location.Y + 39);
                     dumpLabel.Location = new Point(dumpLabel.Location.X, dumpLabel.Location.Y + 39);
+                }
+                if (me.GetBool("rainbow"))
+                {
+                    Program.dr.DrawRainbow(this);
                 }
                 naturalclose = false;
                 dumpLabel.Visible = me.GetBool("autoclose") && !me.GetBool("extrafile");
@@ -387,6 +391,12 @@ namespace UltimateBlueScreenSimulator
             {
                 Program.dr.Dispose();
                 Close();
+            }
+            else if ((e.KeyCode == Keys.F2) && me.GetBool("windowed"))
+            {
+                string output = Program.dr.Screenshot(this);
+                Cursor.Show();
+                MessageBox.Show($"Image saved as {output}", "Screenshot taken", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }

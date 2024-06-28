@@ -377,6 +377,12 @@ namespace UltimateBlueScreenSimulator
                 Program.dr.Dispose();
                 Close();
             }
+            else if ((e.KeyCode == Keys.F2) && me.GetBool("windowed"))
+            {
+                string output = Program.dr.Screenshot(this);
+                Cursor.Show();
+                MessageBox.Show($"Image saved as {output}", "Screenshot taken", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
     }
 }

@@ -20,7 +20,6 @@ namespace UltimateBlueScreenSimulator
         //If this flag is set, then help tabs are hidden and setting tabs are visible
         public bool SettingTab = false;
         public int tab_id = 0;
-        public bool DevBuild = Program.gs.DevBuild;
         public bool finished = false;
         readonly Random r = new Random();
         public AboutSettingsDialog()
@@ -43,7 +42,7 @@ namespace UltimateBlueScreenSimulator
             //Get assembly information about the program
             this.Text = String.Format("About {0}", AssemblyTitle);
             this.labelProductName.Text = "Blue Screen Simulator Plus";
-            if (DevBuild) { this.labelProductName.Text += " [Development Build]"; }
+            if (Program.gs.DevBuild) { this.labelProductName.Text += " [Development Build]"; }
             string asmVer = AssemblyVersion.Replace(".0", "");
             if (!asmVer.Contains("."))
             {
@@ -266,7 +265,7 @@ namespace UltimateBlueScreenSimulator
                 {
                     configList.Items.Add(new MaterialListBoxItem(bs.GetString("friendlyname")));
                 }
-                devFlowPanel.Visible = DevBuild;
+                devFlowPanel.Visible = Program.gs.DevBuild;
             }
             else if (aboutSettingsTabControl.SelectedTab.Text == "Command line help")
             {

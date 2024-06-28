@@ -121,6 +121,10 @@ namespace UltimateBlueScreenSimulator
                             me.GenHex(8, me.GetString("ecode4"))) + " ";
                         WriteText(formatted_text);
                         break;
+                    default:
+                        WriteTitle(titles["Main"]);
+                        WriteText(texts[screenmode] + " ");
+                        break;
                     
                 }
                 anyKeyMsg.Image = WriteWord(prompt, bg, fg);
@@ -293,6 +297,12 @@ namespace UltimateBlueScreenSimulator
             {
                 Program.dr.Dispose();
                 this.Close();
+            }
+            else if ((e.KeyCode == Keys.F2) && me.GetBool("windowed"))
+            {
+                string output = Program.dr.Screenshot(this);
+                Cursor.Show();
+                MessageBox.Show($"Image saved as {output}", "Screenshot taken", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 

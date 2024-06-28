@@ -8,6 +8,7 @@ using System.Threading;
 using System.Text.Json.Serialization;
 using System.Text.Json;
 using System.Linq;
+using System.Drawing.Drawing2D;
 
 //
 // This namespace contains classes that are shared between forms that specify
@@ -97,6 +98,32 @@ namespace SimulatorDatabase
             }
         }
 
+        public string Screenshot(Form meself)
+        {
+            meself.FormBorderStyle = FormBorderStyle.None;
+            WindowScreen wsw = new WindowScreen();
+            wsw.Width = meself.Width;
+            wsw.Height = meself.Height;
+            Draw(wsw);
+            wsw.Text = "Scaled window";
+            wsw.FormBorderStyle = FormBorderStyle.Sizable;
+            wsw.WindowState = FormWindowState.Normal;
+            wsw.Show();
+            meself.FormBorderStyle = FormBorderStyle.FixedSingle;
+            Image img = wsw.screenDisplay.Image;
+            string filename = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures) + "\\bssp_" + meself.Text + ".png";
+            try
+            {
+                img.Save(filename, System.Drawing.Imaging.ImageFormat.Png);
+            }
+            catch
+            {
+                filename = "error";
+            }
+            wsw.Close();
+            return filename;
+        }
+
         /// <summary>
         /// Closes upscaled displays and disposes them
         /// </summary>
@@ -131,6 +158,30 @@ namespace SimulatorDatabase
                     ws.Close();
                 }
             }
+        }
+
+        /// <summary>
+        /// Sets a rainbow gradient as the background image
+        /// </summary>
+        /// <param name="form">Form to set the background image to</param>
+        public void DrawRainbow(Form form)
+        {
+            LinearGradientBrush br = new LinearGradientBrush(form.ClientRectangle, Color.Black, Color.Black, 0, false);
+            ColorBlend cb = new ColorBlend();
+            cb.Positions = new[] { 0, 1 / 7f, 2 / 7f, 3 / 7f, 4 / 7f, 5 / 7f, 6 / 7f, 1 };
+            cb.Colors = new[] { Color.Violet, Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.Blue, Color.Indigo, Color.Violet };
+            br.InterpolationColors = cb;
+            // rotate
+            br.RotateTransform(45);
+            // paint
+            Bitmap bmp = new Bitmap(form.Width, form.Height);
+            
+            using (Graphics g = Graphics.FromImage(bmp))
+            {
+                g.FillRectangle(new SolidBrush(Color.Black), form.ClientRectangle);
+                g.FillRectangle(br, form.ClientRectangle);
+            }
+            form.BackgroundImage = bmp;
         }
 
         /// <summary>
@@ -1519,6 +1570,8 @@ namespace SimulatorDatabase
             switch (this.os)
             {
                 case "BOOTMGR":
+                    this.icon = "3D flag";
+                    SetString("friendlyname", "Windows Boot Manager (1024x768, Standard)");
                     SetTheme(RGB(0, 0, 0), RGB(192, 192, 192));
                     SetTheme(RGB(0, 0, 0), RGB(255, 255, 255), true);
                     SetFont("Consolas", 16.0f, FontStyle.Regular);
@@ -1534,10 +1587,10 @@ namespace SimulatorDatabase
                     SetString("code", "0x0000000e");
                     break;
                 case "Windows 1.x/2.x":
+                    SetString("friendlyname", "Windows 1.x/2.x (Text mode, Standard)");
                     SetTheme(RGB(0, 0, 170), RGB(255, 255, 255));
                     SetTheme(RGB(170, 170, 170), RGB(0, 0, 170), true);
                     SetInt("blink_speed", 100);
-                    SetString("friendlyname", "Windows 1.x/2.x (Text mode, Standard)");
                     SetBool("playsound", true);
                     SetString("qr_file", "local:1");
                     SetBool("font_support", false);
@@ -1546,18 +1599,19 @@ namespace SimulatorDatabase
                     SetString("qr_file", "local:1");
                     break;
                 case "Windows 3.1x":
+                    SetString("friendlyname", "Windows 3.1 (Text mode, Standard)");
                     SetTheme(RGB(0, 0, 170), RGB(255, 255, 255));
                     SetTheme(RGB(170, 170, 170), RGB(0, 0, 170), true);
                     SetInt("blink_speed", 100);
                     PushTitle("Main", "Windows");
                     PushText("No unresponsive programs", "Altough you can use CTRL+ALT+DEL to quit an application that has\r\nstopped responding to the system, there is no application in this\r\nstate.\r\n\r\nTo quit an application, use the application's quit or exit command,\r\nor choose the Close command from the Control menu.\r\n\r\n* Press any key to return to Windows\r\n* Press CTRL + ALT + DEL again to restart your computer.You will\r\nlose any unsaved information in all applications.");
                     PushText("Prompt", "Press any key to continue");
-                    SetString("friendlyname", "Windows 3.1 (Text mode, Standard)");
                     SetBool("font_support", false);
                     SetBool("blinkblink", true);
                     SetString("screen_mode", "No unresponsive programs");
                     break;
                 case "Windows 9x/Me":
+                    SetString("friendlyname", "Windows 9x/Millennium Edition (Text mode, Standard)");
                     SetTheme(RGB(0, 0, 170), RGB(255, 255, 255));
                     SetTheme(RGB(170, 170, 170), RGB(0, 0, 170), true);
                     SetInt("blink_speed", 100);
@@ -1573,15 +1627,16 @@ namespace SimulatorDatabase
                     PushText("Driver error", "A fatal exception {2} has occurred at {0}:{1} in VXD VMM(01) +\r\n{2}. The current application will be terminated.\r\n\r\n* Press any key to terminate current application\r\n* Press CTRL + ALT + DEL again to restart your computer. You will\r\n  lose any unsaved information in all applications.");
                     PushText("System is busy", "The system is busy waiting for the Close Program dialog box to be\r\ndisplayed. You can wait and see if it appears, or you can restart\r\nyour computer.\r\n\r\n* Press any key to return to Windows and wait.\r\n* Press CTRL + ALT + DEL again to restart your computer. You will\r\n  lose any unsaved information in programs that are running.");
                     PushText("System is unresponsive", "The system is either busy or has become unstable. You can wait and\r\nsee if it becomes available again, or you can restart your computer.\r\n\r\n* Press any key to return to Windows and wait.\r\n* Press CTRL + ALT + DEL again to restart your computer. You will\r\n  lose any unsaved information in programs that are running.");
+                    PushText("Windows RG (parody)", "WINDOWS IS BROKEN\r\nPLEASE REINSTALL WINDOWS");
                     PushText("Prompt", "Press any key to continue");
                     PushText("Unsafe eject", "The volume that was removed has open\r\nfiles on it. Next time please check first\r\nto see if the volume can really be removed.");
-                    SetString("friendlyname", "Windows 9x/Millennium Edition (Text mode, Standard)");
                     SetBool("font_support", false);
                     SetBool("blinkblink", true);
                     SetString("screen_mode", "System error");
                     break;
                 case "Windows CE":
                     this.icon = "3D flag";
+                    SetString("friendlyname", "Windows CE 5.0 and later (750x400, Standard)");
                     SetTheme(RGB(0, 0, 128), RGB(255, 255, 255));
                     PushText("A problem has occurred...", "A problem has occurred and Windows CE has been shut down to prevent damage to your\r\ncomputer.");
                     PushText("CTRL+ALT+DEL message", "If you will try to restart your computer, press Ctrl+Alt+Delete.");
@@ -1590,12 +1645,13 @@ namespace SimulatorDatabase
                     PushText("Restart message", "The computer will restart automatically\r\nafter {0} seconds.");
                     SetInt("timer", 30);
                     SetFont("Lucida Console", 10.4f, FontStyle.Regular);
-                    SetString("friendlyname", "Windows CE 5.0 and later (750x400, Standard)");
+                    SetBool("font_support", true);
 
                     SetString("code", "IRQL_NOT_LESS_OR_EQUAL (0x0000000A)");
                     break;
                 case "Windows NT 3.1":
                     this.os = "Windows NT 3.x/4.0";
+                    SetString("friendlyname", "Windows NT 3.1 (Text mode, Standard)");
                     SetTheme(RGB(0, 0, 160), RGB(170, 170, 170));
                     SetBool("threepointone", true);
                     PushText("Bootscreen", "Microsoft (R) Windows NT (TM) Version 3.1 [32320 Kb Memory]");
@@ -1606,7 +1662,6 @@ namespace SimulatorDatabase
                     PushText("Memory address dump table", "{0} {1} {2} {3} {4} {5} {6} - {7}");
                     PushText("Troubleshooting text", "Restart your computer. If this message reappears, do not restart.\r\nContact your system administrator or technical support group, and/or\r\nperipheral device vendor.");
                     SetInt("blink_speed", 100);
-                    SetString("friendlyname", "Windows NT 3.1 (Text mode, Standard)");
                     for (int n = 0; n < 10; n++)
                     {
                         string[] inspirn = { "RRRRRRRR", "RRRRRRRR" };
@@ -1627,6 +1682,7 @@ namespace SimulatorDatabase
                     break;
                 case "Windows NT 3.x/4.0":
                     this.icon = "2D flag";
+                    SetString("friendlyname", "Windows NT 4.0/3.5x (Text mode, Standard)");
                     SetTheme(RGB(0, 0, 160), RGB(170, 170, 170));
                     PushText("Error code formatting", "*** STOP: {0} ({1})");
                     PushText("CPUID formatting", "CPUID: {0} 6.3.3 irql:lf SYSVER 0xf0000565");
@@ -1637,7 +1693,6 @@ namespace SimulatorDatabase
                     PushText("Memory address dump table", "{0} {1} {2} {3} {4} {5}          - {6}");
                     PushText("Troubleshooting text", "Restart and set the recovery options in the system control panel\r\nor the /CRASHDEBUG system start option.");
                     SetInt("blink_speed", 100);
-                    SetString("friendlyname", "Windows NT 4.0/3.5x (Text mode, Standard)");
                     for (int n = 0; n < 40; n++)
                     {
                         string[] inspirn = { "RRRRRRRR", "RRRRRRRR" };
@@ -1655,13 +1710,13 @@ namespace SimulatorDatabase
                     SetBool("stack_trace", true);
                     break;
                 case "Windows 2000":
+                    SetString("friendlyname", "Windows 2000 Professional/Server Family (640x480, Standard)");
                     PushText("Error code formatting", "*** STOP: {0} ({1})");
                     PushText("Troubleshooting introduction", "If this is the first time you've seen this Stop error screen,\r\nrestart your computer. If this screen appears again, follow\r\nthese steps: ");
                     PushText("Troubleshooting text", "Check for viruses on your computer. Remove any newly installed\r\nhard drives or hard drive controllers. Check your hard drive\r\nto make sure it is properly configured and terminated.\r\nRun CHKDSK /F to check for hard drive corruption, and then\r\nrestart your computer.");
                     PushText("Additional troubleshooting information", "Refer to your Getting Started manual for more information on\r\ntroubleshooting Stop errors.");
                     PushText("File information", "*** Address {0} base at {1}, DateStamp {2} - {3}");
                     SetFont("Lucida Console", 8.0f, FontStyle.Bold);
-                    SetString("friendlyname", "Windows 2000 Professional/Server Family (640x480, Standard)");
                     SetTheme(RGB(0, 0, 128), RGB(255, 255, 255));
                     string[] inspirw2k = { "RRRRRRRR", "RRRRRRRR", "RRRRRRRR" };
                     SetString("culprit", GenFile(true));
@@ -1672,6 +1727,7 @@ namespace SimulatorDatabase
                     break;
                 case "Windows XP":
                     this.icon = "3D flag";
+                    SetString("friendlyname", "Windows XP (640x480, Standard)");
                     PushText("A problem has been detected...", "A problem has been detected and Windows has been shut down to prevent damage\r\nto your computer.");
                     PushText("Troubleshooting introduction", "If this is the first time you've seen this Stop error screen,\r\nrestart your computer. If this screen appears again, follow\r\nthese steps:");
                     PushText("Troubleshooting", "Check to make sure any new hardware or software is properly installed.\r\nIf this is a new installation, ask your hardware or software manufacturer\r\nfor any Windows updates you might need.\r\n\r\nIf problems continue, disable or remove any newly installed hardware\r\nor software. Disable BIOS memory options such as caching or shadowing.\r\nIf you need to use Safe mode to remove or disable components, restart\r\nyour computer, press F8 to select Advanced Startup Options, and then\r\nselect Safe Mode.");
@@ -1682,7 +1738,6 @@ namespace SimulatorDatabase
                     PushText("Technical support", "Contact your system administrator or technical support group for further\r\nassistance.");
                     SetBool("auto", true);
                     SetFont("Lucida Console", 9.7f, FontStyle.Regular);
-                    SetString("friendlyname", "Windows XP (640x480, Standard)");
                     string[] inspirb = { "RRRRRRRR", "RRRRRRRR", "RRRRRRRR" };
                     SetString("culprit", GenFile(true));
                     PushFile(GetString("culprit"), inspirb);
@@ -1695,6 +1750,7 @@ namespace SimulatorDatabase
                     break;
                 case "Windows Vista":
                     this.icon = "3D flag";
+                    SetString("friendlyname", "Windows Vista (640x480, Standard)");
                     PushText("A problem has been detected...", "A problem has been detected and Windows has been shut down to prevent damage\r\nto your computer.");
                     PushText("Troubleshooting introduction", "If this is the first time you've seen this Stop error screen,\r\nrestart your computer. If this screen appears again, follow\r\nthese steps:");
                     PushText("Troubleshooting", "Check to make sure any new hardware or software is properly installed.\r\nIf this is a new installation, ask your hardware or software manufacturer\r\nfor any Windows updates you might need.\r\n\r\nIf problems continue, disable or remove any newly installed hardware\r\nor software. Disable BIOS memory options such as caching or shadowing.\r\nIf you need to use Safe mode to remove or disable components, restart\r\nyour computer, press F8 to select Advanced Startup Options, and then\r\nselect Safe Mode.");
@@ -1709,7 +1765,6 @@ namespace SimulatorDatabase
                     PushText("Culprit file memory address", "***  {0} - Address {1} base at {2}, DateStamp {3}");
                     PushText("Technical support", "Contact your system admin or technical support group for further assistance.");
                     SetFont("Lucida Console", 9.4f, FontStyle.Regular);
-                    SetString("friendlyname", "Windows Vista (640x480, Standard)");
                     SetTheme(RGB(0, 0, 128), RGB(255, 255, 255));
 
                     SetBool("autoclose", true);
@@ -1722,6 +1777,7 @@ namespace SimulatorDatabase
                     break;
                 case "Windows 7":
                     this.icon = "3D flag";
+                    SetString("friendlyname", "Windows 7 (640x480, ClearType)");
                     PushText("A problem has been detected...", "A problem has been detected and Windows has been shut down to prevent damage\r\nto your computer.");
                     PushText("Troubleshooting introduction", "If this is the first time you've seen this Stop error screen,\r\nrestart your computer. If this screen appears again, follow\r\nthese steps:");
                     PushText("Troubleshooting", "Check to make sure any new hardware or software is properly installed.\r\nIf this is a new installation, ask your hardware or software manufacturer\r\nfor any Windows updates you might need.\r\n\r\nIf problems continue, disable or remove any newly installed hardware\r\nor software. Disable BIOS memory options such as caching or shadowing.\r\nIf you need to use Safe mode to remove or disable components, restart\r\nyour computer, press F8 to select Advanced Startup Options, and then\r\nselect Safe Mode.");
@@ -1736,7 +1792,6 @@ namespace SimulatorDatabase
                     PushText("Culprit file memory address", "***  {0} - Address {1} base at {2}, DateStamp {3}");
                     PushText("Technical support", "Contact your system admin or technical support group for further assistance.");
                     SetFont("Consolas", 9.4f, FontStyle.Regular);
-                    SetString("friendlyname", "Windows 7 (640x480, ClearType)");
                     SetTheme(RGB(0, 0, 128), RGB(255, 255, 255));
 
                     SetBool("autoclose", true);
@@ -1749,13 +1804,13 @@ namespace SimulatorDatabase
                     break;
                 case "Windows 8 Beta":
                     this.icon = "3D flag";
+                    SetString("friendlyname", "Windows 8 Beta (Native, ClearType)");
                     PushText("Your computer needs to restart", "Your computer needs to restart.");
                     PushText("Information text with dump", "It encountered a problem and will restart automatically.");
                     PushText("Error code", "Error: {0}");
                     PushText("Progress", "Collecting problem information:    {0} seconds remaining");
                     SetFont("Segoe UI", 26f, FontStyle.Regular);
                     SetTheme(RGB(0, 0, 0), RGB(255, 255, 255));
-                    SetString("friendlyname", "Windows 8 Beta (Native, ClearType)");
                     SetInt("margin-x", 250);
                     SetInt("margin-y", 220);
                     SetInt("timer", 10);
@@ -1766,13 +1821,13 @@ namespace SimulatorDatabase
                     break;
                 case "Windows 8/8.1":
                     this.icon = "3D window";
+                    SetString("friendlyname", "Windows 8/8.1 (Native, ClearType)");
                     SetString("emoticon", ":(");
                     PushText("Information text with dump", "Your PC ran into a problem and needs to restart. We're just\r\ncollecting some error info, and then you can restart. ({0}%\r\ncomplete)");
                     PushText("Information text without dump", "Your PC ran into a problem that it couldn't\r\nhandle and now it needs to restart.");
                     PushText("Error code", "You can search for the error online: {0}");
                     SetFont("Segoe UI Semilight", 19.4f, FontStyle.Regular);
                     SetTheme(RGB(16, 113, 170), RGB(255, 255, 255));
-                    SetString("friendlyname", "Windows 8/8.1 (Native, ClearType)");
                     SetInt("margin-x", 9);
                     SetInt("margin-y", 12);
 
@@ -1785,6 +1840,7 @@ namespace SimulatorDatabase
                 case "Windows 10":
                     this.icon = "3D window";
                     SetString("emoticon", ":(");
+                    SetString("friendlyname", "Windows 10 (Native, ClearType)");
                     PushText("Information text with dump", "Your PC ran into a problem and needs to restart. We're just\r\ncollecting some error info, and then we'll restart for you.");
                     PushText("Information text without dump", "Your PC ran into a problem and needs to restart. We're just\r\ncollecting some error info, and then you can restart.");
                     PushText("Additional information", "For more information about this issue and possible fixes, visit http://windows.com/stopcode");
@@ -1795,7 +1851,6 @@ namespace SimulatorDatabase
                     SetString("qr_file", "local:0");
                     SetFont("Segoe UI Semilight", 19.4f, FontStyle.Regular);
                     SetTheme(RGB(16, 113, 170), RGB(255, 255, 255));
-                    SetString("friendlyname", "Windows 10 (Native, ClearType)");
                     SetInt("margin-x", 9);
                     SetInt("margin-y", 12);
 
@@ -1811,6 +1866,7 @@ namespace SimulatorDatabase
                     break;
                 case "Windows 11":
                     this.icon = "2D window";
+                    SetString("friendlyname", "Windows 11 (Native, ClearType)");
                     SetString("emoticon", ":(");
                     PushText("Information text with dump", "Your device ran into a problem and needs to restart. We're just\r\ncollecting some error info, and then we'll restart for you.");
                     PushText("Information text without dump", "Your device ran into a problem and needs to restart. We're just\r\ncollecting some error info, and then you can restart.");
@@ -1822,7 +1878,6 @@ namespace SimulatorDatabase
                     SetString("qr_file", "local:0");
                     SetFont("Segoe UI Semilight", 18.4f, FontStyle.Regular);
                     SetTheme(RGB(22, 60, 141), RGB(255, 255, 255));
-                    SetString("friendlyname", "Windows 11 (Native, ClearType)");
                     SetInt("margin-x", 9);
                     SetInt("margin-y", 12);
 

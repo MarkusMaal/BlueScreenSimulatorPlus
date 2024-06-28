@@ -30,6 +30,12 @@ namespace UltimateBlueScreenSimulator
             {
                 Close();
             }
+            else if ((e.KeyCode == Keys.F2) && me.GetBool("windowed"))
+            {
+                string output = Program.dr.Screenshot(this);
+                Cursor.Show();
+                MessageBox.Show($"Image saved as {output}", "Screenshot taken", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private float DpiDelta(float emSize)
@@ -87,6 +93,10 @@ namespace UltimateBlueScreenSimulator
                     this.WindowState = FormWindowState.Maximized;
                     // for multimonitor support
                     Program.dr.Init(this, true);
+                }
+                if (me.GetBool("rainbow"))
+                {
+                    Program.dr.DrawRainbow(this);
                 }
                 Program.loadfinished = true;
             } catch (Exception ex)

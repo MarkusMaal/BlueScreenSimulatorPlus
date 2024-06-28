@@ -63,7 +63,6 @@ namespace UltimateBlueScreenSimulator
                 verifile = new Verifile();
                 verificate = verifile.Verify;
                 gs.Log("Info", "Verifile passed");
-                gs.DevBuild = true;
                 if ((gs.SingleSim != "") && verificate)
                 {
                     templates = new TemplateRegistry();

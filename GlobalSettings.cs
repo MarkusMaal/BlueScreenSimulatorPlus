@@ -118,7 +118,7 @@ namespace UltimateBlueScreenSimulator
             enableeggs = true;
             randomness = false;
             autodark = true;
-            devmode = false;
+            devmode = true;
             singlesim = "";
             update_server = "http://markustegelane.eu/app/";
 

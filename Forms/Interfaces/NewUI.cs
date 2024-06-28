@@ -337,6 +337,7 @@ namespace UltimateBlueScreenSimulator
             {
                 me.Crash(ex, "OrangeScreen");
             }
+            rainbowBox.Visible = me.GetBool("font_support") || me.GetString("os") == "BOOTMGR";
             // set control visibility for specific OS-es
             switch (me.GetString("os"))
             {
@@ -449,6 +450,9 @@ namespace UltimateBlueScreenSimulator
                     halfBox.Visible = true;
                     winPanel.Enabled = !me.GetBool("halfres");
                     break;
+                case "BOOTMGR":
+                    winMode.Visible = true;
+                    break;
             }
             bool inlist = false;
             foreach (string item in comboBox1.Items)
@@ -456,6 +460,17 @@ namespace UltimateBlueScreenSimulator
                 if (item == me.GetString("code"))
                 {
                     inlist = true;
+                }
+            }
+            if (nineXmessage.Visible)
+            {
+                comboBox2.Items.Clear();
+                foreach (string text in me.GetTexts().Keys)
+                {
+                    if (text != "Prompt")
+                    {
+                        comboBox2.Items.Add(text);
+                    }
                 }
             }
             //codeCustomizationToolStripMenuItem.Enabled = eCodeEditButton.Visible;
@@ -480,6 +495,7 @@ namespace UltimateBlueScreenSimulator
             countdownBox.Checked = me.GetBool("countdown");
             displayOsBox.Checked = me.GetBool("bootscreen");
             halfBox.Checked = me.GetBool("halfres");
+            rainbowBox.Checked = me.GetBool("rainbow");
             if (acpiBox.Checked)
             {
                 dumpBox.Enabled = false;
@@ -1407,6 +1423,11 @@ namespace UltimateBlueScreenSimulator
             {
                 nostartup.Checked = true;
             }
+        }
+
+        private void rainbowBox_CheckedChanged(object sender, EventArgs e)
+        {
+            me.SetBool("rainbow", rainbowBox.Checked);
         }
     }
 }

@@ -58,7 +58,7 @@
             // 
             // bootmgrIntro
             // 
-            this.bootmgrIntro.BackColor = System.Drawing.Color.Black;
+            this.bootmgrIntro.BackColor = System.Drawing.Color.Transparent;
             this.bootmgrIntro.Font = new System.Drawing.Font("Consolas", 16F);
             this.bootmgrIntro.ForeColor = System.Drawing.Color.Silver;
             this.bootmgrIntro.Location = new System.Drawing.Point(28, 81);
@@ -70,7 +70,7 @@
             // 
             // bootmgrTroubleshoot
             // 
-            this.bootmgrTroubleshoot.BackColor = System.Drawing.Color.Black;
+            this.bootmgrTroubleshoot.BackColor = System.Drawing.Color.Transparent;
             this.bootmgrTroubleshoot.Font = new System.Drawing.Font("Consolas", 16F);
             this.bootmgrTroubleshoot.ForeColor = System.Drawing.Color.Silver;
             this.bootmgrTroubleshoot.Location = new System.Drawing.Point(58, 166);
@@ -82,7 +82,7 @@
             // 
             // bootmgrConsultAdmin
             // 
-            this.bootmgrConsultAdmin.BackColor = System.Drawing.Color.Black;
+            this.bootmgrConsultAdmin.BackColor = System.Drawing.Color.Transparent;
             this.bootmgrConsultAdmin.Font = new System.Drawing.Font("Consolas", 16F);
             this.bootmgrConsultAdmin.ForeColor = System.Drawing.Color.Silver;
             this.bootmgrConsultAdmin.Location = new System.Drawing.Point(28, 282);
@@ -118,7 +118,7 @@
             // 
             // bootmgrStatus
             // 
-            this.bootmgrStatus.BackColor = System.Drawing.Color.Black;
+            this.bootmgrStatus.BackColor = System.Drawing.Color.Transparent;
             this.bootmgrStatus.Font = new System.Drawing.Font("Consolas", 16F);
             this.bootmgrStatus.ForeColor = System.Drawing.Color.Silver;
             this.bootmgrStatus.Location = new System.Drawing.Point(81, 451);
@@ -129,7 +129,7 @@
             // 
             // bootmgrInfo
             // 
-            this.bootmgrInfo.BackColor = System.Drawing.Color.Black;
+            this.bootmgrInfo.BackColor = System.Drawing.Color.Transparent;
             this.bootmgrInfo.Font = new System.Drawing.Font("Consolas", 16F);
             this.bootmgrInfo.ForeColor = System.Drawing.Color.Silver;
             this.bootmgrInfo.Location = new System.Drawing.Point(81, 507);
@@ -140,7 +140,7 @@
             // 
             // bootmgrStatusCode
             // 
-            this.bootmgrStatusCode.BackColor = System.Drawing.Color.Black;
+            this.bootmgrStatusCode.BackColor = System.Drawing.Color.Transparent;
             this.bootmgrStatusCode.Font = new System.Drawing.Font("Consolas", 16F);
             this.bootmgrStatusCode.ForeColor = System.Drawing.Color.White;
             this.bootmgrStatusCode.Location = new System.Drawing.Point(182, 451);
@@ -151,7 +151,7 @@
             // 
             // bootmgrInfoDetails
             // 
-            this.bootmgrInfoDetails.BackColor = System.Drawing.Color.Black;
+            this.bootmgrInfoDetails.BackColor = System.Drawing.Color.Transparent;
             this.bootmgrInfoDetails.Font = new System.Drawing.Font("Consolas", 16F);
             this.bootmgrInfoDetails.ForeColor = System.Drawing.Color.White;
             this.bootmgrInfoDetails.Location = new System.Drawing.Point(161, 507);
@@ -168,6 +168,7 @@
             // waterMarkText
             // 
             this.waterMarkText.AutoSize = true;
+            this.waterMarkText.BackColor = System.Drawing.Color.Transparent;
             this.waterMarkText.ForeColor = System.Drawing.Color.DimGray;
             this.waterMarkText.Location = new System.Drawing.Point(853, 709);
             this.waterMarkText.Name = "waterMarkText";
@@ -194,6 +195,7 @@
             this.Controls.Add(this.bootmgrTitle);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "BootMgr";
             this.Text = "Windows Boot Manager error screen simulator";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Unloading);

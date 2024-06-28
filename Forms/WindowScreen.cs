@@ -23,6 +23,11 @@ namespace UltimateBlueScreenSimulator
             else { this.Text += " (secondary)"; }
         }
 
+        internal void ShowCursor()
+        {
+            Cursor.Show();
+        }
+
         private void WindowScreen_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (!Program.gs.PM_Lockout) { this.Hide(); }

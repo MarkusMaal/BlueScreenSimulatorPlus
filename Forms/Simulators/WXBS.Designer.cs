@@ -53,6 +53,7 @@
             // 
             // verticalFlowPanel
             // 
+            this.verticalFlowPanel.BackColor = System.Drawing.Color.Transparent;
             this.verticalFlowPanel.Controls.Add(this.emoticonLabel);
             this.verticalFlowPanel.Controls.Add(this.yourPCranLabel);
             this.verticalFlowPanel.Controls.Add(this.progressIndicator);
@@ -130,6 +131,7 @@
             // 
             // supportContainer
             // 
+            this.supportContainer.BackColor = System.Drawing.Color.Transparent;
             this.supportContainer.Controls.Add(this.errorCode);
             this.supportContainer.Controls.Add(this.supportInfo);
             this.supportContainer.Location = new System.Drawing.Point(201, 440);
@@ -168,6 +170,7 @@
             // 
             this.waterMarkText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.waterMarkText.AutoSize = true;
+            this.waterMarkText.BackColor = System.Drawing.Color.Transparent;
             this.waterMarkText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.waterMarkText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(163)))), ((int)(((byte)(230)))));
             this.waterMarkText.Location = new System.Drawing.Point(1050, 670);
@@ -179,6 +182,7 @@
             // memCodes
             // 
             this.memCodes.AutoSize = true;
+            this.memCodes.BackColor = System.Drawing.Color.Transparent;
             this.memCodes.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.memCodes.Location = new System.Drawing.Point(-3, 1);
             this.memCodes.Name = "memCodes";
@@ -223,6 +227,7 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.WXBS_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.WXBS_FormClosed);
             this.Load += new System.EventHandler(this.WXBS_Load);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.WXBS_Paint);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.WXBS_KeyDown);
             this.Resize += new System.EventHandler(this.WXBS_Resize);
             this.verticalFlowPanel.ResumeLayout(false);

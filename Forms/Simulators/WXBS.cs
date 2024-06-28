@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 using SimulatorDatabase;
 
@@ -129,6 +130,10 @@ namespace UltimateBlueScreenSimulator
                     {
                         Cursor.Hide();
                     }
+                }
+                if (me.GetBool("rainbow"))
+                {
+                    Program.dr.DrawRainbow(this);
                 }
                 emoticonLabel.Padding = new Padding(0, Convert.ToInt32(this.Height * ((double)me.GetInt("margin-y") / 100.0)), 0, 0);
                 qrMargin.Width = Convert.ToInt32(this.Width * ((double)me.GetInt("margin-x") / 100.0)) - 10;
@@ -348,6 +353,16 @@ namespace UltimateBlueScreenSimulator
                 Program.f1.me.GetString("a");
                 Close();
             }
+            else if ((e.KeyCode == Keys.F2) && me.GetBool("windowed"))
+            {
+                string output = Program.dr.Screenshot(this);
+                Cursor.Show();
+                MessageBox.Show($"Image saved as {output}", "Screenshot taken", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void WXBS_Paint(object sender, PaintEventArgs e)
+        {
         }
     }
 }

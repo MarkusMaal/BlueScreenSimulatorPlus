@@ -41,6 +41,7 @@
             // HeaderLabel
             // 
             this.HeaderLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.HeaderLabel.BackColor = System.Drawing.Color.Transparent;
             this.HeaderLabel.Font = new System.Drawing.Font("Segoe UI", 26F);
             this.HeaderLabel.Location = new System.Drawing.Point(250, 220);
             this.HeaderLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -52,6 +53,7 @@
             // DetailsLabel
             // 
             this.DetailsLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.DetailsLabel.BackColor = System.Drawing.Color.Transparent;
             this.DetailsLabel.Location = new System.Drawing.Point(250, 272);
             this.DetailsLabel.Name = "DetailsLabel";
             this.DetailsLabel.Size = new System.Drawing.Size(773, 56);
@@ -61,6 +63,7 @@
             // ProgressLabel
             // 
             this.ProgressLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.ProgressLabel.BackColor = System.Drawing.Color.Transparent;
             this.ProgressLabel.Font = new System.Drawing.Font("Segoe UI", 15.5F);
             this.ProgressLabel.Location = new System.Drawing.Point(250, 428);
             this.ProgressLabel.Name = "ProgressLabel";
@@ -76,11 +79,12 @@
             // Watermark
             // 
             this.Watermark.AutoSize = true;
+            this.Watermark.BackColor = System.Drawing.Color.Transparent;
             this.Watermark.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.Watermark.ForeColor = System.Drawing.Color.DimGray;
             this.Watermark.Location = new System.Drawing.Point(12, 9);
             this.Watermark.Name = "Watermark";
-            this.Watermark.Size = new System.Drawing.Size(181, 20);
+            this.Watermark.Size = new System.Drawing.Size(145, 15);
             this.Watermark.TabIndex = 3;
             this.Watermark.Text = "blue screen simulator plus";
             // 

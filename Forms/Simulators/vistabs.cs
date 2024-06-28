@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Windows.Forms;
 using SimulatorDatabase;
@@ -63,8 +64,8 @@ namespace UltimateBlueScreenSimulator
                 {
                     if (c is AliasedLabel)
                     {
-                        c.BackColor = this.BackColor;
-                        c.ForeColor = this.ForeColor;
+                        c.BackColor = Color.Transparent;
+                        c.ForeColor = Color.Transparent;
                     }
                 }
                 if (Program.gs.EnableEggs)
@@ -153,7 +154,6 @@ namespace UltimateBlueScreenSimulator
                 if (colors[1] > 255) { colors[1] -= 255; }
                 if (colors[2] > 255) { colors[2] -= 255; }
                 waterMarkText.ForeColor = Color.FromArgb(colors[0], colors[1], colors[2]);
-                Program.loadfinished = true;
                 if (fullscreen)
                 {
                     this.TopMost = false;
@@ -177,6 +177,11 @@ namespace UltimateBlueScreenSimulator
                     dumpText.Visible = false;
                     introductionText.Visible = false;
                 }
+                if (me.GetBool("rainbow"))
+                {
+                    Program.dr.DrawRainbow(this);
+                }
+                Program.loadfinished = true;
             } catch (Exception ex)
             {
                 Program.loadfinished = true;
@@ -470,6 +475,12 @@ namespace UltimateBlueScreenSimulator
             {
                 Program.dr.Dispose();
                 Close();
+            }
+            else if ((e.KeyCode == Keys.F2) && me.GetBool("windowed"))
+            {
+                string output = Program.dr.Screenshot(this);
+                Cursor.Show();
+                MessageBox.Show($"Image saved as {output}", "Screenshot taken", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }
