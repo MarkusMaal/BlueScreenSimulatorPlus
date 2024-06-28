@@ -10,16 +10,12 @@ namespace UltimateBlueScreenSimulator
 {
     public partial class IndexForm : MaterialForm
     {
+        // NOTE: NT code editor is no longer available through this form. Please use NTdtor instead!
         internal BlueScreen me;
         public string c1 = "RRRRRRRRRRRRRRRR";
         public string c2 = "RRRRRRRRRRRRRRRR";
         public string c3 = "RRRRRRRRRRRRRRRR";
         public string c4 = "RRRRRRRRRRRRRRRR";
-        public bool nt_edit = false;
-
-        int nt_id = 0;
-
-        string ncodes = "";
 
         public IndexForm()
         {
@@ -231,51 +227,6 @@ namespace UltimateBlueScreenSimulator
             this.Close();
         }
 
-        private void ReAdd(string keyname = "")
-        {
-            ntEntryChooser.Items.Clear();
-            foreach (KeyValuePair<string, string[]> ntvalue in me.GetFiles())
-            {
-                string item_string = ntvalue.Key + " - ";
-                foreach (string code in ntvalue.Value)
-                {
-                    item_string += code + ", ";
-                }
-                ntEntryChooser.Items.Add(item_string.Substring(0, item_string.Length - 2));
-            }
-            if (ntEntryChooser.Items.Count > 0)
-            {
-                if (keyname == "")
-                {
-                    ntEntryChooser.SelectedIndex = 0;
-                }
-                else
-                {
-                    for (int i = 0; i < ntEntryChooser.Items.Count; i++)
-                    {
-                        string filename = ntEntryChooser.Items[i].ToString().Split('-')[0];
-                        filename = filename.Substring(0, filename.Length - 1);
-                        if (filename == keyname)
-                        {
-                            ntEntryChooser.SelectedIndex = i;
-                            break;
-                        }
-                    }
-
-                }
-            } else
-            {
-                if (Program.gs.EnableEggs)
-                {
-                    MessageBox.Show("Nothing useful here.", "NT advanced options", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                } else
-                {
-                    MessageBox.Show("Dictionary that contains Windows NT file codes is empty.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                this.Close();
-            }
-        }
-
         private void Initialize(object sender, EventArgs e)
         {
             // old method of setting night theme
@@ -310,41 +261,10 @@ namespace UltimateBlueScreenSimulator
                 this.Close();
                 return;
             }
-            if (whitelist.Contains(me.GetString("os"))&& (nt_edit))
-            {
-                foreach (Control c in this.Controls) { c.Visible = false; }
-                panel1.Visible = true;
-                okButton.Visible = true;
-                ReAdd();
-            }
-            else
-            {
-                if (nt_edit)
-                {
-                    MessageBox.Show("This operating system does not support advanced NT options", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    this.Close();
-                }
-            }
             methodLabel.Text = DispCodes(c1, c2, c3, c4);
-            if (!nt_edit)
-            {
-                this.Text = "Error code generation - " + me.GetString("friendlyname");
-            }
-            else
-            {
-                this.Text = "Windows NT advanced options - " + me.GetString("friendlyname");
-
-                if (me.GetString("os") != "Windows NT 3.x/4.0")
-                {
-                    ntFlowPanel.Visible = false;
-                }
-            }
+            this.Text = "Error code generation - " + me.GetString("friendlyname");
             chooseCode1.Checked = false;
             chooseCode1.Checked = true;
-            if (me.GetBool("threepointone"))
-            {
-                add6Button.Text = "Add file (7 codes)";
-            }
         }
 
         private string DispCodes(string c1, string c2, string c3, string c4)
@@ -449,207 +369,9 @@ namespace UltimateBlueScreenSimulator
             null16.PerformClick();
         }
 
-        private void FileChooser(object sender, EventArgs e)
-        {
-            ChooseFile cf = new ChooseFile();
-            if (cf.ShowDialog() == DialogResult.OK)
-            {
-                fileBox.Text = cf.fileBrowser.SelectedItems[0].Text;
-            }
-        }
-
-        private void NTEntryChooser(object sender, EventArgs e)
-        {
-            string filename = ntEntryChooser.SelectedItem.ToString().Split('-')[0];
-            filename = filename.Substring(0, filename.Length - 1);
-            fileBox.Text = filename;
-            SwitchBlock(1);
-        }
-
-
-        private void FileRenamer(object sender, EventArgs e)
-        {
-            if (me.GetString("os") != "Windows NT 3.x/4.0")
-            {
-                me.SetString("culprit", fileBox.Text);
-            }
-            ReloadFiles();
-        }
-
-        private void ReloadFiles()
-        {
-            foreach (KeyValuePair<string, string[]> kvp in me.GetFiles())
-            {
-                string filename = ntEntryChooser.SelectedItem?.ToString().Split('-')[0];
-                if (filename == null)
-                {
-                    filename = "null.sys";
-                }
-                filename = filename.Substring(0, filename.Length - 1);
-                if (kvp.Key == filename)
-                {
-                    me.RenameFile(ntEntryChooser.SelectedIndex, fileBox.Text);
-                    ntEntryChooser.Items.Clear();
-                    ReAdd(fileBox.Text);
-                    break;
-                }
-            }
-        }
-
-        void SwitchBlock(int id)
-        {
-            try
-            {
-                nt_id = id - 1;
-                ncodes = me.GetFiles()[ntEntryChooser.SelectedIndex].Value[nt_id];
-                foreach (Control c in ntCodeChooser.Controls)
-                {
-                    c.Enabled = (c.Text != id.ToString());
-                    c.Visible = (Convert.ToInt32(c.Text) <= me.GetFiles()[ntEntryChooser.SelectedIndex].Value.Length);
-                }
-                codeLabel.Text = "Code " + id.ToString();
-                UpdateCode();
-            } catch (Exception ex)
-            {
-                MessageBox.Show($"Error switching active block!\n\n{ex.Message}\n{ex.StackTrace}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        void UpdateCode()
-        {
-            for (int x = 1; x < 9; x++)
-            {
-                tableLayoutPanel2.Controls["ntc" + x.ToString()].Text = ncodes[x - 1].ToString();
-            }
-        }
-
-        void WriteValue()
-        {
-            me.SetFile(ntEntryChooser.SelectedIndex, nt_id, ncodes);
-            ReAdd(fileBox.Text);
-        }
-
-        private void Section1(object sender, EventArgs e) { SwitchBlock(1); }
-        private void Section2(object sender, EventArgs e) { SwitchBlock(2); }
-        private void Section3(object sender, EventArgs e) { SwitchBlock(3); }
-        private void Section4(object sender, EventArgs e) { SwitchBlock(4); }
-        private void Section5(object sender, EventArgs e) { SwitchBlock(5); }
-        private void Section6(object sender, EventArgs e) { SwitchBlock(6); }
-        private void Section7(object sender, EventArgs e) { SwitchBlock(7); }
-
-        private void SetCharAt(int index, string value)
-        {
-            ncodes = ncodes.Substring(0, index) + value + ncodes.Substring(index + 1);
-            int backup = nt_id + 1;
-            UpdateCode();
-            WriteValue();
-            SwitchBlock(backup);
-        }
-
-        private void NTNullButtonClick(object sender, EventArgs e)
-        {
-            ncodes = "00000000";
-            int backup = nt_id + 1;
-            UpdateCode();
-            WriteValue();
-            SwitchBlock(backup);
-        }
-
-        private void NTRandButtonClick(object sender, EventArgs e)
-        {
-            ncodes = "RRRRRRRR";
-            int backup = nt_id + 1;
-            UpdateCode();
-            WriteValue();
-            SwitchBlock(backup);
-        }
-
-        private void Ntr1_Click(object sender, EventArgs e) { SetCharAt(0, "R"); }
-        private void Ntr2_Click(object sender, EventArgs e) { SetCharAt(1, "R"); }
-        private void Ntr3_Click(object sender, EventArgs e) { SetCharAt(2, "R"); }
-        private void Ntr4_Click(object sender, EventArgs e) { SetCharAt(3, "R"); }
-        private void Ntr5_Click(object sender, EventArgs e) { SetCharAt(4, "R"); }
-        private void Ntr6_Click(object sender, EventArgs e) { SetCharAt(5, "R"); }
-        private void Ntr7_Click(object sender, EventArgs e) { SetCharAt(6, "R"); }
-        private void Ntr8_Click(object sender, EventArgs e) { SetCharAt(7, "R"); }
-
-        private void Ntn1_Click(object sender, EventArgs e) { SetCharAt(0, "0"); }
-        private void Ntn2_Click(object sender, EventArgs e) { SetCharAt(1, "0"); }
-        private void Ntn3_Click(object sender, EventArgs e) { SetCharAt(2, "0"); }
-        private void Ntn4_Click(object sender, EventArgs e) { SetCharAt(3, "0"); }
-        private void Ntn5_Click(object sender, EventArgs e) { SetCharAt(4, "0"); }
-        private void Ntn6_Click(object sender, EventArgs e) { SetCharAt(5, "0"); }
-        private void Ntn7_Click(object sender, EventArgs e) { SetCharAt(6, "0"); }
-        private void Ntn8_Click(object sender, EventArgs e) { SetCharAt(7, "0"); }
-
-
-        private void SetCustom(char letter)
-        {
-            foreach (Control c in tableLayoutPanel2.Controls)
-            {
-                if (c is MaterialTextBox tb)
-                {
-                    if (tb.Focused)
-                    {
-                        int id = Convert.ToInt32(tb.Name.Replace("ntt", ""));
-                        SetCharAt(id - 1, letter.ToString());
-                        c.Text = "";
-                        break;
-                    }
-                }
-            }
-        }
-
-        private void NTCustomCode(object sender, KeyEventArgs e)
-        {
-            switch (e.KeyCode)
-            {
-                case Keys.D0: SetCustom('0'); break;
-                case Keys.D1: SetCustom('1'); break;
-                case Keys.D2: SetCustom('2'); break;
-                case Keys.D3: SetCustom('3'); break;
-                case Keys.D4: SetCustom('4'); break;
-                case Keys.D5: SetCustom('5'); break;
-                case Keys.D6: SetCustom('6'); break;
-                case Keys.D7: SetCustom('7'); break;
-                case Keys.D8: SetCustom('8'); break;
-                case Keys.D9: SetCustom('9'); break;
-                case Keys.A: SetCustom('A'); break;
-                case Keys.B: SetCustom('B'); break;
-                case Keys.C: SetCustom('C'); break;
-                case Keys.D: SetCustom('D'); break;
-                case Keys.E: SetCustom('E'); break;
-                case Keys.F: SetCustom('F'); break;
-            }
-        }
-
         private void NTOkButtonClick(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void deleteNTfileButton_Click(object sender, EventArgs e)
-        {
-            me.RemoveFile(ntEntryChooser.SelectedIndex);
-            ReloadFiles();
-        }
-
-        private void add6Button_Click(object sender, EventArgs e)
-        {
-            if (!me.GetBool("threepointone"))
-            {
-                me.PushFile(me.GenFile(), new string[] { "RRRRRRRR", "RRRRRRRR", "RRRRRRRR", "RRRRRRRR", "RRRRRRRR", "RRRRRRRR" });
-            } else
-            {
-                me.PushFile(me.GenFile(), new string[] { "RRRRRRRR", "RRRRRRRR", "RRRRRRRR", "RRRRRRRR", "RRRRRRRR", "RRRRRRRR", "RRRRRRRR" });
-            }
-            ReloadFiles();
-        }
-
-        private void add2Button_Click(object sender, EventArgs e)
-        {
-            me.PushFile(me.GenFile(), new string[] { "RRRRRRRR", "RRRRRRRR" });
-            ReloadFiles();
         }
 
         private void fileBox_TabStopChanged(object sender, EventArgs e)

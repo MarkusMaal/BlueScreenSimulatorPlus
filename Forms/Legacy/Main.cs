@@ -11,6 +11,7 @@ using System.Net.NetworkInformation;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Windows.Media.Animation;
+using UltimateBlueScreenSimulator.Forms.Interfaces;
 namespace UltimateBlueScreenSimulator
 {
     // DEPRECATED: Avoid making changes to this form unless absolutely neccessary! Use NewUI instead!
@@ -1553,9 +1554,8 @@ namespace UltimateBlueScreenSimulator
         private void AdvancedNTOptionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             int backup = windowVersion.SelectedIndex;
-            IndexForm iform = new IndexForm
+            NTdtor iform = new NTdtor
             {
-                nt_edit = true,
                 me = me
             };
             iform.ShowDialog();

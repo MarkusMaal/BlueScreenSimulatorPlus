@@ -76,6 +76,7 @@
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CLIProcessor.cs" />
@@ -96,6 +97,12 @@
     </Compile>
     <Compile Include="Forms\Interfaces\MessageTableEditor.Designer.cs">
       <DependentUpon>MessageTableEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Interfaces\NTdtor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Interfaces\NTdtor.Designer.cs">
+      <DependentUpon>NTdtor.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Simulators\BootMgr.cs">
       <SubType>Form</SubType>
@@ -194,6 +201,9 @@
     <Compile Include="Forms\Interfaces\PrankMode.Designer.cs">
       <DependentUpon>PrankMode.cs</DependentUpon>
     </Compile>
+    <Compile Include="MaterialSkin\Controls\SizableMaterialButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Forms\Interfaces\ProgressTuner.cs">
       <SubType>Form</SubType>
@@ -289,6 +299,9 @@
     <EmbeddedResource Include="Forms\Interfaces\MessageTableEditor.resx">
       <DependentUpon>MessageTableEditor.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Interfaces\NTdtor.resx">
+      <DependentUpon>NTdtor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Simulators\BootMgr.resx">
       <DependentUpon>BootMgr.cs</DependentUpon>
     </EmbeddedResource>
@@ -340,6 +353,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Interfaces\ProgressTuner.resx">
       <DependentUpon>ProgressTuner.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MaterialSkin\Controls\SizableMaterialButton.resx">
+      <DependentUpon>SizableMaterialButton.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

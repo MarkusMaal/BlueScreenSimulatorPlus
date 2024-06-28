@@ -65,6 +65,7 @@
             this.countdownBox = new MaterialSkin.Controls.MaterialCheckbox();
             this.button2 = new MaterialSkin.Controls.MaterialButton();
             this.customizeCodesButton = new MaterialSkin.Controls.MaterialButton();
+            this.halfBox = new MaterialSkin.Controls.MaterialCheckbox();
             this.materialTabControl1 = new MaterialSkin.Controls.MaterialTabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
@@ -95,7 +96,6 @@
             this.updateCheckerTimer = new System.Windows.Forms.Timer(this.components);
             this.prankModeTimer = new System.Windows.Forms.Timer(this.components);
             this.waitPopup = new System.Windows.Forms.Timer(this.components);
-            this.halfBox = new MaterialSkin.Controls.MaterialCheckbox();
             this.winPanel.SuspendLayout();
             this.ntPanel.SuspendLayout();
             this.materialTabControl1.SuspendLayout();
@@ -151,7 +151,7 @@
             this.dumpBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.dumpBox.Depth = 0;
             this.dumpBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.dumpBox.Location = new System.Drawing.Point(673, 0);
+            this.dumpBox.Location = new System.Drawing.Point(0, 450);
             this.dumpBox.Margin = new System.Windows.Forms.Padding(0);
             this.dumpBox.MouseLocation = new System.Drawing.Point(-1, -1);
             this.dumpBox.MouseState = MaterialSkin.MouseState.HOVER;
@@ -171,7 +171,7 @@
             this.winPanel.Controls.Add(this.win1startup);
             this.winPanel.Controls.Add(this.win2startup);
             this.winPanel.Controls.Add(this.nostartup);
-            this.winPanel.Location = new System.Drawing.Point(676, 40);
+            this.winPanel.Location = new System.Drawing.Point(676, 3);
             this.winPanel.Name = "winPanel";
             this.winPanel.Size = new System.Drawing.Size(239, 111);
             this.winPanel.TabIndex = 7;
@@ -537,7 +537,7 @@
             this.playSndBox.AutoSize = true;
             this.playSndBox.Depth = 0;
             this.playSndBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.playSndBox.Location = new System.Drawing.Point(673, 191);
+            this.playSndBox.Location = new System.Drawing.Point(673, 154);
             this.playSndBox.Margin = new System.Windows.Forms.Padding(0);
             this.playSndBox.MouseLocation = new System.Drawing.Point(-1, -1);
             this.playSndBox.MouseState = MaterialSkin.MouseState.HOVER;
@@ -558,7 +558,7 @@
             this.waterBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.waterBox.Depth = 0;
             this.waterBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.waterBox.Location = new System.Drawing.Point(673, 228);
+            this.waterBox.Location = new System.Drawing.Point(673, 191);
             this.waterBox.Margin = new System.Windows.Forms.Padding(0);
             this.waterBox.MouseLocation = new System.Drawing.Point(-1, -1);
             this.waterBox.MouseState = MaterialSkin.MouseState.HOVER;
@@ -577,7 +577,7 @@
             this.winMode.AutoSize = true;
             this.winMode.Depth = 0;
             this.winMode.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.winMode.Location = new System.Drawing.Point(673, 265);
+            this.winMode.Location = new System.Drawing.Point(673, 228);
             this.winMode.Margin = new System.Windows.Forms.Padding(0);
             this.winMode.MouseLocation = new System.Drawing.Point(-1, -1);
             this.winMode.MouseState = MaterialSkin.MouseState.HOVER;
@@ -690,7 +690,7 @@
             this.button1.Depth = 0;
             this.button1.Icon = global::UltimateBlueScreenSimulator.Properties.Resources.play;
             this.button1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.button1.Location = new System.Drawing.Point(-377, -237);
+            this.button1.Location = new System.Drawing.Point(-361, -198);
             this.button1.Mini = true;
             this.button1.MouseState = MaterialSkin.MouseState.HOVER;
             this.button1.Name = "button1";
@@ -707,7 +707,7 @@
             this.button3.Depth = 0;
             this.button3.Icon = global::UltimateBlueScreenSimulator.Properties.Resources.question;
             this.button3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.button3.Location = new System.Drawing.Point(-377, -187);
+            this.button3.Location = new System.Drawing.Point(-361, -148);
             this.button3.Mini = true;
             this.button3.MouseState = MaterialSkin.MouseState.HOVER;
             this.button3.Name = "button3";
@@ -789,6 +789,26 @@
             this.customizeCodesButton.UseVisualStyleBackColor = true;
             this.customizeCodesButton.Click += new System.EventHandler(this.customizeCodesButton_Click);
             // 
+            // halfBox
+            // 
+            this.halfBox.AutoSize = true;
+            this.halfBox.Depth = 0;
+            this.halfBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.halfBox.Location = new System.Drawing.Point(673, 117);
+            this.halfBox.Margin = new System.Windows.Forms.Padding(0);
+            this.halfBox.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.halfBox.MouseState = MaterialSkin.MouseState.HOVER;
+            this.halfBox.Name = "halfBox";
+            this.halfBox.ReadOnly = false;
+            this.halfBox.Ripple = true;
+            this.halfBox.Size = new System.Drawing.Size(159, 37);
+            this.halfBox.TabIndex = 8;
+            this.halfBox.Text = "Low resolution [?]";
+            this.quickHelp.SetToolTip(this.halfBox, "Lowers the resolution resulting in taller text when viewed in fullscreen mode");
+            this.halfBox.UseVisualStyleBackColor = true;
+            this.halfBox.Visible = false;
+            this.halfBox.CheckedChanged += new System.EventHandler(this.halfBox_CheckedChanged);
+            // 
             // materialTabControl1
             // 
             this.materialTabControl1.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
@@ -806,7 +826,7 @@
             this.materialTabControl1.Name = "materialTabControl1";
             this.materialTabControl1.SelectedIndex = 0;
             this.materialTabControl1.ShowToolTips = true;
-            this.materialTabControl1.Size = new System.Drawing.Size(741, 643);
+            this.materialTabControl1.Size = new System.Drawing.Size(757, 682);
             this.materialTabControl1.TabIndex = 8;
             this.materialTabControl1.SelectedIndexChanged += new System.EventHandler(this.materialTabControl1_SelectedIndexChanged);
             // 
@@ -818,7 +838,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(733, 614);
+            this.tabPage1.Size = new System.Drawing.Size(749, 653);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Simulator";
             // 
@@ -868,7 +888,7 @@
             this.windowVersion.MaxDropDownItems = 4;
             this.windowVersion.MouseState = MaterialSkin.MouseState.OUT;
             this.windowVersion.Name = "windowVersion";
-            this.windowVersion.Size = new System.Drawing.Size(605, 49);
+            this.windowVersion.Size = new System.Drawing.Size(621, 49);
             this.windowVersion.StartIndex = 0;
             this.windowVersion.TabIndex = 0;
             this.windowVersion.SelectedIndexChanged += new System.EventHandler(this.windowVersion_SelectedIndexChanged);
@@ -896,7 +916,7 @@
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(9, 62);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(709, 462);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(725, 501);
             this.flowLayoutPanel1.TabIndex = 3;
             // 
             // WXOptions
@@ -1113,7 +1133,7 @@
             this.flowLayoutPanel4.Controls.Add(this.eCodeEditButton);
             this.flowLayoutPanel4.Controls.Add(this.advNTButton);
             this.flowLayoutPanel4.Controls.Add(this.progressTuneButton);
-            this.flowLayoutPanel4.Location = new System.Drawing.Point(921, 3);
+            this.flowLayoutPanel4.Location = new System.Drawing.Point(676, 268);
             this.flowLayoutPanel4.Name = "flowLayoutPanel4";
             this.flowLayoutPanel4.Size = new System.Drawing.Size(246, 192);
             this.flowLayoutPanel4.TabIndex = 10;
@@ -1126,7 +1146,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(717, 575);
+            this.tabPage2.Size = new System.Drawing.Size(733, 614);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Trace log";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -1145,7 +1165,7 @@
             this.logIf.MouseState = MaterialSkin.MouseState.HOVER;
             this.logIf.Name = "logIf";
             this.logIf.ReadOnly = true;
-            this.logIf.Size = new System.Drawing.Size(668, 413);
+            this.logIf.Size = new System.Drawing.Size(684, 452);
             this.logIf.TabIndex = 3;
             this.logIf.Text = "Logging interface 1.0";
             // 
@@ -1158,7 +1178,7 @@
             this.materialButton6.HighEmphasis = true;
             this.materialButton6.Icon = null;
             this.materialButton6.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.materialButton6.Location = new System.Drawing.Point(540, 17);
+            this.materialButton6.Location = new System.Drawing.Point(556, 17);
             this.materialButton6.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.materialButton6.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialButton6.Name = "materialButton6";
@@ -1175,7 +1195,7 @@
             // 
             this.tabPage3.Location = new System.Drawing.Point(4, 25);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(717, 575);
+            this.tabPage3.Size = new System.Drawing.Size(733, 614);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Settings";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -1184,7 +1204,7 @@
             // 
             this.aboutTab.Location = new System.Drawing.Point(4, 25);
             this.aboutTab.Name = "aboutTab";
-            this.aboutTab.Size = new System.Drawing.Size(717, 575);
+            this.aboutTab.Size = new System.Drawing.Size(733, 614);
             this.aboutTab.TabIndex = 3;
             this.aboutTab.Text = "About";
             this.aboutTab.UseVisualStyleBackColor = true;
@@ -1193,7 +1213,7 @@
             // 
             this.tabPage4.Location = new System.Drawing.Point(4, 25);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(717, 575);
+            this.tabPage4.Size = new System.Drawing.Size(733, 614);
             this.tabPage4.TabIndex = 4;
             this.tabPage4.Text = "Prank mode";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -1202,7 +1222,7 @@
             // 
             this.tabPage5.Location = new System.Drawing.Point(4, 25);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(717, 575);
+            this.tabPage5.Size = new System.Drawing.Size(733, 614);
             this.tabPage5.TabIndex = 5;
             this.tabPage5.Text = "Restore old UI";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -1232,7 +1252,7 @@
             this.label7.AutoSize = true;
             this.label7.Depth = 0;
             this.label7.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.label7.Location = new System.Drawing.Point(14, 624);
+            this.label7.Location = new System.Drawing.Point(14, 663);
             this.label7.MouseState = MaterialSkin.MouseState.HOVER;
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(348, 19);
@@ -1257,30 +1277,10 @@
             // 
             this.waitPopup.Tick += new System.EventHandler(this.waitPopup_Tick);
             // 
-            // halfBox
-            // 
-            this.halfBox.AutoSize = true;
-            this.halfBox.Depth = 0;
-            this.halfBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.halfBox.Location = new System.Drawing.Point(673, 154);
-            this.halfBox.Margin = new System.Windows.Forms.Padding(0);
-            this.halfBox.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.halfBox.MouseState = MaterialSkin.MouseState.HOVER;
-            this.halfBox.Name = "halfBox";
-            this.halfBox.ReadOnly = false;
-            this.halfBox.Ripple = true;
-            this.halfBox.Size = new System.Drawing.Size(159, 37);
-            this.halfBox.TabIndex = 8;
-            this.halfBox.Text = "Low resolution [?]";
-            this.quickHelp.SetToolTip(this.halfBox, "Lowers the resolution resulting in taller text when viewed in fullscreen mode");
-            this.halfBox.UseVisualStyleBackColor = true;
-            this.halfBox.Visible = false;
-            this.halfBox.CheckedChanged += new System.EventHandler(this.halfBox_CheckedChanged);
-            // 
             // NewUI
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
-            this.ClientSize = new System.Drawing.Size(747, 710);
+            this.ClientSize = new System.Drawing.Size(763, 749);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button1);

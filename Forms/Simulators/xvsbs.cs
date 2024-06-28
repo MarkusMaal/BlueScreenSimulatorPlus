@@ -21,8 +21,6 @@ namespace UltimateBlueScreenSimulator
         IDictionary<string, string> txt;
 
         string state = "0";
-        readonly List<WindowScreen> wss = new List<WindowScreen>();
-        readonly List<Bitmap> freezescreens = new List<Bitmap>();
         public Xvsbs()
         {
             if (Program.verificate)
@@ -119,58 +117,7 @@ namespace UltimateBlueScreenSimulator
                 if (fullscreen)
                 {
                     this.TopMost = false;
-                    if (Screen.AllScreens.Length > 1)
-                    {
-                        foreach (Screen s in Screen.AllScreens)
-                        {
-                            WindowScreen ws = new WindowScreen();
-                            if (!s.Primary)
-                            {
-                                if (Program.gs.DisplayMode != "none")
-                                {
-                                    ws.StartPosition = FormStartPosition.Manual;
-                                    ws.Location = s.WorkingArea.Location;
-                                    ws.Size = new Size(s.WorkingArea.Width, s.WorkingArea.Height);
-                                    ws.primary = false;
-
-                                    if (Program.gs.DisplayMode == "freeze")
-                                    {
-                                        Bitmap screenshot = new Bitmap(s.Bounds.Width,
-                                            s.Bounds.Height,
-                                            System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-                                        Graphics gfxScreenshot = Graphics.FromImage(screenshot);
-                                        gfxScreenshot.CopyFromScreen(
-                                            s.Bounds.X,
-                                            s.Bounds.Y,
-                                            0,
-                                            0,
-                                            s.Bounds.Size,
-                                            CopyPixelOperation.SourceCopy
-                                            );
-                                        freezescreens.Add(screenshot);
-
-                                    }
-                                }
-                            }
-                            wss.Add(ws);
-                        }
-                    }
-                    else
-                    {
-                        wss.Add(new WindowScreen());
-                    }
-                    for (int i = 0; i < wss.Count; i++)
-                    {
-                        WindowScreen ws = wss[i];
-                        ws.Show();
-                        if (!ws.primary)
-                        {
-                            if (Program.gs.DisplayMode == "freeze")
-                            {
-                                ws.screenDisplay.Image = freezescreens[i - 1];
-                            }
-                        }
-                    }
+                    Program.dr.Init(this);
                     this.Hide();
                 }
                 errorCode.Visible = me.GetBool("show_description");
@@ -222,15 +169,7 @@ namespace UltimateBlueScreenSimulator
             }
             if (!naturalclose)
             {
-                foreach (WindowScreen ws in wss)
-                {
-                    ws.Close();
-                    ws.Dispose();
-                }
-                foreach (Bitmap bmp in freezescreens)
-                {
-                    bmp.Dispose();
-                }
+                Program.dr.Dispose();
             }
         }
 
@@ -322,24 +261,7 @@ namespace UltimateBlueScreenSimulator
             {
                 c.BackColor = this.BackColor;
             }
-            foreach (WindowScreen ws in wss)
-            {
-                if (!ws.Visible)
-                {
-                    naturalclose = true;
-                    this.Close();
-                }
-                try
-                {
-                    Program.dr.Draw(ws);
-                }
-                catch
-                {
-                    naturalclose = true;
-                    this.Close();
-                }
-            }
-
+            Program.dr.DrawAll();
         }
 
         private void RainBowScreen_Tick(object sender, EventArgs e)
@@ -435,7 +357,7 @@ namespace UltimateBlueScreenSimulator
             if (colors[1] > 255) { colors[1] -= 255; }
             if (colors[2] > 255) { colors[2] -= 255; }
             waterMarkText.ForeColor = Color.FromArgb(colors[0], colors[1], colors[2]);
-            foreach (WindowScreen ws in wss)
+            foreach (WindowScreen ws in Program.dr.wss)
             {
                 try
                 {
@@ -453,23 +375,7 @@ namespace UltimateBlueScreenSimulator
         {
             if (fullscreen)
             {
-                foreach (WindowScreen ws in wss)
-                {
-                    if (ws.Visible == false)
-                    {
-                        naturalclose = true;
-                        this.Close();
-                    }
-                    try
-                    {
-                        Program.dr.Draw(ws);
-                    }
-                    catch
-                    {
-                        naturalclose = true;
-                        this.Close();
-                    }
-                }
+                Program.dr.DrawAll();
                 this.BringToFront();
                 this.Activate();
             }
@@ -479,11 +385,7 @@ namespace UltimateBlueScreenSimulator
         {
             if ((e.KeyCode == Keys.Escape) || (e.KeyCode == Keys.F7))
             {
-                foreach (WindowScreen ws in wss)
-                {
-                    try { if (ws.Visible == true) { ws.Close(); } }
-                    catch { }
-                }
+                Program.dr.Dispose();
                 Close();
             }
         }

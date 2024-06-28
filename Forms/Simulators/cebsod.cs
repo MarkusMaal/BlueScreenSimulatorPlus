@@ -14,8 +14,6 @@ namespace UltimateBlueScreenSimulator
         bool ing = false;
         bool inb = false;
         internal BlueScreen me = Program.templates.GetAt(0);
-        readonly List<WindowScreen> wss = new List<WindowScreen>();
-        readonly List<Bitmap> freezescreens = new List<Bitmap>();
 
         string state = "0";
         public Cebsod()
@@ -27,20 +25,7 @@ namespace UltimateBlueScreenSimulator
         {
             if (fullscreen)
             {
-                foreach (WindowScreen ws in wss) { 
-                    if (ws.Visible == false)
-                    {
-                        this.Close();
-                    }
-                    try
-                    {
-                        Program.dr.Draw(ws);
-                    }
-                    catch
-                    {
-                        this.Close();
-                    }
-                }
+                Program.dr.DrawAll();
                 this.BringToFront();
                 this.Activate();
             }
@@ -85,87 +70,7 @@ namespace UltimateBlueScreenSimulator
                 if (fullscreen)
                 {
                     this.TopMost = false;
-                    if (Screen.AllScreens.Length > 1)
-                    {
-                        foreach (Screen s in Screen.AllScreens)
-                        {
-                            WindowScreen ws = new WindowScreen();
-                            if (!s.Primary)
-                            {
-                                if (Program.gs.DisplayMode != "none")
-                                {
-                                    ws.StartPosition = FormStartPosition.Manual;
-                                    ws.Location = s.WorkingArea.Location;
-                                    ws.Size = new Size(s.WorkingArea.Width, s.WorkingArea.Height);
-                                    ws.primary = false;
-
-                                    if (Program.gs.DisplayMode == "freeze")
-                                    {
-                                        Bitmap screenshot = new Bitmap(s.Bounds.Width,
-                                            s.Bounds.Height,
-                                            System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-                                        Graphics gfxScreenshot = Graphics.FromImage(screenshot);
-                                        gfxScreenshot.CopyFromScreen(
-                                            s.Bounds.X,
-                                            s.Bounds.Y,
-                                            0,
-                                            0,
-                                            s.Bounds.Size,
-                                            CopyPixelOperation.SourceCopy
-                                            );
-                                        freezescreens.Add(screenshot);
-
-                                    }
-                                }
-                            }
-                            wss.Add(ws);
-                        }
-                    }
-                    else
-                    {
-                        wss.Add(new WindowScreen());
-                    }
-                    for (int i = 0; i < wss.Count; i++)
-                    {
-                        WindowScreen ws = wss[i];
-                        ws.Show();
-                        if (!ws.primary)
-                        {
-                            if (Program.gs.DisplayMode == "freeze")
-                            {
-                                ws.screenDisplay.Image = freezescreens[i - 1];
-                            }
-                        }
-                    }
-                    try
-                    {
-                        foreach (WindowScreen ws in wss)
-                        {
-                            var frm = Form.ActiveForm;
-                            if (frm != null)
-                            {
-                                if (ws.primary || Program.gs.DisplayMode == "mirror")
-                                {
-                                    using (var bmp = new Bitmap(frm.Width, frm.Height))
-                                    {
-                                        frm.DrawToBitmap(bmp, new Rectangle(0, 0, bmp.Width, bmp.Height));
-
-                                        Bitmap newImage = new Bitmap(ws.Width, ws.Height);
-                                        using (Graphics g = Graphics.FromImage(newImage))
-                                        {
-                                            g.InterpolationMode = Program.gs.GetInterpolationMode();
-                                            g.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
-                                            g.DrawImage(bmp, new Rectangle(0, 0, ws.Width, ws.Height));
-                                        }
-                                        ws.screenDisplay.Image = newImage;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    catch
-                    {
-                    }
+                    Program.dr.Init(this);
                     Program.loadfinished = true;
                 }
             } catch (Exception ex)
@@ -204,15 +109,7 @@ namespace UltimateBlueScreenSimulator
             {
                 if (fullscreen)
                 {
-                    foreach (WindowScreen ws in wss)
-                    {
-                        if (ws.Visible) { ws.Close(); }
-                        ws.Dispose();
-                    }
-                    foreach (Bitmap bmp in freezescreens)
-                    {
-                        bmp.Dispose();
-                    }
+                    Program.dr.Dispose();
                 }
                 screenUpdater.Enabled = false;
             }
@@ -326,10 +223,7 @@ namespace UltimateBlueScreenSimulator
             waterMarkText.ForeColor = Color.FromArgb(colors[0], colors[1], colors[2]);
             try
             {
-                foreach (WindowScreen ws in wss)
-                {
-                    Program.dr.Draw(ws);
-                }
+                Program.dr.DrawAll();
             }
             catch
             {
@@ -341,11 +235,7 @@ namespace UltimateBlueScreenSimulator
         {
             if ((e.KeyCode == Keys.Escape) || (e.KeyCode == Keys.F7))
             {
-                foreach (WindowScreen ws in wss)
-                {
-                    try { if (ws.Visible == true) { ws.Close(); } }
-                    catch { }
-                }
+                Program.dr.Dispose();
                 Close();
             }
         }

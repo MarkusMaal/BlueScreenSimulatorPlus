@@ -53,9 +53,14 @@ namespace UltimateBlueScreenSimulator
                     friendlyBox.Text = "Windows CE 3.0 and later (750x400, Standard)";
                     iconBox.SelectedIndex = 1;
                     break;
+                case "Windows NT 3.1":
+                    osBox.Text = "Windows NT 3.x/4.0";
+                    friendlyBox.Text = "Windows NT 3.1x (Text mode, Standard)";
+                    iconBox.SelectedIndex = 0;
+                    break;
                 case "Windows NT 3.x/4.0":
                     osBox.Text = "Windows NT 3.x/4.0";
-                    friendlyBox.Text = "Windows NT 4.0/3.x (Text mode, Standard)";
+                    friendlyBox.Text = "Windows NT 4.0/3.5x (Text mode, Standard)";
                     iconBox.SelectedIndex = 0;
                     break;
                 case "Windows 2000":
@@ -78,7 +83,7 @@ namespace UltimateBlueScreenSimulator
                     friendlyBox.Text = "Windows 7 (640x480, ClearType)";
                     iconBox.SelectedIndex = 1;
                     break;
-                case "Windows Boot Manager":
+                case "BOOTMGR":
                     osBox.Text = "BOOTMGR";
                     friendlyBox.Text = "Windows Boot Manager (1024x768, Standard)";
                     iconBox.SelectedIndex = 1;
@@ -104,7 +109,7 @@ namespace UltimateBlueScreenSimulator
                     iconBox.SelectedIndex = 2;
                     break;
             }
-            base_os = osBox.Text;
+            base_os = templatePicker.SelectedItem.ToString();
         }
 
         private void ConfirmCustomOS(object sender, EventArgs e)
@@ -126,7 +131,7 @@ namespace UltimateBlueScreenSimulator
 
         private void MakeBluescreen(object sender, EventArgs e)
         {
-            Program.templates.AddTemplate(base_os, friendlyBox.Text, osBox.Text);
+            Program.templates.AddTemplate(osBox.Text, friendlyBox.Text, base_os);
             Program.templates.GetLast().SetString("icon", iconBox.SelectedItem.ToString());
             this.DialogResult = DialogResult.OK;
             this.Close();

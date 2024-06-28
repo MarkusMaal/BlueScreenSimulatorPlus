@@ -8,7 +8,6 @@ namespace UltimateBlueScreenSimulator
 {
     public partial class BootMgr : Form
     {
-        readonly List<WindowScreen> wss = new List<WindowScreen>();
         private bool naturalclose = false;
         internal BlueScreen me;
         public BootMgr()
@@ -67,28 +66,7 @@ namespace UltimateBlueScreenSimulator
 
                 this.TopMost = false;
                 Program.loadfinished = true;
-                if (Screen.AllScreens.Length > 1)
-                {
-                    foreach (Screen s in Screen.AllScreens)
-                    {
-                        WindowScreen ws = new WindowScreen();
-                        if (!s.Primary)
-                        {
-                            if (Program.gs.DisplayMode != "none")
-                            {
-                                ws.StartPosition = FormStartPosition.Manual;
-                                ws.Location = s.WorkingArea.Location;
-                                ws.Size = new Size(s.WorkingArea.Width, s.WorkingArea.Height);
-                                ws.primary = false;
-                            }
-                        }
-                        wss.Add(ws);
-                    }
-                }
-                foreach (WindowScreen ws in wss)
-                {
-                    ws.Show();
-                }
+                Program.dr.Init(this);
                 this.waterMarkText.Visible = me.GetBool("watermark");
                 int[] colors = { this.BackColor.R + 50, this.BackColor.G + 50, this.BackColor.B + 50 };
                 if (colors[0] > 255) { colors[0] -= 255; }
@@ -109,53 +87,14 @@ namespace UltimateBlueScreenSimulator
 
         private void UpdateScreen(object sender, EventArgs e)
         {
-            foreach (WindowScreen ws in wss)
-            {
-                if (ws.Visible == false)
-                {
-                    naturalclose = true;
-                    this.Close();
-                }
-                try
-                {
-                    if (!ws.primary && Program.gs.DisplayMode == "blank")
-                    {
-                        continue;
-                    }
-                    var frm = Form.ActiveForm;
-                    using (var bmp = new Bitmap(frm.Width, frm.Height))
-                    {
-                        frm.DrawToBitmap(bmp, new Rectangle(0, 0, bmp.Width, bmp.Height));
-
-                        Bitmap newImage = new Bitmap(ws.Width, ws.Height);
-                        using (Graphics g = Graphics.FromImage(newImage))
-                        {
-                            g.InterpolationMode = Program.gs.GetInterpolationMode();
-                            g.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
-                            g.DrawImage(bmp, new Rectangle(0, 0, ws.Width, ws.Height));
-                        }
-                        ws.screenDisplay.Image = newImage;
-                    }
-                }
-                catch
-                {
-                    naturalclose = true;
-                    this.Close();
-                }
-                this.BringToFront();
-                this.Activate();
-            }
+            Program.dr.DrawAll();
         }
 
         private void Unloading(object sender, FormClosingEventArgs e)
         {
             if (!naturalclose)
             {
-                foreach (WindowScreen ws in wss)
-                {
-                    ws.Dispose();
-                    ws.Close();
-                }
+                Program.dr.Dispose();
                 Cursor.Show();
             }
             if (Program.gs.PM_CloseMainUI)

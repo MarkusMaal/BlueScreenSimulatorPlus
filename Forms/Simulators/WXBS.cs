@@ -22,8 +22,6 @@ namespace UltimateBlueScreenSimulator
         private bool oldmode = true;
         internal int maxprogressmillis = 0;
         internal BlueScreen me = Program.templates.GetAt(0);
-        readonly List<WindowScreen> wss = new List<WindowScreen>();
-        readonly List<Bitmap> freezescreens = new List<Bitmap>();
         public WXBS()
         {
             if (new Verifile().RC() && Program.verificate)
@@ -58,14 +56,7 @@ namespace UltimateBlueScreenSimulator
             }
             if (!e.Cancel)
             {
-                if (wss.Count > 0)
-                {
-                    foreach (WindowScreen ws in wss)
-                    {
-                        ws.Close();
-                        ws.Dispose();
-                    }
-                }
+                Program.dr.Dispose();
                 screenUpdater.Enabled = false;
             }
         }
@@ -214,53 +205,7 @@ namespace UltimateBlueScreenSimulator
                 Program.loadfinished = true;
                 if (!me.GetBool("windowed"))
                 {
-                    if (Screen.AllScreens.Length > 1)
-                    {
-                        foreach (Screen s in Screen.AllScreens)
-                        {
-                            if (!s.Primary)
-                            {
-                                if (Program.gs.DisplayMode != "none")
-                                {
-                                    WindowScreen ws = new WindowScreen
-                                    {
-                                        StartPosition = FormStartPosition.Manual,
-                                        Location = s.WorkingArea.Location,
-                                        Size = new Size(s.WorkingArea.Width, s.WorkingArea.Height),
-                                        primary = false
-                                    };
-                                    if (Program.gs.DisplayMode == "freeze")
-                                    {
-                                        screenUpdater.Enabled = false;
-                                        Bitmap screenshot = new Bitmap(s.Bounds.Width,
-                                            s.Bounds.Height,
-                                            System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-                                        Graphics gfxScreenshot = Graphics.FromImage(screenshot);
-                                        gfxScreenshot.CopyFromScreen(
-                                            s.Bounds.X,
-                                            s.Bounds.Y,
-                                            0,
-                                            0,
-                                            s.Bounds.Size,
-                                            CopyPixelOperation.SourceCopy
-                                            );
-                                        freezescreens.Add(screenshot);
-
-                                    }
-                                    wss.Add(ws);
-                                }
-                            }
-                        }
-                        for (int i = 0; i < wss.Count; i++)
-                        {
-                            WindowScreen ws = wss[i];
-                            ws.Show();
-                            if (Program.gs.DisplayMode == "freeze")
-                            {
-                                ws.screenDisplay.Image = freezescreens[i];
-                            }
-                        }
-                    }
+                    Program.dr.Init(this, true);
                 }
             } catch (Exception ex)
             {
@@ -389,21 +334,7 @@ namespace UltimateBlueScreenSimulator
         {
             if (!me.GetBool("windowed"))
             {
-                foreach (WindowScreen ws in wss)
-                {
-                    if (ws.Visible == false)
-                    {
-                        this.Close();
-                    }
-                    try
-                    {
-                        Program.dr.Draw(ws);
-                    }
-                    catch
-                    {
-                        this.Close();
-                    }
-                }
+                Program.dr.DrawAll();
                 this.BringToFront();
                 this.Activate();
             }

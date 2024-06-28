@@ -962,9 +962,8 @@ namespace UltimateBlueScreenSimulator
         private void advNTButton_Click(object sender, EventArgs e)
         {
             int backup = windowVersion.SelectedIndex;
-            IndexForm iform = new IndexForm
+            NTdtor iform = new NTdtor
             {
-                nt_edit = true,
                 me = me
             };
             iform.ShowDialog();

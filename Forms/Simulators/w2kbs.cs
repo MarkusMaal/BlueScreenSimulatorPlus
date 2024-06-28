@@ -14,8 +14,6 @@ namespace UltimateBlueScreenSimulator
         public bool fullscreen = true;
         private bool naturalclose = false;
         public string whatfail = "";
-        readonly List<WindowScreen> wss = new List<WindowScreen>();
-        readonly List<Bitmap> freezescreens = new List<Bitmap>();
         internal BlueScreen me = Program.templates.GetAt(0);
         string state = "0";
         bool inr = false;
@@ -77,15 +75,7 @@ namespace UltimateBlueScreenSimulator
             }
             if (!naturalclose)
             {
-                foreach (WindowScreen ws in wss)
-                {
-                    ws.Close();
-                    ws.Dispose();
-                }
-                foreach (Bitmap bmp in freezescreens)
-                {
-                    bmp.Dispose();
-                }
+                Program.dr.Dispose();
             }
         }
         private Bitmap WriteWord(string word, Color bg, Color fg)
@@ -282,20 +272,36 @@ namespace UltimateBlueScreenSimulator
                             lines.AddRange(CreateBitmaps("\n" + string.Format(txt["CPUID formatting"], processortype).Trim()));
                         }
                         Program.load_message = "Processing stack trace heading";
-                        lines.AddRange(CreateBitmaps("\n" + txt["Stack trace heading"].Trim().PadRight(40, ' ') + txt["Stack trace heading"].Trim()));
+                        bool hasStHeader = false;
+                        bool hasDwHeader = false;
+                        foreach (KeyValuePair<string, string[]> file in me.GetFiles())
+                        {
+                            if (file.Value.Length == 2)
+                            {
+                                hasStHeader = true;
+                            }
+                            if (file.Value.Length == (me.GetBool("threepointone") ? 7 : 6))
+                            {
+                                hasDwHeader = true;
+                            }
+                        }
+                        if (hasStHeader)
+                        {
+                            lines.AddRange(CreateBitmaps("\n" + txt["Stack trace heading"].Trim().PadRight(40, ' ') + txt["Stack trace heading"].Trim()));
+                        }
 
                         Program.load_progress += 5;
                         for (int i = 0; i < me.GetFiles().Count; i+=2)
                         {
                             Program.load_message = "Processing table (file " + (i + 1).ToString() + ")";
 
-                            if (me.GetFiles().Count < i + 1)
+                            if (me.GetFiles().Count < i)
                             {
                                 break;
                             }
                             if (me.GetFiles()[i].Value.Length == 6)
                             {
-                                break;
+                                continue;
                             }
                             string file1 = me.GetFiles()[i].Key;
                             string rnd1_1 = me.GenHex(8, me.GetFiles()[i].Value[0]).ToLower();
@@ -315,7 +321,10 @@ namespace UltimateBlueScreenSimulator
                             Program.load_progress += 1;
                         }
                         Program.load_message = "Processing memory address dump heading";
-                        lines.AddRange(CreateBitmaps("\n" + txt["Memory address dump heading"]));
+                        if (hasDwHeader)
+                        {
+                            lines.AddRange(CreateBitmaps("\n" + txt["Memory address dump heading"]));
+                        }
                         Program.load_progress = !me.GetBool("threepointone") ? 90 : 80;
                         int r = 1;
                         foreach (KeyValuePair<string, string[]> kvp in me.GetFiles())
@@ -370,76 +379,7 @@ namespace UltimateBlueScreenSimulator
 
                 if (fullscreen)
                 {
-                    if (Screen.AllScreens.Length > 1)
-                    {
-                        foreach (Screen s in Screen.AllScreens)
-                        {
-                            WindowScreen ws = new WindowScreen();
-                            if (!s.Primary)
-                            {
-                                if (Program.gs.DisplayMode != "none")
-                                {
-                                    ws.StartPosition = FormStartPosition.Manual;
-                                    ws.Location = s.WorkingArea.Location;
-                                    ws.Size = new Size(s.WorkingArea.Width, s.WorkingArea.Height);
-                                    ws.primary = false;
-
-                                    if (Program.gs.DisplayMode == "freeze")
-                                    {
-                                        Bitmap screenshot = new Bitmap(s.Bounds.Width,
-                                            s.Bounds.Height,
-                                            System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-                                        Graphics gfxScreenshot = Graphics.FromImage(screenshot);
-                                        gfxScreenshot.CopyFromScreen(
-                                            s.Bounds.X,
-                                            s.Bounds.Y,
-                                            0,
-                                            0,
-                                            s.Bounds.Size,
-                                            CopyPixelOperation.SourceCopy
-                                            );
-                                        freezescreens.Add(screenshot);
-
-                                    }
-                                }
-                            }
-                            wss.Add(ws);
-                        }
-                    }
-                    else
-                    {
-                        wss.Add(new WindowScreen());
-                    }
-                    for (int i = 0; i < wss.Count; i++)
-                    {
-                        WindowScreen ws = wss[i];
-                        ws.Show();
-                        if (!ws.primary)
-                        {
-                            if (Program.gs.DisplayMode == "freeze")
-                            {
-                                ws.screenDisplay.Image = freezescreens[i - 1];
-                            }
-                        }
-                    }
-                    foreach (WindowScreen ws in wss)
-                    {
-                        Program.dr.Draw(ws);
-                    }
-                    this.TopMost = false;
-                    for (int i = 0; i < wss.Count; i++)
-                    {
-                        WindowScreen ws = wss[i];
-                        ws.Show();
-                        if (!ws.primary)
-                        {
-                            if (Program.gs.DisplayMode == "freeze")
-                            {
-                                ws.screenDisplay.Image = freezescreens[i - 1];
-                            }
-                        }
-                    }
-                    this.Hide();
+                    Program.dr.Init(this);
                 }
             } catch (Exception ex)
             {
@@ -497,7 +437,7 @@ namespace UltimateBlueScreenSimulator
             if (screenUpdater.Interval != me.GetInt("blink_speed")) { screenUpdater.Interval = me.GetInt("blink_speed"); }
             if (fullscreen)
             {
-                foreach (WindowScreen ws in wss)
+                foreach (WindowScreen ws in Program.dr.wss)
                 {
                     if (ws.Visible == false)
                     {
@@ -640,29 +580,14 @@ namespace UltimateBlueScreenSimulator
             if (colors[1] > 255) { colors[1] -= 255; }
             if (colors[2] > 255) { colors[2] -= 255; }
             waterMarkText.ForeColor = Color.FromArgb(colors[0], colors[1], colors[2]);
-            foreach (WindowScreen ws in wss)
-            {
-                try
-                {
-                    Program.dr.Draw(ws);
-                }
-                catch
-                {
-                    ws.Close();
-                    this.naturalclose = true;
-                }
-            }
+            Program.dr.DrawAll();
         }
 
         private void W2kbs_KeyDown(object sender, KeyEventArgs e)
         {
             if ((e.KeyCode == Keys.Escape) || (e.KeyCode == Keys.F7))
             {
-                foreach (WindowScreen ws in wss)
-                {
-                    try { if (ws.Visible == true) { ws.Close(); } }
-                    catch { }
-                }
+                Program.dr.Dispose();
                 Close();
             }
         }

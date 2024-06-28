@@ -19,8 +19,6 @@ namespace UltimateBlueScreenSimulator
         public string whatfail = "";
         public string processortype = "GenuineIntel";
         public string error = "User manually initiated crash (0xDEADDEAD)";
-        readonly List<WindowScreen> wss = new List<WindowScreen>();
-        readonly List<Bitmap> freezescreens = new List<Bitmap>();
         internal BlueScreen me = Program.templates.GetAt(0);
         IDictionary<string, string> txt;
         private int charsize;
@@ -219,58 +217,7 @@ namespace UltimateBlueScreenSimulator
                 if (!fullscreen) { this.FormBorderStyle = FormBorderStyle.FixedSingle; }
                 if (fullscreen)
                 {
-                    if (Screen.AllScreens.Length > 1)
-                    {
-                        foreach (Screen s in Screen.AllScreens)
-                        {
-                            WindowScreen ws = new WindowScreen();
-                            if (!s.Primary)
-                            {
-                                if (Program.gs.DisplayMode != "none")
-                                {
-                                    ws.StartPosition = FormStartPosition.Manual;
-                                    ws.Location = s.WorkingArea.Location;
-                                    ws.Size = new Size(s.WorkingArea.Width, s.WorkingArea.Height);
-                                    ws.primary = false;
-
-                                    if (Program.gs.DisplayMode == "freeze")
-                                    {
-                                        Bitmap screenshot = new Bitmap(s.Bounds.Width,
-                                            s.Bounds.Height,
-                                            System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-                                        Graphics gfxScreenshot = Graphics.FromImage(screenshot);
-                                        gfxScreenshot.CopyFromScreen(
-                                            s.Bounds.X,
-                                            s.Bounds.Y,
-                                            0,
-                                            0,
-                                            s.Bounds.Size,
-                                            CopyPixelOperation.SourceCopy
-                                            );
-                                        freezescreens.Add(screenshot);
-
-                                    }
-                                }
-                            }
-                            wss.Add(ws);
-                        }
-                    }
-                    else
-                    {
-                        wss.Add(new WindowScreen());
-                    }
-                    for (int i = 0; i < wss.Count; i++)
-                    {
-                        WindowScreen ws = wss[i];
-                        ws.Show();
-                        if (!ws.primary)
-                        {
-                            if (Program.gs.DisplayMode == "freeze")
-                            {
-                                ws.screenDisplay.Image = freezescreens[i - 1];
-                            }
-                        }
-                    }
+                    Program.dr.Init(this);
                     this.TopMost = false;
                 }
                 int[] colors = { this.BackColor.R + 50, this.BackColor.G + 50, this.BackColor.B + 50 };
@@ -381,17 +328,7 @@ namespace UltimateBlueScreenSimulator
             if (screenUpdater.Interval != me.GetInt("blink_speed")) { screenUpdater.Interval = me.GetInt("blink_speed"); }
             if (fullscreen)
             {
-                foreach (WindowScreen ws in wss)
-                {
-                    try
-                    {
-                        Program.dr.Draw(ws);
-                    }
-                    catch
-                    {
-                        this.Close();
-                    }
-                }
+                Program.dr.DrawAll();
                 this.BringToFront();
                 this.Activate();
             }
@@ -445,18 +382,7 @@ namespace UltimateBlueScreenSimulator
             }
             if (fullscreen)
             {
-                foreach (WindowScreen ws in wss)
-                {
-                    if (ws.Visible == true)
-                    {
-                        ws.Close();
-                    }
-                    ws.Dispose();
-                }
-                foreach (Bitmap bmp in freezescreens)
-                {
-                    bmp.Dispose();
-                }
+                Program.dr.Dispose();
             }
         }
 
@@ -482,11 +408,7 @@ namespace UltimateBlueScreenSimulator
         {
             if ((e.KeyCode == Keys.Escape) || (e.KeyCode == Keys.F7))
             {
-                foreach (WindowScreen ws in wss)
-                {
-                    try { if (ws.Visible == true) { ws.Close(); } }
-                    catch { }
-                }
+                Program.dr.Dispose();
                 Close();
             }
         }

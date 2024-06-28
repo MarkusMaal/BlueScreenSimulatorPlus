@@ -25,6 +25,7 @@ This documentation is contained within the readme and is meant for people who wa
 * [Developer mode](#developer-mode)
 * [Processing args](#processing-args)
 * [Template registry](#template-registry)
+* [Draw routines](#draw-routines)
 * [File structure](#file-structure)
 	* [Interfaces](#interfaces)
 	* [Legacy interfaces](#legacy-interfaces)
@@ -226,6 +227,69 @@ You can add or remove default configurations by modifying the `defaults` variabl
 	```
 **Note** : To modify a configuration, you can just get the configuration and make all changes to it, since the object is still the same, because no copying is done, the changes will still get applied.
 
+### Draw routines
+Draw routines should be used within every simulator to allow for upscaling and displaying the simulator on multiple monitors. You can create a new DisplayRoutine or use the existing one found in Program.dr (however, you MUST call dispose method after use).
+
+**Note**: To create DrawRoutines, you must import `SimulatorDatabase` namespace.
+
+#### Initialization
+You can initialize the global draw routine by doing the following:
+
+```C#
+	// ...
+	Program.dr.Init(this);
+```
+
+If you don't want the form to be hidden and upscaled, please set the value of `native` parameter to true by instead doing the following:
+
+```C#
+	Program.dr.Init(this, true);
+```
+
+
+#### Disposal
+After using draw routines, in order to avoid potential memory leaks, it is really important to free up used memory and dispose the object. To do this, use the following code:
+
+```C#
+   Program.dr.Dispose(); // note: dispose your *own* object if you made one
+```
+
+
+#### Drawing
+To update contents of the upscaled window, you can use the Draw method.
+
+```C#
+    foreach (WindowScreen ws in Program.dr.wss)
+    {
+		Program.dr.Draw(ws);
+	}
+```
+
+We are wrapping the draw routine call inside a foreach loop, because we want to draw every display in case the user more than one.
+
+You may want to add a generic watermark on top of the upscaled image. To do so, you can use the watermark parameter:
+```C#
+	// displays the upscaled image with a watermark
+	Program.dr.Draw(Program.dr.wss.First(), true); 
+```
+
+In some cases, the blinking cursor may not be displayed by default on top left. If you want to fix this, you can specify the blinkcolor parameter:
+
+```C#
+	// displays the upscaled image with a blinking cursor at the top left
+	Program.dr.Draw(Program.dr.wss.First(), me.GetBool("blink") ? me.GetTheme(false) : false);
+```
+
+The blink state will invert each time you perform a draw, so you may want to call this inside a timer.
+
+#### Simplified drawing
+If you don't care about blinking cursor and overlay watermark, you may consider using the `DrawAll` method instead, since it doesn't require a foreach loop. Example:
+
+```C#
+	Program.dr.DrawAll();
+```
+
+
 ### File structure
 
 The following section contains quick documentation for each file in the project.
@@ -236,6 +300,7 @@ The following section contains quick documentation for each file in the project.
 * ChooseFile.cs                    - Culprit file chooser
 * IndexForm.cs                     - Code customization interface
 * NewUI.cs                         - Main window interface with new UI
+* NTdtor.cs                        - Windows NT file code editor
 * metaerror.cs                     - BSSP crash screen
 * PrankMode.cs                     - Prank mode interface
 * ProgressTuner.cs                 - Progress tuner interface
@@ -246,19 +311,19 @@ The following section contains quick documentation for each file in the project.
 #### Legacy interfaces
 * Main.cs                          - Old layout
 * SupportEditor.cs                 - Windows XP/Vista/7 blue screen support text modification interface (old beta)
+* NTBSOD.cs                        - Legacy Windows NT blue screen simulator
 
 #### Load screens
 * Gen.cs                           - This form is displayed when generating a blue screen
 * Splash.cs                        - Splash screen interface
 
 #### Simulators
-* BootMgr.cs                       - Windows Boot Manager startup error simulator (Beta)
+* BootMgr.cs                       - Windows Boot Manager startup error simulator
 * cebsod.cs                        - Windows CE blue screen simulator
 * JupiterBSOD.cs                   - Windows 8 Beta blue screen simulator
-* NTBSOD.cs                        - Windows NT blue screen simulator
 * old_bluescreen.cs                - Windows 3.1x/9x/Me blue screen simulator
 * vistabs.cs                       - Windows 7 blue screen simulator
-* w2kbs.cs                         - Windows 2000 blue screen simulator
+* w2kbs.cs                         - Windows NT and 2000 blue screen simulator
 * win.cs                           - Windows 1.x/2.x blue screen simulator
 * WXBS.cs                          - Modern Windows blue screen simulator
 * xvsbs.cs                         - Windows XP/Vista blue screen simulator
@@ -268,6 +333,7 @@ The following section contains quick documentation for each file in the project.
 * SimulatorDatabase.cs             - A namespace with a blue screen class, which gets used by other parts of the program
 * GlobalSettings.cs				   - A class used for storing/manipulating runtime and permanent settings
 * Program.cs                       - Program initialization code
+* TemplateRegistry.cs			   - Class used for storing/manipulating configuration templates
 * Verifile.cs                      - Signature verification system
 
 #### Miscellaneous
@@ -284,11 +350,10 @@ The following section contains quick documentation for each file in the project.
 * final.bat                        - Update finalization script
 
 #### Assets
-* bsodgen_npJ_icon.ico             - Blue screen simulator plus icon
-* bsodbanner.png                   - Banner for about dialog
+* artage-io-48148_1564916990.ico   - 2D flag icon
+* bsodbanner3.png                  - Banner for about dialog
 * bsodqr.bmp                       - QR code for Widnows 10 blue screen
 * bsodqr_transparent.png           - Transparent QR code for Windows 10 blue screen
-* bssp2.ico                        - Blue screen simulator plus icon (version 2)
 * bssp3_icon.ico                   - Blue screen simulator plus icon (version 3)
 * CULPRIT_FILES.txt                - Contains culprit files, which the user can choose to display on the error screen
 * current.gif                      - Symbol for currently processing step in update interface
@@ -317,6 +382,7 @@ The following section contains quick documentation for each file in the project.
 
 #### Custom controls
 * AliasedLabel.cs                  - A custom control that is used in Windows XP and CE blue screens
+* SizableMaterialButton.cs         - An experimental custom control which combines MaterialButton and MaterialLabel
 
 ### Verifile
 

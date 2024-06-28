@@ -7,6 +7,7 @@ using System.Management;
 using System.Threading;
 using System.Text.Json.Serialization;
 using System.Text.Json;
+using System.Linq;
 
 //
 // This namespace contains classes that are shared between forms that specify
@@ -20,6 +21,9 @@ namespace SimulatorDatabase
     {
         private bool BlinkState { get; set; }
         private bool ForceWatermark { get; set; }
+
+        public readonly List<WindowScreen> wss = new List<WindowScreen>();
+        private readonly List<Bitmap> freezescreens = new List<Bitmap>();
 
         public DrawRoutines()
         {
@@ -90,6 +94,128 @@ namespace SimulatorDatabase
                     ws.screenDisplay.Image = newImage;
                     bmp.Dispose();
                 }
+            }
+        }
+
+        /// <summary>
+        /// Closes upscaled displays and disposes them
+        /// </summary>
+        public void Dispose()
+        {
+            foreach (WindowScreen ws in wss)
+            {
+                ws.Close();
+                ws.Dispose();
+            }
+            foreach (Bitmap bmp in freezescreens)
+            {
+                bmp.Dispose();
+            }
+            wss.Clear();
+            freezescreens.Clear();
+        }
+
+        /// <summary>
+        /// Draws the image for all displays
+        /// </summary>
+        public void DrawAll()
+        {
+            foreach (WindowScreen ws in wss)
+            {
+                try
+                {
+                    Program.dr.Draw(ws);
+                }
+                catch
+                {
+                    ws.Close();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Initialize scaled display for fullscreen mode
+        /// </summary>
+        /// <param name="frm">Form to upscale</param>
+        /// <param name="native">Specifies whether or not the primary display should be upscaled, if true then it's not upscaled</param>
+        public void Init(Form frm, bool native = false)
+        {
+            if (Screen.AllScreens.Length > 1)
+            {
+                foreach (Screen s in Screen.AllScreens)
+                {
+                    WindowScreen ws = new WindowScreen();
+                    if (!s.Primary)
+                    {
+                        if (Program.gs.DisplayMode != "none")
+                        {
+                            ws.StartPosition = FormStartPosition.Manual;
+                            ws.Location = s.WorkingArea.Location;
+                            ws.Size = new Size(s.WorkingArea.Width, s.WorkingArea.Height);
+                            ws.primary = false;
+
+                            if (Program.gs.DisplayMode == "freeze")
+                            {
+                                Bitmap screenshot = new Bitmap(s.Bounds.Width,
+                                    s.Bounds.Height,
+                                    System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+                                Graphics gfxScreenshot = Graphics.FromImage(screenshot);
+                                gfxScreenshot.CopyFromScreen(
+                                    s.Bounds.X,
+                                    s.Bounds.Y,
+                                    0,
+                                    0,
+                                    s.Bounds.Size,
+                                    CopyPixelOperation.SourceCopy
+                                    );
+                                freezescreens.Add(screenshot);
+
+                            }
+                        }
+                    }
+                    wss.Add(ws);
+                }
+            }
+            else
+            {
+                if (!native)
+                {
+                    wss.Add(new WindowScreen());
+                }
+            }
+            for (int i = 0; i < wss.Count; i++)
+            {
+                WindowScreen ws = wss[i];
+                ws.Show();
+                if (!ws.primary)
+                {
+                    if (Program.gs.DisplayMode == "freeze")
+                    {
+                        ws.screenDisplay.Image = freezescreens[i - 1];
+                    }
+                }
+            }
+            // do not draw the main display if native resolution is used
+            if (!native)
+            {
+                foreach (WindowScreen ws in wss)
+                {
+                    Program.dr.Draw(ws);
+                }
+                frm.TopMost = false;
+                for (int i = 0; i < wss.Count; i++)
+                {
+                    WindowScreen ws = wss[i];
+                    ws.Show();
+                    if (!ws.primary)
+                    {
+                        if (Program.gs.DisplayMode == "freeze")
+                        {
+                            ws.screenDisplay.Image = freezescreens[i - 1];
+                        }
+                    }
+                }
+                frm.Hide();
             }
         }
     }
@@ -765,9 +891,54 @@ namespace SimulatorDatabase
         {
             Log("Info", $"Pushing culprit file {name} with error templates [{string.Join(", ", codes)}]");
             
-            if (!KvpContainsKey(name, codefiles) && Program.verificate)
+            if (Program.verificate)
             {
                 codefiles.Add(new KeyValuePair<string, string[]>(name, codes));
+            }
+        }
+        
+        /// <summary>
+        /// Adds another code to an existing code file
+        /// </summary>
+        /// <param name="idx">Index of the codefile</param>
+        /// <param name="code">New code template to be added</param>
+        public void PushCode(int idx, string code)
+        {
+            Log("Info", $"Pushing code template {code} to file at index {idx}");
+            KeyValuePair<string, string[]> selectedFile = codefiles[idx];
+            List<string> codes = selectedFile.Value.ToList();
+            codes.Add(code);
+            KeyValuePair<string, string[]> newFile = new KeyValuePair<string, string[]>(selectedFile.Key, codes.ToArray());
+            codefiles[idx] = newFile;
+        }
+
+        /// <summary>
+        /// Replaces the code template list of a file with a new list
+        /// </summary>
+        /// <param name="idx">Index of the codefile</param>
+        /// <param name="codes">Array of code templates</param>
+        public void SetFileCodes(int idx, string[] codes)
+        {
+            Log("Info", $"Settings files codes at {idx} to {string.Join(";", codes)}");
+            KeyValuePair<string, string[]> selectedFile = codefiles[idx];
+            KeyValuePair<string, string[]> newFile = new KeyValuePair<string, string[]>(selectedFile.Key, codes);
+            codefiles[idx] = newFile;
+        }
+
+        /// <summary>
+        /// Removes a code from an existing code file
+        /// </summary>
+        /// <param name="idx">Index of the codefile</param>
+        /// <param name="code_idx">Index of the code template within the value of codefile</param>
+        public void RemoveCode(int idx, int code_idx)
+        {
+            Log("Info", $"Removing code within file {idx}'s code array at {code_idx}");
+            KeyValuePair<string, string[]> selectedFile = codefiles[idx];
+            List<string> codes = selectedFile.Value.ToList();
+            if (code_idx < codes.Count) {
+                codes.RemoveAt(code_idx);
+                KeyValuePair<string, string[]> newFile = new KeyValuePair<string, string[]>(selectedFile.Key, codes.ToArray());
+                codefiles[idx] = newFile;
             }
         }
 
@@ -779,6 +950,7 @@ namespace SimulatorDatabase
         /// <returns>true if key is in list containing key value pairs</returns>
         private bool KvpContainsKey(string key, List<KeyValuePair<string, string[]>> list)
         {
+            Log("Info", $"Checking if {key} exists in a key value pair list");
             foreach (KeyValuePair<string, string[]> kvp in list)
             {
                 if (kvp.Key == key)
@@ -1309,6 +1481,7 @@ namespace SimulatorDatabase
             bs.ShowDialog();
             Thread.CurrentThread.Abort();
         }
+
 
         ///<summary>
         ///Displays a metacrash screen
