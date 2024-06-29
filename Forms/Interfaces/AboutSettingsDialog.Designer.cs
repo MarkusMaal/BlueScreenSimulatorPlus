@@ -866,6 +866,7 @@ namespace UltimateBlueScreenSimulator
             // 
             // materialCard7
             // 
+            this.materialCard7.BackColor = System.Drawing.SystemColors.Control;
             this.materialCard7.Controls.Add(this.simulatorSettingsHeading);
             this.materialCard7.Controls.Add(this.devFlowPanel);
             this.materialCard7.Controls.Add(this.selectAllBox);
@@ -911,9 +912,9 @@ namespace UltimateBlueScreenSimulator
             this.devFlowPanel.Controls.Add(this.materialButton4);
             this.devFlowPanel.Controls.Add(this.devRestartApp);
             this.devFlowPanel.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.devFlowPanel.Location = new System.Drawing.Point(190, 3);
+            this.devFlowPanel.Location = new System.Drawing.Point(199, 3);
             this.devFlowPanel.Name = "devFlowPanel";
-            this.devFlowPanel.Size = new System.Drawing.Size(524, 69);
+            this.devFlowPanel.Size = new System.Drawing.Size(515, 69);
             this.devFlowPanel.TabIndex = 23;
             this.devFlowPanel.Visible = false;
             this.devFlowPanel.WrapContents = false;

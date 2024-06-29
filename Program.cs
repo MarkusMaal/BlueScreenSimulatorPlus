@@ -15,6 +15,7 @@ using System.Net.NetworkInformation;
 using System.Threading;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 
 namespace UltimateBlueScreenSimulator
 {
@@ -50,34 +51,28 @@ namespace UltimateBlueScreenSimulator
         public static Thread splt;
         public static CLIProcessor clip;
         public static TemplateRegistry templates;
+        public static readonly byte[] footerBytes = new byte[] { 0x42, 0x33, 0x65, 0x72 };
+        public static string[] validnames = new string[]
+        {
+                "blue screen simulator plus",
+                "bssp",
+                "ultimatebluescreensimulator",
+                "blue.screen.simulator.plus"
+        };
 
         [STAThread]
         public static int Main(string[] args)
         {
             try
             {
-                //gs.SingleSim = "Windows 11";
                 clip = new CLIProcessor(args);
                 //Application initialization
                 Application.SetCompatibleTextRenderingDefault(false);
                 verifile = new Verifile();
                 verificate = verifile.Verify;
                 gs.Log("Info", "Verifile passed");
-                if ((gs.SingleSim != "") && verificate)
+                if (AttachmentReader())
                 {
-                    templates = new TemplateRegistry();
-                    dr = new DrawRoutines();
-                    f1 = new NewUI();
-                    //gs.PM_Lockout = true;
-                    Thread th = new Thread(new ThreadStart(() => {
-
-                        // initialize BlueScreen object
-                        f1.me = new BlueScreen(gs.SingleSim);
-                        // display the crash screen
-                        f1.me.Show();
-                    }));
-                    th.Start();
-                    th.Join();
                     return 0;
                 }
                 //If hidesplash flag is not set, display the splash screen
@@ -280,5 +275,96 @@ namespace UltimateBlueScreenSimulator
             return errors;
         }
 
+        /// <summary>
+        /// For self-contained simulator support. Loads a JSON string from the end of executable into memory if the special B3er header is found, then displays a blue screen based on those settings.
+        /// </summary>
+        /// <returns>If the header is found, returns true</returns>
+        private static bool AttachmentReader()
+        {
+            // if we are just using the main program and not a self contained one, just return false
+            // trying to load a non-existant footer will increase load times for no good reason
+            foreach (string entry in validnames)
+            {
+                if (System.Diagnostics.Process.GetCurrentProcess().MainModule.ModuleName.ToLower() == $"{entry}.exe")
+                {
+                    return false;
+                }
+            }
+            List<byte> data = new List<byte>();
+            string filename = System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName;
+            string tempname = Path.GetTempPath() + "\\BSSP.temp";
+            File.Copy(filename, tempname);
+            FileInfo fi = new FileInfo(tempname);
+            List<byte> discoveredFootBytes = new List<byte>();
+            bool footerFound = false;
+            bool actualFooterFound = false;
+            int i = 0;
+            using (BinaryReader reader = new BinaryReader(new FileStream(tempname, FileMode.Open)))
+            {
+                byte b = 0xFF;
+                while (true) {
+                    try
+                    {
+                        b = reader.ReadByte();
+                    } catch
+                    {
+                        break;
+                    }
+                    if (actualFooterFound)
+                    {
+                        data.Add(b);
+                        i++;
+                    }
+                    else if (footerBytes.Contains(b) && !discoveredFootBytes.Contains(b))
+                    {
+                        discoveredFootBytes.Add(b);
+                        if ((discoveredFootBytes.Count == 4) && footerFound)
+                        {
+                            actualFooterFound = true;
+                        }
+                        else if ((discoveredFootBytes.Count == 4))
+                        {
+                            footerFound = true;
+                        }
+                    } else
+                    {
+                        discoveredFootBytes.Clear();
+                    }
+                }
+            }
+            File.Delete(tempname);
+            List<byte> stripped = new List<byte>();
+            foreach (byte b in data)
+            {
+                if (b != 0x00)
+                {
+                    stripped.Add(b);
+                }
+            }
+            if (stripped.Count > 0)
+            {
+                gs.LoadSettings();
+                string jsondata = System.Text.Encoding.Default.GetString(stripped.ToArray());
+                if (verificate)
+                {
+                    templates = new TemplateRegistry();
+                    dr = new DrawRoutines();
+                    f1 = new NewUI();
+                    Thread th = new Thread(new ThreadStart(() => {
+                        // initialize BlueScreen object
+                        f1.me = templates.LoadSingleConfig(jsondata);
+                        // display the crash screen
+                        f1.me.Show();
+                    }));
+                    th.Start();
+                    th.Join();
+                }
+            } else
+            {
+                MessageBox.Show($"Invalid footer data or filename. Please rename the executable back or delete it.\r\n\r\nValid names include the following:\r\n{string.Join("\r\n", validnames)}", "Special footer missing", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return true;
+            }
+            return actualFooterFound;
+        }
     }
 }

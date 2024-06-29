@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using SimulatorDatabase;
 using System.Text.Json.Serialization;
 using System.Text.Json;
+using static System.Windows.Forms.Design.AxImporter;
 
 namespace UltimateBlueScreenSimulator
 {
@@ -389,6 +390,42 @@ namespace UltimateBlueScreenSimulator
         private string RGB_String(Color rgb)
         {
             return rgb.R.ToString() + "," + rgb.G.ToString() + "," + rgb.B.ToString();
+        }
+
+
+        /// <summary>
+        /// This function allows for loading a single blue screen template from a json string. This is useful for creating a single bluescreen object and doing fun things with it.
+        /// </summary>
+        /// <param name="data">JSON input</param>
+        /// <returns>BlueScreen object as the output</returns>
+        public BlueScreen LoadSingleConfig(string data)
+        {
+            BlueScreen me = new BlueScreen();
+            try
+            {
+                // single line to load is pretty cool ngl
+                me = JsonSerializer.Deserialize<BlueScreen>(data);
+                return me;
+            }
+            catch (DllNotFoundException)
+            {
+                Program.DllError();
+            }
+            catch (IOException)
+            {
+                Program.DllError();
+            }
+            return me;
+        }
+
+        /// <summary>
+        /// Serializes a specified bluescreen configuration data into JSON data
+        /// </summary>
+        /// <param name="me">BlueScreen object you want to convert</param>
+        /// <returns>JSON string</returns>
+        public string SaveSingleConfig(BlueScreen me)
+        {
+            return JsonSerializer.Serialize(me);
         }
 
 

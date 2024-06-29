@@ -66,6 +66,7 @@
             this.button2 = new MaterialSkin.Controls.MaterialButton();
             this.customizeCodesButton = new MaterialSkin.Controls.MaterialButton();
             this.halfBox = new MaterialSkin.Controls.MaterialCheckbox();
+            this.rainbowBox = new MaterialSkin.Controls.MaterialCheckbox();
             this.materialTabControl1 = new MaterialSkin.Controls.MaterialTabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
@@ -96,7 +97,7 @@
             this.updateCheckerTimer = new System.Windows.Forms.Timer(this.components);
             this.prankModeTimer = new System.Windows.Forms.Timer(this.components);
             this.waitPopup = new System.Windows.Forms.Timer(this.components);
-            this.rainbowBox = new MaterialSkin.Controls.MaterialCheckbox();
+            this.embedExeButton = new MaterialSkin.Controls.MaterialButton();
             this.winPanel.SuspendLayout();
             this.ntPanel.SuspendLayout();
             this.materialTabControl1.SuspendLayout();
@@ -172,9 +173,9 @@
             this.winPanel.Controls.Add(this.win1startup);
             this.winPanel.Controls.Add(this.win2startup);
             this.winPanel.Controls.Add(this.nostartup);
-            this.winPanel.Location = new System.Drawing.Point(676, 3);
+            this.winPanel.Location = new System.Drawing.Point(3, 527);
             this.winPanel.Name = "winPanel";
-            this.winPanel.Size = new System.Drawing.Size(239, 111);
+            this.winPanel.Size = new System.Drawing.Size(637, 37);
             this.winPanel.TabIndex = 7;
             // 
             // win1startup
@@ -201,7 +202,7 @@
             this.win2startup.AutoSize = true;
             this.win2startup.Depth = 0;
             this.win2startup.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.win2startup.Location = new System.Drawing.Point(0, 37);
+            this.win2startup.Location = new System.Drawing.Point(239, 0);
             this.win2startup.Margin = new System.Windows.Forms.Padding(0);
             this.win2startup.MouseLocation = new System.Drawing.Point(-1, -1);
             this.win2startup.MouseState = MaterialSkin.MouseState.HOVER;
@@ -219,7 +220,7 @@
             this.nostartup.AutoSize = true;
             this.nostartup.Depth = 0;
             this.nostartup.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.nostartup.Location = new System.Drawing.Point(0, 74);
+            this.nostartup.Location = new System.Drawing.Point(478, 0);
             this.nostartup.Margin = new System.Windows.Forms.Padding(0);
             this.nostartup.MouseLocation = new System.Drawing.Point(-1, -1);
             this.nostartup.MouseState = MaterialSkin.MouseState.HOVER;
@@ -538,7 +539,7 @@
             this.playSndBox.AutoSize = true;
             this.playSndBox.Depth = 0;
             this.playSndBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.playSndBox.Location = new System.Drawing.Point(673, 154);
+            this.playSndBox.Location = new System.Drawing.Point(673, 37);
             this.playSndBox.Margin = new System.Windows.Forms.Padding(0);
             this.playSndBox.MouseLocation = new System.Drawing.Point(-1, -1);
             this.playSndBox.MouseState = MaterialSkin.MouseState.HOVER;
@@ -559,7 +560,7 @@
             this.waterBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.waterBox.Depth = 0;
             this.waterBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.waterBox.Location = new System.Drawing.Point(673, 191);
+            this.waterBox.Location = new System.Drawing.Point(673, 74);
             this.waterBox.Margin = new System.Windows.Forms.Padding(0);
             this.waterBox.MouseLocation = new System.Drawing.Point(-1, -1);
             this.waterBox.MouseState = MaterialSkin.MouseState.HOVER;
@@ -578,7 +579,7 @@
             this.winMode.AutoSize = true;
             this.winMode.Depth = 0;
             this.winMode.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.winMode.Location = new System.Drawing.Point(673, 228);
+            this.winMode.Location = new System.Drawing.Point(673, 111);
             this.winMode.Margin = new System.Windows.Forms.Padding(0);
             this.winMode.MouseLocation = new System.Drawing.Point(-1, -1);
             this.winMode.MouseState = MaterialSkin.MouseState.HOVER;
@@ -600,7 +601,7 @@
             this.advOptionsButton.HighEmphasis = true;
             this.advOptionsButton.Icon = null;
             this.advOptionsButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.advOptionsButton.Location = new System.Drawing.Point(4, 6);
+            this.advOptionsButton.Location = new System.Drawing.Point(4, 54);
             this.advOptionsButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.advOptionsButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.advOptionsButton.Name = "advOptionsButton";
@@ -622,7 +623,7 @@
             this.eCodeEditButton.HighEmphasis = true;
             this.eCodeEditButton.Icon = null;
             this.eCodeEditButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.eCodeEditButton.Location = new System.Drawing.Point(4, 54);
+            this.eCodeEditButton.Location = new System.Drawing.Point(4, 102);
             this.eCodeEditButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.eCodeEditButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.eCodeEditButton.Name = "eCodeEditButton";
@@ -646,7 +647,7 @@
             this.advNTButton.HighEmphasis = true;
             this.advNTButton.Icon = null;
             this.advNTButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.advNTButton.Location = new System.Drawing.Point(4, 102);
+            this.advNTButton.Location = new System.Drawing.Point(4, 150);
             this.advNTButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.advNTButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.advNTButton.Name = "advNTButton";
@@ -670,7 +671,7 @@
             this.progressTuneButton.HighEmphasis = true;
             this.progressTuneButton.Icon = null;
             this.progressTuneButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.progressTuneButton.Location = new System.Drawing.Point(4, 150);
+            this.progressTuneButton.Location = new System.Drawing.Point(4, 198);
             this.progressTuneButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.progressTuneButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.progressTuneButton.Name = "progressTuneButton";
@@ -691,7 +692,7 @@
             this.button1.Depth = 0;
             this.button1.Icon = global::UltimateBlueScreenSimulator.Properties.Resources.play;
             this.button1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.button1.Location = new System.Drawing.Point(-345, -159);
+            this.button1.Location = new System.Drawing.Point(-329, -120);
             this.button1.Mini = true;
             this.button1.MouseState = MaterialSkin.MouseState.HOVER;
             this.button1.Name = "button1";
@@ -708,7 +709,7 @@
             this.button3.Depth = 0;
             this.button3.Icon = global::UltimateBlueScreenSimulator.Properties.Resources.question;
             this.button3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.button3.Location = new System.Drawing.Point(-345, -109);
+            this.button3.Location = new System.Drawing.Point(-329, -70);
             this.button3.Mini = true;
             this.button3.MouseState = MaterialSkin.MouseState.HOVER;
             this.button3.Name = "button3";
@@ -795,7 +796,7 @@
             this.halfBox.AutoSize = true;
             this.halfBox.Depth = 0;
             this.halfBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.halfBox.Location = new System.Drawing.Point(673, 117);
+            this.halfBox.Location = new System.Drawing.Point(673, 0);
             this.halfBox.Margin = new System.Windows.Forms.Padding(0);
             this.halfBox.MouseLocation = new System.Drawing.Point(-1, -1);
             this.halfBox.MouseState = MaterialSkin.MouseState.HOVER;
@@ -809,6 +810,25 @@
             this.halfBox.UseVisualStyleBackColor = true;
             this.halfBox.Visible = false;
             this.halfBox.CheckedChanged += new System.EventHandler(this.halfBox_CheckedChanged);
+            // 
+            // rainbowBox
+            // 
+            this.rainbowBox.AutoSize = true;
+            this.rainbowBox.Depth = 0;
+            this.rainbowBox.Location = new System.Drawing.Point(0, 413);
+            this.rainbowBox.Margin = new System.Windows.Forms.Padding(0);
+            this.rainbowBox.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.rainbowBox.MouseState = MaterialSkin.MouseState.HOVER;
+            this.rainbowBox.Name = "rainbowBox";
+            this.rainbowBox.ReadOnly = false;
+            this.rainbowBox.Ripple = true;
+            this.rainbowBox.Size = new System.Drawing.Size(117, 37);
+            this.rainbowBox.TabIndex = 11;
+            this.rainbowBox.Text = "Rainbow [?]";
+            this.quickHelp.SetToolTip(this.rainbowBox, "Displays a rainbow gradient as the background image");
+            this.rainbowBox.UseVisualStyleBackColor = true;
+            this.rainbowBox.Visible = false;
+            this.rainbowBox.CheckedChanged += new System.EventHandler(this.rainbowBox_CheckedChanged);
             // 
             // materialTabControl1
             // 
@@ -827,7 +847,7 @@
             this.materialTabControl1.Name = "materialTabControl1";
             this.materialTabControl1.SelectedIndex = 0;
             this.materialTabControl1.ShowToolTips = true;
-            this.materialTabControl1.Size = new System.Drawing.Size(773, 721);
+            this.materialTabControl1.Size = new System.Drawing.Size(789, 760);
             this.materialTabControl1.TabIndex = 8;
             this.materialTabControl1.SelectedIndexChanged += new System.EventHandler(this.materialTabControl1_SelectedIndexChanged);
             // 
@@ -839,7 +859,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(765, 692);
+            this.tabPage1.Size = new System.Drawing.Size(781, 731);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Simulator";
             // 
@@ -889,7 +909,7 @@
             this.windowVersion.MaxDropDownItems = 4;
             this.windowVersion.MouseState = MaterialSkin.MouseState.OUT;
             this.windowVersion.Name = "windowVersion";
-            this.windowVersion.Size = new System.Drawing.Size(637, 49);
+            this.windowVersion.Size = new System.Drawing.Size(653, 49);
             this.windowVersion.StartIndex = 0;
             this.windowVersion.TabIndex = 0;
             this.windowVersion.SelectedIndexChanged += new System.EventHandler(this.windowVersion_SelectedIndexChanged);
@@ -918,7 +938,7 @@
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(9, 62);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(741, 540);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(757, 579);
             this.flowLayoutPanel1.TabIndex = 3;
             // 
             // WXOptions
@@ -1131,13 +1151,14 @@
             // 
             this.flowLayoutPanel4.AutoSize = true;
             this.flowLayoutPanel4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.flowLayoutPanel4.Controls.Add(this.embedExeButton);
             this.flowLayoutPanel4.Controls.Add(this.advOptionsButton);
             this.flowLayoutPanel4.Controls.Add(this.eCodeEditButton);
             this.flowLayoutPanel4.Controls.Add(this.advNTButton);
             this.flowLayoutPanel4.Controls.Add(this.progressTuneButton);
-            this.flowLayoutPanel4.Location = new System.Drawing.Point(676, 268);
+            this.flowLayoutPanel4.Location = new System.Drawing.Point(676, 151);
             this.flowLayoutPanel4.Name = "flowLayoutPanel4";
-            this.flowLayoutPanel4.Size = new System.Drawing.Size(246, 192);
+            this.flowLayoutPanel4.Size = new System.Drawing.Size(246, 240);
             this.flowLayoutPanel4.TabIndex = 10;
             // 
             // tabPage2
@@ -1148,7 +1169,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(749, 653);
+            this.tabPage2.Size = new System.Drawing.Size(765, 692);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Trace log";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -1167,7 +1188,7 @@
             this.logIf.MouseState = MaterialSkin.MouseState.HOVER;
             this.logIf.Name = "logIf";
             this.logIf.ReadOnly = true;
-            this.logIf.Size = new System.Drawing.Size(700, 491);
+            this.logIf.Size = new System.Drawing.Size(716, 530);
             this.logIf.TabIndex = 3;
             this.logIf.Text = "Logging interface 1.0";
             // 
@@ -1180,7 +1201,7 @@
             this.materialButton6.HighEmphasis = true;
             this.materialButton6.Icon = null;
             this.materialButton6.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.materialButton6.Location = new System.Drawing.Point(572, 17);
+            this.materialButton6.Location = new System.Drawing.Point(588, 17);
             this.materialButton6.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.materialButton6.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialButton6.Name = "materialButton6";
@@ -1197,7 +1218,7 @@
             // 
             this.tabPage3.Location = new System.Drawing.Point(4, 25);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(749, 653);
+            this.tabPage3.Size = new System.Drawing.Size(765, 692);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Settings";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -1206,7 +1227,7 @@
             // 
             this.aboutTab.Location = new System.Drawing.Point(4, 25);
             this.aboutTab.Name = "aboutTab";
-            this.aboutTab.Size = new System.Drawing.Size(749, 653);
+            this.aboutTab.Size = new System.Drawing.Size(765, 692);
             this.aboutTab.TabIndex = 3;
             this.aboutTab.Text = "About";
             this.aboutTab.UseVisualStyleBackColor = true;
@@ -1215,7 +1236,7 @@
             // 
             this.tabPage4.Location = new System.Drawing.Point(4, 25);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(749, 653);
+            this.tabPage4.Size = new System.Drawing.Size(765, 692);
             this.tabPage4.TabIndex = 4;
             this.tabPage4.Text = "Prank mode";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -1224,7 +1245,7 @@
             // 
             this.tabPage5.Location = new System.Drawing.Point(4, 25);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(749, 653);
+            this.tabPage5.Size = new System.Drawing.Size(765, 692);
             this.tabPage5.TabIndex = 5;
             this.tabPage5.Text = "Restore old UI";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -1254,7 +1275,7 @@
             this.label7.AutoSize = true;
             this.label7.Depth = 0;
             this.label7.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.label7.Location = new System.Drawing.Point(14, 702);
+            this.label7.Location = new System.Drawing.Point(14, 741);
             this.label7.MouseState = MaterialSkin.MouseState.HOVER;
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(348, 19);
@@ -1279,29 +1300,32 @@
             // 
             this.waitPopup.Tick += new System.EventHandler(this.waitPopup_Tick);
             // 
-            // rainbowBox
+            // embedExeButton
             // 
-            this.rainbowBox.AutoSize = true;
-            this.rainbowBox.Depth = 0;
-            this.rainbowBox.Location = new System.Drawing.Point(0, 413);
-            this.rainbowBox.Margin = new System.Windows.Forms.Padding(0);
-            this.rainbowBox.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.rainbowBox.MouseState = MaterialSkin.MouseState.HOVER;
-            this.rainbowBox.Name = "rainbowBox";
-            this.rainbowBox.ReadOnly = false;
-            this.rainbowBox.Ripple = true;
-            this.rainbowBox.Size = new System.Drawing.Size(117, 37);
-            this.rainbowBox.TabIndex = 11;
-            this.rainbowBox.Text = "Rainbow [?]";
-            this.quickHelp.SetToolTip(this.rainbowBox, "Displays a rainbow gradient as the background image");
-            this.rainbowBox.UseVisualStyleBackColor = true;
-            this.rainbowBox.Visible = false;
-            this.rainbowBox.CheckedChanged += new System.EventHandler(this.rainbowBox_CheckedChanged);
+            this.embedExeButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.embedExeButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.embedExeButton.Depth = 0;
+            this.embedExeButton.HighEmphasis = true;
+            this.embedExeButton.Icon = null;
+            this.embedExeButton.Location = new System.Drawing.Point(4, 6);
+            this.embedExeButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.embedExeButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.embedExeButton.Name = "embedExeButton";
+            this.embedExeButton.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.embedExeButton.Size = new System.Drawing.Size(174, 36);
+            this.embedExeButton.TabIndex = 1;
+            this.embedExeButton.Text = "Embed to EXE file";
+            this.quickHelp.SetToolTip(this.embedExeButton, "Creates a .EXE file containing this bluescreen configuration, which will be auto-" +
+        "simulated after running it.");
+            this.embedExeButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.embedExeButton.UseAccentColor = false;
+            this.embedExeButton.UseVisualStyleBackColor = true;
+            this.embedExeButton.Click += new System.EventHandler(this.embedExeButton_Click);
             // 
             // NewUI
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
-            this.ClientSize = new System.Drawing.Size(779, 788);
+            this.ClientSize = new System.Drawing.Size(795, 827);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button1);
@@ -1411,5 +1435,6 @@
         private MaterialSkin.Controls.MaterialCheckbox displayOsBox;
         private MaterialSkin.Controls.MaterialCheckbox halfBox;
         private MaterialSkin.Controls.MaterialCheckbox rainbowBox;
+        private MaterialSkin.Controls.MaterialButton embedExeButton;
     }
 }
