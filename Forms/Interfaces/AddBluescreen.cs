@@ -10,6 +10,7 @@ namespace UltimateBlueScreenSimulator
     public partial class AddBluescreen : MaterialForm
     {
         string base_os = "Windows 1.x/2.x";
+        BlueScreen me;
         public AddBluescreen()
         {
             MaterialSkinManager materialSkinManager = Program.f1.materialSkinManager;
@@ -26,7 +27,28 @@ namespace UltimateBlueScreenSimulator
 
         private void Initialize(object sender, EventArgs e)
         {
-            templatePicker.SelectedIndex = 0;
+            if (this.Text != "Edit blue screen")
+            {
+                templatePicker.SelectedIndex = 0;
+            }
+        }
+
+        internal void Preload(BlueScreen me)
+        {
+            templatePicker.Text = me.GetString("os");
+            templatePicker.Enabled = false;
+            this.Text = "Edit blue screen";
+
+            osBox.Text = me.GetString("os");
+            friendlyBox.Text = me.GetString("friendlyname");
+            for (int i = 0; i < iconBox.Items.Count; i++)
+            {
+                if (me.GetString("icon") == iconBox.Items[i].ToString())
+                {
+                    iconBox.SelectedIndex = i;
+                }
+            }
+            this.me = me;
         }
 
         private void OSSelector(object sender, EventArgs e)
@@ -131,8 +153,16 @@ namespace UltimateBlueScreenSimulator
 
         private void MakeBluescreen(object sender, EventArgs e)
         {
-            Program.templates.AddTemplate(osBox.Text, friendlyBox.Text, base_os);
-            Program.templates.GetLast().SetString("icon", iconBox.SelectedItem.ToString());
+            if (this.Text != "Edit blue screen")
+            {
+                Program.templates.AddTemplate(osBox.Text, friendlyBox.Text, base_os);
+                Program.templates.GetLast().SetString("icon", iconBox.SelectedItem.ToString());
+            } else
+            {
+                me.SetString("friendlyname", friendlyBox.Text);
+                me.SetString("os", osBox.Text);
+                me.SetString("icon", iconBox.SelectedItem.ToString());
+            }
             this.DialogResult = DialogResult.OK;
             this.Close();
         }

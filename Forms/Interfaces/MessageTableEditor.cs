@@ -15,6 +15,7 @@ namespace UltimateBlueScreenSimulator.Forms.Interfaces
     public partial class MessageTableEditor : MaterialForm
     {
         internal bool nt_errors = false;
+        internal bool nx_errors = false;
         public MessageTableEditor()
         {
             MaterialSkinManager materialSkinManager = Program.f1.materialSkinManager;
@@ -32,7 +33,17 @@ namespace UltimateBlueScreenSimulator.Forms.Interfaces
         void UpdateTemplate()
         {
             List<string> errorPairs = new List<string>();
-            if (nt_errors)
+            if (nx_errors)
+            {
+                Program.gs.Log("Info", "9x error database has been modified");
+                foreach (ListViewItem lvi in messageList.Items)
+                {
+                    errorPairs.Add(lvi.SubItems[0].Text + "\t" + lvi.SubItems[1].Text);
+                }
+                Program.templates.NxErrors = errorPairs.ToArray();
+                Program.ReloadNxErrors();
+            }
+            else if (nt_errors)
             {
                 Program.gs.Log("Info", "NT error database has been modified");
                 foreach (ListViewItem lvi in messageList.Items)
@@ -55,7 +66,7 @@ namespace UltimateBlueScreenSimulator.Forms.Interfaces
 
         private void MessageTableEditor_Load(object sender, EventArgs e)
         {
-            if (nt_errors)
+            if (nt_errors || nx_errors)
             {
                 messageList.Columns[0].Text = "Code";
             }
@@ -64,15 +75,15 @@ namespace UltimateBlueScreenSimulator.Forms.Interfaces
                 messageList.Columns[0].Text = "File";
             }
             messageList.Columns[1].Text = "Description";
-            foreach (string nt_error in (nt_errors ? Program.templates.NtErrors : Program.templates.CulpritFiles))
+            foreach (string nt_error in nx_errors ? Program.templates.NxErrors : (nt_errors ? Program.templates.NtErrors : Program.templates.CulpritFiles))
             {
                 if (nt_error == "")
                 {
                     continue;
                 }
                 ListViewItem lvi = new ListViewItem();
-                lvi.Text = nt_error.Split(nt_errors ? '\t' : ':')[0];
-                lvi.SubItems.Add(nt_error.Split(nt_errors ? '\t' : ':')[1]);
+                lvi.Text = nt_error.Split(nt_errors || nx_errors ? '\t' : ':')[0];
+                lvi.SubItems.Add(nt_error.Split(nt_errors || nx_errors ? '\t' : ':')[1]);
                 messageList.Items.Add(lvi);
             }
         }

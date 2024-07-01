@@ -67,6 +67,7 @@
             this.customizeCodesButton = new MaterialSkin.Controls.MaterialButton();
             this.halfBox = new MaterialSkin.Controls.MaterialCheckbox();
             this.rainbowBox = new MaterialSkin.Controls.MaterialCheckbox();
+            this.embedExeButton = new MaterialSkin.Controls.MaterialButton();
             this.materialTabControl1 = new MaterialSkin.Controls.MaterialTabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
@@ -97,7 +98,11 @@
             this.updateCheckerTimer = new System.Windows.Forms.Timer(this.components);
             this.prankModeTimer = new System.Windows.Forms.Timer(this.components);
             this.waitPopup = new System.Windows.Forms.Timer(this.components);
-            this.embedExeButton = new MaterialSkin.Controls.MaterialButton();
+            this.materialLabel6 = new MaterialSkin.Controls.MaterialLabel();
+            this.nineXErrorCode = new MaterialSkin.Controls.MaterialComboBox();
+            this.materialButton2 = new MaterialSkin.Controls.MaterialButton();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.winPanel.SuspendLayout();
             this.ntPanel.SuspendLayout();
             this.materialTabControl1.SuspendLayout();
@@ -108,6 +113,8 @@
             this.nineXmessage.SuspendLayout();
             this.flowLayoutPanel4.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // materialLabel5
@@ -131,7 +138,7 @@
             this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox1.Depth = 0;
             this.checkBox1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.checkBox1.Location = new System.Drawing.Point(0, 376);
+            this.checkBox1.Location = new System.Drawing.Point(0, 419);
             this.checkBox1.Margin = new System.Windows.Forms.Padding(0);
             this.checkBox1.MouseLocation = new System.Drawing.Point(-1, -1);
             this.checkBox1.MouseState = MaterialSkin.MouseState.HOVER;
@@ -153,7 +160,7 @@
             this.dumpBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.dumpBox.Depth = 0;
             this.dumpBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.dumpBox.Location = new System.Drawing.Point(0, 487);
+            this.dumpBox.Location = new System.Drawing.Point(0, 530);
             this.dumpBox.Margin = new System.Windows.Forms.Padding(0);
             this.dumpBox.MouseLocation = new System.Drawing.Point(-1, -1);
             this.dumpBox.MouseState = MaterialSkin.MouseState.HOVER;
@@ -173,7 +180,7 @@
             this.winPanel.Controls.Add(this.win1startup);
             this.winPanel.Controls.Add(this.win2startup);
             this.winPanel.Controls.Add(this.nostartup);
-            this.winPanel.Location = new System.Drawing.Point(3, 527);
+            this.winPanel.Location = new System.Drawing.Point(3, 570);
             this.winPanel.Name = "winPanel";
             this.winPanel.Size = new System.Drawing.Size(637, 37);
             this.winPanel.TabIndex = 7;
@@ -421,6 +428,7 @@
             this.quickHelp.SetToolTip(this.textBox1, "Search for the error code from the NT error message list");
             this.textBox1.TrailingIcon = null;
             this.textBox1.UseTallSize = false;
+            this.textBox1.TextChanged += new System.EventHandler(this.TextBox1_TextChanged);
             // 
             // ntPanel
             // 
@@ -520,7 +528,7 @@
             this.acpiBox.AutoSize = true;
             this.acpiBox.Depth = 0;
             this.acpiBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.acpiBox.Location = new System.Drawing.Point(0, 339);
+            this.acpiBox.Location = new System.Drawing.Point(0, 382);
             this.acpiBox.Margin = new System.Windows.Forms.Padding(0);
             this.acpiBox.MouseLocation = new System.Drawing.Point(-1, -1);
             this.acpiBox.MouseState = MaterialSkin.MouseState.HOVER;
@@ -692,7 +700,7 @@
             this.button1.Depth = 0;
             this.button1.Icon = global::UltimateBlueScreenSimulator.Properties.Resources.play;
             this.button1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.button1.Location = new System.Drawing.Point(-329, -120);
+            this.button1.Location = new System.Drawing.Point(-313, -81);
             this.button1.Mini = true;
             this.button1.MouseState = MaterialSkin.MouseState.HOVER;
             this.button1.Name = "button1";
@@ -709,7 +717,7 @@
             this.button3.Depth = 0;
             this.button3.Icon = global::UltimateBlueScreenSimulator.Properties.Resources.question;
             this.button3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.button3.Location = new System.Drawing.Point(-329, -70);
+            this.button3.Location = new System.Drawing.Point(-313, -31);
             this.button3.Mini = true;
             this.button3.MouseState = MaterialSkin.MouseState.HOVER;
             this.button3.Name = "button3";
@@ -728,7 +736,7 @@
             this.countdownBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.countdownBox.Depth = 0;
             this.countdownBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.countdownBox.Location = new System.Drawing.Point(0, 450);
+            this.countdownBox.Location = new System.Drawing.Point(0, 493);
             this.countdownBox.Margin = new System.Windows.Forms.Padding(0);
             this.countdownBox.MouseLocation = new System.Drawing.Point(-1, -1);
             this.countdownBox.MouseState = MaterialSkin.MouseState.HOVER;
@@ -815,7 +823,7 @@
             // 
             this.rainbowBox.AutoSize = true;
             this.rainbowBox.Depth = 0;
-            this.rainbowBox.Location = new System.Drawing.Point(0, 413);
+            this.rainbowBox.Location = new System.Drawing.Point(0, 456);
             this.rainbowBox.Margin = new System.Windows.Forms.Padding(0);
             this.rainbowBox.MouseLocation = new System.Drawing.Point(-1, -1);
             this.rainbowBox.MouseState = MaterialSkin.MouseState.HOVER;
@@ -829,6 +837,28 @@
             this.rainbowBox.UseVisualStyleBackColor = true;
             this.rainbowBox.Visible = false;
             this.rainbowBox.CheckedChanged += new System.EventHandler(this.rainbowBox_CheckedChanged);
+            // 
+            // embedExeButton
+            // 
+            this.embedExeButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.embedExeButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.embedExeButton.Depth = 0;
+            this.embedExeButton.HighEmphasis = true;
+            this.embedExeButton.Icon = null;
+            this.embedExeButton.Location = new System.Drawing.Point(4, 6);
+            this.embedExeButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.embedExeButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.embedExeButton.Name = "embedExeButton";
+            this.embedExeButton.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.embedExeButton.Size = new System.Drawing.Size(155, 36);
+            this.embedExeButton.TabIndex = 1;
+            this.embedExeButton.Text = "Embed to EXE file";
+            this.quickHelp.SetToolTip(this.embedExeButton, "Creates a .EXE file containing this bluescreen configuration, which will be auto-" +
+        "simulated after running it.");
+            this.embedExeButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.embedExeButton.UseAccentColor = false;
+            this.embedExeButton.UseVisualStyleBackColor = true;
+            this.embedExeButton.Click += new System.EventHandler(this.embedExeButton_Click);
             // 
             // materialTabControl1
             // 
@@ -847,9 +877,10 @@
             this.materialTabControl1.Name = "materialTabControl1";
             this.materialTabControl1.SelectedIndex = 0;
             this.materialTabControl1.ShowToolTips = true;
-            this.materialTabControl1.Size = new System.Drawing.Size(789, 760);
+            this.materialTabControl1.Size = new System.Drawing.Size(805, 799);
             this.materialTabControl1.TabIndex = 8;
             this.materialTabControl1.SelectedIndexChanged += new System.EventHandler(this.materialTabControl1_SelectedIndexChanged);
+            this.materialTabControl1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NewUI_KeyDown);
             // 
             // tabPage1
             // 
@@ -859,7 +890,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(781, 731);
+            this.tabPage1.Size = new System.Drawing.Size(797, 770);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Simulator";
             // 
@@ -909,7 +940,7 @@
             this.windowVersion.MaxDropDownItems = 4;
             this.windowVersion.MouseState = MaterialSkin.MouseState.OUT;
             this.windowVersion.Name = "windowVersion";
-            this.windowVersion.Size = new System.Drawing.Size(653, 49);
+            this.windowVersion.Size = new System.Drawing.Size(669, 49);
             this.windowVersion.StartIndex = 0;
             this.windowVersion.TabIndex = 0;
             this.windowVersion.SelectedIndexChanged += new System.EventHandler(this.windowVersion_SelectedIndexChanged);
@@ -938,7 +969,7 @@
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(9, 62);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(757, 579);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(773, 618);
             this.flowLayoutPanel1.TabIndex = 3;
             // 
             // WXOptions
@@ -1090,11 +1121,13 @@
             // 
             // nineXmessage
             // 
-            this.nineXmessage.Controls.Add(this.materialLabel4);
-            this.nineXmessage.Controls.Add(this.comboBox2);
-            this.nineXmessage.Location = new System.Drawing.Point(3, 294);
+            this.nineXmessage.Controls.Add(this.panel1);
+            this.nineXmessage.Controls.Add(this.panel2);
+            this.nineXmessage.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.nineXmessage.Location = new System.Drawing.Point(0, 291);
+            this.nineXmessage.Margin = new System.Windows.Forms.Padding(0);
             this.nineXmessage.Name = "nineXmessage";
-            this.nineXmessage.Size = new System.Drawing.Size(658, 42);
+            this.nineXmessage.Size = new System.Drawing.Size(667, 91);
             this.nineXmessage.TabIndex = 3;
             // 
             // materialLabel4
@@ -1102,14 +1135,14 @@
             this.materialLabel4.Depth = 0;
             this.materialLabel4.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.materialLabel4.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.materialLabel4.Location = new System.Drawing.Point(3, 3);
-            this.materialLabel4.Margin = new System.Windows.Forms.Padding(3);
+            this.materialLabel4.Location = new System.Drawing.Point(5, 3);
+            this.materialLabel4.Margin = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.materialLabel4.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel4.Name = "materialLabel4";
-            this.materialLabel4.Size = new System.Drawing.Size(160, 36);
+            this.materialLabel4.Size = new System.Drawing.Size(154, 36);
             this.materialLabel4.TabIndex = 0;
-            this.materialLabel4.Text = "9x/Me error message:";
-            this.materialLabel4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.materialLabel4.Text = "9x/Me error screen:";
+            this.materialLabel4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // comboBox2
             // 
@@ -1137,11 +1170,11 @@
             "System is busy",
             "System is unresponsive (Warning)",
             "Unsafe eject"});
-            this.comboBox2.Location = new System.Drawing.Point(169, 3);
+            this.comboBox2.Location = new System.Drawing.Point(162, 3);
             this.comboBox2.MaxDropDownItems = 4;
             this.comboBox2.MouseState = MaterialSkin.MouseState.OUT;
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(462, 35);
+            this.comboBox2.Size = new System.Drawing.Size(499, 35);
             this.comboBox2.StartIndex = 0;
             this.comboBox2.TabIndex = 1;
             this.comboBox2.UseTallSize = false;
@@ -1169,7 +1202,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(765, 692);
+            this.tabPage2.Size = new System.Drawing.Size(781, 731);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Trace log";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -1188,7 +1221,7 @@
             this.logIf.MouseState = MaterialSkin.MouseState.HOVER;
             this.logIf.Name = "logIf";
             this.logIf.ReadOnly = true;
-            this.logIf.Size = new System.Drawing.Size(716, 530);
+            this.logIf.Size = new System.Drawing.Size(732, 569);
             this.logIf.TabIndex = 3;
             this.logIf.Text = "Logging interface 1.0";
             // 
@@ -1201,7 +1234,7 @@
             this.materialButton6.HighEmphasis = true;
             this.materialButton6.Icon = null;
             this.materialButton6.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.materialButton6.Location = new System.Drawing.Point(588, 17);
+            this.materialButton6.Location = new System.Drawing.Point(604, 17);
             this.materialButton6.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.materialButton6.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialButton6.Name = "materialButton6";
@@ -1218,7 +1251,7 @@
             // 
             this.tabPage3.Location = new System.Drawing.Point(4, 25);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(765, 692);
+            this.tabPage3.Size = new System.Drawing.Size(781, 731);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Settings";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -1227,7 +1260,7 @@
             // 
             this.aboutTab.Location = new System.Drawing.Point(4, 25);
             this.aboutTab.Name = "aboutTab";
-            this.aboutTab.Size = new System.Drawing.Size(765, 692);
+            this.aboutTab.Size = new System.Drawing.Size(781, 731);
             this.aboutTab.TabIndex = 3;
             this.aboutTab.Text = "About";
             this.aboutTab.UseVisualStyleBackColor = true;
@@ -1236,7 +1269,7 @@
             // 
             this.tabPage4.Location = new System.Drawing.Point(4, 25);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(765, 692);
+            this.tabPage4.Size = new System.Drawing.Size(781, 731);
             this.tabPage4.TabIndex = 4;
             this.tabPage4.Text = "Prank mode";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -1245,7 +1278,7 @@
             // 
             this.tabPage5.Location = new System.Drawing.Point(4, 25);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(765, 692);
+            this.tabPage5.Size = new System.Drawing.Size(781, 731);
             this.tabPage5.TabIndex = 5;
             this.tabPage5.Text = "Restore old UI";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -1275,7 +1308,7 @@
             this.label7.AutoSize = true;
             this.label7.Depth = 0;
             this.label7.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.label7.Location = new System.Drawing.Point(14, 741);
+            this.label7.Location = new System.Drawing.Point(14, 780);
             this.label7.MouseState = MaterialSkin.MouseState.HOVER;
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(348, 19);
@@ -1300,32 +1333,91 @@
             // 
             this.waitPopup.Tick += new System.EventHandler(this.waitPopup_Tick);
             // 
-            // embedExeButton
+            // materialLabel6
             // 
-            this.embedExeButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.embedExeButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.embedExeButton.Depth = 0;
-            this.embedExeButton.HighEmphasis = true;
-            this.embedExeButton.Icon = null;
-            this.embedExeButton.Location = new System.Drawing.Point(4, 6);
-            this.embedExeButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.embedExeButton.MouseState = MaterialSkin.MouseState.HOVER;
-            this.embedExeButton.Name = "embedExeButton";
-            this.embedExeButton.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.embedExeButton.Size = new System.Drawing.Size(174, 36);
-            this.embedExeButton.TabIndex = 1;
-            this.embedExeButton.Text = "Embed to EXE file";
-            this.quickHelp.SetToolTip(this.embedExeButton, "Creates a .EXE file containing this bluescreen configuration, which will be auto-" +
-        "simulated after running it.");
-            this.embedExeButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.embedExeButton.UseAccentColor = false;
-            this.embedExeButton.UseVisualStyleBackColor = true;
-            this.embedExeButton.Click += new System.EventHandler(this.embedExeButton_Click);
+            this.materialLabel6.Depth = 0;
+            this.materialLabel6.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel6.Location = new System.Drawing.Point(6, 3);
+            this.materialLabel6.Margin = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.materialLabel6.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel6.Name = "materialLabel6";
+            this.materialLabel6.Size = new System.Drawing.Size(154, 36);
+            this.materialLabel6.TabIndex = 2;
+            this.materialLabel6.Text = "9x/Me error code:";
+            this.materialLabel6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // nineXErrorCode
+            // 
+            this.nineXErrorCode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.nineXErrorCode.AutoResize = false;
+            this.nineXErrorCode.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.nineXErrorCode.Depth = 0;
+            this.nineXErrorCode.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.nineXErrorCode.DropDownHeight = 118;
+            this.nineXErrorCode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.nineXErrorCode.DropDownWidth = 121;
+            this.nineXErrorCode.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.nineXErrorCode.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.nineXErrorCode.FormattingEnabled = true;
+            this.nineXErrorCode.IntegralHeight = false;
+            this.nineXErrorCode.ItemHeight = 29;
+            this.nineXErrorCode.Location = new System.Drawing.Point(160, 4);
+            this.nineXErrorCode.MaxDropDownItems = 4;
+            this.nineXErrorCode.MouseState = MaterialSkin.MouseState.OUT;
+            this.nineXErrorCode.Name = "nineXErrorCode";
+            this.nineXErrorCode.Size = new System.Drawing.Size(394, 35);
+            this.nineXErrorCode.StartIndex = 0;
+            this.nineXErrorCode.TabIndex = 3;
+            this.nineXErrorCode.UseTallSize = false;
+            this.nineXErrorCode.SelectedIndexChanged += new System.EventHandler(this.nineXErrorCode_SelectedIndexChanged);
+            // 
+            // materialButton2
+            // 
+            this.materialButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.materialButton2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.materialButton2.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.materialButton2.Depth = 0;
+            this.materialButton2.HighEmphasis = true;
+            this.materialButton2.Icon = null;
+            this.materialButton2.Location = new System.Drawing.Point(559, 2);
+            this.materialButton2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 6);
+            this.materialButton2.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialButton2.Name = "materialButton2";
+            this.materialButton2.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.materialButton2.Size = new System.Drawing.Size(103, 36);
+            this.materialButton2.TabIndex = 4;
+            this.materialButton2.Text = "Customize";
+            this.materialButton2.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.materialButton2.UseAccentColor = false;
+            this.materialButton2.UseVisualStyleBackColor = true;
+            this.materialButton2.Click += new System.EventHandler(this.materialButton2_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.materialLabel4);
+            this.panel1.Controls.Add(this.comboBox2);
+            this.panel1.Location = new System.Drawing.Point(3, 3);
+            this.panel1.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(664, 41);
+            this.panel1.TabIndex = 5;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.materialLabel6);
+            this.panel2.Controls.Add(this.nineXErrorCode);
+            this.panel2.Controls.Add(this.materialButton2);
+            this.panel2.Location = new System.Drawing.Point(3, 44);
+            this.panel2.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(664, 42);
+            this.panel2.TabIndex = 6;
             // 
             // NewUI
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
-            this.ClientSize = new System.Drawing.Size(795, 827);
+            this.ClientSize = new System.Drawing.Size(811, 866);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button1);
@@ -1361,6 +1453,9 @@
             this.flowLayoutPanel4.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1436,5 +1531,10 @@
         private MaterialSkin.Controls.MaterialCheckbox halfBox;
         private MaterialSkin.Controls.MaterialCheckbox rainbowBox;
         private MaterialSkin.Controls.MaterialButton embedExeButton;
+        private MaterialSkin.Controls.MaterialLabel materialLabel6;
+        private MaterialSkin.Controls.MaterialButton materialButton2;
+        public MaterialSkin.Controls.MaterialComboBox nineXErrorCode;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
     }
 }

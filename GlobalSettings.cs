@@ -31,6 +31,7 @@ namespace UltimateBlueScreenSimulator
         private bool autodark;
         private string singlesim;
         private string update_server;
+        private bool quickhelp;
 
         // runtime settings (these are not persistent)
         [JsonIgnore]
@@ -81,6 +82,11 @@ namespace UltimateBlueScreenSimulator
         ///</summary>
         public ColorSchemes ColorScheme { get; set; }
 
+        ///<summary>
+        ///Accent color used by the application
+        ///</summary>
+        public ColorSchemes PrimaryColor { get; set; }
+
         // define enums
         public enum DisplayModes
         {
@@ -118,7 +124,8 @@ namespace UltimateBlueScreenSimulator
             enableeggs = true;
             randomness = false;
             autodark = true;
-            devmode = true;
+            devmode = false;
+            quickhelp = true;
             singlesim = "";
             update_server = "http://markustegelane.eu/app/";
 
@@ -138,7 +145,8 @@ namespace UltimateBlueScreenSimulator
 
             DisplayModeEnum = DisplayModes.None;
             ScaleMode = ScaleModes.HighQualityBicubic;
-            ColorScheme = ColorSchemes.Indigo;
+            ColorScheme = ColorSchemes.Blue;
+            PrimaryColor = ColorSchemes.Indigo;
         }
 
         ///<summary>
@@ -192,15 +200,6 @@ namespace UltimateBlueScreenSimulator
         }
 
         ///<summary>
-        ///This value allows for selecting a configuration through command line arguments
-        ///</summary>
-        [JsonIgnore]
-        public bool DisplayOne {
-            get { return displayone; }
-            set { displayone = value; }
-        }
-
-        ///<summary>
         ///Toggles whether or not to add randomness to legacy configurations loaded from an old bs2cfg or bscfg file
         ///</summary>
         public bool Randomness {
@@ -222,6 +221,23 @@ namespace UltimateBlueScreenSimulator
         public bool AutoDark {
             get { return autodark; }
             set { autodark = value; }
+        }
+
+        /// <summary>
+        /// Toggles tooltips
+        /// </summary>
+        public bool QuickHelp {
+            get { return quickhelp; }
+            set { quickhelp = value; }
+        }
+
+        ///<summary>
+        ///This value allows for selecting a configuration through command line arguments
+        ///</summary>
+        [JsonIgnore]
+        public bool DisplayOne {
+            get { return displayone; }
+            set { displayone = value; }
         }
 
 
@@ -617,9 +633,9 @@ namespace UltimateBlueScreenSimulator
         ///<summary>
         ///Creates color scheme from accent color
         ///</summary>
-        private ms.ColorScheme MakeScheme(ms.Accent accent)
+        private ms.ColorScheme MakeScheme(ms.Accent accent, ms.Primary[] primary)
         {
-            return new ms.ColorScheme(ms.Primary.Blue800, ms.Primary.Blue900, ms.Primary.Blue400, accent, ms.TextShade.WHITE);
+            return new ms.ColorScheme(primary[0], primary[1], primary[2], accent, ms.TextShade.WHITE);
         }
 
         ///<summary>
@@ -628,56 +644,100 @@ namespace UltimateBlueScreenSimulator
         public void ApplyScheme()
         {
             this.Log("Info", $"Applying color scheme {ColorScheme}");
+            ms.Primary[] primaryScheme = GetPrimaryColors();
             switch (ColorScheme)
             {
                 case ColorSchemes.Indigo:
-                    Program.f1.materialSkinManager.ColorScheme = MakeScheme(ms.Accent.Indigo700);
+                    Program.f1.materialSkinManager.ColorScheme = MakeScheme(ms.Accent.Indigo700, primaryScheme);
                     break;
                 case ColorSchemes.Lime:
-                    Program.f1.materialSkinManager.ColorScheme = MakeScheme(ms.Accent.Lime700);
+                    Program.f1.materialSkinManager.ColorScheme = MakeScheme(ms.Accent.Lime700, primaryScheme);
                     break;
                 case ColorSchemes.Red:
-                    Program.f1.materialSkinManager.ColorScheme = MakeScheme(ms.Accent.Red700);
+                    Program.f1.materialSkinManager.ColorScheme = MakeScheme(ms.Accent.Red700, primaryScheme);
                     break;
                 case ColorSchemes.Pink:
-                    Program.f1.materialSkinManager.ColorScheme = MakeScheme(ms.Accent.Pink700);
+                    Program.f1.materialSkinManager.ColorScheme = MakeScheme(ms.Accent.Pink700, primaryScheme);
                     break;
                 case ColorSchemes.Orange:
-                    Program.f1.materialSkinManager.ColorScheme = MakeScheme(ms.Accent.Orange700);
+                    Program.f1.materialSkinManager.ColorScheme = MakeScheme(ms.Accent.Orange700, primaryScheme);
                     break;
                 case ColorSchemes.Amber:
-                    Program.f1.materialSkinManager.ColorScheme = MakeScheme(ms.Accent.Amber700);
+                    Program.f1.materialSkinManager.ColorScheme = MakeScheme(ms.Accent.Amber700, primaryScheme);
                     break;
                 case ColorSchemes.Blue:
-                    Program.f1.materialSkinManager.ColorScheme = MakeScheme(ms.Accent.Blue700);
+                    Program.f1.materialSkinManager.ColorScheme = MakeScheme(ms.Accent.Blue700, primaryScheme);
                     break;
                 case ColorSchemes.Cyan:
-                    Program.f1.materialSkinManager.ColorScheme = MakeScheme(ms.Accent.Cyan700);
+                    Program.f1.materialSkinManager.ColorScheme = MakeScheme(ms.Accent.Cyan700, primaryScheme);
                     break;
                 case ColorSchemes.DeepOrange:
-                    Program.f1.materialSkinManager.ColorScheme = MakeScheme(ms.Accent.DeepOrange700);
+                    Program.f1.materialSkinManager.ColorScheme = MakeScheme(ms.Accent.DeepOrange700, primaryScheme);
                     break;
                 case ColorSchemes.DeepPurple:
-                    Program.f1.materialSkinManager.ColorScheme = MakeScheme(ms.Accent.DeepPurple700);
+                    Program.f1.materialSkinManager.ColorScheme = MakeScheme(ms.Accent.DeepPurple700, primaryScheme);
                     break;
                 case ColorSchemes.Green:
-                    Program.f1.materialSkinManager.ColorScheme = MakeScheme(ms.Accent.Green700);
+                    Program.f1.materialSkinManager.ColorScheme = MakeScheme(ms.Accent.Green700, primaryScheme);
                     break;
                 case ColorSchemes.LightBlue:
-                    Program.f1.materialSkinManager.ColorScheme = MakeScheme(ms.Accent.LightBlue700);
+                    Program.f1.materialSkinManager.ColorScheme = MakeScheme(ms.Accent.LightBlue700, primaryScheme);
                     break;
                 case ColorSchemes.LightGreen:
-                    Program.f1.materialSkinManager.ColorScheme = MakeScheme(ms.Accent.LightGreen700);
+                    Program.f1.materialSkinManager.ColorScheme = MakeScheme(ms.Accent.LightGreen700, primaryScheme);
                     break;
                 case ColorSchemes.Purple:
-                    Program.f1.materialSkinManager.ColorScheme = MakeScheme(ms.Accent.Purple700);
+                    Program.f1.materialSkinManager.ColorScheme = MakeScheme(ms.Accent.Purple700, primaryScheme);
                     break;
                 case ColorSchemes.Teal:
-                    Program.f1.materialSkinManager.ColorScheme = MakeScheme(ms.Accent.Teal700);
+                    Program.f1.materialSkinManager.ColorScheme = MakeScheme(ms.Accent.Teal700, primaryScheme);
                     break;
                 case ColorSchemes.Yellow:
-                    Program.f1.materialSkinManager.ColorScheme = MakeScheme(ms.Accent.Yellow700);
+                    Program.f1.materialSkinManager.ColorScheme = MakeScheme(ms.Accent.Yellow700, primaryScheme);
                     break;
+            }
+        }
+
+        ///<summary>
+        ///Gets primary colors
+        ///</summary>
+        private ms.Primary[] GetPrimaryColors()
+        {
+            this.Log("Info", $"Applying primary color {PrimaryColor}");
+            switch (PrimaryColor)
+            {
+                default:
+                    return new ms.Primary[] { ms.Primary.Indigo800, ms.Primary.Indigo900, ms.Primary.Indigo400 };
+                case ColorSchemes.Lime:
+                    return new ms.Primary[] { ms.Primary.Lime800, ms.Primary.Lime900, ms.Primary.Lime400 };
+                case ColorSchemes.Red:
+                    return new ms.Primary[] { ms.Primary.Red800, ms.Primary.Red900, ms.Primary.Red400 };
+                case ColorSchemes.Pink:
+                    return new ms.Primary[] { ms.Primary.Pink800, ms.Primary.Pink900, ms.Primary.Pink400 };
+                case ColorSchemes.Orange:
+                    return new ms.Primary[] { ms.Primary.Orange800, ms.Primary.Orange900, ms.Primary.Orange400 };
+                case ColorSchemes.Amber:
+                    return new ms.Primary[] { ms.Primary.Amber800, ms.Primary.Amber900, ms.Primary.Amber400 };
+                case ColorSchemes.Blue:
+                    return new ms.Primary[] { ms.Primary.Blue800, ms.Primary.Blue900, ms.Primary.Blue400 };
+                case ColorSchemes.Cyan:
+                    return new ms.Primary[] { ms.Primary.Cyan800, ms.Primary.Cyan900, ms.Primary.Cyan400 };
+                case ColorSchemes.DeepOrange:
+                    return new ms.Primary[] { ms.Primary.DeepOrange800, ms.Primary.DeepOrange900, ms.Primary.DeepOrange400 };
+                case ColorSchemes.DeepPurple:
+                    return new ms.Primary[] { ms.Primary.DeepPurple800, ms.Primary.DeepPurple900, ms.Primary.DeepPurple400 };
+                case ColorSchemes.Green:
+                    return new ms.Primary[] { ms.Primary.Green800, ms.Primary.Green900, ms.Primary.Green400 };
+                case ColorSchemes.LightBlue:
+                    return new ms.Primary[] { ms.Primary.LightBlue800, ms.Primary.LightBlue900, ms.Primary.LightBlue400 };
+                case ColorSchemes.LightGreen:
+                    return new ms.Primary[] { ms.Primary.LightGreen800, ms.Primary.LightGreen900, ms.Primary.LightGreen400 };
+                case ColorSchemes.Purple:
+                    return new ms.Primary[] { ms.Primary.Purple800, ms.Primary.Purple900, ms.Primary.Purple400 };
+                case ColorSchemes.Teal:
+                    return new ms.Primary[] { ms.Primary.Teal800, ms.Primary.Teal900, ms.Primary.Teal400 };
+                case ColorSchemes.Yellow:
+                    return new ms.Primary[] { ms.Primary.Yellow800, ms.Primary.Yellow900, ms.Primary.Yellow400 };
             }
         }
 

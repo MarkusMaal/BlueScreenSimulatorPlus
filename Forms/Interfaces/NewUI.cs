@@ -300,6 +300,7 @@ namespace UltimateBlueScreenSimulator
                 windowVersion.Visible = false;
             }*/
             //hide all controls
+            quickHelp.Active = Program.gs.QuickHelp;
             WXOptions.Visible = false;
             errorCode.Visible = false;
             nineXmessage.Visible = false;
@@ -327,6 +328,8 @@ namespace UltimateBlueScreenSimulator
             halfBox.Visible = false;
             //progressTunerToolStripMenuItem.Enabled = false;
             blackScreenBox.Visible = false;
+            checkBox2.Enabled = true;
+            embedExeButton.Visible = !Program.templates.qaddeTrip;
             try
             {
                 // set current bluescreen
@@ -382,13 +385,12 @@ namespace UltimateBlueScreenSimulator
                     blackScreenBox.Visible = true;
                     break;
                 case "Windows 8 Beta":
-                    WXOptions.Visible = true;
                     errorCode.Visible = true;
-                    checkBox1.Visible = true;
                     winMode.Visible = true;
                     memoryBox.Visible = true;
                     eCodeEditButton.Visible = true;
                     countdownBox.Visible = true;
+                    checkBox2.Enabled = false;
                     break;
                 case "Windows Vista":
                 case "Windows 7":
@@ -478,6 +480,16 @@ namespace UltimateBlueScreenSimulator
             //codeCustomizationToolStripMenuItem.Enabled = eCodeEditButton.Visible;
             //advancedNTOptionsToolStripMenuItem.Enabled = advNTButton.Visible;
             // load options for current bluescreen
+            string nx_code = me.GetCodes()[0].Substring(0, 2);
+            nineXErrorCode.SelectedIndex = -1;
+            for (int i = 0; i < Program.templates.NxErrors.Length; i++)
+            {
+                string selc = Program.templates.NxErrors[i].Split('\t')[0];
+                if (nx_code == selc)
+                {
+                    nineXErrorCode.SelectedIndex = i;
+                }
+            }
             autoBox.Checked = me.GetBool("autoclose");
             serverBox.Checked = me.GetBool("server");
             greenBox.Checked = me.GetBool("green");
@@ -1286,6 +1298,11 @@ namespace UltimateBlueScreenSimulator
                     new ClickIt().Show();
                 }
             }
+            if (!Program.gs.DevBuild && (e.KeyCode == Keys.F12))
+            {
+                Program.gs.DevBuild = true;
+                MessageBox.Show("You are now a developer!", Assembly.GetExecutingAssembly().FullName, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
 
         private void NewUI_Shown(object sender, EventArgs e)
@@ -1491,6 +1508,40 @@ namespace UltimateBlueScreenSimulator
                 MessageBox.Show("Executable saved successfully!", "Create embedded executable", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             saveFileDialog1.Filter = filter_backup;
+        }
+
+        private void nineXErrorCode_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (me != null)
+            {
+                string[] c = me.GetCodes();
+                string code = nineXErrorCode.Text.Split(':')[0];
+                me.SetCodes(code + c[0].Substring(2), c[1], c[2], c[3]);
+            }
+        }
+
+        private void materialButton2_Click(object sender, EventArgs e)
+        {
+            MessageTableEditor mte = new MessageTableEditor();
+            mte.nx_errors = true;
+            mte.ShowDialog();
+        }
+
+        private void TextBox1_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox1.Text != "")
+            {
+                foreach (string it in comboBox1.Items)
+                {
+                    if (it.Contains(textBox1.Text.Replace(" ", "_").ToUpper()))
+                    {
+                        comboBox1.SelectedItem = it;
+                        break;
+                    }
+                }
+                // refreshes the combobox to avoid the situation where the user has to hover over the error code combo box
+                comboBox1.Refresh();
+            }
         }
     }
 }

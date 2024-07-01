@@ -123,6 +123,8 @@ namespace UltimateBlueScreenSimulator
                 //Load Windows NT error codes from the database
                 gs.Log("Info", $"Initializing NT error code database");
                 ReloadNTErrors();
+                gs.Log("Info", "Initializing 9x error code database");
+                ReloadNxErrors();
                 //run application
                 Application.Run(f1);
                 return gs.ErrorCode;
@@ -160,6 +162,24 @@ namespace UltimateBlueScreenSimulator
                 f1.comboBox1.SelectedIndex = 9;
             }
             catch
+            {
+                gs.ErrorCode = 20;
+            }
+        }
+
+        public static void ReloadNxErrors()
+        {
+            f1.nineXErrorCode.Items.Clear();
+            try
+            {
+                foreach (string element in templates.NxErrors)
+                {
+                    string[] codesplit = element.Split('\t');
+                    string final = codesplit[0].ToString() + ": " + codesplit[1].ToString();
+                    f1.nineXErrorCode.Items.Add(final);
+                }
+                f1.nineXErrorCode.SelectedIndex = 9;
+            } catch
             {
                 gs.ErrorCode = 20;
             }
@@ -290,61 +310,11 @@ namespace UltimateBlueScreenSimulator
                     return false;
                 }
             }
-            List<byte> data = new List<byte>();
-            string filename = System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName;
-            string tempname = Path.GetTempPath() + "\\BSSP.temp";
-            File.Copy(filename, tempname);
-            FileInfo fi = new FileInfo(tempname);
-            List<byte> discoveredFootBytes = new List<byte>();
-            bool footerFound = false;
-            bool actualFooterFound = false;
-            int i = 0;
-            using (BinaryReader reader = new BinaryReader(new FileStream(tempname, FileMode.Open)))
+            string jsondata = GetEmbedded();
+            if (jsondata != "")
             {
-                byte b = 0xFF;
-                while (true) {
-                    try
-                    {
-                        b = reader.ReadByte();
-                    } catch
-                    {
-                        break;
-                    }
-                    if (actualFooterFound)
-                    {
-                        data.Add(b);
-                        i++;
-                    }
-                    else if (footerBytes.Contains(b) && !discoveredFootBytes.Contains(b))
-                    {
-                        discoveredFootBytes.Add(b);
-                        if ((discoveredFootBytes.Count == 4) && footerFound)
-                        {
-                            actualFooterFound = true;
-                        }
-                        else if ((discoveredFootBytes.Count == 4))
-                        {
-                            footerFound = true;
-                        }
-                    } else
-                    {
-                        discoveredFootBytes.Clear();
-                    }
-                }
-            }
-            File.Delete(tempname);
-            List<byte> stripped = new List<byte>();
-            foreach (byte b in data)
-            {
-                if (b != 0x00)
-                {
-                    stripped.Add(b);
-                }
-            }
-            if (stripped.Count > 0)
-            {
+                
                 gs.LoadSettings();
-                string jsondata = System.Text.Encoding.Default.GetString(stripped.ToArray());
                 if (verificate)
                 {
                     templates = new TemplateRegistry();
@@ -364,7 +334,72 @@ namespace UltimateBlueScreenSimulator
                 MessageBox.Show($"Invalid footer data or filename. Please rename the executable back or delete it.\r\n\r\nValid names include the following:\r\n{string.Join("\r\n", validnames)}", "Special footer missing", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return true;
             }
-            return actualFooterFound;
+            return true;
+        }
+
+        public static string GetEmbedded(string appname = null)
+        {
+            List<byte> data = new List<byte>();
+            string filename = appname ?? System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName;
+            string tempname = Path.GetTempPath() + "\\BSSP.temp";
+            File.Copy(filename, tempname);
+            FileInfo fi = new FileInfo(tempname);
+            List<byte> discoveredFootBytes = new List<byte>();
+            bool footerFound = false;
+            bool actualFooterFound = false;
+            int i = 0;
+            using (BinaryReader reader = new BinaryReader(new FileStream(tempname, FileMode.Open)))
+            {
+                byte b = 0xFF;
+                while (true)
+                {
+                    try
+                    {
+                        b = reader.ReadByte();
+                    }
+                    catch
+                    {
+                        break;
+                    }
+                    if (actualFooterFound)
+                    {
+                        data.Add(b);
+                        i++;
+                    }
+                    else if (footerBytes.Contains(b) && !discoveredFootBytes.Contains(b))
+                    {
+                        discoveredFootBytes.Add(b);
+                        if ((discoveredFootBytes.Count == 4) && footerFound)
+                        {
+                            actualFooterFound = true;
+                        }
+                        else if ((discoveredFootBytes.Count == 4))
+                        {
+                            footerFound = true;
+                        }
+                    }
+                    else
+                    {
+                        discoveredFootBytes.Clear();
+                    }
+                }
+            }
+            File.Delete(tempname);
+            List<byte> stripped = new List<byte>();
+            foreach (byte b in data)
+            {
+                if (b != 0x00)
+                {
+                    stripped.Add(b);
+                }
+            }
+            if (stripped.Count > 0)
+            {
+                return System.Text.Encoding.Default.GetString(stripped.ToArray());
+            } else
+            {
+                return "";
+            }
         }
     }
 }

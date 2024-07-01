@@ -269,65 +269,73 @@ namespace UltimateBlueScreenSimulator
 
         private string DispCodes(string c1, string c2, string c3, string c4)
         {
-            if ((me.GetString("os") == "Windows XP") || (me.GetString("os") == "Windows 2000") || (me.GetString("os") == "Windows NT 3.x/4.0"))
+            try
             {
-                for (var i = 16; i > 8; i--)
+                if ((me.GetString("os") == "Windows XP") || (me.GetString("os") == "Windows 2000") || (me.GetString("os") == "Windows NT 3.x/4.0"))
                 {
-                    MaterialButton btn = (MaterialButton)tableLayoutPanel1.Controls["button" + i.ToString()];
-                    MaterialButton nullbtn = (MaterialButton)tableLayoutPanel1.Controls["null" + i.ToString()];
-                    MaterialTextBox txtbox = (MaterialTextBox)tableLayoutPanel1.Controls["textBox" + i.ToString()];
-                    btn.Enabled = false;
-                    nullbtn.Enabled = false;
-                    txtbox.Enabled = false;
+                    for (var i = 16; i > 8; i--)
+                    {
+                        MaterialButton btn = (MaterialButton)tableLayoutPanel1.Controls["button" + i.ToString()];
+                        MaterialButton nullbtn = (MaterialButton)tableLayoutPanel1.Controls["null" + i.ToString()];
+                        MaterialTextBox txtbox = (MaterialTextBox)tableLayoutPanel1.Controls["textBox" + i.ToString()];
+                        btn.Enabled = false;
+                        nullbtn.Enabled = false;
+                        txtbox.Enabled = false;
+                    }
+                    try
+                    {
+                        return "0x" + c1.Substring(0, 8) + ", 0x" + c2.Substring(0, 8) + ", 0x" + c3.Substring(0, 8) + ", 0x" + c4.Substring(0, 8);
+                    }
+                    catch
+                    {
+                        return "0xDEADDEAD, 0xDEADDEAD, 0xDEADDEAD, 0xDEADDEAD";
+                    }
                 }
-                try
+                else if (me.GetString("os") == "Windows CE")
                 {
-                    return "0x" + c1.Substring(0, 8) + ", 0x" + c2.Substring(0, 8) + ", 0x" + c3.Substring(0, 8) + ", 0x" + c4.Substring(0, 8);
-                } catch
-                {
-                    return "0xDEADDEAD, 0xDEADDEAD, 0xDEADDEAD, 0xDEADDEAD";
+                    for (var i = 16; i > 6; i--)
+                    {
+                        MaterialButton btn = (MaterialButton)tableLayoutPanel1.Controls["button" + i.ToString()];
+                        MaterialButton nullbtn = (MaterialButton)tableLayoutPanel1.Controls["null" + i.ToString()];
+                        MaterialTextBox txtbox = (MaterialTextBox)tableLayoutPanel1.Controls["textBox" + i.ToString()];
+                        btn.Enabled = false;
+                        nullbtn.Enabled = false;
+                        txtbox.Enabled = false;
+                    }
+                    return "0x" + c1.Substring(0, 6) + ", 0x" + c2.Substring(0, 6) + ", 0x" + c3.Substring(0, 6) + ", 0x" + c4.Substring(0, 6);
                 }
-            }
-            else if (me.GetString("os") == "Windows CE")
+                else if (me.GetString("os") == "Windows 9x/Me")
+                {
+                    int maximum = 8;
+                    if (codeSelection.Text == "Code 1") { maximum = 2; }
+                    else if (codeSelection.Text == "Code 2") { maximum = 4; }
+                    chooseCode4.Enabled = false;
+                    for (var i = 3; i <= 8; i++)
+                    {
+                        MaterialButton btn = (MaterialButton)tableLayoutPanel1.Controls["button" + i.ToString()];
+                        MaterialButton nullbtn = (MaterialButton)tableLayoutPanel1.Controls["null" + i.ToString()];
+                        MaterialTextBox txtbox = (MaterialTextBox)tableLayoutPanel1.Controls["textBox" + i.ToString()];
+                        btn.Enabled = true;
+                        nullbtn.Enabled = true;
+                        txtbox.Enabled = true;
+                    }
+                    for (var i = 16; i > maximum; i--)
+                    {
+                        MaterialButton btn = (MaterialButton)tableLayoutPanel1.Controls["button" + i.ToString()];
+                        MaterialButton nullbtn = (MaterialButton)tableLayoutPanel1.Controls["null" + i.ToString()];
+                        MaterialTextBox txtbox = (MaterialTextBox)tableLayoutPanel1.Controls["textBox" + i.ToString()];
+                        btn.Enabled = false;
+                        nullbtn.Enabled = false;
+                        txtbox.Enabled = false;
+                    }
+                    return c1.Substring(0, 2) + " : " + c2.Substring(0, 4) + " : " + c3.Substring(0, 8);
+                }
+                return "0x" + c1 + ", 0x" + c2 + ", 0x" + c3 + ", 0x" + c4;
+            } catch (Exception ex)
             {
-                for (var i = 16; i > 6; i--)
-                {
-                    MaterialButton btn = (MaterialButton)tableLayoutPanel1.Controls["button" + i.ToString()];
-                    MaterialButton nullbtn = (MaterialButton)tableLayoutPanel1.Controls["null" + i.ToString()];
-                    MaterialTextBox txtbox = (MaterialTextBox)tableLayoutPanel1.Controls["textBox" + i.ToString()];
-                    btn.Enabled = false;
-                    nullbtn.Enabled = false;
-                    txtbox.Enabled = false;
-                }
-                return "0x" + c1.Substring(0, 6) + ", 0x" + c2.Substring(0, 6) + ", 0x" + c3.Substring(0, 6) + ", 0x" + c4.Substring(0, 6);
+                Program.gs.Log("Error", "Error displaying codes: " + ex.Message);
+                return "0xDEADDEADDEADDEAD, 0xDEADDEADDEADDEAD, 0xDEADDEADDEADDEAD, 0xDEADDEADDEADDEAD";
             }
-            else if (me.GetString("os") == "Windows 9x/Me")
-            {
-                int maximum = 8;
-                if (codeSelection.Text == "Code 1") { maximum = 2; }
-                else if (codeSelection.Text == "Code 2") { maximum = 4; }
-                chooseCode4.Enabled = false;
-                for (var i = 3; i <= 8; i++)
-                {
-                    MaterialButton btn = (MaterialButton)tableLayoutPanel1.Controls["button" + i.ToString()];
-                    MaterialButton nullbtn = (MaterialButton)tableLayoutPanel1.Controls["null" + i.ToString()];
-                    MaterialTextBox txtbox = (MaterialTextBox)tableLayoutPanel1.Controls["textBox" + i.ToString()];
-                    btn.Enabled = true;
-                    nullbtn.Enabled = true;
-                    txtbox.Enabled = true;
-                }
-                for (var i = 16; i > maximum; i--)
-                {
-                    MaterialButton btn = (MaterialButton)tableLayoutPanel1.Controls["button" + i.ToString()];
-                    MaterialButton nullbtn = (MaterialButton)tableLayoutPanel1.Controls["null" + i.ToString()];
-                    MaterialTextBox txtbox = (MaterialTextBox)tableLayoutPanel1.Controls["textBox" + i.ToString()];
-                    btn.Enabled = false;
-                    nullbtn.Enabled = false;
-                    txtbox.Enabled = false;
-                }
-                return c1.Substring(0, 2) + " : " + c2.Substring(0, 4) + " : " + c3.Substring(0, 8);
-            }
-            return "0x" + c1 + ", 0x" + c2 + ", 0x" + c3 + ", 0x" + c4;
         }
 
         private void RandomButtonClick(object sender, EventArgs e)

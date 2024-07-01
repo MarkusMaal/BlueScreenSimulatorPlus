@@ -41,6 +41,7 @@ namespace UltimateBlueScreenSimulator
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.qaddeTrip = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // listView1
@@ -79,7 +80,9 @@ namespace UltimateBlueScreenSimulator
             this.comboBox1.Items.AddRange(new object[] {
             "ints",
             "strings",
-            "bools"});
+            "bools",
+            "titles",
+            "texts"});
             this.comboBox1.Location = new System.Drawing.Point(11, 35);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(554, 21);
@@ -155,16 +158,30 @@ namespace UltimateBlueScreenSimulator
             this.label3.ForeColor = System.Drawing.Color.Red;
             this.label3.Location = new System.Drawing.Point(12, 98);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(267, 42);
+            this.label3.Size = new System.Drawing.Size(267, 58);
             this.label3.TabIndex = 8;
-            this.label3.Text = "Editing existing OS value is POTENTIALLY DANGEROUS!!!";
+            this.label3.Text = "POTENTIALLY DANGEROUS: Editing existing OS value is WILL lead to unexpected behav" +
+    "ior and can often cause meta-crashes!";
             this.label3.Visible = false;
+            // 
+            // qaddeTrip
+            // 
+            this.qaddeTrip.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.qaddeTrip.ForeColor = System.Drawing.Color.Green;
+            this.qaddeTrip.Location = new System.Drawing.Point(114, 1);
+            this.qaddeTrip.Name = "qaddeTrip";
+            this.qaddeTrip.Size = new System.Drawing.Size(451, 33);
+            this.qaddeTrip.TabIndex = 9;
+            this.qaddeTrip.Text = "QADDE not tripped";
+            this.qaddeTrip.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // DictEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(578, 305);
+            this.Controls.Add(this.qaddeTrip);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBox2);
@@ -177,7 +194,6 @@ namespace UltimateBlueScreenSimulator
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "DictEdit";
             this.ShowIcon = false;
-            this.ShowInTaskbar = false;
             this.Text = "Quick and dirty dictionary editor";
             this.Load += new System.EventHandler(this.DictEdit_Load);
             this.ResumeLayout(false);
@@ -198,5 +214,6 @@ namespace UltimateBlueScreenSimulator
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label qaddeTrip;
     }
 }

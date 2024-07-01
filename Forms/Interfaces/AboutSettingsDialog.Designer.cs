@@ -80,6 +80,7 @@ namespace UltimateBlueScreenSimulator
             this.devSplashButton = new MaterialSkin.Controls.MaterialButton();
             this.devDictEditButton = new MaterialSkin.Controls.MaterialButton();
             this.devNewAllButton = new MaterialSkin.Controls.MaterialButton();
+            this.materialButton7 = new MaterialSkin.Controls.MaterialButton();
             this.materialButton4 = new MaterialSkin.Controls.MaterialButton();
             this.devRestartApp = new MaterialSkin.Controls.MaterialButton();
             this.selectAllBox = new MaterialSkin.Controls.MaterialCheckbox();
@@ -119,7 +120,9 @@ namespace UltimateBlueScreenSimulator
             this.rtlSwitch = new MaterialSkin.Controls.MaterialSwitch();
             this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
+            this.materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel8 = new MaterialSkin.Controls.MaterialLabel();
+            this.primaryColorBox = new MaterialSkin.Controls.MaterialComboBox();
             this.accentBox = new MaterialSkin.Controls.MaterialComboBox();
             this.darkMode = new MaterialSkin.Controls.MaterialSwitch();
             this.helpTip = new System.Windows.Forms.ToolTip(this.components);
@@ -866,7 +869,6 @@ namespace UltimateBlueScreenSimulator
             // 
             // materialCard7
             // 
-            this.materialCard7.BackColor = System.Drawing.SystemColors.Control;
             this.materialCard7.Controls.Add(this.simulatorSettingsHeading);
             this.materialCard7.Controls.Add(this.devFlowPanel);
             this.materialCard7.Controls.Add(this.selectAllBox);
@@ -909,6 +911,7 @@ namespace UltimateBlueScreenSimulator
             this.devFlowPanel.Controls.Add(this.devSplashButton);
             this.devFlowPanel.Controls.Add(this.devDictEditButton);
             this.devFlowPanel.Controls.Add(this.devNewAllButton);
+            this.devFlowPanel.Controls.Add(this.materialButton7);
             this.devFlowPanel.Controls.Add(this.materialButton4);
             this.devFlowPanel.Controls.Add(this.devRestartApp);
             this.devFlowPanel.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
@@ -927,7 +930,7 @@ namespace UltimateBlueScreenSimulator
             this.materialButton6.Depth = 0;
             this.materialButton6.HighEmphasis = true;
             this.materialButton6.Icon = null;
-            this.materialButton6.Location = new System.Drawing.Point(784, 6);
+            this.materialButton6.Location = new System.Drawing.Point(1060, 6);
             this.materialButton6.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.materialButton6.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialButton6.Name = "materialButton6";
@@ -950,7 +953,7 @@ namespace UltimateBlueScreenSimulator
             this.devSplashButton.ForeColor = System.Drawing.SystemColors.ControlText;
             this.devSplashButton.HighEmphasis = true;
             this.devSplashButton.Icon = null;
-            this.devSplashButton.Location = new System.Drawing.Point(601, 6);
+            this.devSplashButton.Location = new System.Drawing.Point(877, 6);
             this.devSplashButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.devSplashButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.devSplashButton.Name = "devSplashButton";
@@ -973,7 +976,7 @@ namespace UltimateBlueScreenSimulator
             this.devDictEditButton.ForeColor = System.Drawing.SystemColors.ControlText;
             this.devDictEditButton.HighEmphasis = true;
             this.devDictEditButton.Icon = null;
-            this.devDictEditButton.Location = new System.Drawing.Point(468, 6);
+            this.devDictEditButton.Location = new System.Drawing.Point(744, 6);
             this.devDictEditButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.devDictEditButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.devDictEditButton.Name = "devDictEditButton";
@@ -996,18 +999,39 @@ namespace UltimateBlueScreenSimulator
             this.devNewAllButton.ForeColor = System.Drawing.SystemColors.ControlText;
             this.devNewAllButton.HighEmphasis = true;
             this.devNewAllButton.Icon = null;
-            this.devNewAllButton.Location = new System.Drawing.Point(338, 6);
+            this.devNewAllButton.Location = new System.Drawing.Point(525, 6);
             this.devNewAllButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.devNewAllButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.devNewAllButton.Name = "devNewAllButton";
             this.devNewAllButton.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.devNewAllButton.Size = new System.Drawing.Size(122, 36);
+            this.devNewAllButton.Size = new System.Drawing.Size(211, 36);
             this.devNewAllButton.TabIndex = 20;
-            this.devNewAllButton.Text = "[DEV] New All";
+            this.devNewAllButton.Text = "[DEV] Default templates";
             this.devNewAllButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.devNewAllButton.UseAccentColor = false;
             this.devNewAllButton.UseVisualStyleBackColor = true;
             this.devNewAllButton.Click += new System.EventHandler(this.DevNewAll);
+            // 
+            // materialButton7
+            // 
+            this.materialButton7.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.materialButton7.CharacterCasing = MaterialSkin.Controls.MaterialButton.CharacterCasingEnum.Normal;
+            this.materialButton7.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.materialButton7.Depth = 0;
+            this.materialButton7.HighEmphasis = true;
+            this.materialButton7.Icon = null;
+            this.materialButton7.Location = new System.Drawing.Point(338, 6);
+            this.materialButton7.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.materialButton7.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialButton7.Name = "materialButton7";
+            this.materialButton7.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.materialButton7.Size = new System.Drawing.Size(179, 36);
+            this.materialButton7.TabIndex = 23;
+            this.materialButton7.Text = "[DEV] Embedded data";
+            this.materialButton7.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.materialButton7.UseAccentColor = false;
+            this.materialButton7.UseVisualStyleBackColor = true;
+            this.materialButton7.Click += new System.EventHandler(this.ShowEmbedded);
             // 
             // materialButton4
             // 
@@ -1430,15 +1454,16 @@ namespace UltimateBlueScreenSimulator
             this.configList.BorderColor = System.Drawing.Color.LightGray;
             this.configList.Depth = 0;
             this.configList.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.configList.Location = new System.Drawing.Point(21, 75);
+            this.configList.Location = new System.Drawing.Point(21, 88);
             this.configList.MouseState = MaterialSkin.MouseState.HOVER;
             this.configList.Name = "configList";
             this.configList.SelectedIndex = -1;
             this.configList.SelectedItem = null;
             this.configList.ShowScrollBar = true;
-            this.configList.Size = new System.Drawing.Size(282, 182);
+            this.configList.Size = new System.Drawing.Size(282, 160);
             this.configList.TabIndex = 9;
             this.configList.SelectedIndexChanged += new MaterialSkin.Controls.MaterialListBox.SelectedIndexChangedEventHandler(this.ConfigSelector);
+            this.configList.DoubleClick += new System.EventHandler(this.configList_DoubleClick);
             // 
             // helpPanel
             // 
@@ -1661,7 +1686,9 @@ namespace UltimateBlueScreenSimulator
             this.appearancePanel.Controls.Add(this.rtlSwitch);
             this.appearancePanel.Controls.Add(this.materialLabel2);
             this.appearancePanel.Controls.Add(this.materialLabel1);
+            this.appearancePanel.Controls.Add(this.materialLabel3);
             this.appearancePanel.Controls.Add(this.materialLabel8);
+            this.appearancePanel.Controls.Add(this.primaryColorBox);
             this.appearancePanel.Controls.Add(this.accentBox);
             this.appearancePanel.Controls.Add(this.darkMode);
             this.appearancePanel.Location = new System.Drawing.Point(4, 22);
@@ -1696,17 +1723,17 @@ namespace UltimateBlueScreenSimulator
             this.materialSwitch1.Checked = true;
             this.materialSwitch1.CheckState = System.Windows.Forms.CheckState.Checked;
             this.materialSwitch1.Depth = 0;
-            this.materialSwitch1.Enabled = false;
             this.materialSwitch1.Location = new System.Drawing.Point(20, 273);
             this.materialSwitch1.Margin = new System.Windows.Forms.Padding(0);
             this.materialSwitch1.MouseLocation = new System.Drawing.Point(-1, -1);
             this.materialSwitch1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialSwitch1.Name = "materialSwitch1";
             this.materialSwitch1.Ripple = true;
-            this.materialSwitch1.Size = new System.Drawing.Size(162, 37);
+            this.materialSwitch1.Size = new System.Drawing.Size(116, 37);
             this.materialSwitch1.TabIndex = 15;
-            this.materialSwitch1.Text = "Tooltips (TBD)";
+            this.materialSwitch1.Text = "Tooltips";
             this.materialSwitch1.UseVisualStyleBackColor = true;
+            this.materialSwitch1.CheckedChanged += new System.EventHandler(this.materialSwitch1_CheckedChanged);
             // 
             // rtlSwitch
             // 
@@ -1750,6 +1777,18 @@ namespace UltimateBlueScreenSimulator
             this.materialLabel1.TabIndex = 14;
             this.materialLabel1.Text = "Theming";
             // 
+            // materialLabel3
+            // 
+            this.materialLabel3.AutoSize = true;
+            this.materialLabel3.Depth = 0;
+            this.materialLabel3.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel3.Location = new System.Drawing.Point(221, 123);
+            this.materialLabel3.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel3.Name = "materialLabel3";
+            this.materialLabel3.Size = new System.Drawing.Size(95, 19);
+            this.materialLabel3.TabIndex = 13;
+            this.materialLabel3.Text = "Primary color";
+            // 
             // materialLabel8
             // 
             this.materialLabel8.AutoSize = true;
@@ -1761,6 +1800,48 @@ namespace UltimateBlueScreenSimulator
             this.materialLabel8.Size = new System.Drawing.Size(88, 19);
             this.materialLabel8.TabIndex = 13;
             this.materialLabel8.Text = "Accent color";
+            // 
+            // primaryColorBox
+            // 
+            this.primaryColorBox.AutoResize = false;
+            this.primaryColorBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.primaryColorBox.Depth = 0;
+            this.primaryColorBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.primaryColorBox.DropDownHeight = 118;
+            this.primaryColorBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.primaryColorBox.DropDownWidth = 121;
+            this.primaryColorBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.primaryColorBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.primaryColorBox.FormattingEnabled = true;
+            this.primaryColorBox.IntegralHeight = false;
+            this.primaryColorBox.ItemHeight = 29;
+            this.primaryColorBox.Items.AddRange(new object[] {
+            "Amber",
+            "Blue",
+            "Cyan",
+            "Deep Orange",
+            "Deep Purple",
+            "Green",
+            "Indigo",
+            "Light Blue",
+            "Light Green",
+            "Lime",
+            "Orange",
+            "Pink",
+            "Purple",
+            "Red",
+            "Teal",
+            "Yellow"});
+            this.primaryColorBox.Location = new System.Drawing.Point(224, 146);
+            this.primaryColorBox.MaxDropDownItems = 4;
+            this.primaryColorBox.MouseState = MaterialSkin.MouseState.OUT;
+            this.primaryColorBox.Name = "primaryColorBox";
+            this.primaryColorBox.Size = new System.Drawing.Size(189, 35);
+            this.primaryColorBox.StartIndex = 0;
+            this.primaryColorBox.TabIndex = 12;
+            this.helpTip.SetToolTip(this.primaryColorBox, "Color of the titlebar and most buttons.");
+            this.primaryColorBox.UseTallSize = false;
+            this.primaryColorBox.SelectedIndexChanged += new System.EventHandler(this.materialComboBox1_SelectedIndexChanged);
             // 
             // accentBox
             // 
@@ -1800,6 +1881,7 @@ namespace UltimateBlueScreenSimulator
             this.accentBox.Size = new System.Drawing.Size(189, 35);
             this.accentBox.StartIndex = 0;
             this.accentBox.TabIndex = 12;
+            this.helpTip.SetToolTip(this.accentBox, "Color of various highlights, such as checkboxes and important buttons");
             this.accentBox.UseTallSize = false;
             this.accentBox.SelectedIndexChanged += new System.EventHandler(this.accentBox_SelectedIndexChanged);
             // 
@@ -1818,6 +1900,12 @@ namespace UltimateBlueScreenSimulator
             this.darkMode.Text = "Night mode";
             this.darkMode.UseVisualStyleBackColor = true;
             this.darkMode.CheckedChanged += new System.EventHandler(this.darkMode_CheckedChanged);
+            // 
+            // helpTip
+            // 
+            this.helpTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.helpTip.ToolTipTitle = "Quick help";
+            this.helpTip.Popup += new System.Windows.Forms.PopupEventHandler(this.helpTip_Popup);
             // 
             // updateCheckerTimer
             // 
@@ -1987,5 +2075,8 @@ namespace UltimateBlueScreenSimulator
         private MaterialLabel materialLabel2;
         private MaterialCheckbox darkDetectCheck;
         private MaterialButton materialButton6;
+        private MaterialLabel materialLabel3;
+        private MaterialComboBox primaryColorBox;
+        private MaterialButton materialButton7;
     }
 }

@@ -9,7 +9,6 @@ using System.Threading;
 using System.Diagnostics;
 using MaterialSkin.Controls;
 using MaterialSkin;
-using System.Windows.Controls;
 using System.Text;
 using System.Text.Json;
 
@@ -179,7 +178,10 @@ namespace UltimateBlueScreenSimulator
                 helpPanel.Dispose();
                 eggHunterButton.Checked = Program.gs.EnableEggs;
                 darkDetectCheck.Checked = Program.gs.AutoDark;
+                materialSwitch1.Checked = Program.gs.QuickHelp;
+                helpTip.Active = Program.gs.QuickHelp;
                 accentBox.SelectedIndex = (int)Program.gs.ColorScheme;
+                primaryColorBox.SelectedIndex = (int)Program.gs.PrimaryColor;
                 darkMode.Checked = Program.gs.NightTheme;
                 if (Program.gs.ScaleMode == GlobalSettings.ScaleModes.HighQualityBicubic) { scalingModeBox.SelectedIndex = 0; }
                 if (Program.gs.ScaleMode == GlobalSettings.ScaleModes.HighQualityBilinear) { scalingModeBox.SelectedIndex = 1; }
@@ -553,6 +555,11 @@ namespace UltimateBlueScreenSimulator
 
         private void SaveConfig(object sender, EventArgs e)
         {
+            if (Program.templates.qaddeTrip)
+            {
+                MessageBox.Show("QADDE tripped, cannot save this configuration.\r\n\r\nThis can be solved by either: resetting all configurations, deleting all configurations, restaring the application or loading an existing configuration file.", AssemblyProduct, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             if (saveBsconfig.ShowDialog() == DialogResult.OK)
             {
                 Thread t = new Thread(() => Program.templates.SaveData(saveBsconfig.FileName, saveBsconfig.FilterIndex));
@@ -613,7 +620,7 @@ namespace UltimateBlueScreenSimulator
                 de.Show();
             } catch
             {
-                MessageBox.Show("please select a configuration");
+                MessageBox.Show("Please select a configuration, silly", AssemblyProduct, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -881,6 +888,115 @@ namespace UltimateBlueScreenSimulator
                 Text = jsonString.ToString()
             };
             tv.Show();
+        }
+
+        private void configList_DoubleClick(object sender, EventArgs e)
+        {
+            AddBluescreen ab = new AddBluescreen();
+            BlueScreen me = Program.templates.GetAt(configList.SelectedIndex);
+            ab.Preload(me);
+            if (ab.ShowDialog() == DialogResult.OK)
+            {
+                configList.Items.Clear();
+                foreach (BlueScreen bs in Program.templates.GetAll())
+                {
+                    configList.Items.Add(new MaterialListBoxItem(bs.GetString("friendlyname")));
+                }
+                osName.Text = string.Format("Selected configuration: {0}", Program.templates.GetAt(configList.SelectedIndex).GetString("friendlyname"));
+            }
+        }
+
+        private void materialSwitch1_CheckedChanged(object sender, EventArgs e)
+        {
+            Program.gs.QuickHelp = materialSwitch1.Checked;
+            this.helpTip.Active = materialSwitch1.Checked;
+        }
+
+        private void helpTip_Popup(object sender, PopupEventArgs e)
+        {
+            if (e.AssociatedControl != null)
+            {
+                if (e.AssociatedControl is MaterialButton mb)
+                {
+                    helpTip.ToolTipTitle = mb.Text.Replace(" [?]", "");
+                }
+                else if (e.AssociatedControl is MaterialLabel ml)
+                {
+                    helpTip.ToolTipTitle = ml.Text.Replace(" [?]", "");
+                }
+                else if (e.AssociatedControl is MaterialCheckbox mc)
+                {
+                    helpTip.ToolTipTitle = mc.Text.Replace(" [?]", "");
+                }
+                else if (e.AssociatedControl is MaterialSwitch ms)
+                {
+                    helpTip.ToolTipTitle = ms.Text.Replace(" [?]", "");
+                }
+                else
+                {
+                    helpTip.ToolTipTitle = "Quick help";
+                }
+            }
+        }
+
+        private void materialComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Program.gs.PrimaryColor = (GlobalSettings.ColorSchemes)primaryColorBox.SelectedIndex;
+            Program.gs.ApplyScheme();
+
+            // applies the color to titlebars immediately
+            Program.f1.Refresh();
+            this.Refresh();
+        }
+
+        private void ShowEmbedded(object sender, EventArgs e)
+        {
+            this.Enabled = false;
+            string filename = "";
+            string backup = loadBsconfig.Filter;
+            loadBsconfig.Filter = "Executables|*.exe";
+            if (loadBsconfig.ShowDialog() == DialogResult.OK)
+            {
+                filename = loadBsconfig.FileName;
+            }
+            if ((filename != "") && MessageBox.Show("Are you sure?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            {
+                this.Hide();
+                Program.f1.Hide();
+                string jsonString = Program.GetEmbedded(filename);
+                if (jsonString != "")
+                {
+                    if (MessageBox.Show("Embedded data found! Press Yes to preview error message. Press No to view embedded data.", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        Program.dr = new DrawRoutines();
+                        Thread th = new Thread(new ThreadStart(() => {
+                            // initialize BlueScreen object
+                            Program.f1.me = Program.templates.LoadSingleConfig(jsonString);
+                            // display the crash screen
+                            Program.f1.me.Show();
+                        }));
+                        th.Start();
+                        th.Join();
+                    }
+                    else
+                    {
+                        TextView tv = new TextView();
+                        tv.Text = jsonString;
+                        tv.Title = "JSON data";
+                        tv.ShowDialog();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("No embedded data was found.", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                Program.f1.Show();
+                this.Show();
+                this.BringToFront();
+            }
+            loadBsconfig.Filter = backup;
+            loadBsconfig.FileName = "";
+            this.Enabled = true;
         }
     }
 }

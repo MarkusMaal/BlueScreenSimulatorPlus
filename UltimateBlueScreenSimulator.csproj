@@ -410,6 +410,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="bssp3_icon.ico" />
+    <None Include="Resources\9xERRORS.TXT" />
     <None Include="Resources\legacy_template.txt" />
     <None Include="Resources\splash_bg.png" />
     <None Include="Resources\bsodbanner3.png" />

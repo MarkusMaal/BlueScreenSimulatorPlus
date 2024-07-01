@@ -61,6 +61,32 @@ namespace UltimateBlueScreenSimulator.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 00	Division fault
+        ///01	Startup Error
+        ///02	Non-Maskable Interrupt
+        ///03	Shutdown Error
+        ///04	Overflow Trap
+        ///05	Bounds Check Fault
+        ///06	Invalid Opcode Fault
+        ///07	&quot;Coprocessor Not Available&quot; Fault
+        ///08	Double Fault
+        ///09	Coprocessor Segment Overrun
+        ///0A	Invalid Task State Segment Fault
+        ///0B	Not Present Fault
+        ///0C	Stack Fault
+        ///0D	General Protection Fault
+        ///0E	Page Fault
+        ///0F	Error Message Limit Exceed
+        ///10	Coprocessor Error Fault
+        ///11	Alignment Check Fault.
+        /// </summary>
+        internal static string _9xERRORS {
+            get {
+                return ResourceManager.GetString("_9xERRORS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to *** Blue screen simulator plus 1.11 ***
         ///FACE :(
         ///MODERN 16:113:170,255:255:255

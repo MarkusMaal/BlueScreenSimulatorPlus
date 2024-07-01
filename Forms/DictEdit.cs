@@ -14,6 +14,7 @@ namespace UltimateBlueScreenSimulator
     {
         internal BlueScreen me;
         string key;
+        bool initialization = false;
         public DictEdit()
         {
             InitializeComponent();
@@ -63,11 +64,34 @@ namespace UltimateBlueScreenSimulator
                         listView1.Items.Add(li);
                     }
                     break;
+                case "titles":
+                    foreach (KeyValuePair<string, string> kvp in me.GetTitles())
+                    {
+                        ListViewItem li = new ListViewItem
+                        {
+                            Text = kvp.Key
+                        };
+                        li.SubItems.Add(kvp.Value);
+                        listView1.Items.Add(li);
+                    }
+                    break;
+                case "texts":
+                    foreach (KeyValuePair<string, string> kvp in me.GetTexts())
+                    {
+                        ListViewItem li = new ListViewItem
+                        {
+                            Text = kvp.Key
+                        };
+                        li.SubItems.Add(kvp.Value);
+                        listView1.Items.Add(li);
+                    }
+                    break;
             }
         }
 
         private void ListView1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            initialization = true;
             if (listView1.SelectedIndices.Count > 0)
             
             {
@@ -83,8 +107,15 @@ namespace UltimateBlueScreenSimulator
                     case "bools":
                         textBox1.Text = me.GetBool(listView1.SelectedItems[0].Text).ToString();
                         break;
+                    case "texts":
+                        textBox1.Text = me.GetTexts()[listView1.SelectedItems[0].Text];
+                        break;
+                    case "titles":
+                        textBox1.Text = me.GetTitles()[listView1.SelectedItems[0].Text];
+                        break;
                 }
             }
+            initialization = false;
         }
 
         private void TextBox1_TextChanged(object sender, EventArgs e)
@@ -95,6 +126,12 @@ namespace UltimateBlueScreenSimulator
                 {
                     case "strings":
                         me.SetString(key, textBox1.Text);
+                        break;
+                    case "texts":
+                        me.SetText(key, textBox1.Text);
+                        break;
+                    case "titles":
+                        me.SetTitle(key, textBox1.Text);
                         break;
                     case "ints":
                         try { me.SetInt(key, Convert.ToInt32(textBox1.Text)); } catch { }
@@ -111,6 +148,11 @@ namespace UltimateBlueScreenSimulator
                     Reload();
                 }
             }
+            if (!initialization)
+            {
+                Program.templates.qaddeTrip = true;
+            }
+            CheckQADDE();
         }
 
         private void RadioButton2_CheckedChanged(object sender, EventArgs e)
@@ -145,7 +187,19 @@ namespace UltimateBlueScreenSimulator
 
         private void DictEdit_Load(object sender, EventArgs e)
         {
+            initialization = true;
             comboBox1.SelectedIndex = 0;
+            CheckQADDE();
+            initialization = false;
+        }
+
+        private void CheckQADDE()
+        {
+            if (Program.templates.qaddeTrip)
+            {
+                qaddeTrip.Text = "QADDE tripped";
+                qaddeTrip.ForeColor = Color.Red;
+            }
         }
 
         private void TextBox2_VisibleChanged(object sender, EventArgs e)

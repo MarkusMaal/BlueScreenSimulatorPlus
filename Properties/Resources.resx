@@ -258,4 +258,7 @@ Advanced Startup Options, and then select Safe Mode.</value>
   <data name="legacy_template" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\legacy_template.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
+  <data name="_9xERRORS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\9xERRORS.TXT;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1257</value>
+  </data>
 </root>

@@ -19,6 +19,12 @@ namespace UltimateBlueScreenSimulator
         public bool saveFinished = false;
         private string[] nt_errors = Properties.Resources.NTERRORDATABASE.Replace("\r\n", "\n").Split('\n');
         private string[] culprits = Properties.Resources.CULPRIT_FILES.Replace("\r\n", "\n").Split('\n');
+        private string[] nx_errors = Properties.Resources._9xERRORS.Replace("\r\n", "\n").Split('\n');
+
+        /// <summary>
+        /// Determines if the user has made modifications in the quick and dirty dictionary editor.
+        /// </summary>
+        public bool qaddeTrip = false;
 
         public TemplateRegistry()
         {
@@ -59,6 +65,7 @@ namespace UltimateBlueScreenSimulator
         {
             if (Program.gs.ErrorCode != 500)
             {
+                qaddeTrip = false;
                 bluescreens.Clear();
                 foreach (string def in defaults)
                 {
@@ -76,6 +83,7 @@ namespace UltimateBlueScreenSimulator
         /// </summary>
         public void Clear()
         {
+            qaddeTrip = false;
             bluescreens.Clear();
         }
 
@@ -1079,6 +1087,19 @@ namespace UltimateBlueScreenSimulator
                 return culprits;
             }
             set { culprits = value; }
+        }
+
+        /// <summary>
+        /// Allows you to get and set possible 9x error codes (such as "00  Division fault")
+        /// By default, 9xERRORS.TXT from project resources is used.
+        /// </summary>
+        public string[] NxErrors {
+            get {
+                return nx_errors;
+            }
+            set {
+                nx_errors = value;
+            }
         }
 
         /// <summary>
