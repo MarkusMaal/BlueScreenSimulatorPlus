@@ -423,6 +423,12 @@ namespace UltimateBlueScreenSimulator
             {
                 Program.DllError();
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Whoops, something went wrong while trying to load the embedded configuration! The application cannot continue.\r\n\r\nError details:\r\n{ex.Message}\r\n{ex.StackTrace}", "Blue screen simulator plus", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Application.Exit();
+                return me;
+            }
             return me;
         }
 

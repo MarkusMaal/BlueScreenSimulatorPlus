@@ -415,6 +415,15 @@ namespace UltimateBlueScreenSimulator
             {
                 Program.DllError();
                 return;
+            } catch (Exception ex)
+            {
+                if (MessageBox.Show($"Unable to save settings! Reason: {ex.Message}\r\n{ex.StackTrace}", "Blue screen simulator plus", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error) == DialogResult.Retry)
+                {
+                    SaveSettings();
+                } else
+                {
+                    return;
+                }
             }
         }
 

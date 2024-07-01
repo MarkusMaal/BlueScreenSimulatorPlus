@@ -68,6 +68,10 @@ namespace UltimateBlueScreenSimulator
             }
             RelocateButtons();
             string verStr = Convert.ToDouble(version.Replace(".", ",")).ToString().Replace(",", ".");
+            while (verStr.EndsWith("0"))
+            {
+                verStr = verStr.Substring(0, verStr.Length - 1);
+            }
             if (!verStr.Contains("."))
             {
                 verStr += ".0";
@@ -128,12 +132,20 @@ namespace UltimateBlueScreenSimulator
                 this.Hide();
                 return;
             }
-            bool DarkMode = (int)Registry.GetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize", "AppsUseLightTheme", 1) == 0;
-            Program.gs.NightTheme = Program.gs.AutoDark && DarkMode;
-            if (Program.gs.AutoDark && DarkMode)
+            try
             {
-                materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
-                RelocateButtons();
+                bool DarkMode = (int)Registry.GetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize", "AppsUseLightTheme", 1) == 0;
+                Program.gs.NightTheme = Program.gs.AutoDark && DarkMode;
+                if (Program.gs.AutoDark && DarkMode)
+                {
+                    materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
+                    RelocateButtons();
+                }
+            }
+            catch
+            {
+                Program.gs.Log("Error", "Error detecting dark mode. It's possible that this host OS does not support dark mode.");
+                this.Enabled = true;
             }
             Program.gs.ApplyScheme();
         }
@@ -163,6 +175,11 @@ namespace UltimateBlueScreenSimulator
             if (windowVersion.Items.Count > 0) { windowVersion.SelectedIndex = 0; }
             string winver = "";
             int os_build = 0;
+            /*if (specificos != "")
+            {
+                winver = specificos;
+                specificos = "";
+            }*/
             try
             {
                 winver = Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion", "ProductName", "").ToString();
@@ -170,12 +187,15 @@ namespace UltimateBlueScreenSimulator
             }
             catch
             {
+                if (os_build == 0)
+                {
+                    Program.gs.Log("Error", "CurrentBuild missing, Windows registry may be corrupted...");
+                }
+                if (winver == "")
+                {
+                    Program.gs.Log("Error", "ProductName missing, Windows registry may be corrupted...");
+                }
             }
-            /*if (specificos != "")
-            {
-                winver = specificos;
-                specificos = "";
-            }*/
             //this code identifies Windows 11
             if (os_build >= 22000)
             {
@@ -230,6 +250,7 @@ namespace UltimateBlueScreenSimulator
                 if (windowVersion.Items[i].ToString().Contains(winver))
                 {
                     windowVersion.SelectedIndex = i;
+                    break;
                 }
             }
         }

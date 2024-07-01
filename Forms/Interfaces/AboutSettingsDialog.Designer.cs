@@ -1680,7 +1680,6 @@ namespace UltimateBlueScreenSimulator
             // 
             // appearancePanel
             // 
-            this.appearancePanel.BackColor = System.Drawing.Color.Transparent;
             this.appearancePanel.Controls.Add(this.darkDetectCheck);
             this.appearancePanel.Controls.Add(this.materialSwitch1);
             this.appearancePanel.Controls.Add(this.rtlSwitch);
@@ -1723,15 +1722,17 @@ namespace UltimateBlueScreenSimulator
             this.materialSwitch1.Checked = true;
             this.materialSwitch1.CheckState = System.Windows.Forms.CheckState.Checked;
             this.materialSwitch1.Depth = 0;
-            this.materialSwitch1.Location = new System.Drawing.Point(20, 273);
+            this.materialSwitch1.Location = new System.Drawing.Point(19, 236);
             this.materialSwitch1.Margin = new System.Windows.Forms.Padding(0);
             this.materialSwitch1.MouseLocation = new System.Drawing.Point(-1, -1);
             this.materialSwitch1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialSwitch1.Name = "materialSwitch1";
             this.materialSwitch1.Ripple = true;
-            this.materialSwitch1.Size = new System.Drawing.Size(116, 37);
+            this.materialSwitch1.Size = new System.Drawing.Size(136, 37);
             this.materialSwitch1.TabIndex = 15;
-            this.materialSwitch1.Text = "Tooltips";
+            this.materialSwitch1.Text = "Tooltips [?]";
+            this.helpTip.SetToolTip(this.materialSwitch1, "Determines whether or not to display these popups when you hover over various con" +
+        "trols");
             this.materialSwitch1.UseVisualStyleBackColor = true;
             this.materialSwitch1.CheckedChanged += new System.EventHandler(this.materialSwitch1_CheckedChanged);
             // 
@@ -1739,7 +1740,7 @@ namespace UltimateBlueScreenSimulator
             // 
             this.rtlSwitch.AutoSize = true;
             this.rtlSwitch.Depth = 0;
-            this.rtlSwitch.Location = new System.Drawing.Point(20, 236);
+            this.rtlSwitch.Location = new System.Drawing.Point(20, 273);
             this.rtlSwitch.Margin = new System.Windows.Forms.Padding(0);
             this.rtlSwitch.MouseLocation = new System.Drawing.Point(-1, -1);
             this.rtlSwitch.MouseState = MaterialSkin.MouseState.HOVER;
@@ -1749,6 +1750,7 @@ namespace UltimateBlueScreenSimulator
             this.rtlSwitch.TabIndex = 15;
             this.rtlSwitch.Text = "Forced RTL";
             this.rtlSwitch.UseVisualStyleBackColor = true;
+            this.rtlSwitch.Visible = false;
             this.rtlSwitch.CheckedChanged += new System.EventHandler(this.rtlSwitch_CheckedChanged);
             // 
             // materialLabel2
@@ -1895,9 +1897,11 @@ namespace UltimateBlueScreenSimulator
             this.darkMode.MouseState = MaterialSkin.MouseState.HOVER;
             this.darkMode.Name = "darkMode";
             this.darkMode.Ripple = true;
-            this.darkMode.Size = new System.Drawing.Size(140, 37);
+            this.darkMode.Size = new System.Drawing.Size(160, 37);
             this.darkMode.TabIndex = 11;
-            this.darkMode.Text = "Night mode";
+            this.darkMode.Text = "Night mode [?]";
+            this.helpTip.SetToolTip(this.darkMode, "Night mode applies a dark background color that is easier to look at in lower lig" +
+        "ht levels");
             this.darkMode.UseVisualStyleBackColor = true;
             this.darkMode.CheckedChanged += new System.EventHandler(this.darkMode_CheckedChanged);
             // 

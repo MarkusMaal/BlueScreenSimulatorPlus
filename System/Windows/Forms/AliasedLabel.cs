@@ -1,4 +1,5 @@
-﻿namespace System.Windows.Forms
+﻿
+namespace System.Windows.Forms
 {
     public partial class AliasedLabel : Label
     {
