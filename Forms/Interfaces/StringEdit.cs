@@ -143,6 +143,16 @@ namespace UltimateBlueScreenSimulator
                 lsti.ImageIndex = 5;
                 MessageView.Items.Add(lsti);
             }
+            if (me.GetString("os") == "Windows 1.x/2.x")
+            {
+                ListViewItem lsti = new ListViewItem
+                {
+                    Text = "Tick rate"
+                };
+                lsti.SubItems.Add(me.GetInt("blink_speed").ToString() + "ms");
+                lsti.ImageIndex = 5;
+                MessageView.Items.Add(lsti);
+            }
             if (me.GetBool("winxplus"))
             {
                 ListViewItem lsti = new ListViewItem
@@ -299,14 +309,14 @@ namespace UltimateBlueScreenSimulator
                     colorProps.Visible = true;
                     specificProps.Text = "Color properties";
                 }
-                else if (selection == "Blink speed")
+                else if ((selection == "Blink speed") || (selection == "Tick rate"))
                 {
                     speedTrackbar.Value = me.GetInt("blink_speed");
                     HideAllProps();
                     blinkywinky.Interval = me.GetInt("blink_speed");
                     blinkywinky.Enabled = true;
                     blinkProps.Visible = true;
-                    specificProps.Text = "Blink speed properties";
+                    specificProps.Text = $"{selection} properties";
                 }
                 else if (selection == "Font")
                 {

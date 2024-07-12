@@ -21,7 +21,7 @@ namespace UltimateBlueScreenSimulator
         readonly List<Bitmap> image = new List<Bitmap>();
         bool locked = true;
         bool displaying = false;
-        readonly Random r = new Random();
+        internal Random r;
         readonly SoundPlayer sp = new SoundPlayer();
         Bitmap splash = Properties.Resources.win1_splash;
         public Win()
@@ -51,7 +51,7 @@ namespace UltimateBlueScreenSimulator
                     fg = Color.FromArgb(r.Next(0, 255), r.Next(0, 255), r.Next(0, 255));
                 }
                 Bitmap bmpres = GetSymbol(bg, fg);
-                for (int i = 0; i < new Random().Next(20, 77); i++)
+                for (int i = 0; i < r.Next(20, 77); i++)
                 {
                     Bitmap two = GetSymbol(bg, fg);
                     bmpres = Merge(bmpres, two);

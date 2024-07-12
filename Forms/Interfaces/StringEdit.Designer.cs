@@ -32,8 +32,8 @@ namespace UltimateBlueScreenSimulator
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StringEdit));
-            System.Windows.Forms.ListViewGroup listViewGroup3 = new System.Windows.Forms.ListViewGroup("Property name", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup4 = new System.Windows.Forms.ListViewGroup("Value", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("Property name", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("Value", System.Windows.Forms.HorizontalAlignment.Left);
             this.AllIcons = new System.Windows.Forms.ImageList(this.components);
             this.labelProps = new MaterialSkin.Controls.MaterialLabel();
             this.MessageView = new MaterialSkin.Controls.MaterialListView();
@@ -116,13 +116,13 @@ namespace UltimateBlueScreenSimulator
             this.MessageView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.MessageView.Depth = 0;
             this.MessageView.FullRowSelect = true;
-            listViewGroup3.Header = "Property name";
-            listViewGroup3.Name = "listViewGroup1";
-            listViewGroup4.Header = "Value";
-            listViewGroup4.Name = "listViewGroup2";
+            listViewGroup1.Header = "Property name";
+            listViewGroup1.Name = "listViewGroup1";
+            listViewGroup2.Header = "Value";
+            listViewGroup2.Name = "listViewGroup2";
             this.MessageView.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup3,
-            listViewGroup4});
+            listViewGroup1,
+            listViewGroup2});
             this.MessageView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.MessageView.HideSelection = false;
             this.MessageView.LargeImageList = this.AllIcons;
@@ -134,7 +134,7 @@ namespace UltimateBlueScreenSimulator
             this.MessageView.Name = "MessageView";
             this.MessageView.OwnerDraw = true;
             this.MessageView.ShowGroups = false;
-            this.MessageView.Size = new System.Drawing.Size(477, 752);
+            this.MessageView.Size = new System.Drawing.Size(493, 791);
             this.MessageView.SmallImageList = this.AllIcons;
             this.MessageView.TabIndex = 0;
             this.MessageView.UseCompatibleStateImageBehavior = false;
@@ -146,7 +146,7 @@ namespace UltimateBlueScreenSimulator
             this.specificProps.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.specificProps.Depth = 0;
             this.specificProps.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.specificProps.Location = new System.Drawing.Point(495, 30);
+            this.specificProps.Location = new System.Drawing.Point(511, 30);
             this.specificProps.MouseState = MaterialSkin.MouseState.HOVER;
             this.specificProps.Name = "specificProps";
             this.specificProps.Size = new System.Drawing.Size(403, 22);
@@ -162,7 +162,7 @@ namespace UltimateBlueScreenSimulator
             this.buttonOK.ForeColor = System.Drawing.SystemColors.ControlText;
             this.buttonOK.HighEmphasis = true;
             this.buttonOK.Icon = null;
-            this.buttonOK.Location = new System.Drawing.Point(813, 811);
+            this.buttonOK.Location = new System.Drawing.Point(829, 850);
             this.buttonOK.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.buttonOK.MouseState = MaterialSkin.MouseState.HOVER;
             this.buttonOK.Name = "buttonOK";
@@ -254,9 +254,9 @@ namespace UltimateBlueScreenSimulator
             this.specificPropsFlowLayoutPanel.Controls.Add(this.fontProps);
             this.specificPropsFlowLayoutPanel.Controls.Add(this.blinkProps);
             this.specificPropsFlowLayoutPanel.Controls.Add(this.colorProps);
-            this.specificPropsFlowLayoutPanel.Location = new System.Drawing.Point(495, 52);
+            this.specificPropsFlowLayoutPanel.Location = new System.Drawing.Point(511, 52);
             this.specificPropsFlowLayoutPanel.Name = "specificPropsFlowLayoutPanel";
-            this.specificPropsFlowLayoutPanel.Size = new System.Drawing.Size(404, 754);
+            this.specificPropsFlowLayoutPanel.Size = new System.Drawing.Size(404, 793);
             this.specificPropsFlowLayoutPanel.TabIndex = 2;
             // 
             // xpMsgChooser
@@ -561,7 +561,7 @@ namespace UltimateBlueScreenSimulator
             // 
             this.whereTheButtonsLink.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.whereTheButtonsLink.AutoSize = true;
-            this.whereTheButtonsLink.Location = new System.Drawing.Point(12, 816);
+            this.whereTheButtonsLink.Location = new System.Drawing.Point(12, 855);
             this.whereTheButtonsLink.Name = "whereTheButtonsLink";
             this.whereTheButtonsLink.Size = new System.Drawing.Size(189, 13);
             this.whereTheButtonsLink.TabIndex = 7;
@@ -573,7 +573,7 @@ namespace UltimateBlueScreenSimulator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(905, 846);
+            this.ClientSize = new System.Drawing.Size(921, 885);
             this.Controls.Add(this.whereTheButtonsLink);
             this.Controls.Add(this.specificPropsFlowLayoutPanel);
             this.Controls.Add(this.buttonOK);

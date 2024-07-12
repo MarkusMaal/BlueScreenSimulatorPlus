@@ -321,14 +321,14 @@ namespace UltimateBlueScreenSimulator
             //This code starts the check for updates
             if (Program.DoWeHaveInternet(1000))
             {
-                if (File.Exists("vercheck.txt"))
+                if (File.Exists(Program.prefix + "vercheck.txt"))
                 {
-                    File.Delete("vercheck.txt");
+                    File.Delete(Program.prefix + "vercheck.txt");
                 }
                 UpdateInterface ui = new UpdateInterface();
-                ui.DownloadFile(Program.gs.UpdateServer + "/bssp_version.txt", "vercheck.txt");
+                ui.DownloadFile(Program.gs.UpdateServer + "/bssp_version.txt", Program.prefix + "vercheck.txt");
                 updateCheckButton.Enabled = false;
-                updateCheckButton.Text = "Checking for updates...";
+                updateCheckButton.Text = "Please wait now ...";
                 updateCheckerTimer.Enabled = true;
                 Program.f1.updateCheckerTimer.Interval = 5998;
                 Program.f1.updateCheckerTimer.Enabled = true;

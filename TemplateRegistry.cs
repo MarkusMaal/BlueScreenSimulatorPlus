@@ -44,6 +44,7 @@ namespace UltimateBlueScreenSimulator
                 "Windows 8/8.1",
                 "Windows 10",
                 "Windows 11"};
+
             Reset();
         }
 
@@ -207,7 +208,15 @@ namespace UltimateBlueScreenSimulator
         /// <returns>Indication of whether or not selected filter contains the specified version number</returns>
         private bool CheckFormat(int filterIndex, string version)
         {
-            return filters.Keys.ToArray()[filterIndex] == $"Bluescreen simulator {version} configuration files";
+            string format;
+            try
+            {
+                format = filters.Keys.ToArray()[filterIndex];
+            } catch
+            {
+                format = $"Bluescreen simulator {version} configuration files";
+            }
+            return format == $"Bluescreen simulator {version} configuration files";
         }
 
         /// <summary>

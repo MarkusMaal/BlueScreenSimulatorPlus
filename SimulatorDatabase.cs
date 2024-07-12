@@ -191,6 +191,10 @@ namespace SimulatorDatabase
         /// <param name="native">Specifies whether or not the primary display should be upscaled, if true then it's not upscaled</param>
         public void Init(Form frm, bool native = false)
         {
+            if ((Program.gs.DisplayMode == "none") && native)
+            {
+                return;
+            }
             if (Screen.AllScreens.Length > 1)
             {
                 foreach (Screen s in Screen.AllScreens)
@@ -416,9 +420,13 @@ namespace SimulatorDatabase
         ///<summary>
         ///Blue screen template class. Requires base_os to be set to one of the preset OS templates. If desired, autosetup can be disabled, which makes it so that the template will not set default settings.
         ///</summary>
-        public BlueScreen(string base_os, bool autosetup = true)
+        public BlueScreen(string base_os, bool autosetup = true, Random r = null)
         {
-            this.r = new Random();
+            if (r == null)
+            {
+                r = new Random();
+            }
+            this.r = r;
             this.background = Color.FromArgb(0, 0, 0);
             this.foreground = Color.FromArgb(255, 255, 255);
             this.os = base_os;
@@ -505,6 +513,7 @@ namespace SimulatorDatabase
                 return false;
             }
         }
+
 
 
         ///<summary>
@@ -914,19 +923,27 @@ namespace SimulatorDatabase
             {
                 int temp = r.Next(15);
                 char lette = ' ';
-                if ((inspir + inspir).Substring(i, 1) == "R")
+                try
                 {
-                    if (temp < 10) { lette = Convert.ToChar(temp.ToString()); }
-                    if (temp == 10) { lette = 'A'; }
-                    if (temp == 11) { lette = 'B'; }
-                    if (temp == 12) { lette = 'C'; }
-                    if (temp == 13) { lette = 'D'; }
-                    if (temp == 14) { lette = 'E'; }
-                    if (temp == 15) { lette = 'F'; }
+                    if ((inspir + inspir).Substring(i, 1) == "R")
+                    {
+                        if (temp < 10) { lette = Convert.ToChar(temp.ToString()); }
+                        if (temp == 10) { lette = 'A'; }
+                        if (temp == 11) { lette = 'B'; }
+                        if (temp == 12) { lette = 'C'; }
+                        if (temp == 13) { lette = 'D'; }
+                        if (temp == 14) { lette = 'E'; }
+                        if (temp == 15) { lette = 'F'; }
+                    }
+                    else
+                    {
+                        lette = Convert.ToChar((inspir + inspir).Substring(i, 1));
+                    }
                 }
-                else
+                catch
                 {
-                    lette = Convert.ToChar((inspir + inspir).Substring(i, 1));
+                    Program.gs.Log("Error", $"Failed to generate hex character at position {i} with template \"{inspir + inspir}\". Current configuration may be corrupt, please reset settings!", GetString("friendlyname"));
+                    lette = '0';
                 }
                 output += lette.ToString();
             }
@@ -1349,6 +1366,7 @@ namespace SimulatorDatabase
                 Log("Error", $"Error setting up Windows 1.x/2.x simulator. Reason: {ex.Message}");
                 MessageBox.Show(ex.Message, "A non-critical error has occoured", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+            bs.r = r;
             bs.me = this;
             bs.ShowDialog();
             Thread.CurrentThread.Abort();
@@ -1892,6 +1910,7 @@ namespace SimulatorDatabase
                     SetBool("font_support", true);
                     break;
             }
+            SetBool("rainbow", false);
         }
 
         ///<summary>

@@ -404,7 +404,7 @@ namespace UltimateBlueScreenSimulator
                 }
                 };
                 string jsonString = JsonSerializer.Serialize(this, options);
-                File.WriteAllText("settings.json", jsonString);
+                File.WriteAllText(Program.prefix + "settings.json", jsonString);
             }
             catch (DllNotFoundException)
             {
@@ -432,7 +432,11 @@ namespace UltimateBlueScreenSimulator
         ///</summary>
         public GlobalSettings LoadSettings()
         {
-            if (File.Exists("settings.json"))
+            if (!Directory.Exists(Program.prefix))
+            {
+                Directory.CreateDirectory(Program.prefix);
+            }
+            if (File.Exists(Program.prefix + "settings.json"))
             {
                 GlobalSettings settings = new GlobalSettings();
                 this.Log("Info", $"Loading settings from JSON file");
@@ -445,10 +449,10 @@ namespace UltimateBlueScreenSimulator
                         new JsonStringEnumConverter(JsonNamingPolicy.CamelCase)
                     }
                     };
-                    settings = JsonSerializer.Deserialize<GlobalSettings>(File.ReadAllText("settings.json"), options);
-                    if (File.Exists("settings.cfg"))
+                    settings = JsonSerializer.Deserialize<GlobalSettings>(File.ReadAllText(Program.prefix + "settings.json"), options);
+                    if (File.Exists(Program.prefix + "settings.cfg"))
                     {
-                        File.Delete("settings.cfg");
+                        File.Delete(Program.prefix + "settings.cfg");
                     }
                 }
                 catch (DllNotFoundException)

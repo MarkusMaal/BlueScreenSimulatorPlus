@@ -91,6 +91,10 @@
             this.materialButton2 = new MaterialSkin.Controls.MaterialButton();
             this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.traceFatalCheck = new MaterialSkin.Controls.MaterialCheckbox();
+            this.traceErrorCheck = new MaterialSkin.Controls.MaterialCheckbox();
+            this.traceWarnCheck = new MaterialSkin.Controls.MaterialCheckbox();
+            this.traceInfoCheck = new MaterialSkin.Controls.MaterialCheckbox();
             this.logIf = new MaterialSkin.Controls.MaterialMultiLineTextBox();
             this.materialButton6 = new MaterialSkin.Controls.MaterialButton();
             this.tabPage3 = new System.Windows.Forms.TabPage();
@@ -417,12 +421,12 @@
             this.textBox1.Depth = 0;
             this.textBox1.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.textBox1.LeadingIcon = null;
-            this.textBox1.Location = new System.Drawing.Point(105, 44);
+            this.textBox1.Location = new System.Drawing.Point(222, 44);
             this.textBox1.MaxLength = 50;
             this.textBox1.MouseState = MaterialSkin.MouseState.OUT;
             this.textBox1.Multiline = false;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(546, 36);
+            this.textBox1.Size = new System.Drawing.Size(429, 36);
             this.textBox1.TabIndex = 4;
             this.textBox1.Text = "";
             this.quickHelp.SetToolTip(this.textBox1, "Search for the error code from the NT error message list");
@@ -615,7 +619,7 @@
             this.advOptionsButton.Name = "advOptionsButton";
             this.advOptionsButton.NoAccentTextColor = System.Drawing.Color.Empty;
             this.advOptionsButton.Size = new System.Drawing.Size(181, 36);
-            this.advOptionsButton.TabIndex = 0;
+            this.advOptionsButton.TabIndex = 1;
             this.advOptionsButton.Text = "Additional &options";
             this.quickHelp.SetToolTip(this.advOptionsButton, "Experimental features to mess with in blue screens");
             this.advOptionsButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -637,7 +641,7 @@
             this.eCodeEditButton.Name = "eCodeEditButton";
             this.eCodeEditButton.NoAccentTextColor = System.Drawing.Color.Empty;
             this.eCodeEditButton.Size = new System.Drawing.Size(173, 36);
-            this.eCodeEditButton.TabIndex = 0;
+            this.eCodeEditButton.TabIndex = 2;
             this.eCodeEditButton.Text = "Error &code editor";
             this.quickHelp.SetToolTip(this.eCodeEditButton, "Allows you to configure how memory codes are being displayed on blue screens. Whe" +
         "n the screen uses less than 16 digits, the first digits will be used (e.g. first" +
@@ -661,7 +665,7 @@
             this.advNTButton.Name = "advNTButton";
             this.advNTButton.NoAccentTextColor = System.Drawing.Color.Empty;
             this.advNTButton.Size = new System.Drawing.Size(238, 36);
-            this.advNTButton.TabIndex = 0;
+            this.advNTButton.TabIndex = 3;
             this.advNTButton.Text = "Advanced &NT code options";
             this.quickHelp.SetToolTip(this.advNTButton, "Allows you to configure how memory codes are being displayed on blue screens. Whe" +
         "n the screen uses less than 16 digits, the first digits will be used (e.g. first" +
@@ -685,7 +689,7 @@
             this.progressTuneButton.Name = "progressTuneButton";
             this.progressTuneButton.NoAccentTextColor = System.Drawing.Color.Empty;
             this.progressTuneButton.Size = new System.Drawing.Size(155, 36);
-            this.progressTuneButton.TabIndex = 0;
+            this.progressTuneButton.TabIndex = 4;
             this.progressTuneButton.Text = "Progress &tuner";
             this.quickHelp.SetToolTip(this.progressTuneButton, "Allows you to adjust the timing and increments of the progress indicator on vario" +
         "us blue screens.");
@@ -700,7 +704,7 @@
             this.button1.Depth = 0;
             this.button1.Icon = global::UltimateBlueScreenSimulator.Properties.Resources.play;
             this.button1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.button1.Location = new System.Drawing.Point(-410, -261);
+            this.button1.Location = new System.Drawing.Point(-398, -263);
             this.button1.Mini = true;
             this.button1.MouseState = MaterialSkin.MouseState.HOVER;
             this.button1.Name = "button1";
@@ -717,7 +721,7 @@
             this.button3.Depth = 0;
             this.button3.Icon = global::UltimateBlueScreenSimulator.Properties.Resources.question;
             this.button3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.button3.Location = new System.Drawing.Point(-410, -211);
+            this.button3.Location = new System.Drawing.Point(-398, -213);
             this.button3.Mini = true;
             this.button3.MouseState = MaterialSkin.MouseState.HOVER;
             this.button3.Name = "button3";
@@ -851,7 +855,7 @@
             this.embedExeButton.Name = "embedExeButton";
             this.embedExeButton.NoAccentTextColor = System.Drawing.Color.Empty;
             this.embedExeButton.Size = new System.Drawing.Size(155, 36);
-            this.embedExeButton.TabIndex = 1;
+            this.embedExeButton.TabIndex = 0;
             this.embedExeButton.Text = "Embed to EXE file";
             this.quickHelp.SetToolTip(this.embedExeButton, "Creates a .EXE file containing this bluescreen configuration, which will be auto-" +
         "simulated after running it.");
@@ -877,7 +881,7 @@
             this.materialTabControl1.Name = "materialTabControl1";
             this.materialTabControl1.SelectedIndex = 0;
             this.materialTabControl1.ShowToolTips = true;
-            this.materialTabControl1.Size = new System.Drawing.Size(708, 619);
+            this.materialTabControl1.Size = new System.Drawing.Size(720, 617);
             this.materialTabControl1.TabIndex = 8;
             this.materialTabControl1.SelectedIndexChanged += new System.EventHandler(this.materialTabControl1_SelectedIndexChanged);
             this.materialTabControl1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NewUI_KeyDown);
@@ -890,7 +894,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(700, 590);
+            this.tabPage1.Size = new System.Drawing.Size(712, 588);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Simulator";
             // 
@@ -940,7 +944,7 @@
             this.windowVersion.MaxDropDownItems = 4;
             this.windowVersion.MouseState = MaterialSkin.MouseState.OUT;
             this.windowVersion.Name = "windowVersion";
-            this.windowVersion.Size = new System.Drawing.Size(572, 49);
+            this.windowVersion.Size = new System.Drawing.Size(584, 49);
             this.windowVersion.StartIndex = 0;
             this.windowVersion.TabIndex = 0;
             this.windowVersion.SelectedIndexChanged += new System.EventHandler(this.windowVersion_SelectedIndexChanged);
@@ -969,7 +973,7 @@
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(9, 62);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(676, 438);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(688, 436);
             this.flowLayoutPanel1.TabIndex = 3;
             // 
             // WXOptions
@@ -1076,9 +1080,9 @@
             this.materialLabel3.Location = new System.Drawing.Point(9, 48);
             this.materialLabel3.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel3.Name = "materialLabel3";
-            this.materialLabel3.Size = new System.Drawing.Size(95, 19);
+            this.materialLabel3.Size = new System.Drawing.Size(203, 19);
             this.materialLabel3.TabIndex = 3;
-            this.materialLabel3.Text = "Find by code:";
+            this.materialLabel3.Text = "Find by code / Random seed";
             // 
             // comboBox1
             // 
@@ -1277,16 +1281,96 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.traceFatalCheck);
+            this.tabPage2.Controls.Add(this.traceErrorCheck);
+            this.tabPage2.Controls.Add(this.traceWarnCheck);
+            this.tabPage2.Controls.Add(this.traceInfoCheck);
             this.tabPage2.Controls.Add(this.logIf);
             this.tabPage2.Controls.Add(this.materialLabel5);
             this.tabPage2.Controls.Add(this.materialButton6);
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(797, 770);
+            this.tabPage2.Size = new System.Drawing.Size(716, 629);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Trace log";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // traceFatalCheck
+            // 
+            this.traceFatalCheck.AutoSize = true;
+            this.traceFatalCheck.Checked = true;
+            this.traceFatalCheck.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.traceFatalCheck.Depth = 0;
+            this.traceFatalCheck.Location = new System.Drawing.Point(426, 16);
+            this.traceFatalCheck.Margin = new System.Windows.Forms.Padding(0);
+            this.traceFatalCheck.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.traceFatalCheck.MouseState = MaterialSkin.MouseState.HOVER;
+            this.traceFatalCheck.Name = "traceFatalCheck";
+            this.traceFatalCheck.ReadOnly = false;
+            this.traceFatalCheck.Ripple = true;
+            this.traceFatalCheck.Size = new System.Drawing.Size(71, 37);
+            this.traceFatalCheck.TabIndex = 4;
+            this.traceFatalCheck.Text = "Fatal";
+            this.traceFatalCheck.UseVisualStyleBackColor = true;
+            this.traceFatalCheck.CheckedChanged += new System.EventHandler(this.traceFatalCheck_CheckedChanged);
+            // 
+            // traceErrorCheck
+            // 
+            this.traceErrorCheck.AutoSize = true;
+            this.traceErrorCheck.Checked = true;
+            this.traceErrorCheck.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.traceErrorCheck.Depth = 0;
+            this.traceErrorCheck.Location = new System.Drawing.Point(350, 16);
+            this.traceErrorCheck.Margin = new System.Windows.Forms.Padding(0);
+            this.traceErrorCheck.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.traceErrorCheck.MouseState = MaterialSkin.MouseState.HOVER;
+            this.traceErrorCheck.Name = "traceErrorCheck";
+            this.traceErrorCheck.ReadOnly = false;
+            this.traceErrorCheck.Ripple = true;
+            this.traceErrorCheck.Size = new System.Drawing.Size(68, 37);
+            this.traceErrorCheck.TabIndex = 4;
+            this.traceErrorCheck.Text = "Error";
+            this.traceErrorCheck.UseVisualStyleBackColor = true;
+            this.traceErrorCheck.CheckedChanged += new System.EventHandler(this.traceFatalCheck_CheckedChanged);
+            // 
+            // traceWarnCheck
+            // 
+            this.traceWarnCheck.AutoSize = true;
+            this.traceWarnCheck.Checked = true;
+            this.traceWarnCheck.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.traceWarnCheck.Depth = 0;
+            this.traceWarnCheck.Location = new System.Drawing.Point(248, 16);
+            this.traceWarnCheck.Margin = new System.Windows.Forms.Padding(0);
+            this.traceWarnCheck.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.traceWarnCheck.MouseState = MaterialSkin.MouseState.HOVER;
+            this.traceWarnCheck.Name = "traceWarnCheck";
+            this.traceWarnCheck.ReadOnly = false;
+            this.traceWarnCheck.Ripple = true;
+            this.traceWarnCheck.Size = new System.Drawing.Size(94, 37);
+            this.traceWarnCheck.TabIndex = 4;
+            this.traceWarnCheck.Text = "Warning";
+            this.traceWarnCheck.UseVisualStyleBackColor = true;
+            this.traceWarnCheck.CheckedChanged += new System.EventHandler(this.traceFatalCheck_CheckedChanged);
+            // 
+            // traceInfoCheck
+            // 
+            this.traceInfoCheck.AutoSize = true;
+            this.traceInfoCheck.Checked = true;
+            this.traceInfoCheck.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.traceInfoCheck.Depth = 0;
+            this.traceInfoCheck.Location = new System.Drawing.Point(172, 16);
+            this.traceInfoCheck.Margin = new System.Windows.Forms.Padding(0);
+            this.traceInfoCheck.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.traceInfoCheck.MouseState = MaterialSkin.MouseState.HOVER;
+            this.traceInfoCheck.Name = "traceInfoCheck";
+            this.traceInfoCheck.ReadOnly = false;
+            this.traceInfoCheck.Ripple = true;
+            this.traceInfoCheck.Size = new System.Drawing.Size(63, 37);
+            this.traceInfoCheck.TabIndex = 4;
+            this.traceInfoCheck.Text = "Info";
+            this.traceInfoCheck.UseVisualStyleBackColor = true;
+            this.traceInfoCheck.CheckedChanged += new System.EventHandler(this.traceFatalCheck_CheckedChanged);
             // 
             // logIf
             // 
@@ -1302,7 +1386,7 @@
             this.logIf.MouseState = MaterialSkin.MouseState.HOVER;
             this.logIf.Name = "logIf";
             this.logIf.ReadOnly = true;
-            this.logIf.Size = new System.Drawing.Size(748, 608);
+            this.logIf.Size = new System.Drawing.Size(667, 467);
             this.logIf.TabIndex = 3;
             this.logIf.Text = "Logging interface 1.0";
             // 
@@ -1315,7 +1399,7 @@
             this.materialButton6.HighEmphasis = true;
             this.materialButton6.Icon = null;
             this.materialButton6.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.materialButton6.Location = new System.Drawing.Point(620, 17);
+            this.materialButton6.Location = new System.Drawing.Point(539, 17);
             this.materialButton6.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.materialButton6.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialButton6.Name = "materialButton6";
@@ -1332,7 +1416,7 @@
             // 
             this.tabPage3.Location = new System.Drawing.Point(4, 25);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(797, 770);
+            this.tabPage3.Size = new System.Drawing.Size(716, 629);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Settings";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -1341,7 +1425,7 @@
             // 
             this.aboutTab.Location = new System.Drawing.Point(4, 25);
             this.aboutTab.Name = "aboutTab";
-            this.aboutTab.Size = new System.Drawing.Size(797, 770);
+            this.aboutTab.Size = new System.Drawing.Size(716, 629);
             this.aboutTab.TabIndex = 3;
             this.aboutTab.Text = "About";
             this.aboutTab.UseVisualStyleBackColor = true;
@@ -1350,7 +1434,7 @@
             // 
             this.tabPage4.Location = new System.Drawing.Point(4, 25);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(797, 770);
+            this.tabPage4.Size = new System.Drawing.Size(716, 629);
             this.tabPage4.TabIndex = 4;
             this.tabPage4.Text = "Prank mode";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -1359,7 +1443,7 @@
             // 
             this.tabPage5.Location = new System.Drawing.Point(4, 25);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(797, 770);
+            this.tabPage5.Size = new System.Drawing.Size(716, 629);
             this.tabPage5.TabIndex = 5;
             this.tabPage5.Text = "Restore old UI";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -1389,7 +1473,7 @@
             this.label7.AutoSize = true;
             this.label7.Depth = 0;
             this.label7.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.label7.Location = new System.Drawing.Point(14, 600);
+            this.label7.Location = new System.Drawing.Point(14, 598);
             this.label7.MouseState = MaterialSkin.MouseState.HOVER;
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(348, 19);
@@ -1417,7 +1501,7 @@
             // NewUI
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
-            this.ClientSize = new System.Drawing.Size(714, 686);
+            this.ClientSize = new System.Drawing.Size(726, 684);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button1);
@@ -1537,5 +1621,9 @@
         public MaterialSkin.Controls.MaterialComboBox nineXErrorCode;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
+        private MaterialSkin.Controls.MaterialCheckbox traceFatalCheck;
+        private MaterialSkin.Controls.MaterialCheckbox traceErrorCheck;
+        private MaterialSkin.Controls.MaterialCheckbox traceWarnCheck;
+        private MaterialSkin.Controls.MaterialCheckbox traceInfoCheck;
     }
 }

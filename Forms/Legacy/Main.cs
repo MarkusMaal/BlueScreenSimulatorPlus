@@ -485,7 +485,7 @@ namespace UltimateBlueScreenSimulator
             if ((autoupdate == true) && DoWeHaveInternet(1000))
             { 
                 UpdateInterface ui = new UpdateInterface();
-                ui.DownloadFile(Program.gs.UpdateServer + "/bssp_version.txt", "vercheck.txt");
+                ui.DownloadFile(Program.gs.UpdateServer + "/bssp_version.txt", Program.prefix + "vercheck.txt");
                 updateCheckerTimer.Enabled = true;
                 if (System.IO.File.Exists("BSSP_latest.zim"))
                 {
@@ -968,13 +968,13 @@ namespace UltimateBlueScreenSimulator
             }
             try
             { 
-                if (System.IO.File.Exists("vercheck.txt"))
+                if (System.IO.File.Exists(Program.prefix + "vercheck.txt"))
                 {
-                    string[] lines = System.IO.File.ReadAllLines("vercheck.txt");
+                    string[] lines = System.IO.File.ReadAllLines(Program.prefix + "vercheck.txt");
                     if (Convert.ToDouble(lines[0].Replace(".", ",").Replace("\r", "").Replace("\n", "").Trim()) > Convert.ToDouble(version.Replace(".", ",")))
                     {
                         updateCheckerTimer.Enabled = false;
-                        System.IO.File.Delete("vercheck.txt");
+                        System.IO.File.Delete(Program.prefix + "vercheck.txt");
                         if (MessageBox.Show("A new version of blue screen simulator is available. Would you like to update now?", "Update available", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                         {
                             System.IO.File.WriteAllText("hash.txt", lines[1].Trim());
@@ -996,7 +996,7 @@ namespace UltimateBlueScreenSimulator
                         {
                             updateCheckerTimer.Interval = 6000;
                             updateCheckerTimer.Enabled = false;
-                            System.IO.File.Delete("vercheck.txt");
+                            System.IO.File.Delete(Program.prefix + "vercheck.txt");
                             if (MessageBox.Show("A new version of blue screen simulator is available. Would you like to update now?", "Update available", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                             {
                                 System.IO.File.WriteAllText("hash.txt", lines[1].Trim());
@@ -1021,7 +1021,7 @@ namespace UltimateBlueScreenSimulator
                         }
                         else
                         {
-                            System.IO.File.Delete("vercheck.txt");
+                            System.IO.File.Delete(Program.prefix + "vercheck.txt");
                         }
                     }
                 }
@@ -1047,6 +1047,7 @@ namespace UltimateBlueScreenSimulator
             {
                 try
                 {
+                    Program.templates.SaveData(Program.prefix + "bluescreens.json", 0);
                     Program.gs.SaveSettings();
                 } catch (Exception ex)
                 {

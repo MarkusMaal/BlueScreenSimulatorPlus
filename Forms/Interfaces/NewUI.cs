@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Buffers.Binary;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
@@ -501,7 +502,14 @@ namespace UltimateBlueScreenSimulator
             //codeCustomizationToolStripMenuItem.Enabled = eCodeEditButton.Visible;
             //advancedNTOptionsToolStripMenuItem.Enabled = advNTButton.Visible;
             // load options for current bluescreen
-            string nx_code = me.GetCodes()[0].Substring(0, 2);
+            string nx_code;
+            try
+            {
+                nx_code = me.GetCodes()[0].Substring(0, 2);
+            } catch
+            {
+                nx_code = "00";
+            }
             nineXErrorCode.SelectedIndex = -1;
             for (int i = 0; i < Program.templates.NxErrors.Length; i++)
             {
@@ -552,39 +560,84 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-
-        internal void RandFunction()
+        public static byte[] GetHash(string inputString)
         {
-            Random r = new Random();
-            for (int i = 0; i < Program.templates.Count; i++)
+            using (HashAlgorithm algorithm = SHA256.Create())
+                return algorithm.ComputeHash(Encoding.UTF8.GetBytes(inputString));
+        }
+
+        private Color[] RandInvColor(Random r)
+        {
+            Color gen = Color.FromArgb(r.Next(0, 255), r.Next(255, 255), r.Next(0, 255));
+            Color inv = Color.FromArgb(255 - gen.R, 255 - gen.G, 255 - gen.B);
+            return new Color[] { gen, inv };
+        }
+
+        internal BlueScreen RandFunction()
+        {
+            ulong seed = (ulong)DateTime.Now.Ticks;
+            bool isNumeric = ulong.TryParse(textBox1.Text, out _);
+            if (textBox1.Text != "")
             {
-                foreach (string kvp in Program.templates.GetAt(i).AllBools().Keys.ToArray<string>())
+                if (!isNumeric)
                 {
-                    bool value = r.Next(0, 1) == 1;
-                    Program.templates.GetAt(i).SetBool(kvp, value);
-                }
-                if (comboBox1.Items.Count <= 0)
+                    seed = BinaryPrimitives.ReadUInt64BigEndian(GetHash(textBox1.Text));
+                } else
                 {
-                    break;
-                }
-                Program.templates.GetAt(i).SetString("code", comboBox1.Items[r.Next(0, comboBox1.Items.Count - 1)].ToString());
-                if (Program.templates.GetAt(i).GetString("os") != "Windows 3.1x") {
-                    Program.templates.GetAt(i).SetString("screen_mode", comboBox2.Items[r.Next(0, comboBox2.Items.Count - 1)].ToString());
-                }
-                Program.templates.GetAt(i).SetBool("windowed", winMode.Checked);
-                Thread.Sleep(16);
-            }
-            windowVersion.SelectedIndex = SetRnd(windowVersion.Items.Count - 1);
-            if (Program.gs.EnableEggs)
-            {
-                if (textBox1.Text == "blackscreen")
-                {
-                    windowVersion.Items.Add("Windows Vista/7 BOOTMGR (1024x768, ClearType)");
-                    windowVersion.SelectedIndex = windowVersion.Items.Count - 1;
+                    seed = ulong.Parse(textBox1.Text);
                 }
             }
-            textBox2.Text = me.GenFile();
-            if (windowVersion.SelectedIndex == 4) { checkBox1.Checked = true; }
+            Random r = new Random((int)seed);
+            string base_os = Program.templates.GetAt(r.Next(Program.templates.Count - 1)).GetString("os");
+            BlueScreen bs = new BlueScreen(base_os, true, r);
+            foreach (string kvp in bs.AllBools().Keys.ToArray<string>())
+            {
+                bool value = r.Next(0, 1) == 1;
+                bs.SetBool(kvp, value);
+            }
+            foreach (string kvp in bs.AllInts().Keys.ToArray<string>())
+            {
+                if (!kvp.Contains("margin"))
+                {
+                    int value = r.Next(0, 1000);
+                    bs.SetInt(kvp, value);
+                }
+            }
+            if (r.Next(0, 100) > 75)
+            {
+                Color[] c1 = RandInvColor(r);
+                Color[] c2 = RandInvColor(r);
+                bs.SetTheme(c1[0], c1[1], false);
+                bs.SetTheme(c2[0], c2[1], true);
+            }
+            if (r.Next(0, 100) > 95)
+            {
+                bs.SetString("emoticon", ":)");
+            }
+            bs.SetString("code", comboBox1.Items[r.Next(0, comboBox1.Items.Count - 1)].ToString());
+            if (bs.GetString("os") != "Windows 3.1x") {
+                bs.SetString("screen_mode", comboBox2.Items[r.Next(0, comboBox2.Items.Count - 1)].ToString());
+            }
+            bs.SetBool("windowed", winMode.Checked);
+            bs.SetBool("watermark", waterBox.Checked);
+            bs.SetString("culprit", me.GenFile());
+            if (isNumeric && (textBox1.Text != ""))
+            {
+                bs.SetString("friendlyname", "Random template #" + seed.ToString());
+            } else if (textBox1.Text == "")
+            {
+                bs.SetString("friendlyname", "Random template #" + seed.ToString() + " (from clock time)");
+            }
+            else
+            {
+                bs.SetString("friendlyname", "Random template #" + seed.ToString() + " (seed: " + textBox1.Text + ")");
+            }
+            Thread th = new Thread(new ThreadStart(() => {
+                bs.Show();
+            }));
+            th.Start();
+            th.Join();
+            return bs;
         }
 
         int SetRnd(int limit)
@@ -727,15 +780,19 @@ namespace UltimateBlueScreenSimulator
 
         private void materialFloatingActionButton2_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("This will change random settings on various blue screens. Are you sure you want to continue?", "I'm feeling unlucky", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
+            Program.loadfinished = false;
+            Gen g = new Gen();
+            g.Show();
+            Thread.Sleep(10);
+            BlueScreen bs = RandFunction();
+            /*if (MessageBox.Show("Save this configuration?", "I'm feeling unlucky", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                Program.loadfinished = false;
-                Gen g = new Gen();
-                g.Show();
-                Thread.Sleep(10);
-                RandFunction();
-                button1.PerformClick();
-            }
+                Program.templates.AddTemplate(me.GetString("os"));
+                Program.templates.BlueScreens[Program.templates.Count - 1] = bs;
+                GetOS();
+                ReloadSelection();
+            }*/
+            //button1.PerformClick();
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -770,12 +827,29 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
+        private void FilterLog()
+        {
+            string logData = Program.gs.GetLog();
+            StringBuilder filteredLog = new StringBuilder();
+            foreach (string line in logData.Split('\n'))
+            {
+                if ((traceErrorCheck.Checked && line.Contains("Error")) ||
+                    traceWarnCheck.Checked && line.Contains("Warning") ||
+                    traceInfoCheck.Checked && line.Contains("Info") ||
+                    traceFatalCheck.Checked && line.Contains("Fatal"))
+                {
+                    filteredLog.AppendLine(line);
+                }
+            }
+            logIf.Text = filteredLog.ToString();
+        }
+
         private void materialTabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch (materialTabControl1.SelectedIndex)
             {
                 case 1:
-                    logIf.Text = Program.gs.GetLog();
+                    FilterLog();
                     break;
                 case 2:
                     materialTabControl1.SelectedIndex = 0;
@@ -1120,13 +1194,13 @@ namespace UltimateBlueScreenSimulator
             }
             try
             {
-                if (System.IO.File.Exists("vercheck.txt"))
+                if (System.IO.File.Exists(Program.prefix + "vercheck.txt"))
                 {
-                    string[] lines = System.IO.File.ReadAllLines("vercheck.txt");
+                    string[] lines = System.IO.File.ReadAllLines(Program.prefix + "vercheck.txt");
                     if (Convert.ToDouble(lines[0].Replace(".", ",").Replace("\r", "").Replace("\n", "").Trim()) > Convert.ToDouble(version.Replace(".", ",")))
                     {
                         updateCheckerTimer.Enabled = false;
-                        System.IO.File.Delete("vercheck.txt");
+                        System.IO.File.Delete(Program.prefix + "vercheck.txt");
                         if (MessageBox.Show("A new version of blue screen simulator is available. Would you like to update now?", "Update available", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                         {
                             System.IO.File.WriteAllText("hash.txt", lines[1].Trim());
@@ -1149,7 +1223,7 @@ namespace UltimateBlueScreenSimulator
                         {
                             updateCheckerTimer.Interval = 6000;
                             updateCheckerTimer.Enabled = false;
-                            System.IO.File.Delete("vercheck.txt");
+                            System.IO.File.Delete(Program.prefix + "vercheck.txt");
                             if (MessageBox.Show("A new version of blue screen simulator is available. Would you like to update now?", "Update available", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                             {
                                 System.IO.File.WriteAllText("hash.txt", lines[1].Trim());
@@ -1174,7 +1248,7 @@ namespace UltimateBlueScreenSimulator
                         }
                         else
                         {
-                            System.IO.File.Delete("vercheck.txt");
+                            System.IO.File.Delete(Program.prefix + "vercheck.txt");
                         }
                     }
                 }
@@ -1192,6 +1266,7 @@ namespace UltimateBlueScreenSimulator
 
         private void NewUI_FormClosing(object sender, FormClosingEventArgs e)
         {
+            Program.templates.SaveData(Program.prefix + "bluescreens.json", 0);
             Program.gs.SaveSettings();
             try
             {
@@ -1537,7 +1612,13 @@ namespace UltimateBlueScreenSimulator
             {
                 string[] c = me.GetCodes();
                 string code = nineXErrorCode.Text.Split(':')[0];
-                me.SetCodes(code + c[0].Substring(2), c[1], c[2], c[3]);
+                try
+                {
+                    me.SetCodes(code + c[0].Substring(2), c[1], c[2], c[3]);
+                } catch
+                {
+                    Program.gs.Log("Error", "Unable to set 9x error codes");
+                }
             }
         }
 
@@ -1563,6 +1644,11 @@ namespace UltimateBlueScreenSimulator
                 // refreshes the combobox to avoid the situation where the user has to hover over the error code combo box
                 comboBox1.Refresh();
             }
+        }
+
+        private void traceFatalCheck_CheckedChanged(object sender, EventArgs e)
+        {
+            FilterLog();
         }
     }
 }
