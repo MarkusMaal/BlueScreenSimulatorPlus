@@ -1047,7 +1047,10 @@ namespace UltimateBlueScreenSimulator
             {
                 try
                 {
-                    Program.templates.SaveData(Program.prefix + "bluescreens.json", 0);
+                    if (Program.gs.Autosave)
+                    {
+                        Program.templates.SaveData(Program.prefix + "bluescreens.json", 0);
+                    }
                     Program.gs.SaveSettings();
                 } catch (Exception ex)
                 {

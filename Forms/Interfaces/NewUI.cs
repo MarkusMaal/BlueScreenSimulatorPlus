@@ -539,6 +539,7 @@ namespace UltimateBlueScreenSimulator
             displayOsBox.Checked = me.GetBool("bootscreen");
             halfBox.Checked = me.GetBool("halfres");
             rainbowBox.Checked = me.GetBool("rainbow");
+            memoryBox.Checked = me.GetBool("extracodes");
             if (acpiBox.Checked)
             {
                 dumpBox.Enabled = false;
@@ -1266,7 +1267,10 @@ namespace UltimateBlueScreenSimulator
 
         private void NewUI_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Program.templates.SaveData(Program.prefix + "bluescreens.json", 0);
+            if (Program.gs.Autosave)
+            {
+                Program.templates.SaveData(Program.prefix + "bluescreens.json", 0);
+            }
             Program.gs.SaveSettings();
             try
             {

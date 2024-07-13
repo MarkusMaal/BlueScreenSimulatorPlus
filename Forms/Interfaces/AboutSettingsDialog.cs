@@ -227,6 +227,7 @@ namespace UltimateBlueScreenSimulator
             {
                 //Loads simulator configuration
                 eggHunterButton.Checked = Program.gs.EnableEggs;
+                autosaveCheck.Checked = Program.gs.Autosave;
                 switch (Program.gs.ScaleMode)
                 {
                     case GlobalSettings.ScaleModes.HighQualityBicubic:
@@ -996,6 +997,11 @@ namespace UltimateBlueScreenSimulator
             loadBsconfig.Filter = backup;
             loadBsconfig.FileName = "";
             this.Enabled = true;
+        }
+
+        private void AutosaveCheckChanged(object sender, EventArgs e)
+        {
+            Program.gs.Autosave = autosaveCheck.Checked;
         }
     }
 }

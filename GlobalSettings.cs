@@ -32,6 +32,7 @@ namespace UltimateBlueScreenSimulator
         private string singlesim;
         private string update_server;
         private bool quickhelp;
+        private bool autosave;
 
         // runtime settings (these are not persistent)
         [JsonIgnore]
@@ -126,6 +127,7 @@ namespace UltimateBlueScreenSimulator
             autodark = true;
             devmode = false;
             quickhelp = true;
+            autosave = true;
             singlesim = "";
             update_server = "http://markustegelane.eu/app/";
 
@@ -221,6 +223,14 @@ namespace UltimateBlueScreenSimulator
         public bool AutoDark {
             get { return autodark; }
             set { autodark = value; }
+        }
+
+        /// <summary>
+        /// Toggles autosave/load feature
+        /// </summary>
+        public bool Autosave {
+            get { return autosave; }
+            set { autosave = value; }
         }
 
         /// <summary>

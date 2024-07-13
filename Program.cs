@@ -97,10 +97,6 @@ namespace UltimateBlueScreenSimulator
                 Thread.Sleep(100);
                 gs.Log("Info", "Initializing configurations list");
                 templates = new TemplateRegistry();
-                if (File.Exists(prefix + "bluescreens.json"))
-                {
-                    templates = templates.LoadConfig(prefix + "bluescreens.json");
-                }
                 gs.Log("Info", "Initializing draw routines");
                 dr = new DrawRoutines();
                 //Initialize forms
@@ -123,6 +119,10 @@ namespace UltimateBlueScreenSimulator
                 catch (Exception ex)
                 {
                     DisplayMetaError(ex, "VioletScreen");
+                }
+                if (gs.Autosave && File.Exists(prefix + "bluescreens.json"))
+                {
+                    templates = templates.LoadConfig(prefix + "bluescreens.json");
                 }
 
 

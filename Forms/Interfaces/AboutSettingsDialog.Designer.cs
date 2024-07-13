@@ -99,6 +99,7 @@ namespace UltimateBlueScreenSimulator
             this.saveCfg = new MaterialSkin.Controls.MaterialButton();
             this.loadCfg = new MaterialSkin.Controls.MaterialButton();
             this.addCfg = new MaterialSkin.Controls.MaterialButton();
+            this.autosaveCheck = new MaterialSkin.Controls.MaterialCheckbox();
             this.eggHunterButton = new MaterialSkin.Controls.MaterialCheckbox();
             this.osName = new MaterialSkin.Controls.MaterialLabel();
             this.configList = new MaterialSkin.Controls.MaterialListBox();
@@ -881,6 +882,7 @@ namespace UltimateBlueScreenSimulator
             this.materialCard7.Controls.Add(this.multiDisplayLabel);
             this.materialCard7.Controls.Add(this.simulatorSettingsNotice);
             this.materialCard7.Controls.Add(this.configEditingButtonsFlowPanel);
+            this.materialCard7.Controls.Add(this.autosaveCheck);
             this.materialCard7.Controls.Add(this.eggHunterButton);
             this.materialCard7.Controls.Add(this.osName);
             this.materialCard7.Controls.Add(this.configList);
@@ -1411,6 +1413,26 @@ namespace UltimateBlueScreenSimulator
             this.addCfg.UseAccentColor = false;
             this.addCfg.UseVisualStyleBackColor = true;
             this.addCfg.Click += new System.EventHandler(this.AddConfig);
+            // 
+            // autosaveCheck
+            // 
+            this.autosaveCheck.AutoSize = true;
+            this.autosaveCheck.Checked = true;
+            this.autosaveCheck.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.autosaveCheck.Depth = 0;
+            this.autosaveCheck.Location = new System.Drawing.Point(201, 329);
+            this.autosaveCheck.Margin = new System.Windows.Forms.Padding(0);
+            this.autosaveCheck.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.autosaveCheck.MouseState = MaterialSkin.MouseState.HOVER;
+            this.autosaveCheck.Name = "autosaveCheck";
+            this.autosaveCheck.ReadOnly = false;
+            this.autosaveCheck.Ripple = true;
+            this.autosaveCheck.Size = new System.Drawing.Size(159, 37);
+            this.autosaveCheck.TabIndex = 8;
+            this.autosaveCheck.Text = "Autosave/load [?]";
+            this.helpTip.SetToolTip(this.autosaveCheck, "Automatically saves changes made to the simulator templates");
+            this.autosaveCheck.UseVisualStyleBackColor = true;
+            this.autosaveCheck.CheckedChanged += new System.EventHandler(this.AutosaveCheckChanged);
             // 
             // eggHunterButton
             // 
@@ -2082,5 +2104,6 @@ namespace UltimateBlueScreenSimulator
         private MaterialLabel materialLabel3;
         private MaterialComboBox primaryColorBox;
         private MaterialButton materialButton7;
+        private MaterialCheckbox autosaveCheck;
     }
 }
