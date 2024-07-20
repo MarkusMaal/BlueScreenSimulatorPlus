@@ -782,9 +782,6 @@ namespace UltimateBlueScreenSimulator
         private void materialFloatingActionButton2_Click(object sender, EventArgs e)
         {
             Program.loadfinished = false;
-            Gen g = new Gen();
-            g.Show();
-            Thread.Sleep(10);
             BlueScreen bs = RandFunction();
             /*if (MessageBox.Show("Save this configuration?", "I'm feeling unlucky", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
@@ -862,6 +859,7 @@ namespace UltimateBlueScreenSimulator
                             Text = "Settings",
                             SettingTab = true
                         };
+                        ab1.okButton.DialogResult = DialogResult.None;
                         ab1.ShowDialog();
                         ab1.Dispose();
                         abopen = false;
@@ -1074,7 +1072,7 @@ namespace UltimateBlueScreenSimulator
                     return;
                 }
             }
-            IndexForm iform = new IndexForm
+            ErrorCodeEditor iform = new ErrorCodeEditor
             {
                 me = me,
                 c1 = me.GetCodes()[0],

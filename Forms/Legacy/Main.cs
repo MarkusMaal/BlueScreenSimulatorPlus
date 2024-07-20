@@ -770,7 +770,7 @@ namespace UltimateBlueScreenSimulator
                     return;
                 }
             }
-            IndexForm iform = new IndexForm
+            ErrorCodeEditor iform = new ErrorCodeEditor
             {
                 me = me,
                 c1 = me.GetCodes()[0],
@@ -1091,6 +1091,7 @@ namespace UltimateBlueScreenSimulator
                     Text = "Settings",
                     SettingTab = true
                 };
+                ab1.okButton.DialogResult = DialogResult.None;
                 ab1.ShowDialog();
                 ab1.Dispose();
             }
@@ -1529,6 +1530,7 @@ namespace UltimateBlueScreenSimulator
                     SettingTab = true,
                     tab_id = 1
                 };
+                ab1.okButton.DialogResult = DialogResult.None;
                 ab1.ShowDialog();
                 ab1.Dispose();
             }

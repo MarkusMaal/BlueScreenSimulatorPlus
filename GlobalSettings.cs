@@ -776,14 +776,7 @@ namespace UltimateBlueScreenSimulator
             {
                 msg += $" @{source}";
             }
-            if (message.Length < 70)
-            {
-                Program.load_message = message;
-                if (message.Length % 6 == 0)
-                {
-                    Thread.Sleep(5);
-                }
-            }
+            Program.load_message = message;
             log1.Add(msg);
         }
 

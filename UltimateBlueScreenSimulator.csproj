@@ -92,6 +92,12 @@
     <Compile Include="Forms\Interfaces\AddBluescreen.Designer.cs">
       <DependentUpon>AddBluescreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Interfaces\ErrorCodeEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Interfaces\ErrorCodeEditor.Designer.cs">
+      <DependentUpon>ErrorCodeEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Interfaces\MessageTableEditor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -164,12 +170,6 @@
     </Compile>
     <Compile Include="Forms\Loaders\Gen.Designer.cs">
       <DependentUpon>Gen.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Interfaces\IndexForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Interfaces\IndexForm.Designer.cs">
-      <DependentUpon>IndexForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Interfaces\metaerror.cs">
       <SubType>Form</SubType>
@@ -296,6 +296,9 @@
     <EmbeddedResource Include="Forms\Interfaces\AddBluescreen.resx">
       <DependentUpon>AddBluescreen.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Interfaces\ErrorCodeEditor.resx">
+      <DependentUpon>ErrorCodeEditor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Interfaces\MessageTableEditor.resx">
       <DependentUpon>MessageTableEditor.cs</DependentUpon>
     </EmbeddedResource>
@@ -332,9 +335,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Loaders\Gen.resx">
       <DependentUpon>Gen.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Interfaces\IndexForm.resx">
-      <DependentUpon>IndexForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Interfaces\metaerror.resx">
       <DependentUpon>metaerror.cs</DependentUpon>

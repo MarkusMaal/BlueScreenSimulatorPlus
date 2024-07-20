@@ -2012,7 +2012,6 @@ namespace UltimateBlueScreenSimulator
         private MaterialLabel labelVersion;
         private MaterialLabel labelCopyright;
         private MaterialLabel labelCompanyName;
-        private MaterialButton okButton;
         private MaterialTabControl aboutSettingsTabControl;
         private System.Windows.Forms.TabPage aboutPanel;
         private System.Windows.Forms.TabPage updatePanel;
@@ -2105,5 +2104,6 @@ namespace UltimateBlueScreenSimulator
         private MaterialComboBox primaryColorBox;
         private MaterialButton materialButton7;
         private MaterialCheckbox autosaveCheck;
+        internal MaterialButton okButton;
     }
 }
