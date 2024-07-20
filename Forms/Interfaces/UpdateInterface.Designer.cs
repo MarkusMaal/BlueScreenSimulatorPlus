@@ -103,7 +103,7 @@
             this.updateStepsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.updateStepsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.updateStepsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.updateStepsPanel.Size = new System.Drawing.Size(492, 78);
+            this.updateStepsPanel.Size = new System.Drawing.Size(508, 78);
             this.updateStepsPanel.TabIndex = 2;
             // 
             // TempStatus
@@ -163,7 +163,7 @@
             this.downloadUpdateLabel.Location = new System.Drawing.Point(25, 0);
             this.downloadUpdateLabel.MouseState = MaterialSkin.MouseState.HOVER;
             this.downloadUpdateLabel.Name = "downloadUpdateLabel";
-            this.downloadUpdateLabel.Size = new System.Drawing.Size(464, 19);
+            this.downloadUpdateLabel.Size = new System.Drawing.Size(480, 19);
             this.downloadUpdateLabel.TabIndex = 0;
             this.downloadUpdateLabel.Text = "Downloading the update";
             this.downloadUpdateLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -177,7 +177,7 @@
             this.hashCheckLabel.Location = new System.Drawing.Point(25, 19);
             this.hashCheckLabel.MouseState = MaterialSkin.MouseState.HOVER;
             this.hashCheckLabel.Name = "hashCheckLabel";
-            this.hashCheckLabel.Size = new System.Drawing.Size(464, 19);
+            this.hashCheckLabel.Size = new System.Drawing.Size(480, 19);
             this.hashCheckLabel.TabIndex = 1;
             this.hashCheckLabel.Text = "Hashchecking";
             this.hashCheckLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -191,7 +191,7 @@
             this.installAndLaunchLabel.Location = new System.Drawing.Point(25, 38);
             this.installAndLaunchLabel.MouseState = MaterialSkin.MouseState.HOVER;
             this.installAndLaunchLabel.Name = "installAndLaunchLabel";
-            this.installAndLaunchLabel.Size = new System.Drawing.Size(464, 20);
+            this.installAndLaunchLabel.Size = new System.Drawing.Size(480, 20);
             this.installAndLaunchLabel.TabIndex = 2;
             this.installAndLaunchLabel.Text = "Installing and launching the new update";
             this.installAndLaunchLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -205,7 +205,7 @@
             this.delTempLabel.Location = new System.Drawing.Point(25, 58);
             this.delTempLabel.MouseState = MaterialSkin.MouseState.HOVER;
             this.delTempLabel.Name = "delTempLabel";
-            this.delTempLabel.Size = new System.Drawing.Size(464, 20);
+            this.delTempLabel.Size = new System.Drawing.Size(480, 20);
             this.delTempLabel.TabIndex = 3;
             this.delTempLabel.Text = "Deleting temporary update files";
             this.delTempLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -218,7 +218,7 @@
             this.updateProgress.Location = new System.Drawing.Point(17, 194);
             this.updateProgress.MouseState = MaterialSkin.MouseState.HOVER;
             this.updateProgress.Name = "updateProgress";
-            this.updateProgress.Size = new System.Drawing.Size(492, 5);
+            this.updateProgress.Size = new System.Drawing.Size(508, 5);
             this.updateProgress.TabIndex = 3;
             // 
             // warningLabel
@@ -273,7 +273,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(521, 351);
+            this.ClientSize = new System.Drawing.Size(537, 390);
             this.Controls.Add(this.dloadState);
             this.Controls.Add(this.warningLabel);
             this.Controls.Add(this.updateProgress);

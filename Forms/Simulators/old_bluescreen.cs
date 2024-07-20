@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -44,6 +45,13 @@ namespace UltimateBlueScreenSimulator
                 string prompt;
                 titles = me.GetTitles();
                 texts = me.GetTexts();
+                if ((Program.gs.EnableEggs) && (me.GetCodes()[0].Substring(0, 2) == "0E") && (screenmode == "Recoverable application error") && texts["Recoverable application error"].Contains("CDFS"))
+                {
+                    Process.Start(Program.gs.UpdateServer.Replace("/app", "/bssp/crash.mp4"));
+                    screenUpdater.Enabled = false;
+                    this.Close();
+                    return;
+                }
                 if (screenmode == "No unresponsive programs")
                 {
                     screenUpdater.Interval = me.GetInt("timer");
@@ -273,21 +281,32 @@ namespace UltimateBlueScreenSimulator
 
         private void Timer1_Tick(object sender, EventArgs e)
         {
-            if (screenUpdater.Interval != me.GetInt("blink_speed")) { screenUpdater.Interval = me.GetInt("blink_speed"); }
-            if (!window)
+            try
             {
-                Program.dr.DrawAll();
-                this.BringToFront();
-                this.Activate();
+                if (screenUpdater.Interval != me.GetInt("blink_speed")) { screenUpdater.Interval = me.GetInt("blink_speed"); }
+                if (!window)
+                {
+                    Program.dr.DrawAll();
+                    this.BringToFront();
+                    this.Activate();
+                }
+                if (blinkingColor.Visible == false)
+                {
+                    blinkingColor.Visible = true;
+                    return;
+                }
+                else
+                {
+                    blinkingColor.Visible = false;
+                    return;
+                }
             }
-            if (blinkingColor.Visible == false)
+            catch (Exception ex)
             {
-                blinkingColor.Visible = true;
-                return;
-            } else
-            {
-                blinkingColor.Visible = false;
-                return;
+                Program.dr.Dispose();
+                screenUpdater.Enabled = false;
+                me.Crash(ex, "GreenScreen");
+                this.Close();
             }
         }
 

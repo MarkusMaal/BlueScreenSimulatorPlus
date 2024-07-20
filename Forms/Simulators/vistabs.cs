@@ -45,6 +45,10 @@ namespace UltimateBlueScreenSimulator
             {
                 this.Icon = me.GetIcon();
                 this.Text = me.GetString("friendlyname");
+                if (me.GetBool("acpi") && me.GetBool("show_description"))
+                {
+                    me.SetBool("show_description", true);
+                }
                 h1 = me.GenHex(8, me.GetFiles().ElementAt(0).Value[0]);
                 h2 = me.GenHex(8, me.GetFiles().ElementAt(0).Value[1]);
                 h3 = me.GenHex(8, me.GetFiles().ElementAt(0).Value[2]);
@@ -164,9 +168,9 @@ namespace UltimateBlueScreenSimulator
                 errorCode.Text = errorCode.Text.Replace("CRITICAL_OBJECT_TERMINATION", "A process or thread crucial to system operation has unexpectedly exited or been terminated.");
                 if (!errorCode.Visible && this.Visible)
                 {
-                    supportInfo.Location = new Point(supportInfo.Location.X, supportInfo.Location.Y + 39);
-                    technicalCode.Location = new Point(technicalCode.Location.X, technicalCode.Location.Y + 39);
-                    dumpText.Location = new Point(dumpText.Location.X, dumpText.Location.Y + 39);
+                    //supportInfo.Location = new Point(supportInfo.Location.X, supportInfo.Location.Y + 39);
+                    //technicalCode.Location = new Point(technicalCode.Location.X, technicalCode.Location.Y + 39);
+                    //dumpText.Location = new Point(dumpText.Location.X, dumpText.Location.Y - 39);
                 }
                 naturalclose = false;
                 if (me.GetBool("acpi"))

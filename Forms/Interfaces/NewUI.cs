@@ -8,6 +8,7 @@ using System.Linq;
 using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.Json;
 using System.Threading;
 using System.Windows.Forms;
 using MaterialSkin;
@@ -24,7 +25,7 @@ namespace UltimateBlueScreenSimulator
     {
         internal BlueScreen me;
 
-        public readonly bool betabuild = true;
+        public readonly bool betabuild = false;
 
         public static ThreadStart ts;
         Thread bsod_starter;
@@ -33,7 +34,8 @@ namespace UltimateBlueScreenSimulator
         public bool abopen = false;
         string version = Assembly.GetExecutingAssembly().GetName().Version.ToString().Replace(".", "").Substring(0, 1) + "." + Assembly.GetExecutingAssembly().GetName().Version.ToString().Replace(".", "").Substring(1);
 
-
+        bool shift = false;
+        bool doubleCheck = false;
         public NewUI()
         {
             InitializeComponent();
@@ -348,6 +350,7 @@ namespace UltimateBlueScreenSimulator
             countdownBox.Visible = false;
             progressTuneButton.Visible = false;
             halfBox.Visible = false;
+            troubleshootBox.Visible = false;
             //progressTunerToolStripMenuItem.Enabled = false;
             blackScreenBox.Visible = false;
             checkBox2.Enabled = true;
@@ -465,6 +468,7 @@ namespace UltimateBlueScreenSimulator
                     displayOsBox.Visible = me.GetBool("threepointone");
                     advNTButton.Visible = true;
                     eCodeEditButton.Visible = true;
+                    troubleshootBox.Visible = true;
                     break;
                 case "Windows 3.1x":
                     winMode.Visible = true;
@@ -540,6 +544,7 @@ namespace UltimateBlueScreenSimulator
             halfBox.Checked = me.GetBool("halfres");
             rainbowBox.Checked = me.GetBool("rainbow");
             memoryBox.Checked = me.GetBool("extracodes");
+            troubleshootBox.Checked = me.GetBool("troubleshoot");
             if (acpiBox.Checked)
             {
                 dumpBox.Enabled = false;
@@ -574,7 +579,7 @@ namespace UltimateBlueScreenSimulator
             return new Color[] { gen, inv };
         }
 
-        internal BlueScreen RandFunction()
+        internal BlueScreen RandFunction(bool shiftDown)
         {
             ulong seed = (ulong)DateTime.Now.Ticks;
             bool isNumeric = ulong.TryParse(textBox1.Text, out _);
@@ -590,6 +595,9 @@ namespace UltimateBlueScreenSimulator
             }
             Random r = new Random((int)seed);
             string base_os = Program.templates.GetAt(r.Next(Program.templates.Count - 1)).GetString("os");
+            if (shiftDown) {
+                base_os = me.GetString("os");
+            }
             BlueScreen bs = new BlueScreen(base_os, true, r);
             foreach (string kvp in bs.AllBools().Keys.ToArray<string>())
             {
@@ -619,7 +627,11 @@ namespace UltimateBlueScreenSimulator
             if (bs.GetString("os") != "Windows 3.1x") {
                 bs.SetString("screen_mode", comboBox2.Items[r.Next(0, comboBox2.Items.Count - 1)].ToString());
             }
+            bs.SetBool("troubleshoot", r.Next(0, 1) == 1);
+            bs.SetBool("rainbow", r.Next(0, 1) == 1);
             bs.SetBool("windowed", winMode.Checked);
+            bs.SetBool("amd", winMode.Checked);
+            bs.SetBool("blink", winMode.Checked);
             bs.SetBool("watermark", waterBox.Checked);
             bs.SetString("culprit", me.GenFile());
             if (isNumeric && (textBox1.Text != ""))
@@ -657,8 +669,27 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
+        private BlueScreen CloneMe(BlueScreen bs)
+        {
+            string jsonString = JsonSerializer.Serialize(bs);
+            BlueScreen cloned = JsonSerializer.Deserialize<BlueScreen>(jsonString);
+            return cloned;
+        }
+
         private void materialFloatingActionButton1_Click(object sender, EventArgs e)
         {
+            if (ModifierKeys.HasFlag(Keys.Shift))
+            {
+                BlueScreen cloned = CloneMe(me);
+                cloned.ClearAllTitleTexts();
+                cloned.SetOSSpecificDefaults();
+                cloned.Show();
+                return;
+            } else if (Program.gs.EnableEggs && ModifierKeys.HasFlag(Keys.Alt))
+            {
+                BlueScreen cloned = CloneMe(me);
+                cloned.Crash(null, "GreenScreen");
+            }
             if (Program.gs.EnableEggs)
             {
                 if (textBox2.Text.ToLower().Contains("null"))
@@ -782,7 +813,8 @@ namespace UltimateBlueScreenSimulator
         private void materialFloatingActionButton2_Click(object sender, EventArgs e)
         {
             Program.loadfinished = false;
-            BlueScreen bs = RandFunction();
+            BlueScreen bs = RandFunction(ModifierKeys.HasFlag(Keys.Shift));
+            
             /*if (MessageBox.Show("Save this configuration?", "I'm feeling unlucky", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 Program.templates.AddTemplate(me.GetString("os"));
@@ -831,10 +863,10 @@ namespace UltimateBlueScreenSimulator
             StringBuilder filteredLog = new StringBuilder();
             foreach (string line in logData.Split('\n'))
             {
-                if ((traceErrorCheck.Checked && line.Contains("Error")) ||
-                    traceWarnCheck.Checked && line.Contains("Warning") ||
-                    traceInfoCheck.Checked && line.Contains("Info") ||
-                    traceFatalCheck.Checked && line.Contains("Fatal"))
+                if ((traceErrorCheck.Checked && line.Contains("] Error")) ||
+                    traceWarnCheck.Checked && line.Contains("] Warning") ||
+                    traceInfoCheck.Checked && line.Contains("] Info") ||
+                    traceFatalCheck.Checked && line.Contains("] Fatal"))
                 {
                     filteredLog.AppendLine(line);
                 }
@@ -1267,7 +1299,24 @@ namespace UltimateBlueScreenSimulator
         {
             if (Program.gs.Autosave)
             {
-                Program.templates.SaveData(Program.prefix + "bluescreens.json", 0);
+                if (Program.templates.qaddeTrip)
+                {
+                    if (!doubleCheck && (MessageBox.Show("Quick and dirty dictionary editor was tripped. Autosave will not be initiated. Are you sure you want to quit?", "Blue Screen Simulator Plus", MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.No))
+                    {
+                        doubleCheck = false;
+                        e.Cancel = true;
+                        return;
+                    }
+                    else
+                    {
+                        doubleCheck = true;
+                        e.Cancel = false;
+                    }
+                }
+                else
+                {
+                    Program.templates.SaveData(Program.prefix + "bluescreens.json", 0);
+                }
             }
             Program.gs.SaveSettings();
             try
@@ -1651,6 +1700,16 @@ namespace UltimateBlueScreenSimulator
         private void traceFatalCheck_CheckedChanged(object sender, EventArgs e)
         {
             FilterLog();
+        }
+
+        private void troubleshootBox_CheckedChanged(object sender, EventArgs e)
+        {
+            me.SetBool("troubleshoot", troubleshootBox.Checked);
+        }
+
+        private void NewUI_KeyUp(object sender, KeyEventArgs e)
+        {
+
         }
     }
 }

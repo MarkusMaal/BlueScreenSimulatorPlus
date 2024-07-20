@@ -123,9 +123,9 @@ namespace UltimateBlueScreenSimulator
                 errorCode.Visible = me.GetBool("show_description");
                 if (!errorCode.Visible && this.Visible)
                 {
-                    supportInfo.Location = new Point(supportInfo.Location.X, supportInfo.Location.Y + 39);
-                    technicalCode.Location = new Point(technicalCode.Location.X, technicalCode.Location.Y + 39);
-                    dumpLabel.Location = new Point(dumpLabel.Location.X, dumpLabel.Location.Y + 39);
+                    supportInfo.Location = new Point(supportInfo.Location.X, supportInfo.Location.Y - 35);
+                    technicalCode.Location = new Point(technicalCode.Location.X, technicalCode.Location.Y - 35);
+                    dumpLabel.Location = new Point(dumpLabel.Location.X, dumpLabel.Location.Y - 35);
                 }
                 if (me.GetBool("rainbow"))
                 {

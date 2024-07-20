@@ -9,6 +9,7 @@ using System.Text.Json.Serialization;
 using System.Text.Json;
 using System.Linq;
 using System.Drawing.Drawing2D;
+using System.Diagnostics;
 
 //
 // This namespace contains classes that are shared between forms that specify
@@ -1218,6 +1219,10 @@ namespace SimulatorDatabase
                 case "Windows 1.x/2.x":
                     SetupWin(new Win());
                     break;
+                default:
+                    Program.loadfinished = true;
+                    Crash(new NotImplementedException(), "OrangeScreen");
+                    break;
             }
         }
 
@@ -1242,7 +1247,6 @@ namespace SimulatorDatabase
             bs.me = this;
             bs.ShowDialog();
             CheckMessageJustInCase();
-            Thread.CurrentThread.Abort();
         }
 
         ///<summary>
@@ -1269,7 +1273,6 @@ namespace SimulatorDatabase
             bs.me = this;
             bs.ShowDialog();
             CheckMessageJustInCase();
-            Thread.CurrentThread.Abort();
         }
 
         ///<summary>
@@ -1318,7 +1321,6 @@ namespace SimulatorDatabase
             }
             bs.me = this;
             bs.ShowDialog();
-            Thread.CurrentThread.Abort();
         }
 
         ///<summary>
@@ -1344,7 +1346,6 @@ namespace SimulatorDatabase
             }
             bs.me = this;
             bs.ShowDialog();
-            Thread.CurrentThread.Abort();
         }
 
 
@@ -1369,7 +1370,6 @@ namespace SimulatorDatabase
             bs.r = r;
             bs.me = this;
             bs.ShowDialog();
-            Thread.CurrentThread.Abort();
         }
 
         ///<summary>
@@ -1396,7 +1396,6 @@ namespace SimulatorDatabase
             }
             bs.me = this;
             bs.ShowDialog();
-            Thread.CurrentThread.Abort();
         }
 
         ///<summary>
@@ -1425,7 +1424,6 @@ namespace SimulatorDatabase
             }
             bs.me = this;
             bs.ShowDialog();
-            Thread.CurrentThread.Abort();
         }
 
         ///<summary>
@@ -1459,7 +1457,6 @@ namespace SimulatorDatabase
             }
             bs.me = this;
             bs.ShowDialog();
-            Thread.CurrentThread.Abort();
         }
 
         ///<summary>
@@ -1504,7 +1501,6 @@ namespace SimulatorDatabase
             }
             bs.me = this;
             bs.ShowDialog();
-            Thread.CurrentThread.Abort();
         }
 
         ///<summary>
@@ -1548,7 +1544,6 @@ namespace SimulatorDatabase
             }
             bs.me = this;
             bs.ShowDialog();
-            Thread.CurrentThread.Abort();
         }
 
 
@@ -1560,7 +1555,13 @@ namespace SimulatorDatabase
         ///<param name="type">Error type (such as OrangeScreen, GreenScreen etc.)</param>
         public void Crash(Exception ex, string type)
         {
-            Log("Warning", $"Triggered metacrash with the following info: message={ex.Message}, stacktrace={ex.StackTrace}, type={type}");
+            if (ex != null)
+            {
+                Log("Fatal", $"Triggered metacrash with the following info: message={ex.Message}, stacktrace={ex.StackTrace}, type={type}");
+            } else
+            {
+                Log("Fatal", $"User manually intiated metacrash");
+            }
             Metaerror me = new Metaerror
             {
                 ex = ex,
@@ -1573,7 +1574,8 @@ namespace SimulatorDatabase
                 case DialogResult.Retry:
                     break;
                 case DialogResult.Abort:
-                    Thread.CurrentThread.Abort();
+                    Application.Exit();
+                    Process.GetCurrentProcess().Kill();
                     break;
             }
         }
@@ -1694,6 +1696,7 @@ namespace SimulatorDatabase
                     SetBool("blinkblink", true);
                     SetBool("blink", true);
                     SetBool("bootscreen", true);
+                    SetBool("troubleshoot", true);
 
                     SetString("code", "IRQL_NOT_LESS_OR_EQUAL (0x0000000A)");
                     SetBool("stack_trace", true);
@@ -1723,6 +1726,7 @@ namespace SimulatorDatabase
                     }
                     SetBool("font_support", false);
                     SetBool("blinkblink", true);
+                    SetBool("troubleshoot", true);
 
                     SetString("code", "IRQL_NOT_LESS_OR_EQUAL (0x0000000A)");
                     SetBool("stack_trace", true);

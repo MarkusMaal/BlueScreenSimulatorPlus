@@ -69,7 +69,6 @@
       <Private>False</Private>
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
-    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
@@ -411,6 +410,7 @@
   <ItemGroup>
     <Content Include="bssp3_icon.ico" />
     <None Include="Resources\9xERRORS.TXT" />
+    <None Include="Resources\BSSP manual_3_offline.pdf" />
     <None Include="Resources\legacy_template.txt" />
     <None Include="Resources\splash_bg.png" />
     <None Include="Resources\bsodbanner3.png" />

@@ -193,9 +193,6 @@
   <data name="bsodqr_transparent" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bsodqr_transparent.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="BSSP_manual" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\BSSP manual.pdf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="COPYING" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\COPYING;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1257</value>
   </data>
@@ -260,5 +257,8 @@ Advanced Startup Options, and then select Safe Mode.</value>
   </data>
   <data name="_9xERRORS" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\9xERRORS.TXT;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1257</value>
+  </data>
+  <data name="BSSP_manual" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BSSP manual_3_offline.pdf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

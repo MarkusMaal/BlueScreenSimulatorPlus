@@ -118,12 +118,12 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="troubleshootingLabel.Text" xml:space="preserve">
-    <value>If you keep seeing the same error message over and over again, try deleting the settings file by deleting a file named "settings.cfg". You can also try restarting the program.
+    <value>If you keep seeing the same error message over and over again, try deleting all configuration files. You can also try restarting the program.
 
-If these solutions do not help you, please send the developer these details about the error:</value>
+If these solutions do not help you, please send the developer trace log with the button below:</value>
   </data>
   <data name="criticalIntroduction.Text" xml:space="preserve">
-    <value>It seems that the blue screen simulator has encountered a critical error. That is right, a program that simulates crashes has officially crashed! But not to worry, we're here to help!
+    <value>It seems that blue screen simulator plus has encountered a critical error. That is right, a program that simulates crashes has officially crashed! But not to worry, we're here to help!
 
 In case this is the first time you see this screen, you can do the following:</value>
   </data>

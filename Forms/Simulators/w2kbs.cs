@@ -357,7 +357,10 @@ namespace UltimateBlueScreenSimulator
                         }
                     }
                     string fulltext = !me.GetBool("threepointone") ? "\n" : "";
-                    fulltext += txt["Troubleshooting text"];
+                    if (me.GetBool("troubleshoot"))
+                    {
+                        fulltext += txt["Troubleshooting text"];
+                    }
                     lines.AddRange(CreateBitmaps(fulltext));
                 }
                 int z = 1;

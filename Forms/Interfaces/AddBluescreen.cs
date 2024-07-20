@@ -29,6 +29,7 @@ namespace UltimateBlueScreenSimulator
         {
             if (this.Text != "Edit blue screen")
             {
+                templatePicker.SelectedIndex = 1;
                 templatePicker.SelectedIndex = 0;
             }
         }

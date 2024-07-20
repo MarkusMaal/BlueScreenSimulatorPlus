@@ -25,7 +25,7 @@ namespace UltimateBlueScreenSimulator
         /// Determines if the user has made modifications in the quick and dirty dictionary editor.
         /// </summary>
         public bool qaddeTrip = false;
-
+        
         public TemplateRegistry()
         {
             bluescreens = new List<BlueScreen>();
