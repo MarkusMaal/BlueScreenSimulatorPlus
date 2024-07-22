@@ -137,7 +137,7 @@
             this.codeContent.AnimateReadOnly = false;
             this.codeContent.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.codeContent.Depth = 0;
-            this.codeContent.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.codeContent.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.codeContent.LeadingIcon = null;
             this.codeContent.Location = new System.Drawing.Point(23, 218);
             this.codeContent.Margin = new System.Windows.Forms.Padding(20, 20, 3, 3);
@@ -145,7 +145,7 @@
             this.codeContent.MouseState = MaterialSkin.MouseState.OUT;
             this.codeContent.Multiline = false;
             this.codeContent.Name = "codeContent";
-            this.codeContent.Size = new System.Drawing.Size(500, 50);
+            this.codeContent.Size = new System.Drawing.Size(710, 50);
             this.codeContent.TabIndex = 2;
             this.codeContent.Text = "";
             this.codeContent.TrailingIcon = global::UltimateBlueScreenSimulator.Properties.Resources.success;
@@ -163,7 +163,7 @@
             this.topLabel.MinimumSize = new System.Drawing.Size(0, 60);
             this.topLabel.MouseState = MaterialSkin.MouseState.HOVER;
             this.topLabel.Name = "topLabel";
-            this.topLabel.Size = new System.Drawing.Size(510, 70);
+            this.topLabel.Size = new System.Drawing.Size(720, 70);
             this.topLabel.TabIndex = 3;
             this.topLabel.Text = "The following error code method will be used:\r\n\r\n0xRRRRRRRRRRRRRRRR, 0xRRRRRRRRRR" +
     "RRRRRR, 0xRRRRRRRRRRRRRRRR, 0xRRRRRRRRRRRRRRRR";
@@ -181,7 +181,7 @@
             this.flowLayoutPanel3.Location = new System.Drawing.Point(23, 320);
             this.flowLayoutPanel3.Margin = new System.Windows.Forms.Padding(20, 20, 3, 3);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(500, 48);
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(710, 48);
             this.flowLayoutPanel3.TabIndex = 4;
             // 
             // materialButton2
@@ -191,7 +191,7 @@
             this.materialButton2.Depth = 0;
             this.materialButton2.HighEmphasis = true;
             this.materialButton2.Icon = null;
-            this.materialButton2.Location = new System.Drawing.Point(371, 6);
+            this.materialButton2.Location = new System.Drawing.Point(581, 6);
             this.materialButton2.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.materialButton2.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialButton2.Name = "materialButton2";
@@ -211,7 +211,7 @@
             this.materialButton3.Depth = 0;
             this.materialButton3.HighEmphasis = true;
             this.materialButton3.Icon = null;
-            this.materialButton3.Location = new System.Drawing.Point(260, 6);
+            this.materialButton3.Location = new System.Drawing.Point(470, 6);
             this.materialButton3.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.materialButton3.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialButton3.Name = "materialButton3";
@@ -231,7 +231,7 @@
             this.materialButton1.Depth = 0;
             this.materialButton1.HighEmphasis = true;
             this.materialButton1.Icon = null;
-            this.materialButton1.Location = new System.Drawing.Point(153, 6);
+            this.materialButton1.Location = new System.Drawing.Point(363, 6);
             this.materialButton1.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.materialButton1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialButton1.Name = "materialButton1";
@@ -251,7 +251,7 @@
             this.materialButton4.Depth = 0;
             this.materialButton4.HighEmphasis = true;
             this.materialButton4.Icon = null;
-            this.materialButton4.Location = new System.Drawing.Point(26, 6);
+            this.materialButton4.Location = new System.Drawing.Point(236, 6);
             this.materialButton4.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.materialButton4.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialButton4.Name = "materialButton4";
@@ -268,7 +268,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(536, 380);
+            this.ClientSize = new System.Drawing.Size(746, 380);
             this.Controls.Add(this.topLabel);
             this.Controls.Add(this.codeListPanel);
             this.Controls.Add(this.codeContent);

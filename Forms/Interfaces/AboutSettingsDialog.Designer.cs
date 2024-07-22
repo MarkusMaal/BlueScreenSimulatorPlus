@@ -116,6 +116,10 @@ namespace UltimateBlueScreenSimulator
             this.materialCard3 = new System.Windows.Forms.Panel();
             this.commandLineHelpDisplay = new MaterialSkin.Controls.MaterialMultiLineTextBox2();
             this.appearancePanel = new System.Windows.Forms.TabPage();
+            this.materialButton10 = new MaterialSkin.Controls.MaterialButton();
+            this.materialButton9 = new MaterialSkin.Controls.MaterialButton();
+            this.materialButton11 = new MaterialSkin.Controls.MaterialButton();
+            this.materialButton8 = new MaterialSkin.Controls.MaterialButton();
             this.darkDetectCheck = new MaterialSkin.Controls.MaterialCheckbox();
             this.materialSwitch1 = new MaterialSkin.Controls.MaterialSwitch();
             this.rtlSwitch = new MaterialSkin.Controls.MaterialSwitch();
@@ -131,6 +135,7 @@ namespace UltimateBlueScreenSimulator
             this.saveBsconfig = new System.Windows.Forms.SaveFileDialog();
             this.loadBsconfig = new System.Windows.Forms.OpenFileDialog();
             this.checkIfLoadedSaved = new System.Windows.Forms.Timer(this.components);
+            this.demoReelTimer = new System.Windows.Forms.Timer(this.components);
             this.aboutTable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).BeginInit();
             this.logoDisplayFlowPanel.SuspendLayout();
@@ -1702,6 +1707,10 @@ namespace UltimateBlueScreenSimulator
             // 
             // appearancePanel
             // 
+            this.appearancePanel.Controls.Add(this.materialButton10);
+            this.appearancePanel.Controls.Add(this.materialButton9);
+            this.appearancePanel.Controls.Add(this.materialButton11);
+            this.appearancePanel.Controls.Add(this.materialButton8);
             this.appearancePanel.Controls.Add(this.darkDetectCheck);
             this.appearancePanel.Controls.Add(this.materialSwitch1);
             this.appearancePanel.Controls.Add(this.rtlSwitch);
@@ -1717,6 +1726,90 @@ namespace UltimateBlueScreenSimulator
             this.appearancePanel.Size = new System.Drawing.Size(726, 487);
             this.appearancePanel.TabIndex = 5;
             this.appearancePanel.Text = "Appearance";
+            // 
+            // materialButton10
+            // 
+            this.materialButton10.AutoSize = false;
+            this.materialButton10.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.materialButton10.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Dense;
+            this.materialButton10.Depth = 0;
+            this.materialButton10.DrawShadows = false;
+            this.materialButton10.HighEmphasis = true;
+            this.materialButton10.Icon = null;
+            this.materialButton10.Location = new System.Drawing.Point(453, 147);
+            this.materialButton10.Margin = new System.Windows.Forms.Padding(1);
+            this.materialButton10.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialButton10.Name = "materialButton10";
+            this.materialButton10.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.materialButton10.Size = new System.Drawing.Size(32, 32);
+            this.materialButton10.TabIndex = 18;
+            this.helpTip.SetToolTip(this.materialButton10, "Accent color preview");
+            this.materialButton10.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.materialButton10.UseAccentColor = true;
+            this.materialButton10.UseVisualStyleBackColor = true;
+            // 
+            // materialButton9
+            // 
+            this.materialButton9.AutoSize = false;
+            this.materialButton9.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.materialButton9.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Dense;
+            this.materialButton9.Depth = 0;
+            this.materialButton9.DrawShadows = false;
+            this.materialButton9.HighEmphasis = true;
+            this.materialButton9.Icon = null;
+            this.materialButton9.Location = new System.Drawing.Point(417, 147);
+            this.materialButton9.Margin = new System.Windows.Forms.Padding(1);
+            this.materialButton9.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialButton9.Name = "materialButton9";
+            this.materialButton9.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.materialButton9.Size = new System.Drawing.Size(32, 32);
+            this.materialButton9.TabIndex = 18;
+            this.helpTip.SetToolTip(this.materialButton9, "Primary color preview");
+            this.materialButton9.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.materialButton9.UseAccentColor = false;
+            this.materialButton9.UseVisualStyleBackColor = true;
+            // 
+            // materialButton11
+            // 
+            this.materialButton11.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.materialButton11.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.materialButton11.Depth = 0;
+            this.materialButton11.HighEmphasis = true;
+            this.materialButton11.Icon = null;
+            this.materialButton11.Location = new System.Drawing.Point(200, 191);
+            this.materialButton11.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.materialButton11.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialButton11.Name = "materialButton11";
+            this.materialButton11.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.materialButton11.Size = new System.Drawing.Size(102, 36);
+            this.materialButton11.TabIndex = 17;
+            this.materialButton11.Text = "Random [?]";
+            this.helpTip.SetToolTip(this.materialButton11, "Automatically chooses a random primary and accent color");
+            this.materialButton11.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.materialButton11.UseAccentColor = false;
+            this.materialButton11.UseVisualStyleBackColor = true;
+            this.materialButton11.Click += new System.EventHandler(this.materialButton11_Click);
+            // 
+            // materialButton8
+            // 
+            this.materialButton8.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.materialButton8.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.materialButton8.Depth = 0;
+            this.materialButton8.HighEmphasis = true;
+            this.materialButton8.Icon = null;
+            this.materialButton8.Location = new System.Drawing.Point(29, 191);
+            this.materialButton8.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.materialButton8.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialButton8.Name = "materialButton8";
+            this.materialButton8.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.materialButton8.Size = new System.Drawing.Size(163, 36);
+            this.materialButton8.TabIndex = 17;
+            this.materialButton8.Text = "Default colors [?]";
+            this.helpTip.SetToolTip(this.materialButton8, "Restores primary color and accent color to default values");
+            this.materialButton8.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.materialButton8.UseAccentColor = false;
+            this.materialButton8.UseVisualStyleBackColor = true;
+            this.materialButton8.Click += new System.EventHandler(this.materialButton8_Click);
             // 
             // darkDetectCheck
             // 
@@ -1737,6 +1830,7 @@ namespace UltimateBlueScreenSimulator
             this.helpTip.SetToolTip(this.darkDetectCheck, "Automatically switches the program to night mode on startup if Windows is configu" +
         "red to use dark mode.");
             this.darkDetectCheck.UseVisualStyleBackColor = true;
+            this.darkDetectCheck.CheckedChanged += new System.EventHandler(this.darkDetectCheck_CheckedChanged);
             // 
             // materialSwitch1
             // 
@@ -1744,7 +1838,7 @@ namespace UltimateBlueScreenSimulator
             this.materialSwitch1.Checked = true;
             this.materialSwitch1.CheckState = System.Windows.Forms.CheckState.Checked;
             this.materialSwitch1.Depth = 0;
-            this.materialSwitch1.Location = new System.Drawing.Point(19, 236);
+            this.materialSwitch1.Location = new System.Drawing.Point(13, 287);
             this.materialSwitch1.Margin = new System.Windows.Forms.Padding(0);
             this.materialSwitch1.MouseLocation = new System.Drawing.Point(-1, -1);
             this.materialSwitch1.MouseState = MaterialSkin.MouseState.HOVER;
@@ -1762,15 +1856,16 @@ namespace UltimateBlueScreenSimulator
             // 
             this.rtlSwitch.AutoSize = true;
             this.rtlSwitch.Depth = 0;
-            this.rtlSwitch.Location = new System.Drawing.Point(20, 273);
+            this.rtlSwitch.Location = new System.Drawing.Point(14, 324);
             this.rtlSwitch.Margin = new System.Windows.Forms.Padding(0);
             this.rtlSwitch.MouseLocation = new System.Drawing.Point(-1, -1);
             this.rtlSwitch.MouseState = MaterialSkin.MouseState.HOVER;
             this.rtlSwitch.Name = "rtlSwitch";
             this.rtlSwitch.Ripple = true;
-            this.rtlSwitch.Size = new System.Drawing.Size(139, 37);
+            this.rtlSwitch.Size = new System.Drawing.Size(159, 37);
             this.rtlSwitch.TabIndex = 15;
-            this.rtlSwitch.Text = "Forced RTL";
+            this.rtlSwitch.Text = "Forced RTL [?]";
+            this.helpTip.SetToolTip(this.rtlSwitch, "Forces right to left layout");
             this.rtlSwitch.UseVisualStyleBackColor = true;
             this.rtlSwitch.Visible = false;
             this.rtlSwitch.CheckedChanged += new System.EventHandler(this.rtlSwitch_CheckedChanged);
@@ -1781,7 +1876,7 @@ namespace UltimateBlueScreenSimulator
             this.materialLabel2.Depth = 0;
             this.materialLabel2.Font = new System.Drawing.Font("Roboto", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.materialLabel2.FontType = MaterialSkin.MaterialSkinManager.fontType.H5;
-            this.materialLabel2.Location = new System.Drawing.Point(21, 198);
+            this.materialLabel2.Location = new System.Drawing.Point(15, 249);
             this.materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel2.Name = "materialLabel2";
             this.materialLabel2.Size = new System.Drawing.Size(136, 29);
@@ -1806,7 +1901,7 @@ namespace UltimateBlueScreenSimulator
             this.materialLabel3.AutoSize = true;
             this.materialLabel3.Depth = 0;
             this.materialLabel3.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel3.Location = new System.Drawing.Point(221, 123);
+            this.materialLabel3.Location = new System.Drawing.Point(26, 124);
             this.materialLabel3.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel3.Name = "materialLabel3";
             this.materialLabel3.Size = new System.Drawing.Size(95, 19);
@@ -1818,7 +1913,7 @@ namespace UltimateBlueScreenSimulator
             this.materialLabel8.AutoSize = true;
             this.materialLabel8.Depth = 0;
             this.materialLabel8.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel8.Location = new System.Drawing.Point(26, 123);
+            this.materialLabel8.Location = new System.Drawing.Point(221, 124);
             this.materialLabel8.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel8.Name = "materialLabel8";
             this.materialLabel8.Size = new System.Drawing.Size(88, 19);
@@ -1856,7 +1951,7 @@ namespace UltimateBlueScreenSimulator
             "Red",
             "Teal",
             "Yellow"});
-            this.primaryColorBox.Location = new System.Drawing.Point(224, 146);
+            this.primaryColorBox.Location = new System.Drawing.Point(29, 147);
             this.primaryColorBox.MaxDropDownItems = 4;
             this.primaryColorBox.MouseState = MaterialSkin.MouseState.OUT;
             this.primaryColorBox.Name = "primaryColorBox";
@@ -1898,7 +1993,7 @@ namespace UltimateBlueScreenSimulator
             "Red",
             "Teal",
             "Yellow"});
-            this.accentBox.Location = new System.Drawing.Point(29, 146);
+            this.accentBox.Location = new System.Drawing.Point(224, 147);
             this.accentBox.MaxDropDownItems = 4;
             this.accentBox.MouseState = MaterialSkin.MouseState.OUT;
             this.accentBox.Name = "accentBox";
@@ -1951,6 +2046,11 @@ namespace UltimateBlueScreenSimulator
             // checkIfLoadedSaved
             // 
             this.checkIfLoadedSaved.Tick += new System.EventHandler(this.WaitUntilComplete);
+            // 
+            // demoReelTimer
+            // 
+            this.demoReelTimer.Interval = 1000;
+            this.demoReelTimer.Tick += new System.EventHandler(this.demoReelTimer_Tick);
             // 
             // AboutSettingsDialog
             // 
@@ -2105,5 +2205,10 @@ namespace UltimateBlueScreenSimulator
         private MaterialButton materialButton7;
         private MaterialCheckbox autosaveCheck;
         internal MaterialButton okButton;
+        private System.Windows.Forms.Timer demoReelTimer;
+        private MaterialButton materialButton8;
+        private MaterialButton materialButton10;
+        private MaterialButton materialButton9;
+        private MaterialButton materialButton11;
     }
 }

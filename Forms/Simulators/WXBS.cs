@@ -71,6 +71,17 @@ namespace UltimateBlueScreenSimulator
                 {
                     progressUpdater.Interval = 1;
                 }
+                if (w8 || !qr)
+                {
+                    supportContainer.Margin = new Padding(0,3,3,3);
+                    supportInfo.Location = new Point(supportInfo.Location.X - 3, supportInfo.Location.Y);
+                    errorCode.Location = new Point(errorCode.Location.X - 3, errorCode.Location.Y);
+                    if (w8)
+                    {
+                        errorCode.Location = supportInfo.Location;
+                        supportInfo.Visible = false;
+                    }
+                }
                 this.Icon = me.GetIcon();
                 this.Text = me.GetString("friendlyname");
                 memCodes.Visible = me.GetBool("extracodes");
@@ -168,18 +179,18 @@ namespace UltimateBlueScreenSimulator
                 if (qr == true)
                 {
                     qrCode.Visible = true;
-                    supportInfo.Visible = true;
-                    errorCode.Location = new Point(3, 56);
+                    //supportInfo.Visible = true;
+                    //errorCode.Location = new Point(3, 56);
                     Point locationOnForm = qrCode.FindForm().PointToClient(qrCode.Parent.PointToScreen(qrCode.Location));
-                    supportContainer.Location = new Point(qrMargin.Width + qrCode.Width + 20, locationOnForm.Y);
+                    //supportContainer.Location = new Point(qrMargin.Width + qrCode.Width + 20, locationOnForm.Y);
                 }
                 else
                 {
                     qrCode.Visible = false;
-                    supportInfo.Visible = false;
-                    errorCode.Location = new Point(3, 0);
+                    //supportInfo.Visible = false;
+                    //errorCode.Location = new Point(3, 0);
                     Point locationOnForm = horizontalFlowPanel.FindForm().PointToClient(horizontalFlowPanel.Parent.PointToScreen(horizontalFlowPanel.Location));
-                    supportContainer.Location = new Point(qrMargin.Width - 13, locationOnForm.Y);
+                    //supportContainer.Location = new Point(qrMargin.Width - 13, locationOnForm.Y);
                 }
                 if (qr == false)
                 {
@@ -304,15 +315,15 @@ namespace UltimateBlueScreenSimulator
 
             if (qr == true)
             {
-                errorCode.Location = new Point(3, 56);
+                //errorCode.Location = new Point(3, 56);
                 Point locationOnForm = qrCode.FindForm().PointToClient(qrCode.Parent.PointToScreen(qrCode.Location));
-                supportContainer.Location = new Point(qrMargin.Width + qrCode.Width + 20, locationOnForm.Y);
+                //supportContainer.Location = new Point(qrMargin.Width + qrCode.Width + 20, locationOnForm.Y);
             }
             else
             {
-                errorCode.Location = new Point(3, 0);
+                //errorCode.Location = new Point(3, 0);
                 Point locationOnForm = horizontalFlowPanel.FindForm().PointToClient(horizontalFlowPanel.Parent.PointToScreen(horizontalFlowPanel.Location));
-                supportContainer.Location = new Point(qrMargin.Width - 13, locationOnForm.Y);
+                //supportContainer.Location = new Point(qrMargin.Width - 13, locationOnForm.Y);
             }
             if (qr == false)
             {
@@ -339,7 +350,10 @@ namespace UltimateBlueScreenSimulator
         {
             if (!me.GetBool("windowed"))
             {
-                Program.dr.DrawAll();
+                foreach (WindowScreen ws in Program.dr.wss)
+                {
+                    Program.dr.Draw(ws, me.GetBool("watermark"));
+                }
                 this.BringToFront();
                 this.Activate();
             }
@@ -363,6 +377,11 @@ namespace UltimateBlueScreenSimulator
 
         private void WXBS_Paint(object sender, PaintEventArgs e)
         {
+        }
+
+        private void WXBS_LocationChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

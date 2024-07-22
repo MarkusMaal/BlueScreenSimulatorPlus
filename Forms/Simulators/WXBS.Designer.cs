@@ -36,7 +36,6 @@
             this.progressIndicator = new System.Windows.Forms.Label();
             this.horizontalFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.qrMargin = new System.Windows.Forms.Panel();
-            this.qrCode = new System.Windows.Forms.PictureBox();
             this.supportContainer = new System.Windows.Forms.Panel();
             this.errorCode = new System.Windows.Forms.Label();
             this.supportInfo = new System.Windows.Forms.Label();
@@ -45,10 +44,11 @@
             this.memCodes = new System.Windows.Forms.Label();
             this.screenUpdater = new System.Windows.Forms.Timer(this.components);
             this.windowsIcons = new System.Windows.Forms.ImageList(this.components);
+            this.qrCode = new System.Windows.Forms.PictureBox();
             this.verticalFlowPanel.SuspendLayout();
             this.horizontalFlowPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.qrCode)).BeginInit();
             this.supportContainer.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.qrCode)).BeginInit();
             this.SuspendLayout();
             // 
             // verticalFlowPanel
@@ -106,6 +106,7 @@
             // 
             this.horizontalFlowPanel.Controls.Add(this.qrMargin);
             this.horizontalFlowPanel.Controls.Add(this.qrCode);
+            this.horizontalFlowPanel.Controls.Add(this.supportContainer);
             this.horizontalFlowPanel.Location = new System.Drawing.Point(0, 471);
             this.horizontalFlowPanel.Margin = new System.Windows.Forms.Padding(0, 40, 0, 0);
             this.horizontalFlowPanel.Name = "horizontalFlowPanel";
@@ -119,24 +120,15 @@
             this.qrMargin.Size = new System.Drawing.Size(90, 212);
             this.qrMargin.TabIndex = 2;
             // 
-            // qrCode
-            // 
-            this.qrCode.Image = global::UltimateBlueScreenSimulator.Properties.Resources.bsodqr;
-            this.qrCode.Location = new System.Drawing.Point(99, 3);
-            this.qrCode.Name = "qrCode";
-            this.qrCode.Size = new System.Drawing.Size(110, 110);
-            this.qrCode.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.qrCode.TabIndex = 0;
-            this.qrCode.TabStop = false;
-            // 
             // supportContainer
             // 
             this.supportContainer.BackColor = System.Drawing.Color.Transparent;
             this.supportContainer.Controls.Add(this.errorCode);
             this.supportContainer.Controls.Add(this.supportInfo);
-            this.supportContainer.Location = new System.Drawing.Point(201, 440);
+            this.supportContainer.Location = new System.Drawing.Point(227, 3);
+            this.supportContainer.Margin = new System.Windows.Forms.Padding(15, 3, 3, 3);
             this.supportContainer.Name = "supportContainer";
-            this.supportContainer.Size = new System.Drawing.Size(825, 280);
+            this.supportContainer.Size = new System.Drawing.Size(825, 127);
             this.supportContainer.TabIndex = 1;
             // 
             // errorCode
@@ -204,6 +196,16 @@
             this.windowsIcons.Images.SetKeyName(2, "Dakirby309-Windows-8-Metro-Folders-OS-Windows-8-Metro.ico");
             this.windowsIcons.Images.SetKeyName(3, "new-windows-logo (2).ico");
             // 
+            // qrCode
+            // 
+            this.qrCode.Image = global::UltimateBlueScreenSimulator.Properties.Resources.bsodqr;
+            this.qrCode.Location = new System.Drawing.Point(99, 3);
+            this.qrCode.Name = "qrCode";
+            this.qrCode.Size = new System.Drawing.Size(110, 110);
+            this.qrCode.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.qrCode.TabIndex = 0;
+            this.qrCode.TabStop = false;
+            // 
             // WXBS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -212,7 +214,6 @@
             this.ClientSize = new System.Drawing.Size(1280, 720);
             this.Controls.Add(this.memCodes);
             this.Controls.Add(this.waterMarkText);
-            this.Controls.Add(this.supportContainer);
             this.Controls.Add(this.verticalFlowPanel);
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -227,14 +228,15 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.WXBS_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.WXBS_FormClosed);
             this.Load += new System.EventHandler(this.WXBS_Load);
+            this.LocationChanged += new System.EventHandler(this.WXBS_LocationChanged);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.WXBS_Paint);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.WXBS_KeyDown);
             this.Resize += new System.EventHandler(this.WXBS_Resize);
             this.verticalFlowPanel.ResumeLayout(false);
             this.verticalFlowPanel.PerformLayout();
             this.horizontalFlowPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.qrCode)).EndInit();
             this.supportContainer.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.qrCode)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -246,7 +248,6 @@
         private System.Windows.Forms.Label yourPCranLabel;
         private System.Windows.Forms.Label progressIndicator;
         private System.Windows.Forms.FlowLayoutPanel horizontalFlowPanel;
-        private System.Windows.Forms.PictureBox qrCode;
         private System.Windows.Forms.Panel supportContainer;
         private System.Windows.Forms.Label supportInfo;
         private System.Windows.Forms.Panel qrMargin;
@@ -257,5 +258,6 @@
         internal System.Windows.Forms.Label memCodes;
         private System.Windows.Forms.Timer screenUpdater;
         private System.Windows.Forms.ImageList windowsIcons;
+        private System.Windows.Forms.PictureBox qrCode;
     }
 }

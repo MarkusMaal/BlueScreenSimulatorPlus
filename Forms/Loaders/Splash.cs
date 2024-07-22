@@ -39,6 +39,16 @@ namespace UltimateBlueScreenSimulator
         private void Splash_Load(object sender, EventArgs e)
         {
             Program.gs.Log("Info", "Enabling visual styles");
+            label2.Visible = Program.gs.DevBuild;
+            if ((DateTime.Now.Month == 10) && (DateTime.Now.Day == 31))
+            {
+                splashEmoticon.Text = ":(";
+            }
+            Random r = new Random();
+            if ((DateTime.Now.Month == 7) && (DateTime.Now.Day == 19))
+            {
+                label1.Text = "advanced crowstrike simulation technology";
+            }
             Application.EnableVisualStyles();
         }
     }

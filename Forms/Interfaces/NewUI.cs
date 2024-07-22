@@ -57,6 +57,9 @@ namespace UltimateBlueScreenSimulator
             button3.Location = new Point(button1.Location.X - (button1.Width) - 5, button1.Location.Y);
             label7.Location = new Point(label7.Location.X, button1.Location.Y + label7.Height / 2);
             flowLayoutPanel1.BackColor = this.BackColor;
+            nineXmessage.BackColor = this.BackColor;
+            panel1.BackColor = this.BackColor;
+            panel2.BackColor = this.BackColor;
             foreach (Control c in flowLayoutPanel1.Controls)
             {
                 c.BackColor = this.BackColor;
@@ -70,6 +73,11 @@ namespace UltimateBlueScreenSimulator
                 ProcessErrors();
             }
             RelocateButtons();
+            aboutSettingsButton.Visible = Program.gs.DevBuild;
+            if (!Program.gs.DevBuild)
+            {
+                materialTabControl1.TabPages.Remove(materialTabControl1.TabPages["tabPage5"]);
+            }
             string verStr = Convert.ToDouble(version.Replace(".", ",")).ToString().Replace(",", ".");
             while (verStr.EndsWith("0"))
             {
@@ -601,7 +609,7 @@ namespace UltimateBlueScreenSimulator
             BlueScreen bs = new BlueScreen(base_os, true, r);
             foreach (string kvp in bs.AllBools().Keys.ToArray<string>())
             {
-                bool value = r.Next(0, 1) == 1;
+                bool value = r.Next(0, 100) > 50;
                 bs.SetBool(kvp, value);
             }
             foreach (string kvp in bs.AllInts().Keys.ToArray<string>())
@@ -627,8 +635,8 @@ namespace UltimateBlueScreenSimulator
             if (bs.GetString("os") != "Windows 3.1x") {
                 bs.SetString("screen_mode", comboBox2.Items[r.Next(0, comboBox2.Items.Count - 1)].ToString());
             }
-            bs.SetBool("troubleshoot", r.Next(0, 1) == 1);
-            bs.SetBool("rainbow", r.Next(0, 1) == 1);
+            bs.SetBool("troubleshoot", r.Next(0, 100) > 50);
+            bs.SetBool("rainbow", r.Next(0, 100) > 50);
             bs.SetBool("windowed", winMode.Checked);
             bs.SetBool("amd", winMode.Checked);
             bs.SetBool("blink", winMode.Checked);
@@ -827,32 +835,30 @@ namespace UltimateBlueScreenSimulator
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if ((windowVersion.SelectedIndex != 1) && (this.me != null))
+            if (me is null) { return; }
+            me.SetString("code", comboBox1.SelectedItem.ToString());
+            if ((me.GetString("os") == "Windows XP") && me.GetBool("auto"))
             {
-                me.SetString("code", comboBox1.SelectedItem.ToString());
-                if ((me.GetString("os") == "Windows XP") && me.GetBool("auto"))
+                string[] xpmsg = Properties.Resources.xpMsg.Split(';');
+                if (me.GetString("code").Contains("007F"))
                 {
-                    string[] xpmsg = Properties.Resources.xpMsg.Split(';');
-                    if (me.GetString("code").Contains("007F"))
-                    {
-                        me.SetText("Troubleshooting introduction", xpmsg[3]);
-                        me.SetText("Troubleshooting", string.Format("{0}\r\n\r\n{1}", xpmsg[9], xpmsg[10]));
-                    }
-                    else if (me.GetString("code").Contains("00C5"))
-                    {
-                        me.SetText("Troubleshooting introduction", xpmsg[0]);
-                        me.SetText("Troubleshooting", string.Format("{0}\r\n\r\n{1}\r\n\r\n{2}\r\n\r\n{3}\r\n\r\n{4}", xpmsg[1], xpmsg[2], xpmsg[3], xpmsg[4], xpmsg[5]));
-                    }
-                    else if (me.GetString("code").Contains("008E"))
-                    {
-                        me.SetText("Troubleshooting introduction", xpmsg[3]);
-                        me.SetText("Troubleshooting", string.Format("{0}\r\n\r\n{1}", xpmsg[7], xpmsg[8]));
-                    }
-                    else
-                    {
-                        me.SetText("Troubleshooting introduction", xpmsg[3]);
-                        me.SetText("Troubleshooting", string.Format("{0}\r\n\r\n{1}\r\n{2}", xpmsg[0], xpmsg[5], xpmsg[6]));
-                    }
+                    me.SetText("Troubleshooting introduction", xpmsg[3]);
+                    me.SetText("Troubleshooting", string.Format("{0}\r\n\r\n{1}", xpmsg[9], xpmsg[10]));
+                }
+                else if (me.GetString("code").Contains("00C5"))
+                {
+                    me.SetText("Troubleshooting introduction", xpmsg[0]);
+                    me.SetText("Troubleshooting", string.Format("{0}\r\n\r\n{1}\r\n\r\n{2}\r\n\r\n{3}\r\n\r\n{4}", xpmsg[1], xpmsg[2], xpmsg[3], xpmsg[4], xpmsg[5]));
+                }
+                else if (me.GetString("code").Contains("008E"))
+                {
+                    me.SetText("Troubleshooting introduction", xpmsg[3]);
+                    me.SetText("Troubleshooting", string.Format("{0}\r\n\r\n{1}", xpmsg[7], xpmsg[8]));
+                }
+                else
+                {
+                    me.SetText("Troubleshooting introduction", xpmsg[3]);
+                    me.SetText("Troubleshooting", string.Format("{0}\r\n\r\n{1}\r\n{2}", xpmsg[0], xpmsg[5], xpmsg[6]));
                 }
             }
         }
@@ -1710,6 +1716,25 @@ namespace UltimateBlueScreenSimulator
         private void NewUI_KeyUp(object sender, KeyEventArgs e)
         {
 
+        }
+
+        private void aboutSettingsButton_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Are you sure?", "Demo mode", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            {
+                aboutSettingsButton.Visible = false;
+                AboutSettingsDialog abs = new AboutSettingsDialog
+                {
+                    SettingTab = true,
+                    Demo = true,
+                    WindowState = FormWindowState.Minimized,
+                    Visible = false
+                };
+                TopMost = true;
+                abs.ShowDialog();
+                TopMost = false;
+                aboutSettingsButton.Visible = Program.gs.DevBuild;
+            }
         }
     }
 }

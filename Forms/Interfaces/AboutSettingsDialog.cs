@@ -11,6 +11,7 @@ using MaterialSkin.Controls;
 using MaterialSkin;
 using System.Text;
 using System.Text.Json;
+using System.Windows.Media.Animation;
 
 namespace UltimateBlueScreenSimulator
 {
@@ -20,7 +21,9 @@ namespace UltimateBlueScreenSimulator
         public bool SettingTab = false;
         public int tab_id = 0;
         public bool finished = false;
+        internal bool Demo = false;
         readonly Random r = new Random();
+        private int reelTime = 0;
         public AboutSettingsDialog()
         {
             MaterialSkinManager materialSkinManager = Program.f1.materialSkinManager;
@@ -161,7 +164,13 @@ namespace UltimateBlueScreenSimulator
                 commandLineHelpDisplay.ForeColor = Color.Gray;
             }*/
             //Ping main form that the about box/help/settings dialog is open
+            if (Demo)
+            {
+                demoReelTimer.Enabled = true;
+                return;
+            }
             Program.f1.abopen = true;
+            rtlSwitch.Visible = Program.gs.DevBuild;
             //Hide settings tabs
             if (!SettingTab)
             {
@@ -946,6 +955,7 @@ namespace UltimateBlueScreenSimulator
 
             // applies the color to titlebars immediately
             Program.f1.Refresh();
+            Program.f1.nineXmessage.Refresh();
             this.Refresh();
         }
 
@@ -1002,6 +1012,36 @@ namespace UltimateBlueScreenSimulator
         private void AutosaveCheckChanged(object sender, EventArgs e)
         {
             Program.gs.Autosave = autosaveCheck.Checked;
+        }
+
+        private void demoReelTimer_Tick(object sender, EventArgs e)
+        {
+            if (reelTime < 20)
+            {
+                primaryColorBox.SelectedIndex = r.Next(0, primaryColorBox.Items.Count - 1);
+                accentBox.SelectedIndex = r.Next(0, accentBox.Items.Count - 1);
+                darkMode.Checked = r.Next(0, 1) == 1;
+            } else
+            {
+                reelTime = 0;
+                demoReelTimer.Enabled = false;
+                this.Close();
+            }
+            reelTime++;
+        }
+
+        private void materialButton8_Click(object sender, EventArgs e)
+        {
+            // Get primary and accent colors from an empty GlobalSettings object
+            GlobalSettings dummy = new GlobalSettings();
+            accentBox.SelectedIndex = (int)dummy.ColorScheme;
+            primaryColorBox.SelectedIndex = (int)dummy.PrimaryColor;
+        }
+
+        private void materialButton11_Click(object sender, EventArgs e)
+        {
+            accentBox.SelectedIndex = r.Next(0, accentBox.Items.Count - 1);
+            primaryColorBox.SelectedIndex = r.Next(0, primaryColorBox.Items.Count - 1);
         }
     }
 }

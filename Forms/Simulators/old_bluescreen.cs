@@ -45,7 +45,7 @@ namespace UltimateBlueScreenSimulator
                 string prompt;
                 titles = me.GetTitles();
                 texts = me.GetTexts();
-                if ((Program.gs.EnableEggs) && (me.GetCodes()[0].Substring(0, 2) == "0E") && (screenmode == "Recoverable application error") && texts["Recoverable application error"].Contains("CDFS"))
+                if ((Program.gs.EnableEggs) && (me.GetCodes()[0].Substring(0, 2) == "0E") && (screenmode == "Recoverable application error") && texts["Recoverable application error"].Contains("CDFS") && Program.DoWeHaveInternet(1000))
                 {
                     Process.Start(Program.gs.UpdateServer.Replace("/app", "/bssp/crash.mp4"));
                     screenUpdater.Enabled = false;

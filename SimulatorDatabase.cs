@@ -10,6 +10,7 @@ using System.Text.Json;
 using System.Linq;
 using System.Drawing.Drawing2D;
 using System.Diagnostics;
+using System.IO;
 
 //
 // This namespace contains classes that are shared between forms that specify
@@ -77,7 +78,7 @@ namespace SimulatorDatabase
                     {
                         using (Graphics b = Graphics.FromImage(bmp))
                         {
-                            b.DrawString("blue screen simulator plus", new Font("Segoe UI", 7, FontStyle.Regular), new SolidBrush(Color.FromArgb(128, Color.Blue)), new Point(2,0));
+                            b.DrawString("blue screen simulator plus", new Font("Segoe UI", ws.Width / 100, FontStyle.Regular), new SolidBrush(Color.FromArgb(128, Color.Blue)), new Point(2,0));
                         }
                     }
                     Bitmap newImage = new Bitmap(ws.Width, ws.Height);
@@ -102,9 +103,11 @@ namespace SimulatorDatabase
         public string Screenshot(Form meself)
         {
             meself.FormBorderStyle = FormBorderStyle.None;
-            WindowScreen wsw = new WindowScreen();
-            wsw.Width = meself.Width;
-            wsw.Height = meself.Height;
+            WindowScreen wsw = new WindowScreen
+            {
+                Width = meself.Width,
+                Height = meself.Height
+            };
             Draw(wsw);
             wsw.Text = "Scaled window";
             wsw.FormBorderStyle = FormBorderStyle.Sizable;
@@ -112,15 +115,14 @@ namespace SimulatorDatabase
             wsw.Show();
             meself.FormBorderStyle = FormBorderStyle.FixedSingle;
             Image img = wsw.screenDisplay.Image;
-            string filename = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures) + "\\bssp_" + meself.Text + ".png";
-            try
+            string filename = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures) + "\\bssp_" + string.Join("_", meself.Text.Split(Path.GetInvalidFileNameChars())) + ".png";
+            
+            using (Bitmap tempImage = new Bitmap(img))
             {
-                img.Save(filename, System.Drawing.Imaging.ImageFormat.Png);
+                tempImage.Save(filename, System.Drawing.Imaging.ImageFormat.Png);
+                tempImage.Dispose();
             }
-            catch
-            {
-                filename = "error";
-            }
+            img.Dispose();
             wsw.Close();
             return filename;
         }
@@ -141,6 +143,7 @@ namespace SimulatorDatabase
             }
             wss.Clear();
             freezescreens.Clear();
+            ForceWatermark = false;
         }
 
         /// <summary>

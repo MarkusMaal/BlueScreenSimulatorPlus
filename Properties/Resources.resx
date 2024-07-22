@@ -259,6 +259,6 @@ Advanced Startup Options, and then select Safe Mode.</value>
     <value>..\Resources\9xERRORS.TXT;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1257</value>
   </data>
   <data name="BSSP_manual" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\BSSP manual_3_offline.pdf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>..\Resources\BSSP manual_4_offline.pdf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

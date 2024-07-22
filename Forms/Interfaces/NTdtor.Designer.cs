@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
             "example.sys",
             "RRRRRRRR;RRRRRRRR"}, -1);
-            MaterialSkin.MaterialListBoxItem materialListBoxItem7 = new MaterialSkin.MaterialListBoxItem();
-            MaterialSkin.MaterialListBoxItem materialListBoxItem8 = new MaterialSkin.MaterialListBoxItem();
-            MaterialSkin.MaterialListBoxItem materialListBoxItem9 = new MaterialSkin.MaterialListBoxItem();
+            MaterialSkin.MaterialListBoxItem materialListBoxItem1 = new MaterialSkin.MaterialListBoxItem();
+            MaterialSkin.MaterialListBoxItem materialListBoxItem2 = new MaterialSkin.MaterialListBoxItem();
+            MaterialSkin.MaterialListBoxItem materialListBoxItem3 = new MaterialSkin.MaterialListBoxItem();
             this.codefilesList = new MaterialSkin.Controls.MaterialListView();
             this.fileColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.codeColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -45,14 +45,14 @@
             this.browseButton = new MaterialSkin.Controls.MaterialButton();
             this.materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.delEntryButton = new MaterialSkin.Controls.MaterialButton();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.materialButton5 = new MaterialSkin.Controls.MaterialButton();
+            this.delEntryButton = new MaterialSkin.Controls.MaterialButton();
             this.materialButton3 = new MaterialSkin.Controls.MaterialButton();
-            this.zeroButton = new MaterialSkin.Controls.MaterialButton();
-            this.randomButton = new MaterialSkin.Controls.MaterialButton();
-            this.fixedRandomButton = new MaterialSkin.Controls.MaterialButton();
+            this.materialButton5 = new MaterialSkin.Controls.MaterialButton();
             this.fixedButton = new MaterialSkin.Controls.MaterialButton();
+            this.fixedRandomButton = new MaterialSkin.Controls.MaterialButton();
+            this.randomButton = new MaterialSkin.Controls.MaterialButton();
+            this.zeroButton = new MaterialSkin.Controls.MaterialButton();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -73,7 +73,7 @@
             this.codefilesList.FullRowSelect = true;
             this.codefilesList.HideSelection = false;
             this.codefilesList.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem3});
+            listViewItem1});
             this.codefilesList.Location = new System.Drawing.Point(0, 0);
             this.codefilesList.MinimumSize = new System.Drawing.Size(200, 100);
             this.codefilesList.MouseLocation = new System.Drawing.Point(-1, -1);
@@ -128,19 +128,19 @@
             this.randCodesList.BackColor = System.Drawing.Color.White;
             this.randCodesList.BorderColor = System.Drawing.Color.LightGray;
             this.randCodesList.Depth = 0;
-            this.randCodesList.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            materialListBoxItem7.SecondaryText = "Code 1";
-            materialListBoxItem7.Tag = null;
-            materialListBoxItem7.Text = "RRRRRRRR";
-            materialListBoxItem8.SecondaryText = "Code 2";
-            materialListBoxItem8.Tag = null;
-            materialListBoxItem8.Text = "RRRRRRRR";
-            materialListBoxItem9.SecondaryText = "Code 3";
-            materialListBoxItem9.Tag = null;
-            materialListBoxItem9.Text = "RRRRRRRR";
-            this.randCodesList.Items.Add(materialListBoxItem7);
-            this.randCodesList.Items.Add(materialListBoxItem8);
-            this.randCodesList.Items.Add(materialListBoxItem9);
+            this.randCodesList.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            materialListBoxItem1.SecondaryText = "Code 1";
+            materialListBoxItem1.Tag = null;
+            materialListBoxItem1.Text = "RRRRRRRR";
+            materialListBoxItem2.SecondaryText = "Code 2";
+            materialListBoxItem2.Tag = null;
+            materialListBoxItem2.Text = "RRRRRRRR";
+            materialListBoxItem3.SecondaryText = "Code 3";
+            materialListBoxItem3.Tag = null;
+            materialListBoxItem3.Text = "RRRRRRRR";
+            this.randCodesList.Items.Add(materialListBoxItem1);
+            this.randCodesList.Items.Add(materialListBoxItem2);
+            this.randCodesList.Items.Add(materialListBoxItem3);
             this.randCodesList.Location = new System.Drawing.Point(9, 144);
             this.randCodesList.MouseState = MaterialSkin.MouseState.HOVER;
             this.randCodesList.MultiSelect = true;
@@ -193,7 +193,7 @@
             this.filenameBox.AnimateReadOnly = false;
             this.filenameBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.filenameBox.Depth = 0;
-            this.filenameBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.filenameBox.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.filenameBox.LeadingIcon = null;
             this.filenameBox.Location = new System.Drawing.Point(9, 31);
             this.filenameBox.MaxLength = 50;
@@ -267,6 +267,23 @@
             this.splitContainer1.SplitterDistance = 432;
             this.splitContainer1.TabIndex = 5;
             // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.flowLayoutPanel1.AutoScroll = true;
+            this.flowLayoutPanel1.Controls.Add(this.delEntryButton);
+            this.flowLayoutPanel1.Controls.Add(this.delCodeButton);
+            this.flowLayoutPanel1.Controls.Add(this.materialButton3);
+            this.flowLayoutPanel1.Controls.Add(this.materialButton5);
+            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(9, 373);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(521, 67);
+            this.flowLayoutPanel1.TabIndex = 5;
+            this.flowLayoutPanel1.WrapContents = false;
+            // 
             // delEntryButton
             // 
             this.delEntryButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -289,22 +306,26 @@
             this.delEntryButton.UseVisualStyleBackColor = true;
             this.delEntryButton.Click += new System.EventHandler(this.materialButton4_Click);
             // 
-            // flowLayoutPanel1
+            // materialButton3
             // 
-            this.flowLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.flowLayoutPanel1.AutoScroll = true;
-            this.flowLayoutPanel1.Controls.Add(this.delEntryButton);
-            this.flowLayoutPanel1.Controls.Add(this.delCodeButton);
-            this.flowLayoutPanel1.Controls.Add(this.materialButton3);
-            this.flowLayoutPanel1.Controls.Add(this.materialButton5);
-            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(9, 373);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(521, 67);
-            this.flowLayoutPanel1.TabIndex = 5;
-            this.flowLayoutPanel1.WrapContents = false;
+            this.materialButton3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.materialButton3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.materialButton3.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.materialButton3.Depth = 0;
+            this.materialButton3.HighEmphasis = true;
+            this.materialButton3.Icon = null;
+            this.materialButton3.Location = new System.Drawing.Point(171, 6);
+            this.materialButton3.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.materialButton3.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialButton3.Name = "materialButton3";
+            this.materialButton3.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.materialButton3.Size = new System.Drawing.Size(92, 36);
+            this.materialButton3.TabIndex = 2;
+            this.materialButton3.Text = "Add code";
+            this.materialButton3.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.materialButton3.UseAccentColor = false;
+            this.materialButton3.UseVisualStyleBackColor = true;
+            this.materialButton3.Click += new System.EventHandler(this.materialButton3_Click);
             // 
             // materialButton5
             // 
@@ -327,68 +348,26 @@
             this.materialButton5.UseVisualStyleBackColor = true;
             this.materialButton5.Click += new System.EventHandler(this.materialButton5_Click);
             // 
-            // materialButton3
+            // fixedButton
             // 
-            this.materialButton3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.materialButton3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.materialButton3.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.materialButton3.Depth = 0;
-            this.materialButton3.HighEmphasis = true;
-            this.materialButton3.Icon = null;
-            this.materialButton3.Location = new System.Drawing.Point(171, 6);
-            this.materialButton3.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.materialButton3.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialButton3.Name = "materialButton3";
-            this.materialButton3.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.materialButton3.Size = new System.Drawing.Size(92, 36);
-            this.materialButton3.TabIndex = 2;
-            this.materialButton3.Text = "Add code";
-            this.materialButton3.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.materialButton3.UseAccentColor = false;
-            this.materialButton3.UseVisualStyleBackColor = true;
-            this.materialButton3.Click += new System.EventHandler(this.materialButton3_Click);
-            // 
-            // zeroButton
-            // 
-            this.zeroButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.zeroButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.zeroButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.zeroButton.Depth = 0;
-            this.zeroButton.HighEmphasis = true;
-            this.zeroButton.Icon = null;
-            this.zeroButton.Location = new System.Drawing.Point(466, 102);
-            this.zeroButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.zeroButton.MouseState = MaterialSkin.MouseState.HOVER;
-            this.zeroButton.Name = "zeroButton";
-            this.zeroButton.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.zeroButton.Size = new System.Drawing.Size(64, 36);
-            this.zeroButton.TabIndex = 2;
-            this.zeroButton.Text = "0";
-            this.zeroButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.zeroButton.UseAccentColor = false;
-            this.zeroButton.UseVisualStyleBackColor = true;
-            this.zeroButton.Click += new System.EventHandler(this.zeroButton_Click);
-            // 
-            // randomButton
-            // 
-            this.randomButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.randomButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.randomButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.randomButton.Depth = 0;
-            this.randomButton.HighEmphasis = true;
-            this.randomButton.Icon = null;
-            this.randomButton.Location = new System.Drawing.Point(396, 102);
-            this.randomButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.randomButton.MouseState = MaterialSkin.MouseState.HOVER;
-            this.randomButton.Name = "randomButton";
-            this.randomButton.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.randomButton.Size = new System.Drawing.Size(64, 36);
-            this.randomButton.TabIndex = 2;
-            this.randomButton.Text = "R";
-            this.randomButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.randomButton.UseAccentColor = false;
-            this.randomButton.UseVisualStyleBackColor = true;
-            this.randomButton.Click += new System.EventHandler(this.randomButton_Click);
+            this.fixedButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.fixedButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.fixedButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.fixedButton.Depth = 0;
+            this.fixedButton.HighEmphasis = true;
+            this.fixedButton.Icon = null;
+            this.fixedButton.Location = new System.Drawing.Point(252, 102);
+            this.fixedButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.fixedButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.fixedButton.Name = "fixedButton";
+            this.fixedButton.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.fixedButton.Size = new System.Drawing.Size(64, 36);
+            this.fixedButton.TabIndex = 2;
+            this.fixedButton.Text = "F";
+            this.fixedButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.fixedButton.UseAccentColor = false;
+            this.fixedButton.UseVisualStyleBackColor = true;
+            this.fixedButton.Click += new System.EventHandler(this.fixedButton_Click);
             // 
             // fixedRandomButton
             // 
@@ -411,26 +390,47 @@
             this.fixedRandomButton.UseVisualStyleBackColor = true;
             this.fixedRandomButton.Click += new System.EventHandler(this.fixedRandomButton_Click);
             // 
-            // fixedButton
+            // randomButton
             // 
-            this.fixedButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.fixedButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.fixedButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.fixedButton.Depth = 0;
-            this.fixedButton.HighEmphasis = true;
-            this.fixedButton.Icon = null;
-            this.fixedButton.Location = new System.Drawing.Point(252, 102);
-            this.fixedButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.fixedButton.MouseState = MaterialSkin.MouseState.HOVER;
-            this.fixedButton.Name = "fixedButton";
-            this.fixedButton.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.fixedButton.Size = new System.Drawing.Size(64, 36);
-            this.fixedButton.TabIndex = 2;
-            this.fixedButton.Text = "F";
-            this.fixedButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.fixedButton.UseAccentColor = false;
-            this.fixedButton.UseVisualStyleBackColor = true;
-            this.fixedButton.Click += new System.EventHandler(this.fixedButton_Click);
+            this.randomButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.randomButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.randomButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.randomButton.Depth = 0;
+            this.randomButton.HighEmphasis = true;
+            this.randomButton.Icon = null;
+            this.randomButton.Location = new System.Drawing.Point(396, 102);
+            this.randomButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.randomButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.randomButton.Name = "randomButton";
+            this.randomButton.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.randomButton.Size = new System.Drawing.Size(64, 36);
+            this.randomButton.TabIndex = 2;
+            this.randomButton.Text = "R";
+            this.randomButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.randomButton.UseAccentColor = false;
+            this.randomButton.UseVisualStyleBackColor = true;
+            this.randomButton.Click += new System.EventHandler(this.randomButton_Click);
+            // 
+            // zeroButton
+            // 
+            this.zeroButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.zeroButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.zeroButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.zeroButton.Depth = 0;
+            this.zeroButton.HighEmphasis = true;
+            this.zeroButton.Icon = null;
+            this.zeroButton.Location = new System.Drawing.Point(466, 102);
+            this.zeroButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.zeroButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.zeroButton.Name = "zeroButton";
+            this.zeroButton.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.zeroButton.Size = new System.Drawing.Size(64, 36);
+            this.zeroButton.TabIndex = 2;
+            this.zeroButton.Text = "0";
+            this.zeroButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.zeroButton.UseAccentColor = false;
+            this.zeroButton.UseVisualStyleBackColor = true;
+            this.zeroButton.Click += new System.EventHandler(this.zeroButton_Click);
             // 
             // NTdtor
             // 
@@ -439,7 +439,7 @@
             this.ClientSize = new System.Drawing.Size(982, 507);
             this.Controls.Add(this.splitContainer1);
             this.Name = "NTdtor";
-            this.Text = "Windows NT code editor (right click to de-select)";
+            this.Text = "Windows NT code editor";
             this.Load += new System.EventHandler(this.NTdtor_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);

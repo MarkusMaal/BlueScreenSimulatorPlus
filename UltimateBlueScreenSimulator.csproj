@@ -411,6 +411,7 @@
     <Content Include="bssp3_icon.ico" />
     <None Include="Resources\9xERRORS.TXT" />
     <None Include="Resources\BSSP manual_3_offline.pdf" />
+    <None Include="Resources\BSSP manual_4_offline.pdf" />
     <None Include="Resources\legacy_template.txt" />
     <None Include="Resources\splash_bg.png" />
     <None Include="Resources\bsodbanner3.png" />

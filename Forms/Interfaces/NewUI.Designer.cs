@@ -50,6 +50,7 @@
             this.ntPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.amdBox = new MaterialSkin.Controls.MaterialCheckbox();
             this.stackBox = new MaterialSkin.Controls.MaterialCheckbox();
+            this.troubleshootBox = new MaterialSkin.Controls.MaterialCheckbox();
             this.blinkBox = new MaterialSkin.Controls.MaterialCheckbox();
             this.displayOsBox = new MaterialSkin.Controls.MaterialCheckbox();
             this.acpiBox = new MaterialSkin.Controls.MaterialCheckbox();
@@ -73,6 +74,7 @@
             this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             this.windowVersion = new MaterialSkin.Controls.MaterialComboBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.aboutSettingsButton = new MaterialSkin.Controls.MaterialButton();
             this.WXOptions = new System.Windows.Forms.FlowLayoutPanel();
             this.errorCode = new System.Windows.Forms.Panel();
             this.addInfFile = new MaterialSkin.Controls.MaterialCheckbox();
@@ -107,7 +109,6 @@
             this.updateCheckerTimer = new System.Windows.Forms.Timer(this.components);
             this.prankModeTimer = new System.Windows.Forms.Timer(this.components);
             this.waitPopup = new System.Windows.Forms.Timer(this.components);
-            this.troubleshootBox = new MaterialSkin.Controls.MaterialCheckbox();
             this.winPanel.SuspendLayout();
             this.ntPanel.SuspendLayout();
             this.materialTabControl1.SuspendLayout();
@@ -443,7 +444,7 @@
             this.ntPanel.Controls.Add(this.troubleshootBox);
             this.ntPanel.Controls.Add(this.blinkBox);
             this.ntPanel.Controls.Add(this.displayOsBox);
-            this.ntPanel.Location = new System.Drawing.Point(3, 251);
+            this.ntPanel.Location = new System.Drawing.Point(3, 298);
             this.ntPanel.Name = "ntPanel";
             this.ntPanel.Size = new System.Drawing.Size(691, 74);
             this.ntPanel.TabIndex = 2;
@@ -487,6 +488,27 @@
             this.quickHelp.SetToolTip(this.stackBox, "Displays developer debug information on the NT blue screen");
             this.stackBox.UseVisualStyleBackColor = true;
             this.stackBox.CheckedChanged += new System.EventHandler(this.stackBox_CheckedChanged);
+            // 
+            // troubleshootBox
+            // 
+            this.troubleshootBox.AutoSize = true;
+            this.troubleshootBox.Checked = true;
+            this.troubleshootBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.troubleshootBox.Depth = 0;
+            this.troubleshootBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.troubleshootBox.Location = new System.Drawing.Point(352, 0);
+            this.troubleshootBox.Margin = new System.Windows.Forms.Padding(0);
+            this.troubleshootBox.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.troubleshootBox.MouseState = MaterialSkin.MouseState.HOVER;
+            this.troubleshootBox.Name = "troubleshootBox";
+            this.troubleshootBox.ReadOnly = false;
+            this.troubleshootBox.Ripple = true;
+            this.troubleshootBox.Size = new System.Drawing.Size(201, 37);
+            this.troubleshootBox.TabIndex = 0;
+            this.troubleshootBox.Text = "Troubleshooting text [?]";
+            this.quickHelp.SetToolTip(this.troubleshootBox, "Shows the text that could potentially help you solve the issue");
+            this.troubleshootBox.UseVisualStyleBackColor = true;
+            this.troubleshootBox.CheckedChanged += new System.EventHandler(this.troubleshootBox_CheckedChanged);
             // 
             // blinkBox
             // 
@@ -534,7 +556,7 @@
             this.acpiBox.AutoSize = true;
             this.acpiBox.Depth = 0;
             this.acpiBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.acpiBox.Location = new System.Drawing.Point(0, 419);
+            this.acpiBox.Location = new System.Drawing.Point(0, 466);
             this.acpiBox.Margin = new System.Windows.Forms.Padding(0);
             this.acpiBox.MouseLocation = new System.Drawing.Point(-1, -1);
             this.acpiBox.MouseState = MaterialSkin.MouseState.HOVER;
@@ -706,7 +728,7 @@
             this.button1.Depth = 0;
             this.button1.Icon = global::UltimateBlueScreenSimulator.Properties.Resources.play;
             this.button1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.button1.Location = new System.Drawing.Point(-370, -217);
+            this.button1.Location = new System.Drawing.Point(-354, -178);
             this.button1.Mini = true;
             this.button1.MouseState = MaterialSkin.MouseState.HOVER;
             this.button1.Name = "button1";
@@ -723,7 +745,7 @@
             this.button3.Depth = 0;
             this.button3.Icon = global::UltimateBlueScreenSimulator.Properties.Resources.question;
             this.button3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.button3.Location = new System.Drawing.Point(-370, -167);
+            this.button3.Location = new System.Drawing.Point(-354, -128);
             this.button3.Mini = true;
             this.button3.MouseState = MaterialSkin.MouseState.HOVER;
             this.button3.Name = "button3";
@@ -883,7 +905,7 @@
             this.materialTabControl1.Name = "materialTabControl1";
             this.materialTabControl1.SelectedIndex = 0;
             this.materialTabControl1.ShowToolTips = true;
-            this.materialTabControl1.Size = new System.Drawing.Size(748, 663);
+            this.materialTabControl1.Size = new System.Drawing.Size(764, 702);
             this.materialTabControl1.TabIndex = 8;
             this.materialTabControl1.SelectedIndexChanged += new System.EventHandler(this.materialTabControl1_SelectedIndexChanged);
             this.materialTabControl1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NewUI_KeyDown);
@@ -896,7 +918,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(740, 634);
+            this.tabPage1.Size = new System.Drawing.Size(756, 673);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Simulator";
             // 
@@ -946,7 +968,7 @@
             this.windowVersion.MaxDropDownItems = 4;
             this.windowVersion.MouseState = MaterialSkin.MouseState.OUT;
             this.windowVersion.Name = "windowVersion";
-            this.windowVersion.Size = new System.Drawing.Size(612, 49);
+            this.windowVersion.Size = new System.Drawing.Size(628, 49);
             this.windowVersion.StartIndex = 0;
             this.windowVersion.TabIndex = 0;
             this.windowVersion.SelectedIndexChanged += new System.EventHandler(this.windowVersion_SelectedIndexChanged);
@@ -957,6 +979,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.flowLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.flowLayoutPanel1.Controls.Add(this.aboutSettingsButton);
             this.flowLayoutPanel1.Controls.Add(this.WXOptions);
             this.flowLayoutPanel1.Controls.Add(this.errorCode);
             this.flowLayoutPanel1.Controls.Add(this.ntPanel);
@@ -975,8 +998,30 @@
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(9, 62);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(716, 482);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(732, 521);
             this.flowLayoutPanel1.TabIndex = 3;
+            // 
+            // aboutSettingsButton
+            // 
+            this.aboutSettingsButton.AutoSize = false;
+            this.aboutSettingsButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.aboutSettingsButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.aboutSettingsButton.Depth = 0;
+            this.aboutSettingsButton.HighEmphasis = true;
+            this.aboutSettingsButton.Icon = null;
+            this.aboutSettingsButton.Location = new System.Drawing.Point(4, 6);
+            this.aboutSettingsButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.aboutSettingsButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.aboutSettingsButton.Name = "aboutSettingsButton";
+            this.aboutSettingsButton.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.aboutSettingsButton.Size = new System.Drawing.Size(136, 35);
+            this.aboutSettingsButton.TabIndex = 11;
+            this.aboutSettingsButton.Text = "[DEV] Demo reel";
+            this.aboutSettingsButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.aboutSettingsButton.UseAccentColor = false;
+            this.aboutSettingsButton.UseVisualStyleBackColor = true;
+            this.aboutSettingsButton.Visible = false;
+            this.aboutSettingsButton.Click += new System.EventHandler(this.aboutSettingsButton_Click);
             // 
             // WXOptions
             // 
@@ -989,7 +1034,7 @@
             this.WXOptions.Controls.Add(this.memoryBox);
             this.WXOptions.Controls.Add(this.devPCBox);
             this.WXOptions.Controls.Add(this.blackScreenBox);
-            this.WXOptions.Location = new System.Drawing.Point(3, 3);
+            this.WXOptions.Location = new System.Drawing.Point(3, 50);
             this.WXOptions.Name = "WXOptions";
             this.WXOptions.Size = new System.Drawing.Size(594, 74);
             this.WXOptions.TabIndex = 0;
@@ -1006,7 +1051,7 @@
             this.errorCode.Controls.Add(this.materialLabel3);
             this.errorCode.Controls.Add(this.comboBox1);
             this.errorCode.Controls.Add(this.materialLabel2);
-            this.errorCode.Location = new System.Drawing.Point(3, 83);
+            this.errorCode.Location = new System.Drawing.Point(3, 130);
             this.errorCode.Name = "errorCode";
             this.errorCode.Size = new System.Drawing.Size(658, 162);
             this.errorCode.TabIndex = 1;
@@ -1130,7 +1175,7 @@
             this.nineXmessage.Controls.Add(this.panel1);
             this.nineXmessage.Controls.Add(this.panel2);
             this.nineXmessage.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.nineXmessage.Location = new System.Drawing.Point(0, 328);
+            this.nineXmessage.Location = new System.Drawing.Point(0, 375);
             this.nineXmessage.Margin = new System.Windows.Forms.Padding(0);
             this.nineXmessage.Name = "nineXmessage";
             this.nineXmessage.Size = new System.Drawing.Size(667, 91);
@@ -1138,6 +1183,7 @@
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.SystemColors.Control;
             this.panel1.Controls.Add(this.materialLabel4);
             this.panel1.Controls.Add(this.comboBox2);
             this.panel1.Location = new System.Drawing.Point(3, 3);
@@ -1418,7 +1464,7 @@
             // 
             this.tabPage3.Location = new System.Drawing.Point(4, 25);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(724, 595);
+            this.tabPage3.Size = new System.Drawing.Size(740, 634);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Settings";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -1427,7 +1473,7 @@
             // 
             this.aboutTab.Location = new System.Drawing.Point(4, 25);
             this.aboutTab.Name = "aboutTab";
-            this.aboutTab.Size = new System.Drawing.Size(724, 595);
+            this.aboutTab.Size = new System.Drawing.Size(740, 634);
             this.aboutTab.TabIndex = 3;
             this.aboutTab.Text = "About";
             this.aboutTab.UseVisualStyleBackColor = true;
@@ -1436,7 +1482,7 @@
             // 
             this.tabPage4.Location = new System.Drawing.Point(4, 25);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(724, 595);
+            this.tabPage4.Size = new System.Drawing.Size(740, 634);
             this.tabPage4.TabIndex = 4;
             this.tabPage4.Text = "Prank mode";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -1445,7 +1491,7 @@
             // 
             this.tabPage5.Location = new System.Drawing.Point(4, 25);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(724, 595);
+            this.tabPage5.Size = new System.Drawing.Size(740, 634);
             this.tabPage5.TabIndex = 5;
             this.tabPage5.Text = "Restore old UI";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -1475,7 +1521,7 @@
             this.label7.AutoSize = true;
             this.label7.Depth = 0;
             this.label7.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.label7.Location = new System.Drawing.Point(14, 644);
+            this.label7.Location = new System.Drawing.Point(14, 683);
             this.label7.MouseState = MaterialSkin.MouseState.HOVER;
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(348, 19);
@@ -1500,31 +1546,10 @@
             // 
             this.waitPopup.Tick += new System.EventHandler(this.waitPopup_Tick);
             // 
-            // troubleshootBox
-            // 
-            this.troubleshootBox.AutoSize = true;
-            this.troubleshootBox.Checked = true;
-            this.troubleshootBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.troubleshootBox.Depth = 0;
-            this.troubleshootBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.troubleshootBox.Location = new System.Drawing.Point(352, 0);
-            this.troubleshootBox.Margin = new System.Windows.Forms.Padding(0);
-            this.troubleshootBox.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.troubleshootBox.MouseState = MaterialSkin.MouseState.HOVER;
-            this.troubleshootBox.Name = "troubleshootBox";
-            this.troubleshootBox.ReadOnly = false;
-            this.troubleshootBox.Ripple = true;
-            this.troubleshootBox.Size = new System.Drawing.Size(201, 37);
-            this.troubleshootBox.TabIndex = 0;
-            this.troubleshootBox.Text = "Troubleshooting text [?]";
-            this.quickHelp.SetToolTip(this.troubleshootBox, "Shows the text that could potentially help you solve the issue");
-            this.troubleshootBox.UseVisualStyleBackColor = true;
-            this.troubleshootBox.CheckedChanged += new System.EventHandler(this.troubleshootBox_CheckedChanged);
-            // 
             // NewUI
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
-            this.ClientSize = new System.Drawing.Size(754, 730);
+            this.ClientSize = new System.Drawing.Size(770, 769);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button1);
@@ -1537,7 +1562,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(714, 208);
             this.Name = "NewUI";
-            this.Text = "Blue Screen Simulator Plus";
+            this.Text = "Blue Screen Simulator Plus {version number}";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.NewUI_FormClosing);
             this.Load += new System.EventHandler(this.NewUi1_Load);
             this.Shown += new System.EventHandler(this.NewUI_Shown);
@@ -1602,7 +1627,6 @@
         private MaterialSkin.Controls.MaterialCheckbox amdBox;
         private MaterialSkin.Controls.MaterialCheckbox stackBox;
         private MaterialSkin.Controls.MaterialCheckbox blinkBox;
-        private System.Windows.Forms.FlowLayoutPanel nineXmessage;
         private MaterialSkin.Controls.MaterialLabel materialLabel4;
         private MaterialSkin.Controls.MaterialCheckbox acpiBox;
         private MaterialSkin.Controls.MaterialCheckbox playSndBox;
@@ -1650,5 +1674,7 @@
         private MaterialSkin.Controls.MaterialCheckbox traceWarnCheck;
         private MaterialSkin.Controls.MaterialCheckbox traceInfoCheck;
         private MaterialSkin.Controls.MaterialCheckbox troubleshootBox;
+        private MaterialSkin.Controls.MaterialButton aboutSettingsButton;
+        public System.Windows.Forms.FlowLayoutPanel nineXmessage;
     }
 }

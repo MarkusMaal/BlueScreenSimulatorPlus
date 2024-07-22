@@ -109,20 +109,31 @@ namespace UltimateBlueScreenSimulator.Forms.Interfaces
             codeContent.Text = code;
         }
 
+        private string PadRand(string code)
+        {
+            string ret = code;
+            while (ret.Length < 16)
+            {
+                ret += "R";
+            }
+            return ret;
+        }
+
         private void ErrorCodeEditor_Load(object sender, EventArgs e)
         {
-            codeContent.Text = me.GetCodes()[0];
-            c1 = me.GetCodes()[0];
-            c2 = me.GetCodes()[1];
-            c3 = me.GetCodes()[2];
-            c4 = me.GetCodes()[3];
+            c1 = PadRand(me.GetCodes()[0]);
+            c2 = PadRand(me.GetCodes()[1]);
+            c3 = PadRand(me.GetCodes()[2]);
+            c4 = PadRand(me.GetCodes()[3]);
+            codeContent.Text = c1;
             topLabel.Text = string.Format(topText, DispCodes(c1, c2, c3, c4));
+            this.Text += " - " + me.GetString("friendlyname");
         }
 
         private bool ValidateField()
         {
             string whitelistedChars = "0123456789ABCDEFR";
-            string filteredString = codeContent.Text;
+            string filteredString = codeContent.Text.ToUpper();
             foreach (char ch in whitelistedChars)
             {
                 filteredString = filteredString.Replace(ch.ToString(), "");
@@ -145,10 +156,10 @@ namespace UltimateBlueScreenSimulator.Forms.Interfaces
             {
                 codeContent.TrailingIcon = Properties.Resources.success;
                 int selected = GetSelectedIndex();
-                c1 = chooseCode1.Checked ? codeContent.Text : c1;
-                c2 = chooseCode2.Checked ? codeContent.Text : c2;
-                c3 = chooseCode3.Checked ? codeContent.Text : c3;
-                c4 = chooseCode4.Checked ? codeContent.Text : c4;
+                c1 = chooseCode1.Checked ? codeContent.Text.ToUpper() : c1;
+                c2 = chooseCode2.Checked ? codeContent.Text.ToUpper() : c2;
+                c3 = chooseCode3.Checked ? codeContent.Text.ToUpper() : c3;
+                c4 = chooseCode4.Checked ? codeContent.Text.ToUpper() : c4;
                 if (init)
                 {
                     me.SetCodes(c1, c2, c3, c4);

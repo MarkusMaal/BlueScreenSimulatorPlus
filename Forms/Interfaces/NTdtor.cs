@@ -28,6 +28,7 @@ namespace UltimateBlueScreenSimulator.Forms.Interfaces
 
         private void NTdtor_Load(object sender, EventArgs e)
         {
+            this.Text += " - " + me.GetString("friendlyname");
             UpdateCodeList();
         }
 
