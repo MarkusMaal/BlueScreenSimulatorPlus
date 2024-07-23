@@ -45,7 +45,7 @@ namespace UltimateBlueScreenSimulator
                     Thread.Sleep(2);
                 }
                 Color bg = me.GetTheme(true); Color fg = me.GetTheme(false);
-                if (this.BackColor == this.ForeColor)
+                if (Program.gs.EnableEggs && (this.BackColor == this.ForeColor))
                 {
                     bg = Color.FromArgb(r.Next(0, 255), r.Next(0, 255), r.Next(0, 255));
                     fg = Color.FromArgb(r.Next(0, 255), r.Next(0, 255), r.Next(0, 255));
@@ -158,7 +158,7 @@ namespace UltimateBlueScreenSimulator
                             break;
                     }
 
-                    if (this.BackColor == this.ForeColor)
+                    if (Program.gs.EnableEggs && (this.BackColor == this.ForeColor))
                     {
                         Color bg = Color.FromArgb(r.Next(0, 255), r.Next(0, 255), r.Next(0, 255));
                         Color fg = Color.FromArgb(r.Next(0, 255), r.Next(0, 255), r.Next(0, 255));

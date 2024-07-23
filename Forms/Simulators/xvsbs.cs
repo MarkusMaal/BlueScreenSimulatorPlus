@@ -43,7 +43,7 @@ namespace UltimateBlueScreenSimulator
                     if (c is AliasedLabel)
                     {
                         c.BackColor = Color.Transparent;
-                        c.ForeColor = Color.Transparent;
+                        c.ForeColor = fg;
                     }
                 }
                 if (Program.gs.EnableEggs)

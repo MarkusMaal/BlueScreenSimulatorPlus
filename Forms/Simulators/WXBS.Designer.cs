@@ -110,8 +110,9 @@
             this.horizontalFlowPanel.Location = new System.Drawing.Point(0, 471);
             this.horizontalFlowPanel.Margin = new System.Windows.Forms.Padding(0, 40, 0, 0);
             this.horizontalFlowPanel.Name = "horizontalFlowPanel";
-            this.horizontalFlowPanel.Size = new System.Drawing.Size(9999, 459);
+            this.horizontalFlowPanel.Size = new System.Drawing.Size(9999, 2000);
             this.horizontalFlowPanel.TabIndex = 3;
+            this.horizontalFlowPanel.WrapContents = false;
             // 
             // qrMargin
             // 

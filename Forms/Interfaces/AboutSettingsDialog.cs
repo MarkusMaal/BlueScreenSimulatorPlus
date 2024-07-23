@@ -243,7 +243,6 @@ namespace UltimateBlueScreenSimulator
                 {
                     primaryServerBox.Enabled = true;
                 }
-                MessageBox.Show(Program.gs.UpdateServer);
                 primaryServerBox.Update();
             }
             if (aboutSettingsTabControl.SelectedTab.Text == "Simulator settings")

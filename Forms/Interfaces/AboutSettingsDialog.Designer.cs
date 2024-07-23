@@ -562,7 +562,7 @@ namespace UltimateBlueScreenSimulator
             this.updateSettingsFlowPanel.Controls.Add(this.autoUpdateRadio);
             this.updateSettingsFlowPanel.Controls.Add(this.noUpdatesRadio);
             this.updateSettingsFlowPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.updateSettingsFlowPanel.Location = new System.Drawing.Point(13, 67);
+            this.updateSettingsFlowPanel.Location = new System.Drawing.Point(13, 69);
             this.updateSettingsFlowPanel.Margin = new System.Windows.Forms.Padding(0, 12, 3, 3);
             this.updateSettingsFlowPanel.Name = "updateSettingsFlowPanel";
             this.updateSettingsFlowPanel.Size = new System.Drawing.Size(540, 74);
@@ -754,7 +754,7 @@ namespace UltimateBlueScreenSimulator
             this.updateSettingsLabel.Depth = 0;
             this.updateSettingsLabel.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.updateSettingsLabel.FontType = MaterialSkin.MaterialSkinManager.fontType.Caption;
-            this.updateSettingsLabel.Location = new System.Drawing.Point(10, 55);
+            this.updateSettingsLabel.Location = new System.Drawing.Point(10, 54);
             this.updateSettingsLabel.MouseState = MaterialSkin.MouseState.HOVER;
             this.updateSettingsLabel.Name = "updateSettingsLabel";
             this.updateSettingsLabel.Size = new System.Drawing.Size(112, 14);
@@ -781,7 +781,7 @@ namespace UltimateBlueScreenSimulator
             this.updateTimeLabel.Depth = 0;
             this.updateTimeLabel.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.updateTimeLabel.FontType = MaterialSkin.MaterialSkinManager.fontType.Caption;
-            this.updateTimeLabel.Location = new System.Drawing.Point(16, 196);
+            this.updateTimeLabel.Location = new System.Drawing.Point(16, 197);
             this.updateTimeLabel.MouseState = MaterialSkin.MouseState.HOVER;
             this.updateTimeLabel.Name = "updateTimeLabel";
             this.updateTimeLabel.Size = new System.Drawing.Size(171, 14);

@@ -129,11 +129,11 @@ namespace UltimateBlueScreenSimulator.Forms.Interfaces
                 {
                     if (textTextBox.Text != "")
                     {
-                        messageList.SelectedItems[i].Text = textTextBox.Text;
+                        messageList.Items[i].Text = textTextBox.Text;
                     }
                     if (subitemTextBox.Text != "")
                     {
-                        messageList.SelectedItems[i].SubItems[1].Text = subitemTextBox.Text;
+                        messageList.Items[i].SubItems[1].Text = subitemTextBox.Text;
                     }
                 } catch
                 {
