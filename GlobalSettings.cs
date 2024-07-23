@@ -129,7 +129,7 @@ namespace UltimateBlueScreenSimulator
             quickhelp = true;
             autosave = true;
             singlesim = "";
-            update_server = "http://markustegelane.eu/app/";
+            update_server = "https://markustegelane.eu/app/";
 
             // runtime settings (these are not persistent)
             errorcode = 0;
@@ -446,7 +446,14 @@ namespace UltimateBlueScreenSimulator
             {
                 Directory.CreateDirectory(Program.prefix);
             }
-            if (File.Exists(Program.prefix + "settings.json"))
+            if (File.Exists("settings.cfg"))
+            {
+                LoadLegacy();
+                File.Delete("settings.cfg");
+                SaveSettings();
+                return this;
+            }
+            else if (File.Exists(Program.prefix + "settings.json"))
             {
                 GlobalSettings settings = new GlobalSettings();
                 this.Log("Info", $"Loading settings from JSON file");
@@ -460,9 +467,9 @@ namespace UltimateBlueScreenSimulator
                     }
                     };
                     settings = JsonSerializer.Deserialize<GlobalSettings>(File.ReadAllText(Program.prefix + "settings.json"), options);
-                    if (File.Exists(Program.prefix + "settings.cfg"))
+                    if (File.Exists("settings.cfg"))
                     {
-                        File.Delete(Program.prefix + "settings.cfg");
+                        File.Delete("settings.cfg");
                     }
                 }
                 catch (DllNotFoundException)
@@ -476,65 +483,70 @@ namespace UltimateBlueScreenSimulator
                     return this;
                 }
                 return settings;
-            } else if (File.Exists("settings.cfg"))
-            {
-                this.Log("Info", $"Loading settings from legacy configuration file");
-                string[] fc = File.ReadAllText("settings.cfg").Split('\n');
-                foreach (string element in fc)
-                {
-                    //Other configurations
-                    if (element.StartsWith("UpdateClose="))
-                    {
-                        PostponeUpdate = Convert.ToBoolean(element.Replace("UpdateClose=", ""));
-                    }
-                    else if (element.StartsWith("HashVerify="))
-                    {
-                        HashVerify = Convert.ToBoolean(element.Replace("HashVerify=", ""));
-                    }
-                    else if (element.StartsWith("AutoUpdate="))
-                    {
-                        AutoUpdate = Convert.ToBoolean(element.Replace("AutoUpdate=", ""));
-                    }
-                    else if (element.StartsWith("ShowCursor="))
-                    {
-                        ShowCursor = Convert.ToBoolean(element.Replace("ShowCursor=", ""));
-                    }
-                    else if (element.StartsWith("MultiMode="))
-                    {
-                        DisplayMode = element.Replace("MultiMode=", "");
-                    }
-                    else if (element.StartsWith("Seecrets="))
-                    {
-                        EnableEggs = Convert.ToBoolean(element.Replace("Seecrets=", ""));
-                    }
-                    else if (element.StartsWith("ScaleMode="))
-                    {
-                        SetScalingFromString(element.Replace("ScaleMode=", ""));
-                    }
-                    else if (element.StartsWith("Server="))
-                    {
-                        UpdateServer = element.Replace("Server=", "");
-                    }
-                    else if (element.StartsWith("Randomness="))
-                    {
-                        Randomness = Convert.ToBoolean(element.Replace("Randomness=", ""));
-                    }
-                    else if (element.StartsWith("AutoDark="))
-                    {
-                        AutoDark = Convert.ToBoolean(element.Replace("AutoDark=", ""));
-                    }
-                    // this skips checking hidden/visible OS-s
-                    // this is a feature that was exclusive to 1.x
-                    else if (element.Contains("\""))
-                    {
-                        break;
-                    }
-                }
-            } else
+            } else 
             {
                 this.Log("Warning", "Settings file does not exist, using defaults");
             }
             return this;
+        }
+
+        /// <summary>
+        /// Loads the configuration file, which is stored in legacy format. Avoid using this, unless you're updating from a previous version and want to carry the settings over.
+        /// </summary>
+        public void LoadLegacy()
+        {
+            this.Log("Info", $"Loading settings from legacy configuration file");
+            string[] fc = File.ReadAllText("settings.cfg").Split('\n');
+            foreach (string element in fc)
+            {
+                //Other configurations
+                if (element.StartsWith("UpdateClose="))
+                {
+                    PostponeUpdate = Convert.ToBoolean(element.Replace("UpdateClose=", ""));
+                }
+                else if (element.StartsWith("HashVerify="))
+                {
+                    HashVerify = Convert.ToBoolean(element.Replace("HashVerify=", ""));
+                }
+                else if (element.StartsWith("AutoUpdate="))
+                {
+                    AutoUpdate = Convert.ToBoolean(element.Replace("AutoUpdate=", ""));
+                }
+                else if (element.StartsWith("ShowCursor="))
+                {
+                    ShowCursor = Convert.ToBoolean(element.Replace("ShowCursor=", ""));
+                }
+                else if (element.StartsWith("MultiMode="))
+                {
+                    DisplayMode = element.Replace("MultiMode=", "");
+                }
+                else if (element.StartsWith("Seecrets="))
+                {
+                    EnableEggs = Convert.ToBoolean(element.Replace("Seecrets=", ""));
+                }
+                else if (element.StartsWith("ScaleMode="))
+                {
+                    SetScalingFromString(element.Replace("ScaleMode=", ""));
+                }
+                else if (element.StartsWith("Server="))
+                {
+                    UpdateServer = element.Replace("Server=", "");
+                }
+                else if (element.StartsWith("Randomness="))
+                {
+                    Randomness = Convert.ToBoolean(element.Replace("Randomness=", ""));
+                }
+                else if (element.StartsWith("AutoDark="))
+                {
+                    AutoDark = Convert.ToBoolean(element.Replace("AutoDark=", ""));
+                }
+                // this skips checking hidden/visible OS-s
+                // this is a feature that was exclusive to 1.x
+                else if (element.Contains("\""))
+                {
+                    break;
+                }
+            }
         }
 
         ///<summary>

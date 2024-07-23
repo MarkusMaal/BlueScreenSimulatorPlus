@@ -135,8 +135,11 @@ namespace UltimateBlueScreenSimulator
                 Application.Run(f1);
                 return gs.ErrorCode;
             }
-            catch (IOException) { DllError(); return 300; }
-            catch (DllNotFoundException) { DllError(); return 300; }
+            catch (Exception e)
+            {
+                MessageBox.Show($"Runtime error.\r\n{e.Message}\r\n{e.StackTrace}", "Blue screen simulator plus", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return 300;
+            }
         }
 
         /// <summary>

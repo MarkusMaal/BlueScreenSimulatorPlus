@@ -198,6 +198,18 @@ namespace UltimateBlueScreenSimulator
                 if (Program.gs.ScaleMode == GlobalSettings.ScaleModes.Bicubic) { scalingModeBox.SelectedIndex = 3; }
                 if (Program.gs.ScaleMode == GlobalSettings.ScaleModes.NearestNeighbour) { scalingModeBox.SelectedIndex = 2; }
                 hideInFullscreenButton.Checked = !Program.gs.ShowCursor;
+                updateImmediatelyRadio.Checked = !Program.gs.UpdateAfterExit;
+                updateOnCloseRadio.Checked = Program.gs.UpdateAfterExit;
+                noUpdatesRadio.Checked = !Program.gs.AutoUpdate;
+                autoUpdateRadio.Checked = Program.gs.AutoUpdate;
+                hashBox.Checked = Program.gs.HashVerify;
+                primaryServerBox.Text = Program.gs.UpdateServer;
+                if (!((primaryServerBox.Text == "http://nossl.markustegelane.eu/app") || (primaryServerBox.Text == "http://markustegelane.eu/app")))
+                {
+                    primaryServerBox.Enabled = true;
+                }
+                aboutSettingsTabControl.TabIndex++;
+                aboutSettingsTabControl.TabIndex--;
             }
             aboutSettingsTabControl.SelectedIndex = tab_id;
         }
@@ -231,6 +243,8 @@ namespace UltimateBlueScreenSimulator
                 {
                     primaryServerBox.Enabled = true;
                 }
+                MessageBox.Show(Program.gs.UpdateServer);
+                primaryServerBox.Update();
             }
             if (aboutSettingsTabControl.SelectedTab.Text == "Simulator settings")
             {
@@ -645,7 +659,10 @@ namespace UltimateBlueScreenSimulator
 
         private void ChangeUpdateServer(object sender, EventArgs e)
         {
-            Program.gs.UpdateServer = primaryServerBox.Text;
+            if (primaryServerBox.Text != "")
+            {
+                Program.gs.UpdateServer = primaryServerBox.Text;
+            }
         }
 
         private void SetToPrimaryServer(object sender, EventArgs e)

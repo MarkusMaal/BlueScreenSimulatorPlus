@@ -25,9 +25,25 @@ namespace UltimateBlueScreenSimulator
         // saving to Local instead of Roaming to avoid error messages about Verifile when transferring the data between computers
         // in a domain-joined system, each computer will need to be verified separately before running the program
         private readonly string filename = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"\Verifile\bssp3.key";
+        private readonly string legacykey = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\bssp2_firstlaunch.txt";
+        private readonly string badkey = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\bssp_firstlaunch.txt";
 
         public Verifile()
         {
+            // renew legacy key (when upgrading from a previous version)
+            if (File.Exists(legacykey) && !File.Exists(filename))
+            {
+                if (!Directory.Exists(new FileInfo(filename).Directory.FullName))
+                {
+                    RecursePaths(new FileInfo(filename).Directory);
+                }
+                File.Copy(legacykey, filename);
+                File.Delete(legacykey);
+            }
+            if (File.Exists(badkey))
+            {
+                File.Delete(badkey);
+            }
             bad = false;
             aa = new ManagementObjectSearcher("root\\CIMV2", "SELECT * FROM Win32_BaseBoard");
         }

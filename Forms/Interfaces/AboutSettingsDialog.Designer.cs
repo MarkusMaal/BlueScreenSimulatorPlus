@@ -734,7 +734,7 @@ namespace UltimateBlueScreenSimulator
             this.primaryServerBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.primaryServerBox.Depth = 0;
             this.primaryServerBox.Enabled = false;
-            this.primaryServerBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.primaryServerBox.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.primaryServerBox.LeadingIcon = null;
             this.primaryServerBox.Location = new System.Drawing.Point(19, 333);
             this.primaryServerBox.MaxLength = 50;
@@ -743,7 +743,7 @@ namespace UltimateBlueScreenSimulator
             this.primaryServerBox.Name = "primaryServerBox";
             this.primaryServerBox.Size = new System.Drawing.Size(687, 36);
             this.primaryServerBox.TabIndex = 10;
-            this.primaryServerBox.Text = "http://nossl.markustegelane.eu/app";
+            this.primaryServerBox.Text = "";
             this.primaryServerBox.TrailingIcon = null;
             this.primaryServerBox.UseTallSize = false;
             this.primaryServerBox.TextChanged += new System.EventHandler(this.ChangeUpdateServer);
