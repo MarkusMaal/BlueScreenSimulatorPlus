@@ -101,7 +101,7 @@ namespace UltimateBlueScreenSimulator
                         );
                         WriteText(formatted_text);
                         break;
-                    case "System is unresponsive (Warning)":
+                    case "System is unresponsive":
                         WriteTitle(titles["Warning"]);
                         WriteText(texts["System is unresponsive"]);
                         break;
@@ -208,6 +208,10 @@ namespace UltimateBlueScreenSimulator
 
         private Bitmap WriteWord(string word, Color bg, Color fg)
         {
+            if (word is null)
+            {
+                word = "";
+            }
             Bitmap bmpres;
             bmpres = GetSymbol(word.Substring(0, 1), bg, fg);
             for (int i = 1; i < word.Length; i++)

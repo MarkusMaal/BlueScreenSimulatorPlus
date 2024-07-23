@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using MaterialSkin;
 using MaterialSkin.Controls;
@@ -55,6 +56,7 @@ namespace UltimateBlueScreenSimulator
                 stringEditor.ForeColor = Color.Gray;
                 stringEditor.BorderStyle = BorderStyle.FixedSingle;
             }*/
+            whereTheButtonsLink.LinkColor = (Program.gs.NightTheme ? Color.White : Color.Blue);
         }
 
         private ListViewItem GetColorListViewItem(string title, Color color)
@@ -64,137 +66,205 @@ namespace UltimateBlueScreenSimulator
                 ImageIndex = 6,
                 Text = title
             };
-            li.SubItems.Add("RGB(" + color.R + ", " + color.G + ", " + color.B + ")");
+            li.SubItems.Add(GenerateColorString(color));
             return li;
+        }
+
+        private string GenerateColorString(Color color)
+        {
+            return "RGB(" + color.R + ", " + color.G + ", " + color.B + ")";
         }
 
         private void WinVers_SelectedIndexChanged(object sender, EventArgs e)
         {
             HideAllProps();
-            MessageView.Clear();
             UpdateMessageView();
         }
 
         private void UpdateMessageView()
         {
-            MessageView.Columns.Add("Property");
-            MessageView.Columns.Add("Value");
-            MessageView.Columns[0].Width = 250;
-            MessageView.Columns[1].Width = 150;
-            IDictionary<string, string> titles = me.GetTitles();
-            IDictionary<string, string> texts = me.GetTexts();
-            if ((me.GetString("os") == "Windows 8/8.1") || me.GetBool("winxplus"))
+            if (MessageView.Items.Count == 0)
             {
-                ListViewItem li = new ListViewItem
+                MessageView.Columns.Add("Property");
+                MessageView.Columns.Add("Value");
+                MessageView.Columns[0].Width = 250;
+                MessageView.Columns[1].Width = 200;
+                IDictionary<string, string> titles = me.GetTitles();
+                IDictionary<string, string> texts = me.GetTexts();
+                if ((me.GetString("os") == "Windows 8/8.1") || me.GetBool("winxplus"))
                 {
-                    Text = "String: Emoticon"
-                };
-                li.SubItems.Add(me.GetString("emoticon"));
-                li.ImageIndex = 4;
-                MessageView.Items.Add(li);
-            }
-            foreach (KeyValuePair<string, string> entry in titles)
-            {
-                ListViewItem li = new ListViewItem
+                    ListViewItem li = new ListViewItem
+                    {
+                        Text = "String: Emoticon"
+                    };
+                    li.SubItems.Add(me.GetString("emoticon"));
+                    li.ImageIndex = 4;
+                    MessageView.Items.Add(li);
+                }
+                foreach (KeyValuePair<string, string> entry in titles)
                 {
-                    Text = "Title: " + entry.Key
-                };
-                li.SubItems.Add(entry.Value);
-                li.ImageIndex = 4;
-                MessageView.Items.Add(li);
-            }
-            foreach (KeyValuePair<string, string> entry in texts)
-            {
-                ListViewItem li = new ListViewItem
+                    ListViewItem li = new ListViewItem
+                    {
+                        Text = "Title: " + entry.Key
+                    };
+                    li.SubItems.Add(entry.Value);
+                    li.ImageIndex = 4;
+                    MessageView.Items.Add(li);
+                }
+                foreach (KeyValuePair<string, string> entry in texts)
                 {
-                    Text = "Text: " + entry.Key
-                };
-                li.SubItems.Add(entry.Value);
-                li.ImageIndex = 4;
-                MessageView.Items.Add(li);
-            }
-            if (me.GetBool("font_support"))
-            {
-                ListViewItem lsti = new ListViewItem
+                    ListViewItem li = new ListViewItem
+                    {
+                        Text = "Text: " + entry.Key
+                    };
+                    li.SubItems.Add(entry.Value);
+                    li.ImageIndex = 4;
+                    MessageView.Items.Add(li);
+                }
+                if (me.GetBool("font_support"))
                 {
-                    Text = "Font"
-                };
-                lsti.SubItems.Add(me.GetFont().FontFamily.Name + " " + me.GetFont().Size.ToString() + "pt");
-                lsti.ImageIndex = 5;
-                MessageView.Items.Add(lsti);
-            }
-            if (me.GetString("os") == "Windows CE")
-            {
-                ListViewItem lsti = new ListViewItem
+                    ListViewItem lsti = new ListViewItem
+                    {
+                        Text = "Font"
+                    };
+                    lsti.SubItems.Add(me.GetFont().FontFamily.Name + " " + me.GetFont().Size.ToString() + "pt");
+                    lsti.ImageIndex = 5;
+                    MessageView.Items.Add(lsti);
+                }
+                if (me.GetString("os") == "Windows CE")
                 {
-                    Text = "Set restart timer"
-                };
-                lsti.SubItems.Add(me.GetInt("timer").ToString() + " sec");
-                lsti.ImageIndex = 5;
-                MessageView.Items.Add(lsti);
-            }
-            if (me.GetBool("blinkblink"))
-            {
-                ListViewItem lsti = new ListViewItem
+                    ListViewItem lsti = new ListViewItem
+                    {
+                        Text = "Set restart timer"
+                    };
+                    lsti.SubItems.Add(me.GetInt("timer").ToString() + " sec");
+                    lsti.ImageIndex = 5;
+                    MessageView.Items.Add(lsti);
+                }
+                if (me.GetBool("blinkblink"))
                 {
-                    Text = "Blink speed"
-                };
-                lsti.SubItems.Add(me.GetInt("blink_speed").ToString() + "ms");
-                lsti.ImageIndex = 5;
-                MessageView.Items.Add(lsti);
-            }
-            if (me.GetString("os") == "Windows 1.x/2.x")
-            {
-                ListViewItem lsti = new ListViewItem
+                    ListViewItem lsti = new ListViewItem
+                    {
+                        Text = "Blink speed"
+                    };
+                    lsti.SubItems.Add(me.GetInt("blink_speed").ToString() + "ms");
+                    lsti.ImageIndex = 5;
+                    MessageView.Items.Add(lsti);
+                }
+                if (me.GetString("os") == "Windows 1.x/2.x")
                 {
-                    Text = "Tick rate"
-                };
-                lsti.SubItems.Add(me.GetInt("blink_speed").ToString() + "ms");
-                lsti.ImageIndex = 5;
-                MessageView.Items.Add(lsti);
-            }
-            if (me.GetBool("winxplus"))
-            {
-                ListViewItem lsti = new ListViewItem
+                    ListViewItem lsti = new ListViewItem
+                    {
+                        Text = "Tick rate"
+                    };
+                    lsti.SubItems.Add(me.GetInt("blink_speed").ToString() + "ms");
+                    lsti.ImageIndex = 5;
+                    MessageView.Items.Add(lsti);
+                }
+                if (me.GetBool("winxplus"))
                 {
-                    Text = "QR code image"
-                };
-                lsti.SubItems.Add(me.GetString("qr_file").Replace("local:0", "Default").Replace("local:1", "Transparent"));
-                lsti.ImageIndex = 5;
-                MessageView.Items.Add(lsti);
+                    ListViewItem lsti = new ListViewItem
+                    {
+                        Text = "QR code image"
+                    };
+                    lsti.SubItems.Add(me.GetString("qr_file").Replace("local:0", "Default").Replace("local:1", "Transparent"));
+                    lsti.ImageIndex = 5;
+                    MessageView.Items.Add(lsti);
 
-                lsti = new ListViewItem
-                {
-                    Text = "QR code size"
-                };
-                lsti.SubItems.Add(me.GetInt("qr_size").ToString());
-                lsti.ImageIndex = 5;
-                MessageView.Items.Add(lsti);
-            }
+                    lsti = new ListViewItem
+                    {
+                        Text = "QR code size"
+                    };
+                    lsti.SubItems.Add(me.GetInt("qr_size").ToString());
+                    lsti.ImageIndex = 5;
+                    MessageView.Items.Add(lsti);
+                }
 
-            if ((me.GetString("os") == "Windows 8/8.1") || me.GetBool("winxplus"))
-            {
-                ListViewItem li = new ListViewItem
+                if ((me.GetString("os") == "Windows 8/8.1") || me.GetBool("winxplus"))
                 {
-                    Text = "Horizontal margin"
-                };
-                li.SubItems.Add(me.GetInt("margin-x").ToString() + "%");
-                li.ImageIndex = 5;
-                MessageView.Items.Add(li);
-                li = new ListViewItem
+                    ListViewItem li = new ListViewItem
+                    {
+                        Text = "Horizontal margin"
+                    };
+                    li.SubItems.Add(me.GetInt("margin-x").ToString() + "%");
+                    li.ImageIndex = 5;
+                    MessageView.Items.Add(li);
+                    li = new ListViewItem
+                    {
+                        Text = "Vertical margin"
+                    };
+                    li.SubItems.Add(me.GetInt("margin-y").ToString() + "%");
+                    li.ImageIndex = 5;
+                    MessageView.Items.Add(li);
+                }
+                MessageView.Items.Add(GetColorListViewItem("Background color", me.GetTheme(true)));
+                MessageView.Items.Add(GetColorListViewItem("Foreground color", me.GetTheme(false)));
+                if ((me.GetString("os") == "Windows 3.1x") || (me.GetString("os") == "Windows 9x/Me") || (me.GetString("os") == "BOOTMGR"))
                 {
-                    Text = "Vertical margin"
-                };
-                li.SubItems.Add(me.GetInt("margin-y").ToString() + "%");
-                li.ImageIndex = 5;
-                MessageView.Items.Add(li);
+                    MessageView.Items.Add(GetColorListViewItem("Highlight background", me.GetTheme(true, true)));
+                    MessageView.Items.Add(GetColorListViewItem("Highlight foreground", me.GetTheme(false, true)));
+                }
             }
-            MessageView.Items.Add(GetColorListViewItem("Background color", me.GetTheme(true)));
-            MessageView.Items.Add(GetColorListViewItem("Foreground color", me.GetTheme(false)));
-            if ((me.GetString("os") == "Windows 3.1x") || (me.GetString("os") == "Windows 9x/Me") || (me.GetString("os") == "BOOTMGR"))
+            else
             {
-                MessageView.Items.Add(GetColorListViewItem("Highlight background", me.GetTheme(true, true)));
-                MessageView.Items.Add(GetColorListViewItem("Highlight foreground", me.GetTheme(false, true)));
+                foreach (ListViewItem lvi in MessageView.Items)
+                {
+                    string key = "";
+                    if (lvi.Text.Contains(":"))
+                    {
+                        key = string.Join(":", lvi.Text.Split(':').Skip(1).ToArray()).Substring(1);
+                    }
+                    if (lvi.Text.StartsWith("String: "))
+                    {
+                        lvi.SubItems[1].Text = me.GetString(key.ToLower());
+                    }
+                    else if (lvi.Text.StartsWith("Text: "))
+                    {
+                        lvi.SubItems[1].Text = me.GetTexts()[key];
+                    }
+                    else if (lvi.Text.StartsWith("Title: "))
+                    {
+                        lvi.SubItems[1].Text = me.GetTitles()[key];
+                    } else if (lvi.Text == "Font")
+                    {
+                        lvi.SubItems[1].Text = me.GetFont().FontFamily.Name + " " + me.GetFont().Size.ToString() + "pt";
+                    }
+                    switch (lvi.Text)
+                    {
+                        case "Set restart timer":
+                            lvi.SubItems[1].Text = me.GetInt("timer").ToString() + " sec";
+                            break;
+                        case "Blink speed":
+                        case "Tick rate":
+                            lvi.SubItems[1].Text = me.GetInt("blink_speed").ToString() + "ms";
+                            break;
+                        case "QR code image":
+                            lvi.SubItems[1].Text = me.GetString("qr_file").Replace("local:0", "Default").Replace("local:1", "Transparent");
+                            break;
+                        case "QR code size":
+                            lvi.SubItems[1].Text = me.GetInt("qr_size").ToString();
+                            break;
+                        case "Horizontal margin":
+                            lvi.SubItems[1].Text = me.GetInt("margin-x").ToString() + "%";
+                            break;
+                        case "Vertical margin":
+                            lvi.SubItems[1].Text = me.GetInt("margin-y").ToString() + "%";
+                            break;
+                        case "Background color":
+                            lvi.SubItems[1].Text = GenerateColorString(me.GetTheme(true));
+                            break;
+                        case "Foreground color":
+                            lvi.SubItems[1].Text = GenerateColorString(me.GetTheme(false));
+                            break;
+                        case "Highlight background":
+                            lvi.SubItems[1].Text = GenerateColorString(me.GetTheme(true, true));
+                            break;
+                        case "Highlight foreground":
+                            lvi.SubItems[1].Text = GenerateColorString(me.GetTheme(false, true));
+                            break;
+                    }
+                }
+                MessageView.Refresh();
             }
         }
 
@@ -215,6 +285,7 @@ namespace UltimateBlueScreenSimulator
 
         private void MessageView_SelectedIndexChanged(object sender, EventArgs e)
         {
+            
             if (MessageView.SelectedIndices.Count > 0)
             {
                 string selection = MessageView.SelectedItems[0].Text;
@@ -370,13 +441,7 @@ namespace UltimateBlueScreenSimulator
             {
                 HideAllProps();
             }
-            ListView.SelectedIndexCollection backup = MessageView.SelectedIndices;
-            MessageView.Clear();
             UpdateMessageView();
-            foreach (int selIdx in backup)
-            {
-                MessageView.SelectedIndices.Add(selIdx);
-            }
         }
 
         private void TextBox1_TextChanged(object sender, EventArgs e)
@@ -418,7 +483,6 @@ namespace UltimateBlueScreenSimulator
                 else if (!theme_bg && !theme_hl) { fg = colorChooser.Color; }
                 me.SetTheme(bg, fg);
                 me.SetTheme(hbg, hfg, true);
-                MessageView.Clear();
                 UpdateMessageView();
             }
         }
@@ -439,7 +503,6 @@ namespace UltimateBlueScreenSimulator
             {
                 me.SetFont(fontChooser.Font.FontFamily.Name, fontChooser.Font.Size, fontChooser.Font.Style);
                 fontPreview.Font = me.GetFont();
-                MessageView.Clear();
                 UpdateMessageView();
             }
         }
@@ -470,7 +533,6 @@ namespace UltimateBlueScreenSimulator
             {
                 me.SetString("qr_file", customQRBrowser.FileName);
                 filenameLabel.Text = "Filename: " + customQRBrowser.FileName;
-                MessageView.Clear();
                 UpdateMessageView();
             }
         }
@@ -481,7 +543,6 @@ namespace UltimateBlueScreenSimulator
             {
                 me.SetString("qr_file", "local:1");
                 filenameLabel.Text = "";
-                MessageView.Clear();
                 UpdateMessageView();
             }
         }
@@ -492,7 +553,6 @@ namespace UltimateBlueScreenSimulator
             {
                 me.SetString("qr_file", "local:0");
                 filenameLabel.Text = "";
-                MessageView.Clear();
                 UpdateMessageView();
             }
         }

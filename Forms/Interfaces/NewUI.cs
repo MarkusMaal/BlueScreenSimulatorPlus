@@ -1450,6 +1450,10 @@ namespace UltimateBlueScreenSimulator
                 {
                     new ClickIt().Show();
                 }
+                else if ((e.KeyCode == Keys.K) && e.Control)
+                {
+                    MessageBox.Show("Karrots are good for your eyesight", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
             if (!Program.gs.DevBuild && (e.KeyCode == Keys.F12))
             {

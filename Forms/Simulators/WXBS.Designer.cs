@@ -36,6 +36,7 @@
             this.progressIndicator = new System.Windows.Forms.Label();
             this.horizontalFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.qrMargin = new System.Windows.Forms.Panel();
+            this.qrCode = new System.Windows.Forms.PictureBox();
             this.supportContainer = new System.Windows.Forms.Panel();
             this.errorCode = new System.Windows.Forms.Label();
             this.supportInfo = new System.Windows.Forms.Label();
@@ -44,11 +45,10 @@
             this.memCodes = new System.Windows.Forms.Label();
             this.screenUpdater = new System.Windows.Forms.Timer(this.components);
             this.windowsIcons = new System.Windows.Forms.ImageList(this.components);
-            this.qrCode = new System.Windows.Forms.PictureBox();
             this.verticalFlowPanel.SuspendLayout();
             this.horizontalFlowPanel.SuspendLayout();
-            this.supportContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.qrCode)).BeginInit();
+            this.supportContainer.SuspendLayout();
             this.SuspendLayout();
             // 
             // verticalFlowPanel
@@ -120,6 +120,16 @@
             this.qrMargin.Size = new System.Drawing.Size(90, 212);
             this.qrMargin.TabIndex = 2;
             // 
+            // qrCode
+            // 
+            this.qrCode.Image = global::UltimateBlueScreenSimulator.Properties.Resources.bsodqr;
+            this.qrCode.Location = new System.Drawing.Point(99, 3);
+            this.qrCode.Name = "qrCode";
+            this.qrCode.Size = new System.Drawing.Size(110, 110);
+            this.qrCode.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.qrCode.TabIndex = 0;
+            this.qrCode.TabStop = false;
+            // 
             // supportContainer
             // 
             this.supportContainer.BackColor = System.Drawing.Color.Transparent;
@@ -128,7 +138,7 @@
             this.supportContainer.Location = new System.Drawing.Point(227, 3);
             this.supportContainer.Margin = new System.Windows.Forms.Padding(15, 3, 3, 3);
             this.supportContainer.Name = "supportContainer";
-            this.supportContainer.Size = new System.Drawing.Size(825, 127);
+            this.supportContainer.Size = new System.Drawing.Size(825, 153);
             this.supportContainer.TabIndex = 1;
             // 
             // errorCode
@@ -137,7 +147,7 @@
             this.errorCode.Location = new System.Drawing.Point(0, 56);
             this.errorCode.Margin = new System.Windows.Forms.Padding(3, 20, 3, 0);
             this.errorCode.Name = "errorCode";
-            this.errorCode.Size = new System.Drawing.Size(1000, 133);
+            this.errorCode.Size = new System.Drawing.Size(1000, 156);
             this.errorCode.TabIndex = 4;
             this.errorCode.Text = "If you call a support person, give them this info:\r\n\r\nStop code: ";
             // 
@@ -196,16 +206,6 @@
             this.windowsIcons.Images.SetKeyName(2, "Dakirby309-Windows-8-Metro-Folders-OS-Windows-8-Metro.ico");
             this.windowsIcons.Images.SetKeyName(3, "new-windows-logo (2).ico");
             // 
-            // qrCode
-            // 
-            this.qrCode.Image = global::UltimateBlueScreenSimulator.Properties.Resources.bsodqr;
-            this.qrCode.Location = new System.Drawing.Point(99, 3);
-            this.qrCode.Name = "qrCode";
-            this.qrCode.Size = new System.Drawing.Size(110, 110);
-            this.qrCode.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.qrCode.TabIndex = 0;
-            this.qrCode.TabStop = false;
-            // 
             // WXBS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -235,8 +235,8 @@
             this.verticalFlowPanel.ResumeLayout(false);
             this.verticalFlowPanel.PerformLayout();
             this.horizontalFlowPanel.ResumeLayout(false);
-            this.supportContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.qrCode)).EndInit();
+            this.supportContainer.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
