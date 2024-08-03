@@ -1,4 +1,4 @@
-# BlueScreenSimulatorPlus (master branch)
+# BlueScreenSimulatorPlus (experimental branch)
 Open source code for BSSP. This is an enhanced blue screen simulator application for Windows. Use Visual Studio to recompile.
 
 Codename: ModestIndigo
@@ -68,16 +68,6 @@ Enums can be defined like so:
 		Admin,
 		Restricted,
 		Developer
-	}
-```
-
-To make a setting persistent you may add these lines to SaveSettings method:
-```C#
-	public void SaveSettings()
-	{
-		//...
-		sb.AppendLine($"MySetting={MySetting}");
-		//...
 	}
 ```
 
