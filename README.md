@@ -3,7 +3,7 @@ Open source code for BSSP. This is an enhanced blue screen simulator application
 
 Codename: ModestIndigo
 
-Version 3.0
+Version 3.01
 
 \{ \} markus' software // \{ \} markuse tarkvara
 
