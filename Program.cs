@@ -43,7 +43,7 @@ namespace UltimateBlueScreenSimulator
         public static int load_progress = 100;
         public static string load_message = "Initializing...";
         public static bool hidden = false;
-        internal static string changelog = "+ New user interface!\n+ Trace logging\n+ New splash screen with status messages\n+ DPI scaling awareness\n+ Improved random blue screen generator with support for custom seeds\n+ Streamlined codebase\n+ New simulators: Windows NT 3.1 and 8 Beta\n+ New code editor interfaces\n+ Updated meta-error\n+ New error type options for Windows 9x blue screens\n+ Half resolution option for Windows 1.x/2.x\n+ Tick rate under advanced options for Windows 1.x/2.x\n+ Screenshot by pressing F2 in windowed mode\n+ Rainbow screen option\n+ Embed executable\n+ Configurable color schemes for UI and better night mode\n+ Autosave/autoload\n+ Troubleshoot toggle for Windows NT 3.x/4.0\n+ Appearance tab in settings\n* Many bug fixes!\n* Major code refactoring\n- Removed legacy interface\n- Removed custom option for error code/description (replaced by CUSTOMIZE button)";
+        internal static string changelog = "* Fixed emoticon alignment for Windows 8+ blue screen when using ultrawide displays\n* Upgraded vulnerable NuGet packages to latest versions";
 
         public static bool hide_splash = false;
         public static bool halt = false;

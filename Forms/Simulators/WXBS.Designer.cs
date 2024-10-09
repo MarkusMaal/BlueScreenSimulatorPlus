@@ -69,11 +69,11 @@
             // 
             this.emoticonLabel.AutoSize = true;
             this.emoticonLabel.Font = new System.Drawing.Font("Segoe UI Semilight", 102F);
-            this.emoticonLabel.Location = new System.Drawing.Point(60, 0);
-            this.emoticonLabel.Margin = new System.Windows.Forms.Padding(60, 0, 3, 0);
+            this.emoticonLabel.Location = new System.Drawing.Point(0, 0);
+            this.emoticonLabel.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.emoticonLabel.Name = "emoticonLabel";
-            this.emoticonLabel.Padding = new System.Windows.Forms.Padding(0, 80, 0, 0);
-            this.emoticonLabel.Size = new System.Drawing.Size(145, 260);
+            this.emoticonLabel.Padding = new System.Windows.Forms.Padding(60, 80, 0, 0);
+            this.emoticonLabel.Size = new System.Drawing.Size(205, 260);
             this.emoticonLabel.TabIndex = 0;
             this.emoticonLabel.Text = ":(";
             // 

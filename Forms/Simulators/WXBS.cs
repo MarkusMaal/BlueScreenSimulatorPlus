@@ -150,7 +150,7 @@ namespace UltimateBlueScreenSimulator
                 qrMargin.Width = Convert.ToInt32(this.Width * ((double)me.GetInt("margin-x") / 100.0)) - 10;
                 yourPCranLabel.Padding = new Padding(qrMargin.Width - 3, 0, 0, 0);
                 progressIndicator.Padding = yourPCranLabel.Padding;
-                emoticonLabel.Margin = new Padding(Convert.ToInt32(qrMargin.Width * 0.8), 0, 0, 0);
+                emoticonLabel.Margin = new Padding(yourPCranLabel.Padding.Left - (int)(emoticonLabel.Width * 0.2), 0, 0, 0);
                 horizontalFlowPanel.Width = this.Width - 10;
                 if (w8 == false)
                 {
@@ -310,7 +310,7 @@ namespace UltimateBlueScreenSimulator
             qrMargin.Width = Convert.ToInt32(this.Width * ((double)me.GetInt("margin-x") / 100.0)) - 10;
             yourPCranLabel.Padding = new Padding(qrMargin.Width - 3, 0, 0, 0);
             progressIndicator.Padding = yourPCranLabel.Padding;
-            emoticonLabel.Margin = new Padding(Convert.ToInt32(qrMargin.Width * 0.77), 0, 0, 0);
+            emoticonLabel.Margin = new Padding(yourPCranLabel.Padding.Left - (int)(emoticonLabel.Width * 0.2), 0, 0, 0);
             horizontalFlowPanel.Width = this.Width - 10;
 
             if (qr == true)
