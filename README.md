@@ -1,9 +1,9 @@
-# BlueScreenSimulatorPlus (experimental branch)
+# BlueScreenSimulatorPlus (master branch)
 Open source code for BSSP. This is an enhanced blue screen simulator application for Windows. Use Visual Studio to recompile.
 
 Codename: ModestIndigo
 
-Version 3.01
+Version 3.02
 
 \{ \} markus' software // \{ \} markuse tarkvara
 
