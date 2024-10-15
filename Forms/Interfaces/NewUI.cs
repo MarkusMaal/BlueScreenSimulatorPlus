@@ -589,6 +589,7 @@ namespace UltimateBlueScreenSimulator
 
         internal BlueScreen RandFunction(bool shiftDown)
         {
+            if (me == null) { me = new BlueScreen(); }
             ulong seed = (ulong)DateTime.Now.Ticks;
             bool isNumeric = ulong.TryParse(textBox1.Text, out _);
             if (textBox1.Text != "")
@@ -631,6 +632,7 @@ namespace UltimateBlueScreenSimulator
             {
                 bs.SetString("emoticon", ":)");
             }
+            if (comboBox1.Items.Count == 0) { Program.ReloadNTErrors(); }
             bs.SetString("code", comboBox1.Items[r.Next(0, comboBox1.Items.Count - 1)].ToString());
             if (bs.GetString("os") != "Windows 3.1x") {
                 bs.SetString("screen_mode", comboBox2.Items[r.Next(0, comboBox2.Items.Count - 1)].ToString());
@@ -1673,6 +1675,7 @@ namespace UltimateBlueScreenSimulator
             {
                 string[] c = me.GetCodes();
                 string code = nineXErrorCode.Text.Split(':')[0];
+                if (c == null) { c = new string[] { "RRRRRRRRRRRRRRRR", "RRRRRRRRRRRRRRRR", "RRRRRRRRRRRRRRRR", "RRRRRRRRRRRRRRRR" }; }
                 try
                 {
                     me.SetCodes(code + c[0].Substring(2), c[1], c[2], c[3]);
@@ -1685,9 +1688,10 @@ namespace UltimateBlueScreenSimulator
 
         private void materialButton2_Click(object sender, EventArgs e)
         {
-            MessageTableEditor mte = new MessageTableEditor();
-            mte.nx_errors = true;
-            mte.ShowDialog();
+            new MessageTableEditor
+            {
+                nx_errors = true
+            }.ShowDialog();
         }
 
         private void TextBox1_TextChanged(object sender, EventArgs e)
