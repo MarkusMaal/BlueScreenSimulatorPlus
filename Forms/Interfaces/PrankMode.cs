@@ -373,7 +373,7 @@ namespace UltimateBlueScreenSimulator
                     {
                         if (winver.Contains(Program.templates.GetAt(i).GetString("os")))
                         {
-                            Program.f1.me = Program.templates.GetAt(i);
+                            UIActions.me = Program.templates.GetAt(i);
                             Program.f1.windowVersion.SelectedIndex = Program.f1.windowVersion.Items.Count - 1 - i;
                         }
                     }
@@ -505,7 +505,7 @@ namespace UltimateBlueScreenSimulator
         {
             if (matchAllRadio.Checked)
             {
-                letCloseBox.Enabled = !blackninja.Contains(Program.f1.me.GetString("os"));
+                letCloseBox.Enabled = !blackninja.Contains(UIActions.me.GetString("os"));
                 letCloseBox.Checked = true;
             } else
             {

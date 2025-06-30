@@ -121,296 +121,22 @@ namespace UltimateBlueScreenSimulator
                 linkLabel1.Location = new Point(label1.Location.X + label1.Width, linkLabel1.Location.Y);
                 windowVersion.Visible = false;
             }
-            //hide all controls
-            WXOptions.Visible = false;
-            errorCode.Visible = false;
-            nineXmessage.Visible = false;
-            serverBox.Visible = false;
-            greenBox.Visible = false;
-            qrBox.Visible = false;
-            checkBox1.Visible = false;
-            winMode.Visible = false;
-            acpiBox.Visible = false;
-            amdBox.Visible = false;
-            stackBox.Visible = false;
-            checkBox2.Enabled = true;
-            ntPanel.Visible = false;
-            memoryBox.Visible = false;
-            dumpBox.Visible = false;
-            winPanel.Visible = false;
-            addInfFile.Enabled = false;
-            advNTButton.Visible = false;
-            dumpBox.Enabled = true;
-            eCodeEditButton.Visible = false;
-            devPCBox.Visible = false;
-            progressTuneButton.Visible = false;
-            progressTunerToolStripMenuItem.Enabled = false;
-            blackScreenBox.Visible = false;
+
+            UIActions.HideSelection(this);
+
             try
             {
                 // set current bluescreen
-                me = Program.templates.GetAt(Program.templates.Count - 1 - windowVersion.SelectedIndex);
-            } catch (Exception ex)
+                if (!Program.gs.DisplayOne)
+                {
+                    me = Program.templates.GetAt(Program.templates.Count - 1 - windowVersion.SelectedIndex);
+                }
+                UIActions.ResetSelection(this, me);
+            }
+            catch (Exception ex) when (!Debugger.IsAttached)
             {
                 me.Crash(ex, "OrangeScreen");
             }
-            // set control visibility for specific OS-es
-            if (me.GetString("os") == "Windows 11")
-            {
-                WXOptions.Visible = true;
-                serverBox.Visible = true;
-                qrBox.Visible = true;
-                errorCode.Visible = true;
-                autoBox.Checked = true;
-                checkBox1.Visible = true;
-                winMode.Visible = true;
-                memoryBox.Visible = true;
-                eCodeEditButton.Visible = true;
-                blackScreenBox.Visible = true;
-                progressTuneButton.Visible = true;
-                progressTunerToolStripMenuItem.Enabled = true;
-                blackScreenBox.Checked = me.GetBool("blackscreen");
-            }
-            else if (me.GetString("os") == "Windows 10")
-            {
-                WXOptions.Visible = true;
-                serverBox.Visible = true;
-                greenBox.Visible = true;
-                qrBox.Visible = true;
-                errorCode.Visible = true;
-                autoBox.Checked = true;
-                checkBox1.Visible = true;
-                winMode.Visible = true;
-                memoryBox.Visible = true;
-                eCodeEditButton.Visible = true;
-                progressTunerToolStripMenuItem.Enabled = true;
-                devPCBox.Visible = true;
-                progressTuneButton.Visible = true;
-            }
-            else if (me.GetString("os").StartsWith("Windows 8"))
-            {
-                WXOptions.Visible = true;
-                errorCode.Visible = true;
-                checkBox1.Visible = true;
-                winMode.Visible = true;
-                memoryBox.Visible = true;
-                eCodeEditButton.Visible = true;
-                progressTunerToolStripMenuItem.Enabled = true;
-                progressTuneButton.Visible = true;
-            }
-            else if ((me.GetString("os") == "Windows Vista") || (me.GetString("os") == "Windows 7"))
-            {
-                errorCode.Visible = true;
-                winMode.Visible = true;
-                acpiBox.Visible = true;
-                checkBox1.Visible = true;
-                autoBox.Visible = true;
-                dumpBox.Visible = true;
-                addInfFile.Enabled = true;
-                advNTButton.Visible = true;
-                eCodeEditButton.Visible = true;
-                progressTunerToolStripMenuItem.Enabled = true;
-            }
-            else if (me.GetString("os") == "Windows XP")
-            {
-                errorCode.Visible = true;
-                winMode.Visible = true;
-                checkBox1.Visible = true;
-                autoBox.Visible = true;
-                dumpBox.Visible = true;
-                addInfFile.Enabled = true;
-                advNTButton.Visible = true;
-                eCodeEditButton.Visible = true;
-            }
-            else if (me.GetString("os") == "Windows 2000")
-            {
-                errorCode.Visible = true;
-                winMode.Visible = true;
-                checkBox1.Checked = true;
-                eCodeEditButton.Visible = true;
-                advNTButton.Visible = true;
-            }
-            else if (me.GetString("os") == "Windows 9x/Me")
-            {
-                nineXmessage.Visible = true;
-                winMode.Visible = true;
-                eCodeEditButton.Visible = true;
-            }
-            else if (me.GetString("os") == "Windows CE")
-            {
-                winMode.Visible = true;
-                errorCode.Visible = true;
-                checkBox2.Checked = false;
-                checkBox2.Enabled = false;
-                textBox2.Enabled = false;
-            }
-            else if (me.GetString("os") == "Windows NT 3.x/4.0")
-            {
-                errorCode.Visible = true;
-                amdBox.Visible = true;
-                stackBox.Visible = true;
-                ntPanel.Visible = true;
-                winMode.Visible = true;
-                advNTButton.Visible = true;
-                eCodeEditButton.Visible = true;
-            }
-            else if (me.GetString("os") == "Windows 3.1x")
-            {
-                winMode.Visible = true;
-            }
-            else if (me.GetString("os") == "Windows 1.x/2.x")
-            {
-                winMode.Visible = true;
-                winPanel.Visible = true;
-            }
-            bool inlist = false;
-            foreach (string item in comboBox1.Items)
-            {
-                if (item == me.GetString("code"))
-                {
-                    inlist = true;
-                }
-            }
-            customCheckBox.Checked = !inlist;
-            codeCustomizationToolStripMenuItem.Enabled = eCodeEditButton.Visible;
-            advancedNTOptionsToolStripMenuItem.Enabled = advNTButton.Visible;
-            // load options for current bluescreen
-            autoBox.Checked = me.GetBool("autoclose");
-            serverBox.Checked = me.GetBool("server");
-            greenBox.Checked = me.GetBool("green");
-            qrBox.Checked = me.GetBool("qr");
-            comboBox1.SelectedItem = me.GetString("code");
-            comboBox2.SelectedItem = me.GetString("screen_mode");
-            checkBox1.Checked = me.GetBool("show_description");
-            checkBox2.Checked = me.GetBool("show_file");
-            textBox2.Text = me.GetString("culprit");
-            amdBox.Checked = me.GetBool("amd");
-            stackBox.Checked = me.GetBool("stack_trace");
-            blinkBox.Checked = me.GetBool("blink");
-            acpiBox.Checked = me.GetBool("acpi");
-            playSndBox.Checked = me.GetBool("playsound");
-            waterBox.Checked = me.GetBool("watermark");
-            winMode.Checked = me.GetBool("windowed");
-            if (acpiBox.Checked)
-            {
-                dumpBox.Enabled = false;
-            }
-            win1startup.Checked = false;
-            win2startup.Checked = false;
-            nostartup.Checked = false;
-            switch (me.GetString("qr_file"))
-            {
-                case "local:0":
-                    win1startup.Checked = true;
-                    break;
-                case "local:1":
-                    win2startup.Checked = true;
-                    break;
-                case "local:null":
-                    nostartup.Checked = true;
-                    break;
-            }
-        }
-
-        public void GetOS()
-        {
-            windowVersion.Items.Clear();
-            for (int i = Program.templates.Count - 1; i >= 0 ; i--)
-            {
-                windowVersion.Items.Add(Program.templates.GetAt(i).GetString("friendlyname"));
-            }
-            WXOptions.Visible = false;
-            errorCode.Visible = false;
-            nineXmessage.Visible = false;
-            serverBox.Visible = false;
-            greenBox.Visible = false;
-            qrBox.Visible = false;
-            checkBox1.Visible = false;
-            winMode.Visible = false;
-            acpiBox.Visible = false;
-            amdBox.Visible = false;
-            stackBox.Visible = false;
-            checkBox2.Enabled = true;
-            ntPanel.Visible = false;
-            if (windowVersion.Items.Count > 0) { windowVersion.SelectedIndex = 0; }
-            string winver = "";
-            int os_build = 0;
-            try
-            {
-                winver = Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion", "ProductName", "").ToString();
-                os_build = Convert.ToInt32(Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion", "CurrentBuild", "0").ToString());
-            }
-            catch
-            {
-            }
-            if (specificos != "")
-            {
-                winver = specificos;
-                specificos = "";
-            }
-            //this code identifies Windows 11
-            if (os_build >= 22000)
-            {
-                SetOS("Windows 11");
-            }
-            //this code identifies Windows 10
-            else if (winver.Contains("Windows 10"))
-            {
-                SetOS("Windows 10");
-            }
-            //this code identifies Windows 8 or Windows 8.1
-            else if (winver.Contains("Windows 8"))
-            {
-                SetOS("Windows 8");
-            }
-            //this code identifies Windows 7
-            else if (winver.Contains("Windows 7"))
-            {
-                SetOS("Windows 7");
-            }
-            //this code identifies Windows Vista
-            else if (winver.Contains("Windows Vista"))
-            {
-                SetOS("Windows Vista");
-            }
-            //this code identifies Windows XP
-            else if (winver.Contains("Windows XP"))
-            {
-                SetOS("Windows XP");
-            }
-            //this code identifies Windows 2000
-            else if ((winver.Contains("Windows 2000")) || (winver.Contains("Windows NT 5")))
-            {
-                SetOS("Windows 2000");
-            }
-            //this code identifies Windows 95 or Windows 98
-            else if ((winver.Contains("Windows 95")) || (winver.Contains("Windows 98")))
-            {
-                SetOS("Windows 9x");
-            }
-            //this code identifies old Windows NT versions
-            else if ((winver.Contains("Windows NT 4")) || (winver.Contains("Windows NT 3")))
-            {
-                SetOS("Windows NT");
-            }
-        }
-
-        void SetOS(string winver)
-        {
-            for (int i = 0; i < windowVersion.Items.Count; i++)
-            {
-                if (windowVersion.Items[i].ToString().Contains(winver))
-                {
-                    windowVersion.SelectedIndex = i;
-                }
-            }
-        }
-
-        public void Crash()
-        {
-            ts = new ThreadStart(ShowBlueScreen);
-            bsod_starter = new Thread(ts);
-            bsod_starter.Start();
         }
 
         public bool DoWeHaveInternet(long minimumSpeed)
@@ -447,156 +173,15 @@ namespace UltimateBlueScreenSimulator
 
         private void Initialize(object sender, EventArgs e)
         {
-            this.Text = "Blue Screen Simulator Plus " + Convert.ToDouble(version.Replace(".", ",")).ToString().Replace(",", ".");
-            comboBox2.Items.Clear();
-            foreach (string t in Program.f1.comboBox2.Items)
-            {
-                comboBox2.Items.Add(t);
-            }
-            ts = new ThreadStart(ShowBlueScreen);
-            bsod_starter = new Thread(ts);
-            try
-            {
-                System.IO.File.WriteAllText("test.log", "");
-                System.IO.File.Delete("test.log");
-                fileio = true;
-            }
-            catch
-            {
-                fileio = false;
-                autoupdate = false;
-            }
-            if (displayone)
-            {
-                windowVersion.Items.Clear();
-                for (int i = Program.templates.Count - 1; i >= 0; i--)
-                {
-                    windowVersion.Items.Add(Program.templates.GetAt(i).GetString("friendlyname"));
-                }
-                windowVersion.SelectedItem = me.GetString("friendlyname");
-                windowVersion.Visible = false;
-                label1.Text = "Selected preset: " + windowVersion.SelectedItem.ToString();
-                linkLabel1.Location = new Point(label1.Location.X + label1.Width, linkLabel1.Location.Y);
-                linkLabel1.Visible = true;
-            } else
-            {
-                GetOS();
-            }
-            if ((autoupdate == true) && DoWeHaveInternet(1000))
-            { 
-                UpdateInterface ui = new UpdateInterface();
-                ui.DownloadFile(Program.gs.UpdateServer + "/bssp_version.txt", Program.prefix + "vercheck.txt");
-                updateCheckerTimer.Enabled = true;
-                if (System.IO.File.Exists("BSSP_latest.zim"))
-                {
-                    try
-                    { 
-                        System.IO.File.Delete("BSSP_latest.zim");
-                    }
-                    catch
-                    {
-                        fileio = false;
-                    }
-                }
-            }
-            if (this.WindowState == FormWindowState.Minimized)
-            {
-                this.Hide();
-            }
-            if (bsod_starter.IsAlive)
-            { 
-                if (Program.hidden)
-                {
-                    if (error == 0)
-                    { 
-                        spl2.SplashText.Text = "Generating blue screen...";
-                        spl2.veriFileTimer.Enabled = false;
-                        spl2.Show();
-                    }
-                }
-            }
-            switch (error)
-            {
-                case 0:
-                    break;
-                case 1:
-                    MessageBox.Show("No command specified in hidden mode\nAre you missing the /c argument?\n\n0x001: COMMAND_DEADLOCK", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    break;
-                case 2:
-                    MessageBox.Show("Specified file is either corrupted or not a valid blue screen simulator plus hack file.\n\n0x002: HEADER_MISSING", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    break;
-                case 3:
-                    MessageBox.Show("Specified file is either corrupted or incompatible with this version of blue screen simulator plus.\n\n0x003: INCOMPATIBLE_HACK", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    break;
-                case 4:
-                    MessageBox.Show("Specified file is either corrupt or does not exist.\n\n0x004: FILE_MISSING", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    break;
-                case 5:
-                    MessageBox.Show("Specified file is either corrupted or incompatible with this version of blue screen simulator plus.\n\n0x005: MISSING_ATTRIBUTES", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    break;
-                case 6:
-                    MessageBox.Show("Specified file is either corrupted or incompatible with this version of blue screen simulator plus.\n\n0x006: FACE_TOO_LONG", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    break;
-                case 7:
-                    MessageBox.Show("Specified file is either corrupted or incompatible with this version of blue screen simulator plus.\n\n0x007: FACE_TOO_SHORT", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    break;
-                case 8:
-                    MessageBox.Show("Specified file is either corrupted or incompatible with this version of blue screen simulator plus.\n\n0x008: RGB_OUT_OF_RANGE", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    break;
-                case 9:
-                    MessageBox.Show("Specified file is either corrupted or incompatible with this version of blue screen simulator plus.\n\n0x009: RGB_VALUE_NEGATIVE", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    break;
-                case 10:
-                    MessageBox.Show("A supported Windows version could not be identified.\n\n0x00A: PRODUCT_NAME_NOT_LISTED", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    break;
-                case 11:
-                    MessageBox.Show("Windows version could not be identified.\nAre you using a compatibility layer?\n\n0x00B: PRODUCT_NAME_MISSING", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    break;
-                case 12:
-                    MessageBox.Show("Cannot find the Windows version specified\n\n0x00C: WINVER_NOT_FOUND", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    break;
-                case 13:
-                    MessageBox.Show("Cannot find the error code specified\n\n0x00D: NTCODE_NOT_FOUND", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    break;
-                case 14:
-                    MessageBox.Show("Cannot find the error code specified\n\n0x00D: 9XCODE_NOT_FOUND", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    break;
-                case 15:
-                    MessageBox.Show("The syntax of the command is incorrect\n\n0x00E: BAD_SYNTAX", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    break;
-                case 16:
-                    MessageBox.Show("The syntax of the command is incorrect\n\n0x00F: BAD_SYNTAX", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    break;
-                case 17:
-                    MessageBox.Show("The syntax of the command is incorrect\n\n0x010: BAD_SYNTAX", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    break;
-                case 18:
-                    MessageBox.Show("The syntax of the command is incorrect\n\n0x011: BAD_SYNTAX", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    break;
-                case 19:
-                    MessageBox.Show("Internal database could not be loaded\n\n0x012: NT_DATABASE_MISSING", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    break;
-                case 20:
-                    MessageBox.Show("Internal database seems to be corrupted\n\n0x013: NT_DATABASE_CORRUPTED", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    break;
-                case 23:
-                    MessageBox.Show("The syntax of the command is incorrect\n\n0x016: COMMAND_ARGUMENT_INVALID", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    break;
-                case 24:
-                    MessageBox.Show("Specified hack file does not exist\n\n0x014: HACK_FILE_NON_EXISTENT", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    break;
-                case 25:
-                    MessageBox.Show("Specified hack file is either corrupted or incompatible with this version of blue screen simulator plus.\n\n0x015: HACK_FILE_INCOMPATIBLE", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    break;
-                default:
-                    this.Close();
-                    break;
-            }
+            Program.clip.ExitSplash();
+            UIActions.InitializeForm(this);
             bool DarkMode = (int)Registry.GetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize", "AppsUseLightTheme", 1) == 0;
             if (DarkMode && autodark)
             {
                 nightThemeToolStripMenuItem.PerformClick();
             }
+            this.Show();
+            this.Focus();
         }
 
         private void Button1_Click(object sender, EventArgs e)
@@ -648,7 +233,7 @@ namespace UltimateBlueScreenSimulator
                 g.Show();
             }
             Program.gs.PM_Lockout = false;
-            Crash();
+            UIActions.Crash(this);
         }
 
         //launches troubleshooting text editor
@@ -658,30 +243,6 @@ namespace UltimateBlueScreenSimulator
             se.Show();
         }
 
-        public void ShowBlueScreen()
-        {
-            if (windowVersion.Items.Count < 1)
-            {
-                Program.loadfinished = true;
-                if (enableeggs)
-                {
-                    MessageBox.Show("Please select a Windows version! Also, how in the world did you deselect a dropdown list?", "Error displaying blue screen", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                } else
-                {
-                    MessageBox.Show("No configuration selected", "Error displaying blue screen", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                return;
-            }
-            me.Show();
-            try
-            {
-                if (spl2.Visible) { spl2.Close(); }
-            }
-            catch
-            {
-            }
-            Thread.CurrentThread.Abort();
-        }
 
         //search function
         private void TextBox1_TextChanged(object sender, EventArgs e)
@@ -867,7 +428,7 @@ namespace UltimateBlueScreenSimulator
                     me.SetBool("watermark", false);
                     me.SetBool("windowed", false);
                     me.SetBool("autoclose", true);
-                    Crash();
+                    UIActions.Crash(this);
                     waitPopup.Enabled = true;
                     prankModeTimer.Enabled = false;
                 }
@@ -902,7 +463,7 @@ namespace UltimateBlueScreenSimulator
                         me.SetBool("watermark", false);
                         me.SetBool("windowed", false);
                         me.SetBool("autoclose", true);
-                        Crash();
+                        UIActions.Crash(this);
                         waitPopup.Enabled = true;
                         prankModeTimer.Enabled = false;
                         break;
@@ -920,7 +481,7 @@ namespace UltimateBlueScreenSimulator
                     me.SetBool("watermark", false);
                     me.SetBool("windowed", false);
                     me.SetBool("autoclose", true);
-                    Crash();
+                    UIActions.Crash(this);
                     waitPopup.Enabled = true;
                     prankModeTimer.Enabled = false;
                 }
@@ -1451,7 +1012,7 @@ namespace UltimateBlueScreenSimulator
                 Gen g = new Gen();
                 g.Show();
             }
-            Crash();
+            UIActions.Crash(this);
         }
 
         private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1746,10 +1307,9 @@ namespace UltimateBlueScreenSimulator
             me.SetString("code", string.Format("{0} (0x{1})", customMessageText.Text, customMessageCode.Text));
         }
 
-        private void returnToNewinterfaceToolStripMenuItem_Click(object sender, EventArgs e)
+        private void checkBox3_CheckedChanged_1(object sender, EventArgs e)
         {
-            Program.f1.Show();
-            this.Close();
+
         }
     }
 }

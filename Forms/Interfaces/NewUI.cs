@@ -23,16 +23,13 @@ namespace UltimateBlueScreenSimulator
 {
     public partial class NewUI : MaterialForm
     {
-        internal BlueScreen me;
 
         public readonly bool betabuild = false;
 
-        public static ThreadStart ts;
-        Thread bsod_starter;
         internal MaterialSkinManager materialSkinManager = MaterialSkinManager.Instance;
 
         public bool abopen = false;
-        string version = Assembly.GetExecutingAssembly().GetName().Version.ToString().Replace(".", "").Substring(0, 1) + "." + Assembly.GetExecutingAssembly().GetName().Version.ToString().Replace(".", "").Substring(1);
+        
 
         bool shift = false;
         bool doubleCheck = false;
@@ -68,81 +65,13 @@ namespace UltimateBlueScreenSimulator
 
         private void NewUi1_Load(object sender, EventArgs e)
         {
-            if (Program.gs.ErrorCode != 0)
-            {
-                ProcessErrors();
-            }
             RelocateButtons();
             aboutSettingsButton.Visible = Program.gs.DevBuild;
             if (!Program.gs.DevBuild)
             {
                 materialTabControl1.TabPages.Remove(materialTabControl1.TabPages["tabPage5"]);
             }
-            string verStr = Convert.ToDouble(version.Replace(".", ",")).ToString().Replace(",", ".");
-            while (verStr.EndsWith("0"))
-            {
-                verStr = verStr.Substring(0, verStr.Length - 1);
-            }
-            if (!verStr.Contains("."))
-            {
-                verStr += ".0";
-            }
-            this.Text = $"Blue Screen Simulator Plus {verStr}";
-            if (betabuild)
-            {
-                this.Text += "          // UNDER CONSTRUCTION //";
-            }
-            windowVersion.Items.Clear();
-            for (int i = Program.templates.Count - 1; i >= 0; i--)
-            {
-                windowVersion.Items.Add(Program.templates.GetAt(i).GetString("friendlyname"));
-            }
-            //WXOptions.Visible = false;
-            errorCode.Visible = false;
-            nineXmessage.Visible = false;
-            serverBox.Visible = false;
-            greenBox.Visible = false;
-            qrBox.Visible = false;
-            checkBox1.Visible = false;
-            winMode.Visible = false;
-            acpiBox.Visible = false;
-            amdBox.Visible = false;
-            stackBox.Visible = false;
-            checkBox2.Enabled = true;
-            ntPanel.Visible = false;
-            if (windowVersion.Items.Count > 0) { windowVersion.SelectedIndex = 0; }
-            string winver = "";
-            int os_build = 0;
-            try
-            {
-                winver = Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion", "ProductName", "").ToString();
-                os_build = Convert.ToInt32(Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion", "CurrentBuild", "0").ToString());
-            }
-            catch
-            {
-            }
-            if (Program.gs.DisplayOne)
-            {
-                windowVersion.Items.Clear();
-                for (int i = Program.templates.Count - 1; i >= 0; i--)
-                {
-                    windowVersion.Items.Add(Program.templates.GetAt(i).GetString("friendlyname"));
-                }
-                windowVersion.SelectedItem = me.GetString("friendlyname");
-                //windowVersion.Visible = false;
-                //label1.Text = "Selected preset: " + windowVersion.SelectedItem.ToString();
-                //linkLabel1.Location = new Point(label1.Location.X + label1.Width, linkLabel1.Location.Y);
-                //linkLabel1.Visible = true;
-            } else
-            {
-                GetOS();
-            }
-            if (Program.gs.PM_CloseMainUI)
-            {
-                this.WindowState = FormWindowState.Minimized;
-                this.Hide();
-                return;
-            }
+            UIActions.InitializeForm(this);
             try
             {
                 bool DarkMode = (int)Registry.GetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize", "AppsUseLightTheme", 1) == 0;
@@ -161,111 +90,6 @@ namespace UltimateBlueScreenSimulator
             Program.gs.ApplyScheme();
         }
 
-
-
-        public void GetOS()
-        {
-            windowVersion.Items.Clear();
-            for (int i = Program.templates.Count - 1; i >= 0; i--)
-            {
-                windowVersion.Items.Add(Program.templates.GetAt(i).GetString("friendlyname"));
-            }
-            WXOptions.Visible = false;
-            errorCode.Visible = false;
-            nineXmessage.Visible = false;
-            serverBox.Visible = false;
-            greenBox.Visible = false;
-            qrBox.Visible = false;
-            checkBox1.Visible = false;
-            winMode.Visible = false;
-            acpiBox.Visible = false;
-            amdBox.Visible = false;
-            stackBox.Visible = false;
-            checkBox2.Enabled = true;
-            ntPanel.Visible = false;
-            if (windowVersion.Items.Count > 0) { windowVersion.SelectedIndex = 0; }
-            string winver = "";
-            int os_build = 0;
-            /*if (specificos != "")
-            {
-                winver = specificos;
-                specificos = "";
-            }*/
-            try
-            {
-                winver = Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion", "ProductName", "").ToString();
-                os_build = Convert.ToInt32(Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion", "CurrentBuild", "0").ToString());
-            }
-            catch
-            {
-                if (os_build == 0)
-                {
-                    Program.gs.Log("Error", "CurrentBuild missing, Windows registry may be corrupted...");
-                }
-                if (winver == "")
-                {
-                    Program.gs.Log("Error", "ProductName missing, Windows registry may be corrupted...");
-                }
-            }
-            //this code identifies Windows 11
-            if (os_build >= 22000)
-            {
-                SetOS("Windows 11");
-            }
-            //this code identifies Windows 10
-            else if (winver.Contains("Windows 10"))
-            {
-                SetOS("Windows 10");
-            }
-            //this code identifies Windows 8 or Windows 8.1
-            else if (winver.Contains("Windows 8"))
-            {
-                SetOS("Windows 8");
-            }
-            //this code identifies Windows 7
-            else if (winver.Contains("Windows 7"))
-            {
-                SetOS("Windows 7");
-            }
-            //this code identifies Windows Vista
-            else if (winver.Contains("Windows Vista"))
-            {
-                SetOS("Windows Vista");
-            }
-            //this code identifies Windows XP
-            else if (winver.Contains("Windows XP"))
-            {
-                SetOS("Windows XP");
-            }
-            //this code identifies Windows 2000
-            else if ((winver.Contains("Windows 2000")) || (winver.Contains("Windows NT 5")))
-            {
-                SetOS("Windows 2000");
-            }
-            //this code identifies Windows 95 or Windows 98
-            else if ((winver.Contains("Windows 95")) || (winver.Contains("Windows 98")))
-            {
-                SetOS("Windows 9x");
-            }
-            //this code identifies old Windows NT versions
-            else if ((winver.Contains("Windows NT 4")) || (winver.Contains("Windows NT 3")))
-            {
-                SetOS("Windows NT");
-            }
-        }
-
-        void SetOS(string winver)
-        {
-            for (int i = 0; i < windowVersion.Items.Count; i++)
-            {
-                if (windowVersion.Items[i].ToString().Contains(winver))
-                {
-                    windowVersion.SelectedIndex = i;
-                    break;
-                }
-            }
-        }
-
         private void NewUi1_ResizeEnd(object sender, EventArgs e)
         {
             int sub = 35;
@@ -282,14 +106,25 @@ namespace UltimateBlueScreenSimulator
 
         private void windowVersion_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ReloadSelection();
-        }
+            quickHelp.Active = Program.gs.QuickHelp;
+            if (this.Visible)
+            {
+                UIActions.HideSelection(this);
+            }
 
-        public void Crash()
-        {
-            ts = new ThreadStart(ShowBlueScreen);
-            bsod_starter = new Thread(ts);
-            bsod_starter.Start();
+            try
+            {
+                // set current bluescreen
+                if (!Program.gs.DisplayOne)
+                {
+                    UIActions.me = Program.templates.GetAt(Program.templates.Count - 1 - windowVersion.SelectedIndex);
+                }
+                UIActions.ResetSelection(this, UIActions.me);
+            }
+            catch (Exception ex) when (!Debugger.IsAttached)
+            {
+                UIActions.me.Crash(ex, "OrangeScreen");
+            }
         }
 
         public void ShowBlueScreen()
@@ -312,266 +147,8 @@ namespace UltimateBlueScreenSimulator
                 }
                 return;
             }
-            me.Show();
+            UIActions.me.Show();
             Thread.CurrentThread.Abort();
-        }
-
-        internal void ReloadSelection()
-        {
-            /*if (linkLabel1.Visible)
-            {
-                linkLabel1.Visible = false;
-                label1.Text = "Select preset:";
-                windowVersion.Visible = true;
-            }
-            if (windowVersion.Items.Count == 1)
-            {
-                linkLabel1.Visible = true;
-                label1.Text = "Selected preset: " + windowVersion.SelectedItem.ToString();
-                linkLabel1.Location = new Point(label1.Location.X + label1.Width, linkLabel1.Location.Y);
-                windowVersion.Visible = false;
-            }*/
-            //hide all controls
-            quickHelp.Active = Program.gs.QuickHelp;
-            WXOptions.Visible = false;
-            errorCode.Visible = false;
-            nineXmessage.Visible = false;
-            serverBox.Visible = false;
-            greenBox.Visible = false;
-            qrBox.Visible = false;
-            checkBox1.Visible = false;
-            winMode.Visible = false;
-            acpiBox.Visible = false;
-            amdBox.Visible = false;
-            stackBox.Visible = false;
-            checkBox2.Enabled = true;
-            ntPanel.Visible = false;
-            memoryBox.Visible = false;
-            dumpBox.Visible = false;
-            winPanel.Visible = false;
-            addInfFile.Enabled = false;
-            advNTButton.Visible = false;
-            dumpBox.Enabled = true;
-            eCodeEditButton.Visible = false;
-            devPCBox.Visible = false;
-            playSndBox.Visible = false;
-            countdownBox.Visible = false;
-            progressTuneButton.Visible = false;
-            halfBox.Visible = false;
-            troubleshootBox.Visible = false;
-            //progressTunerToolStripMenuItem.Enabled = false;
-            blackScreenBox.Visible = false;
-            checkBox2.Enabled = true;
-            embedExeButton.Visible = !Program.templates.qaddeTrip;
-            try
-            {
-                // set current bluescreen
-                if (!Program.gs.DisplayOne)
-                {
-                    me = Program.templates.GetAt(Program.templates.Count - 1 - windowVersion.SelectedIndex);
-                }
-            }
-            catch (Exception ex)
-            {
-                me.Crash(ex, "OrangeScreen");
-            }
-            rainbowBox.Visible = me.GetBool("font_support") || me.GetString("os") == "BOOTMGR";
-            // set control visibility for specific OS-es
-            switch (me.GetString("os"))
-            {
-                case "Windows 11":
-                    WXOptions.Visible = true;
-                    serverBox.Visible = true;
-                    qrBox.Visible = true;
-                    errorCode.Visible = true;
-                    autoBox.Checked = true;
-                    checkBox1.Visible = true;
-                    winMode.Visible = true;
-                    memoryBox.Visible = true;
-                    eCodeEditButton.Visible = true;
-                    blackScreenBox.Visible = true;
-                    progressTuneButton.Visible = true;
-                    blackScreenBox.Checked = me.GetBool("blackscreen");
-                    break;
-                case "Windows 10":
-                    WXOptions.Visible = true;
-                    serverBox.Visible = true;
-                    greenBox.Visible = true;
-                    qrBox.Visible = true;
-                    errorCode.Visible = true;
-                    autoBox.Checked = true;
-                    checkBox1.Visible = true;
-                    winMode.Visible = true;
-                    memoryBox.Visible = true;
-                    eCodeEditButton.Visible = true;
-                    devPCBox.Visible = true;
-                    progressTuneButton.Visible = true;
-                    break;
-                case "Windows 8/8.1":
-                    WXOptions.Visible = true;
-                    errorCode.Visible = true;
-                    checkBox1.Visible = true;
-                    winMode.Visible = true;
-                    memoryBox.Visible = true;
-                    eCodeEditButton.Visible = true;
-                    progressTuneButton.Visible = true;
-                    blackScreenBox.Visible = true;
-                    break;
-                case "Windows 8 Beta":
-                    errorCode.Visible = true;
-                    winMode.Visible = true;
-                    memoryBox.Visible = true;
-                    eCodeEditButton.Visible = true;
-                    countdownBox.Visible = true;
-                    checkBox2.Enabled = false;
-                    break;
-                case "Windows Vista":
-                case "Windows 7":
-                    errorCode.Visible = true;
-                    winMode.Visible = true;
-                    acpiBox.Visible = true;
-                    checkBox1.Visible = true;
-                    autoBox.Visible = true;
-                    dumpBox.Visible = true;
-                    addInfFile.Enabled = true;
-                    advNTButton.Visible = true;
-                    eCodeEditButton.Visible = true;
-                    //progressTunerToolStripMenuItem.Enabled = true;
-                    break;
-                case "Windows XP":
-                    errorCode.Visible = true;
-                    winMode.Visible = true;
-                    checkBox1.Visible = true;
-                    autoBox.Visible = true;
-                    dumpBox.Visible = true;
-                    addInfFile.Enabled = true;
-                    advNTButton.Visible = true;
-                    eCodeEditButton.Visible = true;
-                    break;
-                case "Windows 2000":
-                    errorCode.Visible = true;
-                    winMode.Visible = true;
-                    checkBox1.Checked = true;
-                    eCodeEditButton.Visible = true;
-                    advNTButton.Visible = true;
-                    break;
-                case "Windows 9x/Me":
-                    nineXmessage.Visible = true;
-                    winMode.Visible = true;
-                    eCodeEditButton.Visible = true;
-                    break;
-                case "Windows CE":
-                    winMode.Visible = true;
-                    errorCode.Visible = true;
-                    checkBox2.Checked = false;
-                    checkBox2.Enabled = false;
-                    textBox2.Enabled = false;
-                    break;
-                case "Windows NT 3.x/4.0":
-                    errorCode.Visible = true;
-                    amdBox.Visible = !me.GetBool("threepointone");
-                    stackBox.Visible = true;
-                    ntPanel.Visible = true;
-                    winMode.Visible = true;
-                    displayOsBox.Visible = me.GetBool("threepointone");
-                    advNTButton.Visible = true;
-                    eCodeEditButton.Visible = true;
-                    troubleshootBox.Visible = true;
-                    break;
-                case "Windows 3.1x":
-                    winMode.Visible = true;
-                    break;
-                case "Windows 1.x/2.x":
-                    winMode.Visible = true;
-                    winPanel.Visible = true;
-                    playSndBox.Visible = true;
-                    halfBox.Visible = true;
-                    winPanel.Enabled = !me.GetBool("halfres");
-                    break;
-                case "BOOTMGR":
-                    winMode.Visible = true;
-                    break;
-            }
-            bool inlist = false;
-            foreach (string item in comboBox1.Items)
-            {
-                if (item == me.GetString("code"))
-                {
-                    inlist = true;
-                }
-            }
-            if (nineXmessage.Visible)
-            {
-                comboBox2.Items.Clear();
-                foreach (string text in me.GetTexts().Keys)
-                {
-                    if (text != "Prompt")
-                    {
-                        comboBox2.Items.Add(text);
-                    }
-                }
-            }
-            //codeCustomizationToolStripMenuItem.Enabled = eCodeEditButton.Visible;
-            //advancedNTOptionsToolStripMenuItem.Enabled = advNTButton.Visible;
-            // load options for current bluescreen
-            string nx_code;
-            try
-            {
-                nx_code = me.GetCodes()[0].Substring(0, 2);
-            } catch
-            {
-                nx_code = "00";
-            }
-            nineXErrorCode.SelectedIndex = -1;
-            for (int i = 0; i < Program.templates.NxErrors.Length; i++)
-            {
-                string selc = Program.templates.NxErrors[i].Split('\t')[0];
-                if (nx_code == selc)
-                {
-                    nineXErrorCode.SelectedIndex = i;
-                }
-            }
-            autoBox.Checked = me.GetBool("autoclose");
-            serverBox.Checked = me.GetBool("server");
-            greenBox.Checked = me.GetBool("green");
-            qrBox.Checked = me.GetBool("qr");
-            comboBox1.SelectedItem = me.GetString("code");
-            comboBox2.SelectedItem = me.GetString("screen_mode");
-            checkBox1.Checked = me.GetBool("show_description");
-            checkBox2.Checked = me.GetBool("show_file");
-            textBox2.Text = me.GetString("culprit");
-            amdBox.Checked = me.GetBool("amd");
-            stackBox.Checked = me.GetBool("stack_trace");
-            blinkBox.Checked = me.GetBool("blink");
-            acpiBox.Checked = me.GetBool("acpi");
-            playSndBox.Checked = me.GetBool("playsound");
-            waterBox.Checked = me.GetBool("watermark");
-            winMode.Checked = me.GetBool("windowed");
-            countdownBox.Checked = me.GetBool("countdown");
-            displayOsBox.Checked = me.GetBool("bootscreen");
-            halfBox.Checked = me.GetBool("halfres");
-            rainbowBox.Checked = me.GetBool("rainbow");
-            memoryBox.Checked = me.GetBool("extracodes");
-            troubleshootBox.Checked = me.GetBool("troubleshoot");
-            if (acpiBox.Checked)
-            {
-                dumpBox.Enabled = false;
-            }
-            win1startup.Checked = false;
-            win2startup.Checked = false;
-            nostartup.Checked = false;
-            switch (me.GetString("qr_file"))
-            {
-                case "local:0":
-                    win1startup.Checked = true;
-                    break;
-                case "local:1":
-                    win2startup.Checked = true;
-                    break;
-                case "local:null":
-                    nostartup.Checked = true;
-                    break;
-            }
         }
 
         public static byte[] GetHash(string inputString)
@@ -589,7 +166,7 @@ namespace UltimateBlueScreenSimulator
 
         internal BlueScreen RandFunction(bool shiftDown)
         {
-            if (me == null) { me = new BlueScreen(); }
+            if (UIActions.me == null) { UIActions.me = new BlueScreen(); }
             ulong seed = (ulong)DateTime.Now.Ticks;
             bool isNumeric = ulong.TryParse(textBox1.Text, out _);
             if (textBox1.Text != "")
@@ -605,7 +182,7 @@ namespace UltimateBlueScreenSimulator
             Random r = new Random((int)seed);
             string base_os = Program.templates.GetAt(r.Next(Program.templates.Count - 1)).GetString("os");
             if (shiftDown) {
-                base_os = me.GetString("os");
+                base_os = UIActions.me.GetString("os");
             }
             BlueScreen bs = new BlueScreen(base_os, true, r);
             foreach (string kvp in bs.AllBools().Keys.ToArray<string>())
@@ -643,7 +220,7 @@ namespace UltimateBlueScreenSimulator
             bs.SetBool("amd", winMode.Checked);
             bs.SetBool("blink", winMode.Checked);
             bs.SetBool("watermark", waterBox.Checked);
-            bs.SetString("culprit", me.GenFile());
+            bs.SetString("culprit", UIActions.me.GenFile());
             if (isNumeric && (textBox1.Text != ""))
             {
                 bs.SetString("friendlyname", "Random template #" + seed.ToString());
@@ -690,14 +267,14 @@ namespace UltimateBlueScreenSimulator
         {
             if (ModifierKeys.HasFlag(Keys.Shift))
             {
-                BlueScreen cloned = CloneMe(me);
+                BlueScreen cloned = CloneMe(UIActions.me);
                 cloned.ClearAllTitleTexts();
                 cloned.SetOSSpecificDefaults();
                 cloned.Show();
                 return;
             } else if (Program.gs.EnableEggs && ModifierKeys.HasFlag(Keys.Alt))
             {
-                BlueScreen cloned = CloneMe(me);
+                BlueScreen cloned = CloneMe(UIActions.me);
                 cloned.Crash(null, "GreenScreen");
             }
             if (Program.gs.EnableEggs)
@@ -753,12 +330,12 @@ namespace UltimateBlueScreenSimulator
                 gt.Start();
             }
             Program.gs.PM_Lockout = false;
-            Crash();
+            UIActions.Crash(this);
         }
 
         private void winMode_CheckedChanged(object sender, EventArgs e)
         {
-            me.SetBool("windowed", winMode.Checked);
+            UIActions.me.SetBool("windowed", winMode.Checked);
             label7.Visible = !winMode.Checked;
         }
 
@@ -785,22 +362,22 @@ namespace UltimateBlueScreenSimulator
                     checkBox2.Checked = false;
                 }
             }
-            if (me == null)
+            if (UIActions.me == null)
             {
                 return;
             }
-            me.SetString("culprit", textBox2.Text);
-            if ((me.GetString("os") == "Windows XP") || (me.GetString("os") == "Windows Vista") || (me.GetString("os") == "Windows 7"))
+            UIActions.me.SetString("culprit", textBox2.Text);
+            if ((UIActions.me.GetString("os") == "Windows XP") || (UIActions.me.GetString("os") == "Windows Vista") || (UIActions.me.GetString("os") == "Windows 7"))
             {
                 try
                 {
-                    me.RenameFile(0, textBox2.Text);
+                    UIActions.me.RenameFile(0, textBox2.Text);
                 }
                 catch (Exception ex)
                 {
                     if (Program.gs.EnableEggs)
                     {
-                        me.Crash(ex, "GreenScreen");
+                        UIActions.me.Crash(ex, "GreenScreen");
                     }
                     else
                     {
@@ -814,9 +391,9 @@ namespace UltimateBlueScreenSimulator
         {
             textBox2.Enabled = checkBox2.Checked;
             button2.Enabled = checkBox2.Checked;
-            if (me != null)
+            if (UIActions.me != null)
             {
-                me.SetBool("show_file", checkBox2.Checked);
+                UIActions.me.SetBool("show_file", checkBox2.Checked);
             }
         }
 
@@ -837,30 +414,30 @@ namespace UltimateBlueScreenSimulator
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (me is null) { return; }
-            me.SetString("code", comboBox1.SelectedItem.ToString());
-            if ((me.GetString("os") == "Windows XP") && me.GetBool("auto"))
+            if (UIActions.me is null) { return; }
+            UIActions.me.SetString("code", comboBox1.SelectedItem.ToString());
+            if ((UIActions.me.GetString("os") == "Windows XP") && UIActions.me.GetBool("auto"))
             {
                 string[] xpmsg = Properties.Resources.xpMsg.Split(';');
-                if (me.GetString("code").Contains("007F"))
+                if (UIActions.me.GetString("code").Contains("007F"))
                 {
-                    me.SetText("Troubleshooting introduction", xpmsg[3]);
-                    me.SetText("Troubleshooting", string.Format("{0}\r\n\r\n{1}", xpmsg[9], xpmsg[10]));
+                    UIActions.me.SetText("Troubleshooting introduction", xpmsg[3]);
+                    UIActions.me.SetText("Troubleshooting", string.Format("{0}\r\n\r\n{1}", xpmsg[9], xpmsg[10]));
                 }
-                else if (me.GetString("code").Contains("00C5"))
+                else if (UIActions.me.GetString("code").Contains("00C5"))
                 {
-                    me.SetText("Troubleshooting introduction", xpmsg[0]);
-                    me.SetText("Troubleshooting", string.Format("{0}\r\n\r\n{1}\r\n\r\n{2}\r\n\r\n{3}\r\n\r\n{4}", xpmsg[1], xpmsg[2], xpmsg[3], xpmsg[4], xpmsg[5]));
+                    UIActions.me.SetText("Troubleshooting introduction", xpmsg[0]);
+                    UIActions.me.SetText("Troubleshooting", string.Format("{0}\r\n\r\n{1}\r\n\r\n{2}\r\n\r\n{3}\r\n\r\n{4}", xpmsg[1], xpmsg[2], xpmsg[3], xpmsg[4], xpmsg[5]));
                 }
-                else if (me.GetString("code").Contains("008E"))
+                else if (UIActions.me.GetString("code").Contains("008E"))
                 {
-                    me.SetText("Troubleshooting introduction", xpmsg[3]);
-                    me.SetText("Troubleshooting", string.Format("{0}\r\n\r\n{1}", xpmsg[7], xpmsg[8]));
+                    UIActions.me.SetText("Troubleshooting introduction", xpmsg[3]);
+                    UIActions.me.SetText("Troubleshooting", string.Format("{0}\r\n\r\n{1}", xpmsg[7], xpmsg[8]));
                 }
                 else
                 {
-                    me.SetText("Troubleshooting introduction", xpmsg[3]);
-                    me.SetText("Troubleshooting", string.Format("{0}\r\n\r\n{1}\r\n{2}", xpmsg[0], xpmsg[5], xpmsg[6]));
+                    UIActions.me.SetText("Troubleshooting introduction", xpmsg[3]);
+                    UIActions.me.SetText("Troubleshooting", string.Format("{0}\r\n\r\n{1}\r\n{2}", xpmsg[0], xpmsg[5], xpmsg[6]));
                 }
             }
         }
@@ -948,107 +525,107 @@ namespace UltimateBlueScreenSimulator
 
         private void autoBox_CheckedChanged(object sender, EventArgs e)
         {
-            me.SetBool("autoclose", autoBox.Checked);
+            UIActions.me.SetBool("autoclose", autoBox.Checked);
         }
 
         private void serverBox_CheckedChanged(object sender, EventArgs e)
         {
-            me.SetBool("server", serverBox.Checked);
+            UIActions.me.SetBool("server", serverBox.Checked);
         }
 
         private void greenBox_CheckedChanged(object sender, EventArgs e)
         {
-            me.SetBool("insider", greenBox.Checked);
+            UIActions.me.SetBool("insider", greenBox.Checked);
         }
 
         private void qrBox_CheckedChanged(object sender, EventArgs e)
         {
-            me.SetBool("qr", qrBox.Checked);
+            UIActions.me.SetBool("qr", qrBox.Checked);
         }
 
         private void memoryBox_CheckedChanged(object sender, EventArgs e)
         {
-            me.SetBool("extracodes", memoryBox.Checked);
+            UIActions.me.SetBool("extracodes", memoryBox.Checked);
         }
 
         private void devPCBox_CheckedChanged(object sender, EventArgs e)
         {
-            me.SetBool("device", devPCBox.Checked);
+            UIActions.me.SetBool("device", devPCBox.Checked);
         }
 
         private void blackScreenBox_CheckedChanged(object sender, EventArgs e)
         {
-            me.SetBool("blackscreen", blackScreenBox.Checked);
+            UIActions.me.SetBool("blackscreen", blackScreenBox.Checked);
         }
 
         private void addInfFile_CheckedChanged(object sender, EventArgs e)
         {
             if (addInfFile.Enabled)
             {
-                me.SetBool("extrafile", addInfFile.Checked);
+                UIActions.me.SetBool("extrafile", addInfFile.Checked);
             }
         }
 
         private void amdBox_CheckedChanged(object sender, EventArgs e)
         {
-            me.SetBool("amd", amdBox.Checked);
+            UIActions.me.SetBool("amd", amdBox.Checked);
         }
 
         private void stackBox_CheckedChanged(object sender, EventArgs e)
         {
-            me.SetBool("stack_trace", stackBox.Checked);
+            UIActions.me.SetBool("stack_trace", stackBox.Checked);
         }
 
         private void blinkBox_CheckedChanged(object sender, EventArgs e)
         {
-            me.SetBool("blink", blinkBox.Checked);
+            UIActions.me.SetBool("blink", blinkBox.Checked);
         }
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            me.SetString("screen_mode", comboBox2.SelectedItem.ToString());
+            UIActions.me.SetString("screen_mode", comboBox2.SelectedItem.ToString());
         }
 
         private void acpiBox_CheckedChanged(object sender, EventArgs e)
         {
-            me.SetBool("acpi", acpiBox.Checked);
+            UIActions.me.SetBool("acpi", acpiBox.Checked);
             dumpBox.Enabled = !acpiBox.Checked;
             dumpBox.Checked = !acpiBox.Checked;
         }
 
         private void waterBox_CheckedChanged(object sender, EventArgs e)
         {
-            me.SetBool("watermark", waterBox.Checked);
+            UIActions.me.SetBool("watermark", waterBox.Checked);
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            me.SetBool("show_description", checkBox1.Checked);
+            UIActions.me.SetBool("show_description", checkBox1.Checked);
         }
 
         private void dumpBox_CheckedChanged(object sender, EventArgs e)
         {
-            me.SetBool("autoclose", dumpBox.Checked);
+            UIActions.me.SetBool("autoclose", dumpBox.Checked);
         }
 
         private void playSndBox_CheckedChanged(object sender, EventArgs e)
         {
-            me.SetBool("playsound", playSndBox.Checked);
+            UIActions.me.SetBool("playsound", playSndBox.Checked);
         }
 
         private void win1startup_CheckedChanged(object sender, EventArgs e)
         {
             if (win1startup.Checked)
             {
-                me.SetString("qr_file", "local:0");
+                UIActions.me.SetString("qr_file", "local:0");
             }
             else if (win2startup.Checked)
             {
-                me.SetString("qr_file", "local:1");
+                UIActions.me.SetString("qr_file", "local:1");
             }
             else if (nostartup.Checked)
             {
-                me.SetString("qr_file", "local:null");
+                UIActions.me.SetString("qr_file", "local:null");
             }
         }
 
@@ -1096,7 +673,7 @@ namespace UltimateBlueScreenSimulator
             }
             StringEdit bh = new StringEdit
             {
-                me = me
+                me = UIActions.me
             };
             bh.Show();
         }
@@ -1114,11 +691,11 @@ namespace UltimateBlueScreenSimulator
             }
             ErrorCodeEditor iform = new ErrorCodeEditor
             {
-                me = me,
-                c1 = me.GetCodes()[0],
-                c2 = me.GetCodes()[1],
-                c3 = me.GetCodes()[2],
-                c4 = me.GetCodes()[3]
+                me = UIActions.me,
+                c1 = UIActions.me.GetCodes()[0],
+                c2 = UIActions.me.GetCodes()[1],
+                c3 = UIActions.me.GetCodes()[2],
+                c4 = UIActions.me.GetCodes()[3]
             };
             iform.Show();
         }
@@ -1128,7 +705,7 @@ namespace UltimateBlueScreenSimulator
             int backup = windowVersion.SelectedIndex;
             NTdtor iform = new NTdtor
             {
-                me = me
+                me = UIActions.me
             };
             iform.ShowDialog();
             iform.Dispose();
@@ -1139,19 +716,19 @@ namespace UltimateBlueScreenSimulator
         private void progressTuneButton_Click(object sender, EventArgs e)
         {
             ProgressTuner pt = new ProgressTuner();
-            pt.KFrames = me.AllProgress();
-            pt.Text = string.Format("Progress tuner - {0}", me.GetString("friendlyname"));
+            pt.KFrames = UIActions.me.AllProgress();
+            pt.Text = string.Format("Progress tuner - {0}", UIActions.me.GetString("friendlyname"));
             if (pt.KFrames.Count > 0)
             {
-                pt.progressTrackBar.RangeMax = me.GetInt("progressmillis");
+                pt.progressTrackBar.RangeMax = UIActions.me.GetInt("progressmillis");
             }
             pt.ReloadBitmap();
             pt.SetLabelText();
-            pt.totalTimeText.Text = ((float)me.GetInt("progressmillis") / 100f).ToString().Replace(",", ".");
+            pt.totalTimeText.Text = ((float)UIActions.me.GetInt("progressmillis") / 100f).ToString().Replace(",", ".");
             if (pt.ShowDialog() == DialogResult.OK)
             {
-                me.SetAllProgression(pt.KFrames.Keys.ToArray<int>(), pt.KFrames.Values.ToArray<int>());
-                me.SetInt("progressmillis", pt.progressTrackBar.RangeMax);
+                UIActions.me.SetAllProgression(pt.KFrames.Keys.ToArray<int>(), pt.KFrames.Values.ToArray<int>());
+                UIActions.me.SetInt("progressmillis", pt.progressTrackBar.RangeMax);
             }
             pt.Dispose();
         }
@@ -1202,7 +779,7 @@ namespace UltimateBlueScreenSimulator
 
         private void countdownBox_CheckedChanged(object sender, EventArgs e)
         {
-            me.SetBool("countdown", countdownBox.Checked);
+            UIActions.me.SetBool("countdown", countdownBox.Checked);
         }
 
         private void updateCheckerTimer_Tick(object sender, EventArgs e)
@@ -1236,7 +813,7 @@ namespace UltimateBlueScreenSimulator
                 if (System.IO.File.Exists(Program.prefix + "vercheck.txt"))
                 {
                     string[] lines = System.IO.File.ReadAllLines(Program.prefix + "vercheck.txt");
-                    if (Convert.ToDouble(lines[0].Replace(".", ",").Replace("\r", "").Replace("\n", "").Trim()) > Convert.ToDouble(version.Replace(".", ",")))
+                    if (Convert.ToDouble(lines[0].Replace(".", ",").Replace("\r", "").Replace("\n", "").Trim()) > Convert.ToDouble(UIActions.version.Replace(".", ",")))
                     {
                         updateCheckerTimer.Enabled = false;
                         System.IO.File.Delete(Program.prefix + "vercheck.txt");
@@ -1361,10 +938,10 @@ namespace UltimateBlueScreenSimulator
                 int secs = Program.gs.PM_Time[2];
                 if ((hrs == 0) && (mins == 0) && (secs == 0))
                 {
-                    me.SetBool("watermark", false);
-                    me.SetBool("windowed", false);
-                    me.SetBool("autoclose", true);
-                    Crash();
+                    UIActions.me.SetBool("watermark", false);
+                    UIActions.me.SetBool("windowed", false);
+                    UIActions.me.SetBool("autoclose", true);
+                    UIActions.Crash(this);
                     waitPopup.Enabled = true;
                     prankModeTimer.Enabled = false;
                 }
@@ -1398,10 +975,10 @@ namespace UltimateBlueScreenSimulator
                     string usbinfo = usb.DeviceID;
                     if ((usbinfo == Program.gs.PM_UsbDevice[0]))
                     {
-                        me.SetBool("watermark", false);
-                        me.SetBool("windowed", false);
-                        me.SetBool("autoclose", true);
-                        Crash();
+                        UIActions.me.SetBool("watermark", false);
+                        UIActions.me.SetBool("windowed", false);
+                        UIActions.me.SetBool("autoclose", true);
+                        UIActions.Crash(this);
                         waitPopup.Enabled = true;
                         prankModeTimer.Enabled = false;
                         break;
@@ -1417,10 +994,10 @@ namespace UltimateBlueScreenSimulator
                 }
                 if (getcatch)
                 {
-                    me.SetBool("watermark", false);
-                    me.SetBool("windowed", false);
-                    me.SetBool("autoclose", true);
-                    Crash();
+                    UIActions.me.SetBool("watermark", false);
+                    UIActions.me.SetBool("windowed", false);
+                    UIActions.me.SetBool("autoclose", true);
+                    UIActions.Crash(this);
                     waitPopup.Enabled = true;
                     prankModeTimer.Enabled = false;
                 }
@@ -1429,7 +1006,7 @@ namespace UltimateBlueScreenSimulator
 
         private void waitPopup_Tick(object sender, EventArgs e)
         {
-            if (!bsod_starter.IsAlive)
+            if (!UIActions.bsod_starter.IsAlive)
             {
                 if (!Program.gs.PM_Lockout)
                 {
@@ -1577,7 +1154,7 @@ namespace UltimateBlueScreenSimulator
         {
             if (sender is MaterialCheckbox)
             {
-                if (me.GetString("os") != "Windows 8/8.1")
+                if (UIActions.me.GetString("os") != "Windows 8/8.1")
                 {
                     quickHelp.SetToolTip(blackScreenBox, "On older versions of Windows 11, the screen was black instead of blue.");
                 }
@@ -1590,14 +1167,14 @@ namespace UltimateBlueScreenSimulator
 
         private void displayOsBox_CheckedChanged(object sender, EventArgs e)
         {
-            me.SetBool("bootscreen", displayOsBox.Checked);
+            UIActions.me.SetBool("bootscreen", displayOsBox.Checked);
         }
 
         private void halfBox_CheckedChanged(object sender, EventArgs e)
         {
-            me.SetBool("halfres", halfBox.Checked);
+            UIActions.me.SetBool("halfres", halfBox.Checked);
             winPanel.Enabled = !halfBox.Checked;
-            if (me.GetBool("halfres"))
+            if (UIActions.me.GetBool("halfres"))
             {
                 nostartup.Checked = true;
             }
@@ -1605,7 +1182,7 @@ namespace UltimateBlueScreenSimulator
 
         private void rainbowBox_CheckedChanged(object sender, EventArgs e)
         {
-            me.SetBool("rainbow", rainbowBox.Checked);
+            UIActions.me.SetBool("rainbow", rainbowBox.Checked);
         }
 
         private void embedExeButton_Click(object sender, EventArgs e)
@@ -1659,7 +1236,7 @@ namespace UltimateBlueScreenSimulator
                     data.Add(b);
                 }
                 data.Add(0x00);
-                string jsonEmbed = Program.templates.SaveSingleConfig(me);
+                string jsonEmbed = Program.templates.SaveSingleConfig(UIActions.me);
                 data.AddRange(Encoding.UTF8.GetBytes(jsonEmbed));
                 File.WriteAllBytes(saveFileDialog1.FileName, data.ToArray());
                 data.Clear();
@@ -1671,14 +1248,14 @@ namespace UltimateBlueScreenSimulator
 
         private void nineXErrorCode_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (me != null)
+            if (UIActions.me != null)
             {
-                string[] c = me.GetCodes();
+                string[] c = UIActions.me.GetCodes();
                 string code = nineXErrorCode.Text.Split(':')[0];
                 if (c == null) { c = new string[] { "RRRRRRRRRRRRRRRR", "RRRRRRRRRRRRRRRR", "RRRRRRRRRRRRRRRR", "RRRRRRRRRRRRRRRR" }; }
                 try
                 {
-                    me.SetCodes(code + c[0].Substring(2), c[1], c[2], c[3]);
+                    UIActions.me.SetCodes(code + c[0].Substring(2), c[1], c[2], c[3]);
                 } catch
                 {
                     Program.gs.Log("Error", "Unable to set 9x error codes");
@@ -1718,7 +1295,7 @@ namespace UltimateBlueScreenSimulator
 
         private void troubleshootBox_CheckedChanged(object sender, EventArgs e)
         {
-            me.SetBool("troubleshoot", troubleshootBox.Checked);
+            UIActions.me.SetBool("troubleshoot", troubleshootBox.Checked);
         }
 
         private void NewUI_KeyUp(object sender, KeyEventArgs e)

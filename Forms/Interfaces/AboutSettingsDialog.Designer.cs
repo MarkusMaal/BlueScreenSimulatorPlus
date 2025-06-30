@@ -74,6 +74,7 @@ namespace UltimateBlueScreenSimulator
             this.simulatorSettingsPanel = new System.Windows.Forms.TabPage();
             this.label1 = new MaterialSkin.Controls.MaterialLabel();
             this.materialCard7 = new System.Windows.Forms.Panel();
+            this.legacyInterfaceCheck = new MaterialSkin.Controls.MaterialCheckbox();
             this.simulatorSettingsHeading = new MaterialSkin.Controls.MaterialLabel();
             this.devFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.materialButton6 = new MaterialSkin.Controls.MaterialButton();
@@ -875,6 +876,7 @@ namespace UltimateBlueScreenSimulator
             // 
             // materialCard7
             // 
+            this.materialCard7.Controls.Add(this.legacyInterfaceCheck);
             this.materialCard7.Controls.Add(this.simulatorSettingsHeading);
             this.materialCard7.Controls.Add(this.devFlowPanel);
             this.materialCard7.Controls.Add(this.selectAllBox);
@@ -897,6 +899,24 @@ namespace UltimateBlueScreenSimulator
             this.materialCard7.Name = "materialCard7";
             this.materialCard7.Size = new System.Drawing.Size(726, 487);
             this.materialCard7.TabIndex = 27;
+            // 
+            // legacyInterfaceCheck
+            // 
+            this.legacyInterfaceCheck.AutoSize = true;
+            this.legacyInterfaceCheck.Depth = 0;
+            this.legacyInterfaceCheck.Location = new System.Drawing.Point(360, 329);
+            this.legacyInterfaceCheck.Margin = new System.Windows.Forms.Padding(0);
+            this.legacyInterfaceCheck.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.legacyInterfaceCheck.MouseState = MaterialSkin.MouseState.HOVER;
+            this.legacyInterfaceCheck.Name = "legacyInterfaceCheck";
+            this.legacyInterfaceCheck.ReadOnly = false;
+            this.legacyInterfaceCheck.Ripple = true;
+            this.legacyInterfaceCheck.Size = new System.Drawing.Size(124, 37);
+            this.legacyInterfaceCheck.TabIndex = 26;
+            this.legacyInterfaceCheck.Text = "Classic UI [?]";
+            this.helpTip.SetToolTip(this.legacyInterfaceCheck, "Enables the interface from previous versions, similar to 2.1 and earlier");
+            this.legacyInterfaceCheck.UseVisualStyleBackColor = true;
+            this.legacyInterfaceCheck.CheckedChanged += new System.EventHandler(this.legacyInterfaceCheck_CheckedChanged);
             // 
             // simulatorSettingsHeading
             // 
@@ -2065,6 +2085,7 @@ namespace UltimateBlueScreenSimulator
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(740, 580);
             this.Name = "AboutSettingsDialog";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ExitMe);
             this.Load += new System.EventHandler(this.SetInitalInterface);
             this.Resize += new System.EventHandler(this.OnMeResized);
@@ -2210,5 +2231,6 @@ namespace UltimateBlueScreenSimulator
         private MaterialButton materialButton10;
         private MaterialButton materialButton9;
         private MaterialButton materialButton11;
+        private MaterialCheckbox legacyInterfaceCheck;
     }
 }

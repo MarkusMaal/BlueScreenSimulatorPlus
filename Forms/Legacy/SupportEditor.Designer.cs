@@ -32,12 +32,12 @@
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.errorCode = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.supportInfo = new System.Windows.Forms.Label();
             this.technicalCode = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -78,6 +78,20 @@
             this.errorCode.Size = new System.Drawing.Size(383, 14);
             this.errorCode.TabIndex = 1;
             this.errorCode.Text = "The end-user manually generated the crash dump.";
+            // 
+            // textBox1
+            // 
+            this.textBox1.BackColor = System.Drawing.Color.Navy;
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox1.ForeColor = System.Drawing.Color.White;
+            this.textBox1.Location = new System.Drawing.Point(3, 82);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 20, 3, 3);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(608, 185);
+            this.textBox1.TabIndex = 7;
+            this.textBox1.Text = resources.GetString("textBox1.Text");
+            this.textBox1.TextChanged += new System.EventHandler(this.TextBox1_TextChanged);
             // 
             // supportInfo
             // 
@@ -133,20 +147,6 @@
             this.label7.Text = "Contact your system administrator or technical support group for further\r\nassista" +
     "nce.";
             // 
-            // textBox1
-            // 
-            this.textBox1.BackColor = System.Drawing.Color.Navy;
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.ForeColor = System.Drawing.Color.White;
-            this.textBox1.Location = new System.Drawing.Point(3, 82);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 20, 3, 3);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(608, 185);
-            this.textBox1.TabIndex = 7;
-            this.textBox1.Text = resources.GetString("textBox1.Text");
-            this.textBox1.TextChanged += new System.EventHandler(this.TextBox1_TextChanged);
-            // 
             // SupportEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 14F);
@@ -160,6 +160,7 @@
             this.Name = "SupportEditor";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Edit troubleshooting text";
             this.Load += new System.EventHandler(this.SupportEditor_Load);
             this.flowLayoutPanel1.ResumeLayout(false);

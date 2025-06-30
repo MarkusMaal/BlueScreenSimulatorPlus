@@ -113,7 +113,14 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.waitPopup = new System.Windows.Forms.Timer(this.components);
-            this.returnToNewinterfaceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rainbowBox = new System.Windows.Forms.CheckBox();
+            this.countdownBox = new System.Windows.Forms.CheckBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.nineXErrorCode = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.displayOsBox = new System.Windows.Forms.CheckBox();
+            this.halfBox = new System.Windows.Forms.CheckBox();
+            this.troubleshootBox = new System.Windows.Forms.CheckBox();
             this.flowLayoutPanel1.SuspendLayout();
             this.WXOptions.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
@@ -124,6 +131,7 @@
             this.flowLayoutPanel3.SuspendLayout();
             this.flowLayoutPanel4.SuspendLayout();
             this.menuBar.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -179,8 +187,11 @@
             this.flowLayoutPanel1.Controls.Add(this.errorCode);
             this.flowLayoutPanel1.Controls.Add(this.ntPanel);
             this.flowLayoutPanel1.Controls.Add(this.nineXmessage);
+            this.flowLayoutPanel1.Controls.Add(this.panel2);
             this.flowLayoutPanel1.Controls.Add(this.acpiBox);
             this.flowLayoutPanel1.Controls.Add(this.checkBox1);
+            this.flowLayoutPanel1.Controls.Add(this.rainbowBox);
+            this.flowLayoutPanel1.Controls.Add(this.countdownBox);
             this.flowLayoutPanel1.Controls.Add(this.dumpBox);
             this.flowLayoutPanel1.Controls.Add(this.winPanel);
             this.flowLayoutPanel1.Controls.Add(this.waterBox);
@@ -189,7 +200,7 @@
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(15, 73);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(472, 293);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(472, 370);
             this.flowLayoutPanel1.TabIndex = 3;
             this.flowLayoutPanel1.WrapContents = false;
             // 
@@ -496,13 +507,15 @@
             // 
             // ntPanel
             // 
+            this.ntPanel.Controls.Add(this.displayOsBox);
             this.ntPanel.Controls.Add(this.blinkBox);
+            this.ntPanel.Controls.Add(this.troubleshootBox);
             this.ntPanel.Controls.Add(this.amdBox);
             this.ntPanel.Controls.Add(this.stackBox);
             this.ntPanel.Location = new System.Drawing.Point(0, 170);
             this.ntPanel.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.ntPanel.Name = "ntPanel";
-            this.ntPanel.Size = new System.Drawing.Size(467, 27);
+            this.ntPanel.Size = new System.Drawing.Size(467, 52);
             this.ntPanel.TabIndex = 4;
             // 
             // blinkBox
@@ -551,7 +564,7 @@
             // 
             this.nineXmessage.Controls.Add(this.comboBox2);
             this.nineXmessage.Controls.Add(this.label4);
-            this.nineXmessage.Location = new System.Drawing.Point(0, 203);
+            this.nineXmessage.Location = new System.Drawing.Point(0, 228);
             this.nineXmessage.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.nineXmessage.Name = "nineXmessage";
             this.nineXmessage.Size = new System.Drawing.Size(467, 25);
@@ -589,7 +602,7 @@
             // acpiBox
             // 
             this.acpiBox.AutoSize = true;
-            this.acpiBox.Location = new System.Drawing.Point(3, 234);
+            this.acpiBox.Location = new System.Drawing.Point(3, 290);
             this.acpiBox.Name = "acpiBox";
             this.acpiBox.Size = new System.Drawing.Size(124, 17);
             this.acpiBox.TabIndex = 6;
@@ -604,7 +617,7 @@
             this.checkBox1.AutoSize = true;
             this.checkBox1.Checked = true;
             this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Location = new System.Drawing.Point(3, 257);
+            this.checkBox1.Location = new System.Drawing.Point(3, 313);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(237, 17);
             this.checkBox1.TabIndex = 7;
@@ -619,7 +632,7 @@
             this.dumpBox.AutoSize = true;
             this.dumpBox.Checked = true;
             this.dumpBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.dumpBox.Location = new System.Drawing.Point(3, 280);
+            this.dumpBox.Location = new System.Drawing.Point(3, 382);
             this.dumpBox.Name = "dumpBox";
             this.dumpBox.Size = new System.Drawing.Size(69, 17);
             this.dumpBox.TabIndex = 8;
@@ -633,7 +646,8 @@
             // 
             this.winPanel.Controls.Add(this.playSndBox);
             this.winPanel.Controls.Add(this.flowLayoutPanel3);
-            this.winPanel.Location = new System.Drawing.Point(3, 303);
+            this.winPanel.Controls.Add(this.halfBox);
+            this.winPanel.Location = new System.Drawing.Point(3, 405);
             this.winPanel.Name = "winPanel";
             this.winPanel.Size = new System.Drawing.Size(461, 70);
             this.winPanel.TabIndex = 14;
@@ -702,7 +716,7 @@
             this.waterBox.AutoSize = true;
             this.waterBox.Checked = true;
             this.waterBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.waterBox.Location = new System.Drawing.Point(3, 379);
+            this.waterBox.Location = new System.Drawing.Point(3, 481);
             this.waterBox.Name = "waterBox";
             this.waterBox.Size = new System.Drawing.Size(127, 17);
             this.waterBox.TabIndex = 10;
@@ -714,7 +728,7 @@
             // winMode
             // 
             this.winMode.AutoSize = true;
-            this.winMode.Location = new System.Drawing.Point(3, 402);
+            this.winMode.Location = new System.Drawing.Point(3, 504);
             this.winMode.Name = "winMode";
             this.winMode.Size = new System.Drawing.Size(121, 17);
             this.winMode.TabIndex = 11;
@@ -729,7 +743,7 @@
             this.flowLayoutPanel4.Controls.Add(this.eCodeEditButton);
             this.flowLayoutPanel4.Controls.Add(this.advNTButton);
             this.flowLayoutPanel4.Controls.Add(this.progressTuneButton);
-            this.flowLayoutPanel4.Location = new System.Drawing.Point(3, 425);
+            this.flowLayoutPanel4.Location = new System.Drawing.Point(3, 527);
             this.flowLayoutPanel4.Name = "flowLayoutPanel4";
             this.flowLayoutPanel4.Size = new System.Drawing.Size(467, 61);
             this.flowLayoutPanel4.TabIndex = 18;
@@ -803,7 +817,7 @@
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.button1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button1.Location = new System.Drawing.Point(418, 391);
+            this.button1.Location = new System.Drawing.Point(418, 468);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(68, 23);
             this.button1.TabIndex = 14;
@@ -818,7 +832,7 @@
             this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.button3.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button3.Location = new System.Drawing.Point(301, 391);
+            this.button3.Location = new System.Drawing.Point(301, 468);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(111, 23);
             this.button3.TabIndex = 13;
@@ -833,7 +847,7 @@
             this.button7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button7.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.button7.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button7.Location = new System.Drawing.Point(15, 391);
+            this.button7.Location = new System.Drawing.Point(15, 468);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(69, 23);
             this.button7.TabIndex = 12;
@@ -849,7 +863,7 @@
             // 
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(15, 375);
+            this.label7.Location = new System.Drawing.Point(15, 452);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(245, 13);
             this.label7.TabIndex = 6;
@@ -858,7 +872,7 @@
             // label10
             // 
             this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label10.Location = new System.Drawing.Point(351, 369);
+            this.label10.Location = new System.Drawing.Point(351, 446);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(134, 13);
             this.label10.TabIndex = 8;
@@ -911,7 +925,6 @@
             this.toolStripSeparator1,
             this.nightThemeToolStripMenuItem,
             this.toolStripSeparator4,
-            this.returnToNewinterfaceToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.simulatorToolStripMenuItem.Margin = new System.Windows.Forms.Padding(5, 0, 0, 0);
             this.simulatorToolStripMenuItem.Name = "simulatorToolStripMenuItem";
@@ -925,7 +938,7 @@
             // simulateToolStripMenuItem
             // 
             this.simulateToolStripMenuItem.Name = "simulateToolStripMenuItem";
-            this.simulateToolStripMenuItem.Size = new System.Drawing.Size(256, 22);
+            this.simulateToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.simulateToolStripMenuItem.Text = "&Simulate";
             this.simulateToolStripMenuItem.Click += new System.EventHandler(this.SimulateToolStripMenuItem_Click);
             // 
@@ -935,7 +948,7 @@
             this.autoUpdateToolStripMenuItem,
             this.simulatorSettingsToolStripMenuItem});
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(256, 22);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.settingsToolStripMenuItem.Text = "Settings";
             this.settingsToolStripMenuItem.DropDownOpening += new System.EventHandler(this.SimulatorToolStripMenuItem_DropDownOpening);
             // 
@@ -962,26 +975,26 @@
             // 
             this.toolStripSeparator1.AutoSize = false;
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(253, 3);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(138, 3);
             // 
             // nightThemeToolStripMenuItem
             // 
             this.nightThemeToolStripMenuItem.CheckOnClick = true;
             this.nightThemeToolStripMenuItem.Name = "nightThemeToolStripMenuItem";
-            this.nightThemeToolStripMenuItem.Size = new System.Drawing.Size(256, 22);
+            this.nightThemeToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.nightThemeToolStripMenuItem.Text = "Night theme";
             this.nightThemeToolStripMenuItem.CheckStateChanged += new System.EventHandler(this.LightSwitch);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(253, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(138, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(256, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.exitToolStripMenuItem.Text = "E&xit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
@@ -1005,40 +1018,40 @@
             // blueScreenHacksToolStripMenuItem
             // 
             this.blueScreenHacksToolStripMenuItem.Name = "blueScreenHacksToolStripMenuItem";
-            this.blueScreenHacksToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.blueScreenHacksToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
             this.blueScreenHacksToolStripMenuItem.Text = "Additional &options";
             this.blueScreenHacksToolStripMenuItem.Click += new System.EventHandler(this.BlueScreenHacksToolStripMenuItem_Click);
             // 
             // codeCustomizationToolStripMenuItem
             // 
             this.codeCustomizationToolStripMenuItem.Name = "codeCustomizationToolStripMenuItem";
-            this.codeCustomizationToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.codeCustomizationToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
             this.codeCustomizationToolStripMenuItem.Text = "&Code customization";
             this.codeCustomizationToolStripMenuItem.Click += new System.EventHandler(this.CodeCustomizationToolStripMenuItem_Click);
             // 
             // advancedNTOptionsToolStripMenuItem
             // 
             this.advancedNTOptionsToolStripMenuItem.Name = "advancedNTOptionsToolStripMenuItem";
-            this.advancedNTOptionsToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.advancedNTOptionsToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
             this.advancedNTOptionsToolStripMenuItem.Text = "Advanced &NT options";
             this.advancedNTOptionsToolStripMenuItem.Click += new System.EventHandler(this.AdvancedNTOptionsToolStripMenuItem_Click);
             // 
             // progressTunerToolStripMenuItem
             // 
             this.progressTunerToolStripMenuItem.Name = "progressTunerToolStripMenuItem";
-            this.progressTunerToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.progressTunerToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
             this.progressTunerToolStripMenuItem.Text = "Progress &Tuner";
             this.progressTunerToolStripMenuItem.Click += new System.EventHandler(this.progressTunerToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(185, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(186, 6);
             // 
             // prankModeToolStripMenuItem
             // 
             this.prankModeToolStripMenuItem.Name = "prankModeToolStripMenuItem";
-            this.prankModeToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.prankModeToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
             this.prankModeToolStripMenuItem.Text = "&Prank mode";
             this.prankModeToolStripMenuItem.Click += new System.EventHandler(this.PrankModeToolStripMenuItem_Click);
             // 
@@ -1062,33 +1075,33 @@
             // 
             this.contentsToolStripMenuItem.Name = "contentsToolStripMenuItem";
             this.contentsToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1;
-            this.contentsToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.contentsToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
             this.contentsToolStripMenuItem.Text = "User manual";
             this.contentsToolStripMenuItem.Click += new System.EventHandler(this.ContentsToolStripMenuItem_Click);
             // 
             // quickHelpToolStripMenuItem
             // 
             this.quickHelpToolStripMenuItem.Name = "quickHelpToolStripMenuItem";
-            this.quickHelpToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.quickHelpToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
             this.quickHelpToolStripMenuItem.Text = "&Quick help";
             this.quickHelpToolStripMenuItem.Click += new System.EventHandler(this.QuickHelpToolStripMenuItem_Click);
             // 
             // commandLineSyntaxToolStripMenuItem
             // 
             this.commandLineSyntaxToolStripMenuItem.Name = "commandLineSyntaxToolStripMenuItem";
-            this.commandLineSyntaxToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.commandLineSyntaxToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
             this.commandLineSyntaxToolStripMenuItem.Text = "Command line s&yntax";
             this.commandLineSyntaxToolStripMenuItem.Click += new System.EventHandler(this.CommandLineSyntaxToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(187, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(186, 6);
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
             this.aboutToolStripMenuItem.Text = "A&bout";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
             // 
@@ -1096,20 +1109,110 @@
             // 
             this.waitPopup.Tick += new System.EventHandler(this.WaitPopup_Tick);
             // 
-            // returnToNewinterfaceToolStripMenuItem
+            // rainbowBox
             // 
-            this.returnToNewinterfaceToolStripMenuItem.Name = "returnToNewinterfaceToolStripMenuItem";
-            this.returnToNewinterfaceToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
-            | System.Windows.Forms.Keys.F4)));
-            this.returnToNewinterfaceToolStripMenuItem.Size = new System.Drawing.Size(256, 22);
-            this.returnToNewinterfaceToolStripMenuItem.Text = "Restore new &interface";
-            this.returnToNewinterfaceToolStripMenuItem.Click += new System.EventHandler(this.returnToNewinterfaceToolStripMenuItem_Click);
+            this.rainbowBox.AutoSize = true;
+            this.rainbowBox.Location = new System.Drawing.Point(3, 336);
+            this.rainbowBox.Name = "rainbowBox";
+            this.rainbowBox.Size = new System.Drawing.Size(83, 17);
+            this.rainbowBox.TabIndex = 19;
+            this.rainbowBox.Text = "Rainbow [?]";
+            this.quickHelp.SetToolTip(this.rainbowBox, "Displays a rainbow gradient as the background image");
+            this.rainbowBox.UseVisualStyleBackColor = true;
+            this.rainbowBox.Visible = false;
+            // 
+            // countdownBox
+            // 
+            this.countdownBox.AutoSize = true;
+            this.countdownBox.Location = new System.Drawing.Point(3, 359);
+            this.countdownBox.Name = "countdownBox";
+            this.countdownBox.Size = new System.Drawing.Size(131, 17);
+            this.countdownBox.TabIndex = 20;
+            this.countdownBox.Text = "Display countdown [?]";
+            this.quickHelp.SetToolTip(this.countdownBox, "On the Windows 8 Beta bugcheck, if error dumping is enabled, a countdown to compl" +
+        "etion would be displayed. However, if no dumping is enabled/available, no countd" +
+        "own would be displayed.");
+            this.countdownBox.UseVisualStyleBackColor = true;
+            this.countdownBox.Visible = false;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.nineXErrorCode);
+            this.panel2.Controls.Add(this.label6);
+            this.panel2.Location = new System.Drawing.Point(0, 259);
+            this.panel2.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(467, 25);
+            this.panel2.TabIndex = 21;
+            // 
+            // nineXErrorCode
+            // 
+            this.nineXErrorCode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.nineXErrorCode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.nineXErrorCode.FormattingEnabled = true;
+            this.nineXErrorCode.Items.AddRange(new object[] {
+            "System error",
+            "Application error",
+            "Driver error",
+            "System is busy",
+            "System is unresponsive (Warning)"});
+            this.nineXErrorCode.Location = new System.Drawing.Point(119, 3);
+            this.nineXErrorCode.Name = "nineXErrorCode";
+            this.nineXErrorCode.Size = new System.Drawing.Size(345, 21);
+            this.nineXErrorCode.TabIndex = 1;
+            this.quickHelp.SetToolTip(this.nineXErrorCode, "Select specific 9x/Me error message to display.");
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(3, 6);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(92, 13);
+            this.label6.TabIndex = 0;
+            this.label6.Text = "9x/Me error code:";
+            // 
+            // displayOsBox
+            // 
+            this.displayOsBox.AutoSize = true;
+            this.displayOsBox.Location = new System.Drawing.Point(141, 28);
+            this.displayOsBox.Name = "displayOsBox";
+            this.displayOsBox.Size = new System.Drawing.Size(95, 17);
+            this.displayOsBox.TabIndex = 5;
+            this.displayOsBox.Text = "Bootscreen [?]";
+            this.quickHelp.SetToolTip(this.displayOsBox, "Displays name of the operating system on top");
+            this.displayOsBox.UseVisualStyleBackColor = true;
+            this.displayOsBox.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged_1);
+            // 
+            // halfBox
+            // 
+            this.halfBox.AutoSize = true;
+            this.halfBox.Location = new System.Drawing.Point(100, 53);
+            this.halfBox.Name = "halfBox";
+            this.halfBox.Size = new System.Drawing.Size(109, 17);
+            this.halfBox.TabIndex = 22;
+            this.halfBox.Text = "Low resolution [?]";
+            this.quickHelp.SetToolTip(this.halfBox, "Lowers the resolution resulting in taller text when viewed in fullscreen mode");
+            this.halfBox.UseVisualStyleBackColor = true;
+            // 
+            // troubleshootBox
+            // 
+            this.troubleshootBox.AutoSize = true;
+            this.troubleshootBox.Location = new System.Drawing.Point(2, 28);
+            this.troubleshootBox.Name = "troubleshootBox";
+            this.troubleshootBox.Size = new System.Drawing.Size(137, 17);
+            this.troubleshootBox.TabIndex = 2;
+            this.troubleshootBox.Text = "Troubleshooting info [?]";
+            this.quickHelp.SetToolTip(this.troubleshootBox, "Shows the text that could potentially help you solve the issue");
+            this.troubleshootBox.UseVisualStyleBackColor = true;
+            this.troubleshootBox.CheckedChanged += new System.EventHandler(this.AmdBox_CheckedChanged);
+            this.troubleshootBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Button7_KeyDown);
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(499, 431);
+            this.ClientSize = new System.Drawing.Size(499, 508);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.button3);
@@ -1126,6 +1229,7 @@
             this.MainMenuStrip = this.menuBar;
             this.MinimumSize = new System.Drawing.Size(470, 470);
             this.Name = "Main";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "BlueScreen Simulator Plus";
             this.HelpButtonClicked += new System.ComponentModel.CancelEventHandler(this.Form1_HelpButtonClicked);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
@@ -1151,6 +1255,8 @@
             this.flowLayoutPanel4.ResumeLayout(false);
             this.menuBar.ResumeLayout(false);
             this.menuBar.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1241,7 +1347,14 @@
         private System.Windows.Forms.Label customMessageLabel1;
         private System.Windows.Forms.TextBox customMessageText;
         private System.Windows.Forms.CheckBox customCheckBox;
-        private System.Windows.Forms.ToolStripMenuItem returnToNewinterfaceToolStripMenuItem;
+        internal System.Windows.Forms.CheckBox rainbowBox;
+        internal System.Windows.Forms.CheckBox countdownBox;
+        private System.Windows.Forms.Panel panel2;
+        internal System.Windows.Forms.ComboBox nineXErrorCode;
+        private System.Windows.Forms.Label label6;
+        internal System.Windows.Forms.CheckBox displayOsBox;
+        internal System.Windows.Forms.CheckBox halfBox;
+        internal System.Windows.Forms.CheckBox troubleshootBox;
     }
 }
 

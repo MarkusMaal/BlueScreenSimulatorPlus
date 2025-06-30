@@ -364,7 +364,7 @@ namespace UltimateBlueScreenSimulator
             if ((e.KeyCode == Keys.Escape) || (e.KeyCode == Keys.F7))
             {
                 // debug here
-                Program.f1.me.GetString("a");
+                UIActions.me.GetString("a");
                 Close();
             }
             else if ((e.KeyCode == Keys.F2) && me.GetBool("windowed"))

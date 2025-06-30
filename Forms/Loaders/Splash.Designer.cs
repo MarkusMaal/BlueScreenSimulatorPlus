@@ -89,12 +89,12 @@
             this.appMarketedVersionLabel.BackColor = System.Drawing.Color.Transparent;
             this.appMarketedVersionLabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.appMarketedVersionLabel.Font = new System.Drawing.Font("Segoe UI", 24F);
-            this.appMarketedVersionLabel.ForeColor = System.Drawing.Color.MediumBlue;
+            this.appMarketedVersionLabel.ForeColor = System.Drawing.Color.LawnGreen;
             this.appMarketedVersionLabel.Location = new System.Drawing.Point(386, 43);
             this.appMarketedVersionLabel.Name = "appMarketedVersionLabel";
             this.appMarketedVersionLabel.Size = new System.Drawing.Size(61, 64);
             this.appMarketedVersionLabel.TabIndex = 4;
-            this.appMarketedVersionLabel.Text = "3.0";
+            this.appMarketedVersionLabel.Text = "3.1";
             this.appMarketedVersionLabel.UseWaitCursor = true;
             // 
             // label1

@@ -129,6 +129,7 @@ namespace UltimateBlueScreenSimulator
             this.Controls.Add(this.fileBrowser);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ChooseFile";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Choose culprit file";
             this.Load += new System.EventHandler(this.Initialize);
             this.ResumeLayout(false);

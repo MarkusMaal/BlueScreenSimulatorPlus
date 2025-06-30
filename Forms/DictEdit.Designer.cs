@@ -194,6 +194,7 @@ namespace UltimateBlueScreenSimulator
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "DictEdit";
             this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Quick and dirty dictionary editor";
             this.Load += new System.EventHandler(this.DictEdit_Load);
             this.ResumeLayout(false);

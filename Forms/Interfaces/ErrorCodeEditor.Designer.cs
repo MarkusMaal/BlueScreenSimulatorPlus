@@ -276,6 +276,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(380, 380);
             this.Name = "ErrorCodeEditor";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Error code editor";
             this.Load += new System.EventHandler(this.ErrorCodeEditor_Load);
             this.codeListPanel.ResumeLayout(false);

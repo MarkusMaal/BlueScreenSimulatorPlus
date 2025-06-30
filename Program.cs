@@ -26,7 +26,7 @@ namespace UltimateBlueScreenSimulator
         /// </summary>
         //Form creation
         public static NewUI f1;
-        //public static Main f2;
+        public static Main f2;
         public static Splash spl;
         public static DrawRoutines dr;
         public static GlobalSettings gs = new GlobalSettings();
@@ -43,7 +43,7 @@ namespace UltimateBlueScreenSimulator
         public static int load_progress = 100;
         public static string load_message = "Initializing...";
         public static bool hidden = false;
-        internal static string changelog = "* Fixed emoticon alignment for Windows 8+ blue screen when using ultrawide displays\n* Upgraded vulnerable NuGet packages to latest versions";
+        internal static string changelog = "*CHANGE THIS*";
 
         public static bool hide_splash = false;
         public static bool halt = false;
@@ -100,7 +100,7 @@ namespace UltimateBlueScreenSimulator
                 gs.Log("Info", "Initializing draw routines");
                 dr = new DrawRoutines();
                 //Initialize forms
-                //f2 = new Main();
+                f2 = new Main();
                 gs.Log("Info", "Creating initial form");
                 f1 = new NewUI();
                 //Set default selection indexes for combo boxes
@@ -132,7 +132,14 @@ namespace UltimateBlueScreenSimulator
                 gs.Log("Info", "Initializing 9x error code database");
                 ReloadNxErrors();
                 //run application
-                Application.Run(f1);
+                if (gs.LegacyUI)
+                {
+                    Application.Run(f2);
+                }
+                else
+                {
+                    Application.Run(f1);
+                }
                 return gs.ErrorCode;
             }
             catch (Exception e)
@@ -337,9 +344,9 @@ namespace UltimateBlueScreenSimulator
                     f1 = new NewUI();
                     Thread th = new Thread(new ThreadStart(() => {
                         // initialize BlueScreen object
-                        f1.me = templates.LoadSingleConfig(jsondata);
+                        UIActions.me = templates.LoadSingleConfig(jsondata);
                         // display the crash screen
-                        f1.me.Show();
+                        UIActions.me.Show();
                     }));
                     th.Start();
                     th.Join();

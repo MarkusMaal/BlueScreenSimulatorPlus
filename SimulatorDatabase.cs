@@ -11,6 +11,7 @@ using System.Linq;
 using System.Drawing.Drawing2D;
 using System.Diagnostics;
 using System.IO;
+using UltimateBlueScreenSimulator.Forms.Simulators;
 
 //
 // This namespace contains classes that are shared between forms that specify
@@ -157,7 +158,7 @@ namespace SimulatorDatabase
                 {
                     Program.dr.Draw(ws);
                 }
-                catch
+                catch when (!Debugger.IsAttached)
                 {
                     ws.Close();
                 }
@@ -944,7 +945,7 @@ namespace SimulatorDatabase
                         lette = Convert.ToChar((inspir + inspir).Substring(i, 1));
                     }
                 }
-                catch
+                catch when (!Debugger.IsAttached)
                 {
                     Program.gs.Log("Error", $"Failed to generate hex character at position {i} with template \"{inspir + inspir}\". Current configuration may be corrupt, please reset settings!", GetString("friendlyname"));
                     lette = '0';
@@ -1183,6 +1184,9 @@ namespace SimulatorDatabase
                     bm.ShowDialog();
                     Thread.CurrentThread.Abort();
                     break;
+                case "Windows 11 Beta":
+                    SetSunValley(new SunValleyBSOD());
+                    break;
                 case "Windows 11":
                     SetupWinXabove(new WXBS(), true);
                     break;
@@ -1242,13 +1246,36 @@ namespace SimulatorDatabase
                 bs.ForeColor = this.GetTheme(false);
                 bs.Font = this.GetFont();
             }
-            catch (Exception ex)
+            catch (Exception ex) when (!Debugger.IsAttached)
             {
                 Log("Error", $"Error setting up Windows 8 Beta simulator. Reason: {ex.Message}");
                 MessageBox.Show(ex.Message, "A non-critical error has occoured", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             bs.me = this;
             bs.ShowDialog();
+            CheckMessageJustInCase();
+        }
+
+        /// <summary>
+        /// Prepares Windows 11 Beta black screen for simulation
+        /// </summary>
+        /// <param name="f">Form for the simulator</param>
+        private void SetSunValley(SunValleyBSOD f)
+        {
+            try
+            {
+                Log("Info", "Setting up Sun Valley bugcheck simulator");
+                f.WindowState = GetBool("windowed") ? FormWindowState.Normal : FormWindowState.Maximized;
+                f.BackColor = this.GetTheme(true);
+                f.ForeColor = this.GetTheme(false);
+                f.Font = this.GetFont();
+            } catch (Exception ex) when (!Debugger.IsAttached)
+            {
+                Log("Error", $"Error setting up Sun Valley bugcheck simulator. Reason: {ex.Message}");
+                MessageBox.Show(ex.Message, "A non-critical error has occoured", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            f.me = this;
+            f.ShowDialog();
             CheckMessageJustInCase();
         }
 
@@ -1268,7 +1295,7 @@ namespace SimulatorDatabase
                 bs.waterMarkText.Visible = GetBool("watermark");
                 bs.technicalCode.Text = "*** STOP: 0x" + GetString("code").Split(' ')[1].ToString().Replace(")", "").Replace("(", "").ToString().Substring(4, 6) + " (" + GetString("code").Split(' ')[0].ToString().Replace("_", " ").ToLower() + ")";
             }
-            catch (Exception ex)
+            catch (Exception ex) when (!Debugger.IsAttached)
             {
                 Log("Error", $"Error setting up Windows CE simulator. Reason: {ex.Message}");
                 MessageBox.Show(ex.Message, "A non-critical error has occoured", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -1317,7 +1344,7 @@ namespace SimulatorDatabase
                 bs.blink = GetBool("blink");
                 bs.waterMarkText.Visible = GetBool("watermark");
             }
-            catch (Exception ex)
+            catch (Exception ex) when (!Debugger.IsAttached)
             {
                 Log("Error", $"Error setting up Windows NT simulator. Reason: {ex.Message}");
                 MessageBox.Show(ex.Message, "A non-critical error has occoured", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -1342,7 +1369,7 @@ namespace SimulatorDatabase
                 bs.errorCode = GenHex(2, GetString("ecode1")) + " : " + GenHex(4, GetString("ecode2")) + " : " + GenHex(6, GetString("ecode3"));
                 bs.waterMarkText.Visible = this.GetBool("watermark");
             }
-            catch (Exception ex)
+            catch (Exception ex) when (!Debugger.IsAttached)
             {
                 Log("Error", $"Error setting up Windows 3.1x/9x/Me simulator. Reason: {ex.Message}");
                 MessageBox.Show(ex.Message, "A non-critical error has occoured", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -1365,7 +1392,7 @@ namespace SimulatorDatabase
                 bs.ForeColor = this.GetTheme(false);
                 bs.window = this.GetBool("windowed");
             }
-            catch (Exception ex)
+            catch (Exception ex) when (!Debugger.IsAttached)
             {
                 Log("Error", $"Error setting up Windows 1.x/2.x simulator. Reason: {ex.Message}");
                 MessageBox.Show(ex.Message, "A non-critical error has occoured", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -1392,7 +1419,7 @@ namespace SimulatorDatabase
                 bs.errorCode = string.Format(this.GetTexts()["Error code formatting"].Replace("{1}", "0x{1},0x{2},0x{3},0x{4}"), this.GetString("code").Split(' ')[1].ToString().Replace(")", "").Replace("(", "").ToString(), GenHex(8, this.GetString("ecode1")), GenHex(8, this.GetString("ecode2")), GenHex(8, this.GetString("ecode3")), GenHex(8, this.GetString("ecode4")));
                 bs.errorCode = bs.errorCode + "\n" + this.GetString("code").Split(' ')[0].ToString();
             }
-            catch (Exception ex)
+            catch (Exception ex) when (!Debugger.IsAttached)
             {
                 Log("Error", $"Error setting up Windows 2000 simulator. Reason: {ex.Message}");
                 MessageBox.Show(ex.Message, "A non-critical error has occoured", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -1420,7 +1447,7 @@ namespace SimulatorDatabase
                 bs.technicalCode.Text = "*** STOP: " + this.GetString("code").Split(' ')[1].ToString().Replace(")", "").Replace("(", "").ToString() + " (" + GenAddress(4, 8, false) + ")";
                 bs.supportInfo.Text = this.GetTexts()["Technical support"] + "\n\n\nTechnical information:";
             }
-            catch (Exception ex)
+            catch (Exception ex) when (!Debugger.IsAttached)
             {
                 Log("Error", $"Error setting up Windows XP simulator. Reason: {ex.Message}");
                 MessageBox.Show(ex.Message, "A non-critical error has occoured", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -1453,7 +1480,7 @@ namespace SimulatorDatabase
                 bs.technicalCode.Text = "*** STOP: " + this.GetString("code").Split(' ')[1].ToString().Replace(")", "").Replace("(", "").ToString() + " (" + GenAddress(4, 16, false) + ")";
                 bs.supportInfo.Text = this.GetTexts()["Technical support"] + "\n\n\nTechnical information:";
             }
-            catch (Exception ex)
+            catch (Exception ex) when (!Debugger.IsAttached)
             {
                 Log("Error", $"Error setting up Windows Vista simulator. Reason: {ex.Message}");
                 MessageBox.Show(ex.Message, "A non-critical error has occoured", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -1497,7 +1524,7 @@ namespace SimulatorDatabase
                     bs.code = GetString("code").Split(' ')[1].ToString().Replace(")", "").Replace("(", "").ToString();
                 }
             }
-            catch (Exception ex)
+            catch (Exception ex) when (!Debugger.IsAttached)
             {
                 Log("Error", $"Error setting up Windows 8.x/10/11 simulator in SetupWinXabove method. Reason: {ex.Message}");
                 MessageBox.Show(ex.Message, "A non-critical error has occoured", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -1540,7 +1567,7 @@ namespace SimulatorDatabase
                     bs.code = GetString("code").Split(' ')[1].ToString().Replace(")", "").Replace("(", "").ToString();
                 }
             }
-            catch (Exception ex)
+            catch (Exception ex) when (!Debugger.IsAttached)
             {
                 Log("Error", $"Error setting up Windows 8.x/10/11 simulator in SetupWin8 method. Reason: {ex.Message}");
                 MessageBox.Show(ex.Message, "A non-critical error has occoured", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -1911,6 +1938,22 @@ namespace SimulatorDatabase
                     SetBool("blackscreen", false);
                     SetBool("qr", true);
                     SetString("qr_file", "local:0");
+                    SetString("code", "IRQL_NOT_LESS_OR_EQUAL (0x0000000A)");
+                    SetDefaultProgression();
+                    SetBool("show_description", true);
+                    SetBool("font_support", true);
+                    break;
+                case "Windows 11 Beta":
+                    this.icon = "2D window";
+                    SetString("friendlyname", "Windows 11 Beta (Native, ClearType)");
+                    PushText("Information text", "Your device ran into a problem and needs to restart.");
+                    PushText("Error code", "Stop code: {0} ({1})");
+                    PushText("Progress", "{0}% complete");
+                    PushText("Culprit file", "What failed: {0}");
+                    SetFont("Segoe UI Semilight", 18.4f, FontStyle.Regular);
+                    SetTheme(RGB(0, 0, 0), RGB(255, 255, 255));
+
+                    SetBool("autoclose", true);
                     SetString("code", "IRQL_NOT_LESS_OR_EQUAL (0x0000000A)");
                     SetDefaultProgression();
                     SetBool("show_description", true);

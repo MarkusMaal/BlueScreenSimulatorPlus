@@ -151,6 +151,12 @@
     <Compile Include="Forms\DictEdit.Designer.cs">
       <DependentUpon>DictEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Simulators\SunValleyBSOD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Simulators\SunValleyBSOD.Designer.cs">
+      <DependentUpon>SunValleyBSOD.cs</DependentUpon>
+    </Compile>
     <Compile Include="GlobalSettings.cs" />
     <Compile Include="Forms\Simulators\JupiterBSOD.cs">
       <SubType>Form</SubType>
@@ -287,6 +293,7 @@
       <DependentUpon>xvsbs.cs</DependentUpon>
     </Compile>
     <Compile Include="TemplateRegistry.cs" />
+    <Compile Include="UIActions.cs" />
     <Compile Include="Verifile.cs" />
     <EmbeddedResource Include="Forms\Interfaces\AboutSettingsDialog.resx">
       <DependentUpon>AboutSettingsDialog.cs</DependentUpon>
@@ -352,6 +359,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Interfaces\ProgressTuner.resx">
       <DependentUpon>ProgressTuner.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Simulators\SunValleyBSOD.resx">
+      <DependentUpon>SunValleyBSOD.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MaterialSkin\Controls\SizableMaterialButton.resx">
       <DependentUpon>SizableMaterialButton.cs</DependentUpon>

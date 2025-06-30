@@ -110,6 +110,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "BTS";
             this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "???";
             this.Load += new System.EventHandler(this.BTS_Load);
             ((System.ComponentModel.ISupportInitialize)(this.charSetA)).EndInit();

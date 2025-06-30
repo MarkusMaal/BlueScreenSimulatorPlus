@@ -43,7 +43,8 @@ namespace UltimateBlueScreenSimulator
                 "Windows 8 Beta",
                 "Windows 8/8.1",
                 "Windows 10",
-                "Windows 11"};
+                "Windows 11",
+                "Windows 11 Beta"};
 
             Reset();
         }

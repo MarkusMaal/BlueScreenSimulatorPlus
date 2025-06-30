@@ -425,7 +425,7 @@ namespace UltimateBlueScreenSimulator
             Program.f1.abopen = false;
             if (SettingTab)
             {
-                Program.f1.GetOS();
+                UIActions.GetOS(Program.f1);
             }
         }
 
@@ -997,9 +997,9 @@ namespace UltimateBlueScreenSimulator
                         Program.dr = new DrawRoutines();
                         Thread th = new Thread(new ThreadStart(() => {
                             // initialize BlueScreen object
-                            Program.f1.me = Program.templates.LoadSingleConfig(jsonString);
+                            UIActions.me = Program.templates.LoadSingleConfig(jsonString);
                             // display the crash screen
-                            Program.f1.me.Show();
+                            UIActions.me.Show();
                         }));
                         th.Start();
                         th.Join();
@@ -1058,6 +1058,11 @@ namespace UltimateBlueScreenSimulator
         {
             accentBox.SelectedIndex = r.Next(0, accentBox.Items.Count - 1);
             primaryColorBox.SelectedIndex = r.Next(0, primaryColorBox.Items.Count - 1);
+        }
+
+        private void legacyInterfaceCheck_CheckedChanged(object sender, EventArgs e)
+        {
+            Program.gs.LegacyUI = legacyInterfaceCheck.Checked;
         }
     }
 }

@@ -1,0 +1,751 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.Design;
+using System.Drawing;
+using System.Linq;
+using System.Reflection;
+using System.Security.Cryptography;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Xml.Linq;
+using MaterialSkin;
+using MaterialSkin.Controls;
+using Microsoft.Win32;
+using SimulatorDatabase;
+using static System.Windows.Forms.Design.AxImporter;
+
+namespace UltimateBlueScreenSimulator
+{
+    public static class UIActions
+    {
+        public static ThreadStart ts;
+        public static Thread bsod_starter;
+        public static BlueScreen me;
+        public static string version = Assembly.GetExecutingAssembly().GetName().Version.ToString().Replace(".", "").Substring(0, 1) + "." + Assembly.GetExecutingAssembly().GetName().Version.ToString().Replace(".", "").Substring(1);
+
+        /// <summary>
+        /// Hides controls related to settings from current form
+        /// </summary>
+        /// <param name="f">Current form (can be Main or NewUI)</param>
+        public static void HideSelection(Form f)
+        {
+            //hide all controls
+            if (!(f is Main) && !(f is NewUI))
+            {
+                return;
+            }
+            FlowLayoutPanel container = ((FlowLayoutPanel)FindControl(f, "flowLayoutPanel1"));
+            if (container is null)
+            {
+                return;
+            }
+
+            foreach (Control c in container.Controls)
+            {
+                switch (c.Name)
+                {
+                    case "WXOptions":
+                    case "errorCode":
+                    case "nineXmessage":
+                    case "serverBox":
+                    case "greenBox":
+                    case "qrBox":
+                    case "checkBox1":
+                    case "winMode":
+                    case "acpiBox":
+                    case "amdBox":
+                    case "stackBox":
+                    case "ntPanel":
+                    case "memoryBox":
+                    case "dumpBox":
+                    case "winPanel":
+                    case "advNTButton":
+                    case "eCodeEditButton":
+                    case "devPCBox":
+                    case "playSndBox":
+                    case "countdownBox":
+                    case "progressTuneButton":
+                    case "halfBox":
+                    case "troubleshootBox":
+                    case "blackScreenBox":
+                        c.Visible = false;
+                        Program.gs.Log("Info", $"Showing {c}");
+                        break;
+                    case "checkBox2":
+                        c.Visible = true;
+                        break;
+                    case "embedExeButton":
+                        c.Visible = !Program.templates.qaddeTrip;
+                        break;
+                }
+                switch (c.Name)
+                {
+                    case "addInfFile":
+                        c.Enabled = false;
+                        break;
+                    case "dumpBox":
+                    case "checkBox2":
+                        c.Enabled = true;
+                        break;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Find a control from a container (recursive search)
+        /// </summary>
+        /// <param name="container">The container where to search the control from</param>
+        /// <param name="Name">Name of the control you want to find</param>
+        /// <returns>Control with the specified name</returns>
+        private static Control FindControl(Control container, string Name)
+        {
+            Program.gs.Log("Info", $"Searching for {Name} from {container.Name}");
+            foreach (Control c in container.Controls)
+            {
+                Control FoundControl = null;
+                if (c is FlowLayoutPanel flp)
+                {
+                    FoundControl = FindControl(flp, Name);
+                }
+                else if (c is Panel p)
+                {
+                    FoundControl = FindControl(p, Name);
+                }
+                else if (c is MaterialTabControl tc)
+                {
+                    FoundControl = FindControl(tc, Name);
+                }
+                else if (c is TabPage tp)
+                {
+                    FoundControl = FindControl(tp, Name);
+                }
+                if (FoundControl != null)
+                {
+                    return FoundControl;
+                }
+                if (c.Name == Name)
+                {
+                    return c;
+                }
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Allows you to check or uncheck either a CheckBox or MaterialCheckbox from a container
+        /// </summary>
+        /// <param name="container">The container to search the control from</param>
+        /// <param name="Name">Name of the control</param>
+        /// <param name="Checked">Check value you want to apply to the control</param>
+        /// <exception cref="FormatException">The type of the control is invalid</exception>
+        private static void SetControlChecked(Control container, string Name, bool Checked)
+        {
+            Program.gs.Log("Info", $"Setting checked to {Checked} for {Name}");
+            Control c = FindControl(container, Name);
+            if (c is CheckBox ch)
+            {
+                ch.Checked = Checked;
+                return;
+            }
+            else if (c is MaterialCheckbox mch)
+            {
+                mch.Checked = Checked;
+                return;
+            }
+            else if (c is RadioButton rb)
+            {
+                rb.Checked = Checked;
+                return;
+            }
+            else if (c is MaterialRadioButton mrb)
+            {
+                mrb.Checked = Checked;
+                return;
+            }
+            throw new FormatException();
+        }
+
+        /// <summary>
+        /// Allows you to show or hide a control from a specific container
+        /// </summary>
+        /// <param name="container">The container to search the control from</param>
+        /// <param name="Name">Name of the control</param>
+        /// <param name="Visible">Visible value you want to apply to the control</param>
+        private static void SetControlVisible(Control container, string Name, bool Visible)
+        {
+            Program.gs.Log("Info", $"Setting visible to {Visible} for {Name}");
+            FindControl(container, Name).Visible = Visible;
+        }
+
+        /// <summary>
+        /// Allows you to enable or disable a control from a specific container
+        /// </summary>
+        /// <param name="container">The container to search the control from</param>
+        /// <param name="Name">Name of the control</param>
+        /// <param name="Visible">Enabled value you want to apply to the control</param>
+        private static void SetControlEnabled(Control container, string Name, bool Enabled)
+        {
+            Program.gs.Log("Info", $"Setting enabled to {Enabled} for {Name}");
+            FindControl(container, Name).Enabled = Enabled;
+        }
+
+        /// <summary>
+        /// Sets the visibility and values of setting controls on the current form
+        /// </summary>
+        /// <param name="f">Main or NewUI form object</param>
+        /// <param name="me">Selected template</param>
+        public static void ResetSelection(Form f, BlueScreen me)
+        {
+            //progressTunerToolStripMenuItem.Enabled = fal
+            FlowLayoutPanel fp = (FlowLayoutPanel)FindControl(f, "flowLayoutPanel1");
+            SetControlVisible(fp, "rainbowBox", me.GetBool("font_support") || me.GetString("os") == "BOOTMGR");
+            // set control visibility for specific OS-es
+            List<string> ExplicitShow = new List<string>();
+            switch (me.GetString("os"))
+            {
+                case "Windows 11 Beta":
+                    ExplicitShow.AddRange(new string[] { "errorCode", "winMode", "checkBox1", "memoryBox", "eCodeEditButton", "progressTuneButton" });
+                    break;
+                case "Windows 11":
+                    ExplicitShow.AddRange(new string[]
+                    {
+                        "WXOptions",
+                        "serverBox",
+                        "qrBox",
+                        "errorCode",
+                        "checkBox1",
+                        "winMode",
+                        "memoryBox",
+                        "eCodeEditButton",
+                        "blackScreenBox",
+                        "progressTuneButton"
+                    });
+                    SetControlChecked(fp, "autoBox", true);
+                    SetControlChecked(fp, "blackScreenBox", me.GetBool("blackscreen"));
+                    break;
+                case "Windows 10":
+                    ExplicitShow.AddRange(new string[]
+                    {
+                        "WXOptions",
+                        "serverBox",
+                        "greenBox",
+                        "qrBox",
+                        "errorCode",
+                        "checkBox1",
+                        "winMode",
+                        "memoryBox",
+                        "eCodeEditButton",
+                        "devPCBox",
+                        "progressTuneButton"
+                    });
+                    SetControlChecked(fp, "autoBox", true);
+                    break;
+                case "Windows 8/8.1":
+                    ExplicitShow.AddRange(new string[]
+                    {
+                        "WXOptions",
+                        "errorCode",
+                        "checkBox1",
+                        "winMode",
+                        "memoryBox",
+                        "eCodeEditButton",
+                        "progressTuneButton",
+                        "blackScreenBox"
+                    });
+                    break;
+                case "Windows 8 Beta":
+                    ExplicitShow.AddRange(new string[]
+                    {
+                        "errorCode",
+                        "winMode",
+                        "memoryBox",
+                        "eCodeEditButton",
+                        "countdownBox"
+                    });
+                    SetControlEnabled(fp, "checkBox2", false);
+                    break;
+                case "Windows Vista":
+                case "Windows 7":
+                    ExplicitShow.AddRange(new string[]
+                    {
+                        "errorCode",
+                        "winMode",
+                        "acpiBox",
+                        "checkBox1",
+                        "autoBox",
+                        "dumpBox",
+                        "advNTButton",
+                        "eCodeEditButton"
+                    });
+                    SetControlEnabled(fp, "addInfFile", true);
+                    //progressTunerToolStripMenuItem.Enabled = true;
+                    break;
+                case "Windows XP":
+                    ExplicitShow.AddRange(new string[]
+                    {
+                        "errorCode",
+                        "winMode",
+                        "checkBox1",
+                        "autoBox",
+                        "dumpBox",
+                        "advNTButton",
+                        "eCodeEditButton"
+                    });
+                    SetControlEnabled(fp, "addInfFile", true);
+                    break;
+                case "Windows 2000":
+                    ExplicitShow.AddRange(new string[]
+                    {
+                        "errorCode",
+                        "winMode",
+                        "eCodeEditButton",
+                        "advNTButton"
+                    });
+                    SetControlChecked(fp, "checkBox1", true);
+                    break;
+                case "Windows 9x/Me":
+                    ExplicitShow.AddRange(new string[]
+                    {
+                        "nineXmessage",
+                        "winMode",
+                        "eCodeEditButton"
+                    });
+                    break;
+                case "Windows CE":
+                    ExplicitShow.AddRange(new string[]
+                    {
+                        "winMode",
+                        "errorCode"
+                    });
+                    SetControlChecked(fp, "checkBox2", false);
+                    SetControlEnabled(fp, "checkBox2", false);
+                    SetControlEnabled(fp, "textBox2", false);
+                    break;
+                case "Windows NT 3.x/4.0":
+                    ExplicitShow.AddRange(new string[]
+                    {
+                        "errorCode",
+                        "stackBox",
+                        "ntPanel",
+                        "winMode",
+                        "advNTButton",
+                        "eCodeEditButton",
+                        "troubleshootBox"
+                    });
+                    SetControlVisible(fp, "amdBox", !me.GetBool("threepointone"));
+                    SetControlVisible(fp, "displayOsBox", me.GetBool("threepointone"));
+                    break;
+                case "Windows 3.1x":
+                    SetControlVisible(fp, "winMode", true);
+                    break;
+                case "Windows 1.x/2.x":
+                    ExplicitShow.AddRange(new string[]
+                    {
+                        "winMode",
+                        "winPanel",
+                        "playSndBox",
+                        "halfBox",
+                    });
+                    SetControlEnabled(fp, "winPanel", !me.GetBool("halfres"));
+                    break;
+                case "BOOTMGR":
+                    SetControlVisible(fp, "winMode", true);
+                    break;
+            }
+            foreach (string s in ExplicitShow)
+            {
+                SetControlVisible(fp, s, true);
+            }
+            bool inlist = false;
+            foreach (string item in ((ComboBox)FindControl(fp.Controls["errorCode"], "comboBox1")).Items)
+            {
+                if (item == me.GetString("code"))
+                {
+                    inlist = true;
+                }
+            }
+            if (fp.Controls["nineXmessage"].Visible)
+            {
+                ((ComboBox)FindControl(fp, "comboBox2")).Items.Clear();
+                foreach (string text in me.GetTexts().Keys)
+                {
+                    if (text != "Prompt")
+                    {
+                        ((ComboBox)FindControl(fp, "comboBox2")).Items.Add(text);
+                    }
+                }
+            }
+            //codeCustomizationToolStripMenuItem.Enabled = eCodeEditButton.Visible;
+            //advancedNTOptionsToolStripMenuItem.Enabled = advNTButton.Visible;
+            // load options for current bluescreen
+            string nx_code;
+            try
+            {
+                nx_code = me.GetCodes()[0].Substring(0, 2);
+            }
+            catch
+            {
+                nx_code = "00";
+            }
+            ((ComboBox)FindControl(fp, "nineXErrorCode")).SelectedIndex = -1;
+            for (int i = 0; i < Program.templates.NxErrors.Length; i++)
+            {
+                string selc = Program.templates.NxErrors[i].Split('\t')[0];
+                if (nx_code == selc)
+                {
+                    ((ComboBox)FindControl(fp, "nineXErrorCode")).SelectedIndex = i;
+                }
+            }
+            Program.gs.Log("Info", "Loading settings for configuration template", me.GetString("friendlyname"));
+            SetControlChecked(fp, "autoBox", me.GetBool("autoclose"));
+            SetControlChecked(fp, "serverBox", me.GetBool("server"));
+            SetControlChecked(fp, "greenBox", me.GetBool("green"));
+            SetControlChecked(fp, "qrBox", me.GetBool("qr"));
+            SetControlChecked(fp, "checkBox1", me.GetBool("show_description"));
+            SetControlChecked(fp, "checkBox2", me.GetBool("show_file"));
+            SetControlChecked(fp, "amdBox", me.GetBool("amd"));
+            SetControlChecked(fp, "stackBox", me.GetBool("stack_trace"));
+            SetControlChecked(fp, "blinkBox", me.GetBool("blink"));
+            SetControlChecked(fp, "acpiBox", me.GetBool("acpi"));
+            SetControlChecked(fp, "playSndBox", me.GetBool("playsound"));
+            SetControlChecked(fp, "waterBox", me.GetBool("watermark"));
+            SetControlChecked(fp, "winMode", me.GetBool("windowed"));
+            SetControlChecked(fp, "countdownBox", me.GetBool("countdown"));
+            SetControlChecked(fp, "displayOsBox", me.GetBool("bootscreen"));
+            SetControlChecked(fp, "halfBox", me.GetBool("halfres"));
+            SetControlChecked(fp, "rainbowBox", me.GetBool("rainbow"));
+            SetControlChecked(fp, "memoryBox", me.GetBool("extracodes"));
+            SetControlChecked(fp, "troubleshootBox", me.GetBool("troubleshoot"));
+
+
+            FindControl(fp, "textBox2").Text = me.GetString("culprit");
+            ((ComboBox)FindControl(fp, "comboBox1")).SelectedItem = me.GetString("code");
+            ((ComboBox)FindControl(fp, "comboBox2")).SelectedItem = me.GetString("screen_mode");
+
+            if (((CheckBox)FindControl(fp, "acpiBox")).Checked)
+            {
+                SetControlEnabled(fp, "dumpBox", false);
+            }
+            SetControlChecked(fp, "win1startup", false);
+            SetControlChecked(fp, "win2startup", false);
+            SetControlChecked(fp, "nostartup", false);
+            switch (me.GetString("qr_file"))
+            {
+                case "local:0":
+                    SetControlChecked(fp, "win1startup", true);
+                    break;
+                case "local:1":
+                    SetControlChecked(fp, "win2startup", true);
+                    break;
+                case "local:null":
+                    SetControlChecked(fp, "nostartup", true);
+                    break;
+            }
+        }
+
+
+
+        public static void GetOS(Form f)
+        {
+            Control fp = f;
+            ComboBox wv = ((ComboBox)FindControl(fp, "windowVersion"));
+            wv.Items.Clear();
+            for (int i = Program.templates.Count - 1; i >= 0; i--)
+            {
+                wv.Items.Add(Program.templates.GetAt(i).GetString("friendlyname"));
+            }
+            SetControlVisible(fp, "WXOptions", false);
+            SetControlVisible(fp, "errorCode", false);
+            SetControlVisible(fp, "nineXmessage", false);
+            SetControlVisible(fp, "serverBox", false);
+            SetControlVisible(fp, "greenBox", false);
+            SetControlVisible(fp, "qrBox", false);
+            SetControlVisible(fp, "checkBox1", false);
+            SetControlVisible(fp, "winMode", false);
+            SetControlVisible(fp, "acpiBox", false);
+            SetControlVisible(fp, "amdBox", false);
+            SetControlVisible(fp, "stackBox", false);
+            SetControlVisible(fp, "ntPanel", false);
+            SetControlEnabled(fp, "checkBox2", true);
+            if (wv.Items.Count > 0) { wv.SelectedIndex = 0; }
+            string winver = "";
+            int os_build = 0;
+            /*if (specificos != "")
+            {
+                winver = specificos;
+                specificos = "";
+            }*/
+            try
+            {
+                winver = Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion", "ProductName", "").ToString();
+                os_build = Convert.ToInt32(Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion", "CurrentBuild", "0").ToString());
+            }
+            catch
+            {
+                if (os_build == 0)
+                {
+                    Program.gs.Log("Error", "CurrentBuild missing, Windows registry may be corrupted...");
+                }
+                if (winver == "")
+                {
+                    Program.gs.Log("Error", "ProductName missing, Windows registry may be corrupted...");
+                }
+            }
+            //this code identifies Windows 11
+            if (os_build >= 22000)
+            {
+                SetOS("Windows 11", f);
+            }
+            //this code identifies Windows 10
+            else if (winver.Contains("Windows 10"))
+            {
+                SetOS("Windows 10", f);
+            }
+            //this code identifies Windows 8 or Windows 8.1
+            else if (winver.Contains("Windows 8"))
+            {
+                SetOS("Windows 8", f);
+            }
+            //this code identifies Windows 7
+            else if (winver.Contains("Windows 7"))
+            {
+                SetOS("Windows 7", f);
+            }
+            //this code identifies Windows Vista
+            else if (winver.Contains("Windows Vista"))
+            {
+                SetOS("Windows Vista", f);
+            }
+            //this code identifies Windows XP
+            else if (winver.Contains("Windows XP"))
+            {
+                SetOS("Windows XP", f);
+            }
+            //this code identifies Windows 2000
+            else if ((winver.Contains("Windows 2000")) || (winver.Contains("Windows NT 5")))
+            {
+                SetOS("Windows 2000", f);
+            }
+            //this code identifies Windows 95 or Windows 98
+            else if ((winver.Contains("Windows 95")) || (winver.Contains("Windows 98")))
+            {
+                SetOS("Windows 9x", f);
+            }
+            //this code identifies old Windows NT versions
+            else if ((winver.Contains("Windows NT 4")) || (winver.Contains("Windows NT 3")))
+            {
+                SetOS("Windows NT", f);
+            }
+        }
+
+        private static void SetOS(string winver, Form f)
+        {
+            Control fp = f;
+            ComboBox wv = ((ComboBox)FindControl(fp, "windowVersion"));
+            for (int i = 0; i < wv.Items.Count; i++)
+            {
+                if (wv.Items[i].ToString().Contains(winver))
+                {
+                    wv.SelectedIndex = i;
+                    break;
+                }
+            }
+        }
+
+        public static void InitializeForm(Form f)
+        {
+            if (Program.gs.ErrorCode != 0)
+            {
+                ProcessErrors(f);
+            }
+            string verStr = Convert.ToDouble(version.Replace(".", ",")).ToString().Replace(",", ".");
+            while (verStr.EndsWith("0"))
+            {
+                verStr = verStr.Substring(0, verStr.Length - 1);
+            }
+            if (!verStr.Contains("."))
+            {
+                verStr += ".0";
+            }
+            f.Text = $"Blue Screen Simulator Plus {verStr}";
+            if (Program.gs.DevBuild)
+            {
+                f.Text += "          // UNDER CONSTRUCTION //";
+            }
+            ((ComboBox)FindControl(f, "windowVersion")).Items.Clear();
+            for (int i = Program.templates.Count - 1; i >= 0; i--)
+            {
+                ((ComboBox)FindControl(f, "windowVersion")).Items.Add(Program.templates.GetAt(i).GetString("friendlyname"));
+            }
+            //SetControlVisible(fp, "WXOptions", false);
+            SetControlVisible(f, "errorCode", false);
+            SetControlVisible(f, "nineXmessage", false);
+            SetControlVisible(f, "serverBox", false);
+            SetControlVisible(f, "greenBox", false);
+            SetControlVisible(f, "qrBox", false);
+            SetControlVisible(f, "checkBox1", false);
+            SetControlVisible(f, "winMode", false);
+            SetControlVisible(f, "acpiBox", false);
+            SetControlVisible(f, "amdBox", false);
+            SetControlVisible(f, "stackBox", false);
+            SetControlVisible(f, "ntPanel", false);
+            SetControlEnabled(f, "checkBox2", true);
+            if (((ComboBox)FindControl(f, "windowVersion")).Items.Count > 0) { ((ComboBox)FindControl(f, "windowVersion")).SelectedIndex = 0; }
+            string winver = "";
+            int os_build = 0;
+            try
+            {
+                winver = Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion", "ProductName", "").ToString();
+                os_build = Convert.ToInt32(Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion", "CurrentBuild", "0").ToString());
+            }
+            catch
+            {
+            }
+            if (Program.gs.DisplayOne)
+            {
+                ((ComboBox)FindControl(f, "windowVersion")).Items.Clear();
+                for (int i = Program.templates.Count - 1; i >= 0; i--)
+                {
+                    ((ComboBox)FindControl(f, "windowVersion")).Items.Add(Program.templates.GetAt(i).GetString("friendlyname"));
+                }
+                ((ComboBox)FindControl(f, "windowVersion")).SelectedItem = me.GetString("friendlyname");
+                if (f is Main)
+                {
+                    SetControlVisible(f, "windowVersion", false);
+                    FindControl(f, "label1").Text = "Selected preset: " + ((ComboBox)FindControl(f, "windowVersion")).SelectedItem.ToString();
+                    FindControl(f, "linkLabel1").Location = new Point(FindControl(f, "label1").Location.X + FindControl(f, "label1").Width, FindControl(f, "linkLabel1").Location.Y);
+                    FindControl(f, "linkLabel1").Visible = true;
+                }
+            }
+            else
+            {
+                GetOS(f);
+            }
+            if (Program.gs.PM_CloseMainUI)
+            {
+                f.WindowState = FormWindowState.Minimized;
+                f.Hide();
+                return;
+            }
+        }
+
+        private static void ProcessErrors(Form f)
+        {
+            Program.clip.ExitSplash();
+            switch (Program.gs.ErrorCode)
+            {
+                case 0:
+                    break;
+                case 1:
+                    MessageBox.Show("No command specified in hidden mode\nAre you missing the /c argument?\n\n0x001: COMMAND_DEADLOCK", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Program.halt = true;
+                    Application.Exit();
+                    break;
+                case 2:
+                    MessageBox.Show("Specified file is either corrupted or not a valid blue screen simulator plus hack file.\n\n0x002: HEADER_MISSING", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 3:
+                    MessageBox.Show("Specified file is either corrupted or incompatible with this version of blue screen simulator plus.\n\n0x003: INCOMPATIBLE_HACK", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 4:
+                    MessageBox.Show("Specified file is either corrupt or does not exist.\n\n0x004: FILE_MISSING", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 5:
+                    MessageBox.Show("Specified file is either corrupted or incompatible with this version of blue screen simulator plus.\n\n0x005: MISSING_ATTRIBUTES", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 6:
+                    MessageBox.Show("Specified file is either corrupted or incompatible with this version of blue screen simulator plus.\n\n0x006: FACE_TOO_LONG", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 7:
+                    MessageBox.Show("Specified file is either corrupted or incompatible with this version of blue screen simulator plus.\n\n0x007: FACE_TOO_SHORT", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 8:
+                    MessageBox.Show("Specified file is either corrupted or incompatible with this version of blue screen simulator plus.\n\n0x008: RGB_OUT_OF_RANGE", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 9:
+                    MessageBox.Show("Specified file is either corrupted or incompatible with this version of blue screen simulator plus.\n\n0x009: RGB_VALUE_NEGATIVE", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 10:
+                    MessageBox.Show("A supported Windows version could not be identified.\n\n0x00A: PRODUCT_NAME_NOT_LISTED", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 11:
+                    MessageBox.Show("Windows version could not be identified.\nAre you using a compatibility layer?\n\n0x00B: PRODUCT_NAME_MISSING", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 12:
+                    MessageBox.Show("Cannot find the Windows version specified\n\n0x00C: WINVER_NOT_FOUND", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 13:
+                    MessageBox.Show("Cannot find the error code specified\n\n0x00D: NTCODE_NOT_FOUND", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 14:
+                    MessageBox.Show("Cannot find the error code specified\n\n0x00D: 9XCODE_NOT_FOUND", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 15:
+                    MessageBox.Show("The syntax of the command is incorrect\n\n0x00E: BAD_SYNTAX", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 16:
+                    MessageBox.Show("The syntax of the command is incorrect\n\n0x00F: BAD_SYNTAX", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 17:
+                    MessageBox.Show("The syntax of the command is incorrect\n\n0x010: BAD_SYNTAX", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 18:
+                    MessageBox.Show("The syntax of the command is incorrect\n\n0x011: BAD_SYNTAX", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 19:
+                    MessageBox.Show("Internal database could not be loaded\n\n0x012: NT_DATABASE_MISSING", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 20:
+                    MessageBox.Show("Internal database seems to be corrupted\n\n0x013: NT_DATABASE_CORRUPTED", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 23:
+                    MessageBox.Show("The syntax of the command is incorrect\n\n0x016: COMMAND_ARGUMENT_INVALID", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 24:
+                    MessageBox.Show("Specified hack file does not exist\n\n0x014: HACK_FILE_NON_EXISTENT", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case 25:
+                    MessageBox.Show("Specified hack file is either corrupted or incompatible with this version of blue screen simulator plus.\n\n0x015: HACK_FILE_INCOMPATIBLE", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                default:
+                    Application.Exit();
+                    f.Close();
+                    break;
+            }
+        }
+
+        public static void ShowBlueScreen(Form f)
+        {
+            if (((ComboBox)FindControl(f, "windowVersion")).Items.Count < 1)
+            {
+                Program.loadfinished = true;
+                if (Program.gs.EnableEggs && (Program.gs.ErrorCode != 500))
+                {
+                    MessageBox.Show("Please select a Windows version! Also, how in the world did you deselect a dropdown list?", "Error displaying blue screen", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else if (Program.gs.ErrorCode == 500)
+                {
+                    Thread.CurrentThread.Abort();
+                    return;
+                }
+                else
+                {
+                    MessageBox.Show("No configuration selected", "Error displaying blue screen", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                return;
+            }
+            me.Show();
+            Thread.CurrentThread.Abort();
+        }
+
+
+        public static void Crash(Form f)
+        {
+            ts = new ThreadStart(() => { ShowBlueScreen(f); });
+            bsod_starter = new Thread(ts);
+            bsod_starter.Start();
+        }
+    }
+}

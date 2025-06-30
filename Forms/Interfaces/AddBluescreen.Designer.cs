@@ -281,6 +281,7 @@ namespace UltimateBlueScreenSimulator
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(313, 351);
             this.Name = "AddBluescreen";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Add error screen";
             this.Load += new System.EventHandler(this.Initialize);
             this.ResumeLayout(false);

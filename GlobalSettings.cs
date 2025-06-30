@@ -33,6 +33,7 @@ namespace UltimateBlueScreenSimulator
         private string update_server;
         private bool quickhelp;
         private bool autosave;
+        private bool legacyui;
 
         // runtime settings (these are not persistent)
         [JsonIgnore]
@@ -49,6 +50,9 @@ namespace UltimateBlueScreenSimulator
 
         [JsonIgnore]
         private bool displayone;
+
+        [JsonIgnore]
+        private bool fileio;
 
         // prank mode
         private MessageBoxIcon MsgBoxIcon;
@@ -125,9 +129,12 @@ namespace UltimateBlueScreenSimulator
             enableeggs = true;
             randomness = false;
             autodark = true;
-            devmode = false;
+            devmode = true;
             quickhelp = true;
             autosave = true;
+            legacyui = false;
+            fileio = true;
+
             singlesim = "";
             update_server = "https://markustegelane.eu/app/";
 
@@ -149,6 +156,14 @@ namespace UltimateBlueScreenSimulator
             ScaleMode = ScaleModes.HighQualityBicubic;
             ColorScheme = ColorSchemes.Blue;
             PrimaryColor = ColorSchemes.Indigo;
+        }
+
+        ///<summary>
+        ///Specifies whether or not the user wants a classic user interface (UI)
+        ///</summary>
+        public bool LegacyUI {
+            get { return legacyui; }
+            set { legacyui = value; }
         }
 
         ///<summary>
@@ -394,6 +409,15 @@ namespace UltimateBlueScreenSimulator
         public bool DevBuild {
             get { return devmode; }
             set { devmode = value; }
+        }
+
+        ///<summary>
+        ///Read-write mode flag
+        ///</summary>
+        [JsonIgnore]
+        public bool FileIO {
+            get { return fileio; }
+            set { fileio = value; }
         }
 
 

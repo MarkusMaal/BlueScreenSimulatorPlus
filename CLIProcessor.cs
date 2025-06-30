@@ -83,7 +83,7 @@ namespace UltimateBlueScreenSimulator
                     {
                         if (bs.GetString("friendlyname").ToLower().Contains(ecode.ToLower()) || bs.GetString("os").ToLower().Contains(ecode.ToLower()))
                         {
-                            Program.f1.me = bs;
+                            UIActions.me = bs;
                             Program.gs.DisplayOne = true;
                             //Program.f1.comboBox1.SelectedIndex = i;
                             done = true;
@@ -190,7 +190,7 @@ namespace UltimateBlueScreenSimulator
                     break;
                 case "c":
                     ExitSplash();
-                    Program.f1.GetOS();
+                    UIActions.GetOS(Program.f1);
                     break;
                 case "doneupdate":
                     File.Delete("BSSP.exe");
@@ -231,7 +231,7 @@ namespace UltimateBlueScreenSimulator
             if (args.Contains("/c"))
             {
                 Program.gs.Log("Info", "Starting simulation from command line");
-                Program.f1.Crash();
+                UIActions.Crash(Program.f1);
             }
             //Post update scripts
             if (args.Contains("/finalize_update"))

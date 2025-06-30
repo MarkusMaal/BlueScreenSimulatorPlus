@@ -439,6 +439,7 @@
             this.ClientSize = new System.Drawing.Size(982, 507);
             this.Controls.Add(this.splitContainer1);
             this.Name = "NTdtor";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Windows NT code editor";
             this.Load += new System.EventHandler(this.NTdtor_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
