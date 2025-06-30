@@ -3,7 +3,7 @@ Open source code for BSSP. This is an enhanced blue screen simulator application
 
 Codename: ModestIndigo
 
-Version 3.01
+Version 3.1
 
 \{ \} markus' software // \{ \} markuse tarkvara
 
@@ -37,6 +37,7 @@ This documentation is contained within the readme and is meant for people who wa
 	* [Assets](#assets)
 	* [Properties](#properties)
 	* [Custom controls](#custom-controls)
+* [Shared UI actions](#shared-ui-actions)
 * [Verifile](#verifile)
 
 ### Global settings
@@ -324,6 +325,7 @@ The following section contains quick documentation for each file in the project.
 * GlobalSettings.cs				   - A class used for storing/manipulating runtime and permanent settings
 * Program.cs                       - Program initialization code
 * TemplateRegistry.cs			   - Class used for storing/manipulating configuration templates
+* UIActions.cs					   - Class used for interoperability between material and legacy interfaces
 * Verifile.cs                      - Signature verification system
 
 #### Miscellaneous
@@ -373,6 +375,10 @@ The following section contains quick documentation for each file in the project.
 #### Custom controls
 * AliasedLabel.cs                  - A custom control that is used in Windows XP and CE blue screens
 * SizableMaterialButton.cs         - An experimental custom control which combines MaterialButton and MaterialLabel
+
+### Shared UI actions
+
+TBD
 
 ### Verifile
 
