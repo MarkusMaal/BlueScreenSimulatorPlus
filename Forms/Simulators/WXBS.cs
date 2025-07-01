@@ -11,16 +11,16 @@ namespace UltimateBlueScreenSimulator
     {
         public bool server = false;
         public bool qr = true;
-        public bool green = false;
         public bool close = true;
-        public string code = "";
-        public string whatfail = "";
         public bool w8 = false;
         public bool w11 = false;
         private bool w8close = false;
+        private bool oldmode = true;
+        public bool green = false;
+        public string code = "";
+        public string whatfail = "";
         private int progress = 0;
         private int progressmillis = 0;
-        private bool oldmode = true;
         internal int maxprogressmillis = 0;
         internal BlueScreen me = Program.templates.GetAt(0);
         public WXBS()

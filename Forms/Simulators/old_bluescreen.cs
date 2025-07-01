@@ -305,7 +305,7 @@ namespace UltimateBlueScreenSimulator
                     return;
                 }
             }
-            catch (Exception ex)
+            catch (Exception ex) when (!Debugger.IsAttached)
             {
                 Program.dr.Dispose();
                 screenUpdater.Enabled = false;

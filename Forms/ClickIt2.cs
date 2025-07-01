@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -869,7 +870,7 @@ namespace UltimateBlueScreenSimulator
                     button42.PerformClick();
                 }
             }
-            catch (Exception a)
+            catch (Exception a) when (!Debugger.IsAttached)
             {
                 if (comboBox1.SelectedIndex == 0) { MessageBox.Show("Olge kindlad, et kirjutasite koodi õigesti\n" + a.Message + "\n" + a.InnerException, "Kood ei sobi", MessageBoxButtons.OK, MessageBoxIcon.Error); textBox1.Text = "0.1.1.1.0"; }
                 if (comboBox1.SelectedIndex == 1) { MessageBox.Show("Make sure you typed the code correctly\n" + a.Message + "\n" + a.InnerException, "Code is not compatible", MessageBoxButtons.OK, MessageBoxIcon.Error); textBox1.Text = "0.1.2.1.0"; }

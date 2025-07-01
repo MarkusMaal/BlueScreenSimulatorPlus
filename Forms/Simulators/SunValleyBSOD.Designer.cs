@@ -28,74 +28,126 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SunValleyBSOD));
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.yourPCranLabel = new System.Windows.Forms.Label();
+            this.progressIndicator = new System.Windows.Forms.Label();
+            this.errorCode = new System.Windows.Forms.Label();
+            this.screenUpdater = new System.Windows.Forms.Timer(this.components);
+            this.memCodes = new System.Windows.Forms.Label();
+            this.waterMarkText = new System.Windows.Forms.Label();
+            this.progressUpdater = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
-            // label1
+            // yourPCranLabel
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 14F);
-            this.label1.Location = new System.Drawing.Point(12, 299);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(1176, 41);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Your device ran into a problem and needs to restart.";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.yourPCranLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.yourPCranLabel.BackColor = System.Drawing.Color.Transparent;
+            this.yourPCranLabel.Font = new System.Drawing.Font("Segoe UI Variable Small Semilig", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
+            this.yourPCranLabel.Location = new System.Drawing.Point(15, 277);
+            this.yourPCranLabel.Name = "yourPCranLabel";
+            this.yourPCranLabel.Size = new System.Drawing.Size(1000, 113);
+            this.yourPCranLabel.TabIndex = 0;
+            this.yourPCranLabel.Text = "Your device ran into a problem and needs to restart.";
+            this.yourPCranLabel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.yourPCranLabel.Click += new System.EventHandler(this.yourPCranLabel_Click);
             // 
-            // label2
+            // progressIndicator
             // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 14F);
-            this.label2.Location = new System.Drawing.Point(12, 355);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(1176, 41);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "0% complete";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.progressIndicator.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.progressIndicator.BackColor = System.Drawing.Color.Transparent;
+            this.progressIndicator.Font = new System.Drawing.Font("Segoe UI Variable Small Semilig", 20.25F);
+            this.progressIndicator.Location = new System.Drawing.Point(16, 413);
+            this.progressIndicator.Name = "progressIndicator";
+            this.progressIndicator.Size = new System.Drawing.Size(1000, 41);
+            this.progressIndicator.TabIndex = 0;
+            this.progressIndicator.Text = "0% complete";
+            this.progressIndicator.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.progressIndicator.Click += new System.EventHandler(this.progressIndicator_Click);
             // 
-            // label3
+            // errorCode
             // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.errorCode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
-            this.label3.Location = new System.Drawing.Point(14, 650);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(1176, 41);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Stop code: CRITICAL_PROCESS_DIED (0xEF)\r\nWhat failed: tbd.sys";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.errorCode.BackColor = System.Drawing.Color.Transparent;
+            this.errorCode.Font = new System.Drawing.Font("Segoe UI Variable Text Semiligh", 10F);
+            this.errorCode.Location = new System.Drawing.Point(14, 712);
+            this.errorCode.Name = "errorCode";
+            this.errorCode.Size = new System.Drawing.Size(1000, 41);
+            this.errorCode.TabIndex = 0;
+            this.errorCode.Text = "Stop code: CRITICAL_PROCESS_DIED (0xEF)\r\nWhat failed: tbd.sys";
+            this.errorCode.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // screenUpdater
+            // 
+            this.screenUpdater.Enabled = true;
+            this.screenUpdater.Tick += new System.EventHandler(this.screenUpdater_Tick);
+            // 
+            // memCodes
+            // 
+            this.memCodes.AutoSize = true;
+            this.memCodes.BackColor = System.Drawing.Color.Transparent;
+            this.memCodes.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.memCodes.Location = new System.Drawing.Point(0, 0);
+            this.memCodes.Name = "memCodes";
+            this.memCodes.Size = new System.Drawing.Size(132, 60);
+            this.memCodes.TabIndex = 6;
+            this.memCodes.Text = "0x0000000000000000\r\n0x0000000000000000\r\n0x0000000000000000\r\n0x0000000000000000";
+            // 
+            // waterMarkText
+            // 
+            this.waterMarkText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.waterMarkText.AutoSize = true;
+            this.waterMarkText.BackColor = System.Drawing.Color.Transparent;
+            this.waterMarkText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.waterMarkText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.waterMarkText.Location = new System.Drawing.Point(828, 8);
+            this.waterMarkText.Name = "waterMarkText";
+            this.waterMarkText.Size = new System.Drawing.Size(188, 20);
+            this.waterMarkText.TabIndex = 7;
+            this.waterMarkText.Text = "bluescreen simulator plus";
+            // 
+            // progressUpdater
+            // 
+            this.progressUpdater.Enabled = true;
+            this.progressUpdater.Interval = 500;
+            this.progressUpdater.Tick += new System.EventHandler(this.progressUpdater_Tick);
             // 
             // SunValleyBSOD
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(1200, 727);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.ClientSize = new System.Drawing.Size(1024, 768);
+            this.Controls.Add(this.waterMarkText);
+            this.Controls.Add(this.memCodes);
+            this.Controls.Add(this.errorCode);
+            this.Controls.Add(this.progressIndicator);
+            this.Controls.Add(this.yourPCranLabel);
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "SunValleyBSOD";
-            this.ShowIcon = false;
-            this.ShowInTaskbar = false;
             this.Text = "Sun Valley Bugcheck Simulator";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SunValleyBSOD_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.SunValleyBSOD_FormClosed);
             this.Load += new System.EventHandler(this.SunValleyBSOD_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SunValleyBSOD_KeyDown);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label yourPCranLabel;
+        private System.Windows.Forms.Label progressIndicator;
+        private System.Windows.Forms.Label errorCode;
+        private System.Windows.Forms.Timer screenUpdater;
+        internal System.Windows.Forms.Label memCodes;
+        public System.Windows.Forms.Label waterMarkText;
+        private System.Windows.Forms.Timer progressUpdater;
     }
 }

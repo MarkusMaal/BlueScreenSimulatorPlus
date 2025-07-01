@@ -43,6 +43,7 @@
             this.memoryBox = new System.Windows.Forms.CheckBox();
             this.devPCBox = new System.Windows.Forms.CheckBox();
             this.blackScreenBox = new System.Windows.Forms.CheckBox();
+            this.crashDumpBox = new System.Windows.Forms.CheckBox();
             this.errorCode = new System.Windows.Forms.Panel();
             this.customMessageLabel2 = new System.Windows.Forms.Label();
             this.customMessageCode = new System.Windows.Forms.TextBox();
@@ -58,14 +59,21 @@
             this.label3 = new System.Windows.Forms.Label();
             this.addInfFile = new System.Windows.Forms.CheckBox();
             this.ntPanel = new System.Windows.Forms.Panel();
+            this.displayOsBox = new System.Windows.Forms.CheckBox();
             this.blinkBox = new System.Windows.Forms.CheckBox();
+            this.troubleshootBox = new System.Windows.Forms.CheckBox();
             this.amdBox = new System.Windows.Forms.CheckBox();
             this.stackBox = new System.Windows.Forms.CheckBox();
             this.nineXmessage = new System.Windows.Forms.Panel();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.nineXErrorCode = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.acpiBox = new System.Windows.Forms.CheckBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.rainbowBox = new System.Windows.Forms.CheckBox();
+            this.countdownBox = new System.Windows.Forms.CheckBox();
             this.dumpBox = new System.Windows.Forms.CheckBox();
             this.winPanel = new System.Windows.Forms.Panel();
             this.playSndBox = new System.Windows.Forms.CheckBox();
@@ -73,6 +81,7 @@
             this.win1startup = new System.Windows.Forms.RadioButton();
             this.win2startup = new System.Windows.Forms.RadioButton();
             this.nostartup = new System.Windows.Forms.RadioButton();
+            this.halfBox = new System.Windows.Forms.CheckBox();
             this.waterBox = new System.Windows.Forms.CheckBox();
             this.winMode = new System.Windows.Forms.CheckBox();
             this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
@@ -113,25 +122,17 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.waitPopup = new System.Windows.Forms.Timer(this.components);
-            this.rainbowBox = new System.Windows.Forms.CheckBox();
-            this.countdownBox = new System.Windows.Forms.CheckBox();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.nineXErrorCode = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.displayOsBox = new System.Windows.Forms.CheckBox();
-            this.halfBox = new System.Windows.Forms.CheckBox();
-            this.troubleshootBox = new System.Windows.Forms.CheckBox();
             this.flowLayoutPanel1.SuspendLayout();
             this.WXOptions.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
             this.errorCode.SuspendLayout();
             this.ntPanel.SuspendLayout();
             this.nineXmessage.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.winPanel.SuspendLayout();
             this.flowLayoutPanel3.SuspendLayout();
             this.flowLayoutPanel4.SuspendLayout();
             this.menuBar.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -163,7 +164,7 @@
             "Windows XP (640x480, Standard)"});
             this.windowVersion.Location = new System.Drawing.Point(90, 27);
             this.windowVersion.Name = "windowVersion";
-            this.windowVersion.Size = new System.Drawing.Size(397, 21);
+            this.windowVersion.Size = new System.Drawing.Size(415, 21);
             this.windowVersion.TabIndex = 1;
             this.windowVersion.SelectedIndexChanged += new System.EventHandler(this.ChangeConfiguration);
             this.windowVersion.DropDownClosed += new System.EventHandler(this.WindowVersion_DropDownClosed);
@@ -200,7 +201,7 @@
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(15, 73);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(472, 370);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(490, 336);
             this.flowLayoutPanel1.TabIndex = 3;
             this.flowLayoutPanel1.WrapContents = false;
             // 
@@ -209,7 +210,7 @@
             this.WXOptions.Controls.Add(this.flowLayoutPanel2);
             this.WXOptions.Location = new System.Drawing.Point(3, 3);
             this.WXOptions.Name = "WXOptions";
-            this.WXOptions.Size = new System.Drawing.Size(464, 50);
+            this.WXOptions.Size = new System.Drawing.Size(464, 67);
             this.WXOptions.TabIndex = 0;
             // 
             // flowLayoutPanel2
@@ -221,10 +222,11 @@
             this.flowLayoutPanel2.Controls.Add(this.memoryBox);
             this.flowLayoutPanel2.Controls.Add(this.devPCBox);
             this.flowLayoutPanel2.Controls.Add(this.blackScreenBox);
+            this.flowLayoutPanel2.Controls.Add(this.crashDumpBox);
             this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(464, 50);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(464, 69);
             this.flowLayoutPanel2.TabIndex = 2;
             // 
             // autoBox
@@ -239,7 +241,7 @@
             this.autoBox.Text = "Auto restart [?]";
             this.quickHelp.SetToolTip(this.autoBox, "Closes the blue screen automatically. Also displays a different blue screen.");
             this.autoBox.UseVisualStyleBackColor = true;
-            this.autoBox.CheckedChanged += new System.EventHandler(this.AutoBox_CheckedChanged);
+            this.autoBox.CheckedChanged += new System.EventHandler(this.generalCheckUncheck);
             this.autoBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Button7_KeyDown);
             // 
             // serverBox
@@ -252,7 +254,7 @@
             this.serverBox.Text = "Server blue screen [?]";
             this.quickHelp.SetToolTip(this.serverBox, "Displays a blue screen without an emoticon :(");
             this.serverBox.UseVisualStyleBackColor = true;
-            this.serverBox.CheckedChanged += new System.EventHandler(this.ServerBox_CheckedChanged);
+            this.serverBox.CheckedChanged += new System.EventHandler(this.generalCheckUncheck);
             this.serverBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Button7_KeyDown);
             // 
             // greenBox
@@ -266,7 +268,7 @@
             this.quickHelp.SetToolTip(this.greenBox, "Shows a green screen instead of a blue screen (from Windows Insider Preview build" +
         "s)");
             this.greenBox.UseVisualStyleBackColor = true;
-            this.greenBox.CheckedChanged += new System.EventHandler(this.GreenBox_CheckedChanged);
+            this.greenBox.CheckedChanged += new System.EventHandler(this.generalCheckUncheck);
             this.greenBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Button7_KeyDown);
             // 
             // qrBox
@@ -281,7 +283,7 @@
             this.qrBox.Text = "QR code [?]";
             this.quickHelp.SetToolTip(this.qrBox, "Displays the QR code, visible on most Windows 10 versions");
             this.qrBox.UseVisualStyleBackColor = true;
-            this.qrBox.CheckedChanged += new System.EventHandler(this.QrBox_CheckedChanged);
+            this.qrBox.CheckedChanged += new System.EventHandler(this.generalCheckUncheck);
             this.qrBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Button7_KeyDown);
             // 
             // memoryBox
@@ -295,7 +297,7 @@
             this.quickHelp.SetToolTip(this.memoryBox, "Displays memory addresses at the top left of the screen (optional feature in Wind" +
         "ows 8+ bluescreens)");
             this.memoryBox.UseVisualStyleBackColor = true;
-            this.memoryBox.CheckedChanged += new System.EventHandler(this.MemoryBox_CheckedChanged);
+            this.memoryBox.CheckedChanged += new System.EventHandler(this.generalCheckUncheck);
             // 
             // devPCBox
             // 
@@ -309,7 +311,7 @@
             this.devPCBox.Text = "Replace \"PC\" with \"device\" [?]";
             this.quickHelp.SetToolTip(this.devPCBox, "On newer builds of Windows 10, the blue screen may say \"device\" instead of \"PC\"");
             this.devPCBox.UseVisualStyleBackColor = true;
-            this.devPCBox.CheckedChanged += new System.EventHandler(this.DevPCBox_CheckedChanged);
+            this.devPCBox.CheckedChanged += new System.EventHandler(this.generalCheckUncheck);
             // 
             // blackScreenBox
             // 
@@ -322,7 +324,22 @@
             this.quickHelp.SetToolTip(this.blackScreenBox, "On older versions of Windows 11, the screen was black instead of blue.");
             this.blackScreenBox.UseVisualStyleBackColor = true;
             this.blackScreenBox.Visible = false;
-            this.blackScreenBox.CheckedChanged += new System.EventHandler(this.blackScreenBox_CheckedChanged);
+            this.blackScreenBox.CheckedChanged += new System.EventHandler(this.generalCheckUncheck);
+            // 
+            // crashDumpBox
+            // 
+            this.crashDumpBox.AutoSize = true;
+            this.crashDumpBox.Checked = true;
+            this.crashDumpBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.crashDumpBox.Location = new System.Drawing.Point(3, 49);
+            this.crashDumpBox.Name = "crashDumpBox";
+            this.crashDumpBox.Size = new System.Drawing.Size(94, 17);
+            this.crashDumpBox.TabIndex = 9;
+            this.crashDumpBox.Text = "Crashdump [?]";
+            this.quickHelp.SetToolTip(this.crashDumpBox, "Simulates the progress for creating a crash dump.");
+            this.crashDumpBox.UseVisualStyleBackColor = true;
+            this.crashDumpBox.Visible = false;
+            this.crashDumpBox.CheckedChanged += new System.EventHandler(this.generalCheckUncheck);
             // 
             // errorCode
             // 
@@ -339,7 +356,7 @@
             this.errorCode.Controls.Add(this.comboBox1);
             this.errorCode.Controls.Add(this.label3);
             this.errorCode.Controls.Add(this.addInfFile);
-            this.errorCode.Location = new System.Drawing.Point(0, 59);
+            this.errorCode.Location = new System.Drawing.Point(0, 76);
             this.errorCode.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.errorCode.Name = "errorCode";
             this.errorCode.Size = new System.Drawing.Size(467, 105);
@@ -443,7 +460,7 @@
             this.checkBox2.Text = "Show potential culprit file";
             this.quickHelp.SetToolTip(this.checkBox2, "If enabled, displays a file that may have caused the problem");
             this.checkBox2.UseVisualStyleBackColor = true;
-            this.checkBox2.CheckedChanged += new System.EventHandler(this.CheckBox2_CheckedChanged);
+            this.checkBox2.CheckedChanged += new System.EventHandler(this.generalCheckUncheck);
             this.checkBox2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Button7_KeyDown);
             // 
             // textBox1
@@ -503,7 +520,7 @@
             this.addInfFile.Text = "Show additional information about the file [?]\r\n";
             this.quickHelp.SetToolTip(this.addInfFile, "Display additional information below the stop code");
             this.addInfFile.UseVisualStyleBackColor = true;
-            this.addInfFile.CheckedChanged += new System.EventHandler(this.AddInfFile_CheckedChanged);
+            this.addInfFile.CheckedChanged += new System.EventHandler(this.generalCheckUncheck);
             // 
             // ntPanel
             // 
@@ -512,11 +529,23 @@
             this.ntPanel.Controls.Add(this.troubleshootBox);
             this.ntPanel.Controls.Add(this.amdBox);
             this.ntPanel.Controls.Add(this.stackBox);
-            this.ntPanel.Location = new System.Drawing.Point(0, 170);
+            this.ntPanel.Location = new System.Drawing.Point(0, 187);
             this.ntPanel.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.ntPanel.Name = "ntPanel";
             this.ntPanel.Size = new System.Drawing.Size(467, 52);
             this.ntPanel.TabIndex = 4;
+            // 
+            // displayOsBox
+            // 
+            this.displayOsBox.AutoSize = true;
+            this.displayOsBox.Location = new System.Drawing.Point(141, 28);
+            this.displayOsBox.Name = "displayOsBox";
+            this.displayOsBox.Size = new System.Drawing.Size(95, 17);
+            this.displayOsBox.TabIndex = 5;
+            this.displayOsBox.Text = "Bootscreen [?]";
+            this.quickHelp.SetToolTip(this.displayOsBox, "Displays name of the operating system on top");
+            this.displayOsBox.UseVisualStyleBackColor = true;
+            this.displayOsBox.CheckedChanged += new System.EventHandler(this.generalCheckUncheck);
             // 
             // blinkBox
             // 
@@ -528,8 +557,21 @@
             this.blinkBox.Text = "Blink cursor [?]";
             this.quickHelp.SetToolTip(this.blinkBox, "Displays blinking caret cursor, as seen in NT 3.x versions");
             this.blinkBox.UseVisualStyleBackColor = true;
-            this.blinkBox.CheckedChanged += new System.EventHandler(this.BlinkBox_CheckedChanged);
+            this.blinkBox.CheckedChanged += new System.EventHandler(this.generalCheckUncheck);
             this.blinkBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Button7_KeyDown);
+            // 
+            // troubleshootBox
+            // 
+            this.troubleshootBox.AutoSize = true;
+            this.troubleshootBox.Location = new System.Drawing.Point(2, 28);
+            this.troubleshootBox.Name = "troubleshootBox";
+            this.troubleshootBox.Size = new System.Drawing.Size(137, 17);
+            this.troubleshootBox.TabIndex = 2;
+            this.troubleshootBox.Text = "Troubleshooting info [?]";
+            this.quickHelp.SetToolTip(this.troubleshootBox, "Shows the text that could potentially help you solve the issue");
+            this.troubleshootBox.UseVisualStyleBackColor = true;
+            this.troubleshootBox.CheckedChanged += new System.EventHandler(this.generalCheckUncheck);
+            this.troubleshootBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Button7_KeyDown);
             // 
             // amdBox
             // 
@@ -541,7 +583,7 @@
             this.amdBox.Text = "AMD processor [?]";
             this.quickHelp.SetToolTip(this.amdBox, "Displays \"AUTHENTICAMD\" instead of \"GENUINEINTEL\" on the NT blue screen");
             this.amdBox.UseVisualStyleBackColor = true;
-            this.amdBox.CheckedChanged += new System.EventHandler(this.AmdBox_CheckedChanged);
+            this.amdBox.CheckedChanged += new System.EventHandler(this.generalCheckUncheck);
             this.amdBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Button7_KeyDown);
             // 
             // stackBox
@@ -557,14 +599,14 @@
             this.quickHelp.SetToolTip(this.stackBox, "Displays developer debug information on the NT blue screen\r\nNote: The blue screen" +
         " may take longer to load if enabled");
             this.stackBox.UseVisualStyleBackColor = true;
-            this.stackBox.CheckedChanged += new System.EventHandler(this.StackBox_CheckedChanged);
+            this.stackBox.CheckedChanged += new System.EventHandler(this.generalCheckUncheck);
             this.stackBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Button7_KeyDown);
             // 
             // nineXmessage
             // 
             this.nineXmessage.Controls.Add(this.comboBox2);
             this.nineXmessage.Controls.Add(this.label4);
-            this.nineXmessage.Location = new System.Drawing.Point(0, 228);
+            this.nineXmessage.Location = new System.Drawing.Point(0, 245);
             this.nineXmessage.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.nineXmessage.Name = "nineXmessage";
             this.nineXmessage.Size = new System.Drawing.Size(467, 25);
@@ -599,17 +641,54 @@
             this.label4.TabIndex = 0;
             this.label4.Text = "9x/Me error message:";
             // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.nineXErrorCode);
+            this.panel2.Controls.Add(this.label6);
+            this.panel2.Location = new System.Drawing.Point(0, 276);
+            this.panel2.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(467, 25);
+            this.panel2.TabIndex = 21;
+            // 
+            // nineXErrorCode
+            // 
+            this.nineXErrorCode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.nineXErrorCode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.nineXErrorCode.FormattingEnabled = true;
+            this.nineXErrorCode.Items.AddRange(new object[] {
+            "System error",
+            "Application error",
+            "Driver error",
+            "System is busy",
+            "System is unresponsive (Warning)"});
+            this.nineXErrorCode.Location = new System.Drawing.Point(119, 3);
+            this.nineXErrorCode.Name = "nineXErrorCode";
+            this.nineXErrorCode.Size = new System.Drawing.Size(345, 21);
+            this.nineXErrorCode.TabIndex = 1;
+            this.quickHelp.SetToolTip(this.nineXErrorCode, "Select specific 9x/Me error message to display.");
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(3, 6);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(92, 13);
+            this.label6.TabIndex = 0;
+            this.label6.Text = "9x/Me error code:";
+            // 
             // acpiBox
             // 
             this.acpiBox.AutoSize = true;
-            this.acpiBox.Location = new System.Drawing.Point(3, 290);
+            this.acpiBox.Location = new System.Drawing.Point(3, 307);
             this.acpiBox.Name = "acpiBox";
             this.acpiBox.Size = new System.Drawing.Size(124, 17);
             this.acpiBox.TabIndex = 6;
             this.acpiBox.Text = "ACPI error screen [?]";
             this.quickHelp.SetToolTip(this.acpiBox, "Only displays the stop code (Windows Vista/7 only)");
             this.acpiBox.UseVisualStyleBackColor = true;
-            this.acpiBox.CheckedChanged += new System.EventHandler(this.AcpiBox_CheckedChanged);
+            this.acpiBox.CheckedChanged += new System.EventHandler(this.generalCheckUncheck);
             this.acpiBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Button7_KeyDown);
             // 
             // checkBox1
@@ -617,7 +696,7 @@
             this.checkBox1.AutoSize = true;
             this.checkBox1.Checked = true;
             this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Location = new System.Drawing.Point(3, 313);
+            this.checkBox1.Location = new System.Drawing.Point(3, 330);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(237, 17);
             this.checkBox1.TabIndex = 7;
@@ -625,14 +704,40 @@
             this.quickHelp.SetToolTip(this.checkBox1, "Displays error description in addition to STOP code (e.g. IRQL_NOT_LESS_OR_EQUAL)" +
         "");
             this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.CheckBox1_CheckedChanged);
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.generalCheckUncheck);
+            // 
+            // rainbowBox
+            // 
+            this.rainbowBox.AutoSize = true;
+            this.rainbowBox.Location = new System.Drawing.Point(3, 353);
+            this.rainbowBox.Name = "rainbowBox";
+            this.rainbowBox.Size = new System.Drawing.Size(83, 17);
+            this.rainbowBox.TabIndex = 19;
+            this.rainbowBox.Text = "Rainbow [?]";
+            this.quickHelp.SetToolTip(this.rainbowBox, "Displays a rainbow gradient as the background image");
+            this.rainbowBox.UseVisualStyleBackColor = true;
+            this.rainbowBox.Visible = false;
+            // 
+            // countdownBox
+            // 
+            this.countdownBox.AutoSize = true;
+            this.countdownBox.Location = new System.Drawing.Point(3, 376);
+            this.countdownBox.Name = "countdownBox";
+            this.countdownBox.Size = new System.Drawing.Size(131, 17);
+            this.countdownBox.TabIndex = 20;
+            this.countdownBox.Text = "Display countdown [?]";
+            this.quickHelp.SetToolTip(this.countdownBox, "On the Windows 8 Beta bugcheck, if error dumping is enabled, a countdown to compl" +
+        "etion would be displayed. However, if no dumping is enabled/available, no countd" +
+        "own would be displayed.");
+            this.countdownBox.UseVisualStyleBackColor = true;
+            this.countdownBox.Visible = false;
             // 
             // dumpBox
             // 
             this.dumpBox.AutoSize = true;
             this.dumpBox.Checked = true;
             this.dumpBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.dumpBox.Location = new System.Drawing.Point(3, 382);
+            this.dumpBox.Location = new System.Drawing.Point(3, 399);
             this.dumpBox.Name = "dumpBox";
             this.dumpBox.Size = new System.Drawing.Size(69, 17);
             this.dumpBox.TabIndex = 8;
@@ -640,14 +745,14 @@
             this.quickHelp.SetToolTip(this.dumpBox, "Enable to display dumping process in Windows XP/Vista/7 bluescreens");
             this.dumpBox.UseVisualStyleBackColor = true;
             this.dumpBox.Visible = false;
-            this.dumpBox.CheckedChanged += new System.EventHandler(this.CheckBox3_CheckedChanged);
+            this.dumpBox.CheckedChanged += new System.EventHandler(this.generalCheckUncheck);
             // 
             // winPanel
             // 
             this.winPanel.Controls.Add(this.playSndBox);
             this.winPanel.Controls.Add(this.flowLayoutPanel3);
             this.winPanel.Controls.Add(this.halfBox);
-            this.winPanel.Location = new System.Drawing.Point(3, 405);
+            this.winPanel.Location = new System.Drawing.Point(3, 422);
             this.winPanel.Name = "winPanel";
             this.winPanel.Size = new System.Drawing.Size(461, 70);
             this.winPanel.TabIndex = 14;
@@ -662,7 +767,7 @@
             this.playSndBox.Text = "Play sound [?]";
             this.quickHelp.SetToolTip(this.playSndBox, "Plays constant beep noise while displaying the blue screen");
             this.playSndBox.UseVisualStyleBackColor = true;
-            this.playSndBox.CheckedChanged += new System.EventHandler(this.PlaySndBox_CheckedChanged);
+            this.playSndBox.CheckedChanged += new System.EventHandler(this.generalCheckUncheck);
             // 
             // flowLayoutPanel3
             // 
@@ -711,31 +816,42 @@
             this.nostartup.UseVisualStyleBackColor = true;
             this.nostartup.CheckedChanged += new System.EventHandler(this.Nostartup_CheckedChanged);
             // 
+            // halfBox
+            // 
+            this.halfBox.AutoSize = true;
+            this.halfBox.Location = new System.Drawing.Point(100, 53);
+            this.halfBox.Name = "halfBox";
+            this.halfBox.Size = new System.Drawing.Size(109, 17);
+            this.halfBox.TabIndex = 22;
+            this.halfBox.Text = "Low resolution [?]";
+            this.quickHelp.SetToolTip(this.halfBox, "Lowers the resolution resulting in taller text when viewed in fullscreen mode");
+            this.halfBox.UseVisualStyleBackColor = true;
+            // 
             // waterBox
             // 
             this.waterBox.AutoSize = true;
             this.waterBox.Checked = true;
             this.waterBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.waterBox.Location = new System.Drawing.Point(3, 481);
+            this.waterBox.Location = new System.Drawing.Point(3, 498);
             this.waterBox.Name = "waterBox";
             this.waterBox.Size = new System.Drawing.Size(127, 17);
             this.waterBox.TabIndex = 10;
             this.waterBox.Text = "Display watermark [?]";
             this.quickHelp.SetToolTip(this.waterBox, "Displays a watermark to let the user know that this a blue screen simulator");
             this.waterBox.UseVisualStyleBackColor = true;
-            this.waterBox.CheckedChanged += new System.EventHandler(this.WaterBox_CheckedChanged);
+            this.waterBox.CheckedChanged += new System.EventHandler(this.generalCheckUncheck);
             // 
             // winMode
             // 
             this.winMode.AutoSize = true;
-            this.winMode.Location = new System.Drawing.Point(3, 504);
+            this.winMode.Location = new System.Drawing.Point(3, 521);
             this.winMode.Name = "winMode";
             this.winMode.Size = new System.Drawing.Size(121, 17);
             this.winMode.TabIndex = 11;
             this.winMode.Text = "Windowed mode [?]";
             this.quickHelp.SetToolTip(this.winMode, "Does not full screen bluescreens, which results in better quality");
             this.winMode.UseVisualStyleBackColor = true;
-            this.winMode.CheckedChanged += new System.EventHandler(this.WinMode_CheckedChanged);
+            this.winMode.CheckedChanged += new System.EventHandler(this.generalCheckUncheck);
             // 
             // flowLayoutPanel4
             // 
@@ -743,7 +859,7 @@
             this.flowLayoutPanel4.Controls.Add(this.eCodeEditButton);
             this.flowLayoutPanel4.Controls.Add(this.advNTButton);
             this.flowLayoutPanel4.Controls.Add(this.progressTuneButton);
-            this.flowLayoutPanel4.Location = new System.Drawing.Point(3, 527);
+            this.flowLayoutPanel4.Location = new System.Drawing.Point(3, 544);
             this.flowLayoutPanel4.Name = "flowLayoutPanel4";
             this.flowLayoutPanel4.Size = new System.Drawing.Size(467, 61);
             this.flowLayoutPanel4.TabIndex = 18;
@@ -817,7 +933,7 @@
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.button1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button1.Location = new System.Drawing.Point(418, 468);
+            this.button1.Location = new System.Drawing.Point(436, 434);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(68, 23);
             this.button1.TabIndex = 14;
@@ -832,7 +948,7 @@
             this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.button3.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button3.Location = new System.Drawing.Point(301, 468);
+            this.button3.Location = new System.Drawing.Point(319, 434);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(111, 23);
             this.button3.TabIndex = 13;
@@ -847,7 +963,7 @@
             this.button7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button7.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.button7.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button7.Location = new System.Drawing.Point(15, 468);
+            this.button7.Location = new System.Drawing.Point(15, 434);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(69, 23);
             this.button7.TabIndex = 12;
@@ -863,7 +979,7 @@
             // 
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(15, 452);
+            this.label7.Location = new System.Drawing.Point(15, 418);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(245, 13);
             this.label7.TabIndex = 6;
@@ -872,7 +988,7 @@
             // label10
             // 
             this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label10.Location = new System.Drawing.Point(351, 446);
+            this.label10.Location = new System.Drawing.Point(351, 412);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(134, 13);
             this.label10.TabIndex = 8;
@@ -912,7 +1028,7 @@
             this.menuBar.Name = "menuBar";
             this.menuBar.Padding = new System.Windows.Forms.Padding(0);
             this.menuBar.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.menuBar.Size = new System.Drawing.Size(499, 22);
+            this.menuBar.Size = new System.Drawing.Size(517, 22);
             this.menuBar.TabIndex = 17;
             this.menuBar.Text = "Main menu";
             this.menuBar.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Button7_KeyDown);
@@ -1109,110 +1225,11 @@
             // 
             this.waitPopup.Tick += new System.EventHandler(this.WaitPopup_Tick);
             // 
-            // rainbowBox
-            // 
-            this.rainbowBox.AutoSize = true;
-            this.rainbowBox.Location = new System.Drawing.Point(3, 336);
-            this.rainbowBox.Name = "rainbowBox";
-            this.rainbowBox.Size = new System.Drawing.Size(83, 17);
-            this.rainbowBox.TabIndex = 19;
-            this.rainbowBox.Text = "Rainbow [?]";
-            this.quickHelp.SetToolTip(this.rainbowBox, "Displays a rainbow gradient as the background image");
-            this.rainbowBox.UseVisualStyleBackColor = true;
-            this.rainbowBox.Visible = false;
-            // 
-            // countdownBox
-            // 
-            this.countdownBox.AutoSize = true;
-            this.countdownBox.Location = new System.Drawing.Point(3, 359);
-            this.countdownBox.Name = "countdownBox";
-            this.countdownBox.Size = new System.Drawing.Size(131, 17);
-            this.countdownBox.TabIndex = 20;
-            this.countdownBox.Text = "Display countdown [?]";
-            this.quickHelp.SetToolTip(this.countdownBox, "On the Windows 8 Beta bugcheck, if error dumping is enabled, a countdown to compl" +
-        "etion would be displayed. However, if no dumping is enabled/available, no countd" +
-        "own would be displayed.");
-            this.countdownBox.UseVisualStyleBackColor = true;
-            this.countdownBox.Visible = false;
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.nineXErrorCode);
-            this.panel2.Controls.Add(this.label6);
-            this.panel2.Location = new System.Drawing.Point(0, 259);
-            this.panel2.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(467, 25);
-            this.panel2.TabIndex = 21;
-            // 
-            // nineXErrorCode
-            // 
-            this.nineXErrorCode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.nineXErrorCode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.nineXErrorCode.FormattingEnabled = true;
-            this.nineXErrorCode.Items.AddRange(new object[] {
-            "System error",
-            "Application error",
-            "Driver error",
-            "System is busy",
-            "System is unresponsive (Warning)"});
-            this.nineXErrorCode.Location = new System.Drawing.Point(119, 3);
-            this.nineXErrorCode.Name = "nineXErrorCode";
-            this.nineXErrorCode.Size = new System.Drawing.Size(345, 21);
-            this.nineXErrorCode.TabIndex = 1;
-            this.quickHelp.SetToolTip(this.nineXErrorCode, "Select specific 9x/Me error message to display.");
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(3, 6);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(92, 13);
-            this.label6.TabIndex = 0;
-            this.label6.Text = "9x/Me error code:";
-            // 
-            // displayOsBox
-            // 
-            this.displayOsBox.AutoSize = true;
-            this.displayOsBox.Location = new System.Drawing.Point(141, 28);
-            this.displayOsBox.Name = "displayOsBox";
-            this.displayOsBox.Size = new System.Drawing.Size(95, 17);
-            this.displayOsBox.TabIndex = 5;
-            this.displayOsBox.Text = "Bootscreen [?]";
-            this.quickHelp.SetToolTip(this.displayOsBox, "Displays name of the operating system on top");
-            this.displayOsBox.UseVisualStyleBackColor = true;
-            this.displayOsBox.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged_1);
-            // 
-            // halfBox
-            // 
-            this.halfBox.AutoSize = true;
-            this.halfBox.Location = new System.Drawing.Point(100, 53);
-            this.halfBox.Name = "halfBox";
-            this.halfBox.Size = new System.Drawing.Size(109, 17);
-            this.halfBox.TabIndex = 22;
-            this.halfBox.Text = "Low resolution [?]";
-            this.quickHelp.SetToolTip(this.halfBox, "Lowers the resolution resulting in taller text when viewed in fullscreen mode");
-            this.halfBox.UseVisualStyleBackColor = true;
-            // 
-            // troubleshootBox
-            // 
-            this.troubleshootBox.AutoSize = true;
-            this.troubleshootBox.Location = new System.Drawing.Point(2, 28);
-            this.troubleshootBox.Name = "troubleshootBox";
-            this.troubleshootBox.Size = new System.Drawing.Size(137, 17);
-            this.troubleshootBox.TabIndex = 2;
-            this.troubleshootBox.Text = "Troubleshooting info [?]";
-            this.quickHelp.SetToolTip(this.troubleshootBox, "Shows the text that could potentially help you solve the issue");
-            this.troubleshootBox.UseVisualStyleBackColor = true;
-            this.troubleshootBox.CheckedChanged += new System.EventHandler(this.AmdBox_CheckedChanged);
-            this.troubleshootBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Button7_KeyDown);
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(499, 508);
+            this.ClientSize = new System.Drawing.Size(517, 474);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.button3);
@@ -1248,6 +1265,8 @@
             this.ntPanel.PerformLayout();
             this.nineXmessage.ResumeLayout(false);
             this.nineXmessage.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.winPanel.ResumeLayout(false);
             this.winPanel.PerformLayout();
             this.flowLayoutPanel3.ResumeLayout(false);
@@ -1255,8 +1274,6 @@
             this.flowLayoutPanel4.ResumeLayout(false);
             this.menuBar.ResumeLayout(false);
             this.menuBar.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1355,6 +1372,7 @@
         internal System.Windows.Forms.CheckBox displayOsBox;
         internal System.Windows.Forms.CheckBox halfBox;
         internal System.Windows.Forms.CheckBox troubleshootBox;
+        private System.Windows.Forms.CheckBox crashDumpBox;
     }
 }
 

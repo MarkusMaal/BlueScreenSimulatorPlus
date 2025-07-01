@@ -59,7 +59,7 @@ namespace UltimateBlueScreenSimulator
                         // Start downloading the file
                         webClient.DownloadFileAsync(URL, location);
                     }
-                    catch (Exception ex)
+                    catch (Exception ex) when (!Debugger.IsAttached)
                     {
                         MessageBox.Show(ex.Message);
                     }

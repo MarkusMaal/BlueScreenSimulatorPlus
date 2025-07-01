@@ -1256,29 +1256,6 @@ namespace SimulatorDatabase
             CheckMessageJustInCase();
         }
 
-        /// <summary>
-        /// Prepares Windows 11 Beta black screen for simulation
-        /// </summary>
-        /// <param name="f">Form for the simulator</param>
-        private void SetSunValley(SunValleyBSOD f)
-        {
-            try
-            {
-                Log("Info", "Setting up Sun Valley bugcheck simulator");
-                f.WindowState = GetBool("windowed") ? FormWindowState.Normal : FormWindowState.Maximized;
-                f.BackColor = this.GetTheme(true);
-                f.ForeColor = this.GetTheme(false);
-                f.Font = this.GetFont();
-            } catch (Exception ex) when (!Debugger.IsAttached)
-            {
-                Log("Error", $"Error setting up Sun Valley bugcheck simulator. Reason: {ex.Message}");
-                MessageBox.Show(ex.Message, "A non-critical error has occoured", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-            f.me = this;
-            f.ShowDialog();
-            CheckMessageJustInCase();
-        }
-
         ///<summary>
         ///Prepares Windows CE blue screen for simulation
         ///</summary>
@@ -1489,6 +1466,40 @@ namespace SimulatorDatabase
             bs.ShowDialog();
         }
 
+
+        /// <summary>
+        /// Prepares Windows 11 Beta black screen for simulation
+        /// </summary>
+        /// <param name="f">Form for the simulator</param>
+        private void SetSunValley(SunValleyBSOD f)
+        {
+            try
+            {
+                Log("Info", "Setting up Sun Valley bugcheck simulator");
+                f.BackColor = this.GetTheme(true);
+                f.ForeColor = this.GetTheme(false);
+                f.close = GetBool("autoclose");
+                f.green = GetBool("insider");
+                f.maxprogressmillis = GetInt("progressmillis");
+                f.memCodes.Text = "0x" + GenHex(16, GetString("ecode1")) + "\r\n0x" +
+                                    GenHex(16, GetString("ecode2")) + "\r\n0x" +
+                                    GenHex(16, GetString("ecode3")) + "\r\n0x" +
+                                    GenHex(16, GetString("ecode4"));
+                f.waterMarkText.Visible = GetBool("watermark");
+                if (GetBool("show_file")) { f.whatfail = GetString("culprit"); }
+                if (GetBool("windowed")) { f.WindowState = FormWindowState.Normal; f.FormBorderStyle = FormBorderStyle.Sizable; }
+                f.code = GetString("code").ToString();
+            }
+            catch (Exception ex) when (!Debugger.IsAttached)
+            {
+                Log("Error", $"Error setting up Sun Valley bugcheck simulator. Reason: {ex.Message}");
+                MessageBox.Show(ex.Message, "A non-critical error has occoured", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            f.me = this;
+            f.ShowDialog();
+            CheckMessageJustInCase();
+        }
+
         ///<summary>
         ///Prepares Windows 10+ blue screen for simulation
         ///</summary>
@@ -1503,14 +1514,14 @@ namespace SimulatorDatabase
             bs.qr = GetBool("qr");
             bs.close = GetBool("autoclose");
             bs.green = GetBool("insider");
-            bs.server = GetBool("server");
             bs.maxprogressmillis = GetInt("progressmillis");
-            bs.w11 = w11;
             bs.memCodes.Text = "0x" + GenHex(16, GetString("ecode1")) + "\r\n0x" +
                                 GenHex(16, GetString("ecode2")) + "\r\n0x" +
                                 GenHex(16, GetString("ecode3")) + "\r\n0x" +
                                 GenHex(16, GetString("ecode4"));
             bs.waterMarkText.Visible = GetBool("watermark");
+            bs.server = GetBool("server");
+            bs.w11 = w11;
             if (GetBool("show_file")) { bs.whatfail = GetString("culprit"); }
             if (GetBool("windowed")) { bs.WindowState = FormWindowState.Normal; bs.FormBorderStyle = FormBorderStyle.Sizable; }
             try
@@ -1947,13 +1958,17 @@ namespace SimulatorDatabase
                     this.icon = "2D window";
                     SetString("friendlyname", "Windows 11 Beta (Native, ClearType)");
                     PushText("Information text", "Your device ran into a problem and needs to restart.");
+                    PushText("No autorestart", "We're just collecting some error info, and then you can restart.");
+                    PushText("No crashdump with autorestart", "We'll restart for you.");
+                    PushText("No crashdump", "You can restart.");
                     PushText("Error code", "Stop code: {0} ({1})");
                     PushText("Progress", "{0}% complete");
                     PushText("Culprit file", "What failed: {0}");
-                    SetFont("Segoe UI Semilight", 18.4f, FontStyle.Regular);
+                    SetFont("Segoe UI Variable Small Semilig", 20f, FontStyle.Regular);
                     SetTheme(RGB(0, 0, 0), RGB(255, 255, 255));
 
                     SetBool("autoclose", true);
+                    SetBool("crashdump", true);
                     SetString("code", "IRQL_NOT_LESS_OR_EQUAL (0x0000000A)");
                     SetDefaultProgression();
                     SetBool("show_description", true);

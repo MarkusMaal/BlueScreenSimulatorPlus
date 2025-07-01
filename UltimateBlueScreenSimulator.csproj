@@ -109,6 +109,48 @@
     <Compile Include="Forms\Interfaces\NTdtor.Designer.cs">
       <DependentUpon>NTdtor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Legacy\AboutSettingsDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Legacy\AboutSettingsDialog.Designer.cs">
+      <DependentUpon>AboutSettingsDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Legacy\AddBluescreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Legacy\AddBluescreen.Designer.cs">
+      <DependentUpon>AddBluescreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Legacy\Gen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Legacy\Gen.Designer.cs">
+      <DependentUpon>Gen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Legacy\IndexForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Legacy\IndexForm.Designer.cs">
+      <DependentUpon>IndexForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Legacy\PrankMode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Legacy\PrankMode.Designer.cs">
+      <DependentUpon>PrankMode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Legacy\ProgressTuner.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Legacy\ProgressTuner.Designer.cs">
+      <DependentUpon>ProgressTuner.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Legacy\StringEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Legacy\StringEdit.Designer.cs">
+      <DependentUpon>StringEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Simulators\BootMgr.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -310,6 +352,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Interfaces\NTdtor.resx">
       <DependentUpon>NTdtor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Legacy\AboutSettingsDialog.resx">
+      <DependentUpon>AboutSettingsDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Legacy\AddBluescreen.resx">
+      <DependentUpon>AddBluescreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Legacy\Gen.resx">
+      <DependentUpon>Gen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Legacy\IndexForm.resx">
+      <DependentUpon>IndexForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Legacy\ProgressTuner.resx">
+      <DependentUpon>ProgressTuner.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Legacy\StringEdit.resx">
+      <DependentUpon>StringEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Simulators\BootMgr.resx">
       <DependentUpon>BootMgr.cs</DependentUpon>

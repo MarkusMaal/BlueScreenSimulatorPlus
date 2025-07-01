@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
+using System.Text.Json;
+using System.Text.Json.Serialization; // alias to ms to avoid conflict with ColorScheme
 using System.Threading;
 using System.Windows.Forms;
 using ms = MaterialSkin;
-using System.Text.Json;
-using System.Text.Json.Serialization; // alias to ms to avoid conflict with ColorScheme
 
 namespace UltimateBlueScreenSimulator
 {
@@ -440,16 +441,16 @@ namespace UltimateBlueScreenSimulator
                 string jsonString = JsonSerializer.Serialize(this, options);
                 File.WriteAllText(Program.prefix + "settings.json", jsonString);
             }
-            catch (DllNotFoundException)
+            catch (DllNotFoundException) when (!Debugger.IsAttached)
             {
                 Program.DllError();
                 return;
             }
-            catch (IOException)
+            catch (IOException) when (!Debugger.IsAttached)
             {
                 Program.DllError();
                 return;
-            } catch (Exception ex)
+            } catch (Exception ex) when (!Debugger.IsAttached)
             {
                 if (MessageBox.Show($"Unable to save settings! Reason: {ex.Message}\r\n{ex.StackTrace}", "Blue screen simulator plus", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error) == DialogResult.Retry)
                 {
@@ -496,12 +497,12 @@ namespace UltimateBlueScreenSimulator
                         File.Delete("settings.cfg");
                     }
                 }
-                catch (DllNotFoundException)
+                catch (DllNotFoundException) when (!Debugger.IsAttached)
                 {
                     Program.DllError();
                     return this;
                 }
-                catch (IOException)
+                catch (IOException) when (!Debugger.IsAttached)
                 {
                     Program.DllError();
                     return this;

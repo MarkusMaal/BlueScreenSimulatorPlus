@@ -48,6 +48,7 @@ namespace UltimateBlueScreenSimulator
                 {
                     case "WXOptions":
                     case "errorCode":
+                    case "crashDumpBox":
                     case "nineXmessage":
                     case "serverBox":
                     case "greenBox":
@@ -71,7 +72,7 @@ namespace UltimateBlueScreenSimulator
                     case "troubleshootBox":
                     case "blackScreenBox":
                         c.Visible = false;
-                        Program.gs.Log("Info", $"Showing {c}");
+                        Program.gs.Log("Info", $"Hiding {c}");
                         break;
                     case "checkBox2":
                         c.Visible = true;
@@ -191,6 +192,71 @@ namespace UltimateBlueScreenSimulator
             FindControl(container, Name).Enabled = Enabled;
         }
 
+        public static void UpdateBool(Form f, CheckBox c)
+        {
+            if (me == null)
+            {
+                return;
+            }
+
+            Dictionary<string, string> kvp = new Dictionary<string, string>()
+            {
+                { "autoBox", "autoclose" },
+                { "serverBox", "server" },
+                { "greenBox", "insider" },
+                { "qrBox", "qr" },
+                { "memoryBox", "extracodes" },
+                { "devPCBox", "device" },
+                { "blackScreenBox", "blackscreen" },
+                { "addInfFile", "extrafile" },
+                { "amdBox", "amd" },
+                { "stackBox", "stack_trace" },
+                { "blinkBox", "blink" },
+                { "acpiBox", "acpi" },
+                { "waterBox", "watermark" },
+                { "checkBox1", "show_description" },
+                { "dumpBox", "autoclose" },
+                { "playSndBox", "playsound" },
+                { "countdownBox", "countdown" },
+                { "displayOsBox", "bootscreen" },
+                { "halfBox", "halfres" },
+                { "rainbowBox", "rainbow" },
+                { "troubleshootBox", "troubleshoot" },
+                { "winMode", "windowed" },
+                { "checkBox2", "show_file" },
+                { "crashDumpBox", "crashdump" }
+            };
+
+            switch (c.Name)
+            {
+                case "acpiBox":
+                    SetControlEnabled(f, "dumpBox", !c.Checked);
+                    SetControlChecked(f, "dumpBox", !c.Checked);
+                    break;
+                case "halfBox":
+                    SetControlEnabled(f, "winPanel", !c.Checked);
+                    if (me.GetBool("halfres"))
+                    {
+                        SetControlChecked(f, "nostartup", true);
+                    }
+                    break;
+                case "checkBox2":
+                    SetControlEnabled(f, "textBox2", c.Checked);
+                    SetControlEnabled(f, "button2", c.Checked);
+                    break;
+                case "winMode":
+                    SetControlVisible(f, "label7", !c.Checked);
+                    break;
+            }
+            if (kvp.Keys.Contains(c.Name))
+            {
+                me.SetBool(kvp[c.Name], c.Checked);
+            } else
+            {
+                throw new NullReferenceException();
+            }
+        }
+
         /// <summary>
         /// Sets the visibility and values of setting controls on the current form
         /// </summary>
@@ -201,12 +267,17 @@ namespace UltimateBlueScreenSimulator
             //progressTunerToolStripMenuItem.Enabled = fal
             FlowLayoutPanel fp = (FlowLayoutPanel)FindControl(f, "flowLayoutPanel1");
             SetControlVisible(fp, "rainbowBox", me.GetBool("font_support") || me.GetString("os") == "BOOTMGR");
+            SetControlEnabled(fp, "addInfFile", false);
             // set control visibility for specific OS-es
             List<string> ExplicitShow = new List<string>();
             switch (me.GetString("os"))
             {
                 case "Windows 11 Beta":
-                    ExplicitShow.AddRange(new string[] { "errorCode", "winMode", "checkBox1", "memoryBox", "eCodeEditButton", "progressTuneButton" });
+                    ExplicitShow.AddRange(new string[] { "WXOptions","errorCode", "winMode", "checkBox1", "memoryBox", "eCodeEditButton", "progressTuneButton", "greenBox", "crashDumpBox" });
+                    SetControlVisible(fp, "serverBox", false);
+                    SetControlVisible(fp, "blackScreenBox", false);
+                    SetControlVisible(fp, "devPCBox", false);
+                    SetControlVisible(fp, "qrBox", false);
                     break;
                 case "Windows 11":
                     ExplicitShow.AddRange(new string[]
@@ -418,6 +489,7 @@ namespace UltimateBlueScreenSimulator
             SetControlChecked(fp, "rainbowBox", me.GetBool("rainbow"));
             SetControlChecked(fp, "memoryBox", me.GetBool("extracodes"));
             SetControlChecked(fp, "troubleshootBox", me.GetBool("troubleshoot"));
+            SetControlChecked(fp, "crashDumpBox", me.GetBool("crashdump"));
 
 
             FindControl(fp, "textBox2").Text = me.GetString("culprit");

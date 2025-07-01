@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -97,7 +98,7 @@ namespace UltimateBlueScreenSimulator.Forms.Interfaces
                 }
                 return "0x" + c1 + ", 0x" + c2 + ", 0x" + c3 + ", 0x" + c4;
             }
-            catch (Exception ex)
+            catch (Exception ex) when (!Debugger.IsAttached)
             {
                 Program.gs.Log("Error", "Error displaying codes: " + ex.Message);
                 return "0xDEADDEADDEADDEAD, 0xDEADDEADDEADDEAD, 0xDEADDEADDEADDEAD, 0xDEADDEADDEADDEAD";

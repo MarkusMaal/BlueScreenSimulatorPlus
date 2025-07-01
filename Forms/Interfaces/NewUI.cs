@@ -24,15 +24,13 @@ namespace UltimateBlueScreenSimulator
     public partial class NewUI : MaterialForm
     {
 
-        public readonly bool betabuild = false;
 
         internal MaterialSkinManager materialSkinManager = MaterialSkinManager.Instance;
 
+        public readonly bool betabuild = false;
         public bool abopen = false;
-        
-
-        bool shift = false;
         bool doubleCheck = false;
+
         public NewUI()
         {
             InitializeComponent();
@@ -240,22 +238,6 @@ namespace UltimateBlueScreenSimulator
             return bs;
         }
 
-        int SetRnd(int limit)
-        {
-            System.Threading.Thread.Sleep(20);
-            Random rnd = new Random();
-            try
-            {
-                int outp = 0;
-                outp = rnd.Next(limit);
-                return outp;
-            }
-            catch
-            {
-                return 0;
-            }
-        }
-
         private BlueScreen CloneMe(BlueScreen bs)
         {
             string jsonString = JsonSerializer.Serialize(bs);
@@ -333,12 +315,6 @@ namespace UltimateBlueScreenSimulator
             UIActions.Crash(this);
         }
 
-        private void winMode_CheckedChanged(object sender, EventArgs e)
-        {
-            UIActions.me.SetBool("windowed", winMode.Checked);
-            label7.Visible = !winMode.Checked;
-        }
-
         private void materialButton3_Click(object sender, EventArgs e)
         {
             ChooseFile cf = new ChooseFile();
@@ -373,7 +349,7 @@ namespace UltimateBlueScreenSimulator
                 {
                     UIActions.me.RenameFile(0, textBox2.Text);
                 }
-                catch (Exception ex)
+                catch (Exception ex) when (!Debugger.IsAttached)
                 {
                     if (Program.gs.EnableEggs)
                     {
@@ -384,16 +360,6 @@ namespace UltimateBlueScreenSimulator
                         MessageBox.Show("An error has occoured.\n\n" + ex.Message + "\n\n" + ex.StackTrace, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-            }
-        }
-
-        private void checkBox2_CheckedChanged(object sender, EventArgs e)
-        {
-            textBox2.Enabled = checkBox2.Checked;
-            button2.Enabled = checkBox2.Checked;
-            if (UIActions.me != null)
-            {
-                UIActions.me.SetBool("show_file", checkBox2.Checked);
             }
         }
 
@@ -523,94 +489,9 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void autoBox_CheckedChanged(object sender, EventArgs e)
-        {
-            UIActions.me.SetBool("autoclose", autoBox.Checked);
-        }
-
-        private void serverBox_CheckedChanged(object sender, EventArgs e)
-        {
-            UIActions.me.SetBool("server", serverBox.Checked);
-        }
-
-        private void greenBox_CheckedChanged(object sender, EventArgs e)
-        {
-            UIActions.me.SetBool("insider", greenBox.Checked);
-        }
-
-        private void qrBox_CheckedChanged(object sender, EventArgs e)
-        {
-            UIActions.me.SetBool("qr", qrBox.Checked);
-        }
-
-        private void memoryBox_CheckedChanged(object sender, EventArgs e)
-        {
-            UIActions.me.SetBool("extracodes", memoryBox.Checked);
-        }
-
-        private void devPCBox_CheckedChanged(object sender, EventArgs e)
-        {
-            UIActions.me.SetBool("device", devPCBox.Checked);
-        }
-
-        private void blackScreenBox_CheckedChanged(object sender, EventArgs e)
-        {
-            UIActions.me.SetBool("blackscreen", blackScreenBox.Checked);
-        }
-
-        private void addInfFile_CheckedChanged(object sender, EventArgs e)
-        {
-            if (addInfFile.Enabled)
-            {
-                UIActions.me.SetBool("extrafile", addInfFile.Checked);
-            }
-        }
-
-        private void amdBox_CheckedChanged(object sender, EventArgs e)
-        {
-            UIActions.me.SetBool("amd", amdBox.Checked);
-        }
-
-        private void stackBox_CheckedChanged(object sender, EventArgs e)
-        {
-            UIActions.me.SetBool("stack_trace", stackBox.Checked);
-        }
-
-        private void blinkBox_CheckedChanged(object sender, EventArgs e)
-        {
-            UIActions.me.SetBool("blink", blinkBox.Checked);
-        }
-
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
             UIActions.me.SetString("screen_mode", comboBox2.SelectedItem.ToString());
-        }
-
-        private void acpiBox_CheckedChanged(object sender, EventArgs e)
-        {
-            UIActions.me.SetBool("acpi", acpiBox.Checked);
-            dumpBox.Enabled = !acpiBox.Checked;
-            dumpBox.Checked = !acpiBox.Checked;
-        }
-
-        private void waterBox_CheckedChanged(object sender, EventArgs e)
-        {
-            UIActions.me.SetBool("watermark", waterBox.Checked);
-        }
-
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-            UIActions.me.SetBool("show_description", checkBox1.Checked);
-        }
-
-        private void dumpBox_CheckedChanged(object sender, EventArgs e)
-        {
-            UIActions.me.SetBool("autoclose", dumpBox.Checked);
-        }
-
-        private void playSndBox_CheckedChanged(object sender, EventArgs e)
-        {
-            UIActions.me.SetBool("playsound", playSndBox.Checked);
         }
 
         private void win1startup_CheckedChanged(object sender, EventArgs e)
@@ -777,11 +658,6 @@ namespace UltimateBlueScreenSimulator
             return new ColorScheme(Primary.Blue800, Primary.Blue900, Primary.Blue400, accent, TextShade.WHITE);
         }
 
-        private void countdownBox_CheckedChanged(object sender, EventArgs e)
-        {
-            UIActions.me.SetBool("countdown", countdownBox.Checked);
-        }
-
         private void updateCheckerTimer_Tick(object sender, EventArgs e)
         {
 
@@ -869,7 +745,7 @@ namespace UltimateBlueScreenSimulator
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception ex) when (!Debugger.IsAttached)
             {
 
                 if (updateCheckerTimer.Interval != 6000)
@@ -1054,95 +930,6 @@ namespace UltimateBlueScreenSimulator
             this.TopMost = false;
         }
 
-        private void ProcessErrors()
-        {
-            Program.clip.ExitSplash();
-            switch (Program.gs.ErrorCode)
-            {
-                case 0:
-                    break;
-                case 1:
-                    MessageBox.Show("No command specified in hidden mode\nAre you missing the /c argument?\n\n0x001: COMMAND_DEADLOCK", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    Program.halt = true;
-                    Application.Exit();
-                    break;
-                case 2:
-                    MessageBox.Show("Specified file is either corrupted or not a valid blue screen simulator plus hack file.\n\n0x002: HEADER_MISSING", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    break;
-                case 3:
-                    MessageBox.Show("Specified file is either corrupted or incompatible with this version of blue screen simulator plus.\n\n0x003: INCOMPATIBLE_HACK", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    break;
-                case 4:
-                    MessageBox.Show("Specified file is either corrupt or does not exist.\n\n0x004: FILE_MISSING", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    break;
-                case 5:
-                    MessageBox.Show("Specified file is either corrupted or incompatible with this version of blue screen simulator plus.\n\n0x005: MISSING_ATTRIBUTES", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    break;
-                case 6:
-                    MessageBox.Show("Specified file is either corrupted or incompatible with this version of blue screen simulator plus.\n\n0x006: FACE_TOO_LONG", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    break;
-                case 7:
-                    MessageBox.Show("Specified file is either corrupted or incompatible with this version of blue screen simulator plus.\n\n0x007: FACE_TOO_SHORT", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    break;
-                case 8:
-                    MessageBox.Show("Specified file is either corrupted or incompatible with this version of blue screen simulator plus.\n\n0x008: RGB_OUT_OF_RANGE", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    break;
-                case 9:
-                    MessageBox.Show("Specified file is either corrupted or incompatible with this version of blue screen simulator plus.\n\n0x009: RGB_VALUE_NEGATIVE", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    break;
-                case 10:
-                    MessageBox.Show("A supported Windows version could not be identified.\n\n0x00A: PRODUCT_NAME_NOT_LISTED", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    break;
-                case 11:
-                    MessageBox.Show("Windows version could not be identified.\nAre you using a compatibility layer?\n\n0x00B: PRODUCT_NAME_MISSING", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    break;
-                case 12:
-                    MessageBox.Show("Cannot find the Windows version specified\n\n0x00C: WINVER_NOT_FOUND", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    break;
-                case 13:
-                    MessageBox.Show("Cannot find the error code specified\n\n0x00D: NTCODE_NOT_FOUND", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    break;
-                case 14:
-                    MessageBox.Show("Cannot find the error code specified\n\n0x00D: 9XCODE_NOT_FOUND", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    break;
-                case 15:
-                    MessageBox.Show("The syntax of the command is incorrect\n\n0x00E: BAD_SYNTAX", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    break;
-                case 16:
-                    MessageBox.Show("The syntax of the command is incorrect\n\n0x00F: BAD_SYNTAX", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    break;
-                case 17:
-                    MessageBox.Show("The syntax of the command is incorrect\n\n0x010: BAD_SYNTAX", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    break;
-                case 18:
-                    MessageBox.Show("The syntax of the command is incorrect\n\n0x011: BAD_SYNTAX", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    break;
-                case 19:
-                    MessageBox.Show("Internal database could not be loaded\n\n0x012: NT_DATABASE_MISSING", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    break;
-                case 20:
-                    MessageBox.Show("Internal database seems to be corrupted\n\n0x013: NT_DATABASE_CORRUPTED", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    break;
-                case 23:
-                    MessageBox.Show("The syntax of the command is incorrect\n\n0x016: COMMAND_ARGUMENT_INVALID", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    break;
-                case 24:
-                    MessageBox.Show("Specified hack file does not exist\n\n0x014: HACK_FILE_NON_EXISTENT", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    break;
-                case 25:
-                    MessageBox.Show("Specified hack file is either corrupted or incompatible with this version of blue screen simulator plus.\n\n0x015: HACK_FILE_INCOMPATIBLE", "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    break;
-                default:
-                    Application.Exit();
-                    this.Close();
-                    break;
-            }
-        }
-
-        private void autoBox_Paint(object sender, PaintEventArgs e)
-        {
-        }
-
         private void customizeCodesButton_Click(object sender, EventArgs e)
         {
             MessageTableEditor mte = new MessageTableEditor();
@@ -1165,25 +952,6 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void displayOsBox_CheckedChanged(object sender, EventArgs e)
-        {
-            UIActions.me.SetBool("bootscreen", displayOsBox.Checked);
-        }
-
-        private void halfBox_CheckedChanged(object sender, EventArgs e)
-        {
-            UIActions.me.SetBool("halfres", halfBox.Checked);
-            winPanel.Enabled = !halfBox.Checked;
-            if (UIActions.me.GetBool("halfres"))
-            {
-                nostartup.Checked = true;
-            }
-        }
-
-        private void rainbowBox_CheckedChanged(object sender, EventArgs e)
-        {
-            UIActions.me.SetBool("rainbow", rainbowBox.Checked);
-        }
 
         private void embedExeButton_Click(object sender, EventArgs e)
         {
@@ -1293,16 +1061,6 @@ namespace UltimateBlueScreenSimulator
             FilterLog();
         }
 
-        private void troubleshootBox_CheckedChanged(object sender, EventArgs e)
-        {
-            UIActions.me.SetBool("troubleshoot", troubleshootBox.Checked);
-        }
-
-        private void NewUI_KeyUp(object sender, KeyEventArgs e)
-        {
-
-        }
-
         private void aboutSettingsButton_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Are you sure?", "Demo mode", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
@@ -1320,6 +1078,11 @@ namespace UltimateBlueScreenSimulator
                 TopMost = false;
                 aboutSettingsButton.Visible = Program.gs.DevBuild;
             }
+        }
+
+        private void generalCheckUncheck(object sender, EventArgs e)
+        {
+            UIActions.UpdateBool(this, (MaterialCheckbox)sender);
         }
     }
 }

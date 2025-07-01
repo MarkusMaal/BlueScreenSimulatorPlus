@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading;
 using System.Windows.Forms;
 using SimulatorDatabase;
-using System.Text.Json.Serialization;
-using System.Text.Json;
 using static System.Windows.Forms.Design.AxImporter;
 
 namespace UltimateBlueScreenSimulator
@@ -239,13 +240,13 @@ namespace UltimateBlueScreenSimulator
                     saveFinished = true;
                     return;
                 }
-                catch (DllNotFoundException)
+                catch (DllNotFoundException) when (!Debugger.IsAttached)
                 {
                     Program.DllError();
                     saveFinished = true;
                     return;
                 }
-                catch (IOException)
+                catch (IOException) when (!Debugger.IsAttached)
                 {
                     Program.DllError();
                     return;
@@ -425,15 +426,15 @@ namespace UltimateBlueScreenSimulator
                 me = JsonSerializer.Deserialize<BlueScreen>(data);
                 return me;
             }
-            catch (DllNotFoundException)
+            catch (DllNotFoundException) when (!Debugger.IsAttached)
             {
                 Program.DllError();
             }
-            catch (IOException)
+            catch (IOException) when (!Debugger.IsAttached)
             {
                 Program.DllError();
             }
-            catch (Exception ex)
+            catch (Exception ex) when (!Debugger.IsAttached)
             {
                 MessageBox.Show($"Whoops, something went wrong while trying to load the embedded configuration! The application cannot continue.\r\n\r\nError details:\r\n{ex.Message}\r\n{ex.StackTrace}", "Blue screen simulator plus", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Application.Exit();
@@ -586,13 +587,13 @@ namespace UltimateBlueScreenSimulator
                     tempreg = JsonSerializer.Deserialize<TemplateRegistry>(filedata);
                     return tempreg;
                 }
-                catch (DllNotFoundException)
+                catch (DllNotFoundException) when (!Debugger.IsAttached)
                 {
                     Program.DllError();
                     saveFinished = true;
                     return this;
                 }
-                catch (IOException)
+                catch (IOException) when (!Debugger.IsAttached)
                 {
                     Program.DllError();
                     return this;

@@ -1,23 +1,23 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Net.NetworkInformation;
+using System.Reflection;
+using System.Threading;
 using System.Windows.Forms;
-using System.Diagnostics;
+using System.Windows.Media.Animation;
+using MaterialSkin.Controls;
 using Microsoft.Win32;
 using SimulatorDatabase;
-using System.Threading;
-using System.Net.NetworkInformation;
-using System.Collections.Generic;
-using System.Reflection;
-using System.Windows.Media.Animation;
 using UltimateBlueScreenSimulator.Forms.Interfaces;
 namespace UltimateBlueScreenSimulator
 {
     // DEPRECATED: Avoid making changes to this form unless absolutely neccessary! Use NewUI instead!
     public partial class Main : Form
     {
-        internal BlueScreen me;
         //these variables deal with error codes
         public string c1 = "RRRRRRRRRRRRRRRR";
         public string c2 = "RRRRRRRRRRRRRRRR";
@@ -129,13 +129,13 @@ namespace UltimateBlueScreenSimulator
                 // set current bluescreen
                 if (!Program.gs.DisplayOne)
                 {
-                    me = Program.templates.GetAt(Program.templates.Count - 1 - windowVersion.SelectedIndex);
+                    UIActions.me = Program.templates.GetAt(Program.templates.Count - 1 - windowVersion.SelectedIndex);
                 }
-                UIActions.ResetSelection(this, me);
+                UIActions.ResetSelection(this, UIActions.me);
             }
             catch (Exception ex) when (!Debugger.IsAttached)
             {
-                me.Crash(ex, "OrangeScreen");
+                UIActions.me.Crash(ex, "OrangeScreen");
             }
         }
 
@@ -176,10 +176,10 @@ namespace UltimateBlueScreenSimulator
             Program.clip.ExitSplash();
             UIActions.InitializeForm(this);
             bool DarkMode = (int)Registry.GetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize", "AppsUseLightTheme", 1) == 0;
-            if (DarkMode && autodark)
+            /*if (DarkMode && autodark)
             {
                 nightThemeToolStripMenuItem.PerformClick();
-            }
+            }*/
             this.Show();
             this.Focus();
         }
@@ -229,7 +229,7 @@ namespace UltimateBlueScreenSimulator
             if (Program.loadfinished && this.Visible)
             {
                 Program.loadfinished = false;
-                Gen g = new Gen();
+                Forms.Legacy.Gen g = new Forms.Legacy.Gen();
                 g.Show();
             }
             Program.gs.PM_Lockout = false;
@@ -263,7 +263,7 @@ namespace UltimateBlueScreenSimulator
             if (MessageBox.Show("This will change random settings on various blue screens. Are you sure you want to continue?", "I'm feeling unlucky", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
             {
                 Program.loadfinished = false;
-                Gen g = new Gen();
+                Forms.Legacy.Gen g = new Forms.Legacy.Gen();
                 g.Show();
                 Thread.Sleep(10);
                 RandFunction();
@@ -299,13 +299,13 @@ namespace UltimateBlueScreenSimulator
                     windowVersion.SelectedIndex = windowVersion.Items.Count - 1;
                 }
             }
-            textBox2.Text = me.GenFile();
+            textBox2.Text = UIActions.me.GenFile();
             if (windowVersion.SelectedIndex == 4) { checkBox1.Checked = true; }
         }
 
         int SetRnd(int limit)
         {
-            System.Threading.Thread.Sleep(20);
+            Thread.Sleep(20);
             Random rnd = new Random();
             try
             {
@@ -333,21 +333,13 @@ namespace UltimateBlueScreenSimulator
             }
             ErrorCodeEditor iform = new ErrorCodeEditor
             {
-                me = me,
-                c1 = me.GetCodes()[0],
-                c2 = me.GetCodes()[1],
-                c3 = me.GetCodes()[2],
-                c4 = me.GetCodes()[3]
+                me = UIActions.me,
+                c1 = UIActions.me.GetCodes()[0],
+                c2 = UIActions.me.GetCodes()[1],
+                c3 = UIActions.me.GetCodes()[2],
+                c4 = UIActions.me.GetCodes()[3]
             };
             iform.Show();
-        }
-
-        //enables, disa
-        private void CheckBox2_CheckedChanged(object sender, EventArgs e)
-        {
-            textBox2.Enabled = checkBox2.Checked;
-            button2.Enabled = checkBox2.Checked;
-            me.SetBool("show_file", checkBox2.Checked);
         }
 
         private void Button5_Click(object sender, EventArgs e)
@@ -392,9 +384,9 @@ namespace UltimateBlueScreenSimulator
                     return;
                 }
             }
-            StringEdit bh = new StringEdit
+            Forms.Legacy.StringEdit bh = new Forms.Legacy.StringEdit
             {
-                me = me
+                me = UIActions.me
             };
             bh.Show();
         }
@@ -402,7 +394,7 @@ namespace UltimateBlueScreenSimulator
         private void Form1_HelpButtonClicked(object sender, CancelEventArgs e)
         {
             if (!abopen) {
-                AboutSettingsDialog a1 = new AboutSettingsDialog
+                Forms.Legacy.AboutSettingsDialog a1 = new Forms.Legacy.AboutSettingsDialog
                 {
                     Text = "Help and about"
                 };
@@ -425,9 +417,9 @@ namespace UltimateBlueScreenSimulator
                 int secs = time[2];
                 if ((hrs == 0) && (mins == 0) && (secs == 0))
                 {
-                    me.SetBool("watermark", false);
-                    me.SetBool("windowed", false);
-                    me.SetBool("autoclose", true);
+                    UIActions.me.SetBool("watermark", false);
+                    UIActions.me.SetBool("windowed", false);
+                    UIActions.me.SetBool("autoclose", true);
                     UIActions.Crash(this);
                     waitPopup.Enabled = true;
                     prankModeTimer.Enabled = false;
@@ -460,9 +452,9 @@ namespace UltimateBlueScreenSimulator
                     string usbinfo = usb.DeviceID;
                     if ((usbinfo == usb_device[0]))
                     {
-                        me.SetBool("watermark", false);
-                        me.SetBool("windowed", false);
-                        me.SetBool("autoclose", true);
+                        UIActions.me.SetBool("watermark", false);
+                        UIActions.me.SetBool("windowed", false);
+                        UIActions.me.SetBool("autoclose", true);
                         UIActions.Crash(this);
                         waitPopup.Enabled = true;
                         prankModeTimer.Enabled = false;
@@ -478,9 +470,9 @@ namespace UltimateBlueScreenSimulator
                 }
                 if (getcatch)
                 {
-                    me.SetBool("watermark", false);
-                    me.SetBool("windowed", false);
-                    me.SetBool("autoclose", true);
+                    UIActions.me.SetBool("watermark", false);
+                    UIActions.me.SetBool("windowed", false);
+                    UIActions.me.SetBool("autoclose", true);
                     UIActions.Crash(this);
                     waitPopup.Enabled = true;
                     prankModeTimer.Enabled = false;
@@ -597,11 +589,6 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void Button1_KeyDown(object sender, KeyEventArgs e)
-        {
-
-        }
-
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             try
@@ -647,12 +634,11 @@ namespace UltimateBlueScreenSimulator
         {
             if (!abopen)
             {
-                AboutSettingsDialog ab1 = new AboutSettingsDialog
+                Forms.Legacy.AboutSettingsDialog ab1 = new Forms.Legacy.AboutSettingsDialog
                 {
                     Text = "Settings",
                     SettingTab = true
                 };
-                ab1.okButton.DialogResult = DialogResult.None;
                 ab1.ShowDialog();
                 ab1.Dispose();
             }
@@ -774,53 +760,33 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void AutoBox_CheckedChanged(object sender, EventArgs e)
-        {
-            me.SetBool("autoclose", autoBox.Checked);
-        }
-
-        private void ServerBox_CheckedChanged(object sender, EventArgs e)
-        {
-            me.SetBool("server", serverBox.Checked);
-        }
-
-        private void GreenBox_CheckedChanged(object sender, EventArgs e)
-        {
-            me.SetBool("insider", greenBox.Checked);
-        }
-
-        private void QrBox_CheckedChanged(object sender, EventArgs e)
-        {
-            me.SetBool("qr", qrBox.Checked);
-        }
-
         private void ComboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             if (windowVersion.SelectedIndex != -1)
             {
-                me.SetString("code", comboBox1.SelectedItem.ToString());
-                if ((me.GetString("os") == "Windows XP") && me.GetBool("auto"))
+                UIActions.me.SetString("code", comboBox1.SelectedItem.ToString());
+                if ((UIActions.me.GetString("os") == "Windows XP") && UIActions.me.GetBool("auto"))
                 {
                     string[] xpmsg = Properties.Resources.xpMsg.Split(';');
-                    if (me.GetString("code").Contains("007F"))
+                    if (UIActions.me.GetString("code").Contains("007F"))
                     {
-                        me.SetText("Troubleshooting introduction", xpmsg[3]);
-                        me.SetText("Troubleshooting", string.Format("{0}\r\n\r\n{1}", xpmsg[9], xpmsg[10]));
+                        UIActions.me.SetText("Troubleshooting introduction", xpmsg[3]);
+                        UIActions.me.SetText("Troubleshooting", string.Format("{0}\r\n\r\n{1}", xpmsg[9], xpmsg[10]));
                     }
-                    else if (me.GetString("code").Contains("00C5"))
+                    else if (UIActions.me.GetString("code").Contains("00C5"))
                     {
-                        me.SetText("Troubleshooting introduction", xpmsg[0]);
-                        me.SetText("Troubleshooting", string.Format("{0}\r\n\r\n{1}\r\n\r\n{2}\r\n\r\n{3}\r\n\r\n{4}", xpmsg[1], xpmsg[2], xpmsg[3], xpmsg[4], xpmsg[5]));
+                        UIActions.me.SetText("Troubleshooting introduction", xpmsg[0]);
+                        UIActions.me.SetText("Troubleshooting", string.Format("{0}\r\n\r\n{1}\r\n\r\n{2}\r\n\r\n{3}\r\n\r\n{4}", xpmsg[1], xpmsg[2], xpmsg[3], xpmsg[4], xpmsg[5]));
                     }
-                    else if (me.GetString("code").Contains("008E"))
+                    else if (UIActions.me.GetString("code").Contains("008E"))
                     {
-                        me.SetText("Troubleshooting introduction", xpmsg[3]);
-                        me.SetText("Troubleshooting", string.Format("{0}\r\n\r\n{1}", xpmsg[7], xpmsg[8]));
+                        UIActions.me.SetText("Troubleshooting introduction", xpmsg[3]);
+                        UIActions.me.SetText("Troubleshooting", string.Format("{0}\r\n\r\n{1}", xpmsg[7], xpmsg[8]));
                     }
                     else
                     {
-                        me.SetText("Troubleshooting introduction", xpmsg[3]);
-                        me.SetText("Troubleshooting", string.Format("{0}\r\n\r\n{1}\r\n{2}", xpmsg[0], xpmsg[5], xpmsg[6]));
+                        UIActions.me.SetText("Troubleshooting introduction", xpmsg[3]);
+                        UIActions.me.SetText("Troubleshooting", string.Format("{0}\r\n\r\n{1}\r\n{2}", xpmsg[0], xpmsg[5], xpmsg[6]));
                     }
                 }
             }
@@ -839,71 +805,23 @@ namespace UltimateBlueScreenSimulator
                     checkBox2.Checked = false;
                 }
             }
-            me.SetString("culprit", textBox2.Text);
-            if ((me.GetString("os") == "Windows XP") || (me.GetString("os") == "Windows Vista") || (me.GetString("os") == "Windows 7"))
+            UIActions.me.SetString("culprit", textBox2.Text);
+            if ((UIActions.me.GetString("os") == "Windows XP") || (UIActions.me.GetString("os") == "Windows Vista") || (UIActions.me.GetString("os") == "Windows 7"))
             {
                 try
                 {
-                    me.RenameFile(0, textBox2.Text);
+                    UIActions.me.RenameFile(0, textBox2.Text);
                 } catch (Exception ex)
                 {
                     if (enableeggs)
                     {
-                        me.Crash(ex, "GreenScreen");
+                        UIActions.me.Crash(ex, "GreenScreen");
                     } else
                     {
                         MessageBox.Show("An error has occoured.\n\n" + ex.Message + "\n\n" + ex.StackTrace, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
-        }
-
-        private void AmdBox_CheckedChanged(object sender, EventArgs e)
-        {
-            me.SetBool("amd", amdBox.Checked);
-        }
-
-        private void StackBox_CheckedChanged(object sender, EventArgs e)
-        {
-            me.SetBool("stack_trace", stackBox.Checked);
-        }
-
-        private void BlinkBox_CheckedChanged(object sender, EventArgs e)
-        {
-            me.SetBool("blink", blinkBox.Checked);
-        }
-
-        private void ComboBox2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            me.SetString("screen_mode", comboBox2.SelectedItem.ToString());
-        }
-
-        private void AcpiBox_CheckedChanged(object sender, EventArgs e)
-        {
-            me.SetBool("acpi", acpiBox.Checked);
-            dumpBox.Enabled = !acpiBox.Checked;
-            dumpBox.Checked = !acpiBox.Checked;
-        }
-
-        private void WaterBox_CheckedChanged(object sender, EventArgs e)
-        {
-            me.SetBool("watermark", waterBox.Checked);
-        }
-
-        private void CheckBox1_CheckedChanged(object sender, EventArgs e)
-        {
-            me.SetBool("show_description", checkBox1.Checked);
-        }
-
-        private void WinMode_CheckedChanged(object sender, EventArgs e)
-        {
-            me.SetBool("windowed", winMode.Checked);
-            label7.Visible = !winMode.Checked;
-        }
-
-        private void MemoryBox_CheckedChanged(object sender, EventArgs e)
-        {
-            me.SetBool("extracodes", memoryBox.Checked);
         }
 
         private void Button2_Click_1(object sender, EventArgs e)
@@ -916,21 +834,11 @@ namespace UltimateBlueScreenSimulator
             cf.Dispose();
         }
 
-        private void CheckBox3_CheckedChanged(object sender, EventArgs e)
-        {
-            me.SetBool("autoclose", dumpBox.Checked);
-        }
-
-        private void PlaySndBox_CheckedChanged(object sender, EventArgs e)
-        {
-            me.SetBool("playsound", playSndBox.Checked);
-        }
-
         private void Win1startup_CheckedChanged(object sender, EventArgs e)
         {
             if (win1startup.Checked)
             {
-                me.SetString("qr_file", "local:0");
+                UIActions.me.SetString("qr_file", "local:0");
             }
         }
 
@@ -938,7 +846,7 @@ namespace UltimateBlueScreenSimulator
         {
             if (win2startup.Checked)
             {
-                me.SetString("qr_file", "local:1");
+                UIActions.me.SetString("qr_file", "local:1");
             }
         }
 
@@ -946,7 +854,7 @@ namespace UltimateBlueScreenSimulator
         {
             if (nostartup.Checked)
             {
-                me.SetString("qr_file", "local:null");
+                UIActions.me.SetString("qr_file", "local:null");
             }
         }
 
@@ -954,7 +862,7 @@ namespace UltimateBlueScreenSimulator
         {
             if (!abopen)
             {
-                AboutSettingsDialog a1 = new AboutSettingsDialog
+                Forms.Legacy.AboutSettingsDialog a1 = new Forms.Legacy.AboutSettingsDialog
                 {
                     Text = "Help and about"
                 };
@@ -990,7 +898,7 @@ namespace UltimateBlueScreenSimulator
 
         private void PrankModeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            PrankMode pm = new PrankMode();
+            Forms.Legacy.PrankMode pm = new Forms.Legacy.PrankMode();
             pm.Show();
         }
 
@@ -1009,7 +917,7 @@ namespace UltimateBlueScreenSimulator
             if (Program.loadfinished && this.Visible)
             {
                 Program.loadfinished = false;
-                Gen g = new Gen();
+                Forms.Legacy.Gen g = new Forms.Legacy.Gen();
                 g.Show();
             }
             UIActions.Crash(this);
@@ -1024,7 +932,7 @@ namespace UltimateBlueScreenSimulator
         {
             if (!abopen)
             {
-                AboutSettingsDialog ab1 = new AboutSettingsDialog
+                Forms.Legacy.AboutSettingsDialog ab1 = new Forms.Legacy.AboutSettingsDialog
                 {
                     Text = "Help and about",
                     SettingTab = false
@@ -1042,7 +950,7 @@ namespace UltimateBlueScreenSimulator
         {
             if (!abopen)
             {
-                AboutSettingsDialog ab1 = new AboutSettingsDialog
+                Forms.Legacy.AboutSettingsDialog ab1 = new Forms.Legacy.AboutSettingsDialog
                 {
                     Text = "Help and about",
                     SettingTab = false,
@@ -1061,7 +969,7 @@ namespace UltimateBlueScreenSimulator
         {
             if (!abopen)
             {
-                AboutSettingsDialog ab1 = new AboutSettingsDialog
+                Forms.Legacy.AboutSettingsDialog ab1 = new Forms.Legacy.AboutSettingsDialog
                 {
                     Text = "Help and about",
                     SettingTab = false,
@@ -1085,13 +993,12 @@ namespace UltimateBlueScreenSimulator
         {
             if (!abopen)
             {
-                AboutSettingsDialog ab1 = new AboutSettingsDialog
+                Forms.Legacy.AboutSettingsDialog ab1 = new Forms.Legacy.AboutSettingsDialog
                 {
                     Text = "Settings",
                     SettingTab = true,
                     tab_id = 1
                 };
-                ab1.okButton.DialogResult = DialogResult.None;
                 ab1.ShowDialog();
                 ab1.Dispose();
             }
@@ -1121,22 +1028,14 @@ namespace UltimateBlueScreenSimulator
         private void AdvancedNTOptionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             int backup = windowVersion.SelectedIndex;
-            NTdtor iform = new NTdtor
+            Forms.Legacy.IndexForm iform = new Forms.Legacy.IndexForm
             {
-                me = me
+                me = UIActions.me
             };
             iform.ShowDialog();
             iform.Dispose();
             windowVersion.SelectedIndex = 0;
             windowVersion.SelectedIndex = backup;
-        }
-
-        private void AddInfFile_CheckedChanged(object sender, EventArgs e)
-        {
-            if (addInfFile.Enabled)
-            {
-                me.SetBool("extrafile", addInfFile.Checked);
-            }
         }
 
         private void AdvNTButton_Click(object sender, EventArgs e)
@@ -1153,11 +1052,6 @@ namespace UltimateBlueScreenSimulator
             flowLayoutPanel4.Width = flowLayoutPanel1.Width;
             winPanel.Width = flowLayoutPanel1.Width;
             WXOptions.Width = flowLayoutPanel1.Width;
-        }
-
-        private void DevPCBox_CheckedChanged(object sender, EventArgs e)
-        {
-            me.SetBool("device", devPCBox.Checked);
         }
 
         private void ContentsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1239,24 +1133,19 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void blackScreenBox_CheckedChanged(object sender, EventArgs e)
-        {
-            me.SetBool("blackscreen", blackScreenBox.Checked);
-        }
-
         private void button4_Click_1(object sender, EventArgs e)
         {
-            if (me.GetString("os") == "Windows 8 Beta")
+            if (UIActions.me.GetString("os") == "Windows 8 Beta")
             {
                 MessageBox.Show("Progress tuner is not available for this OS, dummy!", "Progress tuner", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            ProgressTuner pt = new ProgressTuner();
-            pt.KFrames = me.AllProgress();
-            pt.Text = string.Format("Progress tuner - {0}", me.GetString("friendlyname"));
+            Forms.Legacy.ProgressTuner pt = new Forms.Legacy.ProgressTuner();
+            pt.KFrames = UIActions.me.AllProgress();
+            pt.Text = string.Format("Progress tuner - {0}", UIActions.me.GetString("friendlyname"));
             if (pt.KFrames.Count > 0)
             {
-                pt.progressTrackBar.RangeMax = me.GetInt("progressmillis");
+                pt.progressTrackBar.Maximum = UIActions.me.GetInt("progressmillis");
             }
             pt.ReloadBitmap();
             pt.SetLabelText();
@@ -1265,11 +1154,11 @@ namespace UltimateBlueScreenSimulator
                 pt.BackColor = Color.Black;
                 pt.ForeColor = Color.White;
             }
-            pt.totalTimeText.Text = ((float)me.GetInt("progressmillis") / 100f).ToString().Replace(",", ".");
+            pt.totalTimeText.Text = ((float)UIActions.me.GetInt("progressmillis") / 100f).ToString().Replace(",", ".");
             if (pt.ShowDialog() == DialogResult.OK)
             {
-                me.SetAllProgression(pt.KFrames.Keys.ToArray<int>(), pt.KFrames.Values.ToArray<int>());
-                me.SetInt("progressmillis", pt.progressTrackBar.RangeMax);
+                UIActions.me.SetAllProgression(pt.KFrames.Keys.ToArray<int>(), pt.KFrames.Values.ToArray<int>());
+                UIActions.me.SetInt("progressmillis", pt.progressTrackBar.Maximum);
             }
             pt.Dispose();
         }
@@ -1286,30 +1175,35 @@ namespace UltimateBlueScreenSimulator
             customMessageLabel2.Visible = customCheckBox.Checked;
             customMessageText.Visible = customCheckBox.Checked;
             comboBox1.Visible = !customCheckBox.Checked;
-            if (me.GetString("code").Contains("x"))
+            if (UIActions.me.GetString("code").Contains("x"))
             {
-                customMessageText.Text = me.GetString("code").Split(' ')[0];
-                customMessageCode.Text = me.GetString("code").Split('(')[1].Split('x')[1].Replace(")", "");
+                customMessageText.Text = UIActions.me.GetString("code").Split(' ')[0];
+                customMessageCode.Text = UIActions.me.GetString("code").Split('(')[1].Split('x')[1].Replace(")", "");
                 if (!customCheckBox.Checked)
                 {
-                    me.SetString("code", comboBox1.SelectedItem.ToString());
+                    UIActions.me.SetString("code", comboBox1.SelectedItem.ToString());
                 }
             }
         }
 
         private void customMessageText_TextChanged(object sender, EventArgs e)
         {
-            me.SetString("code", string.Format("{0} (0x{1})", customMessageText.Text, customMessageCode.Text));
+            UIActions.me.SetString("code", string.Format("{0} (0x{1})", customMessageText.Text, customMessageCode.Text));
         }
 
         private void customMessageCode_TextChanged(object sender, EventArgs e)
         {
-            me.SetString("code", string.Format("{0} (0x{1})", customMessageText.Text, customMessageCode.Text));
+            UIActions.me.SetString("code", string.Format("{0} (0x{1})", customMessageText.Text, customMessageCode.Text));
         }
 
-        private void checkBox3_CheckedChanged_1(object sender, EventArgs e)
+        private void ComboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
+            UIActions.me.SetString("screen_mode", comboBox2.SelectedItem.ToString());
+        }
 
+        private void generalCheckUncheck(object sender, EventArgs e)
+        {
+            UIActions.UpdateBool(this, (CheckBox)sender);
         }
     }
 }

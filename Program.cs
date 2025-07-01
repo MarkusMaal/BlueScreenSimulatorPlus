@@ -16,6 +16,7 @@ using System.Threading;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Diagnostics;
 
 namespace UltimateBlueScreenSimulator
 {
@@ -116,7 +117,7 @@ namespace UltimateBlueScreenSimulator
                 {
                     gs = gs.LoadSettings();
                 }
-                catch (Exception ex)
+                catch (Exception ex) when (!Debugger.IsAttached)
                 {
                     DisplayMetaError(ex, "VioletScreen");
                 }
@@ -142,7 +143,7 @@ namespace UltimateBlueScreenSimulator
                 }
                 return gs.ErrorCode;
             }
-            catch (Exception e)
+            catch (Exception e) when (!Debugger.IsAttached)
             {
                 MessageBox.Show($"Runtime error.\r\n{e.Message}\r\n{e.StackTrace}", "Blue screen simulator plus", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return 300;

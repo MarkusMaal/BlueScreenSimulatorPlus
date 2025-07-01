@@ -51,7 +51,7 @@ namespace UltimateBlueScreenSimulator
                 {
                     stack_trace = "There is no stack trace available for this error.";
                 }
-                technicalinfoLabel.Text = type + " Exception\n\n" + message + "\n\n" + stack_trace;
+                technicalinfoLabel.Text = type + " Exception\n\n" + message + "\n\n" + stack_trace + "\n\nThe app can be run in Debug mode for additional troubleshooting.";
             }
             switch (type)
             {
