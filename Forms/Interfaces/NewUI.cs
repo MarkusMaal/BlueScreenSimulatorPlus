@@ -924,7 +924,8 @@ namespace UltimateBlueScreenSimulator
             button3.Visible = Program.verificate;
             if (Program.verificate)
             {
-                Program.clip.ExitSplash();
+                // to prevent race conditions
+                Program.clip.ExitSplash(this);
             }
             this.TopMost = true;
             this.TopMost = false;

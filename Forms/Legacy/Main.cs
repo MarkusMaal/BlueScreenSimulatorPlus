@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net.NetworkInformation;
 using System.Reflection;
+using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using System.Windows.Media.Animation;
@@ -44,7 +46,6 @@ namespace UltimateBlueScreenSimulator
         //trigger device for prank mode
         public string[] usb_device = { };
 
-        readonly Splash spl2 = new Splash();
         //determines whether or not to close after closing a blue screen
         public bool closecuzhidden = false;
 
@@ -173,15 +174,17 @@ namespace UltimateBlueScreenSimulator
 
         private void Initialize(object sender, EventArgs e)
         {
-            Program.clip.ExitSplash();
             UIActions.InitializeForm(this);
             bool DarkMode = (int)Registry.GetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize", "AppsUseLightTheme", 1) == 0;
             /*if (DarkMode && autodark)
             {
                 nightThemeToolStripMenuItem.PerformClick();
             }*/
-            this.Show();
-            this.Focus();
+            // to prevent race conditions
+            Program.clip.ExitSplash(this);
+            this.TopMost = true;
+            this.TopMost = false;
+            Focus();
         }
 
         private void Button1_Click(object sender, EventArgs e)
@@ -331,7 +334,7 @@ namespace UltimateBlueScreenSimulator
                     return;
                 }
             }
-            ErrorCodeEditor iform = new ErrorCodeEditor
+            Forms.Legacy.ErrorCodeEditor iform = new Forms.Legacy.ErrorCodeEditor
             {
                 me = UIActions.me,
                 c1 = UIActions.me.GetCodes()[0],
@@ -482,7 +485,6 @@ namespace UltimateBlueScreenSimulator
 
         private void Form1_Shown(object sender, EventArgs e)
         {
-            Program.clip.ExitSplash();
             lockout = false;
         }
 
@@ -826,7 +828,7 @@ namespace UltimateBlueScreenSimulator
 
         private void Button2_Click_1(object sender, EventArgs e)
         {
-            ChooseFile cf = new ChooseFile();
+            Forms.Legacy.ChooseFile cf = new Forms.Legacy.ChooseFile();
             if (cf.ShowDialog() == DialogResult.OK)
             {
                 textBox2.Text = cf.fileBrowser.SelectedItems[0].Text;
@@ -1204,6 +1206,67 @@ namespace UltimateBlueScreenSimulator
         private void generalCheckUncheck(object sender, EventArgs e)
         {
             UIActions.UpdateBool(this, (CheckBox)sender);
+        }
+
+        private void embedExeButton_Click(object sender, EventArgs e)
+        {
+            string filter_backup = saveFileDialog1.Filter;
+            saveFileDialog1.Filter = "Windows Executables|*.exe";
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                if (MessageBox.Show("Before continuing, please note the following things:\r\n\r\n" +
+                "1. Clicking YES will start the save process. DO NOT INTERACT with this program until you see a confirmation message that the process has finished to avoid crashes\r\n" +
+                "2. The created executable will contain the entire blue screen simulator plus program\r\n" +
+                "3. You can re-use it as a regular simulator by renaming it to \"blue screen simulator plus\"\r\n" +
+                "4. We will temporarily write a file called BSSP.temp to a temporary folder, which is basically a copy of this program\r\n" +
+                "5. The created executable will perform Verifile checks, so transferring it to another computer will display a confirmation dialog if you launch it there for the first time\r\n" +
+                "6. ALL of the settings for the actively SELECTED configuration will be applied, including watermark and windowed mode if they're turned on\r\n" +
+                "7. The blue screen settings will be embedded to the end of the executable along with a header as minified JSON data (you can see this if you open the created executable with a hex editor). This means that the file size will be slightly bigger than regular blue screen simulator plus executable.\r\n" +
+                "8. You will not be able to pass command line arguments to the created executable\r\n\r\nAre you sure you want to continue?", "Embed executable", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
+                {
+                    saveFileDialog1.Filter = filter_backup;
+                    MessageBox.Show("User cancelled operating. No file was saved.", "Embed executable", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                foreach (string name in Program.validnames)
+                {
+                    if (saveFileDialog1.FileName.ToLower().EndsWith($"{name}.exe"))
+                    {
+                        MessageBox.Show($"Error: This filename is now allowed due to launch performance reasons. Please use different name.\r\n\r\nList of disallowed names:\r\n{string.Join("\r\n", Program.validnames)}", "Cannot embed executable", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        saveFileDialog1.Filter = filter_backup;
+                        return;
+                    }
+                }
+                string filename = Process.GetCurrentProcess().MainModule.FileName;
+                string tempname = Path.GetTempPath() + "\\BSSP.temp";
+                File.Copy(filename, tempname);
+                List<byte> data = new List<byte>();
+                using (BinaryReader reader = new BinaryReader(new FileStream(tempname, FileMode.Open)))
+                {
+                    byte[] buffer = new byte[1];
+                    int bytesRead;
+                    while ((bytesRead = reader.Read(buffer, 0, buffer.Length)) > 0)
+                    {
+                        data.AddRange(buffer);
+                    }
+                    reader.Close(); // always close your files :)
+                    reader.Dispose();
+                }
+                File.Delete(tempname);
+                foreach (byte b in Program.footerBytes)
+                {
+                    data.Add(b);
+                }
+                data.Add(0x00);
+                string jsonEmbed = Program.templates.SaveSingleConfig(UIActions.me);
+                data.AddRange(Encoding.UTF8.GetBytes(jsonEmbed));
+                File.WriteAllBytes(saveFileDialog1.FileName, data.ToArray());
+                data.Clear();
+                data = null;
+                MessageBox.Show("Executable saved successfully!", "Create embedded executable", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            saveFileDialog1.Filter = filter_backup;
         }
     }
 }

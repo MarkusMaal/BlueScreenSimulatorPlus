@@ -132,9 +132,9 @@ namespace UltimateBlueScreenSimulator.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap bsodbanner3 {
+        internal static System.Drawing.Bitmap bsodbanner31 {
             get {
-                object obj = ResourceManager.GetObject("bsodbanner3", resourceCulture);
+                object obj = ResourceManager.GetObject("bsodbanner31", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -316,7 +316,7 @@ namespace UltimateBlueScreenSimulator.Properties {
         ///Press CTRL+ALT+DEL to restart your computer. If you do this,
         ///you will lose any unsaved information in all open applications.
         ///
-        ///Error: {0}//Press any key//Altough you can use CTRL+ALT+DEL to quit an [rest of string was truncated]&quot;;.
+        ///Error: {0}//Press any key//Altough you can use CTRL+ALT [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string legacy_template {
             get {

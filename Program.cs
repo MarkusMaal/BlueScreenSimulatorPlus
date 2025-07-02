@@ -38,7 +38,7 @@ namespace UltimateBlueScreenSimulator
         public readonly static string prefix = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Blue Screen Simulator Plus\";
 
         //Command line syntax
-        public static string cmds = "/? - Displays command line syntax\n/wv xx - Set a specific configuration/os (e.g. \"XP\", spaces require the value to be surrounded with double quotes)\n/h - Doesn't show main GUI. If no simulation is started or the simulation is finished, the program will close.\n/hwm - Hides watermark\n/c - Simulates a system crash\n/config xx - Loads a configuration file (xx is the file name, if there are spaces, you must use double quotes)\n\n/ddesc - Disables error descriptions\n/dqr - Disables QR code on Windows 10 blue screen\n/srv - Displays Windows Server 2016 blue screen when wv is set to 10\n/dac - Disables autoclose feature (Modern blue screens only)\n/gs - Displays green screen when wv is set to 10\n/ap - Displays ACPI blue screen (Windows Vista/7 only)\n/win - Enables windowed mode\n/random - Randomizes the blue screen (does NOT randomize any custom attributes set)\n\n/desc - Forcibly enable error description\n/ac - Forcibly enable autoclose feature\n/dap - Forcibly disable ACPI error screen (Windows Vista/7)\n/damd - Forcibly display \"GenuineIntel\" on Windows NT blue screen\n/dblink - Forcibly disable blinking cursor on Windows NT blue screen\n/dgs - Forcibly disable green screen on Windows 10 blue screen\n/qr - Forcibly enable QR code on Windows 10 blue screen\n/dsrv - Forcibly disable server blue screen when version is set to Windows 10\n/stack - Forcible enable stack trace on Windows NT blue screen\n/dfile - Forcible disables potential culprit file\n/ctd - Forcibly enables countdown\n\n/clr - Clears the verification certificate from this computer, causing the first use message to pop up.\n/hidesplash - Hides the splash screen";
+        public static string cmds = "/? - Displays command line syntax\n/wv xx - Set a specific configuration/os (e.g. \"XP\", spaces require the value to be surrounded with double quotes)\n/h - Doesn't show main GUI. If no simulation is started or the simulation is finished, the program will close.\n/hwm - Hides watermark\n/c - Simulates a system crash\n/config xx - Loads a configuration file (xx is the file name, if there are spaces, you must use double quotes)\n\n/ddesc - Disables error descriptions\n/dqr - Disables QR code on Windows 10 blue screen\n/srv - Displays Windows Server 2016 blue screen when wv is set to 10\n/dac - Disables autoclose feature (Modern blue screens only)\n/gs - Displays green screen when wv is set to 10\n/ap - Displays ACPI blue screen (Windows Vista/7 only)\n/win - Enables windowed mode\n/random - Randomizes the blue screen (does NOT randomize any custom attributes set)\n\n/desc - Forcibly enable error description\n/ac - Forcibly enable autoclose feature\n/dap - Forcibly disable ACPI error screen (Windows Vista/7)\n/damd - Forcibly display \"GenuineIntel\" on Windows NT blue screen\n/dblink - Forcibly disable blinking cursor on Windows NT blue screen\n/dgs - Forcibly disable green screen on Windows 10 blue screen\n/qr - Forcibly enable QR code on Windows 10 blue screen\n/dsrv - Forcibly disable server blue screen when version is set to Windows 10\n/stack - Forcible enable stack trace on Windows NT blue screen\n/dfile - Forcible disables potential culprit file\n/ctd - Forcibly enables countdown\n\n/clr - Clears the verification certificate from this computer, causing the first use message to pop up.\n/hidesplash - Hides the splash screen\n/legacy - Starts the program with Legacy UI";
 
         internal static bool verificate = false;
         public static int load_progress = 100;
@@ -47,6 +47,7 @@ namespace UltimateBlueScreenSimulator
         internal static string changelog = "*CHANGE THIS*";
 
         public static bool hide_splash = false;
+        public static bool force_legacy = false;
         public static bool halt = false;
         
         // initialize global objects
@@ -70,6 +71,7 @@ namespace UltimateBlueScreenSimulator
             {
                 clip = new CLIProcessor(args);
                 //Application initialization
+                Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
                 verifile = new Verifile();
                 verificate = verifile.Verify;
@@ -89,10 +91,6 @@ namespace UltimateBlueScreenSimulator
                     {
                         halt = true;
                     }
-                }
-                else
-                {
-                    Application.EnableVisualStyles();
                 }
                 // this delay makes sure that the splash screen is actually displayed
                 Thread.Sleep(100);
@@ -133,7 +131,7 @@ namespace UltimateBlueScreenSimulator
                 gs.Log("Info", "Initializing 9x error code database");
                 ReloadNxErrors();
                 //run application
-                if (gs.LegacyUI)
+                if (gs.LegacyUI || force_legacy)
                 {
                     Application.Run(f2);
                 }

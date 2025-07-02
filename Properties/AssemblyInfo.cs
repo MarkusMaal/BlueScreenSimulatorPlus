@@ -11,7 +11,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Markus' software (Markuse tarkvara)")]
 [assembly: AssemblyProduct("Blue screen simulator plus")]
-[assembly: AssemblyCopyright("Copyright © 2024")]
+[assembly: AssemblyCopyright("Copyright © 2025")]
 [assembly: AssemblyTrademark("Markus' software (Markuse tarkvara)")]
 [assembly: AssemblyCulture("")]
 

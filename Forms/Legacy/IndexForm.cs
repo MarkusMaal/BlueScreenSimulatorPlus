@@ -188,7 +188,7 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
 
         private void browseButton_Click(object sender, EventArgs e)
         {
-            ChooseFile cf = new ChooseFile();
+            Forms.Legacy.ChooseFile cf = new Forms.Legacy.ChooseFile();
             if (cf.ShowDialog() == DialogResult.OK)
             {
                 filenameBox.Text = cf.fileBrowser.SelectedItems[0].Text;

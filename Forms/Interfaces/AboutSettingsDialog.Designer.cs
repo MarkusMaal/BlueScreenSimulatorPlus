@@ -74,7 +74,6 @@ namespace UltimateBlueScreenSimulator
             this.simulatorSettingsPanel = new System.Windows.Forms.TabPage();
             this.label1 = new MaterialSkin.Controls.MaterialLabel();
             this.materialCard7 = new System.Windows.Forms.Panel();
-            this.legacyInterfaceCheck = new MaterialSkin.Controls.MaterialCheckbox();
             this.simulatorSettingsHeading = new MaterialSkin.Controls.MaterialLabel();
             this.devFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.materialButton6 = new MaterialSkin.Controls.MaterialButton();
@@ -117,6 +116,7 @@ namespace UltimateBlueScreenSimulator
             this.materialCard3 = new System.Windows.Forms.Panel();
             this.commandLineHelpDisplay = new MaterialSkin.Controls.MaterialMultiLineTextBox2();
             this.appearancePanel = new System.Windows.Forms.TabPage();
+            this.legacyInterfaceCheck = new MaterialSkin.Controls.MaterialCheckbox();
             this.materialButton10 = new MaterialSkin.Controls.MaterialButton();
             this.materialButton9 = new MaterialSkin.Controls.MaterialButton();
             this.materialButton11 = new MaterialSkin.Controls.MaterialButton();
@@ -199,7 +199,7 @@ namespace UltimateBlueScreenSimulator
             // logoPictureBox
             // 
             this.logoPictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.logoPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("logoPictureBox.Image")));
+            this.logoPictureBox.Image = global::UltimateBlueScreenSimulator.Properties.Resources.bsodbanner31;
             this.logoPictureBox.Location = new System.Drawing.Point(3, 3);
             this.logoPictureBox.Name = "logoPictureBox";
             this.aboutTable.SetRowSpan(this.logoPictureBox, 7);
@@ -876,7 +876,6 @@ namespace UltimateBlueScreenSimulator
             // 
             // materialCard7
             // 
-            this.materialCard7.Controls.Add(this.legacyInterfaceCheck);
             this.materialCard7.Controls.Add(this.simulatorSettingsHeading);
             this.materialCard7.Controls.Add(this.devFlowPanel);
             this.materialCard7.Controls.Add(this.selectAllBox);
@@ -899,24 +898,6 @@ namespace UltimateBlueScreenSimulator
             this.materialCard7.Name = "materialCard7";
             this.materialCard7.Size = new System.Drawing.Size(726, 487);
             this.materialCard7.TabIndex = 27;
-            // 
-            // legacyInterfaceCheck
-            // 
-            this.legacyInterfaceCheck.AutoSize = true;
-            this.legacyInterfaceCheck.Depth = 0;
-            this.legacyInterfaceCheck.Location = new System.Drawing.Point(360, 329);
-            this.legacyInterfaceCheck.Margin = new System.Windows.Forms.Padding(0);
-            this.legacyInterfaceCheck.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.legacyInterfaceCheck.MouseState = MaterialSkin.MouseState.HOVER;
-            this.legacyInterfaceCheck.Name = "legacyInterfaceCheck";
-            this.legacyInterfaceCheck.ReadOnly = false;
-            this.legacyInterfaceCheck.Ripple = true;
-            this.legacyInterfaceCheck.Size = new System.Drawing.Size(124, 37);
-            this.legacyInterfaceCheck.TabIndex = 26;
-            this.legacyInterfaceCheck.Text = "Classic UI [?]";
-            this.helpTip.SetToolTip(this.legacyInterfaceCheck, "Enables the interface from previous versions, similar to 2.1 and earlier");
-            this.legacyInterfaceCheck.UseVisualStyleBackColor = true;
-            this.legacyInterfaceCheck.CheckedChanged += new System.EventHandler(this.legacyInterfaceCheck_CheckedChanged);
             // 
             // simulatorSettingsHeading
             // 
@@ -1727,6 +1708,7 @@ namespace UltimateBlueScreenSimulator
             // 
             // appearancePanel
             // 
+            this.appearancePanel.Controls.Add(this.legacyInterfaceCheck);
             this.appearancePanel.Controls.Add(this.materialButton10);
             this.appearancePanel.Controls.Add(this.materialButton9);
             this.appearancePanel.Controls.Add(this.materialButton11);
@@ -1747,6 +1729,24 @@ namespace UltimateBlueScreenSimulator
             this.appearancePanel.TabIndex = 5;
             this.appearancePanel.Text = "Appearance";
             // 
+            // legacyInterfaceCheck
+            // 
+            this.legacyInterfaceCheck.AutoSize = true;
+            this.legacyInterfaceCheck.Depth = 0;
+            this.legacyInterfaceCheck.Location = new System.Drawing.Point(20, 118);
+            this.legacyInterfaceCheck.Margin = new System.Windows.Forms.Padding(0);
+            this.legacyInterfaceCheck.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.legacyInterfaceCheck.MouseState = MaterialSkin.MouseState.HOVER;
+            this.legacyInterfaceCheck.Name = "legacyInterfaceCheck";
+            this.legacyInterfaceCheck.ReadOnly = false;
+            this.legacyInterfaceCheck.Ripple = true;
+            this.legacyInterfaceCheck.Size = new System.Drawing.Size(124, 37);
+            this.legacyInterfaceCheck.TabIndex = 27;
+            this.legacyInterfaceCheck.Text = "Classic UI [?]";
+            this.helpTip.SetToolTip(this.legacyInterfaceCheck, "Enables the interface from previous versions, similar to 2.1 and earlier");
+            this.legacyInterfaceCheck.UseVisualStyleBackColor = true;
+            this.legacyInterfaceCheck.CheckedChanged += new System.EventHandler(this.legacyInterfaceCheck_CheckedChanged);
+            // 
             // materialButton10
             // 
             this.materialButton10.AutoSize = false;
@@ -1756,7 +1756,7 @@ namespace UltimateBlueScreenSimulator
             this.materialButton10.DrawShadows = false;
             this.materialButton10.HighEmphasis = true;
             this.materialButton10.Icon = null;
-            this.materialButton10.Location = new System.Drawing.Point(453, 147);
+            this.materialButton10.Location = new System.Drawing.Point(453, 187);
             this.materialButton10.Margin = new System.Windows.Forms.Padding(1);
             this.materialButton10.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialButton10.Name = "materialButton10";
@@ -1777,7 +1777,7 @@ namespace UltimateBlueScreenSimulator
             this.materialButton9.DrawShadows = false;
             this.materialButton9.HighEmphasis = true;
             this.materialButton9.Icon = null;
-            this.materialButton9.Location = new System.Drawing.Point(417, 147);
+            this.materialButton9.Location = new System.Drawing.Point(417, 187);
             this.materialButton9.Margin = new System.Windows.Forms.Padding(1);
             this.materialButton9.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialButton9.Name = "materialButton9";
@@ -1796,7 +1796,7 @@ namespace UltimateBlueScreenSimulator
             this.materialButton11.Depth = 0;
             this.materialButton11.HighEmphasis = true;
             this.materialButton11.Icon = null;
-            this.materialButton11.Location = new System.Drawing.Point(200, 191);
+            this.materialButton11.Location = new System.Drawing.Point(200, 231);
             this.materialButton11.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.materialButton11.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialButton11.Name = "materialButton11";
@@ -1817,7 +1817,7 @@ namespace UltimateBlueScreenSimulator
             this.materialButton8.Depth = 0;
             this.materialButton8.HighEmphasis = true;
             this.materialButton8.Icon = null;
-            this.materialButton8.Location = new System.Drawing.Point(29, 191);
+            this.materialButton8.Location = new System.Drawing.Point(29, 231);
             this.materialButton8.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.materialButton8.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialButton8.Name = "materialButton8";
@@ -1858,7 +1858,7 @@ namespace UltimateBlueScreenSimulator
             this.materialSwitch1.Checked = true;
             this.materialSwitch1.CheckState = System.Windows.Forms.CheckState.Checked;
             this.materialSwitch1.Depth = 0;
-            this.materialSwitch1.Location = new System.Drawing.Point(13, 287);
+            this.materialSwitch1.Location = new System.Drawing.Point(13, 327);
             this.materialSwitch1.Margin = new System.Windows.Forms.Padding(0);
             this.materialSwitch1.MouseLocation = new System.Drawing.Point(-1, -1);
             this.materialSwitch1.MouseState = MaterialSkin.MouseState.HOVER;
@@ -1876,7 +1876,7 @@ namespace UltimateBlueScreenSimulator
             // 
             this.rtlSwitch.AutoSize = true;
             this.rtlSwitch.Depth = 0;
-            this.rtlSwitch.Location = new System.Drawing.Point(14, 324);
+            this.rtlSwitch.Location = new System.Drawing.Point(14, 364);
             this.rtlSwitch.Margin = new System.Windows.Forms.Padding(0);
             this.rtlSwitch.MouseLocation = new System.Drawing.Point(-1, -1);
             this.rtlSwitch.MouseState = MaterialSkin.MouseState.HOVER;
@@ -1896,7 +1896,7 @@ namespace UltimateBlueScreenSimulator
             this.materialLabel2.Depth = 0;
             this.materialLabel2.Font = new System.Drawing.Font("Roboto", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.materialLabel2.FontType = MaterialSkin.MaterialSkinManager.fontType.H5;
-            this.materialLabel2.Location = new System.Drawing.Point(15, 249);
+            this.materialLabel2.Location = new System.Drawing.Point(15, 289);
             this.materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel2.Name = "materialLabel2";
             this.materialLabel2.Size = new System.Drawing.Size(136, 29);
@@ -1921,7 +1921,7 @@ namespace UltimateBlueScreenSimulator
             this.materialLabel3.AutoSize = true;
             this.materialLabel3.Depth = 0;
             this.materialLabel3.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel3.Location = new System.Drawing.Point(26, 124);
+            this.materialLabel3.Location = new System.Drawing.Point(26, 164);
             this.materialLabel3.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel3.Name = "materialLabel3";
             this.materialLabel3.Size = new System.Drawing.Size(95, 19);
@@ -1933,7 +1933,7 @@ namespace UltimateBlueScreenSimulator
             this.materialLabel8.AutoSize = true;
             this.materialLabel8.Depth = 0;
             this.materialLabel8.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel8.Location = new System.Drawing.Point(221, 124);
+            this.materialLabel8.Location = new System.Drawing.Point(221, 164);
             this.materialLabel8.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel8.Name = "materialLabel8";
             this.materialLabel8.Size = new System.Drawing.Size(88, 19);
@@ -1971,7 +1971,7 @@ namespace UltimateBlueScreenSimulator
             "Red",
             "Teal",
             "Yellow"});
-            this.primaryColorBox.Location = new System.Drawing.Point(29, 147);
+            this.primaryColorBox.Location = new System.Drawing.Point(29, 187);
             this.primaryColorBox.MaxDropDownItems = 4;
             this.primaryColorBox.MouseState = MaterialSkin.MouseState.OUT;
             this.primaryColorBox.Name = "primaryColorBox";
@@ -2013,7 +2013,7 @@ namespace UltimateBlueScreenSimulator
             "Red",
             "Teal",
             "Yellow"});
-            this.accentBox.Location = new System.Drawing.Point(224, 147);
+            this.accentBox.Location = new System.Drawing.Point(224, 187);
             this.accentBox.MaxDropDownItems = 4;
             this.accentBox.MouseState = MaterialSkin.MouseState.OUT;
             this.accentBox.Name = "accentBox";

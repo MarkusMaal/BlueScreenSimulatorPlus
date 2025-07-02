@@ -18,7 +18,6 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
         //If this flag is set, then help tabs are hidden and setting tabs are visible
         public bool SettingTab = false;
         public int tab_id = 0;
-        public bool DevBuild = false;
         public bool finished = false;
         readonly Random r = new Random();
         public AboutSettingsDialog()
@@ -27,10 +26,15 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
             //Get assembly information about the program
             this.Text = String.Format("About {0}", AssemblyTitle);
             this.labelProductName.Text = "Blue Screen Simulator Plus";
-            if (DevBuild) { this.labelProductName.Text += " [Development Build]"; }
-            this.labelVersion.Text = String.Format("Version {0} with Verifile 1.1", AssemblyVersion);
+            if (Program.gs.DevBuild) { this.labelProductName.Text += " [Development Build]"; }
+            string asmVer = AssemblyVersion.Replace(".0", "");
+            if (!asmVer.Contains("."))
+            {
+                asmVer += ".0";
+            }
+            this.labelVersion.Text = String.Format("Version {0} with Verifile 1.2", asmVer);
             this.labelCopyright.Text = AssemblyCopyright;
-            this.labelCompanyName.Text = "Codename *Waffles*\nLanguage: C# (.NET framework, Windows Forms)\nCreated by: Markus Maal a.k.a. mmaal (markustegelane)\n\nThis program can only be provided free of charge (if you had to pay for this, please ask for a refund). This program is provided as is, without a warranty.\n2022 Markuse tarkvara (Markus' software)";
+            this.labelCompanyName.Text = "Codename ModestIndigo\nLanguage: C# (.NET framework, Windows Forms)\nCreated by: Markus Maal a.k.a. mmaal (markustegelane)\n\nThis program can only be provided free of charge (if you had to pay for this, please ask for a refund). This program is provided as is, without a warranty.\n2022 Markuse tarkvara (Markus' software)";
         }
 
         #region Assembly Attribute Accessors
@@ -143,6 +147,8 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
                 helpPanel.Dispose();
                 eggHunterButton.Checked = Program.gs.EnableEggs;
                 darkDetectCheck.Checked = Program.gs.AutoDark;
+                autosaveCheck.Checked = Program.gs.Autosave;
+                legacyInterfaceCheck.Checked = Program.gs.LegacyUI;
                 if (Program.gs.ScaleMode == GlobalSettings.ScaleModes.HighQualityBicubic) { scalingModeBox.SelectedIndex = 0; }
                 if (Program.gs.ScaleMode == GlobalSettings.ScaleModes.HighQualityBilinear) { scalingModeBox.SelectedIndex = 1; }
                 if (Program.gs.ScaleMode == GlobalSettings.ScaleModes.Bilinear) { scalingModeBox.SelectedIndex = 4; }
@@ -216,7 +222,7 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
                 {
                     configList.Items.Add(bs.GetString("friendlyname"));
                 }
-                devFlowPanel.Visible = DevBuild;
+                devFlowPanel.Visible = Program.gs.DevBuild;
             }
             else if (aboutSettingsTabControl.SelectedTab.Text == "Command line help")
             {
@@ -238,7 +244,7 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
 
         private void QuickHelp_SystemRequirements(object sender, EventArgs e)
         {
-            helpDisplay.Text = "System requirements:\n\nOS: Windows XP or later (Windows 8 or later recommended)\n150MB of available RAM (recommended minimum)\n50MB of available RAM (absolute minimum)\nx86 or compatible processor\nRead-Write storage media\nMicrosoft.NET Framework 4.0\n1000bps or  internet connection (for updates and online help functionality)\nScreen resolution: 1024x720 or higher (1280x720 or higher recommended)".Replace("\n", Environment.NewLine);
+            helpDisplay.Text = "System requirements:\n\nOS: Windows 7 or later (Windows Vista partially works as well)\nInstalled fonts: Segoe UI (with Semilight variant), Consolas, Lucida Console\n200MB of available RAM (recommended minimum)\n100MB of available RAM (absolute minimum)\nx86 or compatible processor\nRead-Write storage media\nMicrosoft.NET Framework 4.5.2\n1000+ bps internet connection (for updates and online help functionality)\nScreen resolution: 1024x720 or higher (1280x720 or higher recommended)".Replace("\n", Environment.NewLine);
         }
 
         //Closes the dialog and sets dialogresult to ok
@@ -1311,7 +1317,7 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
 
         private void Button3_Click(object sender, EventArgs e)
         {
-            TextView tv = new TextView
+            Forms.Legacy.TextView tv = new Forms.Legacy.TextView
             {
                 Text = Properties.Resources.COPYING.Replace("\n", "\r\n"),
                 Title = "Copying"
@@ -1327,6 +1333,7 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
             {
                 string[] tips =
                 {
+                "Material Design is a design language developed by Google in 2014!",
                 "You can close a blue screen by pressing ALT+F4",
                 "There is a crash screen for a program that simulates crash screens, right?",
                 "The codename came from a song that was playing in the background during the development process",
@@ -1344,7 +1351,7 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
                 "Blue is a color that symbolises peace",
                 "Windows 2000 blue screen didn't use rasterized fonts in previous versions, because I figured it looked 'close enough' to the original",
                 "If you use the 'choose' button when setting a culprit file, you might see some weird filenames...",
-                "The background of the logo graphic in the about screen displays the three primary colors used in these error screens",
+                "The background of the logo graphic in the about screen displays two major colors used by bugcheck screens - black and blue",
                 "This program isn't a copy of FlyTech's work, instead it was developed from scratch, because of the limitations I saw when trying out FlyTech's blue screen simulator.",
                 "You can use progress tuner to make more realistic progress indicators for modern blue screens",
                 "There is no random factoid here",
@@ -1426,6 +1433,16 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
         private void darkDetectCheck_CheckedChanged(object sender, EventArgs e)
         {
             Program.gs.AutoDark = darkDetectCheck.Checked;
+        }
+
+        private void legacyInterfaceCheck_CheckedChanged(object sender, EventArgs e)
+        {
+            Program.gs.LegacyUI = legacyInterfaceCheck.Checked;
+        }
+
+        private void AutosaveCheckChanged(object sender, EventArgs e)
+        {
+            Program.gs.Autosave = autosaveCheck.Checked;
         }
     }
 }

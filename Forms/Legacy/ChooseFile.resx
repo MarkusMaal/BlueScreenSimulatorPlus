@@ -117,41 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="helpTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>16, 12</value>
-  </metadata>
-  <data name="hashBox.ToolTip" xml:space="preserve">
-    <value>Generates a hash of the downloaded file and checks it against the original hash from the server. If they match, the installation continues, if they don't, installation will fail. It is recommended to leave this setting enabled.</value>
-  </data>
-  <data name="randomnessCheckBox.ToolTip" xml:space="preserve">
-    <value>If this is checked, then while loading configuration files made with older versions of Blue Screen Simulator Plus,
-a bit of randomness is added to progress counters, which is how the 2.1 handles it by default. Note that enabling
-this may result in behaviour, which is unintended by the original configuration file author.</value>
-  </data>
-  <data name="addCfg.ToolTip" xml:space="preserve">
-    <value>This will let you add your own configuration for any operating system available and setup your own custom settings that are separated from other configurations. This will also carry over, if you save configurations.</value>
-  </data>
-  <metadata name="updateCheckerTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>105, 13</value>
-  </metadata>
-  <metadata name="saveBsconfig.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>433, 13</value>
-  </metadata>
-  <metadata name="loadBsconfig.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>555, 13</value>
-  </metadata>
-  <data name="loadBsconfig.Filter" xml:space="preserve">
-    <value>All bluescreen simulator plus configuration files|*.bscfg;*.bs2cfg;*.bs3cfg;*.bsc;*.bs2;*.bs3|Bluescreen simulator 2.x configuration files|*.bs2cfg;*.bs2|Blue screen simulator 1.x configuration files|*.bscfg;*.bsc</value>
-  </data>
-  <metadata name="checkIfLoadedSaved.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>270, 13</value>
-  </metadata>
-  <metadata name="demoReelTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>678, 13</value>
-  </metadata>
-  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>71</value>
-  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

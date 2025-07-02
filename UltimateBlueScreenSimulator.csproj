@@ -121,6 +121,18 @@
     <Compile Include="Forms\Legacy\AddBluescreen.Designer.cs">
       <DependentUpon>AddBluescreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Legacy\ChooseFile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Legacy\ChooseFile.Designer.cs">
+      <DependentUpon>ChooseFile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Legacy\ErrorCodeEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Legacy\ErrorCodeEditor.Designer.cs">
+      <DependentUpon>ErrorCodeEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Legacy\Gen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -150,6 +162,12 @@
     </Compile>
     <Compile Include="Forms\Legacy\StringEdit.Designer.cs">
       <DependentUpon>StringEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Legacy\TextView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Legacy\TextView.Designer.cs">
+      <DependentUpon>TextView.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Simulators\BootMgr.cs">
       <SubType>Form</SubType>
@@ -359,6 +377,12 @@
     <EmbeddedResource Include="Forms\Legacy\AddBluescreen.resx">
       <DependentUpon>AddBluescreen.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Legacy\ChooseFile.resx">
+      <DependentUpon>ChooseFile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Legacy\ErrorCodeEditor.resx">
+      <DependentUpon>ErrorCodeEditor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Legacy\Gen.resx">
       <DependentUpon>Gen.cs</DependentUpon>
     </EmbeddedResource>
@@ -479,6 +503,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="bssp3_icon.ico" />
+    <None Include="Resources\bsodbanner31.png" />
     <None Include="Resources\9xERRORS.TXT" />
     <None Include="Resources\BSSP manual_3_offline.pdf" />
     <None Include="Resources\BSSP manual_4_offline.pdf" />

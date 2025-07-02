@@ -133,7 +133,7 @@ namespace UltimateBlueScreenSimulator.Forms.Simulators
             try
             {
                 if (!oldmode) { progressmillis++; }
-                if (!me.GetBool("crashdump")) { progress = 100; }
+                if (!me.GetBool("crashdump")) { progress = 100; progressUpdater.Enabled = false; }
 
                 if (!Program.verificate) { throw new NotImplementedException(); }
                 if ((oldmode && (progress >= 100)) || (progressmillis == maxprogressmillis))
@@ -200,16 +200,6 @@ namespace UltimateBlueScreenSimulator.Forms.Simulators
                 Cursor.Show();
                 MessageBox.Show($"Image saved as {output}", "Screenshot taken", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-        }
-
-        private void yourPCranLabel_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void progressIndicator_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

@@ -139,30 +139,6 @@ namespace UltimateBlueScreenSimulator
 
         private void SetInitalInterface(object sender, EventArgs e)
         {
-            // legacy night mode
-            /*if (Program.f1.nightThemeToolStripMenuItem.Checked)
-            {
-                aboutSettingsTabControl.Appearance = TabAppearance.FlatButtons;
-                this.BackColor = Color.Black;
-                this.ForeColor = Color.Gray;
-                foreach (System.Windows.Forms.Panel p in aboutSettingsTabControl.TabPages)
-                {
-                    p.BackColor = this.BackColor;
-                    p.ForeColor = this.ForeColor;
-                }
-                markusSoftwareLogo.BackColor = Color.DimGray;
-                veriFileLogo.BackColor = Color.DimGray;
-                primaryServerBox.BackColor = Color.Black;
-                primaryServerBox.ForeColor = Color.Gray;
-                primaryServerBox.BorderStyle = BorderStyle.FixedSingle;
-                configList.BackColor = Color.Black;
-                configList.ForeColor = Color.Gray;
-                //configList.BorderStyle = BorderStyle.FixedSingle;
-                helpDisplay.BackColor = Color.Black;
-                helpDisplay.ForeColor = Color.Gray;
-                commandLineHelpDisplay.BackColor = Color.Black;
-                commandLineHelpDisplay.ForeColor = Color.Gray;
-            }*/
             //Ping main form that the about box/help/settings dialog is open
             if (Demo)
             {
@@ -204,6 +180,7 @@ namespace UltimateBlueScreenSimulator
                 autoUpdateRadio.Checked = Program.gs.AutoUpdate;
                 hashBox.Checked = Program.gs.HashVerify;
                 primaryServerBox.Text = Program.gs.UpdateServer;
+                legacyInterfaceCheck.Checked = Program.gs.LegacyUI;
                 if (!((primaryServerBox.Text == "http://nossl.markustegelane.eu/app") || (primaryServerBox.Text == "http://markustegelane.eu/app")))
                 {
                     primaryServerBox.Enabled = true;
@@ -771,7 +748,6 @@ namespace UltimateBlueScreenSimulator
                 "Microsoft originally planned to replace a blue screen with a black one as early as Windows 8",
                 "Every major Windows release, up until Windows 11, has had some sort of a blue screen",
                 "Blue is a color that symbolises peace",
-                "Initially, this version was going to be 2.2, but due to large changes was renamed to 3.0",
                 "Windows 2000 blue screen didn't use rasterized fonts in previous versions, because I figured it looked 'close enough' to the original",
                 "If you use the 'choose' button when setting a culprit file, you might see some weird filenames...",
                 "The background of the logo graphic in the about screen displays two major colors used by bugcheck screens - black and blue",

@@ -703,9 +703,11 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
+
         private static void ProcessErrors(Form f)
         {
-            Program.clip.ExitSplash();
+            Program.clip.ExitSplash(f);
+
             switch (Program.gs.ErrorCode)
             {
                 case 0:

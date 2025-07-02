@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using SimulatorDatabase;
-using System.Windows.Forms;
 using System.IO;
+using System.Linq;
+using System.Threading;
+using System.Windows.Forms;
+using SimulatorDatabase;
 
 namespace UltimateBlueScreenSimulator
 {
@@ -135,12 +136,28 @@ namespace UltimateBlueScreenSimulator
         ///<summary>
         ///Closes the splash screen
         ///</summary>
-        internal void ExitSplash()
+        internal void ExitSplash(Form f = null)
         {
             if (!CheckNoSplash())
             {
-                Program.splt.Abort();
-                Program.splt.Join();
+                new Thread(() => {
+                    Program.gs.Log("Info", "Safely closing splash screen");
+                    Thread.Sleep(500);
+                    if (f != null)
+                    {
+                        f.BeginInvoke(new MethodInvoker(delegate {
+                            Program.splt.Abort();
+                            Program.splt.Join();
+                            f.TopMost = true;
+                            f.TopMost = false;
+                            f.Focus();
+                        }));
+                    } else
+                    {
+                        Program.splt.Abort();
+                        Program.splt.Join();
+                    }
+                }).Start();
             }
         }
 
@@ -200,6 +217,9 @@ namespace UltimateBlueScreenSimulator
                     break;
                 case "hwm":
                     ForceBool("watermark", false);
+                    break;
+                case "legacy":
+                    Program.force_legacy = true;
                     break;
                 case "config":
                 case "file":

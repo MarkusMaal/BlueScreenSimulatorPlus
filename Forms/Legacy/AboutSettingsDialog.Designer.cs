@@ -67,6 +67,8 @@
             this.noUpdatesRadio = new System.Windows.Forms.RadioButton();
             this.updatePanelHeading = new System.Windows.Forms.Label();
             this.simulatorSettingsPanel = new System.Windows.Forms.TabPage();
+            this.legacyInterfaceCheck = new System.Windows.Forms.CheckBox();
+            this.autosaveCheck = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.selectAllBox = new System.Windows.Forms.CheckBox();
             this.randomnessCheckBox = new System.Windows.Forms.CheckBox();
@@ -160,7 +162,7 @@
             // logoPictureBox
             // 
             this.logoPictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.logoPictureBox.Image = global::UltimateBlueScreenSimulator.Properties.Resources.bsodbanner3;
+            this.logoPictureBox.Image = global::UltimateBlueScreenSimulator.Properties.Resources.bsodbanner31;
             this.logoPictureBox.Location = new System.Drawing.Point(3, 3);
             this.logoPictureBox.Name = "logoPictureBox";
             this.aboutTable.SetRowSpan(this.logoPictureBox, 7);
@@ -613,6 +615,8 @@
             // 
             // simulatorSettingsPanel
             // 
+            this.simulatorSettingsPanel.Controls.Add(this.legacyInterfaceCheck);
+            this.simulatorSettingsPanel.Controls.Add(this.autosaveCheck);
             this.simulatorSettingsPanel.Controls.Add(this.label1);
             this.simulatorSettingsPanel.Controls.Add(this.selectAllBox);
             this.simulatorSettingsPanel.Controls.Add(this.randomnessCheckBox);
@@ -635,6 +639,36 @@
             this.simulatorSettingsPanel.TabIndex = 4;
             this.simulatorSettingsPanel.Text = "Simulator settings";
             this.simulatorSettingsPanel.UseVisualStyleBackColor = true;
+            // 
+            // legacyInterfaceCheck
+            // 
+            this.legacyInterfaceCheck.AutoSize = true;
+            this.legacyInterfaceCheck.Checked = true;
+            this.legacyInterfaceCheck.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.legacyInterfaceCheck.Location = new System.Drawing.Point(266, 238);
+            this.legacyInterfaceCheck.Margin = new System.Windows.Forms.Padding(0);
+            this.legacyInterfaceCheck.Name = "legacyInterfaceCheck";
+            this.legacyInterfaceCheck.Size = new System.Drawing.Size(88, 17);
+            this.legacyInterfaceCheck.TabIndex = 28;
+            this.legacyInterfaceCheck.Text = "Classic UI [?]";
+            this.helpTip.SetToolTip(this.legacyInterfaceCheck, "Enables the interface from previous versions, similar to 2.1 and earlier");
+            this.legacyInterfaceCheck.UseVisualStyleBackColor = true;
+            this.legacyInterfaceCheck.CheckedChanged += new System.EventHandler(this.legacyInterfaceCheck_CheckedChanged);
+            // 
+            // autosaveCheck
+            // 
+            this.autosaveCheck.AutoSize = true;
+            this.autosaveCheck.Checked = true;
+            this.autosaveCheck.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.autosaveCheck.Location = new System.Drawing.Point(155, 238);
+            this.autosaveCheck.Margin = new System.Windows.Forms.Padding(0);
+            this.autosaveCheck.Name = "autosaveCheck";
+            this.autosaveCheck.Size = new System.Drawing.Size(111, 17);
+            this.autosaveCheck.TabIndex = 27;
+            this.autosaveCheck.Text = "Autosave/load [?]";
+            this.helpTip.SetToolTip(this.autosaveCheck, "Automatically saves changes made to the simulator templates");
+            this.autosaveCheck.UseVisualStyleBackColor = true;
+            this.autosaveCheck.CheckedChanged += new System.EventHandler(this.AutosaveCheckChanged);
             // 
             // label1
             // 
@@ -1250,5 +1284,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.CheckBox darkDetectCheck;
+        private System.Windows.Forms.CheckBox legacyInterfaceCheck;
+        private System.Windows.Forms.CheckBox autosaveCheck;
     }
 }

@@ -50,7 +50,6 @@
             this.yourPCranLabel.TabIndex = 0;
             this.yourPCranLabel.Text = "Your device ran into a problem and needs to restart.";
             this.yourPCranLabel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.yourPCranLabel.Click += new System.EventHandler(this.yourPCranLabel_Click);
             // 
             // progressIndicator
             // 
@@ -63,7 +62,6 @@
             this.progressIndicator.TabIndex = 0;
             this.progressIndicator.Text = "0% complete";
             this.progressIndicator.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.progressIndicator.Click += new System.EventHandler(this.progressIndicator_Click);
             // 
             // errorCode
             // 
