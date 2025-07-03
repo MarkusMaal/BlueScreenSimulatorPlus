@@ -57,6 +57,8 @@ namespace UltimateBlueScreenSimulator.Forms.Simulators
                 Font modernDetailFont = new Font(me.GetFont().FontFamily, textsize * 0.54f, me.GetFont().Style);
                 this.Font = textfont;
                 errorCode.Font = modernDetailFont;
+                yourPCranLabel.Font = textfont;
+                progressIndicator.Font = textfont;
                 yourPCranLabel.Text = me.GetTexts()["Information text"];
                 if (green)
                 {
@@ -83,6 +85,11 @@ namespace UltimateBlueScreenSimulator.Forms.Simulators
                 if (me.GetBool("crashdump") && !me.GetBool("autoclose")) { yourPCranLabel.Text += "\r\n" + me.GetTexts()["No autorestart"]; }
                 if (!me.GetBool("crashdump") && me.GetBool("autoclose")) { yourPCranLabel.Text += "\r\n" + me.GetTexts()["No crashdump with autorestart"]; }
                 if (!me.GetBool("crashdump") && !me.GetBool("autoclose")) { yourPCranLabel.Text += "\r\n" + me.GetTexts()["No crashdump"]; }
+                progressIndicator.Visible = me.GetBool("crashdump");
+                if (!progressIndicator.Visible)
+                {
+                    yourPCranLabel.Top += progressIndicator.Height;
+                }
                 Program.loadfinished = true;
                 if (!me.GetBool("windowed"))
                 {

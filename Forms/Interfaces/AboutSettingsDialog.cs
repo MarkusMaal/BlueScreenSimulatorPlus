@@ -12,6 +12,7 @@ using MaterialSkin;
 using System.Text;
 using System.Text.Json;
 using System.Windows.Media.Animation;
+using UltimateBlueScreenSimulator.Forms.Interfaces;
 
 namespace UltimateBlueScreenSimulator
 {
@@ -24,6 +25,7 @@ namespace UltimateBlueScreenSimulator
         internal bool Demo = false;
         readonly Random r = new Random();
         private int reelTime = 0;
+        private bool closed = false;
         public AboutSettingsDialog()
         {
             MaterialSkinManager materialSkinManager = Program.f1.materialSkinManager;
@@ -144,6 +146,11 @@ namespace UltimateBlueScreenSimulator
             {
                 demoReelTimer.Enabled = true;
                 return;
+            }
+            if (Program.gs.NightTheme)
+            {
+                markusSoftwareLogo.Image = Properties.Resources.msoftware_dm;
+                veriFileLogo.Image = Properties.Resources.verifile_dm;
             }
             Program.f1.abopen = true;
             rtlSwitch.Visible = Program.gs.DevBuild;
@@ -400,8 +407,15 @@ namespace UltimateBlueScreenSimulator
         {
             //Makes sure that the configuration is saved when closing the form
             Program.f1.abopen = false;
-            if (SettingTab)
+            if (SettingTab && !closed)
             {
+                closed = true;
+                if (Program.gs.LegacyUI)
+                {
+                    Program.gs.SaveSettings();
+                    Application.Restart();
+                    return;
+                }
                 UIActions.GetOS(Program.f1);
             }
         }
@@ -1038,7 +1052,13 @@ namespace UltimateBlueScreenSimulator
 
         private void legacyInterfaceCheck_CheckedChanged(object sender, EventArgs e)
         {
+            closed = true;
             Program.gs.LegacyUI = legacyInterfaceCheck.Checked;
+        }
+
+        private void materialButton12_Click(object sender, EventArgs e)
+        {
+            new TestSuite().Show();
         }
     }
 }

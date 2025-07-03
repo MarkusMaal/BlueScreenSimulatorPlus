@@ -22,6 +22,7 @@ namespace UltimateBlueScreenSimulator
         private int progress = 0;
         private int progressmillis = 0;
         internal int maxprogressmillis = 0;
+        private string secondPart = "";
         internal BlueScreen me = Program.templates.GetAt(0);
         public WXBS()
         {
@@ -94,7 +95,21 @@ namespace UltimateBlueScreenSimulator
                 progressIndicator.Font = textfont;
                 supportInfo.Font = modernDetailFont;
                 errorCode.Font = modernDetailFont;
-                yourPCranLabel.Text = me.GetTexts()["Information text with dump"];
+                if (me.GetTexts()["Information text with dump"].Contains("."))
+                {
+                    yourPCranLabel.Text = me.GetTexts()["Information text with dump"].Split('.')[0] + ".\r\n\r\n";
+                } else
+                {
+                    yourPCranLabel.Text = me.GetTexts()["Information text with dump"];
+                }
+                try
+                {
+                    secondPart = me.GetTexts()["Information text with dump"].Substring(yourPCranLabel.Text.Length - 4);
+                }
+                catch
+                {
+                    secondPart = "";
+                }
 
                 qrCode.Size = new Size(me.GetInt("qr_size"), me.GetInt("qr_size"));
 
@@ -103,13 +118,14 @@ namespace UltimateBlueScreenSimulator
                 else { try { qrCode.Image = Image.FromFile(me.GetString("qr_file")); } catch { qrCode.Image = Properties.Resources.bsodqr; } }
                 if (w8 == true)
                 {
-                    yourPCranLabel.Text = me.GetTexts()["Information text with dump"].Replace("{0}", "0");
+                    yourPCranLabel.Text = me.GetTexts()["Information text with dump"].Split('.')[0] + ".\r\n\r\n\r\n";
+                    secondPart = me.GetTexts()["Information text with dump"].Substring(yourPCranLabel.Text.Length - 6);
                     if (close == true) { close = false; w8close = true; }
 
                 }
                 else
                 {
-                    progressIndicator.Text = me.GetTexts()["Progress"].Replace("{0}", "0");
+                    //progressIndicator.Text = me.GetTexts()["Progress"].Replace("{0}", "0");
                     supportInfo.Text = me.GetTexts()["Additional information"];
                 }
                 if (me.GetBool("blackscreen"))
@@ -120,7 +136,8 @@ namespace UltimateBlueScreenSimulator
                 {
                     if (close == false)
                     {
-                        yourPCranLabel.Text = me.GetTexts()["Information text without dump"];
+                        yourPCranLabel.Text = me.GetTexts()["Information text without dump"].Split('.')[0] + ".\r\n\r\n";
+                        secondPart = me.GetTexts()["Information text without dump"].Substring(yourPCranLabel.Text.Length - 4);
                     }
                     if (green)
                     {
@@ -218,6 +235,15 @@ namespace UltimateBlueScreenSimulator
                 {
                     progressUpdater.Enabled = true;
                 }
+                if (!w8 && !me.GetBool("crashdump") && me.GetBool("autoclose"))
+                {
+                    yourPCranLabel.Text = yourPCranLabel.Text.Substring(0,yourPCranLabel.Text.Length - 2);
+                    secondPart = " " + me.GetTexts()["No crashdump with autorestart"];
+                } else if (!w8 && !me.GetBool("crashdump") && !me.GetBool("autoclose"))
+                {
+                    yourPCranLabel.Text = yourPCranLabel.Text.Substring(0,yourPCranLabel.Text.Length - 2);
+                    secondPart = " " + me.GetTexts()["No crashdump"] + "\r\n";
+                }
                 Program.loadfinished = true;
                 if (!me.GetBool("windowed"))
                 {
@@ -240,8 +266,10 @@ namespace UltimateBlueScreenSimulator
             try
             {
                 if (!oldmode) { progressmillis++; }
-                if (!w8close)
+                if (oldmode && progressmillis != 21) { progressmillis = 20; }
+                if (!w8close && progressmillis > 20)
                 {
+                    progressIndicator.Visible = true;
                     if (!Program.verificate) { throw new NotImplementedException(); }
                     if ((oldmode && (progress >= 100)) || (progressmillis == maxprogressmillis))
                     {
@@ -257,7 +285,7 @@ namespace UltimateBlueScreenSimulator
                     {
                         progress += me.GetProgression(progressmillis);
                     }
-                    progressIndicator.Text = me.GetTexts()["Progress"].Replace("{0}", progress.ToString());
+                    progressIndicator.Text = string.Format(me.GetTexts()["Progress"], progress);
                 }
                 else
                 {
@@ -281,6 +309,20 @@ namespace UltimateBlueScreenSimulator
                         progress += me.GetProgression(progressmillis);
                     }
                     yourPCranLabel.Text = yourPCranLabel.Text.Replace(oldprogress + "%", progress.ToString() + "%");
+                }
+                if ((progressmillis == 20) && (secondPart != ""))
+                {
+                    string s = yourPCranLabel.Text.Replace("\r\n", "");
+                    if (w8)
+                    {
+                        yourPCranLabel.Text = s + secondPart.ToString().Replace("{0}", progress.ToString());
+                    } else
+                    {
+                        if (me.GetBool("crashdump")) { progressIndicator.Text = me.GetTexts()["Progress"].Replace("{0}", progress.ToString()); }
+                        else { progressUpdater.Enabled = false; }
+                        yourPCranLabel.Text = s + secondPart.ToString();
+                    }
+                    if (oldmode) { progressmillis += 1; maxprogressmillis = 9999; }
                 }
             } catch (Exception ex)
             {

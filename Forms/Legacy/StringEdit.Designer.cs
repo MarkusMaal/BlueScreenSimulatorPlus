@@ -29,11 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("Property name", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("Value", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup3 = new System.Windows.Forms.ListViewGroup("Property name", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup4 = new System.Windows.Forms.ListViewGroup("Value", System.Windows.Forms.HorizontalAlignment.Left);
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StringEdit));
             this.labelProps = new System.Windows.Forms.Label();
             this.MessageView = new System.Windows.Forms.ListView();
+            this.allIcons = new System.Windows.Forms.ImageList(this.components);
             this.specificProps = new System.Windows.Forms.Label();
             this.buttonOK = new System.Windows.Forms.Button();
             this.stringProps = new System.Windows.Forms.Panel();
@@ -67,8 +68,7 @@
             this.fontChooser = new System.Windows.Forms.FontDialog();
             this.simpleToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.customQRBrowser = new System.Windows.Forms.OpenFileDialog();
-            this.whereTheButtonsLink = new System.Windows.Forms.LinkLabel();
-            this.allIcons = new System.Windows.Forms.ImageList(this.components);
+            this.label1 = new System.Windows.Forms.Label();
             this.stringProps.SuspendLayout();
             this.colorProps.SuspendLayout();
             this.specificPropsFlowLayoutPanel.SuspendLayout();
@@ -97,13 +97,13 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MessageView.FullRowSelect = true;
             this.MessageView.GridLines = true;
-            listViewGroup1.Header = "Property name";
-            listViewGroup1.Name = "listViewGroup1";
-            listViewGroup2.Header = "Value";
-            listViewGroup2.Name = "listViewGroup2";
+            listViewGroup3.Header = "Property name";
+            listViewGroup3.Name = "listViewGroup1";
+            listViewGroup4.Header = "Value";
+            listViewGroup4.Name = "listViewGroup2";
             this.MessageView.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup1,
-            listViewGroup2});
+            listViewGroup3,
+            listViewGroup4});
             this.MessageView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.MessageView.HideSelection = false;
             this.MessageView.LargeImageList = this.allIcons;
@@ -117,6 +117,15 @@
             this.MessageView.UseCompatibleStateImageBehavior = false;
             this.MessageView.View = System.Windows.Forms.View.Details;
             this.MessageView.SelectedIndexChanged += new System.EventHandler(this.MessageView_SelectedIndexChanged);
+            // 
+            // allIcons
+            // 
+            this.allIcons.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("allIcons.ImageStream")));
+            this.allIcons.TransparentColor = System.Drawing.Color.Transparent;
+            this.allIcons.Images.SetKeyName(0, "artage-io-48148_1564916990.ico");
+            this.allIcons.Images.SetKeyName(1, "Tatice-Operating-Systems-Windows.ico");
+            this.allIcons.Images.SetKeyName(2, "Dakirby309-Windows-8-Metro-Folders-OS-Windows-8-Metro.ico");
+            this.allIcons.Images.SetKeyName(3, "new-windows-logo (2).ico");
             // 
             // specificProps
             // 
@@ -423,33 +432,23 @@
             // 
             this.customQRBrowser.Filter = "Raster images|*.jpg;*.jpeg;*.jpe;*.png;*.bmp;*.gif;*.tif;*.tiff";
             // 
-            // whereTheButtonsLink
+            // label1
             // 
-            this.whereTheButtonsLink.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.whereTheButtonsLink.AutoSize = true;
-            this.whereTheButtonsLink.Location = new System.Drawing.Point(12, 348);
-            this.whereTheButtonsLink.Name = "whereTheButtonsLink";
-            this.whereTheButtonsLink.Size = new System.Drawing.Size(189, 13);
-            this.whereTheButtonsLink.TabIndex = 7;
-            this.whereTheButtonsLink.TabStop = true;
-            this.whereTheButtonsLink.Text = "&Where are the save and load buttons?";
-            this.whereTheButtonsLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel1_LinkClicked);
-            // 
-            // allIcons
-            // 
-            this.allIcons.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("allIcons.ImageStream")));
-            this.allIcons.TransparentColor = System.Drawing.Color.Transparent;
-            this.allIcons.Images.SetKeyName(0, "artage-io-48148_1564916990.ico");
-            this.allIcons.Images.SetKeyName(1, "Tatice-Operating-Systems-Windows.ico");
-            this.allIcons.Images.SetKeyName(2, "Dakirby309-Windows-8-Metro-Folders-OS-Windows-8-Metro.ico");
-            this.allIcons.Images.SetKeyName(3, "new-windows-logo (2).ico");
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.Color.Red;
+            this.label1.Location = new System.Drawing.Point(12, 346);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(329, 13);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "Hack zone! Do not report issues caused by changing these settings!";
             // 
             // StringEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(697, 377);
-            this.Controls.Add(this.whereTheButtonsLink);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.specificPropsFlowLayoutPanel);
             this.Controls.Add(this.buttonOK);
             this.Controls.Add(this.specificProps);
@@ -458,6 +457,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.MinimumSize = new System.Drawing.Size(534, 206);
             this.Name = "StringEdit";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Bluescreen hacks";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.StringEdit_FormClosing);
             this.Load += new System.EventHandler(this.StringEdit_Load);
@@ -516,10 +516,10 @@
         private System.Windows.Forms.RadioButton transparentRadioBtn;
         private System.Windows.Forms.RadioButton customRadioBtn;
         private System.Windows.Forms.OpenFileDialog customQRBrowser;
-        private System.Windows.Forms.LinkLabel whereTheButtonsLink;
         private System.Windows.Forms.FlowLayoutPanel xpMsgChooser;
         private System.Windows.Forms.RadioButton autoRadio;
         private System.Windows.Forms.RadioButton manualRadio;
         private System.Windows.Forms.ImageList allIcons;
+        private System.Windows.Forms.Label label1;
     }
 }

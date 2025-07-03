@@ -71,6 +71,7 @@ namespace UltimateBlueScreenSimulator
                     case "halfBox":
                     case "troubleshootBox":
                     case "blackScreenBox":
+                    case "panel2":
                         c.Visible = false;
                         Program.gs.Log("Info", $"Hiding {c}");
                         break;
@@ -381,7 +382,8 @@ namespace UltimateBlueScreenSimulator
                     {
                         "nineXmessage",
                         "winMode",
-                        "eCodeEditButton"
+                        "eCodeEditButton",
+                        "panel2"
                     });
                     break;
                 case "Windows CE":

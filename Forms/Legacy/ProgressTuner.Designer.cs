@@ -268,6 +268,7 @@
             this.Name = "ProgressTuner";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Progress tuner - Test mode";
             ((System.ComponentModel.ISupportInitialize)(this.progressTrackBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.progressVisualization)).EndInit();

@@ -345,6 +345,16 @@ namespace UltimateBlueScreenSimulator.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap msoftware_dm {
+            get {
+                object obj = ResourceManager.GetObject("msoftware_dm", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
         internal static System.Drawing.Icon new_windows_logo__2_ {
@@ -492,6 +502,16 @@ namespace UltimateBlueScreenSimulator.Properties {
         internal static System.Drawing.Bitmap verifile {
             get {
                 object obj = ResourceManager.GetObject("verifile", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap verifile_dm {
+            get {
+                object obj = ResourceManager.GetObject("verifile_dm", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -32,10 +32,9 @@ namespace UltimateBlueScreenSimulator
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StringEdit));
-            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("Property name", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("Value", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup3 = new System.Windows.Forms.ListViewGroup("Property name", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup4 = new System.Windows.Forms.ListViewGroup("Value", System.Windows.Forms.HorizontalAlignment.Left);
             this.AllIcons = new System.Windows.Forms.ImageList(this.components);
-            this.labelProps = new MaterialSkin.Controls.MaterialLabel();
             this.MessageView = new MaterialSkin.Controls.MaterialListView();
             this.specificProps = new MaterialSkin.Controls.MaterialLabel();
             this.buttonOK = new MaterialSkin.Controls.MaterialButton();
@@ -71,6 +70,7 @@ namespace UltimateBlueScreenSimulator
             this.simpleToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.customQRBrowser = new System.Windows.Forms.OpenFileDialog();
             this.whereTheButtonsLink = new System.Windows.Forms.LinkLabel();
+            this.label1 = new System.Windows.Forms.Label();
             this.stringProps.SuspendLayout();
             this.colorProps.SuspendLayout();
             this.specificPropsFlowLayoutPanel.SuspendLayout();
@@ -94,18 +94,6 @@ namespace UltimateBlueScreenSimulator
             this.AllIcons.Images.SetKeyName(5, "setting.png");
             this.AllIcons.Images.SetKeyName(6, "theming.png");
             // 
-            // labelProps
-            // 
-            this.labelProps.AutoSize = true;
-            this.labelProps.Depth = 0;
-            this.labelProps.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.labelProps.Location = new System.Drawing.Point(11, 30);
-            this.labelProps.MouseState = MaterialSkin.MouseState.HOVER;
-            this.labelProps.Name = "labelProps";
-            this.labelProps.Size = new System.Drawing.Size(72, 19);
-            this.labelProps.TabIndex = 3;
-            this.labelProps.Text = "Properties";
-            // 
             // MessageView
             // 
             this.MessageView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -116,13 +104,13 @@ namespace UltimateBlueScreenSimulator
             this.MessageView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.MessageView.Depth = 0;
             this.MessageView.FullRowSelect = true;
-            listViewGroup1.Header = "Property name";
-            listViewGroup1.Name = "listViewGroup1";
-            listViewGroup2.Header = "Value";
-            listViewGroup2.Name = "listViewGroup2";
+            listViewGroup3.Header = "Property name";
+            listViewGroup3.Name = "listViewGroup1";
+            listViewGroup4.Header = "Value";
+            listViewGroup4.Name = "listViewGroup2";
             this.MessageView.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup1,
-            listViewGroup2});
+            listViewGroup3,
+            listViewGroup4});
             this.MessageView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.MessageView.HideSelection = false;
             this.MessageView.LargeImageList = this.AllIcons;
@@ -134,7 +122,7 @@ namespace UltimateBlueScreenSimulator
             this.MessageView.Name = "MessageView";
             this.MessageView.OwnerDraw = true;
             this.MessageView.ShowGroups = false;
-            this.MessageView.Size = new System.Drawing.Size(531, 836);
+            this.MessageView.Size = new System.Drawing.Size(417, 426);
             this.MessageView.SmallImageList = this.AllIcons;
             this.MessageView.TabIndex = 0;
             this.MessageView.UseCompatibleStateImageBehavior = false;
@@ -146,7 +134,7 @@ namespace UltimateBlueScreenSimulator
             this.specificProps.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.specificProps.Depth = 0;
             this.specificProps.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.specificProps.Location = new System.Drawing.Point(549, 30);
+            this.specificProps.Location = new System.Drawing.Point(455, 30);
             this.specificProps.MouseState = MaterialSkin.MouseState.HOVER;
             this.specificProps.Name = "specificProps";
             this.specificProps.Size = new System.Drawing.Size(403, 22);
@@ -162,7 +150,7 @@ namespace UltimateBlueScreenSimulator
             this.buttonOK.ForeColor = System.Drawing.SystemColors.ControlText;
             this.buttonOK.HighEmphasis = true;
             this.buttonOK.Icon = null;
-            this.buttonOK.Location = new System.Drawing.Point(867, 895);
+            this.buttonOK.Location = new System.Drawing.Point(773, 485);
             this.buttonOK.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.buttonOK.MouseState = MaterialSkin.MouseState.HOVER;
             this.buttonOK.Name = "buttonOK";
@@ -247,6 +235,7 @@ namespace UltimateBlueScreenSimulator
             // 
             this.specificPropsFlowLayoutPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.specificPropsFlowLayoutPanel.AutoScroll = true;
             this.specificPropsFlowLayoutPanel.Controls.Add(this.stringProps);
             this.specificPropsFlowLayoutPanel.Controls.Add(this.xpMsgChooser);
             this.specificPropsFlowLayoutPanel.Controls.Add(this.qrProps);
@@ -254,9 +243,9 @@ namespace UltimateBlueScreenSimulator
             this.specificPropsFlowLayoutPanel.Controls.Add(this.fontProps);
             this.specificPropsFlowLayoutPanel.Controls.Add(this.blinkProps);
             this.specificPropsFlowLayoutPanel.Controls.Add(this.colorProps);
-            this.specificPropsFlowLayoutPanel.Location = new System.Drawing.Point(549, 52);
+            this.specificPropsFlowLayoutPanel.Location = new System.Drawing.Point(435, 52);
             this.specificPropsFlowLayoutPanel.Name = "specificPropsFlowLayoutPanel";
-            this.specificPropsFlowLayoutPanel.Size = new System.Drawing.Size(404, 838);
+            this.specificPropsFlowLayoutPanel.Size = new System.Drawing.Size(424, 428);
             this.specificPropsFlowLayoutPanel.TabIndex = 2;
             // 
             // xpMsgChooser
@@ -561,7 +550,7 @@ namespace UltimateBlueScreenSimulator
             // 
             this.whereTheButtonsLink.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.whereTheButtonsLink.AutoSize = true;
-            this.whereTheButtonsLink.Location = new System.Drawing.Point(12, 900);
+            this.whereTheButtonsLink.Location = new System.Drawing.Point(12, 529);
             this.whereTheButtonsLink.Name = "whereTheButtonsLink";
             this.whereTheButtonsLink.Size = new System.Drawing.Size(189, 13);
             this.whereTheButtonsLink.TabIndex = 7;
@@ -569,16 +558,28 @@ namespace UltimateBlueScreenSimulator
             this.whereTheButtonsLink.Text = "&Where are the save and load buttons?";
             this.whereTheButtonsLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel1_LinkClicked);
             // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label1.AutoSize = true;
+            this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label1.ForeColor = System.Drawing.Color.Red;
+            this.label1.Location = new System.Drawing.Point(9, 492);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(329, 13);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "Hack zone! Do not report issues caused by changing these settings!";
+            // 
             // StringEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(959, 930);
+            this.ClientSize = new System.Drawing.Size(865, 520);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.whereTheButtonsLink);
             this.Controls.Add(this.specificPropsFlowLayoutPanel);
             this.Controls.Add(this.buttonOK);
             this.Controls.Add(this.specificProps);
-            this.Controls.Add(this.labelProps);
             this.Controls.Add(this.MessageView);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.FormStyle = MaterialSkin.Controls.MaterialForm.FormStyles.ActionBar_None;
@@ -611,7 +612,6 @@ namespace UltimateBlueScreenSimulator
         }
 
         #endregion
-        private MaterialSkin.Controls.MaterialLabel labelProps;
         private MaterialListView MessageView;
         private MaterialSkin.Controls.MaterialLabel specificProps;
         private MaterialSkin.Controls.MaterialButton buttonOK;
@@ -648,5 +648,6 @@ namespace UltimateBlueScreenSimulator
         private System.Windows.Forms.FlowLayoutPanel xpMsgChooser;
         private MaterialSkin.Controls.MaterialRadioButton autoRadio;
         private MaterialSkin.Controls.MaterialRadioButton manualRadio;
+        private System.Windows.Forms.Label label1;
     }
 }

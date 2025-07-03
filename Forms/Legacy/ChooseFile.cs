@@ -51,5 +51,50 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
+
+        private void Repopulate()
+        {
+            fileBrowser.Items.Clear();
+            foreach (string line in Program.templates.CulpritFiles)
+            {
+                if (line.Contains(":"))
+                {
+                    ListViewItem lvi = new ListViewItem
+                    {
+                        Text = line.Split(':')[0]
+                    };
+                    lvi.SubItems.Add(line.Split(':')[1]);
+                    fileBrowser.Items.Add(lvi);
+                }
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            MessageTableEditor mte = new MessageTableEditor
+            {
+                nt_errors = false,
+                Location = this.Location,
+                Size = this.Size,
+                StartPosition = FormStartPosition.Manual
+            };
+            Hide();
+            mte.ShowDialog();
+            this.Location = mte.Location;
+            this.Size = mte.Size;
+            Repopulate();
+            Show();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.OK;
+            Close();
+        }
+
+        private void fileBrowser_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            okButton.Enabled = fileBrowser.SelectedItems.Count > 0;
+        }
     }
 }

@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PrankMode));
             this.bluescreenTypeLabel = new System.Windows.Forms.Label();
             this.bluescreenTypePanel = new System.Windows.Forms.Panel();
             this.matchAllRadio = new System.Windows.Forms.RadioButton();
@@ -97,7 +96,7 @@
             // 
             // bluescreenTypePanel
             // 
-            this.bluescreenTypePanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.bluescreenTypePanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.bluescreenTypePanel.Controls.Add(this.matchAllRadio);
             this.bluescreenTypePanel.Controls.Add(this.bestMatchRadio);
@@ -141,7 +140,7 @@
             // 
             // triggerPanel
             // 
-            this.triggerPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.triggerPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.triggerPanel.Controls.Add(this.usbRadio);
             this.triggerPanel.Controls.Add(this.triggerFlowPanel);
@@ -165,7 +164,7 @@
             // 
             // triggerFlowPanel
             // 
-            this.triggerFlowPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.triggerFlowPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.triggerFlowPanel.Controls.Add(this.timePanel);
             this.triggerFlowPanel.Controls.Add(this.appPanel);
@@ -334,7 +333,7 @@
             // 
             // friendlyMessageContentsBox
             // 
-            this.friendlyMessageContentsBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.friendlyMessageContentsBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.friendlyMessageContentsBox.Enabled = false;
             this.friendlyMessageContentsBox.Location = new System.Drawing.Point(12, 258);
@@ -356,7 +355,7 @@
             // 
             // friendlyMessageTitleBox
             // 
-            this.friendlyMessageTitleBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.friendlyMessageTitleBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.friendlyMessageTitleBox.Enabled = false;
             this.friendlyMessageTitleBox.Location = new System.Drawing.Point(87, 306);
@@ -368,7 +367,7 @@
             // 
             // friendlyMessageIconPanel
             // 
-            this.friendlyMessageIconPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.friendlyMessageIconPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.friendlyMessageIconPanel.Controls.Add(this.errorRadio);
             this.friendlyMessageIconPanel.Controls.Add(this.warningRadio);
@@ -458,7 +457,7 @@
             // 
             // friendlyMessageButtonsPanel
             // 
-            this.friendlyMessageButtonsPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.friendlyMessageButtonsPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.friendlyMessageButtonsPanel.Controls.Add(this.okRadio);
             this.friendlyMessageButtonsPanel.Controls.Add(this.okCancelRadio);
@@ -626,6 +625,7 @@
             this.HelpButton = true;
             this.MinimumSize = new System.Drawing.Size(555, 503);
             this.Name = "PrankMode";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Prank mode";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PrankMode_FormClosing);
             this.Load += new System.EventHandler(this.PrankMode_Load);

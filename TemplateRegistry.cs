@@ -226,7 +226,8 @@ namespace UltimateBlueScreenSimulator
         /// </summary>
         /// <param name="filename">Full file path</param>
         /// <param name="filterIndex">File format filterIndex</param>
-        public void SaveData(string filename, int filterIndex)
+        /// <param name="ignoreErrors">For internal use only: avoid displaying dialog boxes when warnings or errors occur</param>
+        public void SaveData(string filename, int filterIndex, bool ignoreErrors = false)
         {
             string filedata;
             filterIndex--;
@@ -254,12 +255,12 @@ namespace UltimateBlueScreenSimulator
             }
             else if (CheckFormat(filterIndex, "2.1"))
             {
-                MessageBox.Show("Warning: Custom NT error codes and culprit files will not be saved with this format.", "Legacy format selected", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                if (!ignoreErrors) MessageBox.Show("Warning: Custom NT error codes and culprit files will not be saved with this format.", "Legacy format selected", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 filedata = "*** Blue screen simulator plus 2.1 ***";
             }
             else if (CheckFormat(filterIndex, "2.0"))
             {
-                MessageBox.Show("Warning: Custom NT error codes, culprit files and progress tuner data will not be saved and there won't be Windows Vista/7 separation with this format.", "Legacy format selected", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                if (!ignoreErrors) MessageBox.Show("Warning: Custom NT error codes, culprit files and progress tuner data will not be saved and there won't be Windows Vista/7 separation with this format.", "Legacy format selected", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 filedata = "*** Blue screen simulator plus 2.0 ***";
             }
             else
@@ -268,11 +269,11 @@ namespace UltimateBlueScreenSimulator
                 if (filedata != " * ERROR * ")
                 {
                     File.WriteAllText(filename, filedata, System.Text.Encoding.Unicode);
-                    MessageBox.Show("Blue screen configuration saved successfully", "Blue screen simulator 1.x configuration file creator", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (!ignoreErrors) MessageBox.Show("Blue screen configuration saved successfully", "Blue screen simulator 1.x configuration file creator", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    MessageBox.Show("Blue screen configuration was not saved, because an error occoured.\n\nBefore attempting to save to 1.x format, make sure that the following operating systems exist in your configuration list:\n\nWindows 10 and/or 11\nWindows Vista or Windows 7\nWindows XP\nWindows CE\nWindows NT 3.x/4.0\nWindows 9x/Me\nWindows 3.1x", "Blue screen simulator 1.x configuration file creator", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    if (!ignoreErrors) MessageBox.Show("Blue screen configuration was not saved, because an error occoured.\n\nBefore attempting to save to 1.x format, make sure that the following operating systems exist in your configuration list:\n\nWindows 10 and/or 11\nWindows Vista or Windows 7\nWindows XP\nWindows CE\nWindows NT 3.x/4.0\nWindows 9x/Me\nWindows 3.1x", "Blue screen simulator 1.x configuration file creator", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 saveFinished = true;
                 Thread.CurrentThread.Abort();

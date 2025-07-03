@@ -1170,6 +1170,7 @@
             this.MinimumSize = new System.Drawing.Size(564, 423);
             this.Name = "AboutSettingsDialog";
             this.Padding = new System.Windows.Forms.Padding(3);
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ExitMe);
             this.Load += new System.EventHandler(this.SetInitalInterface);
             this.Resize += new System.EventHandler(this.OnMeResized);

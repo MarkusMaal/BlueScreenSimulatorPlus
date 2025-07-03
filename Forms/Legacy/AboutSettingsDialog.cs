@@ -19,6 +19,7 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
         public bool SettingTab = false;
         public int tab_id = 0;
         public bool finished = false;
+        private bool closed = false;
         readonly Random r = new Random();
         public AboutSettingsDialog()
         {
@@ -117,8 +118,8 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
                     p.BackColor = this.BackColor;
                     p.ForeColor = this.ForeColor;
                 }
-                markusSoftwareLogo.BackColor = Color.DimGray;
-                veriFileLogo.BackColor = Color.DimGray;
+                markusSoftwareLogo.Image = Properties.Resources.msoftware_dm;
+                veriFileLogo.Image = Properties.Resources.verifile_dm;
                 primaryServerBox.BackColor = Color.Black;
                 primaryServerBox.ForeColor = Color.Gray;
                 primaryServerBox.BorderStyle = BorderStyle.FixedSingle;
@@ -370,8 +371,15 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
         {
             //Makes sure that the configuration is saved when closing the form
             Program.f1.abopen = false;
-            if (SettingTab)
+            if (SettingTab && !closed)
             {
+                closed = true;
+                if (!Program.gs.LegacyUI)
+                {
+                    Program.gs.SaveSettings();
+                    Application.Restart();
+                    return;
+                }
                 UIActions.GetOS(Program.f2);
             }
         }
@@ -1288,6 +1296,7 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
 
         private void RestartAll(object sender, EventArgs e)
         {
+            closed = true;
             Application.Restart();
         }
 

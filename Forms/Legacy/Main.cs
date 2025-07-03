@@ -1047,13 +1047,14 @@ namespace UltimateBlueScreenSimulator
 
         private void Main_Resize(object sender, EventArgs e)
         {
-            flowLayoutPanel2.Width = flowLayoutPanel1.Width;
-            ntPanel.Width = flowLayoutPanel1.Width;
-            errorCode.Width = flowLayoutPanel1.Width;
-            nineXmessage.Width = flowLayoutPanel1.Width;
-            flowLayoutPanel4.Width = flowLayoutPanel1.Width;
-            winPanel.Width = flowLayoutPanel1.Width;
-            WXOptions.Width = flowLayoutPanel1.Width;
+            int sub = 25;
+            flowLayoutPanel2.Width = flowLayoutPanel1.Width - sub;
+            ntPanel.Width = flowLayoutPanel1.Width - sub;
+            errorCode.Width = flowLayoutPanel1.Width - sub;
+            nineXmessage.Width = flowLayoutPanel1.Width - sub;
+            flowLayoutPanel4.Width = flowLayoutPanel1.Width - sub;
+            winPanel.Width = flowLayoutPanel1.Width - sub;
+            WXOptions.Width = flowLayoutPanel1.Width - sub;
         }
 
         private void ContentsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1170,33 +1171,6 @@ namespace UltimateBlueScreenSimulator
             progressTuneButton.PerformClick();
         }
 
-        private void customCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            customMessageCode.Visible = customCheckBox.Checked;
-            customMessageLabel1.Visible = customCheckBox.Checked;
-            customMessageLabel2.Visible = customCheckBox.Checked;
-            customMessageText.Visible = customCheckBox.Checked;
-            comboBox1.Visible = !customCheckBox.Checked;
-            if (UIActions.me.GetString("code").Contains("x"))
-            {
-                customMessageText.Text = UIActions.me.GetString("code").Split(' ')[0];
-                customMessageCode.Text = UIActions.me.GetString("code").Split('(')[1].Split('x')[1].Replace(")", "");
-                if (!customCheckBox.Checked)
-                {
-                    UIActions.me.SetString("code", comboBox1.SelectedItem.ToString());
-                }
-            }
-        }
-
-        private void customMessageText_TextChanged(object sender, EventArgs e)
-        {
-            UIActions.me.SetString("code", string.Format("{0} (0x{1})", customMessageText.Text, customMessageCode.Text));
-        }
-
-        private void customMessageCode_TextChanged(object sender, EventArgs e)
-        {
-            UIActions.me.SetString("code", string.Format("{0} (0x{1})", customMessageText.Text, customMessageCode.Text));
-        }
 
         private void ComboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -1267,6 +1241,22 @@ namespace UltimateBlueScreenSimulator
                 MessageBox.Show("Executable saved successfully!", "Create embedded executable", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             saveFileDialog1.Filter = filter_backup;
+        }
+
+        private void button4_Click_2(object sender, EventArgs e)
+        {
+            new Forms.Legacy.MessageTableEditor
+            {
+                nt_errors = true
+            }.ShowDialog();
+        }
+
+        private void button5_Click_1(object sender, EventArgs e)
+        {
+            new Forms.Legacy.MessageTableEditor
+            {
+                nx_errors = true
+            }.ShowDialog();
         }
     }
 }

@@ -2,7 +2,7 @@
  * Blue screen simulator plus
  * Codename: ModestIndigo
  * 
- * Version 3.0 (pre-release)
+ * Version 3.1 (pre-release)
  *
  * {} markus' software // {} markuse tarkvara
  */
@@ -69,6 +69,7 @@ namespace UltimateBlueScreenSimulator
         {
             try
             {
+                // Process CLI args
                 clip = new CLIProcessor(args);
                 //Application initialization
                 Application.EnableVisualStyles();
@@ -153,15 +154,16 @@ namespace UltimateBlueScreenSimulator
         /// </summary>
         private static void ShowLoading()
         {
-            spl = new Splash
-            {
-                args = clip.args
-            };
             try
             {
+                spl = new Splash
+                {
+                    args = clip.args
+                };
                 spl.ShowDialog();
-            } catch (ThreadAbortException)
+            } catch
             {
+                Thread.ResetAbort();
                 return;
             }
         }
@@ -172,6 +174,7 @@ namespace UltimateBlueScreenSimulator
         public static void ReloadNTErrors()
         {
             f1.comboBox1.Items.Clear();
+            f2.comboBox1.Items.Clear();
             try
             {
                 foreach (string element in templates.NtErrors)
@@ -179,8 +182,10 @@ namespace UltimateBlueScreenSimulator
                     string[] codesplit = element.Split('\t');
                     string final = codesplit[1].ToString() + " (" + codesplit[0].ToString() + ")";
                     f1.comboBox1.Items.Add(final);
+                    f2.comboBox1.Items.Add(final);
                 }
                 f1.comboBox1.SelectedIndex = 9;
+                f2.comboBox1.SelectedIndex = 9;
             }
             catch
             {
@@ -191,6 +196,7 @@ namespace UltimateBlueScreenSimulator
         public static void ReloadNxErrors()
         {
             f1.nineXErrorCode.Items.Clear();
+            f2.nineXErrorCode.Items.Clear();
             try
             {
                 foreach (string element in templates.NxErrors)
@@ -198,8 +204,10 @@ namespace UltimateBlueScreenSimulator
                     string[] codesplit = element.Split('\t');
                     string final = codesplit[0].ToString() + ": " + codesplit[1].ToString();
                     f1.nineXErrorCode.Items.Add(final);
+                    f2.nineXErrorCode.Items.Add(final);
                 }
                 f1.nineXErrorCode.SelectedIndex = 9;
+                f2.nineXErrorCode.SelectedIndex = 9;
             } catch
             {
                 gs.ErrorCode = 20;

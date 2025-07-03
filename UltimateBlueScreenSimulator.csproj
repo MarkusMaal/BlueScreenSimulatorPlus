@@ -109,6 +109,12 @@
     <Compile Include="Forms\Interfaces\NTdtor.Designer.cs">
       <DependentUpon>NTdtor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Interfaces\TestSuite.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Interfaces\TestSuite.Designer.cs">
+      <DependentUpon>TestSuite.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Legacy\AboutSettingsDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -144,6 +150,12 @@
     </Compile>
     <Compile Include="Forms\Legacy\IndexForm.Designer.cs">
       <DependentUpon>IndexForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Legacy\MessageTableEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Legacy\MessageTableEditor.Designer.cs">
+      <DependentUpon>MessageTableEditor.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Legacy\PrankMode.cs">
       <SubType>Form</SubType>
@@ -371,6 +383,9 @@
     <EmbeddedResource Include="Forms\Interfaces\NTdtor.resx">
       <DependentUpon>NTdtor.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Interfaces\TestSuite.resx">
+      <DependentUpon>TestSuite.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Legacy\AboutSettingsDialog.resx">
       <DependentUpon>AboutSettingsDialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -389,11 +404,20 @@
     <EmbeddedResource Include="Forms\Legacy\IndexForm.resx">
       <DependentUpon>IndexForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Legacy\MessageTableEditor.resx">
+      <DependentUpon>MessageTableEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Legacy\PrankMode.resx">
+      <DependentUpon>PrankMode.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Legacy\ProgressTuner.resx">
       <DependentUpon>ProgressTuner.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Legacy\StringEdit.resx">
       <DependentUpon>StringEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Legacy\TextView.resx">
+      <DependentUpon>TextView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Simulators\BootMgr.resx">
       <DependentUpon>BootMgr.cs</DependentUpon>
@@ -503,6 +527,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="bssp3_icon.ico" />
+    <None Include="Resources\msoftware_dm.png" />
+    <None Include="Resources\verifile_dm.png" />
     <None Include="Resources\bsodbanner31.png" />
     <None Include="Resources\9xERRORS.TXT" />
     <None Include="Resources\BSSP manual_3_offline.pdf" />
@@ -535,7 +561,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <PackageReference Include="Costura.Fody">
-      <Version>5.7.0</Version>
+      <Version>6.0.0</Version>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
@@ -543,7 +569,7 @@
       <Version>4.3.4</Version>
     </PackageReference>
     <PackageReference Include="System.Text.Json">
-      <Version>8.0.5</Version>
+      <Version>9.0.6</Version>
     </PackageReference>
     <PackageReference Include="System.Text.RegularExpressions">
       <Version>4.3.1</Version>

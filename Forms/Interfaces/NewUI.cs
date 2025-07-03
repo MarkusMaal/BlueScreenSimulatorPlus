@@ -90,7 +90,7 @@ namespace UltimateBlueScreenSimulator
 
         private void NewUi1_ResizeEnd(object sender, EventArgs e)
         {
-            int sub = 35;
+            int sub = 70;
             this.errorCode.Width = this.Width - sub;
             WXOptions.Width = this.Width - sub;
             ntPanel.Width = this.Width - sub;
@@ -929,6 +929,10 @@ namespace UltimateBlueScreenSimulator
             }
             this.TopMost = true;
             this.TopMost = false;
+            if (Screen.AllScreens[0].Bounds.Width * Screen.AllScreens[0].Bounds.Height < 480000)
+            {
+                this.Size = this.MinimumSize;
+            }
         }
 
         private void customizeCodesButton_Click(object sender, EventArgs e)

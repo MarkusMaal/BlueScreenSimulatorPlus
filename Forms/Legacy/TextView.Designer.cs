@@ -59,6 +59,7 @@
             this.Name = "TextView";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Sample Title";
             this.Load += new System.EventHandler(this.TextView_Load);
             this.ResumeLayout(false);

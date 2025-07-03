@@ -920,6 +920,7 @@ namespace SimulatorDatabase
         ///<param name="inspir">A string where each character represents if the value is fixed or random (e.g. 63RR25E0, which might return as 631725E0)</param>
         public string GenHex(int lettercount, string inspir)
         {
+            if (inspir.Length < 8) inspir = "RRRRRRRR";
             //sleep command is used to make sure that randomization works properly
             //System.Threading.Thread.Sleep(20);
             Log("Info", $"Generating {lettercount} character hex code with template {inspir}");
@@ -1906,6 +1907,8 @@ namespace SimulatorDatabase
                     SetString("friendlyname", "Windows 10 (Native, ClearType)");
                     PushText("Information text with dump", "Your PC ran into a problem and needs to restart. We're just\r\ncollecting some error info, and then we'll restart for you.");
                     PushText("Information text without dump", "Your PC ran into a problem and needs to restart. We're just\r\ncollecting some error info, and then you can restart.");
+                    PushText("No crashdump with autorestart", "We'll restart for you.");
+                    PushText("No crashdump", "You can restart.");
                     PushText("Additional information", "For more information about this issue and possible fixes, visit http://windows.com/stopcode");
                     PushText("Culprit file", "What failed: {0}");
                     PushText("Error code", "If you call a support person, give them this info:\r\n\r\nStop code: {0}");
@@ -1921,6 +1924,7 @@ namespace SimulatorDatabase
                     SetBool("autoclose", true);
                     SetBool("qr", true);
                     SetBool("device", true);
+                    SetBool("crashdump", true);
                     SetString("qr_file", "local:0");
                     SetString("code", "IRQL_NOT_LESS_OR_EQUAL (0x0000000A)");
                     SetBool("show_description", true);
@@ -1933,6 +1937,8 @@ namespace SimulatorDatabase
                     SetString("emoticon", ":(");
                     PushText("Information text with dump", "Your device ran into a problem and needs to restart. We're just\r\ncollecting some error info, and then we'll restart for you.");
                     PushText("Information text without dump", "Your device ran into a problem and needs to restart. We're just\r\ncollecting some error info, and then you can restart.");
+                    PushText("No crashdump with autorestart", "We'll restart for you.");
+                    PushText("No crashdump", "You can restart.");
                     PushText("Additional information", "For more information about this issue and possible fixes, visit http://windows.com/stopcode");
                     PushText("Culprit file", "What failed: {0}");
                     PushText("Error code", "If you call a support person, give them this info:\r\n\r\nStop code: {0}");
@@ -1948,6 +1954,7 @@ namespace SimulatorDatabase
                     SetBool("autoclose", true);
                     SetBool("blackscreen", false);
                     SetBool("qr", true);
+                    SetBool("crashdump", true);
                     SetString("qr_file", "local:0");
                     SetString("code", "IRQL_NOT_LESS_OR_EQUAL (0x0000000A)");
                     SetDefaultProgression();

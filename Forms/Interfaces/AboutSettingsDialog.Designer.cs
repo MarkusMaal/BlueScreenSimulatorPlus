@@ -137,6 +137,7 @@ namespace UltimateBlueScreenSimulator
             this.loadBsconfig = new System.Windows.Forms.OpenFileDialog();
             this.checkIfLoadedSaved = new System.Windows.Forms.Timer(this.components);
             this.demoReelTimer = new System.Windows.Forms.Timer(this.components);
+            this.materialButton12 = new MaterialSkin.Controls.MaterialButton();
             this.aboutTable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).BeginInit();
             this.logoDisplayFlowPanel.SuspendLayout();
@@ -922,6 +923,7 @@ namespace UltimateBlueScreenSimulator
             this.devFlowPanel.Controls.Add(this.materialButton7);
             this.devFlowPanel.Controls.Add(this.materialButton4);
             this.devFlowPanel.Controls.Add(this.devRestartApp);
+            this.devFlowPanel.Controls.Add(this.materialButton12);
             this.devFlowPanel.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
             this.devFlowPanel.Location = new System.Drawing.Point(199, 3);
             this.devFlowPanel.Name = "devFlowPanel";
@@ -938,7 +940,7 @@ namespace UltimateBlueScreenSimulator
             this.materialButton6.Depth = 0;
             this.materialButton6.HighEmphasis = true;
             this.materialButton6.Icon = null;
-            this.materialButton6.Location = new System.Drawing.Point(1060, 6);
+            this.materialButton6.Location = new System.Drawing.Point(1244, 6);
             this.materialButton6.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.materialButton6.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialButton6.Name = "materialButton6";
@@ -961,7 +963,7 @@ namespace UltimateBlueScreenSimulator
             this.devSplashButton.ForeColor = System.Drawing.SystemColors.ControlText;
             this.devSplashButton.HighEmphasis = true;
             this.devSplashButton.Icon = null;
-            this.devSplashButton.Location = new System.Drawing.Point(877, 6);
+            this.devSplashButton.Location = new System.Drawing.Point(1061, 6);
             this.devSplashButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.devSplashButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.devSplashButton.Name = "devSplashButton";
@@ -984,7 +986,7 @@ namespace UltimateBlueScreenSimulator
             this.devDictEditButton.ForeColor = System.Drawing.SystemColors.ControlText;
             this.devDictEditButton.HighEmphasis = true;
             this.devDictEditButton.Icon = null;
-            this.devDictEditButton.Location = new System.Drawing.Point(744, 6);
+            this.devDictEditButton.Location = new System.Drawing.Point(928, 6);
             this.devDictEditButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.devDictEditButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.devDictEditButton.Name = "devDictEditButton";
@@ -1007,7 +1009,7 @@ namespace UltimateBlueScreenSimulator
             this.devNewAllButton.ForeColor = System.Drawing.SystemColors.ControlText;
             this.devNewAllButton.HighEmphasis = true;
             this.devNewAllButton.Icon = null;
-            this.devNewAllButton.Location = new System.Drawing.Point(525, 6);
+            this.devNewAllButton.Location = new System.Drawing.Point(709, 6);
             this.devNewAllButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.devNewAllButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.devNewAllButton.Name = "devNewAllButton";
@@ -1028,7 +1030,7 @@ namespace UltimateBlueScreenSimulator
             this.materialButton7.Depth = 0;
             this.materialButton7.HighEmphasis = true;
             this.materialButton7.Icon = null;
-            this.materialButton7.Location = new System.Drawing.Point(338, 6);
+            this.materialButton7.Location = new System.Drawing.Point(522, 6);
             this.materialButton7.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.materialButton7.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialButton7.Name = "materialButton7";
@@ -1049,7 +1051,7 @@ namespace UltimateBlueScreenSimulator
             this.materialButton4.Depth = 0;
             this.materialButton4.HighEmphasis = true;
             this.materialButton4.Icon = null;
-            this.materialButton4.Location = new System.Drawing.Point(233, 6);
+            this.materialButton4.Location = new System.Drawing.Point(417, 6);
             this.materialButton4.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.materialButton4.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialButton4.Name = "materialButton4";
@@ -1070,7 +1072,7 @@ namespace UltimateBlueScreenSimulator
             this.devRestartApp.Depth = 0;
             this.devRestartApp.HighEmphasis = true;
             this.devRestartApp.Icon = null;
-            this.devRestartApp.Location = new System.Drawing.Point(4, 6);
+            this.devRestartApp.Location = new System.Drawing.Point(188, 6);
             this.devRestartApp.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.devRestartApp.MouseState = MaterialSkin.MouseState.HOVER;
             this.devRestartApp.Name = "devRestartApp";
@@ -2072,6 +2074,27 @@ namespace UltimateBlueScreenSimulator
             this.demoReelTimer.Interval = 1000;
             this.demoReelTimer.Tick += new System.EventHandler(this.demoReelTimer_Tick);
             // 
+            // materialButton12
+            // 
+            this.materialButton12.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.materialButton12.CharacterCasing = MaterialSkin.Controls.MaterialButton.CharacterCasingEnum.Normal;
+            this.materialButton12.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.materialButton12.Depth = 0;
+            this.materialButton12.HighEmphasis = true;
+            this.materialButton12.Icon = null;
+            this.materialButton12.Location = new System.Drawing.Point(4, 6);
+            this.materialButton12.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.materialButton12.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialButton12.Name = "materialButton12";
+            this.materialButton12.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.materialButton12.Size = new System.Drawing.Size(176, 36);
+            this.materialButton12.TabIndex = 26;
+            this.materialButton12.Text = "[DEV] Perform tests";
+            this.materialButton12.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.materialButton12.UseAccentColor = false;
+            this.materialButton12.UseVisualStyleBackColor = true;
+            this.materialButton12.Click += new System.EventHandler(this.materialButton12_Click);
+            // 
             // AboutSettingsDialog
             // 
             this.AcceptButton = this.okButton;
@@ -2232,5 +2255,6 @@ namespace UltimateBlueScreenSimulator
         private MaterialButton materialButton9;
         private MaterialButton materialButton11;
         private MaterialCheckbox legacyInterfaceCheck;
+        private MaterialButton materialButton12;
     }
 }

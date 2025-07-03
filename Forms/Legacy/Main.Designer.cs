@@ -45,11 +45,7 @@
             this.blackScreenBox = new System.Windows.Forms.CheckBox();
             this.crashDumpBox = new System.Windows.Forms.CheckBox();
             this.errorCode = new System.Windows.Forms.Panel();
-            this.customMessageLabel2 = new System.Windows.Forms.Label();
-            this.customMessageCode = new System.Windows.Forms.TextBox();
-            this.customMessageLabel1 = new System.Windows.Forms.Label();
-            this.customMessageText = new System.Windows.Forms.TextBox();
-            this.customCheckBox = new System.Windows.Forms.CheckBox();
+            this.button4 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
@@ -89,6 +85,7 @@
             this.eCodeEditButton = new System.Windows.Forms.Button();
             this.advNTButton = new System.Windows.Forms.Button();
             this.progressTuneButton = new System.Windows.Forms.Button();
+            this.embedExeButton = new System.Windows.Forms.Button();
             this.quickHelp = new System.Windows.Forms.ToolTip(this.components);
             this.button1 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -122,8 +119,8 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.waitPopup = new System.Windows.Forms.Timer(this.components);
-            this.embedExeButton = new System.Windows.Forms.Button();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.button5 = new System.Windows.Forms.Button();
             this.flowLayoutPanel1.SuspendLayout();
             this.WXOptions.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
@@ -186,6 +183,7 @@
             this.flowLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.flowLayoutPanel1.AutoScroll = true;
             this.flowLayoutPanel1.Controls.Add(this.WXOptions);
             this.flowLayoutPanel1.Controls.Add(this.errorCode);
             this.flowLayoutPanel1.Controls.Add(this.ntPanel);
@@ -203,7 +201,7 @@
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(15, 73);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(490, 339);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(490, 347);
             this.flowLayoutPanel1.TabIndex = 3;
             this.flowLayoutPanel1.WrapContents = false;
             // 
@@ -345,11 +343,7 @@
             // 
             // errorCode
             // 
-            this.errorCode.Controls.Add(this.customMessageLabel2);
-            this.errorCode.Controls.Add(this.customMessageCode);
-            this.errorCode.Controls.Add(this.customMessageLabel1);
-            this.errorCode.Controls.Add(this.customMessageText);
-            this.errorCode.Controls.Add(this.customCheckBox);
+            this.errorCode.Controls.Add(this.button4);
             this.errorCode.Controls.Add(this.button2);
             this.errorCode.Controls.Add(this.textBox2);
             this.errorCode.Controls.Add(this.checkBox2);
@@ -364,63 +358,19 @@
             this.errorCode.Size = new System.Drawing.Size(467, 105);
             this.errorCode.TabIndex = 3;
             // 
-            // customMessageLabel2
+            // button4
             // 
-            this.customMessageLabel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.customMessageLabel2.AutoSize = true;
-            this.customMessageLabel2.Location = new System.Drawing.Point(366, 6);
-            this.customMessageLabel2.Name = "customMessageLabel2";
-            this.customMessageLabel2.Size = new System.Drawing.Size(10, 13);
-            this.customMessageLabel2.TabIndex = 11;
-            this.customMessageLabel2.Text = ")";
-            this.customMessageLabel2.Visible = false;
-            // 
-            // customMessageCode
-            // 
-            this.customMessageCode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.customMessageCode.Location = new System.Drawing.Point(296, 2);
-            this.customMessageCode.MaxLength = 8;
-            this.customMessageCode.Name = "customMessageCode";
-            this.customMessageCode.Size = new System.Drawing.Size(70, 20);
-            this.customMessageCode.TabIndex = 10;
-            this.customMessageCode.Text = "00000000";
-            this.customMessageCode.Visible = false;
-            this.customMessageCode.TextChanged += new System.EventHandler(this.customMessageCode_TextChanged);
-            // 
-            // customMessageLabel1
-            // 
-            this.customMessageLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.customMessageLabel1.AutoSize = true;
-            this.customMessageLabel1.Location = new System.Drawing.Point(274, 5);
-            this.customMessageLabel1.Name = "customMessageLabel1";
-            this.customMessageLabel1.Size = new System.Drawing.Size(21, 13);
-            this.customMessageLabel1.TabIndex = 9;
-            this.customMessageLabel1.Text = "(0x";
-            this.customMessageLabel1.Visible = false;
-            // 
-            // customMessageText
-            // 
-            this.customMessageText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.customMessageText.Location = new System.Drawing.Point(103, 3);
-            this.customMessageText.Name = "customMessageText";
-            this.customMessageText.Size = new System.Drawing.Size(168, 20);
-            this.customMessageText.TabIndex = 8;
-            this.customMessageText.Visible = false;
-            this.customMessageText.TextChanged += new System.EventHandler(this.customMessageText_TextChanged);
-            // 
-            // customCheckBox
-            // 
-            this.customCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.customCheckBox.AutoSize = true;
-            this.customCheckBox.Location = new System.Drawing.Point(387, 5);
-            this.customCheckBox.Name = "customCheckBox";
-            this.customCheckBox.Size = new System.Drawing.Size(76, 17);
-            this.customCheckBox.TabIndex = 7;
-            this.customCheckBox.Text = "Custom [?]";
-            this.quickHelp.SetToolTip(this.customCheckBox, "Allows you to set custom error codes");
-            this.customCheckBox.UseVisualStyleBackColor = true;
-            this.customCheckBox.CheckedChanged += new System.EventHandler(this.customCheckBox_CheckedChanged);
+            this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.button4.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button4.Location = new System.Drawing.Point(388, 2);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 5;
+            this.button4.Text = "Customize";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click_2);
             // 
             // button2
             // 
@@ -646,6 +596,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.button5);
             this.panel2.Controls.Add(this.nineXErrorCode);
             this.panel2.Controls.Add(this.label6);
             this.panel2.Location = new System.Drawing.Point(0, 276);
@@ -669,7 +620,7 @@
             "System is unresponsive (Warning)"});
             this.nineXErrorCode.Location = new System.Drawing.Point(119, 3);
             this.nineXErrorCode.Name = "nineXErrorCode";
-            this.nineXErrorCode.Size = new System.Drawing.Size(345, 21);
+            this.nineXErrorCode.Size = new System.Drawing.Size(266, 21);
             this.nineXErrorCode.TabIndex = 1;
             this.quickHelp.SetToolTip(this.nineXErrorCode, "Select specific 9x/Me error message to display.");
             // 
@@ -721,6 +672,7 @@
             this.quickHelp.SetToolTip(this.rainbowBox, "Displays a rainbow gradient as the background image");
             this.rainbowBox.UseVisualStyleBackColor = true;
             this.rainbowBox.Visible = false;
+            this.rainbowBox.CheckedChanged += new System.EventHandler(this.generalCheckUncheck);
             // 
             // countdownBox
             // 
@@ -735,6 +687,7 @@
         "own would be displayed.");
             this.countdownBox.UseVisualStyleBackColor = true;
             this.countdownBox.Visible = false;
+            this.countdownBox.CheckStateChanged += new System.EventHandler(this.generalCheckUncheck);
             // 
             // dumpBox
             // 
@@ -830,6 +783,7 @@
             this.halfBox.Text = "Low resolution [?]";
             this.quickHelp.SetToolTip(this.halfBox, "Lowers the resolution resulting in taller text when viewed in fullscreen mode");
             this.halfBox.UseVisualStyleBackColor = true;
+            this.halfBox.CheckedChanged += new System.EventHandler(this.generalCheckUncheck);
             // 
             // waterBox
             // 
@@ -933,12 +887,27 @@
             this.progressTuneButton.UseVisualStyleBackColor = true;
             this.progressTuneButton.Click += new System.EventHandler(this.button4_Click_1);
             // 
+            // embedExeButton
+            // 
+            this.embedExeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.embedExeButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.embedExeButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.embedExeButton.Location = new System.Drawing.Point(122, 32);
+            this.embedExeButton.Name = "embedExeButton";
+            this.embedExeButton.Size = new System.Drawing.Size(113, 23);
+            this.embedExeButton.TabIndex = 14;
+            this.embedExeButton.Text = "Embed to EXE file";
+            this.quickHelp.SetToolTip(this.embedExeButton, "Creates a .EXE file containing this bluescreen configuration, which will be auto-" +
+        "simulated after running it.");
+            this.embedExeButton.UseVisualStyleBackColor = true;
+            this.embedExeButton.Click += new System.EventHandler(this.embedExeButton_Click);
+            // 
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.button1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button1.Location = new System.Drawing.Point(436, 437);
+            this.button1.Location = new System.Drawing.Point(436, 445);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(68, 23);
             this.button1.TabIndex = 14;
@@ -953,7 +922,7 @@
             this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.button3.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button3.Location = new System.Drawing.Point(319, 437);
+            this.button3.Location = new System.Drawing.Point(319, 445);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(111, 23);
             this.button3.TabIndex = 13;
@@ -968,7 +937,7 @@
             this.button7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button7.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.button7.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button7.Location = new System.Drawing.Point(15, 437);
+            this.button7.Location = new System.Drawing.Point(15, 445);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(69, 23);
             this.button7.TabIndex = 12;
@@ -984,7 +953,7 @@
             // 
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(15, 421);
+            this.label7.Location = new System.Drawing.Point(15, 429);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(245, 13);
             this.label7.TabIndex = 6;
@@ -993,7 +962,7 @@
             // label10
             // 
             this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label10.Location = new System.Drawing.Point(351, 415);
+            this.label10.Location = new System.Drawing.Point(351, 423);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(134, 13);
             this.label10.TabIndex = 8;
@@ -1059,7 +1028,7 @@
             // simulateToolStripMenuItem
             // 
             this.simulateToolStripMenuItem.Name = "simulateToolStripMenuItem";
-            this.simulateToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.simulateToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.simulateToolStripMenuItem.Text = "&Simulate";
             this.simulateToolStripMenuItem.Click += new System.EventHandler(this.SimulateToolStripMenuItem_Click);
             // 
@@ -1069,7 +1038,7 @@
             this.autoUpdateToolStripMenuItem,
             this.simulatorSettingsToolStripMenuItem});
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.settingsToolStripMenuItem.Text = "Settings";
             this.settingsToolStripMenuItem.DropDownOpening += new System.EventHandler(this.SimulatorToolStripMenuItem_DropDownOpening);
             // 
@@ -1096,26 +1065,26 @@
             // 
             this.toolStripSeparator1.AutoSize = false;
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 3);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(138, 3);
             // 
             // nightThemeToolStripMenuItem
             // 
             this.nightThemeToolStripMenuItem.CheckOnClick = true;
             this.nightThemeToolStripMenuItem.Name = "nightThemeToolStripMenuItem";
-            this.nightThemeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.nightThemeToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.nightThemeToolStripMenuItem.Text = "Night theme";
             this.nightThemeToolStripMenuItem.CheckStateChanged += new System.EventHandler(this.LightSwitch);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(138, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.exitToolStripMenuItem.Text = "E&xit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
@@ -1230,30 +1199,29 @@
             // 
             this.waitPopup.Tick += new System.EventHandler(this.WaitPopup_Tick);
             // 
-            // embedExeButton
-            // 
-            this.embedExeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.embedExeButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.embedExeButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.embedExeButton.Location = new System.Drawing.Point(122, 32);
-            this.embedExeButton.Name = "embedExeButton";
-            this.embedExeButton.Size = new System.Drawing.Size(113, 23);
-            this.embedExeButton.TabIndex = 14;
-            this.embedExeButton.Text = "Embed to EXE file";
-            this.quickHelp.SetToolTip(this.embedExeButton, "Creates a .EXE file containing this bluescreen configuration, which will be auto-" +
-        "simulated after running it.");
-            this.embedExeButton.UseVisualStyleBackColor = true;
-            this.embedExeButton.Click += new System.EventHandler(this.embedExeButton_Click);
-            // 
             // saveFileDialog1
             // 
             this.saveFileDialog1.Filter = "Log files|*.log";
+            // 
+            // button5
+            // 
+            this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.button5.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button5.Location = new System.Drawing.Point(391, 2);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(75, 23);
+            this.button5.TabIndex = 6;
+            this.button5.Text = "Customize";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click_1);
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(517, 477);
+            this.ClientSize = new System.Drawing.Size(517, 485);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.button3);
@@ -1383,11 +1351,6 @@
         private System.Windows.Forms.CheckBox blackScreenBox;
         private System.Windows.Forms.Button progressTuneButton;
         private System.Windows.Forms.ToolStripMenuItem progressTunerToolStripMenuItem;
-        private System.Windows.Forms.Label customMessageLabel2;
-        private System.Windows.Forms.TextBox customMessageCode;
-        private System.Windows.Forms.Label customMessageLabel1;
-        private System.Windows.Forms.TextBox customMessageText;
-        private System.Windows.Forms.CheckBox customCheckBox;
         internal System.Windows.Forms.CheckBox rainbowBox;
         internal System.Windows.Forms.CheckBox countdownBox;
         private System.Windows.Forms.Panel panel2;
@@ -1399,6 +1362,8 @@
         private System.Windows.Forms.CheckBox crashDumpBox;
         private System.Windows.Forms.Button embedExeButton;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button5;
     }
 }
 

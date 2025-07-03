@@ -98,9 +98,8 @@
             this.progressIndicator.Margin = new System.Windows.Forms.Padding(3, 40, 3, 0);
             this.progressIndicator.Name = "progressIndicator";
             this.progressIndicator.Padding = new System.Windows.Forms.Padding(80, 0, 0, 0);
-            this.progressIndicator.Size = new System.Drawing.Size(248, 37);
+            this.progressIndicator.Size = new System.Drawing.Size(80, 37);
             this.progressIndicator.TabIndex = 2;
-            this.progressIndicator.Text = "0% complete";
             // 
             // horizontalFlowPanel
             // 
@@ -133,32 +132,40 @@
             // 
             // supportContainer
             // 
+            this.supportContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.supportContainer.BackColor = System.Drawing.Color.Transparent;
             this.supportContainer.Controls.Add(this.errorCode);
             this.supportContainer.Controls.Add(this.supportInfo);
             this.supportContainer.Location = new System.Drawing.Point(227, 3);
             this.supportContainer.Margin = new System.Windows.Forms.Padding(15, 3, 3, 3);
             this.supportContainer.Name = "supportContainer";
-            this.supportContainer.Size = new System.Drawing.Size(825, 153);
+            this.supportContainer.Size = new System.Drawing.Size(825, 212);
             this.supportContainer.TabIndex = 1;
             // 
             // errorCode
             // 
+            this.errorCode.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.errorCode.Font = new System.Drawing.Font("Segoe UI Semilight", 11F);
             this.errorCode.Location = new System.Drawing.Point(0, 56);
             this.errorCode.Margin = new System.Windows.Forms.Padding(3, 20, 3, 0);
             this.errorCode.Name = "errorCode";
-            this.errorCode.Size = new System.Drawing.Size(1000, 156);
+            this.errorCode.Size = new System.Drawing.Size(822, 156);
             this.errorCode.TabIndex = 4;
             this.errorCode.Text = "If you call a support person, give them this info:\r\n\r\nStop code: ";
             // 
             // supportInfo
             // 
+            this.supportInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.supportInfo.Font = new System.Drawing.Font("Segoe UI Semilight", 11F);
             this.supportInfo.Location = new System.Drawing.Point(0, 0);
             this.supportInfo.Margin = new System.Windows.Forms.Padding(3, 20, 3, 0);
             this.supportInfo.Name = "supportInfo";
-            this.supportInfo.Size = new System.Drawing.Size(714, 36);
+            this.supportInfo.Size = new System.Drawing.Size(822, 48);
             this.supportInfo.TabIndex = 3;
             this.supportInfo.Text = "For more information about this issue and possible fixes, visit http://windows.co" +
     "m/stopcode";
