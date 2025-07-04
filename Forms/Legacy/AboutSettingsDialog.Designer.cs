@@ -79,6 +79,7 @@
             this.devNukeAllButton = new System.Windows.Forms.Button();
             this.devRestartApp = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             this.multiDisplayBox = new System.Windows.Forms.ComboBox();
             this.multiDisplayLabel = new System.Windows.Forms.Label();
             this.configEditingButtonsFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
@@ -713,6 +714,7 @@
             this.devFlowPanel.Controls.Add(this.devNukeAllButton);
             this.devFlowPanel.Controls.Add(this.devRestartApp);
             this.devFlowPanel.Controls.Add(this.button2);
+            this.devFlowPanel.Controls.Add(this.button4);
             this.devFlowPanel.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
             this.devFlowPanel.Location = new System.Drawing.Point(158, 3);
             this.devFlowPanel.Name = "devFlowPanel";
@@ -725,7 +727,7 @@
             // 
             this.devSplashButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.devSplashButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.devSplashButton.Location = new System.Drawing.Point(439, 3);
+            this.devSplashButton.Location = new System.Drawing.Point(537, 3);
             this.devSplashButton.Name = "devSplashButton";
             this.devSplashButton.Size = new System.Drawing.Size(82, 34);
             this.devSplashButton.TabIndex = 22;
@@ -737,7 +739,7 @@
             // 
             this.devDictEditButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.devDictEditButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.devDictEditButton.Location = new System.Drawing.Point(370, 3);
+            this.devDictEditButton.Location = new System.Drawing.Point(468, 3);
             this.devDictEditButton.Name = "devDictEditButton";
             this.devDictEditButton.Size = new System.Drawing.Size(63, 34);
             this.devDictEditButton.TabIndex = 19;
@@ -749,7 +751,7 @@
             // 
             this.devNewAllButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.devNewAllButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.devNewAllButton.Location = new System.Drawing.Point(300, 3);
+            this.devNewAllButton.Location = new System.Drawing.Point(398, 3);
             this.devNewAllButton.Name = "devNewAllButton";
             this.devNewAllButton.Size = new System.Drawing.Size(64, 34);
             this.devNewAllButton.TabIndex = 20;
@@ -761,7 +763,7 @@
             // 
             this.devNukeAllButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.devNukeAllButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.devNukeAllButton.Location = new System.Drawing.Point(197, 3);
+            this.devNukeAllButton.Location = new System.Drawing.Point(295, 3);
             this.devNukeAllButton.Name = "devNukeAllButton";
             this.devNukeAllButton.Size = new System.Drawing.Size(97, 34);
             this.devNukeAllButton.TabIndex = 21;
@@ -771,7 +773,7 @@
             // 
             // devRestartApp
             // 
-            this.devRestartApp.Location = new System.Drawing.Point(101, 3);
+            this.devRestartApp.Location = new System.Drawing.Point(199, 3);
             this.devRestartApp.Name = "devRestartApp";
             this.devRestartApp.Size = new System.Drawing.Size(90, 34);
             this.devRestartApp.TabIndex = 23;
@@ -781,13 +783,23 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(3, 3);
+            this.button2.Location = new System.Drawing.Point(101, 3);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(92, 34);
             this.button2.TabIndex = 24;
             this.button2.Text = "[TEST] Progress Tuner";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.Button2_Click_1);
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(3, 3);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(92, 34);
+            this.button4.TabIndex = 25;
+            this.button4.Text = "[TEST] Test suite";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click_1);
             // 
             // multiDisplayBox
             // 
@@ -1173,6 +1185,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ExitMe);
             this.Load += new System.EventHandler(this.SetInitalInterface);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AboutSettingsDialog_KeyDown);
             this.Resize += new System.EventHandler(this.OnMeResized);
             this.aboutTable.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).EndInit();
@@ -1287,5 +1300,6 @@
         private System.Windows.Forms.CheckBox darkDetectCheck;
         private System.Windows.Forms.CheckBox legacyInterfaceCheck;
         private System.Windows.Forms.CheckBox autosaveCheck;
+        private System.Windows.Forms.Button button4;
     }
 }

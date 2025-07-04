@@ -163,6 +163,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Edit troubleshooting text";
             this.Load += new System.EventHandler(this.SupportEditor_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SupportEditor_KeyDown);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);

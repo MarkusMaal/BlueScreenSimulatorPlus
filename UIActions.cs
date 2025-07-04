@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Buffers.Binary;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Drawing;
@@ -29,14 +30,11 @@ namespace UltimateBlueScreenSimulator
         /// Hides controls related to settings from current form
         /// </summary>
         /// <param name="f">Current form (can be Main or NewUI)</param>
-        public static void HideSelection(Form f)
+        public static void HideSelection(Control f)
         {
             //hide all controls
-            if (!(f is Main) && !(f is NewUI))
-            {
-                return;
-            }
             FlowLayoutPanel container = ((FlowLayoutPanel)FindControl(f, "flowLayoutPanel1"));
+            if (f is FlowLayoutPanel panel) container = panel;
             if (container is null)
             {
                 return;
@@ -44,6 +42,10 @@ namespace UltimateBlueScreenSimulator
 
             foreach (Control c in container.Controls)
             {
+                if (c is FlowLayoutPanel)
+                {
+                    HideSelection(c);
+                }
                 switch (c.Name)
                 {
                     case "WXOptions":
@@ -294,6 +296,7 @@ namespace UltimateBlueScreenSimulator
                         "blackScreenBox",
                         "progressTuneButton"
                     });
+                    SetControlVisible(fp, "devPCBox", false);
                     SetControlChecked(fp, "autoBox", true);
                     SetControlChecked(fp, "blackScreenBox", me.GetBool("blackscreen"));
                     break;
@@ -312,6 +315,7 @@ namespace UltimateBlueScreenSimulator
                         "devPCBox",
                         "progressTuneButton"
                     });
+                    SetControlVisible(fp, "blackScreenBox", false);
                     SetControlChecked(fp, "autoBox", true);
                     break;
                 case "Windows 8/8.1":
@@ -326,6 +330,9 @@ namespace UltimateBlueScreenSimulator
                         "progressTuneButton",
                         "blackScreenBox"
                     });
+                    SetControlVisible(fp, "crashDumpBox", false);
+                    SetControlVisible(fp, "greenBox", false);
+                    SetControlVisible(fp, "serverBox", false);
                     break;
                 case "Windows 8 Beta":
                     ExplicitShow.AddRange(new string[]
@@ -474,7 +481,7 @@ namespace UltimateBlueScreenSimulator
             Program.gs.Log("Info", "Loading settings for configuration template", me.GetString("friendlyname"));
             SetControlChecked(fp, "autoBox", me.GetBool("autoclose"));
             SetControlChecked(fp, "serverBox", me.GetBool("server"));
-            SetControlChecked(fp, "greenBox", me.GetBool("green"));
+            SetControlChecked(fp, "greenBox", me.GetBool("insider"));
             SetControlChecked(fp, "qrBox", me.GetBool("qr"));
             SetControlChecked(fp, "checkBox1", me.GetBool("show_description"));
             SetControlChecked(fp, "checkBox2", me.GetBool("show_file"));
@@ -492,6 +499,7 @@ namespace UltimateBlueScreenSimulator
             SetControlChecked(fp, "memoryBox", me.GetBool("extracodes"));
             SetControlChecked(fp, "troubleshootBox", me.GetBool("troubleshoot"));
             SetControlChecked(fp, "crashDumpBox", me.GetBool("crashdump"));
+            SetControlVisible(fp, "advNTButton", me.GetFiles().Count > 0);
 
 
             FindControl(fp, "textBox2").Text = me.GetString("culprit");
@@ -520,7 +528,10 @@ namespace UltimateBlueScreenSimulator
         }
 
 
-
+        /// <summary>
+        /// Get the current OS and automatically select a template based on it
+        /// </summary>
+        /// <param name="f">Name of the form to set the selection for</param>
         public static void GetOS(Form f)
         {
             Control fp = f;
@@ -614,6 +625,11 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
+        /// <summary>
+        /// Sets OS selection based on the host version
+        /// </summary>
+        /// <param name="winver">Your Windows version (e.g. Windows Vista)</param>
+        /// <param name="f">Name of the form to set the selection for</param>
         private static void SetOS(string winver, Form f)
         {
             Control fp = f;
@@ -628,6 +644,10 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
+        /// <summary>
+        /// Perform neccessary steps for initializing a form
+        /// </summary>
+        /// <param name="f">Name of the form to initialize</param>
         public static void InitializeForm(Form f)
         {
             if (Program.gs.ErrorCode != 0)
@@ -705,7 +725,10 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-
+        /// <summary>
+        /// Display an error message to the user if something goes wrong
+        /// </summary>
+        /// <param name="f">Name of the form, which to display the message for</param>
         private static void ProcessErrors(Form f)
         {
             Program.clip.ExitSplash(f);
@@ -792,6 +815,10 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
+        /// <summary>
+        /// Start simulation
+        /// </summary>
+        /// <param name="f">Name of the form which triggered the crash</param>
         public static void ShowBlueScreen(Form f)
         {
             if (((ComboBox)FindControl(f, "windowVersion")).Items.Count < 1)
@@ -816,12 +843,137 @@ namespace UltimateBlueScreenSimulator
             Thread.CurrentThread.Abort();
         }
 
-
+        /// <summary>
+        /// Start simulation without checks
+        /// </summary>
+        /// <param name="f">Name of the form that triggered the crash</param>
         public static void Crash(Form f)
         {
             ts = new ThreadStart(() => { ShowBlueScreen(f); });
             bsod_starter = new Thread(ts);
             bsod_starter.Start();
         }
+
+        /// <summary>
+        /// Generate a random bugcheck based on a seed
+        /// </summary>
+        /// <param name="f">Name of the form, where the seed is entered</param>
+        /// <param name="shiftDown">Is the user holding down the SHIFT key? If they are, force the generator to use the selected OS</param>
+        /// <returns>Generated bugcheck</returns>
+        public static BlueScreen RandFunction(Form f, bool shiftDown)
+        {
+            Control tb1;
+            if (f is MaterialForm)
+            {
+                tb1 = FindControl(f, "textBox1") as MaterialTextBox;
+            } else
+            {
+                tb1 = FindControl(f, "textBox1") as TextBox;
+            }
+            CheckBox winMode = (CheckBox)FindControl(f, "winMode");
+            CheckBox waterBox = (CheckBox)FindControl(f, "waterBox");
+            ComboBox comboBox1 = (ComboBox)FindControl(f, "comboBox1");
+            ComboBox comboBox2 = (ComboBox)FindControl(f, "comboBox2");
+            if (me == null) { me = new BlueScreen(); }
+            ulong seed = (ulong)DateTime.Now.Ticks;
+            bool isNumeric = ulong.TryParse(tb1.Text, out _);
+            if (tb1.Text != "")
+            {
+                if (!isNumeric)
+                {
+                    seed = BinaryPrimitives.ReadUInt64BigEndian(GetHash(tb1.Text));
+                }
+                else
+                {
+                    seed = ulong.Parse(tb1.Text);
+                }
+            }
+            Random r = new Random((int)seed);
+            string base_os = Program.templates.GetAt(r.Next(Program.templates.Count - 1)).GetString("os");
+            if (shiftDown)
+            {
+                base_os = me.GetString("os");
+            }
+            BlueScreen bs = new BlueScreen(base_os, true, r);
+            foreach (string kvp in bs.AllBools().Keys.ToArray<string>())
+            {
+                bool value = r.Next(0, 100) > 50;
+                bs.SetBool(kvp, value);
+            }
+            foreach (string kvp in bs.AllInts().Keys.ToArray<string>())
+            {
+                if (!kvp.Contains("margin"))
+                {
+                    int value = r.Next(0, 1000);
+                    bs.SetInt(kvp, value);
+                }
+            }
+            if (r.Next(0, 100) > 75)
+            {
+                Color[] c1 = RandInvColor(r);
+                Color[] c2 = RandInvColor(r);
+                bs.SetTheme(c1[0], c1[1], false);
+                bs.SetTheme(c2[0], c2[1], true);
+            }
+            if (r.Next(0, 100) > 95)
+            {
+                bs.SetString("emoticon", ":)");
+            }
+            if (comboBox1.Items.Count == 0) { Program.ReloadNTErrors(); }
+            bs.SetString("code", comboBox1.Items[r.Next(0, comboBox1.Items.Count - 1)].ToString());
+            if (bs.GetString("os") != "Windows 3.1x")
+            {
+                bs.SetString("screen_mode", comboBox2.Items[r.Next(0, comboBox2.Items.Count - 1)].ToString());
+            }
+            bs.SetBool("troubleshoot", r.Next(0, 100) > 50);
+            bs.SetBool("rainbow", r.Next(0, 100) > 50);
+            bs.SetBool("windowed", winMode.Checked);
+            bs.SetBool("amd", winMode.Checked);
+            bs.SetBool("blink", winMode.Checked);
+            bs.SetBool("watermark", waterBox.Checked);
+            bs.SetString("culprit", me.GenFile());
+            if (isNumeric && (tb1.Text != ""))
+            {
+                bs.SetString("friendlyname", "Random template #" + seed.ToString());
+            }
+            else if (tb1.Text == "")
+            {
+                bs.SetString("friendlyname", "Random template #" + seed.ToString() + " (from clock time)");
+            }
+            else
+            {
+                bs.SetString("friendlyname", "Random template #" + seed.ToString() + " (seed: " + tb1.Text + ")");
+            }
+            Thread th = new Thread(new ThreadStart(() => {
+                bs.Show();
+            }));
+            th.Start();
+            th.Join();
+            return bs;
+        }
+
+        /// <summary>
+        /// Generates a SHA256 hash based on a string
+        /// </summary>
+        /// <param name="inputString">String, which we use to generate the hash</param>
+        /// <returns>SHA256 hash based on the input string</returns>
+        public static byte[] GetHash(string inputString)
+        {
+            using (HashAlgorithm algorithm = SHA256.Create())
+                return algorithm.ComputeHash(Encoding.UTF8.GetBytes(inputString));
+        }
+
+        /// <summary>
+        /// Generate a random color and an inverse for that random color
+        /// </summary>
+        /// <param name="r">Random number generator</param>
+        /// <returns>Color array containing both the random color and the inverted color</returns>
+        private static Color[] RandInvColor(Random r)
+        {
+            Color gen = Color.FromArgb(r.Next(0, 255), r.Next(255, 255), r.Next(0, 255));
+            Color inv = Color.FromArgb(255 - gen.R, 255 - gen.G, 255 - gen.B);
+            return new Color[] { gen, inv };
+        }
+
     }
 }

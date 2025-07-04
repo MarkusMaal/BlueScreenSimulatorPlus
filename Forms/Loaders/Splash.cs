@@ -34,6 +34,12 @@ namespace UltimateBlueScreenSimulator
             {
                 this.Close();
             }
+            else if (e.KeyCode == Keys.F2)
+            {
+                MessageBox.Show("Screenshot saved as " + Program.dr.Screenshot(this), "Screenshot taken!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Cursor.Show();
+                this.FormBorderStyle = FormBorderStyle.None;
+            }
         }
 
         private void Splash_Load(object sender, EventArgs e)

@@ -284,6 +284,7 @@ namespace UltimateBlueScreenSimulator
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Add error screen";
             this.Load += new System.EventHandler(this.Initialize);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AddBluescreen_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

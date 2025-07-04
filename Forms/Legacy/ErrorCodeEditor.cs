@@ -230,5 +230,14 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
                 MessageBox.Show("Entered code is invalid. Cannot apply to all!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void ErrorCodeEditor_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F2)
+            {
+                MessageBox.Show("Screenshot saved as " + Program.dr.Screenshot(this), "Screenshot taken!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Cursor.Show();
+            }
+        }
     }
 }

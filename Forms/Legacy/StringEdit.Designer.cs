@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ListViewGroup listViewGroup3 = new System.Windows.Forms.ListViewGroup("Property name", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup4 = new System.Windows.Forms.ListViewGroup("Value", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("Property name", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("Value", System.Windows.Forms.HorizontalAlignment.Left);
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StringEdit));
             this.labelProps = new System.Windows.Forms.Label();
             this.MessageView = new System.Windows.Forms.ListView();
-            this.allIcons = new System.Windows.Forms.ImageList(this.components);
+            this.AllIcons = new System.Windows.Forms.ImageList(this.components);
             this.specificProps = new System.Windows.Forms.Label();
             this.buttonOK = new System.Windows.Forms.Button();
             this.stringProps = new System.Windows.Forms.Panel();
@@ -97,35 +97,38 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MessageView.FullRowSelect = true;
             this.MessageView.GridLines = true;
-            listViewGroup3.Header = "Property name";
-            listViewGroup3.Name = "listViewGroup1";
-            listViewGroup4.Header = "Value";
-            listViewGroup4.Name = "listViewGroup2";
+            listViewGroup1.Header = "Property name";
+            listViewGroup1.Name = "listViewGroup1";
+            listViewGroup2.Header = "Value";
+            listViewGroup2.Name = "listViewGroup2";
             this.MessageView.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup3,
-            listViewGroup4});
+            listViewGroup1,
+            listViewGroup2});
             this.MessageView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.MessageView.HideSelection = false;
-            this.MessageView.LargeImageList = this.allIcons;
+            this.MessageView.LargeImageList = this.AllIcons;
             this.MessageView.Location = new System.Drawing.Point(12, 39);
             this.MessageView.MultiSelect = false;
             this.MessageView.Name = "MessageView";
             this.MessageView.ShowGroups = false;
             this.MessageView.Size = new System.Drawing.Size(256, 287);
-            this.MessageView.SmallImageList = this.allIcons;
+            this.MessageView.SmallImageList = this.AllIcons;
             this.MessageView.TabIndex = 0;
             this.MessageView.UseCompatibleStateImageBehavior = false;
             this.MessageView.View = System.Windows.Forms.View.Details;
             this.MessageView.SelectedIndexChanged += new System.EventHandler(this.MessageView_SelectedIndexChanged);
             // 
-            // allIcons
+            // AllIcons
             // 
-            this.allIcons.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("allIcons.ImageStream")));
-            this.allIcons.TransparentColor = System.Drawing.Color.Transparent;
-            this.allIcons.Images.SetKeyName(0, "artage-io-48148_1564916990.ico");
-            this.allIcons.Images.SetKeyName(1, "Tatice-Operating-Systems-Windows.ico");
-            this.allIcons.Images.SetKeyName(2, "Dakirby309-Windows-8-Metro-Folders-OS-Windows-8-Metro.ico");
-            this.allIcons.Images.SetKeyName(3, "new-windows-logo (2).ico");
+            this.AllIcons.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("AllIcons.ImageStream")));
+            this.AllIcons.TransparentColor = System.Drawing.Color.Transparent;
+            this.AllIcons.Images.SetKeyName(0, "artage-io-48148_1564916990.ico");
+            this.AllIcons.Images.SetKeyName(1, "Tatice-Operating-Systems-Windows.ico");
+            this.AllIcons.Images.SetKeyName(2, "Dakirby309-Windows-8-Metro-Folders-OS-Windows-8-Metro.ico");
+            this.AllIcons.Images.SetKeyName(3, "new-windows-logo (2).ico");
+            this.AllIcons.Images.SetKeyName(4, "string.png");
+            this.AllIcons.Images.SetKeyName(5, "setting.png");
+            this.AllIcons.Images.SetKeyName(6, "theming.png");
             // 
             // specificProps
             // 
@@ -461,6 +464,7 @@
             this.Text = "Bluescreen hacks";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.StringEdit_FormClosing);
             this.Load += new System.EventHandler(this.StringEdit_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.StringEdit_KeyDown);
             this.stringProps.ResumeLayout(false);
             this.stringProps.PerformLayout();
             this.colorProps.ResumeLayout(false);
@@ -519,7 +523,7 @@
         private System.Windows.Forms.FlowLayoutPanel xpMsgChooser;
         private System.Windows.Forms.RadioButton autoRadio;
         private System.Windows.Forms.RadioButton manualRadio;
-        private System.Windows.Forms.ImageList allIcons;
         private System.Windows.Forms.Label label1;
+        internal System.Windows.Forms.ImageList AllIcons;
     }
 }

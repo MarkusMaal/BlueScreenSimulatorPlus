@@ -442,6 +442,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Windows NT code editor";
             this.Load += new System.EventHandler(this.NTdtor_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NTdtor_KeyDown);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.Panel2.PerformLayout();

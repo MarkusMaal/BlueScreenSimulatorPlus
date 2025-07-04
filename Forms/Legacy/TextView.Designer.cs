@@ -62,6 +62,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Sample Title";
             this.Load += new System.EventHandler(this.TextView_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextView_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -69,6 +70,6 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
+        internal System.Windows.Forms.TextBox textBox1;
     }
 }

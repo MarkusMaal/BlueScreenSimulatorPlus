@@ -30,26 +30,28 @@
         {
             this.components = new System.ComponentModel.Container();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.label11 = new System.Windows.Forms.Label();
+            this.testProgress11 = new System.Windows.Forms.PictureBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.testProgress6 = new System.Windows.Forms.PictureBox();
+            this.testProgress5 = new System.Windows.Forms.PictureBox();
+            this.testProgress4 = new System.Windows.Forms.PictureBox();
             this.testProgress1 = new System.Windows.Forms.PictureBox();
             this.testProgress2 = new System.Windows.Forms.PictureBox();
             this.testProgress3 = new System.Windows.Forms.PictureBox();
             this.testProgress7 = new System.Windows.Forms.PictureBox();
             this.testProgress8 = new System.Windows.Forms.PictureBox();
             this.testProgress9 = new System.Windows.Forms.PictureBox();
-            this.testProgress4 = new System.Windows.Forms.PictureBox();
             this.testProgress10 = new System.Windows.Forms.PictureBox();
-            this.testProgress5 = new System.Windows.Forms.PictureBox();
-            this.testProgress6 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.actionLabel10 = new System.Windows.Forms.Label();
             this.actionLabel9 = new System.Windows.Forms.Label();
@@ -74,21 +76,20 @@
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.badTestLog = new System.Windows.Forms.TextBox();
-            this.testProgress11 = new System.Windows.Forms.PictureBox();
-            this.label11 = new System.Windows.Forms.Label();
             this.noticeLabel = new System.Windows.Forms.Label();
             this.blink = new System.Windows.Forms.Timer(this.components);
             this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.testProgress11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.testProgress6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.testProgress5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.testProgress4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.testProgress1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.testProgress2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.testProgress3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.testProgress7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.testProgress8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.testProgress9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.testProgress4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.testProgress10)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.testProgress5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.testProgress6)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.actionPic6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.actionPic5)).BeginInit();
@@ -100,7 +101,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.actionPic8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.actionPic9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.actionPic10)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.testProgress11)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -147,6 +147,149 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(200, 246);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
+            // label11
+            // 
+            this.label11.Location = new System.Drawing.Point(33, 220);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(164, 21);
+            this.label11.TabIndex = 15;
+            this.label11.Text = "Embed EXE";
+            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label11.Visible = false;
+            // 
+            // testProgress11
+            // 
+            this.testProgress11.Image = global::UltimateBlueScreenSimulator.Properties.Resources.pending;
+            this.testProgress11.Location = new System.Drawing.Point(3, 223);
+            this.testProgress11.Name = "testProgress11";
+            this.testProgress11.Size = new System.Drawing.Size(24, 14);
+            this.testProgress11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.testProgress11.TabIndex = 14;
+            this.testProgress11.TabStop = false;
+            this.testProgress11.Visible = false;
+            // 
+            // label10
+            // 
+            this.label10.Location = new System.Drawing.Point(33, 199);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(164, 21);
+            this.label10.TabIndex = 13;
+            this.label10.Text = "UI actions";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label10.Visible = false;
+            // 
+            // label9
+            // 
+            this.label9.Location = new System.Drawing.Point(33, 178);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(164, 21);
+            this.label9.TabIndex = 13;
+            this.label9.Text = "Progress tuner";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label9.Visible = false;
+            // 
+            // label8
+            // 
+            this.label8.Location = new System.Drawing.Point(33, 158);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(164, 20);
+            this.label8.TabIndex = 13;
+            this.label8.Text = "Screenshot";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label8.Visible = false;
+            // 
+            // label7
+            // 
+            this.label7.Location = new System.Drawing.Point(33, 136);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(164, 22);
+            this.label7.TabIndex = 13;
+            this.label7.Text = "Easter eggs";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label7.Visible = false;
+            // 
+            // label6
+            // 
+            this.label6.Location = new System.Drawing.Point(33, 115);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(164, 21);
+            this.label6.TabIndex = 13;
+            this.label6.Text = "Message table editor";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label6.Visible = false;
+            // 
+            // label5
+            // 
+            this.label5.Location = new System.Drawing.Point(33, 94);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(164, 21);
+            this.label5.TabIndex = 13;
+            this.label5.Text = "Reset configurations";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label5.Visible = false;
+            // 
+            // label4
+            // 
+            this.label4.Location = new System.Drawing.Point(33, 72);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(164, 22);
+            this.label4.TabIndex = 13;
+            this.label4.Text = "Multi-monitor";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label4.Visible = false;
+            // 
+            // label3
+            // 
+            this.label3.Location = new System.Drawing.Point(33, 46);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(164, 23);
+            this.label3.TabIndex = 13;
+            this.label3.Text = "Command line args";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label3.Visible = false;
+            // 
+            // label2
+            // 
+            this.label2.Location = new System.Drawing.Point(33, 23);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(164, 23);
+            this.label2.TabIndex = 12;
+            this.label2.Text = "Simulator settings";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // testProgress6
+            // 
+            this.testProgress6.Image = global::UltimateBlueScreenSimulator.Properties.Resources.pending;
+            this.testProgress6.Location = new System.Drawing.Point(3, 118);
+            this.testProgress6.Name = "testProgress6";
+            this.testProgress6.Size = new System.Drawing.Size(24, 14);
+            this.testProgress6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.testProgress6.TabIndex = 11;
+            this.testProgress6.TabStop = false;
+            this.testProgress6.Visible = false;
+            // 
+            // testProgress5
+            // 
+            this.testProgress5.Image = global::UltimateBlueScreenSimulator.Properties.Resources.pending;
+            this.testProgress5.Location = new System.Drawing.Point(3, 97);
+            this.testProgress5.Name = "testProgress5";
+            this.testProgress5.Size = new System.Drawing.Size(24, 14);
+            this.testProgress5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.testProgress5.TabIndex = 9;
+            this.testProgress5.TabStop = false;
+            this.testProgress5.Visible = false;
+            // 
+            // testProgress4
+            // 
+            this.testProgress4.Image = global::UltimateBlueScreenSimulator.Properties.Resources.pending;
+            this.testProgress4.Location = new System.Drawing.Point(3, 75);
+            this.testProgress4.Name = "testProgress4";
+            this.testProgress4.Size = new System.Drawing.Size(24, 14);
+            this.testProgress4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.testProgress4.TabIndex = 7;
+            this.testProgress4.TabStop = false;
+            this.testProgress4.Visible = false;
+            // 
             // testProgress1
             // 
             this.testProgress1.Image = global::UltimateBlueScreenSimulator.Properties.Resources.pending;
@@ -176,6 +319,7 @@
             this.testProgress3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.testProgress3.TabIndex = 3;
             this.testProgress3.TabStop = false;
+            this.testProgress3.Visible = false;
             // 
             // testProgress7
             // 
@@ -186,6 +330,7 @@
             this.testProgress7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.testProgress7.TabIndex = 4;
             this.testProgress7.TabStop = false;
+            this.testProgress7.Visible = false;
             // 
             // testProgress8
             // 
@@ -196,6 +341,7 @@
             this.testProgress8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.testProgress8.TabIndex = 5;
             this.testProgress8.TabStop = false;
+            this.testProgress8.Visible = false;
             // 
             // testProgress9
             // 
@@ -206,16 +352,7 @@
             this.testProgress9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.testProgress9.TabIndex = 6;
             this.testProgress9.TabStop = false;
-            // 
-            // testProgress4
-            // 
-            this.testProgress4.Image = global::UltimateBlueScreenSimulator.Properties.Resources.pending;
-            this.testProgress4.Location = new System.Drawing.Point(3, 75);
-            this.testProgress4.Name = "testProgress4";
-            this.testProgress4.Size = new System.Drawing.Size(24, 14);
-            this.testProgress4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.testProgress4.TabIndex = 7;
-            this.testProgress4.TabStop = false;
+            this.testProgress9.Visible = false;
             // 
             // testProgress10
             // 
@@ -226,26 +363,7 @@
             this.testProgress10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.testProgress10.TabIndex = 8;
             this.testProgress10.TabStop = false;
-            // 
-            // testProgress5
-            // 
-            this.testProgress5.Image = global::UltimateBlueScreenSimulator.Properties.Resources.pending;
-            this.testProgress5.Location = new System.Drawing.Point(3, 97);
-            this.testProgress5.Name = "testProgress5";
-            this.testProgress5.Size = new System.Drawing.Size(24, 14);
-            this.testProgress5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.testProgress5.TabIndex = 9;
-            this.testProgress5.TabStop = false;
-            // 
-            // testProgress6
-            // 
-            this.testProgress6.Image = global::UltimateBlueScreenSimulator.Properties.Resources.pending;
-            this.testProgress6.Location = new System.Drawing.Point(3, 118);
-            this.testProgress6.Name = "testProgress6";
-            this.testProgress6.Size = new System.Drawing.Size(24, 14);
-            this.testProgress6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.testProgress6.TabIndex = 11;
-            this.testProgress6.TabStop = false;
+            this.testProgress10.Visible = false;
             // 
             // label1
             // 
@@ -255,87 +373,6 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Save/load configurations";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label2
-            // 
-            this.label2.Location = new System.Drawing.Point(33, 23);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(164, 23);
-            this.label2.TabIndex = 12;
-            this.label2.Text = "Simulator settings";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label3
-            // 
-            this.label3.Location = new System.Drawing.Point(33, 46);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(164, 23);
-            this.label3.TabIndex = 13;
-            this.label3.Text = "Command line args";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label4
-            // 
-            this.label4.Location = new System.Drawing.Point(33, 72);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(164, 22);
-            this.label4.TabIndex = 13;
-            this.label4.Text = "Multi-monitor";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label5
-            // 
-            this.label5.Location = new System.Drawing.Point(33, 94);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(164, 21);
-            this.label5.TabIndex = 13;
-            this.label5.Text = "Reset configurations";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label6
-            // 
-            this.label6.Location = new System.Drawing.Point(33, 115);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(164, 21);
-            this.label6.TabIndex = 13;
-            this.label6.Text = "Message table editor";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label7
-            // 
-            this.label7.Location = new System.Drawing.Point(33, 136);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(164, 22);
-            this.label7.TabIndex = 13;
-            this.label7.Text = "Easter eggs";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label8
-            // 
-            this.label8.Location = new System.Drawing.Point(33, 158);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(164, 20);
-            this.label8.TabIndex = 13;
-            this.label8.Text = "Screenshot";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label9
-            // 
-            this.label9.Location = new System.Drawing.Point(33, 178);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(164, 21);
-            this.label9.TabIndex = 13;
-            this.label9.Text = "Progress tuner";
-            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label10
-            // 
-            this.label10.Location = new System.Drawing.Point(33, 199);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(164, 21);
-            this.label10.TabIndex = 13;
-            this.label10.Text = "UI actions";
-            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tableLayoutPanel2
             // 
@@ -591,25 +628,6 @@
             this.badTestLog.Size = new System.Drawing.Size(276, 192);
             this.badTestLog.TabIndex = 4;
             // 
-            // testProgress11
-            // 
-            this.testProgress11.Image = global::UltimateBlueScreenSimulator.Properties.Resources.pending;
-            this.testProgress11.Location = new System.Drawing.Point(3, 223);
-            this.testProgress11.Name = "testProgress11";
-            this.testProgress11.Size = new System.Drawing.Size(24, 14);
-            this.testProgress11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.testProgress11.TabIndex = 14;
-            this.testProgress11.TabStop = false;
-            // 
-            // label11
-            // 
-            this.label11.Location = new System.Drawing.Point(33, 220);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(164, 21);
-            this.label11.TabIndex = 15;
-            this.label11.Text = "Embed EXE";
-            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // noticeLabel
             // 
             this.noticeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
@@ -644,17 +662,19 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Exterminator";
             this.Load += new System.EventHandler(this.TestSuite_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TestSuite_KeyDown);
             this.tableLayoutPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.testProgress11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.testProgress6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.testProgress5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.testProgress4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.testProgress1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.testProgress2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.testProgress3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.testProgress7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.testProgress8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.testProgress9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.testProgress4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.testProgress10)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.testProgress5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.testProgress6)).EndInit();
             this.tableLayoutPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.actionPic6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.actionPic5)).EndInit();
@@ -666,7 +686,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.actionPic8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.actionPic9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.actionPic10)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.testProgress11)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

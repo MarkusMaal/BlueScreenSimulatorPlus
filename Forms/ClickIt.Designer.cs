@@ -251,6 +251,7 @@
             this.Text = "Click it (Classic Edition)";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form2_FormClosing);
             this.Load += new System.EventHandler(this.Form2_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ClickIt_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

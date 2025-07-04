@@ -32,8 +32,8 @@ namespace UltimateBlueScreenSimulator
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StringEdit));
-            System.Windows.Forms.ListViewGroup listViewGroup3 = new System.Windows.Forms.ListViewGroup("Property name", System.Windows.Forms.HorizontalAlignment.Left);
-            System.Windows.Forms.ListViewGroup listViewGroup4 = new System.Windows.Forms.ListViewGroup("Value", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("Property name", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("Value", System.Windows.Forms.HorizontalAlignment.Left);
             this.AllIcons = new System.Windows.Forms.ImageList(this.components);
             this.MessageView = new MaterialSkin.Controls.MaterialListView();
             this.specificProps = new MaterialSkin.Controls.MaterialLabel();
@@ -104,13 +104,13 @@ namespace UltimateBlueScreenSimulator
             this.MessageView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.MessageView.Depth = 0;
             this.MessageView.FullRowSelect = true;
-            listViewGroup3.Header = "Property name";
-            listViewGroup3.Name = "listViewGroup1";
-            listViewGroup4.Header = "Value";
-            listViewGroup4.Name = "listViewGroup2";
+            listViewGroup1.Header = "Property name";
+            listViewGroup1.Name = "listViewGroup1";
+            listViewGroup2.Header = "Value";
+            listViewGroup2.Name = "listViewGroup2";
             this.MessageView.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
-            listViewGroup3,
-            listViewGroup4});
+            listViewGroup1,
+            listViewGroup2});
             this.MessageView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.MessageView.HideSelection = false;
             this.MessageView.LargeImageList = this.AllIcons;
@@ -122,7 +122,7 @@ namespace UltimateBlueScreenSimulator
             this.MessageView.Name = "MessageView";
             this.MessageView.OwnerDraw = true;
             this.MessageView.ShowGroups = false;
-            this.MessageView.Size = new System.Drawing.Size(417, 426);
+            this.MessageView.Size = new System.Drawing.Size(465, 543);
             this.MessageView.SmallImageList = this.AllIcons;
             this.MessageView.TabIndex = 0;
             this.MessageView.UseCompatibleStateImageBehavior = false;
@@ -134,7 +134,7 @@ namespace UltimateBlueScreenSimulator
             this.specificProps.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.specificProps.Depth = 0;
             this.specificProps.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.specificProps.Location = new System.Drawing.Point(455, 30);
+            this.specificProps.Location = new System.Drawing.Point(503, 30);
             this.specificProps.MouseState = MaterialSkin.MouseState.HOVER;
             this.specificProps.Name = "specificProps";
             this.specificProps.Size = new System.Drawing.Size(403, 22);
@@ -150,7 +150,7 @@ namespace UltimateBlueScreenSimulator
             this.buttonOK.ForeColor = System.Drawing.SystemColors.ControlText;
             this.buttonOK.HighEmphasis = true;
             this.buttonOK.Icon = null;
-            this.buttonOK.Location = new System.Drawing.Point(773, 485);
+            this.buttonOK.Location = new System.Drawing.Point(821, 602);
             this.buttonOK.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.buttonOK.MouseState = MaterialSkin.MouseState.HOVER;
             this.buttonOK.Name = "buttonOK";
@@ -243,9 +243,9 @@ namespace UltimateBlueScreenSimulator
             this.specificPropsFlowLayoutPanel.Controls.Add(this.fontProps);
             this.specificPropsFlowLayoutPanel.Controls.Add(this.blinkProps);
             this.specificPropsFlowLayoutPanel.Controls.Add(this.colorProps);
-            this.specificPropsFlowLayoutPanel.Location = new System.Drawing.Point(435, 52);
+            this.specificPropsFlowLayoutPanel.Location = new System.Drawing.Point(483, 52);
             this.specificPropsFlowLayoutPanel.Name = "specificPropsFlowLayoutPanel";
-            this.specificPropsFlowLayoutPanel.Size = new System.Drawing.Size(424, 428);
+            this.specificPropsFlowLayoutPanel.Size = new System.Drawing.Size(424, 545);
             this.specificPropsFlowLayoutPanel.TabIndex = 2;
             // 
             // xpMsgChooser
@@ -550,7 +550,7 @@ namespace UltimateBlueScreenSimulator
             // 
             this.whereTheButtonsLink.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.whereTheButtonsLink.AutoSize = true;
-            this.whereTheButtonsLink.Location = new System.Drawing.Point(12, 529);
+            this.whereTheButtonsLink.Location = new System.Drawing.Point(12, 646);
             this.whereTheButtonsLink.Name = "whereTheButtonsLink";
             this.whereTheButtonsLink.Size = new System.Drawing.Size(189, 13);
             this.whereTheButtonsLink.TabIndex = 7;
@@ -564,7 +564,7 @@ namespace UltimateBlueScreenSimulator
             this.label1.AutoSize = true;
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label1.ForeColor = System.Drawing.Color.Red;
-            this.label1.Location = new System.Drawing.Point(9, 492);
+            this.label1.Location = new System.Drawing.Point(9, 609);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(329, 13);
             this.label1.TabIndex = 9;
@@ -574,7 +574,7 @@ namespace UltimateBlueScreenSimulator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(865, 520);
+            this.ClientSize = new System.Drawing.Size(913, 637);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.whereTheButtonsLink);
             this.Controls.Add(this.specificPropsFlowLayoutPanel);
@@ -591,6 +591,7 @@ namespace UltimateBlueScreenSimulator
             this.Text = "Bluescreen hacks";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.StringEdit_FormClosing);
             this.Load += new System.EventHandler(this.StringEdit_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.StringEdit_KeyDown);
             this.stringProps.ResumeLayout(false);
             this.colorProps.ResumeLayout(false);
             this.specificPropsFlowLayoutPanel.ResumeLayout(false);

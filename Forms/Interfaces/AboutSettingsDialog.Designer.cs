@@ -83,6 +83,7 @@ namespace UltimateBlueScreenSimulator
             this.materialButton7 = new MaterialSkin.Controls.MaterialButton();
             this.materialButton4 = new MaterialSkin.Controls.MaterialButton();
             this.devRestartApp = new MaterialSkin.Controls.MaterialButton();
+            this.materialButton12 = new MaterialSkin.Controls.MaterialButton();
             this.selectAllBox = new MaterialSkin.Controls.MaterialCheckbox();
             this.configListHeading = new MaterialSkin.Controls.MaterialLabel();
             this.randomnessCheckBox = new MaterialSkin.Controls.MaterialCheckbox();
@@ -137,7 +138,6 @@ namespace UltimateBlueScreenSimulator
             this.loadBsconfig = new System.Windows.Forms.OpenFileDialog();
             this.checkIfLoadedSaved = new System.Windows.Forms.Timer(this.components);
             this.demoReelTimer = new System.Windows.Forms.Timer(this.components);
-            this.materialButton12 = new MaterialSkin.Controls.MaterialButton();
             this.aboutTable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).BeginInit();
             this.logoDisplayFlowPanel.SuspendLayout();
@@ -1084,6 +1084,27 @@ namespace UltimateBlueScreenSimulator
             this.devRestartApp.UseAccentColor = false;
             this.devRestartApp.UseVisualStyleBackColor = true;
             this.devRestartApp.Click += new System.EventHandler(this.RestartAll);
+            // 
+            // materialButton12
+            // 
+            this.materialButton12.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.materialButton12.CharacterCasing = MaterialSkin.Controls.MaterialButton.CharacterCasingEnum.Normal;
+            this.materialButton12.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.materialButton12.Depth = 0;
+            this.materialButton12.HighEmphasis = true;
+            this.materialButton12.Icon = null;
+            this.materialButton12.Location = new System.Drawing.Point(4, 6);
+            this.materialButton12.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.materialButton12.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialButton12.Name = "materialButton12";
+            this.materialButton12.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.materialButton12.Size = new System.Drawing.Size(176, 36);
+            this.materialButton12.TabIndex = 26;
+            this.materialButton12.Text = "[DEV] Perform tests";
+            this.materialButton12.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.materialButton12.UseAccentColor = false;
+            this.materialButton12.UseVisualStyleBackColor = true;
+            this.materialButton12.Click += new System.EventHandler(this.materialButton12_Click);
             // 
             // selectAllBox
             // 
@@ -2074,27 +2095,6 @@ namespace UltimateBlueScreenSimulator
             this.demoReelTimer.Interval = 1000;
             this.demoReelTimer.Tick += new System.EventHandler(this.demoReelTimer_Tick);
             // 
-            // materialButton12
-            // 
-            this.materialButton12.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.materialButton12.CharacterCasing = MaterialSkin.Controls.MaterialButton.CharacterCasingEnum.Normal;
-            this.materialButton12.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.materialButton12.Depth = 0;
-            this.materialButton12.HighEmphasis = true;
-            this.materialButton12.Icon = null;
-            this.materialButton12.Location = new System.Drawing.Point(4, 6);
-            this.materialButton12.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.materialButton12.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialButton12.Name = "materialButton12";
-            this.materialButton12.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.materialButton12.Size = new System.Drawing.Size(176, 36);
-            this.materialButton12.TabIndex = 26;
-            this.materialButton12.Text = "[DEV] Perform tests";
-            this.materialButton12.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.materialButton12.UseAccentColor = false;
-            this.materialButton12.UseVisualStyleBackColor = true;
-            this.materialButton12.Click += new System.EventHandler(this.materialButton12_Click);
-            // 
             // AboutSettingsDialog
             // 
             this.AcceptButton = this.okButton;
@@ -2111,6 +2111,7 @@ namespace UltimateBlueScreenSimulator
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ExitMe);
             this.Load += new System.EventHandler(this.SetInitalInterface);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AboutSettingsDialog_KeyDown);
             this.Resize += new System.EventHandler(this.OnMeResized);
             this.aboutTable.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).EndInit();

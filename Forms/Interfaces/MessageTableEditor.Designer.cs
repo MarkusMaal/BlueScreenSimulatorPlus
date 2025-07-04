@@ -189,7 +189,7 @@
             this.subitemTextBox.AnimateReadOnly = false;
             this.subitemTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.subitemTextBox.Depth = 0;
-            this.subitemTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.subitemTextBox.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.subitemTextBox.LeadingIcon = null;
             this.subitemTextBox.Location = new System.Drawing.Point(201, 420);
             this.subitemTextBox.MaxLength = 50;
@@ -246,6 +246,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Message table editor";
             this.Load += new System.EventHandler(this.MessageTableEditor_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MessageTableEditor_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

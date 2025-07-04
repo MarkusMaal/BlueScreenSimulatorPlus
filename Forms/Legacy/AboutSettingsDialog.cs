@@ -9,6 +9,7 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using SimulatorDatabase;
+using UltimateBlueScreenSimulator.Forms.Interfaces;
 
 
 namespace UltimateBlueScreenSimulator.Forms.Legacy
@@ -1452,6 +1453,20 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
         private void AutosaveCheckChanged(object sender, EventArgs e)
         {
             Program.gs.Autosave = autosaveCheck.Checked;
+        }
+
+        private void button4_Click_1(object sender, EventArgs e)
+        {
+            new TestSuite().Show();
+        }
+
+        private void AboutSettingsDialog_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F2)
+            {
+                MessageBox.Show("Screenshot saved as " + Program.dr.Screenshot(this), "Screenshot taken!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Cursor.Show();
+            }
         }
     }
 }

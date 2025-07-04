@@ -49,7 +49,7 @@ namespace UltimateBlueScreenSimulator
             this.textBox1.MouseState = MaterialSkin.MouseState.HOVER;
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(533, 437);
+            this.textBox1.Size = new System.Drawing.Size(549, 476);
             this.textBox1.TabIndex = 0;
             this.textBox1.Text = "The quick brown fox jumps over the lazy dog.";
             this.textBox1.WordWrap = false;
@@ -59,7 +59,7 @@ namespace UltimateBlueScreenSimulator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(539, 464);
+            this.ClientSize = new System.Drawing.Size(555, 503);
             this.Controls.Add(this.textBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.FormStyle = MaterialSkin.Controls.MaterialForm.FormStyles.ActionBar_None;
@@ -71,6 +71,7 @@ namespace UltimateBlueScreenSimulator
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Sample Title";
             this.Load += new System.EventHandler(this.TextView_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextView_KeyDown);
             this.ResumeLayout(false);
 
         }

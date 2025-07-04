@@ -279,6 +279,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Error code editor";
             this.Load += new System.EventHandler(this.ErrorCodeEditor_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ErrorCodeEditor_KeyDown);
             this.codeListPanel.ResumeLayout(false);
             this.codeListPanel.PerformLayout();
             this.flowLayoutPanel3.ResumeLayout(false);

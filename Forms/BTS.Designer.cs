@@ -113,6 +113,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "???";
             this.Load += new System.EventHandler(this.BTS_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.BTS_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.charSetA)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.charSetB)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.charSetC)).EndInit();

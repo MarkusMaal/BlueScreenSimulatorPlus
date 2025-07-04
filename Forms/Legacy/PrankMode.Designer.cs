@@ -629,6 +629,7 @@
             this.Text = "Prank mode";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PrankMode_FormClosing);
             this.Load += new System.EventHandler(this.PrankMode_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PrankMode_KeyDown);
             this.bluescreenTypePanel.ResumeLayout(false);
             this.bluescreenTypePanel.PerformLayout();
             this.triggerPanel.ResumeLayout(false);

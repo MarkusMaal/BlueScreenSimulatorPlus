@@ -90,6 +90,7 @@ namespace UltimateBlueScreenSimulator.Forms.Simulators
                 {
                     yourPCranLabel.Top += progressIndicator.Height;
                 }
+                errorCode.Visible = me.GetBool("show_description");
                 Program.loadfinished = true;
                 if (!me.GetBool("windowed"))
                 {
@@ -143,10 +144,10 @@ namespace UltimateBlueScreenSimulator.Forms.Simulators
                 if (!me.GetBool("crashdump")) { progress = 100; progressUpdater.Enabled = false; }
 
                 if (!Program.verificate) { throw new NotImplementedException(); }
-                if ((oldmode && (progress >= 100)) || (progressmillis == maxprogressmillis))
+                if ((oldmode && (progress >= 99)) || (progressmillis == maxprogressmillis))
                 {
                     progressUpdater.Enabled = false;
-                    if (me.GetBool("autoclose")) { this.Close(); }
+                    if (me.GetBool("autoclose") && me.GetBool("crashdump")) { this.Close(); }
                     progressIndicator.Text = me.GetTexts()["Progress"].Replace("{0}", "100");
                 }
                 if (oldmode)

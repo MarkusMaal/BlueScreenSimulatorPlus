@@ -103,7 +103,7 @@
             this.updateStepsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.updateStepsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.updateStepsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.updateStepsPanel.Size = new System.Drawing.Size(540, 78);
+            this.updateStepsPanel.Size = new System.Drawing.Size(556, 78);
             this.updateStepsPanel.TabIndex = 2;
             // 
             // TempStatus
@@ -113,7 +113,7 @@
             this.TempStatus.Location = new System.Drawing.Point(0, 58);
             this.TempStatus.Margin = new System.Windows.Forms.Padding(0);
             this.TempStatus.Name = "TempStatus";
-            this.TempStatus.Size = new System.Drawing.Size(24, 20);
+            this.TempStatus.Size = new System.Drawing.Size(25, 20);
             this.TempStatus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.TempStatus.TabIndex = 7;
             this.TempStatus.TabStop = false;
@@ -125,7 +125,7 @@
             this.Launchstatus.Location = new System.Drawing.Point(0, 38);
             this.Launchstatus.Margin = new System.Windows.Forms.Padding(0);
             this.Launchstatus.Name = "Launchstatus";
-            this.Launchstatus.Size = new System.Drawing.Size(24, 20);
+            this.Launchstatus.Size = new System.Drawing.Size(25, 20);
             this.Launchstatus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.Launchstatus.TabIndex = 6;
             this.Launchstatus.TabStop = false;
@@ -137,7 +137,7 @@
             this.HashStatus.Location = new System.Drawing.Point(0, 19);
             this.HashStatus.Margin = new System.Windows.Forms.Padding(0);
             this.HashStatus.Name = "HashStatus";
-            this.HashStatus.Size = new System.Drawing.Size(24, 19);
+            this.HashStatus.Size = new System.Drawing.Size(25, 19);
             this.HashStatus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.HashStatus.TabIndex = 5;
             this.HashStatus.TabStop = false;
@@ -149,7 +149,7 @@
             this.DownloadStatus.Location = new System.Drawing.Point(0, 0);
             this.DownloadStatus.Margin = new System.Windows.Forms.Padding(0);
             this.DownloadStatus.Name = "DownloadStatus";
-            this.DownloadStatus.Size = new System.Drawing.Size(24, 19);
+            this.DownloadStatus.Size = new System.Drawing.Size(25, 19);
             this.DownloadStatus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.DownloadStatus.TabIndex = 4;
             this.DownloadStatus.TabStop = false;
@@ -160,10 +160,10 @@
             this.downloadUpdateLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.downloadUpdateLabel.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.downloadUpdateLabel.FontType = MaterialSkin.MaterialSkinManager.fontType.Caption;
-            this.downloadUpdateLabel.Location = new System.Drawing.Point(27, 0);
+            this.downloadUpdateLabel.Location = new System.Drawing.Point(28, 0);
             this.downloadUpdateLabel.MouseState = MaterialSkin.MouseState.HOVER;
             this.downloadUpdateLabel.Name = "downloadUpdateLabel";
-            this.downloadUpdateLabel.Size = new System.Drawing.Size(510, 19);
+            this.downloadUpdateLabel.Size = new System.Drawing.Size(525, 19);
             this.downloadUpdateLabel.TabIndex = 0;
             this.downloadUpdateLabel.Text = "Downloading the update";
             this.downloadUpdateLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -174,10 +174,10 @@
             this.hashCheckLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.hashCheckLabel.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.hashCheckLabel.FontType = MaterialSkin.MaterialSkinManager.fontType.Caption;
-            this.hashCheckLabel.Location = new System.Drawing.Point(27, 19);
+            this.hashCheckLabel.Location = new System.Drawing.Point(28, 19);
             this.hashCheckLabel.MouseState = MaterialSkin.MouseState.HOVER;
             this.hashCheckLabel.Name = "hashCheckLabel";
-            this.hashCheckLabel.Size = new System.Drawing.Size(510, 19);
+            this.hashCheckLabel.Size = new System.Drawing.Size(525, 19);
             this.hashCheckLabel.TabIndex = 1;
             this.hashCheckLabel.Text = "Hashchecking";
             this.hashCheckLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -188,10 +188,10 @@
             this.installAndLaunchLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.installAndLaunchLabel.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.installAndLaunchLabel.FontType = MaterialSkin.MaterialSkinManager.fontType.Caption;
-            this.installAndLaunchLabel.Location = new System.Drawing.Point(27, 38);
+            this.installAndLaunchLabel.Location = new System.Drawing.Point(28, 38);
             this.installAndLaunchLabel.MouseState = MaterialSkin.MouseState.HOVER;
             this.installAndLaunchLabel.Name = "installAndLaunchLabel";
-            this.installAndLaunchLabel.Size = new System.Drawing.Size(510, 20);
+            this.installAndLaunchLabel.Size = new System.Drawing.Size(525, 20);
             this.installAndLaunchLabel.TabIndex = 2;
             this.installAndLaunchLabel.Text = "Installing and launching the new update";
             this.installAndLaunchLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -202,10 +202,10 @@
             this.delTempLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.delTempLabel.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.delTempLabel.FontType = MaterialSkin.MaterialSkinManager.fontType.Caption;
-            this.delTempLabel.Location = new System.Drawing.Point(27, 58);
+            this.delTempLabel.Location = new System.Drawing.Point(28, 58);
             this.delTempLabel.MouseState = MaterialSkin.MouseState.HOVER;
             this.delTempLabel.Name = "delTempLabel";
-            this.delTempLabel.Size = new System.Drawing.Size(510, 20);
+            this.delTempLabel.Size = new System.Drawing.Size(525, 20);
             this.delTempLabel.TabIndex = 3;
             this.delTempLabel.Text = "Deleting temporary update files";
             this.delTempLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -218,7 +218,7 @@
             this.updateProgress.Location = new System.Drawing.Point(17, 194);
             this.updateProgress.MouseState = MaterialSkin.MouseState.HOVER;
             this.updateProgress.Name = "updateProgress";
-            this.updateProgress.Size = new System.Drawing.Size(540, 5);
+            this.updateProgress.Size = new System.Drawing.Size(556, 5);
             this.updateProgress.TabIndex = 3;
             // 
             // warningLabel
@@ -273,7 +273,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(569, 468);
+            this.ClientSize = new System.Drawing.Size(585, 507);
             this.Controls.Add(this.dloadState);
             this.Controls.Add(this.warningLabel);
             this.Controls.Add(this.updateProgress);
@@ -292,6 +292,7 @@
             this.Text = "Updater 1.2";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.UpdateInterface_FormClosing);
             this.Load += new System.EventHandler(this.UpdateInterface_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.UpdateInterface_KeyDown);
             this.updateStepsPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.TempStatus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Launchstatus)).EndInit();

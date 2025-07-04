@@ -132,6 +132,7 @@ namespace UltimateBlueScreenSimulator
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Choose culprit file";
             this.Load += new System.EventHandler(this.Initialize);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ChooseFile_KeyDown);
             this.ResumeLayout(false);
 
         }

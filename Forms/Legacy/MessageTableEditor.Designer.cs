@@ -55,6 +55,7 @@
             this.columnHeader1,
             this.columnHeader2});
             this.messageList.FullRowSelect = true;
+            this.messageList.HideSelection = false;
             this.messageList.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
             listViewItem1});
             this.messageList.LabelEdit = true;
@@ -64,6 +65,7 @@
             this.messageList.Size = new System.Drawing.Size(824, 370);
             this.messageList.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.messageList.TabIndex = 0;
+            this.messageList.UseCompatibleStateImageBehavior = false;
             this.messageList.View = System.Windows.Forms.View.Details;
             this.messageList.AfterLabelEdit += new System.Windows.Forms.LabelEditEventHandler(this.materialListView1_AfterLabelEdit);
             this.messageList.SelectedIndexChanged += new System.EventHandler(this.materialListView1_SelectedIndexChanged);
@@ -194,6 +196,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Message table editor";
             this.Load += new System.EventHandler(this.MessageTableEditor_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MessageTableEditor_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

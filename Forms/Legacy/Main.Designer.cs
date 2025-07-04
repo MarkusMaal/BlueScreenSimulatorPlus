@@ -64,6 +64,7 @@
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.button5 = new System.Windows.Forms.Button();
             this.nineXErrorCode = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.acpiBox = new System.Windows.Forms.CheckBox();
@@ -120,7 +121,8 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.waitPopup = new System.Windows.Forms.Timer(this.components);
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.button5 = new System.Windows.Forms.Button();
+            this.showTraceLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.screenshotToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.flowLayoutPanel1.SuspendLayout();
             this.WXOptions.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
@@ -420,11 +422,10 @@
             this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.Location = new System.Drawing.Point(80, 30);
+            this.textBox1.Location = new System.Drawing.Point(151, 30);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(384, 20);
+            this.textBox1.Size = new System.Drawing.Size(313, 20);
             this.textBox1.TabIndex = 2;
-            this.textBox1.Text = "0A";
             this.quickHelp.SetToolTip(this.textBox1, "Search for the error code from the NT error message list");
             this.textBox1.TextChanged += new System.EventHandler(this.TextBox1_TextChanged);
             this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Button7_KeyDown);
@@ -434,9 +435,9 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(3, 33);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(71, 13);
+            this.label5.Size = new System.Drawing.Size(145, 13);
             this.label5.TabIndex = 2;
-            this.label5.Text = "Find by code:";
+            this.label5.Text = "Find by code / Random seed";
             // 
             // comboBox1
             // 
@@ -605,6 +606,20 @@
             this.panel2.Size = new System.Drawing.Size(467, 25);
             this.panel2.TabIndex = 21;
             this.panel2.Visible = false;
+            // 
+            // button5
+            // 
+            this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.button5.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button5.Location = new System.Drawing.Point(391, 2);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(75, 23);
+            this.button5.TabIndex = 6;
+            this.button5.Text = "Customize";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click_1);
             // 
             // nineXErrorCode
             // 
@@ -1015,6 +1030,7 @@
             this.toolStripSeparator1,
             this.nightThemeToolStripMenuItem,
             this.toolStripSeparator4,
+            this.screenshotToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.simulatorToolStripMenuItem.Margin = new System.Windows.Forms.Padding(5, 0, 0, 0);
             this.simulatorToolStripMenuItem.Name = "simulatorToolStripMenuItem";
@@ -1028,7 +1044,7 @@
             // simulateToolStripMenuItem
             // 
             this.simulateToolStripMenuItem.Name = "simulateToolStripMenuItem";
-            this.simulateToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.simulateToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.simulateToolStripMenuItem.Text = "&Simulate";
             this.simulateToolStripMenuItem.Click += new System.EventHandler(this.SimulateToolStripMenuItem_Click);
             // 
@@ -1038,7 +1054,7 @@
             this.autoUpdateToolStripMenuItem,
             this.simulatorSettingsToolStripMenuItem});
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.settingsToolStripMenuItem.Text = "Settings";
             this.settingsToolStripMenuItem.DropDownOpening += new System.EventHandler(this.SimulatorToolStripMenuItem_DropDownOpening);
             // 
@@ -1046,7 +1062,7 @@
             // 
             this.autoUpdateToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.autoUpdateToolStripMenuItem.Name = "autoUpdateToolStripMenuItem";
-            this.autoUpdateToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.autoUpdateToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.autoUpdateToolStripMenuItem.Text = "Auto&Update";
             this.autoUpdateToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.autoUpdateToolStripMenuItem.Click += new System.EventHandler(this.AutoUpdateToolStripMenuItem_Click);
@@ -1055,7 +1071,7 @@
             // 
             this.simulatorSettingsToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.simulatorSettingsToolStripMenuItem.Name = "simulatorSettingsToolStripMenuItem";
-            this.simulatorSettingsToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.simulatorSettingsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.simulatorSettingsToolStripMenuItem.Text = "Si&mulator settings";
             this.simulatorSettingsToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.simulatorSettingsToolStripMenuItem.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
@@ -1065,26 +1081,26 @@
             // 
             this.toolStripSeparator1.AutoSize = false;
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(138, 3);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 3);
             // 
             // nightThemeToolStripMenuItem
             // 
             this.nightThemeToolStripMenuItem.CheckOnClick = true;
             this.nightThemeToolStripMenuItem.Name = "nightThemeToolStripMenuItem";
-            this.nightThemeToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.nightThemeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.nightThemeToolStripMenuItem.Text = "Night theme";
             this.nightThemeToolStripMenuItem.CheckStateChanged += new System.EventHandler(this.LightSwitch);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(138, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(177, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exitToolStripMenuItem.Text = "E&xit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
@@ -1152,6 +1168,7 @@
             this.quickHelpToolStripMenuItem,
             this.commandLineSyntaxToolStripMenuItem,
             this.toolStripSeparator2,
+            this.showTraceLogToolStripMenuItem,
             this.aboutToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Padding = new System.Windows.Forms.Padding(0);
@@ -1203,19 +1220,20 @@
             // 
             this.saveFileDialog1.Filter = "Log files|*.log";
             // 
-            // button5
+            // showTraceLogToolStripMenuItem
             // 
-            this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.button5.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button5.Location = new System.Drawing.Point(391, 2);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 6;
-            this.button5.Text = "Customize";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click_1);
+            this.showTraceLogToolStripMenuItem.Name = "showTraceLogToolStripMenuItem";
+            this.showTraceLogToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.showTraceLogToolStripMenuItem.Text = "Show trace &log";
+            this.showTraceLogToolStripMenuItem.Click += new System.EventHandler(this.showTraceLogToolStripMenuItem_Click);
+            // 
+            // screenshotToolStripMenuItem
+            // 
+            this.screenshotToolStripMenuItem.Name = "screenshotToolStripMenuItem";
+            this.screenshotToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F2;
+            this.screenshotToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.screenshotToolStripMenuItem.Text = "Take screenshot";
+            this.screenshotToolStripMenuItem.Click += new System.EventHandler(this.screenshotToolStripMenuItem_Click);
             // 
             // Main
             // 
@@ -1364,6 +1382,8 @@
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.ToolStripMenuItem showTraceLogToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem screenshotToolStripMenuItem;
     }
 }
 

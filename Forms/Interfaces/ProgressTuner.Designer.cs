@@ -402,6 +402,7 @@ namespace UltimateBlueScreenSimulator
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Progress tuner - Test mode";
             this.Load += new System.EventHandler(this.ProgressTuner_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ProgressTuner_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.progressVisualization)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -813,6 +813,10 @@ namespace UltimateBlueScreenSimulator
             {
                 msg += $" @{source}";
             }
+            if ((log1.Count != 0) && (log1[log1.Count - 1] == msg)) // ignore duplicates
+            {
+                return;
+            }
             Program.load_message = message;
             log1.Add(msg);
         }

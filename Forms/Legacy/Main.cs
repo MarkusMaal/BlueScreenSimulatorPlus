@@ -15,6 +15,7 @@ using MaterialSkin.Controls;
 using Microsoft.Win32;
 using SimulatorDatabase;
 using UltimateBlueScreenSimulator.Forms.Interfaces;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 namespace UltimateBlueScreenSimulator
 {
     // DEPRECATED: Avoid making changes to this form unless absolutely neccessary! Use NewUI instead!
@@ -263,63 +264,8 @@ namespace UltimateBlueScreenSimulator
         //random function
         private void Button3_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("This will change random settings on various blue screens. Are you sure you want to continue?", "I'm feeling unlucky", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
-            {
-                Program.loadfinished = false;
-                Forms.Legacy.Gen g = new Forms.Legacy.Gen();
-                g.Show();
-                Thread.Sleep(10);
-                RandFunction();
-                button1.PerformClick();
-            }
-        }
-
-        internal void RandFunction()
-        {
-            Random r = new Random();
-            for (int i = 0; i < Program.templates.Count; i++)
-            {
-                foreach (string kvp in Program.templates.GetAt(i).AllBools().Keys.ToArray<string>())
-                {
-                    bool value = r.Next(0, 1) == 1;
-                    Program.templates.GetAt(i).SetBool(kvp, value);
-                }
-                if (comboBox1.Items.Count <= 0)
-                {
-                    break;
-                }
-                Program.templates.GetAt(i).SetString("code", comboBox1.Items[r.Next(0, comboBox1.Items.Count - 1)].ToString());
-                if (Program.templates.GetAt(i).GetString("os") != "Windows 3.1x") { Program.templates.GetAt(i).SetString("screen_mode", comboBox2.Items[r.Next(0, comboBox2.Items.Count - 1)].ToString()); }
-                Program.templates.GetAt(i).SetBool("windowed", winMode.Checked);
-                Thread.Sleep(16);
-            }
-            windowVersion.SelectedIndex = SetRnd(windowVersion.Items.Count - 1);
-            if (enableeggs)
-            {
-                if (textBox1.Text == "blackscreen")
-                {
-                    windowVersion.Items.Add("Windows Vista/7 BOOTMGR (1024x768, ClearType)");
-                    windowVersion.SelectedIndex = windowVersion.Items.Count - 1;
-                }
-            }
-            textBox2.Text = UIActions.me.GenFile();
-            if (windowVersion.SelectedIndex == 4) { checkBox1.Checked = true; }
-        }
-
-        int SetRnd(int limit)
-        {
-            Thread.Sleep(20);
-            Random rnd = new Random();
-            try
-            {
-                int outp = 0;
-                outp = rnd.Next(limit);
-                return outp;
-            }
-            catch
-            {
-                return 0;
-            }
+            Program.loadfinished = false;
+            _ = UIActions.RandFunction(this, ModifierKeys.HasFlag(Keys.Shift));
         }
 
         //Technical address generation options
@@ -1257,6 +1203,26 @@ namespace UltimateBlueScreenSimulator
             {
                 nx_errors = true
             }.ShowDialog();
+        }
+
+        private void screenshotToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Screenshot saved as " + Program.dr.Screenshot(this), "Screenshot taken!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            Cursor.Show();
+        }
+
+        private void showTraceLogToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string logData = Program.gs.GetLog();
+            StringBuilder filteredLog = new StringBuilder();
+            foreach (string line in logData.Split('\n'))
+            {
+                filteredLog.AppendLine(line);
+            }
+            Forms.Legacy.TextView tv = new Forms.Legacy.TextView();
+            tv.textBox1.Text = filteredLog.ToString();
+            tv.Show();
+            tv.Text = "Trace log";
         }
     }
 }

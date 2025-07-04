@@ -1060,5 +1060,14 @@ namespace UltimateBlueScreenSimulator
         {
             new TestSuite().Show();
         }
+
+        private void AboutSettingsDialog_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F2)
+            {
+                MessageBox.Show("Screenshot saved as " + Program.dr.Screenshot(this), "Screenshot taken!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Cursor.Show();
+            }
+        }
     }
 }

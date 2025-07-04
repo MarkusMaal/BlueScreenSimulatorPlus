@@ -193,10 +193,11 @@
             // 
             this.memCodes.AutoSize = true;
             this.memCodes.BackColor = System.Drawing.Color.Transparent;
-            this.memCodes.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.memCodes.Location = new System.Drawing.Point(-3, 1);
+            this.memCodes.Font = new System.Drawing.Font("Lucida Sans Typewriter", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.memCodes.Location = new System.Drawing.Point(0, 1);
+            this.memCodes.Margin = new System.Windows.Forms.Padding(0);
             this.memCodes.Name = "memCodes";
-            this.memCodes.Size = new System.Drawing.Size(132, 60);
+            this.memCodes.Size = new System.Drawing.Size(133, 52);
             this.memCodes.TabIndex = 5;
             this.memCodes.Text = "0x0000000000000000\r\n0x0000000000000000\r\n0x0000000000000000\r\n0x0000000000000000";
             // 

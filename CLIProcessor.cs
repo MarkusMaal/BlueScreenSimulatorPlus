@@ -213,7 +213,7 @@ namespace UltimateBlueScreenSimulator
                     File.Delete("BSSP.exe");
                     break;
                 case "random":
-                    Program.f1.RandFunction(false);
+                    UIActions.RandFunction(Program.f1, false);
                     break;
                 case "hwm":
                     ForceBool("watermark", false);

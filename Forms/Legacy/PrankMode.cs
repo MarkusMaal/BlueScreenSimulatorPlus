@@ -531,5 +531,14 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
                 Program.f2.closecuzhidden = false;
             }
         }
+
+        private void PrankMode_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F2)
+            {
+                MessageBox.Show("Screenshot saved as " + Program.dr.Screenshot(this), "Screenshot taken!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Cursor.Show();
+            }
+        }
     }
 }

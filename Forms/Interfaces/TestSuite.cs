@@ -58,24 +58,182 @@ namespace UltimateBlueScreenSimulator.Forms.Interfaces
                 {
                     ((PictureBox)tableLayoutPanel2.Controls[$"actionPic{i - 1}"]).Image = success ? Properties.Resources.success : Properties.Resources.failure;
                 }
-                if (((PictureBox)tableLayoutPanel2.Controls[$"actionPic{i}"]).Image != null)
+                if (i < 11 && ((PictureBox)tableLayoutPanel2.Controls[$"actionPic{i}"]).Image != null)
                 {
                     ((PictureBox)tableLayoutPanel2.Controls[$"actionPic{i}"]).Image = Properties.Resources.current;
                 }
             }));
+            Thread.Sleep(100);
         }
 
         private void LogError(string testType, string message)
         {
             this.BeginInvoke(new MethodInvoker(delegate {
-                badTestLog.Text += $"[{DateTime.Now}] {testType} - {message}";
+                badTestLog.Text += $"[{DateTime.Now}] {testType} - {message}\r\n";
             }));
+        }
+
+        private bool CheckBools(Dictionary<string, bool> expectedVals, BlueScreen bs, string Name)
+        {
+            bool ok = true;
+            foreach (KeyValuePair<string, bool> kvp in expectedVals)
+            {
+                bool actual = bs.GetBool(kvp.Key);
+                bool match = (actual == kvp.Value);
+                ok = ok && match;
+                if (!match)
+                {
+                    LogError("Simulator settings", $"{Name} invalid boolean value for {kvp.Key}. Expected {kvp.Value}, got {actual}!");
+                }
+            }
+            return ok;
+        }
+
+        private bool CheckStrings(Dictionary<string, string> expectedVals, BlueScreen bs, string Name)
+        {
+            bool ok = true;
+            foreach (KeyValuePair<string, string> kvp in expectedVals)
+            {
+                string actual = bs.GetString(kvp.Key);
+                bool match = (actual == kvp.Value);
+                ok = ok && match;
+                if (!match)
+                {
+                    LogError("Simulator settings", $"{Name} invalid string value for {kvp.Key}. Expected \"{kvp.Value}\", got \"{actual}\"!");
+                }
+            }
+            return ok;
         }
 
         private void SettingsTest()
         {
-            Thread.Sleep(1000);
-            throw new NotImplementedException();
+            Thread.Sleep(100);
+            TemplateRegistry tempreg = Program.templates;
+            tempreg.Clear();
+            HighlightSubtest(1, true);
+            tempreg.AddTemplate("Windows 1.x/2.x");
+            Dictionary<string, bool> ExpectedBools = new Dictionary<string, bool>()
+            {
+                {"playsound", true },
+                {"font_support", true },
+                {"blinkblink", true },
+                {"halfres", true },
+            };
+            Dictionary<string, string> ExpectedStrings = new Dictionary<string, string>()
+            {
+                {"friendlyname", "Windows 1.x/2.x (Text mode, Standard)" },
+                {"qr_file", "local:1" }
+            };
+            HighlightSubtest(2, CheckBools(ExpectedBools, tempreg.GetLast(), "Windows 1.x/2.x") && CheckStrings(ExpectedStrings, tempreg.GetLast(), "Windows 1.x/2.x"));
+            tempreg.AddTemplate("Windows 3.1x");
+            ExpectedBools.Clear();
+            ExpectedStrings.Clear();
+            ExpectedBools.Add("font_support", false);
+            ExpectedBools.Add("blinkblink", true);
+            ExpectedStrings.Add("friendlyname", "Windows 3.1 (Text mode, Standard)");
+            ExpectedStrings.Add("screen_mode", "No unresponsive programs");
+            HighlightSubtest(3, CheckBools(ExpectedBools, tempreg.GetLast(), "Windows 3.1x") && CheckStrings(ExpectedStrings, tempreg.GetLast(), "Windows 3.1x"));
+            tempreg.AddTemplate("Windows 9x/Me");
+            ExpectedBools.Clear();
+            ExpectedStrings.Clear();
+            ExpectedBools.Add("font_support", false);
+            ExpectedBools.Add("blinkblink", true);
+            ExpectedStrings.Add("friendlyname", "Windows 9x/Millennium Edition (Text mode, Standard)");
+            ExpectedStrings.Add("screen_mode", "System error");
+            HighlightSubtest(4, CheckBools(ExpectedBools, tempreg.GetLast(), "Windows 9x/Me") && CheckStrings(ExpectedStrings, tempreg.GetLast(), "Windows 9x/Me"));
+            bool ok = true;
+            tempreg.AddTemplate("Windows NT 3.x/4.0");
+            ExpectedBools.Clear();
+            ExpectedStrings.Clear();
+            ExpectedBools.Add("font_support", false);
+            ExpectedBools.Add("blinkblink", true);
+            ExpectedBools.Add("troubleshoot", true);
+            ExpectedBools.Add("stack_trace", true);
+            ExpectedStrings.Add("friendlyname", "Windows NT 4.0/3.5x (Text mode, Standard)");
+            ExpectedStrings.Add("code", "IRQL_NOT_LESS_OR_EQUAL (0x0000000A)");
+            ok = ok && CheckBools(ExpectedBools, tempreg.GetLast(), "Windows NT 3.x/4.0") && CheckStrings(ExpectedStrings, tempreg.GetLast(), "Windows NT 3.x/4.0");
+            tempreg.AddTemplate("Windows 2000");
+            ExpectedBools.Clear();
+            ExpectedStrings.Clear();
+            ExpectedBools.Add("font_support", false);
+            ExpectedBools.Add("show_description", true);
+            ExpectedStrings.Add("friendlyname", "Windows 2000 Professional/Server Family (640x480, Standard)");
+            ExpectedStrings.Add("code", "IRQL_NOT_LESS_OR_EQUAL (0x0000000A)");
+            ok = ok && CheckBools(ExpectedBools, tempreg.GetLast(), "Windows 2000") && CheckStrings(ExpectedStrings, tempreg.GetLast(), "Windows 2000");
+            HighlightSubtest(5, ok);
+            ok = true;
+            tempreg.AddTemplate("Windows XP");
+            ExpectedBools.Clear();
+            ExpectedStrings.Clear();
+            ExpectedBools.Add("font_support", true);
+            ExpectedBools.Add("show_description", true);
+            ExpectedBools.Add("autoclose", true);
+            ExpectedStrings.Add("friendlyname", "Windows XP (640x480, Standard)");
+            ExpectedStrings.Add("code", "IRQL_NOT_LESS_OR_EQUAL (0x0000000A)");
+            ok = ok && CheckBools(ExpectedBools, tempreg.GetLast(), "Windows XP") && CheckStrings(ExpectedStrings, tempreg.GetLast(), "Windows XP");
+            tempreg.AddTemplate("Windows Vista");
+            ExpectedStrings["friendlyname"] = "Windows Vista (640x480, Standard)";
+            ok = ok && CheckBools(ExpectedBools, tempreg.GetLast(), "Windows Vista") && CheckStrings(ExpectedStrings, tempreg.GetLast(), "Windows Vista");
+            tempreg.AddTemplate("Windows 7");
+            ExpectedStrings["friendlyname"] = "Windows 7 (640x480, ClearType)";
+            ok = ok && CheckBools(ExpectedBools, tempreg.GetLast(), "Windows 7") && CheckStrings(ExpectedStrings, tempreg.GetLast(), "Windows 7");
+            HighlightSubtest(6, ok);
+            tempreg.AddTemplate("Windows CE");
+            ExpectedStrings["friendlyname"] = "Windows CE 5.0 and later (750x400, Standard)";
+            ExpectedBools.Remove("autoclose");
+            ExpectedBools.Remove("show_description");
+            HighlightSubtest(7, CheckBools(ExpectedBools, tempreg.GetLast(), "Windows CE") && CheckStrings(ExpectedStrings, tempreg.GetLast(), "Windows CE"));
+            tempreg.AddTemplate("BOOTMGR");
+            ExpectedStrings.Clear();
+            ExpectedBools.Clear();
+            ExpectedStrings["code"] = "0x0000000e";
+            ExpectedStrings["friendlyname"] = "Windows Boot Manager (1024x768, Standard)";
+            HighlightSubtest(8, CheckStrings(ExpectedStrings, tempreg.GetLast(), "BOOTMGR"));
+            tempreg.AddTemplate("Windows 8 Beta");
+            ExpectedStrings.Clear();
+            ExpectedBools.Clear();
+            ExpectedStrings["code"] = "IRQL_NOT_LESS_OR_EQUAL (0x0000000A)";
+            ExpectedStrings["friendlyname"] = "Windows 8 Beta (Native, ClearType)";
+            ExpectedBools["autoclose"] = true;
+            ExpectedBools["countdown"] = true;
+            ExpectedBools["font_support"] = true;
+            HighlightSubtest(9, CheckBools(ExpectedBools, tempreg.GetLast(), "Windows 8 Beta") && CheckStrings(ExpectedStrings, tempreg.GetLast(), "Windows 8 Beta"));
+            tempreg.AddTemplate("Windows 8/8.1");
+            ok = true;
+            ExpectedStrings.Clear();
+            ExpectedBools.Clear();
+            ExpectedStrings["code"] = "IRQL_NOT_LESS_OR_EQUAL (0x0000000A)";
+            ExpectedStrings["friendlyname"] = "Windows 8/8.1 (Native, ClearType)";
+            ExpectedStrings["emoticon"] = ":(";
+            ExpectedBools["autoclose"] = true;
+            ExpectedBools["show_description"] = true;
+            ExpectedBools["font_support"] = true;
+            ok = ok && CheckStrings(ExpectedStrings, tempreg.GetLast(), "Windows 8/8.1") && CheckBools(ExpectedBools, tempreg.GetLast(), "Windows 8/8.1");
+            tempreg.AddTemplate("Windows 10");
+            ExpectedStrings["friendlyname"] = "Windows 10 (Native, ClearType)";
+            ExpectedStrings["qr_file"] = "local:0";
+            ExpectedBools["crashdump"] = true;
+            ExpectedBools["qr"] = true;
+            ExpectedBools["device"] = true;
+            ExpectedBools["winxplus"] = true;
+            ok = ok && CheckStrings(ExpectedStrings, tempreg.GetLast(), "Windows 10") && CheckBools(ExpectedBools, tempreg.GetLast(), "Windows 10");
+            tempreg.AddTemplate("Windows 11");
+            ExpectedStrings["friendlyname"] = "Windows 11 (Native, ClearType)";
+            ExpectedBools["blackscreen"] = false;
+            ok = ok && CheckStrings(ExpectedStrings, tempreg.GetLast(), "Windows 10") && CheckBools(ExpectedBools, tempreg.GetLast(), "Windows 10");
+            HighlightSubtest(10, ok);
+            tempreg.AddTemplate("Windows 11 Beta");
+            ExpectedBools.Clear();
+            ExpectedStrings.Clear();
+            ExpectedStrings["friendlyname"] = "Windows 11 Beta (Native, ClearType)";
+            ExpectedStrings["code"] = "IRQL_NOT_LESS_OR_EQUAL (0x0000000A)";
+            ExpectedBools["autoclose"] = true;
+            ExpectedBools["crashdump"] = true;
+            ExpectedBools["show_description"] = true;
+            ExpectedBools["font_support"] = true;
+            ok = CheckStrings(ExpectedStrings, tempreg.GetLast(), "Windows 10") && CheckBools(ExpectedBools, tempreg.GetLast(), "Windows 10");
+            HighlightSubtest(11, ok);
+            //NextTest(3);
         }
 
         private void SaveLoadTest()
@@ -198,6 +356,15 @@ namespace UltimateBlueScreenSimulator.Forms.Interfaces
         private void blink_Tick(object sender, EventArgs e)
         {
             noticeLabel.ForeColor = ((noticeLabel.ForeColor == SystemColors.ControlText) ? Color.Red : SystemColors.ControlText);
+        }
+
+        private void TestSuite_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F2)
+            {
+                MessageBox.Show("Screenshot saved as " + Program.dr.Screenshot(this), "Screenshot taken!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Cursor.Show();
+            }
         }
     }
 }

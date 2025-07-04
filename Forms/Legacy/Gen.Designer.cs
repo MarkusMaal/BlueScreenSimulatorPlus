@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Gen));
             this.genProgressBar = new System.Windows.Forms.ProgressBar();
             this.genLabel = new System.Windows.Forms.Label();
             this.genTimer = new System.Windows.Forms.Timer(this.components);
@@ -37,7 +36,7 @@
             // 
             // genProgressBar
             // 
-            this.genProgressBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.genProgressBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.genProgressBar.Location = new System.Drawing.Point(12, 29);
             this.genProgressBar.Name = "genProgressBar";
@@ -69,7 +68,6 @@
             this.Controls.Add(this.genProgressBar);
             this.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Gen";
@@ -77,6 +75,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PreventUserClosing);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Gen_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

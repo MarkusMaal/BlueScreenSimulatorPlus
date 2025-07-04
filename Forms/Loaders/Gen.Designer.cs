@@ -89,6 +89,7 @@ namespace UltimateBlueScreenSimulator
             this.UseWaitCursor = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PreventUserClosing);
             this.Load += new System.EventHandler(this.Gen_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Gen_KeyDown);
             this.ResumeLayout(false);
 
         }

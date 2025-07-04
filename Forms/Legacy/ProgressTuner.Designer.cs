@@ -270,6 +270,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Progress tuner - Test mode";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ProgressTuner_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.progressTrackBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.progressVisualization)).EndInit();
             this.ResumeLayout(false);

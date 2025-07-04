@@ -149,95 +149,6 @@ namespace UltimateBlueScreenSimulator
             Thread.CurrentThread.Abort();
         }
 
-        public static byte[] GetHash(string inputString)
-        {
-            using (HashAlgorithm algorithm = SHA256.Create())
-                return algorithm.ComputeHash(Encoding.UTF8.GetBytes(inputString));
-        }
-
-        private Color[] RandInvColor(Random r)
-        {
-            Color gen = Color.FromArgb(r.Next(0, 255), r.Next(255, 255), r.Next(0, 255));
-            Color inv = Color.FromArgb(255 - gen.R, 255 - gen.G, 255 - gen.B);
-            return new Color[] { gen, inv };
-        }
-
-        internal BlueScreen RandFunction(bool shiftDown)
-        {
-            if (UIActions.me == null) { UIActions.me = new BlueScreen(); }
-            ulong seed = (ulong)DateTime.Now.Ticks;
-            bool isNumeric = ulong.TryParse(textBox1.Text, out _);
-            if (textBox1.Text != "")
-            {
-                if (!isNumeric)
-                {
-                    seed = BinaryPrimitives.ReadUInt64BigEndian(GetHash(textBox1.Text));
-                } else
-                {
-                    seed = ulong.Parse(textBox1.Text);
-                }
-            }
-            Random r = new Random((int)seed);
-            string base_os = Program.templates.GetAt(r.Next(Program.templates.Count - 1)).GetString("os");
-            if (shiftDown) {
-                base_os = UIActions.me.GetString("os");
-            }
-            BlueScreen bs = new BlueScreen(base_os, true, r);
-            foreach (string kvp in bs.AllBools().Keys.ToArray<string>())
-            {
-                bool value = r.Next(0, 100) > 50;
-                bs.SetBool(kvp, value);
-            }
-            foreach (string kvp in bs.AllInts().Keys.ToArray<string>())
-            {
-                if (!kvp.Contains("margin"))
-                {
-                    int value = r.Next(0, 1000);
-                    bs.SetInt(kvp, value);
-                }
-            }
-            if (r.Next(0, 100) > 75)
-            {
-                Color[] c1 = RandInvColor(r);
-                Color[] c2 = RandInvColor(r);
-                bs.SetTheme(c1[0], c1[1], false);
-                bs.SetTheme(c2[0], c2[1], true);
-            }
-            if (r.Next(0, 100) > 95)
-            {
-                bs.SetString("emoticon", ":)");
-            }
-            if (comboBox1.Items.Count == 0) { Program.ReloadNTErrors(); }
-            bs.SetString("code", comboBox1.Items[r.Next(0, comboBox1.Items.Count - 1)].ToString());
-            if (bs.GetString("os") != "Windows 3.1x") {
-                bs.SetString("screen_mode", comboBox2.Items[r.Next(0, comboBox2.Items.Count - 1)].ToString());
-            }
-            bs.SetBool("troubleshoot", r.Next(0, 100) > 50);
-            bs.SetBool("rainbow", r.Next(0, 100) > 50);
-            bs.SetBool("windowed", winMode.Checked);
-            bs.SetBool("amd", winMode.Checked);
-            bs.SetBool("blink", winMode.Checked);
-            bs.SetBool("watermark", waterBox.Checked);
-            bs.SetString("culprit", UIActions.me.GenFile());
-            if (isNumeric && (textBox1.Text != ""))
-            {
-                bs.SetString("friendlyname", "Random template #" + seed.ToString());
-            } else if (textBox1.Text == "")
-            {
-                bs.SetString("friendlyname", "Random template #" + seed.ToString() + " (from clock time)");
-            }
-            else
-            {
-                bs.SetString("friendlyname", "Random template #" + seed.ToString() + " (seed: " + textBox1.Text + ")");
-            }
-            Thread th = new Thread(new ThreadStart(() => {
-                bs.Show();
-            }));
-            th.Start();
-            th.Join();
-            return bs;
-        }
-
         private BlueScreen CloneMe(BlueScreen bs)
         {
             string jsonString = JsonSerializer.Serialize(bs);
@@ -366,7 +277,7 @@ namespace UltimateBlueScreenSimulator
         private void materialFloatingActionButton2_Click(object sender, EventArgs e)
         {
             Program.loadfinished = false;
-            BlueScreen bs = RandFunction(ModifierKeys.HasFlag(Keys.Shift));
+            BlueScreen bs = UIActions.RandFunction(this, ModifierKeys.HasFlag(Keys.Shift));
             
             /*if (MessageBox.Show("Save this configuration?", "I'm feeling unlucky", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
@@ -653,11 +564,6 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        ColorScheme MakeScheme(Accent accent)
-        {
-            return new ColorScheme(Primary.Blue800, Primary.Blue900, Primary.Blue400, accent, TextShade.WHITE);
-        }
-
         private void updateCheckerTimer_Tick(object sender, EventArgs e)
         {
 
@@ -914,6 +820,11 @@ namespace UltimateBlueScreenSimulator
             {
                 Program.gs.DevBuild = true;
                 MessageBox.Show("You are now a developer!", Assembly.GetExecutingAssembly().FullName, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            if (e.KeyCode == Keys.F2)
+            {
+                MessageBox.Show("Screenshot saved as " + Program.dr.Screenshot(this), "Screenshot taken!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Cursor.Show();
             }
         }
 

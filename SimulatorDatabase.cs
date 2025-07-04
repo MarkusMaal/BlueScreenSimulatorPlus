@@ -101,6 +101,11 @@ namespace SimulatorDatabase
             }
         }
 
+        /// <summary>
+        /// Takes a screenshot of a form
+        /// </summary>
+        /// <param name="meself">The form you want to screenshot</param>
+        /// <returns>Filename of the saved screenshot</returns>
         public string Screenshot(Form meself)
         {
             meself.FormBorderStyle = FormBorderStyle.None;
