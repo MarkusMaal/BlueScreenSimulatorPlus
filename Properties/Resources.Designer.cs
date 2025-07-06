@@ -327,6 +327,16 @@ namespace UltimateBlueScreenSimulator.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap loadpic {
+            get {
+                object obj = ResourceManager.GetObject("loadpic", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap MarkusTegelane_element_brandpic {
             get {
                 object obj = ResourceManager.GetObject("MarkusTegelane_element_brandpic", resourceCulture);

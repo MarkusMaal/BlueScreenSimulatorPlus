@@ -8,14 +8,16 @@
  */
 
 using System;
-using System.Windows.Forms;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
-using SimulatorDatabase;
+using System.Linq;
 using System.Net.NetworkInformation;
 using System.Threading;
-using System.Collections.Generic;
-using System.Linq;
-using System.Diagnostics;
+using System.Windows.Forms;
+using Microsoft.Win32;
+using SimulatorDatabase;
+using UltimateBlueScreenSimulator.Forms.Legacy;
 
 namespace UltimateBlueScreenSimulator
 {
@@ -37,7 +39,7 @@ namespace UltimateBlueScreenSimulator
         public readonly static string prefix = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Blue Screen Simulator Plus\";
 
         //Command line syntax
-        public static string cmds = "/? - Displays command line syntax\n/wv xx - Set a specific configuration/os (e.g. \"XP\", spaces require the value to be surrounded with double quotes)\n/h - Doesn't show main GUI. If no simulation is started or the simulation is finished, the program will close.\n/hwm - Hides watermark\n/c - Simulates a system crash\n/config xx - Loads a configuration file (xx is the file name, if there are spaces, you must use double quotes)\n\n/ddesc - Disables error descriptions\n/dqr - Disables QR code on Windows 10 blue screen\n/srv - Displays Windows Server 2016 blue screen when wv is set to 10\n/dac - Disables autoclose feature (Modern blue screens only)\n/gs - Displays green screen when wv is set to 10\n/ap - Displays ACPI blue screen (Windows Vista/7 only)\n/win - Enables windowed mode\n/random - Randomizes the blue screen (does NOT randomize any custom attributes set)\n\n/desc - Forcibly enable error description\n/ac - Forcibly enable autoclose feature\n/dap - Forcibly disable ACPI error screen (Windows Vista/7)\n/damd - Forcibly display \"GenuineIntel\" on Windows NT blue screen\n/dblink - Forcibly disable blinking cursor on Windows NT blue screen\n/dgs - Forcibly disable green screen on Windows 10 blue screen\n/qr - Forcibly enable QR code on Windows 10 blue screen\n/dsrv - Forcibly disable server blue screen when version is set to Windows 10\n/stack - Forcible enable stack trace on Windows NT blue screen\n/dfile - Forcible disables potential culprit file\n/ctd - Forcibly enables countdown\n\n/clr - Clears the verification certificate from this computer, causing the first use message to pop up.\n/hidesplash - Hides the splash screen\n/legacy - Starts the program with Legacy UI";
+        public static string cmds = "/? - Displays command line syntax\n/wv xx - Set a specific configuration/os (e.g. \"XP\", spaces require the value to be surrounded with double quotes)\n/h - Doesn't show main GUI. If no simulation is started or the simulation is finished, the program will close.\n/hwm - Hides watermark\n/c - Simulates a system crash\n/config xx - Loads a configuration file (xx is the file name, if there are spaces, you must use double quotes)\n\n/ddesc - Disables error descriptions\n/dqr - Disables QR code on Windows 10/11 crash screen\n/srv - Displays Windows Server bugcheck when wv is set to 10 or 11\n/dac - Disables autoclose feature (Modern blue screens only)\n/gs - Displays green screen when wv is set to 10\n/ap - Displays ACPI blue screen (Windows Vista/7 only)\n/win - Enables windowed mode\n/random - Randomizes the crash screen (does NOT randomize any custom attributes set)\n\n/desc - Forcibly enable error description\n/ac - Forcibly enable autoclose feature\n/dap - Forcibly disable ACPI error screen (Windows Vista/7)\n/damd - Forcibly display \"GenuineIntel\" on Windows NT blue screen\n/dblink - Forcibly disable blinking cursor on Windows NT blue screen\n/dgs - Forcibly disable green screen on Windows 10 blue screen\n/qr - Forcibly enable QR code on Windows 10 blue screen\n/dsrv - Forcibly disable server blue screen when version is set to Windows 10\n/stack - Forcible enable stack trace on Windows NT blue screen\n/dfile - Forcible disables potential culprit file\n/ctd - Forcibly enables countdown\n\n/clr - Clears the verification certificate from this computer, causing the first use message to pop up.\n/hidesplash - Hides the splash screen\n/legacy - Starts the program with Legacy UI";
 
         internal static bool verificate = false;
         public static int load_progress = 100;
@@ -62,6 +64,8 @@ namespace UltimateBlueScreenSimulator
                 "ultimatebluescreensimulator",
                 "blue.screen.simulator.plus"
         };
+        public static bool isScreensaver = Process.GetCurrentProcess().MainModule.ModuleName.ToLower().EndsWith(".scr");
+        public static RegistryKey wineKey = Registry.LocalMachine.OpenSubKey(@"Software\Wine", false);
 
         [STAThread]
         public static int Main(string[] args)
@@ -114,6 +118,15 @@ namespace UltimateBlueScreenSimulator
                 try
                 {
                     gs = gs.LoadSettings();
+                    if (wineKey != null)
+                    {
+                        gs.Log("Warning", "Wine registry key detected - the user may have launched this program in Linux or macOS. This may cause unexpected glitches!");
+                        if (!gs.LegacyUI)
+                        {
+                            gs.Log("Warning", "Material UI is not available when application is launched through Wine");
+                            gs.LegacyUI = true;
+                        }
+                    }
                 }
                 catch (Exception ex) when (!Debugger.IsAttached)
                 {
@@ -324,7 +337,7 @@ namespace UltimateBlueScreenSimulator
         }
 
         /// <summary>
-        /// For self-contained simulator support. Loads a JSON string from the end of executable into memory if the special B3er header is found, then displays a blue screen based on those settings.
+        /// For self-contained simulator support. Loads a JSON string from the end of executable into memory if the special B3er header is found, then displays a crash screen based on those settings.
         /// </summary>
         /// <returns>If the header is found, returns true</returns>
         private static bool AttachmentReader(string[] args)
@@ -341,17 +354,6 @@ namespace UltimateBlueScreenSimulator
             string jsondata = GetEmbedded();
             if (jsondata != "")
             {
-                if (Process.GetCurrentProcess().MainModule.ModuleName.ToLower().EndsWith(".scr"))
-                {
-                    // TODO: Maybe implement a way to change simulator settings through a screensaver config window?
-                    //       Due to the way it's implemented, embedded data itself cannot be easily edited without
-                    //       re-creating the .scr file.
-                    if ((!args.Contains("/s") && !args.Contains("/p")) || args.Contains("/c"))
-                    {
-                        MessageBox.Show("Embedded configuration data cannot be edited in this build", "Blue Screen Simulator Plus", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        return true;
-                    }
-                }
                 gs.LoadSettings();
                 if (verificate)
                 {
@@ -362,22 +364,29 @@ namespace UltimateBlueScreenSimulator
                     Thread th = new Thread(new ThreadStart(() => {
                         // initialize BlueScreen object
                         UIActions.me = templates.LoadSingleConfig(jsondata);
-                        if (string.Join(" ", args).Contains("/p"))
+                        if (isScreensaver)
                         {
-                            if (!string.Join(" ", args).Contains(":") && args.Length < 2)
+                            if ((!args.Contains("/s") && !args.Contains("/S") && !args.Contains("/p")) || args.Contains("/c"))
                             {
-                                MessageBox.Show("Window handle was not provided!", "Blue Screen Simulator Plus", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                UIActions.me = templates.LoadSingleConfig(jsondata);
+                                Application.Run(new ScreenSaverConfig());
                                 return;
                             }
-                            string ProcessID = args.Length < 2 ? string.Join(" ", args).Split(':')[1] : args[1];
-                            IntPtr previewWndHandle = new IntPtr(long.Parse(args[1]));
-                            Application.Run(new Forms.Loaders.ScreensaverPreview(previewWndHandle));
+                            else if (string.Join(" ", args).Contains("/p"))
+                            {
+                                if (!string.Join(" ", args).Contains(":") && args.Length < 2)
+                                {
+                                    MessageBox.Show("Window handle was not provided!", "Blue Screen Simulator Plus", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    return;
+                                }
+                                string ProcessID = args.Length < 2 ? string.Join(" ", args).Split(':')[1] : args[1];
+                                IntPtr previewWndHandle = new IntPtr(long.Parse(args[1]));
+                                Application.Run(new Forms.Loaders.ScreensaverPreview(previewWndHandle));
+                                return;
+                            }
                         }
-                        else
-                        {
-                            // display the crash screen
-                            UIActions.me.Show();
-                        }
+                        // display the crash screen
+                        UIActions.me.Show();
                     }));
                     th.Start();
                     th.Join();

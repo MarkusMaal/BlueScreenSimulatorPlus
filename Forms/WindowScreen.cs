@@ -8,6 +8,7 @@ namespace UltimateBlueScreenSimulator
     {
         public Bitmap bmp;
         public bool primary = true;
+        private int moves = 0;
         public WindowScreen()
         {
             if (Program.verificate)
@@ -57,6 +58,24 @@ namespace UltimateBlueScreenSimulator
                 this.screenDisplay.Dispose();
             }
             this.Dispose();
+        }
+
+        private void WindowScreen_MouseMove(object sender, MouseEventArgs e)
+        {
+            moves++;
+            if (moves > 50 && Program.isScreensaver && Program.gs.MouseMoveExit)
+            {
+                this.Close();
+            }
+        }
+
+        private void WindowScreen_MouseHover(object sender, EventArgs e)
+        {
+            moves++;
+            if (moves > 50 && Program.isScreensaver && Program.gs.MouseMoveExit)
+            {
+                this.Close();
+            }
         }
     }
 }

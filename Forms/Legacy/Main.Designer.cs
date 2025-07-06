@@ -241,7 +241,7 @@
             this.autoBox.Size = new System.Drawing.Size(95, 17);
             this.autoBox.TabIndex = 2;
             this.autoBox.Text = "Auto restart [?]";
-            this.quickHelp.SetToolTip(this.autoBox, "Closes the blue screen automatically. Also displays a different blue screen.");
+            this.quickHelp.SetToolTip(this.autoBox, "Closes the crash screen automatically. Also displays a different bugcheck.");
             this.autoBox.UseVisualStyleBackColor = true;
             this.autoBox.CheckedChanged += new System.EventHandler(this.generalCheckUncheck);
             this.autoBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Button7_KeyDown);
@@ -253,8 +253,8 @@
             this.serverBox.Name = "serverBox";
             this.serverBox.Size = new System.Drawing.Size(130, 17);
             this.serverBox.TabIndex = 3;
-            this.serverBox.Text = "Server blue screen [?]";
-            this.quickHelp.SetToolTip(this.serverBox, "Displays a blue screen without an emoticon :(");
+            this.serverBox.Text = "Server bugcheck [?]";
+            this.quickHelp.SetToolTip(this.serverBox, "Displays a crash screen without an emoticon :(");
             this.serverBox.UseVisualStyleBackColor = true;
             this.serverBox.CheckedChanged += new System.EventHandler(this.generalCheckUncheck);
             this.serverBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Button7_KeyDown);
@@ -267,7 +267,7 @@
             this.greenBox.Size = new System.Drawing.Size(113, 17);
             this.greenBox.TabIndex = 4;
             this.greenBox.Text = "Insider Preview [?]";
-            this.quickHelp.SetToolTip(this.greenBox, "Shows a green screen instead of a blue screen (from Windows Insider Preview build" +
+            this.quickHelp.SetToolTip(this.greenBox, "Shows a green screen instead of a blue/black screen (from Windows Insider Preview build" +
         "s)");
             this.greenBox.UseVisualStyleBackColor = true;
             this.greenBox.CheckedChanged += new System.EventHandler(this.generalCheckUncheck);
@@ -670,7 +670,7 @@
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(237, 17);
             this.checkBox1.TabIndex = 7;
-            this.checkBox1.Text = "Show error description on the blue screen [?]";
+            this.checkBox1.Text = "Show error description on the crash screen [?]";
             this.quickHelp.SetToolTip(this.checkBox1, "Displays error description in addition to STOP code (e.g. IRQL_NOT_LESS_OR_EQUAL)" +
         "");
             this.checkBox1.UseVisualStyleBackColor = true;
@@ -810,7 +810,7 @@
             this.waterBox.Size = new System.Drawing.Size(127, 17);
             this.waterBox.TabIndex = 10;
             this.waterBox.Text = "Display watermark [?]";
-            this.quickHelp.SetToolTip(this.waterBox, "Displays a watermark to let the user know that this a blue screen simulator");
+            this.quickHelp.SetToolTip(this.waterBox, "Displays a watermark to let the user know that this a simulator");
             this.waterBox.UseVisualStyleBackColor = true;
             this.waterBox.CheckedChanged += new System.EventHandler(this.generalCheckUncheck);
             // 
@@ -848,7 +848,7 @@
             this.advOptionsButton.Size = new System.Drawing.Size(113, 23);
             this.advOptionsButton.TabIndex = 10;
             this.advOptionsButton.Text = "Additional &options";
-            this.quickHelp.SetToolTip(this.advOptionsButton, "Experimental features to mess with in blue screens");
+            this.quickHelp.SetToolTip(this.advOptionsButton, "Experimental features to mess with in crash screens");
             this.advOptionsButton.UseVisualStyleBackColor = true;
             this.advOptionsButton.Click += new System.EventHandler(this.Button5_Click);
             this.advOptionsButton.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Button7_KeyDown);
@@ -863,7 +863,7 @@
             this.eCodeEditButton.Size = new System.Drawing.Size(113, 23);
             this.eCodeEditButton.TabIndex = 11;
             this.eCodeEditButton.Text = "Error &code editor";
-            this.quickHelp.SetToolTip(this.eCodeEditButton, "Allows you to configure how memory codes are being displayed on blue screens. Whe" +
+            this.quickHelp.SetToolTip(this.eCodeEditButton, "Allows you to configure how memory codes are being displayed on crash screens. Whe" +
         "n the screen uses less than 16 digits, the first digits will be used (e.g. first" +
         " 8 digits)");
             this.eCodeEditButton.UseVisualStyleBackColor = true;
@@ -880,7 +880,7 @@
             this.advNTButton.Size = new System.Drawing.Size(153, 23);
             this.advNTButton.TabIndex = 12;
             this.advNTButton.Text = "Advanced &NT code options";
-            this.quickHelp.SetToolTip(this.advNTButton, "Allows you to configure how memory codes are being displayed on blue screens. Whe" +
+            this.quickHelp.SetToolTip(this.advNTButton, "Allows you to configure how memory codes are being displayed on crash screens. Whe" +
         "n the screen uses less than 16 digits, the first digits will be used (e.g. first" +
         " 8 digits)");
             this.advNTButton.UseVisualStyleBackColor = true;
@@ -898,7 +898,7 @@
             this.progressTuneButton.TabIndex = 13;
             this.progressTuneButton.Text = "Progress &tuner";
             this.quickHelp.SetToolTip(this.progressTuneButton, "Allows you to adjust the timing and increments of the progress indicator on vario" +
-        "us blue screens.");
+        "us crash screens.");
             this.progressTuneButton.UseVisualStyleBackColor = true;
             this.progressTuneButton.Click += new System.EventHandler(this.button4_Click_1);
             // 
@@ -942,7 +942,7 @@
             this.button3.Size = new System.Drawing.Size(111, 23);
             this.button3.TabIndex = 13;
             this.button3.Text = "&I\'m feeling unlucky";
-            this.quickHelp.SetToolTip(this.button3, "This will generate a random blue screen");
+            this.quickHelp.SetToolTip(this.button3, "This will generate a random bugcheck");
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.Button3_Click);
             this.button3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Button7_KeyDown);
@@ -972,7 +972,7 @@
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(245, 13);
             this.label7.TabIndex = 6;
-            this.label7.Text = "Press Escape, F7, or Alt+F4 to exit the blue screen";
+            this.label7.Text = "Press Escape, F7, or Alt+F4 to exit the crash screen";
             // 
             // label10
             // 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Threading;
 using System.Windows.Forms;
 using MaterialSkin;
 using MaterialSkin.Controls;
@@ -17,6 +18,7 @@ namespace UltimateBlueScreenSimulator
         private string type = "String";
         private bool theme_bg = false;
         private bool theme_hl = false;
+        private bool checkDone = true;
         public StringEdit()
         {
             MaterialSkinManager materialSkinManager = Program.f1.materialSkinManager;
@@ -30,32 +32,6 @@ namespace UltimateBlueScreenSimulator
             HideAllProps();
             MessageView.Clear();
             UpdateMessageView();
-            // legacy method for applying night theme
-            /*if (Program.f1.nightThemeToolStripMenuItem.Checked)
-            {
-                this.BackColor = Color.Black;
-                this.ForeColor = Color.Gray;
-                MessageView.BackColor = Color.Black;
-                MessageView.ForeColor = Color.Gray;
-                MessageView.GridLines = false;
-                MessageView.BorderStyle = BorderStyle.None;
-                qrProps.BackColor = Color.Black;
-                qrProps.ForeColor = Color.Gray;
-                timeoutProps.BackColor = Color.Black;
-                timeoutProps.ForeColor = Color.Gray;
-                timeoutBox.BackColor = Color.Black;
-                timeoutBox.ForeColor = Color.Gray;
-                timeoutBox.BorderStyle = BorderStyle.FixedSingle;
-                radioFlowLayoutPanel.BackColor = Color.Black;
-                radioFlowLayoutPanel.ForeColor = Color.Gray;
-                fontProps.BackColor = Color.Black;
-                fontProps.ForeColor = Color.Gray;
-                blinkProps.BackColor = Color.Black;
-                blinkProps.ForeColor = Color.Gray;
-                stringEditor.BackColor = Color.Black;
-                stringEditor.ForeColor = Color.Gray;
-                stringEditor.BorderStyle = BorderStyle.FixedSingle;
-            }*/
             whereTheButtonsLink.LinkColor = (Program.gs.NightTheme ? Color.White : Color.Blue);
         }
 
@@ -73,12 +49,6 @@ namespace UltimateBlueScreenSimulator
         private string GenerateColorString(Color color)
         {
             return "RGB(" + color.R + ", " + color.G + ", " + color.B + ")";
-        }
-
-        private void WinVers_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            HideAllProps();
-            UpdateMessageView();
         }
 
         private void UpdateMessageView()
@@ -265,6 +235,15 @@ namespace UltimateBlueScreenSimulator
                     }
                 }
                 MessageView.Refresh();
+            }
+            if (checkDone && updatePreviewCheck.Checked)
+            {
+                checkDone = false;
+                bugcheckPreview.Image = Properties.Resources.loadpic;
+                new Thread(() => {
+                    me.ShowSpecial(bugcheckPreview);
+                    checkDone = true;
+                }).Start();
             }
         }
 
@@ -605,6 +584,34 @@ namespace UltimateBlueScreenSimulator
             {
                 MessageBox.Show("Screenshot saved as " + Program.dr.Screenshot(this), "Screenshot taken!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Cursor.Show();
+            }
+        }
+
+        private void bugcheckPreview_Paint(object sender, PaintEventArgs e)
+        {
+            this.BringToFront();
+        }
+
+        private void bugcheckPreview_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void materialLabel1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void materialCheckbox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (updatePreviewCheck.Checked)
+            {
+                checkDone = false;
+                bugcheckPreview.Image = Properties.Resources.loadpic;
+                new Thread(() => {
+                    me.ShowSpecial(bugcheckPreview);
+                    checkDone = true;
+                }).Start();
             }
         }
     }

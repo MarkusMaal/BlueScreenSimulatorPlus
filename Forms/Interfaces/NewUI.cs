@@ -132,7 +132,7 @@ namespace UltimateBlueScreenSimulator
                 Program.loadfinished = true;
                 if (Program.gs.EnableEggs && (Program.gs.ErrorCode != 500))
                 {
-                    MessageBox.Show("Please select a Windows version! Also, how in the world did you deselect a dropdown list?", "Error displaying blue screen", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Please select a Windows version! Also, how in the world did you deselect a dropdown list?", "Error displaying crash screen", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else if (Program.gs.ErrorCode == 500)
                 {
@@ -141,7 +141,7 @@ namespace UltimateBlueScreenSimulator
                 }
                 else
                 {
-                    MessageBox.Show("No configuration selected", "Error displaying blue screen", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("No configuration selected", "Error displaying crash screen", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 return;
             }
@@ -999,6 +999,11 @@ namespace UltimateBlueScreenSimulator
         private void generalCheckUncheck(object sender, EventArgs e)
         {
             UIActions.UpdateBool(this, (MaterialCheckbox)sender);
+        }
+
+        private void materialButton3_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

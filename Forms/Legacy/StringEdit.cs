@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Threading;
 using System.Windows.Forms;
 using SimulatorDatabase;
 
@@ -13,6 +14,7 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
         private string type = "String";
         private bool theme_bg = false;
         private bool theme_hl = false;
+        private bool checkDone = true;
         public StringEdit()
         {
             InitializeComponent();
@@ -48,6 +50,11 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
                 stringEditor.ForeColor = Color.Gray;
                 stringEditor.BorderStyle = BorderStyle.FixedSingle;
             }
+            checkDone = false;
+            new Thread(() => {
+                me.ShowSpecial(bugcheckPreview);
+                checkDone = true;
+            }).Start();
         }
 
         private ListViewItem GetColorListViewItem(string title, Color color)
@@ -354,6 +361,15 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
             {
                 HideAllProps();
             }
+            if (checkDone && updatePreviewCheck.Checked)
+            {
+                checkDone = false;
+                bugcheckPreview.Image = Properties.Resources.loadpic;
+                new Thread(() => {
+                    me.ShowSpecial(bugcheckPreview);
+                    checkDone = true;
+                }).Start();
+            }
         }
 
         private void TextBox1_TextChanged(object sender, EventArgs e)
@@ -527,6 +543,25 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
             {
                 MessageBox.Show("Screenshot saved as " + Program.dr.Screenshot(this), "Screenshot taken!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Cursor.Show();
+            }
+        }
+
+        private void bugcheckPreview_Paint(object sender, PaintEventArgs e)
+        {
+            this.BringToFront();
+            this.Activate();
+        }
+
+        private void updatePreviewCheck_CheckedChanged(object sender, EventArgs e)
+        {
+            if (updatePreviewCheck.Checked)
+            {
+                checkDone = false;
+                bugcheckPreview.Image = Properties.Resources.loadpic;
+                new Thread(() => {
+                    me.ShowSpecial(bugcheckPreview);
+                    checkDone = true;
+                }).Start();
             }
         }
     }

@@ -35,6 +35,7 @@ namespace UltimateBlueScreenSimulator
         private bool quickhelp;
         private bool autosave;
         private bool legacyui;
+        private bool mousemoveexit;
 
         // runtime settings (these are not persistent)
         [JsonIgnore]
@@ -134,6 +135,7 @@ namespace UltimateBlueScreenSimulator
             quickhelp = true;
             autosave = true;
             legacyui = false;
+            mousemoveexit = false;
             fileio = true;
 
             singlesim = "";
@@ -157,6 +159,14 @@ namespace UltimateBlueScreenSimulator
             ScaleMode = ScaleModes.HighQualityBicubic;
             ColorScheme = ColorSchemes.Blue;
             PrimaryColor = ColorSchemes.Indigo;
+        }
+
+        ///<summary>
+        ///Specific to screensaver files, exits the simulation when moving the mouse cursor
+        ///</summary>
+        public bool MouseMoveExit {
+            get { return mousemoveexit; }
+            set { mousemoveexit = value; }
         }
 
         ///<summary>

@@ -14,6 +14,7 @@ namespace UltimateBlueScreenSimulator
         public string whatfail = "";
         private bool naturalclose = false;
         private int progress = 0;
+        private int moves = 0;
         bool inr = false;
         bool ing = false;
         bool inb = false;
@@ -158,7 +159,7 @@ namespace UltimateBlueScreenSimulator
                 if (colors[1] > 255) { colors[1] -= 255; }
                 if (colors[2] > 255) { colors[2] -= 255; }
                 waterMarkText.ForeColor = Color.FromArgb(colors[0], colors[1], colors[2]);
-                if (fullscreen)
+                if (fullscreen && (this.Opacity != 0.0))
                 {
                     this.TopMost = false;
                     Program.dr.Init(this);
@@ -192,7 +193,7 @@ namespace UltimateBlueScreenSimulator
                 screenUpdater.Enabled = false;
                 this.Hide();
                 if (Program.gs.EnableEggs) { me.Crash(ex, "OrangeScreen"); }
-                else { MessageBox.Show("The blue screen cannot be displayed due to an error.\n\n" + ex.Message + "\n\n" + ex.StackTrace, "E R R O R", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+                else { MessageBox.Show("The crash screen cannot be displayed due to an error.\n\n" + ex.Message + "\n\n" + ex.StackTrace, "E R R O R", MessageBoxButtons.OK, MessageBoxIcon.Error); }
                 this.Close();
             }
         }
@@ -485,6 +486,15 @@ namespace UltimateBlueScreenSimulator
                 string output = Program.dr.Screenshot(this);
                 Cursor.Show();
                 MessageBox.Show($"Image saved as {output}", "Screenshot taken", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void Vistabs_MouseMove(object sender, MouseEventArgs e)
+        {
+            moves++;
+            if (moves > 50 && Program.isScreensaver && Program.gs.MouseMoveExit)
+            {
+                Close();
             }
         }
     }

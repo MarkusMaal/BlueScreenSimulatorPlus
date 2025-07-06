@@ -17,6 +17,7 @@ namespace UltimateBlueScreenSimulator.Forms.Simulators
         private int progressmillis = 0;
         internal int maxprogressmillis = 0;
         public BlueScreen me;
+        private int moves = 0;
 
         public SunValleyBSOD()
         {
@@ -60,6 +61,7 @@ namespace UltimateBlueScreenSimulator.Forms.Simulators
                 yourPCranLabel.Font = textfont;
                 progressIndicator.Font = textfont;
                 yourPCranLabel.Text = me.GetTexts()["Information text"];
+                progressIndicator.Text = string.Format(me.GetTexts()["Progress"], 0);
                 if (green)
                 {
                     this.BackColor = Color.FromArgb(47, 121, 42);
@@ -104,7 +106,7 @@ namespace UltimateBlueScreenSimulator.Forms.Simulators
                 progressUpdater.Enabled = false;
                 Hide();
                 if (Program.gs.EnableEggs) { me.Crash(ex, "OrangeScreen"); }
-                else { MessageBox.Show("The blue screen cannot be displayed due to an error.\n\n" + ex.Message + "\n\n" + ex.StackTrace, "E R R O R", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+                else { MessageBox.Show("The crash screen cannot be displayed due to an error.\n\n" + ex.Message + "\n\n" + ex.StackTrace, "E R R O R", MessageBoxButtons.OK, MessageBoxIcon.Error); }
                 Close();
             }
         }
@@ -207,6 +209,15 @@ namespace UltimateBlueScreenSimulator.Forms.Simulators
                 string output = Program.dr.Screenshot(this);
                 Cursor.Show();
                 MessageBox.Show($"Image saved as {output}", "Screenshot taken", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void SunValleyBSOD_MouseMove(object sender, MouseEventArgs e)
+        {
+            moves++;
+            if (moves > 50 && Program.isScreensaver && Program.gs.MouseMoveExit)
+            {
+                Close();
             }
         }
     }

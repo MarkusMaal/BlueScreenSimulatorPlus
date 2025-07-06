@@ -1170,10 +1170,10 @@ namespace UltimateBlueScreenSimulator
             this.hideInFullscreenButton.Name = "hideInFullscreenButton";
             this.hideInFullscreenButton.ReadOnly = false;
             this.hideInFullscreenButton.Ripple = true;
-            this.hideInFullscreenButton.Size = new System.Drawing.Size(424, 37);
+            this.hideInFullscreenButton.Size = new System.Drawing.Size(433, 37);
             this.hideInFullscreenButton.TabIndex = 4;
-            this.hideInFullscreenButton.Text = "Hide cursor when displaying a fullscreen blue screen [?]";
-            this.helpTip.SetToolTip(this.hideInFullscreenButton, "Hides Windows cursor from the simulated blue screen");
+            this.hideInFullscreenButton.Text = "Hide cursor when displaying a fullscreen crash screen [?]";
+            this.helpTip.SetToolTip(this.hideInFullscreenButton, "Hides Windows cursor from the simulated bugcheck");
             this.hideInFullscreenButton.UseVisualStyleBackColor = true;
             this.hideInFullscreenButton.CheckedChanged += new System.EventHandler(this.CursorVisibilitySetup);
             // 
@@ -1250,8 +1250,8 @@ namespace UltimateBlueScreenSimulator
             this.scalingModeBox.Size = new System.Drawing.Size(524, 35);
             this.scalingModeBox.StartIndex = 0;
             this.scalingModeBox.TabIndex = 6;
-            this.helpTip.SetToolTip(this.scalingModeBox, "Specifies how blue screens in full screen mode should be scaled. Bicubic scaling " +
-        "is recommended.");
+            this.helpTip.SetToolTip(this.scalingModeBox, "Specifies how bugchecks in full screen mode should be scaled. Bicubic scaling is " +
+        "recommended.");
             this.scalingModeBox.UseTallSize = false;
             this.scalingModeBox.SelectedIndexChanged += new System.EventHandler(this.ScalingModeSetup);
             // 
@@ -1280,9 +1280,9 @@ namespace UltimateBlueScreenSimulator
             this.simulatorSettingsNotice.Name = "simulatorSettingsNotice";
             this.simulatorSettingsNotice.Size = new System.Drawing.Size(676, 37);
             this.simulatorSettingsNotice.TabIndex = 7;
-            this.simulatorSettingsNotice.Text = "Scaling mode does not affect modern Windows blue screens, as they use the native " +
-    "resolution of your monitor without scaling. Setting up multi-monitor behaviour i" +
-    "s recommended for prank/stealth modes.";
+            this.simulatorSettingsNotice.Text = "Scaling mode does not affect modern Windows crash screens, as they use the native" +
+    " resolution of your monitor without scaling. Setting up multi-monitor behaviour " +
+    "is recommended for prank/stealth modes.";
             // 
             // configEditingButtonsFlowPanel
             // 

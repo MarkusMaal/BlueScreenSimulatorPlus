@@ -65,7 +65,7 @@ namespace UltimateBlueScreenSimulator
             this.genLabel.Name = "genLabel";
             this.genLabel.Size = new System.Drawing.Size(300, 19);
             this.genLabel.TabIndex = 1;
-            this.genLabel.Text = "Generating blue screen...";
+            this.genLabel.Text = "Generating bugcheck...";
             this.genLabel.UseWaitCursor = true;
             // 
             // Gen

@@ -35,8 +35,11 @@
             this.settingsPreview = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.screenSaverPreviewImage = new System.Windows.Forms.PictureBox();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.screenSaverPreviewImage)).BeginInit();
             this.SuspendLayout();
             // 
             // splashPlus
@@ -122,12 +125,35 @@
             this.pictureBox2.TabIndex = 10;
             this.pictureBox2.TabStop = false;
             // 
+            // screenSaverPreviewImage
+            // 
+            this.screenSaverPreviewImage.BackColor = System.Drawing.Color.Transparent;
+            this.screenSaverPreviewImage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.screenSaverPreviewImage.Location = new System.Drawing.Point(0, 0);
+            this.screenSaverPreviewImage.Name = "screenSaverPreviewImage";
+            this.screenSaverPreviewImage.Size = new System.Drawing.Size(150, 110);
+            this.screenSaverPreviewImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.screenSaverPreviewImage.TabIndex = 11;
+            this.screenSaverPreviewImage.TabStop = false;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 5F);
+            this.label3.Location = new System.Drawing.Point(74, 4);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(72, 7);
+            this.label3.TabIndex = 12;
+            this.label3.Text = "Generating preview...";
+            // 
             // ScreensaverPreview
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(80)))));
             this.ClientSize = new System.Drawing.Size(150, 110);
+            this.Controls.Add(this.screenSaverPreviewImage);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.splashPlus);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
@@ -141,6 +167,7 @@
             this.Text = "ScreensaverPreview";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.screenSaverPreviewImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -155,5 +182,7 @@
         private System.Windows.Forms.Label settingsPreview;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
+        public System.Windows.Forms.PictureBox screenSaverPreviewImage;
+        private System.Windows.Forms.Label label3;
     }
 }

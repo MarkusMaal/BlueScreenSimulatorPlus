@@ -1,7 +1,7 @@
 # BlueScreenSimulatorPlus (experimental branch)
 Open source code for BSSP. This is an enhanced blue screen simulator application for Windows. Use Visual Studio to recompile.
 
-Codename: ModestIndigo
+Codename: LotsaSpaghetti
 
 Version 3.1
 
@@ -16,7 +16,7 @@ To download the latest version of simulator, you can use two methods:
 The online documentation for the latest stable release can be found at [markustegelane.eu/bssp/help.pdf](https://markustegelane.eu/bssp/help.pdf).
 
 ## Developer documentation
-This documentation is contained within the readme and is meant for people who want to modify and further develop/contribute to this repository or just curious nerds.
+This documentation is contained within the readme and is meant for people who want to modify and further develop/contribute to this repository or are just curious nerds.
 
 ### Table of contents
 * [Global settings](#global-settings)

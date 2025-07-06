@@ -24,6 +24,7 @@ namespace UltimateBlueScreenSimulator
         public static ThreadStart ts;
         public static Thread bsod_starter;
         public static BlueScreen me;
+        public static WindowScreen specialwindow;
         public static string version = Assembly.GetExecutingAssembly().GetName().Version.ToString().Replace(".", "").Substring(0, 1) + "." + Assembly.GetExecutingAssembly().GetName().Version.ToString().Replace(".", "").Substring(1);
 
         /// <summary>
@@ -581,7 +582,7 @@ namespace UltimateBlueScreenSimulator
             //this code identifies Windows 11
             if (os_build >= 22000)
             {
-                SetOS("Windows 11", f);
+                SetOS("Windows 11 (", f);
             }
             //this code identifies Windows 10
             else if (winver.Contains("Windows 10"))
@@ -826,7 +827,7 @@ namespace UltimateBlueScreenSimulator
                 Program.loadfinished = true;
                 if (Program.gs.EnableEggs && (Program.gs.ErrorCode != 500))
                 {
-                    MessageBox.Show("Please select a Windows version! Also, how in the world did you deselect a dropdown list?", "Error displaying blue screen", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Please select a Windows version! Also, how in the world did you deselect a dropdown list?", "Error displaying crash screen", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else if (Program.gs.ErrorCode == 500)
                 {
@@ -835,7 +836,7 @@ namespace UltimateBlueScreenSimulator
                 }
                 else
                 {
-                    MessageBox.Show("No configuration selected", "Error displaying blue screen", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("No configuration selected", "Error displaying crash screen", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 return;
             }

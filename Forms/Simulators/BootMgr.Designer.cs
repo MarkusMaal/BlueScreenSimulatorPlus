@@ -201,6 +201,7 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Unloading);
             this.Load += new System.EventHandler(this.Initialization);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyChecker);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.BootMgr_MouseMove);
             this.ResumeLayout(false);
             this.PerformLayout();
 

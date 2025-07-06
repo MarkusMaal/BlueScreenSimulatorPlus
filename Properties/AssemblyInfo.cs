@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Blue screen simulator plus")]
-[assembly: AssemblyDescription("Allows you to simulate blue screens from different Windows releases")]
+[assembly: AssemblyDescription("Allows you to simulate crash screens from different Windows releases")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Markus' software (Markuse tarkvara)")]
 [assembly: AssemblyProduct("Blue screen simulator plus")]

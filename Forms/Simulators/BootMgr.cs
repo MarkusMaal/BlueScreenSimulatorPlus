@@ -1,8 +1,8 @@
-﻿using SimulatorDatabase;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using SimulatorDatabase;
 
 namespace UltimateBlueScreenSimulator
 {
@@ -10,6 +10,7 @@ namespace UltimateBlueScreenSimulator
     {
         private bool naturalclose = false;
         internal BlueScreen me;
+        private int moves = 0;
         public BootMgr()
         {
             //
@@ -76,7 +77,7 @@ namespace UltimateBlueScreenSimulator
                     Program.dr.DrawRainbow(this);
                 }
                 Program.loadfinished = true;
-                if (!me.GetBool("windowed"))
+                if (!me.GetBool("windowed") && (this.Opacity != 0.0))
                 {
                     Program.dr.Init(this);
                 } else
@@ -98,14 +99,17 @@ namespace UltimateBlueScreenSimulator
                 screenUpdater.Enabled = false;
                 this.Hide();
                 if (Program.gs.EnableEggs) { me.Crash(ex, "OrangeScreen"); }
-                else { MessageBox.Show("The blue screen cannot be displayed due to an error.\n\n" + ex.Message + "\n\n" + ex.StackTrace, "E R R O R", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+                else { MessageBox.Show("The crash screen cannot be displayed due to an error.\n\n" + ex.Message + "\n\n" + ex.StackTrace, "E R R O R", MessageBoxButtons.OK, MessageBoxIcon.Error); }
                 this.Close();
             }
         }
 
         private void UpdateScreen(object sender, EventArgs e)
         {
-            Program.dr.DrawAll();
+            if (this.Opacity != 0.0)
+            {
+                Program.dr.DrawAll();
+            }
         }
 
         private void Unloading(object sender, FormClosingEventArgs e)
@@ -118,6 +122,15 @@ namespace UltimateBlueScreenSimulator
             if (Program.gs.PM_CloseMainUI)
             {
                 Application.Exit();
+            }
+        }
+
+        private void BootMgr_MouseMove(object sender, MouseEventArgs e)
+        {
+            moves++;
+            if (moves > 50 && Program.isScreensaver && Program.gs.MouseMoveExit)
+            {
+                this.Close();
             }
         }
     }

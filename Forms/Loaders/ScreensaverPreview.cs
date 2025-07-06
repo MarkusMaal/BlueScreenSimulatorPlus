@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Runtime.InteropServices;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace UltimateBlueScreenSimulator.Forms.Loaders
@@ -44,6 +45,17 @@ namespace UltimateBlueScreenSimulator.Forms.Loaders
             Location = new Point(0, 0);
 
             settingsPreview.Text = $"Selected OS: {UIActions.me.GetString("os")}\nTemplate: {UIActions.me.GetString("friendlyname")}";
+
+            new Thread(() => {
+                this.BeginInvoke(new MethodInvoker(delegate {
+                    screenSaverPreviewImage.Visible = false;
+                }));
+                UIActions.me.ShowSpecial(screenSaverPreviewImage);
+                Thread.Sleep(1000);
+                this.BeginInvoke(new MethodInvoker(delegate {
+                    screenSaverPreviewImage.Visible = true;
+                }));
+            }).Start();
         }
     }
 }

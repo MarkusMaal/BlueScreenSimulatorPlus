@@ -747,15 +747,15 @@ namespace UltimateBlueScreenSimulator
                 string[] tips =
                 {
                 "Material Design is a design language developed by Google in 2014!",
-                "You can close a blue screen by pressing ALT+F4",
+                "You can close a bugcheck by pressing ALT+F4",
                 "There is a crash screen for a program that simulates crash screens, right?",
                 "The codename came from a song that was playing in the background during the development process",
                 "If Microsoft decides to change their error screens, I'll push an update that adds these changes",
                 "Configuration files store every property about all error screens",
                 "Windows Vista/7 blue screen scrolls, when there is too much information on screen",
                 "There are rainbow easter eggs for Windows XP, Vista, 7, CE, and 1.x/2.x blue screens",
-                "In prank mode, the watermark on a blue screen is disabled automatically",
-                "There are two error screens in this program, that technically aren't blue screens",
+                "In prank mode, the watermark on a bugcheck is disabled automatically",
+                "There are three error screens in this program, that technically aren't blue screens",
                 "This program, for the most part, also works in ReactOS, which is an open source Windows clone based on reverse engineering",
                 "The first Windows XP bluescreen I ever saw displayed DRIVER_IRQL_NOT_LESS_OR_EQUAL as the error code",
                 "You can also use the Enter key to close Windows 9x bluescreens",
@@ -766,7 +766,7 @@ namespace UltimateBlueScreenSimulator
                 "If you use the 'choose' button when setting a culprit file, you might see some weird filenames...",
                 "The background of the logo graphic in the about screen displays two major colors used by bugcheck screens - black and blue",
                 "This program isn't a copy of FlyTech's work, instead it was developed from scratch, because of the limitations I saw when trying out FlyTech's blue screen simulator.",
-                "You can use progress tuner to make more realistic progress indicators for modern blue screens",
+                "You can use progress tuner to make more realistic progress indicators for modern bugchecks",
                 "There is no random factoid here",
                 "target: void"
             };
@@ -1052,7 +1052,6 @@ namespace UltimateBlueScreenSimulator
 
         private void legacyInterfaceCheck_CheckedChanged(object sender, EventArgs e)
         {
-            closed = true;
             Program.gs.LegacyUI = legacyInterfaceCheck.Checked;
         }
 

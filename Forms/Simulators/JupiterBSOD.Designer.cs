@@ -115,6 +115,7 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.JupiterBSOD_FormClosed);
             this.Load += new System.EventHandler(this.JupiterBSOD_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.JupiterBSOD_KeyDown);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.JupiterBSOD_MouseMove);
             this.ResumeLayout(false);
             this.PerformLayout();
 

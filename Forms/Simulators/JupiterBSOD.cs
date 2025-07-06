@@ -16,6 +16,7 @@ namespace UltimateBlueScreenSimulator
         internal BlueScreen me;
         private IDictionary<string, string> texts;
         int time = 0;
+        private int moves = 0;
         public JupiterBSOD()
         {
             if (Program.verificate)
@@ -47,16 +48,19 @@ namespace UltimateBlueScreenSimulator
         {
             try
             {
-                this.WindowState = FormWindowState.Normal;
-                this.FormBorderStyle = FormBorderStyle.Sizable;
-                this.Text = me.GetString("friendlyname");
-                if (!Program.gs.ShowCursor && !me.GetBool("windowed"))
+                if (this.Opacity != 0.0)
                 {
-                    Cursor.Hide();
+                    this.WindowState = FormWindowState.Normal;
+                    this.FormBorderStyle = FormBorderStyle.Sizable;
+                    this.Text = me.GetString("friendlyname");
+                    if (!Program.gs.ShowCursor && !me.GetBool("windowed"))
+                    {
+                        Cursor.Hide();
+                    }
+                    this.Width = 1024;
+                    this.Height = 768;
+                    this.StartPosition = FormStartPosition.CenterScreen;
                 }
-                this.Width = 1024;
-                this.Height = 768;
-                this.StartPosition = FormStartPosition.CenterScreen;
                 Watermark.Visible = me.GetBool("watermark");
                 texts = me.GetTexts();
                 time = me.GetInt("timer");
@@ -86,6 +90,7 @@ namespace UltimateBlueScreenSimulator
                     ProgressLabel.Visible = false;
                     time = 0;
                 }
+                if (this.Opacity == 0.0) return;
                 this.Icon = me.GetIcon();
                 if (!me.GetBool("windowed"))
                 {
@@ -131,6 +136,7 @@ namespace UltimateBlueScreenSimulator
 
         private void screenUpdater_Tick(object sender, EventArgs e)
         {
+            if (this.Opacity == 0.0) return;
             if (!me.GetBool("windowed"))
             {
                 Program.dr.DrawAll();
@@ -177,6 +183,15 @@ namespace UltimateBlueScreenSimulator
             {
                 MessageBox.Show(Program.gs.PM_MsgText, Program.gs.PM_MsgTitle, Program.gs.PM_MsgType, Program.gs.PM_MsgIcon);
                 Program.gs.PM_ShowMessage = false;
+            }
+        }
+
+        private void JupiterBSOD_MouseMove(object sender, MouseEventArgs e)
+        {
+            moves++;
+            if (moves > 50 && Program.isScreensaver && Program.gs.MouseMoveExit)
+            {
+                this.Close();
             }
         }
     }

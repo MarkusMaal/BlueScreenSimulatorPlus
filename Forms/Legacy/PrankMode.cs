@@ -174,7 +174,7 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
                     bestMatchRadio.Enabled = false;
                     matchAllRadio.Checked = true;
                     matchAllRadio.Enabled = false;
-                    MessageBox.Show("Due to blue screen simulator plus configuration or the specific version of Windows you are using, it is not possible to use a bluescreen similar to one that your Windows version uses. If this is what you want to do, please enable your Windows version in BSSP settings or settings file. If this message still pops up, then use a different Windows version.", "Unable to autodetect Windows version", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("Due to blue screen simulator plus configuration or the specific version of Windows you are using, it is not possible to use a bugcheck similar to one that your Windows version uses. If this is what you want to do, please enable your Windows version in BSSP settings or settings file. If this message still pops up, then use a different Windows version.", "Unable to autodetect Windows version", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
             }
             letCloseBox.Enabled = !blackninja.Contains(Program.templates.BlueScreens[contain].GetString("os"));

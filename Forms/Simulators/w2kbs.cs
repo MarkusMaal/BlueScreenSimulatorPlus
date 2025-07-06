@@ -29,6 +29,7 @@ namespace UltimateBlueScreenSimulator
         public bool blink = true;
         public string processortype = "GenuineIntel";
         public string error = "User manually initiated crash (0xDEADDEAD)";
+        private int moves = 0;
 
         public W2kbs()
         {
@@ -40,16 +41,6 @@ namespace UltimateBlueScreenSimulator
             //
             Font = new Font(Font.Name, 8.25f * 96f / CreateGraphics().DpiX, Font.Style, Font.Unit, Font.GdiCharSet, Font.GdiVerticalFont);
             InitializeComponent();
-        }
-
-        string GenSpace(int spacecount)
-        {
-            string outspace = "";
-            for (int i = 0; i < spacecount; i++)
-            {
-                outspace += " ";
-            }
-            return outspace;
         }
 
         private void W2kbs_FormClosing(object sender, FormClosingEventArgs e)
@@ -207,7 +198,6 @@ namespace UltimateBlueScreenSimulator
                             errorCode += string.Format(addr, me.GenHex(8, me.GetFiles().First().Value[0]), me.GenHex(8, me.GetFiles().First().Value[1]), me.GenHex(8, me.GetFiles().First().Value[2]).ToLower(), whatfail.ToLower());
                         }
                     }
-                    errorCode = errorCode.Replace("IRQL", "DRIVER_IRQL");
 
                     foreach (string l in SafeSplit(errorCode))
                     {
@@ -380,7 +370,7 @@ namespace UltimateBlueScreenSimulator
                 waterMarkText.ForeColor = Color.FromArgb(colors[0], colors[1], colors[2]);
                 Program.loadfinished = true;
 
-                if (fullscreen)
+                if (fullscreen && (this.Opacity != 0.0))
                 {
                     Program.dr.Init(this);
                 }
@@ -390,7 +380,7 @@ namespace UltimateBlueScreenSimulator
                 screenUpdater.Enabled = false;
                 this.Hide();
                 if (Program.gs.EnableEggs && !Program.gs.DevBuild) { me.Crash(ex, "OrangeScreen"); }
-                else { MessageBox.Show("The blue screen cannot be displayed due to an error.\n\n" + ex.Message + "\n\n" + ex.StackTrace, "E R R O R", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+                else { MessageBox.Show("The crash screen cannot be displayed due to an error.\n\n" + ex.Message + "\n\n" + ex.StackTrace, "E R R O R", MessageBoxButtons.OK, MessageBoxIcon.Error); }
                 this.Close();
             }
         }
@@ -437,6 +427,7 @@ namespace UltimateBlueScreenSimulator
 
         private void Timer1_Tick(object sender, EventArgs e)
         {
+            if (this.Opacity == 0.0) { return; }
             if (screenUpdater.Interval != me.GetInt("blink_speed")) { screenUpdater.Interval = me.GetInt("blink_speed"); }
             if (fullscreen)
             {
@@ -598,6 +589,15 @@ namespace UltimateBlueScreenSimulator
                 string output = Program.dr.Screenshot(this);
                 Cursor.Show();
                 MessageBox.Show($"Image saved as {output}", "Screenshot taken", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void W2kbs_MouseMove(object sender, MouseEventArgs e)
+        {
+            moves++;
+            if (moves > 50 && Program.isScreensaver && Program.gs.MouseMoveExit)
+            {
+                Close();
             }
         }
     }

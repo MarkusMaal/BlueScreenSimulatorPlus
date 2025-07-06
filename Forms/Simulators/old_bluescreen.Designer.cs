@@ -44,12 +44,12 @@
             this.line3 = new System.Windows.Forms.PictureBox();
             this.line1 = new System.Windows.Forms.PictureBox();
             this.simplePanel = new System.Windows.Forms.Panel();
-            this.waterMarkText = new System.Windows.Forms.Label();
-            this.line9 = new System.Windows.Forms.PictureBox();
-            this.line10 = new System.Windows.Forms.PictureBox();
-            this.line11 = new System.Windows.Forms.PictureBox();
-            this.line12 = new System.Windows.Forms.PictureBox();
             this.line13 = new System.Windows.Forms.PictureBox();
+            this.line12 = new System.Windows.Forms.PictureBox();
+            this.line11 = new System.Windows.Forms.PictureBox();
+            this.line10 = new System.Windows.Forms.PictureBox();
+            this.line9 = new System.Windows.Forms.PictureBox();
+            this.waterMarkText = new System.Windows.Forms.Label();
             this.titleBorder.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.titleText)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.blinkingColor)).BeginInit();
@@ -63,11 +63,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.line3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.line1)).BeginInit();
             this.simplePanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.line9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.line10)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.line11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.line12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.line13)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.line12)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.line11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.line10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.line9)).BeginInit();
             this.SuspendLayout();
             // 
             // titleBorder
@@ -242,52 +242,17 @@
             this.simplePanel.TabIndex = 12;
             this.simplePanel.Paint += new System.Windows.Forms.PaintEventHandler(this.Panel2_Paint);
             // 
-            // waterMarkText
+            // line13
             // 
-            this.waterMarkText.AutoSize = true;
-            this.waterMarkText.Font = new System.Drawing.Font("Corbel", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
-            this.waterMarkText.ForeColor = System.Drawing.Color.Blue;
-            this.waterMarkText.Location = new System.Drawing.Point(12, 5);
-            this.waterMarkText.Name = "waterMarkText";
-            this.waterMarkText.Size = new System.Drawing.Size(131, 14);
-            this.waterMarkText.TabIndex = 13;
-            this.waterMarkText.Text = "bluescreen simulator plus";
-            // 
-            // line9
-            // 
-            this.line9.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.line9.BackColor = System.Drawing.Color.Transparent;
-            this.line9.ErrorImage = null;
-            this.line9.ImageLocation = "";
-            this.line9.Location = new System.Drawing.Point(36, 188);
-            this.line9.Name = "line9";
-            this.line9.Size = new System.Drawing.Size(548, 15);
-            this.line9.TabIndex = 6;
-            this.line9.TabStop = false;
-            // 
-            // line10
-            // 
-            this.line10.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.line10.BackColor = System.Drawing.Color.Transparent;
-            this.line10.ErrorImage = null;
-            this.line10.ImageLocation = "";
-            this.line10.Location = new System.Drawing.Point(36, 205);
-            this.line10.Name = "line10";
-            this.line10.Size = new System.Drawing.Size(548, 15);
-            this.line10.TabIndex = 6;
-            this.line10.TabStop = false;
-            // 
-            // line11
-            // 
-            this.line11.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.line11.BackColor = System.Drawing.Color.Transparent;
-            this.line11.ErrorImage = null;
-            this.line11.ImageLocation = "";
-            this.line11.Location = new System.Drawing.Point(36, 222);
-            this.line11.Name = "line11";
-            this.line11.Size = new System.Drawing.Size(548, 15);
-            this.line11.TabIndex = 6;
-            this.line11.TabStop = false;
+            this.line13.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.line13.BackColor = System.Drawing.Color.Transparent;
+            this.line13.ErrorImage = null;
+            this.line13.ImageLocation = "";
+            this.line13.Location = new System.Drawing.Point(36, 256);
+            this.line13.Name = "line13";
+            this.line13.Size = new System.Drawing.Size(548, 15);
+            this.line13.TabIndex = 6;
+            this.line13.TabStop = false;
             // 
             // line12
             // 
@@ -301,17 +266,52 @@
             this.line12.TabIndex = 6;
             this.line12.TabStop = false;
             // 
-            // line13
+            // line11
             // 
-            this.line13.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.line13.BackColor = System.Drawing.Color.Transparent;
-            this.line13.ErrorImage = null;
-            this.line13.ImageLocation = "";
-            this.line13.Location = new System.Drawing.Point(36, 256);
-            this.line13.Name = "line13";
-            this.line13.Size = new System.Drawing.Size(548, 15);
-            this.line13.TabIndex = 6;
-            this.line13.TabStop = false;
+            this.line11.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.line11.BackColor = System.Drawing.Color.Transparent;
+            this.line11.ErrorImage = null;
+            this.line11.ImageLocation = "";
+            this.line11.Location = new System.Drawing.Point(36, 222);
+            this.line11.Name = "line11";
+            this.line11.Size = new System.Drawing.Size(548, 15);
+            this.line11.TabIndex = 6;
+            this.line11.TabStop = false;
+            // 
+            // line10
+            // 
+            this.line10.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.line10.BackColor = System.Drawing.Color.Transparent;
+            this.line10.ErrorImage = null;
+            this.line10.ImageLocation = "";
+            this.line10.Location = new System.Drawing.Point(36, 205);
+            this.line10.Name = "line10";
+            this.line10.Size = new System.Drawing.Size(548, 15);
+            this.line10.TabIndex = 6;
+            this.line10.TabStop = false;
+            // 
+            // line9
+            // 
+            this.line9.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.line9.BackColor = System.Drawing.Color.Transparent;
+            this.line9.ErrorImage = null;
+            this.line9.ImageLocation = "";
+            this.line9.Location = new System.Drawing.Point(36, 188);
+            this.line9.Name = "line9";
+            this.line9.Size = new System.Drawing.Size(548, 15);
+            this.line9.TabIndex = 6;
+            this.line9.TabStop = false;
+            // 
+            // waterMarkText
+            // 
+            this.waterMarkText.AutoSize = true;
+            this.waterMarkText.Font = new System.Drawing.Font("Corbel", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
+            this.waterMarkText.ForeColor = System.Drawing.Color.Blue;
+            this.waterMarkText.Location = new System.Drawing.Point(12, 5);
+            this.waterMarkText.Name = "waterMarkText";
+            this.waterMarkText.Size = new System.Drawing.Size(131, 14);
+            this.waterMarkText.TabIndex = 13;
+            this.waterMarkText.Text = "bluescreen simulator plus";
             // 
             // Old_bluescreen
             // 
@@ -333,6 +333,7 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Old_bluescreen_FormClosed);
             this.Load += new System.EventHandler(this.Old_bluescreen_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Old_bluescreen_KeyDown);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Old_bluescreen_MouseMove);
             this.titleBorder.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.titleText)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.blinkingColor)).EndInit();
@@ -346,11 +347,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.line3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.line1)).EndInit();
             this.simplePanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.line9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.line10)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.line11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.line12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.line13)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.line12)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.line11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.line10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.line9)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

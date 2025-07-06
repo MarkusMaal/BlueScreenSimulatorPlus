@@ -21,6 +21,7 @@ namespace UltimateBlueScreenSimulator
         Color fg;
         Color hlb;
         Color hlf;
+        private int moves = 0;
         readonly string[] letters = { "?", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ":", ",", ".", "+", "*", "!", "_" , "-", "(", ")", "/", "\\", "'", " " };
         public Old_bluescreen()
         {
@@ -140,7 +141,7 @@ namespace UltimateBlueScreenSimulator
                 anyKeyMsg.Location = new Point((this.Width / 2) - (anyKeyMsg.Width / 2) - 16, anyKeyMsg.Location.Y);
                 blinkingColor.Location = new Point(anyKeyMsg.Location.X + anyKeyMsg.Width + 8, blinkingColor.Location.Y);
                 Program.loadfinished = true;
-                if (!window)
+                if (!window && this.Opacity != 0.0)
                 {
                     this.FormBorderStyle = FormBorderStyle.None;
                     this.TopMost = false;
@@ -161,7 +162,7 @@ namespace UltimateBlueScreenSimulator
                 screenUpdater.Enabled = false;
                 this.Hide();
                 if (Program.gs.EnableEggs) { me.Crash(ex, "OrangeScreen"); }
-                else { MessageBox.Show("The blue screen cannot be displayed due to an error.\n\n" + ex.Message + "\n\n" + ex.StackTrace, "E R R O R", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+                else { MessageBox.Show("The crash screen cannot be displayed due to an error.\n\n" + ex.Message + "\n\n" + ex.StackTrace, "E R R O R", MessageBoxButtons.OK, MessageBoxIcon.Error); }
                 this.Close();
             }
         }
@@ -363,6 +364,15 @@ namespace UltimateBlueScreenSimulator
                 {
                     Application.Exit();
                 }
+            }
+        }
+
+        private void Old_bluescreen_MouseMove(object sender, MouseEventArgs e)
+        {
+            moves++;
+            if (moves > 50 && Program.isScreensaver && Program.gs.MouseMoveExit)
+            {
+                this.Close();
             }
         }
     }

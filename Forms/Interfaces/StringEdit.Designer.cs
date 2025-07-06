@@ -48,12 +48,12 @@ namespace UltimateBlueScreenSimulator
             this.autoRadio = new MaterialSkin.Controls.MaterialRadioButton();
             this.manualRadio = new MaterialSkin.Controls.MaterialRadioButton();
             this.qrProps = new System.Windows.Forms.Panel();
-            this.browseButton = new MaterialSkin.Controls.MaterialButton();
-            this.filenameLabel = new MaterialSkin.Controls.MaterialLabel();
             this.radioFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.defaultRadioBtn = new MaterialSkin.Controls.MaterialRadioButton();
             this.transparentRadioBtn = new MaterialSkin.Controls.MaterialRadioButton();
             this.customRadioBtn = new MaterialSkin.Controls.MaterialRadioButton();
+            this.browseButton = new MaterialSkin.Controls.MaterialButton();
+            this.filenameLabel = new MaterialSkin.Controls.MaterialLabel();
             this.timeoutProps = new System.Windows.Forms.Panel();
             this.timeoutBox = new MaterialSkin.Controls.MaterialTextBox();
             this.secondsLabel = new MaterialSkin.Controls.MaterialLabel();
@@ -64,6 +64,8 @@ namespace UltimateBlueScreenSimulator
             this.speedTrackbar = new MaterialSkin.Controls.MaterialSlider();
             this.blinkingDash = new MaterialSkin.Controls.MaterialLabel();
             this.previewLabel = new MaterialSkin.Controls.MaterialLabel();
+            this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
+            this.bugcheckPreview = new System.Windows.Forms.PictureBox();
             this.colorChooser = new System.Windows.Forms.ColorDialog();
             this.blinkywinky = new System.Windows.Forms.Timer(this.components);
             this.fontChooser = new System.Windows.Forms.FontDialog();
@@ -71,6 +73,9 @@ namespace UltimateBlueScreenSimulator
             this.customQRBrowser = new System.Windows.Forms.OpenFileDialog();
             this.whereTheButtonsLink = new System.Windows.Forms.LinkLabel();
             this.label1 = new System.Windows.Forms.Label();
+            this.previewRefresh = new System.Windows.Forms.Timer(this.components);
+            this.updatePreviewCheck = new MaterialSkin.Controls.MaterialCheckbox();
+            this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
             this.stringProps.SuspendLayout();
             this.colorProps.SuspendLayout();
             this.specificPropsFlowLayoutPanel.SuspendLayout();
@@ -80,6 +85,7 @@ namespace UltimateBlueScreenSimulator
             this.timeoutProps.SuspendLayout();
             this.fontProps.SuspendLayout();
             this.blinkProps.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bugcheckPreview)).BeginInit();
             this.SuspendLayout();
             // 
             // AllIcons
@@ -122,7 +128,7 @@ namespace UltimateBlueScreenSimulator
             this.MessageView.Name = "MessageView";
             this.MessageView.OwnerDraw = true;
             this.MessageView.ShowGroups = false;
-            this.MessageView.Size = new System.Drawing.Size(465, 543);
+            this.MessageView.Size = new System.Drawing.Size(380, 583);
             this.MessageView.SmallImageList = this.AllIcons;
             this.MessageView.TabIndex = 0;
             this.MessageView.UseCompatibleStateImageBehavior = false;
@@ -134,7 +140,7 @@ namespace UltimateBlueScreenSimulator
             this.specificProps.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.specificProps.Depth = 0;
             this.specificProps.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.specificProps.Location = new System.Drawing.Point(503, 30);
+            this.specificProps.Location = new System.Drawing.Point(398, 27);
             this.specificProps.MouseState = MaterialSkin.MouseState.HOVER;
             this.specificProps.Name = "specificProps";
             this.specificProps.Size = new System.Drawing.Size(403, 22);
@@ -150,7 +156,7 @@ namespace UltimateBlueScreenSimulator
             this.buttonOK.ForeColor = System.Drawing.SystemColors.ControlText;
             this.buttonOK.HighEmphasis = true;
             this.buttonOK.Icon = null;
-            this.buttonOK.Location = new System.Drawing.Point(821, 602);
+            this.buttonOK.Location = new System.Drawing.Point(736, 642);
             this.buttonOK.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.buttonOK.MouseState = MaterialSkin.MouseState.HOVER;
             this.buttonOK.Name = "buttonOK";
@@ -166,7 +172,7 @@ namespace UltimateBlueScreenSimulator
             // stringProps
             // 
             this.stringProps.Controls.Add(this.stringEditor);
-            this.stringProps.Location = new System.Drawing.Point(3, 3);
+            this.stringProps.Location = new System.Drawing.Point(3, 46);
             this.stringProps.Name = "stringProps";
             this.stringProps.Size = new System.Drawing.Size(400, 175);
             this.stringProps.TabIndex = 6;
@@ -236,23 +242,23 @@ namespace UltimateBlueScreenSimulator
             this.specificPropsFlowLayoutPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.specificPropsFlowLayoutPanel.AutoScroll = true;
-            this.specificPropsFlowLayoutPanel.Controls.Add(this.stringProps);
             this.specificPropsFlowLayoutPanel.Controls.Add(this.xpMsgChooser);
+            this.specificPropsFlowLayoutPanel.Controls.Add(this.stringProps);
             this.specificPropsFlowLayoutPanel.Controls.Add(this.qrProps);
             this.specificPropsFlowLayoutPanel.Controls.Add(this.timeoutProps);
             this.specificPropsFlowLayoutPanel.Controls.Add(this.fontProps);
             this.specificPropsFlowLayoutPanel.Controls.Add(this.blinkProps);
             this.specificPropsFlowLayoutPanel.Controls.Add(this.colorProps);
-            this.specificPropsFlowLayoutPanel.Location = new System.Drawing.Point(483, 52);
+            this.specificPropsFlowLayoutPanel.Location = new System.Drawing.Point(398, 52);
             this.specificPropsFlowLayoutPanel.Name = "specificPropsFlowLayoutPanel";
-            this.specificPropsFlowLayoutPanel.Size = new System.Drawing.Size(424, 545);
+            this.specificPropsFlowLayoutPanel.Size = new System.Drawing.Size(424, 230);
             this.specificPropsFlowLayoutPanel.TabIndex = 2;
             // 
             // xpMsgChooser
             // 
             this.xpMsgChooser.Controls.Add(this.autoRadio);
             this.xpMsgChooser.Controls.Add(this.manualRadio);
-            this.xpMsgChooser.Location = new System.Drawing.Point(3, 184);
+            this.xpMsgChooser.Location = new System.Drawing.Point(3, 3);
             this.xpMsgChooser.Name = "xpMsgChooser";
             this.xpMsgChooser.Size = new System.Drawing.Size(401, 37);
             this.xpMsgChooser.TabIndex = 7;
@@ -294,56 +300,21 @@ namespace UltimateBlueScreenSimulator
             // 
             // qrProps
             // 
+            this.qrProps.Controls.Add(this.radioFlowLayoutPanel);
             this.qrProps.Controls.Add(this.browseButton);
             this.qrProps.Controls.Add(this.filenameLabel);
-            this.qrProps.Controls.Add(this.radioFlowLayoutPanel);
             this.qrProps.Location = new System.Drawing.Point(3, 227);
             this.qrProps.Name = "qrProps";
             this.qrProps.Size = new System.Drawing.Size(394, 111);
             this.qrProps.TabIndex = 1;
             this.qrProps.Visible = false;
             // 
-            // browseButton
-            // 
-            this.browseButton.AutoSize = false;
-            this.browseButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.browseButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.browseButton.Depth = 0;
-            this.browseButton.Enabled = false;
-            this.browseButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.browseButton.HighEmphasis = true;
-            this.browseButton.Icon = null;
-            this.browseButton.Location = new System.Drawing.Point(12, 72);
-            this.browseButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.browseButton.MouseState = MaterialSkin.MouseState.HOVER;
-            this.browseButton.Name = "browseButton";
-            this.browseButton.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.browseButton.Size = new System.Drawing.Size(75, 23);
-            this.browseButton.TabIndex = 5;
-            this.browseButton.Text = "Browse";
-            this.browseButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.browseButton.UseAccentColor = false;
-            this.browseButton.UseVisualStyleBackColor = true;
-            this.browseButton.Click += new System.EventHandler(this.BrowseButton_Click);
-            // 
-            // filenameLabel
-            // 
-            this.filenameLabel.AutoSize = true;
-            this.filenameLabel.Depth = 0;
-            this.filenameLabel.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.filenameLabel.Location = new System.Drawing.Point(9, 47);
-            this.filenameLabel.MouseState = MaterialSkin.MouseState.HOVER;
-            this.filenameLabel.Name = "filenameLabel";
-            this.filenameLabel.Size = new System.Drawing.Size(121, 19);
-            this.filenameLabel.TabIndex = 1;
-            this.filenameLabel.Text = "Filename: local:0";
-            // 
             // radioFlowLayoutPanel
             // 
             this.radioFlowLayoutPanel.Controls.Add(this.defaultRadioBtn);
             this.radioFlowLayoutPanel.Controls.Add(this.transparentRadioBtn);
             this.radioFlowLayoutPanel.Controls.Add(this.customRadioBtn);
-            this.radioFlowLayoutPanel.Location = new System.Drawing.Point(7, 3);
+            this.radioFlowLayoutPanel.Location = new System.Drawing.Point(6, 3);
             this.radioFlowLayoutPanel.Name = "radioFlowLayoutPanel";
             this.radioFlowLayoutPanel.Size = new System.Drawing.Size(384, 33);
             this.radioFlowLayoutPanel.TabIndex = 1;
@@ -397,6 +368,41 @@ namespace UltimateBlueScreenSimulator
             this.customRadioBtn.Text = "Custom";
             this.customRadioBtn.UseVisualStyleBackColor = true;
             this.customRadioBtn.CheckedChanged += new System.EventHandler(this.CustomRadioBtn_CheckedChanged);
+            // 
+            // browseButton
+            // 
+            this.browseButton.AutoSize = false;
+            this.browseButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.browseButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.browseButton.Depth = 0;
+            this.browseButton.Enabled = false;
+            this.browseButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.browseButton.HighEmphasis = true;
+            this.browseButton.Icon = null;
+            this.browseButton.Location = new System.Drawing.Point(12, 72);
+            this.browseButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.browseButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.browseButton.Name = "browseButton";
+            this.browseButton.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.browseButton.Size = new System.Drawing.Size(75, 23);
+            this.browseButton.TabIndex = 5;
+            this.browseButton.Text = "Browse";
+            this.browseButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.browseButton.UseAccentColor = false;
+            this.browseButton.UseVisualStyleBackColor = true;
+            this.browseButton.Click += new System.EventHandler(this.BrowseButton_Click);
+            // 
+            // filenameLabel
+            // 
+            this.filenameLabel.AutoSize = true;
+            this.filenameLabel.Depth = 0;
+            this.filenameLabel.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.filenameLabel.Location = new System.Drawing.Point(9, 47);
+            this.filenameLabel.MouseState = MaterialSkin.MouseState.HOVER;
+            this.filenameLabel.Name = "filenameLabel";
+            this.filenameLabel.Size = new System.Drawing.Size(121, 19);
+            this.filenameLabel.TabIndex = 1;
+            this.filenameLabel.Text = "Filename: local:0";
             // 
             // timeoutProps
             // 
@@ -533,6 +539,35 @@ namespace UltimateBlueScreenSimulator
             this.previewLabel.TabIndex = 3;
             this.previewLabel.Text = "Preview:";
             // 
+            // materialLabel1
+            // 
+            this.materialLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.materialLabel1.Depth = 0;
+            this.materialLabel1.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel1.Location = new System.Drawing.Point(401, 294);
+            this.materialLabel1.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel1.Name = "materialLabel1";
+            this.materialLabel1.Size = new System.Drawing.Size(177, 23);
+            this.materialLabel1.TabIndex = 0;
+            this.materialLabel1.Text = "Preview";
+            this.materialLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.materialLabel1.Click += new System.EventHandler(this.materialLabel1_Click);
+            // 
+            // bugcheckPreview
+            // 
+            this.bugcheckPreview.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.bugcheckPreview.Image = global::UltimateBlueScreenSimulator.Properties.Resources.loadpic;
+            this.bugcheckPreview.Location = new System.Drawing.Point(401, 323);
+            this.bugcheckPreview.Margin = new System.Windows.Forms.Padding(0);
+            this.bugcheckPreview.Name = "bugcheckPreview";
+            this.bugcheckPreview.Size = new System.Drawing.Size(421, 310);
+            this.bugcheckPreview.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.bugcheckPreview.TabIndex = 1;
+            this.bugcheckPreview.TabStop = false;
+            this.bugcheckPreview.Click += new System.EventHandler(this.bugcheckPreview_Click);
+            this.bugcheckPreview.Paint += new System.Windows.Forms.PaintEventHandler(this.bugcheckPreview_Paint);
+            // 
             // blinkywinky
             // 
             this.blinkywinky.Tick += new System.EventHandler(this.Blinkywinky_Tick);
@@ -550,7 +585,7 @@ namespace UltimateBlueScreenSimulator
             // 
             this.whereTheButtonsLink.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.whereTheButtonsLink.AutoSize = true;
-            this.whereTheButtonsLink.Location = new System.Drawing.Point(12, 646);
+            this.whereTheButtonsLink.Location = new System.Drawing.Point(12, 686);
             this.whereTheButtonsLink.Name = "whereTheButtonsLink";
             this.whereTheButtonsLink.Size = new System.Drawing.Size(189, 13);
             this.whereTheButtonsLink.TabIndex = 7;
@@ -564,17 +599,53 @@ namespace UltimateBlueScreenSimulator
             this.label1.AutoSize = true;
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label1.ForeColor = System.Drawing.Color.Red;
-            this.label1.Location = new System.Drawing.Point(9, 609);
+            this.label1.Location = new System.Drawing.Point(9, 649);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(329, 13);
             this.label1.TabIndex = 9;
             this.label1.Text = "Hack zone! Do not report issues caused by changing these settings!";
             // 
+            // updatePreviewCheck
+            // 
+            this.updatePreviewCheck.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.updatePreviewCheck.AutoSize = true;
+            this.updatePreviewCheck.Checked = true;
+            this.updatePreviewCheck.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.updatePreviewCheck.Depth = 0;
+            this.updatePreviewCheck.Location = new System.Drawing.Point(575, 285);
+            this.updatePreviewCheck.Margin = new System.Windows.Forms.Padding(0);
+            this.updatePreviewCheck.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.updatePreviewCheck.MouseState = MaterialSkin.MouseState.HOVER;
+            this.updatePreviewCheck.Name = "updatePreviewCheck";
+            this.updatePreviewCheck.ReadOnly = false;
+            this.updatePreviewCheck.Ripple = true;
+            this.updatePreviewCheck.Size = new System.Drawing.Size(244, 37);
+            this.updatePreviewCheck.TabIndex = 10;
+            this.updatePreviewCheck.Text = "Automatically update preview";
+            this.updatePreviewCheck.UseVisualStyleBackColor = true;
+            this.updatePreviewCheck.CheckedChanged += new System.EventHandler(this.materialCheckbox1_CheckedChanged);
+            // 
+            // materialLabel2
+            // 
+            this.materialLabel2.AutoSize = true;
+            this.materialLabel2.Depth = 0;
+            this.materialLabel2.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel2.Location = new System.Drawing.Point(9, 30);
+            this.materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel2.Name = "materialLabel2";
+            this.materialLabel2.Size = new System.Drawing.Size(72, 19);
+            this.materialLabel2.TabIndex = 11;
+            this.materialLabel2.Text = "Properties";
+            // 
             // StringEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(913, 637);
+            this.ClientSize = new System.Drawing.Size(828, 677);
+            this.Controls.Add(this.materialLabel2);
+            this.Controls.Add(this.updatePreviewCheck);
+            this.Controls.Add(this.materialLabel1);
+            this.Controls.Add(this.bugcheckPreview);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.whereTheButtonsLink);
             this.Controls.Add(this.specificPropsFlowLayoutPanel);
@@ -607,6 +678,7 @@ namespace UltimateBlueScreenSimulator
             this.fontProps.PerformLayout();
             this.blinkProps.ResumeLayout(false);
             this.blinkProps.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bugcheckPreview)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -650,5 +722,10 @@ namespace UltimateBlueScreenSimulator
         private MaterialSkin.Controls.MaterialRadioButton autoRadio;
         private MaterialSkin.Controls.MaterialRadioButton manualRadio;
         private System.Windows.Forms.Label label1;
+        private MaterialLabel materialLabel1;
+        private System.Windows.Forms.PictureBox bugcheckPreview;
+        private System.Windows.Forms.Timer previewRefresh;
+        private MaterialCheckbox updatePreviewCheck;
+        private MaterialLabel materialLabel2;
     }
 }

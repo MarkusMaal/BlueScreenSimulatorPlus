@@ -12,6 +12,7 @@ namespace UltimateBlueScreenSimulator
         public bool fullscreen = true;
         public string whatfail = "";
         private bool naturalclose = false;
+        private int moves = 0;
         bool inr = false;
         bool ing = false;
         bool inb = false;
@@ -102,7 +103,6 @@ namespace UltimateBlueScreenSimulator
                     supportInfo.Visible = false;
                     introductionText.Visible = false;
                 }
-                errorCode.Text = errorCode.Text.Replace("IRQL", "DRIVER_IRQL");
                 errorCode.Text = errorCode.Text.Replace("MANUALLY_INITIATED_CRASH", "The end-user manually generated the crash dump.");
                 errorCode.Text = errorCode.Text.Replace("VIDEO_TDR_", "VIDEO_TDR_ERROR");
                 technicalCode.Text = technicalCode.Text.Replace("STOP: ERROR", "STOP: 0x00000116");
@@ -114,7 +114,7 @@ namespace UltimateBlueScreenSimulator
                 dumpLabel.Location = new Point(technicalCode.Location.X, technicalCode.Location.Y + 48);
                 waterMarkText.ForeColor = Color.FromArgb(colors[0], colors[1], colors[2]);
                 Program.loadfinished = true;
-                if (fullscreen)
+                if (fullscreen && (this.Opacity != 0.0))
                 {
                     this.TopMost = false;
                     Program.dr.Init(this);
@@ -137,7 +137,7 @@ namespace UltimateBlueScreenSimulator
             {
                 Program.loadfinished = true;
                 if (Program.gs.EnableEggs) { me.Crash(ex, "OrangeScreen"); }
-                else { MessageBox.Show("The blue screen cannot be displayed due to an error.\n\n" + ex.Message + "\n\n" + ex.StackTrace, "E R R O R", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+                else { MessageBox.Show("The crash screen cannot be displayed due to an error.\n\n" + ex.Message + "\n\n" + ex.StackTrace, "E R R O R", MessageBoxButtons.OK, MessageBoxIcon.Error); }
                 this.Close();
             }
         }
@@ -397,6 +397,15 @@ namespace UltimateBlueScreenSimulator
                 string output = Program.dr.Screenshot(this);
                 Cursor.Show();
                 MessageBox.Show($"Image saved as {output}", "Screenshot taken", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void Xvsbs_MouseMove(object sender, MouseEventArgs e)
+        {
+            moves++;
+            if (moves > 50 && Program.isScreensaver && Program.gs.MouseMoveExit)
+            {
+                Close();
             }
         }
     }

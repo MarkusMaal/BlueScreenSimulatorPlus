@@ -27,7 +27,7 @@ namespace UltimateBlueScreenSimulator
 
         private void Initialize(object sender, EventArgs e)
         {
-            if (this.Text != "Edit blue screen")
+            if (this.Text != "Edit bugcheck")
             {
                 templatePicker.SelectedIndex = 1;
                 templatePicker.SelectedIndex = 0;
@@ -38,7 +38,7 @@ namespace UltimateBlueScreenSimulator
         {
             templatePicker.Text = me.GetString("os");
             templatePicker.Enabled = false;
-            this.Text = "Edit blue screen";
+            this.Text = "Edit bugcheck";
 
             osBox.Text = me.GetString("os");
             friendlyBox.Text = me.GetString("friendlyname");
@@ -154,7 +154,7 @@ namespace UltimateBlueScreenSimulator
 
         private void MakeBluescreen(object sender, EventArgs e)
         {
-            if (this.Text != "Edit blue screen")
+            if (this.Text != "Edit bugcheck")
             {
                 Program.templates.AddTemplate(osBox.Text, friendlyBox.Text, base_os);
                 Program.templates.GetLast().SetString("icon", iconBox.SelectedItem.ToString());

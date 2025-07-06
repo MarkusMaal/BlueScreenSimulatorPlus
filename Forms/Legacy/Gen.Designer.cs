@@ -52,7 +52,7 @@
             this.genLabel.Name = "genLabel";
             this.genLabel.Size = new System.Drawing.Size(169, 17);
             this.genLabel.TabIndex = 1;
-            this.genLabel.Text = "Generating blue screen...";
+            this.genLabel.Text = "Generating bugcheck...";
             // 
             // genTimer
             // 

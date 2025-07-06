@@ -24,6 +24,8 @@ namespace UltimateBlueScreenSimulator
         internal Random r;
         readonly SoundPlayer sp = new SoundPlayer();
         Bitmap splash = Properties.Resources.win1_splash;
+        private int moves = 0;
+
         public Win()
         {
             //
@@ -191,7 +193,7 @@ namespace UltimateBlueScreenSimulator
                         z++;
                     }
                 }
-                if (me.GetBool("playsound"))
+                if (me.GetBool("playsound") && (this.Opacity != 0.0))
                 {
                     sp.Stream = Properties.Resources.beep;
                     sp.PlayLooping();
@@ -202,7 +204,7 @@ namespace UltimateBlueScreenSimulator
                 if (colors[2] > 255) { colors[2] -= 255; }
                 watermark.ForeColor = Color.FromArgb(colors[0], colors[1], colors[2]);
                 Program.loadfinished = true;
-                if (!me.GetBool("windowed"))
+                if (!me.GetBool("windowed") && (this.Opacity != 0.0))
                 {
                     this.FormBorderStyle = FormBorderStyle.None;
                     this.TopMost = false;
@@ -221,7 +223,7 @@ namespace UltimateBlueScreenSimulator
                 screenUpdater.Enabled = false;
                 this.Hide();
                 if (Program.gs.EnableEggs) { me.Crash(ex, "OrangeScreen"); }
-                else { MessageBox.Show("The blue screen cannot be displayed due to an error.\n\n" + ex.Message + "\n\n" + ex.StackTrace, "E R R O R", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+                else { MessageBox.Show("The crash screen cannot be displayed due to an error.\n\n" + ex.Message + "\n\n" + ex.StackTrace, "E R R O R", MessageBoxButtons.OK, MessageBoxIcon.Error); }
                 this.Close();
             }
             Program.load_progress = 100;
@@ -229,8 +231,9 @@ namespace UltimateBlueScreenSimulator
 
         private void Timer1_Tick(object sender, EventArgs e)
         {
+            if (this.Opacity == 0.0) return;
             if (screenUpdater.Interval != me.GetInt("blink_speed")) { screenUpdater.Interval = me.GetInt("blink_speed"); }
-            if (!window)
+            if (!window && (this.Opacity != 0.0))
             {
                 foreach (WindowScreen ws in Program.dr.wss)
                 {
@@ -382,6 +385,15 @@ namespace UltimateBlueScreenSimulator
                 string output = Program.dr.Screenshot(this);
                 Cursor.Show();
                 MessageBox.Show($"Image saved as {output}", "Screenshot taken", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void Win_MouseMove(object sender, MouseEventArgs e)
+        {
+            moves++;
+            if (moves > 50 && Program.isScreensaver && Program.gs.MouseMoveExit)
+            {
+                Close();
             }
         }
     }

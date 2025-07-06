@@ -963,7 +963,7 @@
             this.simulatorSettingsNotice.Name = "simulatorSettingsNotice";
             this.simulatorSettingsNotice.Size = new System.Drawing.Size(493, 37);
             this.simulatorSettingsNotice.TabIndex = 7;
-            this.simulatorSettingsNotice.Text = "Scaling mode does not affect modern Windows blue screens, as they use the native " +
+            this.simulatorSettingsNotice.Text = "Scaling mode does not affect modern Windows crash screens, as they use the native " +
     "resolution of your monitor without scaling. Setting up multi-monitor behaviour i" +
     "s recommended for prank/stealth modes.";
             // 
@@ -983,7 +983,7 @@
             this.scalingModeBox.Name = "scalingModeBox";
             this.scalingModeBox.Size = new System.Drawing.Size(370, 21);
             this.scalingModeBox.TabIndex = 6;
-            this.helpTip.SetToolTip(this.scalingModeBox, "Specifies how blue screens in full screen mode should be scaled. Bicubic scaling " +
+            this.helpTip.SetToolTip(this.scalingModeBox, "Specifies how crash screens in full screen mode should be scaled. Bicubic scaling " +
         "is recommended.");
             this.scalingModeBox.SelectedIndexChanged += new System.EventHandler(this.ScalingModeSetup);
             // 
@@ -1005,8 +1005,8 @@
             this.hideInFullscreenButton.Name = "hideInFullscreenButton";
             this.hideInFullscreenButton.Size = new System.Drawing.Size(288, 17);
             this.hideInFullscreenButton.TabIndex = 4;
-            this.hideInFullscreenButton.Text = "Hide cursor when displaying a fullscreen blue screen [?]";
-            this.helpTip.SetToolTip(this.hideInFullscreenButton, "Hides Windows cursor from the simulated blue screen");
+            this.hideInFullscreenButton.Text = "Hide cursor when displaying a fullscreen crash screen [?]";
+            this.helpTip.SetToolTip(this.hideInFullscreenButton, "Hides Windows cursor from the simulated crash screen");
             this.hideInFullscreenButton.UseVisualStyleBackColor = true;
             this.hideInFullscreenButton.CheckedChanged += new System.EventHandler(this.CursorVisibilitySetup);
             // 

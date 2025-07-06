@@ -16,6 +16,8 @@ namespace UltimateBlueScreenSimulator
         internal BlueScreen me = Program.templates.GetAt(0);
 
         string state = "0";
+        private int moves = 0;
+
         public Cebsod()
         {
             InitializeComponent();
@@ -71,7 +73,7 @@ namespace UltimateBlueScreenSimulator
                 }
                 Program.loadfinished = true;
                 if (!fullscreen) { this.FormBorderStyle = FormBorderStyle.FixedSingle; }
-                if (fullscreen)
+                if (fullscreen && (this.Opacity != 0.0))
                 {
                     this.TopMost = false;
                     Program.dr.Init(this);
@@ -83,7 +85,7 @@ namespace UltimateBlueScreenSimulator
                 screenUpdater.Enabled = false;
                 this.Hide();
                 if (Program.gs.EnableEggs) { me.Crash(ex, "OrangeScreen"); }
-                else { MessageBox.Show("The blue screen cannot be displayed due to an error.\n\n" + ex.Message + "\n\n" + ex.StackTrace, "E R R O R", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+                else { MessageBox.Show("The crash screen cannot be displayed due to an error.\n\n" + ex.Message + "\n\n" + ex.StackTrace, "E R R O R", MessageBoxButtons.OK, MessageBoxIcon.Error); }
                 this.Close();
             }
             int[] colors = { this.BackColor.R + 50, this.BackColor.G + 50, this.BackColor.B + 50 };
@@ -227,7 +229,10 @@ namespace UltimateBlueScreenSimulator
             waterMarkText.ForeColor = Color.FromArgb(colors[0], colors[1], colors[2]);
             try
             {
-                Program.dr.DrawAll();
+                if (this.Opacity != 0.0)
+                {
+                    Program.dr.DrawAll();
+                }
             }
             catch
             {
@@ -247,6 +252,15 @@ namespace UltimateBlueScreenSimulator
                 string output = Program.dr.Screenshot(this);
                 Cursor.Show();
                 MessageBox.Show($"Image saved as {output}", "Screenshot taken", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void Cebsod_MouseMove(object sender, MouseEventArgs e)
+        {
+            moves++;
+            if (moves > 50 && Program.isScreensaver && Program.gs.MouseMoveExit)
+            {
+                this.Close();
             }
         }
     }

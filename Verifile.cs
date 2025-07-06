@@ -99,7 +99,7 @@ namespace UltimateBlueScreenSimulator
                 }
                 string usetype = "";
                 if (preversion) { usetype = "version of the "; }
-                if (MessageBox.Show("It looks like you are using this " + usetype + "program for the very first time. If you did not start this program, dont worry. This program is not malicious, but you should click \"No\" below and scan your computer for viruses/malicious programs.\n\n\nThis program can only be used for non-harmful purposes, such as:\n\n* Screenshotting blue screens from different operating systems (for use in a video, article, etc)\n* Non-harmful pranking purposes (ie pranking a friend, relative, etc)\n* Having fun tweaking different blue screens\n* Learning about different blue screens from different operating systems\n* Other testing or reviewing purposes\n\n\nBy clicking or selecting \"Yes\" you accept that you DO NOT use this program maliciously (ie as a part of a malicious program, a way of sacrificing productivity, etc). A verification signature will be created preventing this message from popping up in this computer. \n\nIf you click or select \"No\" then the program will close. The popup will reappear once you relaunch the program from this computer and user account.", "Welcome to Blue screen simulator plus", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.No)
+                if (MessageBox.Show("It looks like you are using this " + usetype + "program for the very first time. If you did not start this program, dont worry. This program is not malicious, but you should click \"No\" below and scan your computer for viruses/malicious programs.\n\n\nThis program can only be used for non-harmful purposes, such as:\n\n* Screenshotting crash screens from different operating systems (for use in a video, article, etc)\n* Non-harmful pranking purposes (ie pranking a friend, relative, etc)\n* Having fun tweaking different blue screens\n* Learning about different blue screens from different operating systems\n* Other testing or reviewing purposes\n\n\nBy clicking or selecting \"Yes\" you accept that you DO NOT use this program maliciously (ie as a part of a malicious program, a way of sacrificing productivity, etc). A verification signature will be created preventing this message from popping up in this computer. \n\nIf you click or select \"No\" then the program will close. The popup will reappear once you relaunch the program from this computer and user account.", "Welcome to Blue screen simulator plus", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.No)
                 {
                     Program.halt = true;
                     Application.Exit();
@@ -159,7 +159,14 @@ namespace UltimateBlueScreenSimulator
             }
             catch
             {
-                MessageBox.Show("Unable to write signature information. To remove first use message, please run the application as administrator at least once.", "Verifile error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (Program.wineKey != null)
+                {
+                    MessageBox.Show("Signature verification didn't work, most likely because you tried to run this app with Wine. You'll see this message every time you attempt to launch the program unless you run it under Windows or when WineHQ finally decide to fix their mess by releasing a patch...", "Verifile error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    MessageBox.Show("Unable to write signature information. To remove first use message, please run the application as administrator at least once.", "Verifile error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
                 return "error";
             }
         }

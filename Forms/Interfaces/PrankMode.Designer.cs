@@ -421,7 +421,7 @@
             this.letCloseBox.Ripple = true;
             this.letCloseBox.Size = new System.Drawing.Size(406, 37);
             this.letCloseBox.TabIndex = 3;
-            this.letCloseBox.Text = "Allow the user to close the blue screen using ALT+F4";
+            this.letCloseBox.Text = "Allow the user to close the crash screen using ALT+F4";
             this.letCloseBox.UseVisualStyleBackColor = true;
             this.letCloseBox.CheckedChanged += new System.EventHandler(this.LetCloseBox_CheckedChanged);
             // 

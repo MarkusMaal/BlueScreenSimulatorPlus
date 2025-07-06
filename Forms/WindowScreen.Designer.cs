@@ -61,6 +61,8 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.WindowScreen_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.WindowScreen_FormClosed);
             this.Load += new System.EventHandler(this.WindowScreen_Load);
+            this.MouseHover += new System.EventHandler(this.WindowScreen_MouseHover);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.WindowScreen_MouseMove);
             ((System.ComponentModel.ISupportInitialize)(this.screenDisplay)).EndInit();
             this.ResumeLayout(false);
 

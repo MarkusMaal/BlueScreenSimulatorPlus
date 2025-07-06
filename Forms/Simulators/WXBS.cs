@@ -23,6 +23,7 @@ namespace UltimateBlueScreenSimulator
         private int progressmillis = 0;
         internal int maxprogressmillis = 0;
         private string secondPart = "";
+        private int moves = 0;
         internal BlueScreen me = Program.templates.GetAt(0);
         public WXBS()
         {
@@ -76,7 +77,11 @@ namespace UltimateBlueScreenSimulator
                 {
                     supportContainer.Margin = new Padding(0,3,3,3);
                     supportInfo.Location = new Point(supportInfo.Location.X - 3, supportInfo.Location.Y);
-                    errorCode.Location = new Point(errorCode.Location.X - 3, errorCode.Location.Y);
+                    errorCode.Location = new Point(errorCode.Location.X - 6, errorCode.Location.Y);
+                    if (!me.GetBool("qr"))
+                    {
+                        errorCode.Location = new Point(errorCode.Location.X + 3, errorCode.Location.Y);
+                    }
                     if (w8)
                     {
                         errorCode.Location = supportInfo.Location;
@@ -244,8 +249,21 @@ namespace UltimateBlueScreenSimulator
                     yourPCranLabel.Text = yourPCranLabel.Text.Substring(0,yourPCranLabel.Text.Length - 2);
                     secondPart = " " + me.GetTexts()["No crashdump"] + "\r\n";
                 }
+                if (this.Opacity == 0.0)
+                {
+                    yourPCranLabel.Text = yourPCranLabel.Text.Replace("\r\n", "");
+                    yourPCranLabel.Text += secondPart;
+                    if (!w8)
+                    {
+                        progressIndicator.Visible = true;
+                        progressIndicator.Text = string.Format(me.GetTexts()["Progress"], "0");
+                    } else
+                    {
+                        yourPCranLabel.Text = string.Format(yourPCranLabel.Text, "0");
+                    }
+                }
                 Program.loadfinished = true;
-                if (!me.GetBool("windowed"))
+                if (!me.GetBool("windowed") && (this.Opacity != 0.0))
                 {
                     Program.dr.Init(this, true);
                 }
@@ -256,7 +274,7 @@ namespace UltimateBlueScreenSimulator
                 progressUpdater.Enabled = false;
                 this.Hide();
                 if (Program.gs.EnableEggs) { me.Crash(ex, "OrangeScreen"); }
-                else { MessageBox.Show("The blue screen cannot be displayed due to an error.\n\n" + ex.Message + "\n\n" + ex.StackTrace, "E R R O R", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+                else { MessageBox.Show("The crash screen cannot be displayed due to an error.\n\n" + ex.Message + "\n\n" + ex.StackTrace, "E R R O R", MessageBoxButtons.OK, MessageBoxIcon.Error); }
                 this.Close();
             }
         }
@@ -424,6 +442,15 @@ namespace UltimateBlueScreenSimulator
         private void WXBS_LocationChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void WXBS_MouseMove(object sender, MouseEventArgs e)
+        {
+            moves++;
+            if (moves > 50 && Program.isScreensaver && Program.gs.MouseMoveExit)
+            {
+                Close();
+            }
         }
     }
 }

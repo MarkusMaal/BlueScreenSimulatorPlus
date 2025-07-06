@@ -135,6 +135,7 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.SunValleyBSOD_FormClosed);
             this.Load += new System.EventHandler(this.SunValleyBSOD_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SunValleyBSOD_KeyDown);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.SunValleyBSOD_MouseMove);
             this.ResumeLayout(false);
             this.PerformLayout();
 
