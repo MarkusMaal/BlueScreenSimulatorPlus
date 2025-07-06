@@ -54,7 +54,7 @@ namespace UltimateBlueScreenSimulator
             }
             this.labelVersion.Text = String.Format("Version {0} with Verifile 1.2", asmVer);
             this.labelCopyright.Text = AssemblyCopyright;
-            this.labelCompanyName.Text = "Codename ModestIndigo\nLanguage: C# (.NET framework, Windows Forms)\nCreated by: Markus Maal a.k.a. mmaal (markustegelane)\n\nThis program can only be provided free of charge (if you had to pay for this, please ask for a refund). This program is provided as is, without a warranty.\n2022 Markuse tarkvara (Markus' software)";
+            this.labelCompanyName.Text = "Codename LotsaSpaghetti\nLanguage: C# (.NET framework, Windows Forms)\nCreated by: Markus Maal a.k.a. mmaal (markustegelane)\n\nThis program can only be provided free of charge (if you had to pay for this, please ask for a refund). This program is provided as is, without a warranty.\nMarkuse tarkvara (Markus' software)";
             Font = new Font(Font.Name, 8.25f * 96f / CreateGraphics().DpiX, Font.Style, Font.Unit, Font.GdiCharSet, Font.GdiVerticalFont);
 
         }

@@ -1,6 +1,6 @@
 ﻿/*
  * Blue screen simulator plus
- * Codename: ModestIndigo
+ * Codename: LotsaSpaghetti
  * 
  * Version 3.1 (pre-release)
  *
@@ -15,7 +15,6 @@ using System.Net.NetworkInformation;
 using System.Threading;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Diagnostics;
 
 namespace UltimateBlueScreenSimulator
@@ -77,7 +76,7 @@ namespace UltimateBlueScreenSimulator
                 verifile = new Verifile();
                 verificate = verifile.Verify;
                 gs.Log("Info", "Verifile passed");
-                if (AttachmentReader())
+                if (AttachmentReader(args))
                 {
                     return 0;
                 }
@@ -328,7 +327,7 @@ namespace UltimateBlueScreenSimulator
         /// For self-contained simulator support. Loads a JSON string from the end of executable into memory if the special B3er header is found, then displays a blue screen based on those settings.
         /// </summary>
         /// <returns>If the header is found, returns true</returns>
-        private static bool AttachmentReader()
+        private static bool AttachmentReader(string[] args)
         {
             // if we are just using the main program and not a self contained one, just return false
             // trying to load a non-existant footer will increase load times for no good reason
@@ -342,18 +341,43 @@ namespace UltimateBlueScreenSimulator
             string jsondata = GetEmbedded();
             if (jsondata != "")
             {
-                
+                if (Process.GetCurrentProcess().MainModule.ModuleName.ToLower().EndsWith(".scr"))
+                {
+                    // TODO: Maybe implement a way to change simulator settings through a screensaver config window?
+                    //       Due to the way it's implemented, embedded data itself cannot be easily edited without
+                    //       re-creating the .scr file.
+                    if ((!args.Contains("/s") && !args.Contains("/p")) || args.Contains("/c"))
+                    {
+                        MessageBox.Show("Embedded configuration data cannot be edited in this build", "Blue Screen Simulator Plus", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        return true;
+                    }
+                }
                 gs.LoadSettings();
                 if (verificate)
                 {
                     templates = new TemplateRegistry();
                     dr = new DrawRoutines();
                     f1 = new NewUI();
+
                     Thread th = new Thread(new ThreadStart(() => {
                         // initialize BlueScreen object
                         UIActions.me = templates.LoadSingleConfig(jsondata);
-                        // display the crash screen
-                        UIActions.me.Show();
+                        if (string.Join(" ", args).Contains("/p"))
+                        {
+                            if (!string.Join(" ", args).Contains(":") && args.Length < 2)
+                            {
+                                MessageBox.Show("Window handle was not provided!", "Blue Screen Simulator Plus", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                return;
+                            }
+                            string ProcessID = args.Length < 2 ? string.Join(" ", args).Split(':')[1] : args[1];
+                            IntPtr previewWndHandle = new IntPtr(long.Parse(args[1]));
+                            Application.Run(new Forms.Loaders.ScreensaverPreview(previewWndHandle));
+                        }
+                        else
+                        {
+                            // display the crash screen
+                            UIActions.me.Show();
+                        }
                     }));
                     th.Start();
                     th.Join();

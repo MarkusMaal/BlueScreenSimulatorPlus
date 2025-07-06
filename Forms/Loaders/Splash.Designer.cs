@@ -116,7 +116,7 @@
             this.SplashText.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.SplashText.BackColor = System.Drawing.Color.Transparent;
             this.SplashText.Font = new System.Drawing.Font("Segoe UI Variable Small", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
-            this.SplashText.ForeColor = System.Drawing.Color.Silver;
+            this.SplashText.ForeColor = System.Drawing.Color.Gainsboro;
             this.SplashText.Location = new System.Drawing.Point(20, 129);
             this.SplashText.Name = "SplashText";
             this.SplashText.Padding = new System.Windows.Forms.Padding(6, 0, 0, 0);

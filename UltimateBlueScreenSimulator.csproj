@@ -181,6 +181,12 @@
     <Compile Include="Forms\Legacy\TextView.Designer.cs">
       <DependentUpon>TextView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Loaders\ScreensaverPreview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Loaders\ScreensaverPreview.Designer.cs">
+      <DependentUpon>ScreensaverPreview.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Simulators\BootMgr.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -418,6 +424,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Legacy\TextView.resx">
       <DependentUpon>TextView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Loaders\ScreensaverPreview.resx">
+      <DependentUpon>ScreensaverPreview.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Simulators\BootMgr.resx">
       <DependentUpon>BootMgr.cs</DependentUpon>

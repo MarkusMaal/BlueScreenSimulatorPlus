@@ -1131,7 +1131,7 @@ namespace UltimateBlueScreenSimulator
         private void embedExeButton_Click(object sender, EventArgs e)
         {
             string filter_backup = saveFileDialog1.Filter;
-            saveFileDialog1.Filter = "Windows Executables|*.exe";
+            saveFileDialog1.Filter = "Windows Executables|*.exe|Windows screensaver files|*.scr";
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 if (MessageBox.Show("Before continuing, please note the following things:\r\n\r\n" +
