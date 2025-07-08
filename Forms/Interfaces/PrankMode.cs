@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
-using MaterialSkin;
-using MaterialSkin.Controls;
+using MaterialSkin2Framework;
+using MaterialSkin2Framework.Controls;
 using Microsoft.Win32;
 using SimulatorDatabase;
 
@@ -11,22 +11,22 @@ namespace UltimateBlueScreenSimulator
 {
     public partial class PrankMode : MaterialForm
     {
-        readonly string releaseId = Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion", "ProductName", "").ToString();
-        readonly int buildNumber = Convert.ToInt32(Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion", "CurrentBuild", "0").ToString());
+        readonly static string releaseId = Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion", "ProductName", "").ToString();
+        readonly static int buildNumber = Convert.ToInt32(Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion", "CurrentBuild", "0").ToString());
 
-        string MsgBoxMessage = "Enter a message here.";
-        string MsgBoxTitle = "Enter a title here";
-        string[] time = { "00", "05", "00" };
-        List<USBDeviceInfo> currentDevs = new List<USBDeviceInfo>();
-        List<USBDeviceInfo> prevDevs = new List<USBDeviceInfo>();
-        string[] devinfo = { };
-        bool timecatch = true;
-        int contain = 0;
-        MessageBoxIcon MsgBoxIcon = MessageBoxIcon.Exclamation;
-        MessageBoxButtons MsgBoxType = MessageBoxButtons.OK;
-        BlueScreen me;
-        bool newUi = false;
-        readonly List<string> blackninja = new List<string>
+        static string MsgBoxMessage = "Enter a message here.";
+        static string MsgBoxTitle = "Enter a title here";
+        static string[] time = { "00", "05", "00" };
+        static List<USBDeviceInfo> currentDevs = new List<USBDeviceInfo>();
+        static List<USBDeviceInfo> prevDevs = new List<USBDeviceInfo>();
+        static string[] devinfo = { };
+        static bool timecatch = true;
+        static int contain = 0;
+        static MessageBoxIcon MsgBoxIcon = MessageBoxIcon.Exclamation;
+        static MessageBoxButtons MsgBoxType = MessageBoxButtons.OK;
+        static BlueScreen me;
+        static bool newUi = false;
+        static readonly List<string> blackninja = new List<string>
         {
             "Windows Vista/7",
             "Windows XP",
@@ -36,6 +36,7 @@ namespace UltimateBlueScreenSimulator
             "Windows 3.1x",
             "Windows 1.x/2.x"
         };
+
         public PrankMode()
         {
             MaterialSkinManager materialSkinManager = Program.f1.materialSkinManager;
@@ -44,7 +45,7 @@ namespace UltimateBlueScreenSimulator
             Font = new Font(Font.Name, 8.25f * 96f / CreateGraphics().DpiX, Font.Style, Font.Unit, Font.GdiCharSet, Font.GdiVerticalFont);
         }
 
-        private void PrankMode_Load(object sender, EventArgs e)
+        internal void PrankMode_Load(object sender, EventArgs e)
         {
             // old method for setting night theme
             /*if (Program.f1.nightThemeToolStripMenuItem.Checked)
@@ -181,7 +182,7 @@ namespace UltimateBlueScreenSimulator
             letCloseBox.Enabled = !blackninja.Contains(Program.templates.GetAt(contain).GetString("os"));
         }
 
-        private void RadioButton3_CheckedChanged(object sender, EventArgs e)
+        public void RadioButton3_CheckedChanged(object sender, EventArgs e)
         {
             if (timeRadio.Checked == true)
             {
@@ -196,7 +197,7 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void RadioButton4_CheckedChanged(object sender, EventArgs e)
+        public void RadioButton4_CheckedChanged(object sender, EventArgs e)
         {
             if (appRadio.Checked == true)
             {
@@ -210,7 +211,7 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void CheckBox2_CheckedChanged(object sender, EventArgs e)
+        public void CheckBox2_CheckedChanged(object sender, EventArgs e)
         {
             if (friendlyMessageBox.Checked == true)
             {
@@ -229,17 +230,17 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void TextBox2_TextChanged(object sender, EventArgs e)
+        public void TextBox2_TextChanged(object sender, EventArgs e)
         {
             MsgBoxMessage = friendlyMessageContentsBox.Text;
         }
 
-        private void TextBox3_TextChanged(object sender, EventArgs e)
+        public void TextBox3_TextChanged(object sender, EventArgs e)
         {
             MsgBoxTitle = friendlyMessageTitleBox.Text;
         }
 
-        private void RadioButton5_CheckedChanged(object sender, EventArgs e)
+        public void RadioButton5_CheckedChanged(object sender, EventArgs e)
         {
             if (errorRadio.Checked == true)
             {
@@ -247,7 +248,7 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void RadioButton6_CheckedChanged(object sender, EventArgs e)
+        public void RadioButton6_CheckedChanged(object sender, EventArgs e)
         {
             if (warningRadio.Checked == true)
             {
@@ -255,7 +256,7 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void RadioButton7_CheckedChanged(object sender, EventArgs e)
+        public void RadioButton7_CheckedChanged(object sender, EventArgs e)
         {
             if (questionRadio.Checked == true)
             {
@@ -263,7 +264,7 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void RadioButton8_CheckedChanged(object sender, EventArgs e)
+        public void RadioButton8_CheckedChanged(object sender, EventArgs e)
         {
             if (infoRadio.Checked == true)
             {
@@ -271,7 +272,7 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void RadioButton9_CheckedChanged(object sender, EventArgs e)
+        public void RadioButton9_CheckedChanged(object sender, EventArgs e)
         {
             if (noneRadio.Checked == true)
             {
@@ -279,7 +280,7 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void RadioButton10_CheckedChanged(object sender, EventArgs e)
+        public void RadioButton10_CheckedChanged(object sender, EventArgs e)
         {
             if (okRadio.Checked == true)
             {
@@ -287,7 +288,7 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void RadioButton11_CheckedChanged(object sender, EventArgs e)
+        public void RadioButton11_CheckedChanged(object sender, EventArgs e)
         {
             if (okCancelRadio.Checked == true)
             {
@@ -295,7 +296,7 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void RadioButton12_CheckedChanged(object sender, EventArgs e)
+        public void RadioButton12_CheckedChanged(object sender, EventArgs e)
         {
             if (retryIgnoreAboutRadio.Checked == true)
             {
@@ -303,7 +304,7 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void RadioButton13_CheckedChanged(object sender, EventArgs e)
+        public void RadioButton13_CheckedChanged(object sender, EventArgs e)
         {
             if (yesNoRadio.Checked == true)
             {
@@ -311,7 +312,7 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void RadioButton14_CheckedChanged(object sender, EventArgs e)
+        public void RadioButton14_CheckedChanged(object sender, EventArgs e)
         {
             if (yesNoCancelRadio.Checked == true)
             {
@@ -319,12 +320,12 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void Button1_Click(object sender, EventArgs e)
+        public static void Button1_Click(object sender, EventArgs e)
         {
             MessageBox.Show(MsgBoxMessage, MsgBoxTitle, MsgBoxType, MsgBoxIcon);
         }
 
-        private void RadioButton2_Click(object sender, EventArgs e)
+        public void RadioButton2_Click(object sender, EventArgs e)
         {
             if (bestMatchRadio.Enabled == true)
             { 
@@ -339,13 +340,13 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void Button3_Click(object sender, EventArgs e)
+        public void Button3_Click(object sender, EventArgs e)
         {
             this.Close();
             Program.gs.PM_CloseMainUI = false;
         }
 
-        private void Button2_Click(object sender, EventArgs e)
+        public void Button2_Click(object sender, EventArgs e)
         {
             string messageA = "The program will now be hidden. Once the prank has been triggered, the program will reopen itself.";
             string messageB = "The program will now be hidden. Once the prank has been triggered, the program will reopen iteself and then close after exiting the blue screen.";
@@ -417,13 +418,13 @@ namespace UltimateBlueScreenSimulator
                 this.Close();
             }
         }
-     
-        private void MaskedTextBox1_TextChanged(object sender, EventArgs e)
+
+        public void MaskedTextBox1_TextChanged(object sender, EventArgs e)
         {
             time = timerBox.Text.Split(':');
         }
 
-        private void RadioButton15_CheckedChanged(object sender, EventArgs e)
+        public void RadioButton15_CheckedChanged(object sender, EventArgs e)
         {
             if (retryCancelRadio.Checked == true)
             {
@@ -431,7 +432,7 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void RadioButton16_CheckedChanged(object sender, EventArgs e)
+        public void RadioButton16_CheckedChanged(object sender, EventArgs e)
         {
             if (usbRadio.Checked == true)
             {
@@ -453,7 +454,7 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void Button4_Click(object sender, EventArgs e)
+        public void Button4_Click(object sender, EventArgs e)
         {
             string[] dinfo = { };
             deviceInfoLabel.Text = "No trigger device\r\n(Unplug and) plug in desired trigger device";
@@ -464,7 +465,7 @@ namespace UltimateBlueScreenSimulator
             usbFinder.Enabled = true;
         }
 
-        private void Timer1_Tick(object sender, EventArgs e)
+        public void Timer1_Tick(object sender, EventArgs e)
         {
             prevDevs = currentDevs;
             currentDevs = USBDeviceInfo.GetUSBDevices();
@@ -485,12 +486,12 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void Button5_Click(object sender, EventArgs e)
+        public static void Button5_Click(object sender, EventArgs e)
         {
             MessageBox.Show(" - A standard user account doesn't have access to all devices plugged into the computer. Sometimes, certain devices are only detected when the program is started as an administrator.\r\n - Try a different USB port, such as the one on your case. USB hubs might not update the device properly sometimes.\r\n - Try a different trigger device", "Device troubleshooting", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void LetCloseBox_CheckedChanged(object sender, EventArgs e)
+        public void LetCloseBox_CheckedChanged(object sender, EventArgs e)
         {
             if (!letCloseBox.Checked)
             {
@@ -501,7 +502,7 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void MatchAllRadio_CheckedChanged(object sender, EventArgs e)
+        public void MatchAllRadio_CheckedChanged(object sender, EventArgs e)
         {
             if (matchAllRadio.Checked)
             {
@@ -514,12 +515,12 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        public void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             Program.gs.PM_CloseMainUI = !closePrank.Checked;
         }
 
-        private void PrankMode_FormClosing(object sender, FormClosingEventArgs e)
+        public static void PrankMode_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (Program.f1.Visible)
             {
@@ -527,7 +528,7 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void PrankMode_KeyDown(object sender, KeyEventArgs e)
+        public void PrankMode_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.F2)
             {

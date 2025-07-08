@@ -11,7 +11,6 @@ using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using System.Windows.Media.Animation;
-using MaterialSkin.Controls;
 using Microsoft.Win32;
 using SimulatorDatabase;
 using UltimateBlueScreenSimulator.Forms.Interfaces;

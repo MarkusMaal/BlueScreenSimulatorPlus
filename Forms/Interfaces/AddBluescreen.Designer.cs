@@ -31,19 +31,19 @@ namespace UltimateBlueScreenSimulator
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddBluescreen));
-            this.templateLabel = new MaterialSkin.Controls.MaterialLabel();
-            this.osNameLabel = new MaterialSkin.Controls.MaterialLabel();
-            this.friendlyNameLabel = new MaterialSkin.Controls.MaterialLabel();
-            this.iconLabel = new MaterialSkin.Controls.MaterialLabel();
-            this.specifyOsBox = new MaterialSkin.Controls.MaterialCheckbox();
-            this.okButton = new MaterialSkin.Controls.MaterialButton();
-            this.cancelButton = new MaterialSkin.Controls.MaterialButton();
-            this.templatePicker = new MaterialSkin.Controls.MaterialComboBox();
-            this.iconBox = new MaterialSkin.Controls.MaterialComboBox();
-            this.friendlyBox = new MaterialSkin.Controls.MaterialTextBox();
-            this.osBox = new MaterialSkin.Controls.MaterialTextBox();
-            this.AllIcons = new System.Windows.Forms.ImageList(this.components);
+            this.templateLabel = new MaterialSkin2Framework.Controls.MaterialLabel();
+            this.osNameLabel = new MaterialSkin2Framework.Controls.MaterialLabel();
+            this.friendlyNameLabel = new MaterialSkin2Framework.Controls.MaterialLabel();
+            this.iconLabel = new MaterialSkin2Framework.Controls.MaterialLabel();
+            this.specifyOsBox = new MaterialSkin2Framework.Controls.MaterialCheckbox();
+            this.okButton = new MaterialSkin2Framework.Controls.MaterialButton();
+            this.cancelButton = new MaterialSkin2Framework.Controls.MaterialButton();
+            this.templatePicker = new MaterialSkin2Framework.Controls.MaterialComboBox();
+            this.iconBox = new MaterialSkin2Framework.Controls.MaterialComboBox();
+            this.friendlyBox = new MaterialSkin2Framework.Controls.MaterialTextBox2();
+            this.osBox = new MaterialSkin2Framework.Controls.MaterialTextBox2();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.AllIcons = new System.Windows.Forms.ImageList(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -53,7 +53,7 @@ namespace UltimateBlueScreenSimulator
             this.templateLabel.Depth = 0;
             this.templateLabel.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.templateLabel.Location = new System.Drawing.Point(11, 73);
-            this.templateLabel.MouseState = MaterialSkin.MouseState.HOVER;
+            this.templateLabel.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.templateLabel.Name = "templateLabel";
             this.templateLabel.Size = new System.Drawing.Size(72, 19);
             this.templateLabel.TabIndex = 11;
@@ -65,7 +65,7 @@ namespace UltimateBlueScreenSimulator
             this.osNameLabel.Depth = 0;
             this.osNameLabel.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.osNameLabel.Location = new System.Drawing.Point(12, 150);
-            this.osNameLabel.MouseState = MaterialSkin.MouseState.HOVER;
+            this.osNameLabel.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.osNameLabel.Name = "osNameLabel";
             this.osNameLabel.Size = new System.Drawing.Size(66, 19);
             this.osNameLabel.TabIndex = 11;
@@ -77,7 +77,7 @@ namespace UltimateBlueScreenSimulator
             this.friendlyNameLabel.Depth = 0;
             this.friendlyNameLabel.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.friendlyNameLabel.Location = new System.Drawing.Point(12, 190);
-            this.friendlyNameLabel.MouseState = MaterialSkin.MouseState.HOVER;
+            this.friendlyNameLabel.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.friendlyNameLabel.Name = "friendlyNameLabel";
             this.friendlyNameLabel.Size = new System.Drawing.Size(101, 19);
             this.friendlyNameLabel.TabIndex = 11;
@@ -89,7 +89,7 @@ namespace UltimateBlueScreenSimulator
             this.iconLabel.Depth = 0;
             this.iconLabel.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.iconLabel.Location = new System.Drawing.Point(12, 233);
-            this.iconLabel.MouseState = MaterialSkin.MouseState.HOVER;
+            this.iconLabel.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.iconLabel.Name = "iconLabel";
             this.iconLabel.Size = new System.Drawing.Size(31, 19);
             this.iconLabel.TabIndex = 11;
@@ -102,7 +102,7 @@ namespace UltimateBlueScreenSimulator
             this.specifyOsBox.Location = new System.Drawing.Point(4, 276);
             this.specifyOsBox.Margin = new System.Windows.Forms.Padding(0);
             this.specifyOsBox.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.specifyOsBox.MouseState = MaterialSkin.MouseState.HOVER;
+            this.specifyOsBox.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.specifyOsBox.Name = "specifyOsBox";
             this.specifyOsBox.ReadOnly = false;
             this.specifyOsBox.Ripple = true;
@@ -116,19 +116,19 @@ namespace UltimateBlueScreenSimulator
             // 
             this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.okButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.okButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.okButton.Density = MaterialSkin2Framework.Controls.MaterialButton.MaterialButtonDensity.Default;
             this.okButton.Depth = 0;
             this.okButton.HighEmphasis = true;
             this.okButton.Icon = null;
             this.okButton.Location = new System.Drawing.Point(367, 327);
             this.okButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.okButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.okButton.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.okButton.Name = "okButton";
             this.okButton.NoAccentTextColor = System.Drawing.Color.Empty;
             this.okButton.Size = new System.Drawing.Size(64, 36);
             this.okButton.TabIndex = 13;
             this.okButton.Text = "&OK";
-            this.okButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.okButton.Type = MaterialSkin2Framework.Controls.MaterialButton.MaterialButtonType.Contained;
             this.okButton.UseAccentColor = false;
             this.okButton.UseVisualStyleBackColor = true;
             this.okButton.Click += new System.EventHandler(this.MakeBluescreen);
@@ -137,19 +137,19 @@ namespace UltimateBlueScreenSimulator
             // 
             this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cancelButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.cancelButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.cancelButton.Density = MaterialSkin2Framework.Controls.MaterialButton.MaterialButtonDensity.Default;
             this.cancelButton.Depth = 0;
             this.cancelButton.HighEmphasis = true;
             this.cancelButton.Icon = null;
             this.cancelButton.Location = new System.Drawing.Point(272, 327);
             this.cancelButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.cancelButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.cancelButton.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.NoAccentTextColor = System.Drawing.Color.Empty;
             this.cancelButton.Size = new System.Drawing.Size(87, 36);
             this.cancelButton.TabIndex = 14;
             this.cancelButton.Text = "&Cancel";
-            this.cancelButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.cancelButton.Type = MaterialSkin2Framework.Controls.MaterialButton.MaterialButtonType.Contained;
             this.cancelButton.UseAccentColor = false;
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.CancelClick);
@@ -189,7 +189,7 @@ namespace UltimateBlueScreenSimulator
             "Windows 11 Beta"});
             this.templatePicker.Location = new System.Drawing.Point(15, 95);
             this.templatePicker.MaxDropDownItems = 4;
-            this.templatePicker.MouseState = MaterialSkin.MouseState.OUT;
+            this.templatePicker.MouseState = MaterialSkin2Framework.MouseState.OUT;
             this.templatePicker.Name = "templatePicker";
             this.templatePicker.Size = new System.Drawing.Size(414, 35);
             this.templatePicker.StartIndex = 0;
@@ -218,7 +218,7 @@ namespace UltimateBlueScreenSimulator
             "3D window"});
             this.iconBox.Location = new System.Drawing.Point(128, 227);
             this.iconBox.MaxDropDownItems = 4;
-            this.iconBox.MouseState = MaterialSkin.MouseState.OUT;
+            this.iconBox.MouseState = MaterialSkin2Framework.MouseState.OUT;
             this.iconBox.Name = "iconBox";
             this.iconBox.Size = new System.Drawing.Size(140, 35);
             this.iconBox.StartIndex = 0;
@@ -231,19 +231,32 @@ namespace UltimateBlueScreenSimulator
             this.friendlyBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.friendlyBox.AnimateReadOnly = false;
-            this.friendlyBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.friendlyBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
+            this.friendlyBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+            this.friendlyBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.friendlyBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
             this.friendlyBox.Depth = 0;
-            this.friendlyBox.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.friendlyBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.friendlyBox.HideSelection = true;
             this.friendlyBox.LeadingIcon = null;
             this.friendlyBox.Location = new System.Drawing.Point(128, 182);
             this.friendlyBox.MaxLength = 50;
-            this.friendlyBox.MouseState = MaterialSkin.MouseState.OUT;
-            this.friendlyBox.Multiline = false;
+            this.friendlyBox.MouseState = MaterialSkin2Framework.MouseState.OUT;
             this.friendlyBox.Name = "friendlyBox";
+            this.friendlyBox.PasswordChar = '\0';
+            this.friendlyBox.PrefixSuffixText = null;
+            this.friendlyBox.ReadOnly = false;
+            this.friendlyBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.friendlyBox.SelectedText = "";
+            this.friendlyBox.SelectionLength = 0;
+            this.friendlyBox.SelectionStart = 0;
+            this.friendlyBox.ShortcutsEnabled = true;
             this.friendlyBox.Size = new System.Drawing.Size(301, 36);
             this.friendlyBox.TabIndex = 17;
-            this.friendlyBox.Text = "";
+            this.friendlyBox.TabStop = false;
+            this.friendlyBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.friendlyBox.TrailingIcon = null;
+            this.friendlyBox.UseSystemPasswordChar = false;
             this.friendlyBox.UseTallSize = false;
             // 
             // osBox
@@ -251,22 +264,44 @@ namespace UltimateBlueScreenSimulator
             this.osBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.osBox.AnimateReadOnly = false;
-            this.osBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.osBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
+            this.osBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+            this.osBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.osBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
             this.osBox.Depth = 0;
             this.osBox.Enabled = false;
-            this.osBox.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.osBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.osBox.HideSelection = true;
             this.osBox.LeadingIcon = null;
             this.osBox.Location = new System.Drawing.Point(128, 140);
             this.osBox.MaxLength = 50;
-            this.osBox.MouseState = MaterialSkin.MouseState.OUT;
-            this.osBox.Multiline = false;
+            this.osBox.MouseState = MaterialSkin2Framework.MouseState.OUT;
             this.osBox.Name = "osBox";
+            this.osBox.PasswordChar = '\0';
+            this.osBox.PrefixSuffixText = null;
+            this.osBox.ReadOnly = false;
+            this.osBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.osBox.SelectedText = "";
+            this.osBox.SelectionLength = 0;
+            this.osBox.SelectionStart = 0;
+            this.osBox.ShortcutsEnabled = true;
             this.osBox.Size = new System.Drawing.Size(301, 36);
             this.osBox.TabIndex = 18;
-            this.osBox.Text = "";
+            this.osBox.TabStop = false;
+            this.osBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.osBox.TrailingIcon = null;
+            this.osBox.UseSystemPasswordChar = false;
             this.osBox.UseTallSize = false;
             this.osBox.TextChanged += new System.EventHandler(this.JustifyWindowsWarriors);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(274, 236);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(16, 16);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 19;
+            this.pictureBox1.TabStop = false;
             // 
             // AllIcons
             // 
@@ -279,15 +314,6 @@ namespace UltimateBlueScreenSimulator
             this.AllIcons.Images.SetKeyName(4, "string.png");
             this.AllIcons.Images.SetKeyName(5, "setting.png");
             this.AllIcons.Images.SetKeyName(6, "theming.png");
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(274, 236);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(16, 16);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 19;
-            this.pictureBox1.TabStop = false;
             // 
             // AddBluescreen
             // 
@@ -320,18 +346,18 @@ namespace UltimateBlueScreenSimulator
         }
 
         #endregion
-        private MaterialSkin.Controls.MaterialLabel templateLabel;
-        private MaterialSkin.Controls.MaterialLabel osNameLabel;
-        private MaterialSkin.Controls.MaterialLabel friendlyNameLabel;
-        private MaterialSkin.Controls.MaterialLabel iconLabel;
-        private MaterialSkin.Controls.MaterialCheckbox specifyOsBox;
-        private MaterialSkin.Controls.MaterialButton okButton;
-        private MaterialSkin.Controls.MaterialButton cancelButton;
-        private MaterialSkin.Controls.MaterialComboBox templatePicker;
-        private MaterialSkin.Controls.MaterialComboBox iconBox;
-        private MaterialSkin.Controls.MaterialTextBox friendlyBox;
-        private MaterialSkin.Controls.MaterialTextBox osBox;
-        internal System.Windows.Forms.ImageList AllIcons;
+        private MaterialSkin2Framework.Controls.MaterialLabel templateLabel;
+        private MaterialSkin2Framework.Controls.MaterialLabel osNameLabel;
+        private MaterialSkin2Framework.Controls.MaterialLabel friendlyNameLabel;
+        private MaterialSkin2Framework.Controls.MaterialLabel iconLabel;
+        private MaterialSkin2Framework.Controls.MaterialCheckbox specifyOsBox;
+        private MaterialSkin2Framework.Controls.MaterialButton okButton;
+        private MaterialSkin2Framework.Controls.MaterialButton cancelButton;
+        private MaterialSkin2Framework.Controls.MaterialComboBox templatePicker;
+        private MaterialSkin2Framework.Controls.MaterialComboBox iconBox;
+        private MaterialSkin2Framework.Controls.MaterialTextBox2 friendlyBox;
+        private MaterialSkin2Framework.Controls.MaterialTextBox2 osBox;
         private System.Windows.Forms.PictureBox pictureBox1;
+        internal System.Windows.Forms.ImageList AllIcons;
     }
 }

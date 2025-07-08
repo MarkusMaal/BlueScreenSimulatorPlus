@@ -6,8 +6,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using MaterialSkin;
-using MaterialSkin.Controls;
+using MaterialSkin2Framework;
+using MaterialSkin2Framework.Controls;
 
 namespace UltimateBlueScreenSimulator
 {

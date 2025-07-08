@@ -1,4 +1,4 @@
-﻿using MaterialSkin.Controls;
+﻿using MaterialSkin2Framework.Controls;
 
 namespace UltimateBlueScreenSimulator
 {
@@ -35,36 +35,36 @@ namespace UltimateBlueScreenSimulator
             System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("Property name", System.Windows.Forms.HorizontalAlignment.Left);
             System.Windows.Forms.ListViewGroup listViewGroup2 = new System.Windows.Forms.ListViewGroup("Value", System.Windows.Forms.HorizontalAlignment.Left);
             this.AllIcons = new System.Windows.Forms.ImageList(this.components);
-            this.MessageView = new MaterialSkin.Controls.MaterialListView();
-            this.specificProps = new MaterialSkin.Controls.MaterialLabel();
-            this.buttonOK = new MaterialSkin.Controls.MaterialButton();
+            this.MessageView = new MaterialSkin2Framework.Controls.MaterialListView();
+            this.specificProps = new MaterialSkin2Framework.Controls.MaterialLabel();
+            this.buttonOK = new MaterialSkin2Framework.Controls.MaterialButton();
             this.stringProps = new System.Windows.Forms.Panel();
-            this.stringEditor = new MaterialSkin.Controls.MaterialMultiLineTextBox();
+            this.stringEditor = new MaterialSkin2Framework.Controls.MaterialMultiLineTextBox();
             this.colorProps = new System.Windows.Forms.Panel();
-            this.colorButton = new MaterialSkin.Controls.MaterialButton();
+            this.colorButton = new MaterialSkin2Framework.Controls.MaterialButton();
             this.colorPreview = new System.Windows.Forms.Label();
             this.specificPropsFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.xpMsgChooser = new System.Windows.Forms.FlowLayoutPanel();
-            this.autoRadio = new MaterialSkin.Controls.MaterialRadioButton();
-            this.manualRadio = new MaterialSkin.Controls.MaterialRadioButton();
+            this.autoRadio = new MaterialSkin2Framework.Controls.MaterialRadioButton();
+            this.manualRadio = new MaterialSkin2Framework.Controls.MaterialRadioButton();
             this.qrProps = new System.Windows.Forms.Panel();
             this.radioFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.defaultRadioBtn = new MaterialSkin.Controls.MaterialRadioButton();
-            this.transparentRadioBtn = new MaterialSkin.Controls.MaterialRadioButton();
-            this.customRadioBtn = new MaterialSkin.Controls.MaterialRadioButton();
-            this.browseButton = new MaterialSkin.Controls.MaterialButton();
-            this.filenameLabel = new MaterialSkin.Controls.MaterialLabel();
+            this.defaultRadioBtn = new MaterialSkin2Framework.Controls.MaterialRadioButton();
+            this.transparentRadioBtn = new MaterialSkin2Framework.Controls.MaterialRadioButton();
+            this.customRadioBtn = new MaterialSkin2Framework.Controls.MaterialRadioButton();
+            this.browseButton = new MaterialSkin2Framework.Controls.MaterialButton();
+            this.filenameLabel = new MaterialSkin2Framework.Controls.MaterialLabel();
             this.timeoutProps = new System.Windows.Forms.Panel();
-            this.timeoutBox = new MaterialSkin.Controls.MaterialTextBox();
-            this.secondsLabel = new MaterialSkin.Controls.MaterialLabel();
+            this.timeoutBox = new MaterialSkin2Framework.Controls.MaterialTextBox();
+            this.secondsLabel = new MaterialSkin2Framework.Controls.MaterialLabel();
             this.fontProps = new System.Windows.Forms.Panel();
-            this.fontChangeButton = new MaterialSkin.Controls.MaterialButton();
+            this.fontChangeButton = new MaterialSkin2Framework.Controls.MaterialButton();
             this.fontPreview = new System.Windows.Forms.Label();
             this.blinkProps = new System.Windows.Forms.Panel();
-            this.speedTrackbar = new MaterialSkin.Controls.MaterialSlider();
-            this.blinkingDash = new MaterialSkin.Controls.MaterialLabel();
-            this.previewLabel = new MaterialSkin.Controls.MaterialLabel();
-            this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
+            this.speedTrackbar = new MaterialSkin2Framework.Controls.MaterialSlider();
+            this.blinkingDash = new MaterialSkin2Framework.Controls.MaterialLabel();
+            this.previewLabel = new MaterialSkin2Framework.Controls.MaterialLabel();
+            this.materialLabel1 = new MaterialSkin2Framework.Controls.MaterialLabel();
             this.bugcheckPreview = new System.Windows.Forms.PictureBox();
             this.colorChooser = new System.Windows.Forms.ColorDialog();
             this.blinkywinky = new System.Windows.Forms.Timer(this.components);
@@ -74,8 +74,8 @@ namespace UltimateBlueScreenSimulator
             this.whereTheButtonsLink = new System.Windows.Forms.LinkLabel();
             this.label1 = new System.Windows.Forms.Label();
             this.previewRefresh = new System.Windows.Forms.Timer(this.components);
-            this.updatePreviewCheck = new MaterialSkin.Controls.MaterialCheckbox();
-            this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
+            this.updatePreviewCheck = new MaterialSkin2Framework.Controls.MaterialCheckbox();
+            this.materialLabel2 = new MaterialSkin2Framework.Controls.MaterialLabel();
             this.stringProps.SuspendLayout();
             this.colorProps.SuspendLayout();
             this.specificPropsFlowLayoutPanel.SuspendLayout();
@@ -123,12 +123,12 @@ namespace UltimateBlueScreenSimulator
             this.MessageView.Location = new System.Drawing.Point(12, 52);
             this.MessageView.MinimumSize = new System.Drawing.Size(200, 100);
             this.MessageView.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.MessageView.MouseState = MaterialSkin.MouseState.OUT;
+            this.MessageView.MouseState = MaterialSkin2Framework.MouseState.OUT;
             this.MessageView.MultiSelect = false;
             this.MessageView.Name = "MessageView";
             this.MessageView.OwnerDraw = true;
             this.MessageView.ShowGroups = false;
-            this.MessageView.Size = new System.Drawing.Size(396, 622);
+            this.MessageView.Size = new System.Drawing.Size(394, 653);
             this.MessageView.SmallImageList = this.AllIcons;
             this.MessageView.TabIndex = 0;
             this.MessageView.UseCompatibleStateImageBehavior = false;
@@ -140,8 +140,8 @@ namespace UltimateBlueScreenSimulator
             this.specificProps.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.specificProps.Depth = 0;
             this.specificProps.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.specificProps.Location = new System.Drawing.Point(414, 27);
-            this.specificProps.MouseState = MaterialSkin.MouseState.HOVER;
+            this.specificProps.Location = new System.Drawing.Point(412, 27);
+            this.specificProps.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.specificProps.Name = "specificProps";
             this.specificProps.Size = new System.Drawing.Size(403, 22);
             this.specificProps.TabIndex = 4;
@@ -151,20 +151,20 @@ namespace UltimateBlueScreenSimulator
             this.buttonOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonOK.AutoSize = false;
             this.buttonOK.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.buttonOK.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.buttonOK.Density = MaterialSkin2Framework.Controls.MaterialButton.MaterialButtonDensity.Default;
             this.buttonOK.Depth = 0;
             this.buttonOK.ForeColor = System.Drawing.SystemColors.ControlText;
             this.buttonOK.HighEmphasis = true;
             this.buttonOK.Icon = null;
-            this.buttonOK.Location = new System.Drawing.Point(752, 681);
+            this.buttonOK.Location = new System.Drawing.Point(750, 712);
             this.buttonOK.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.buttonOK.MouseState = MaterialSkin.MouseState.HOVER;
+            this.buttonOK.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.buttonOK.Name = "buttonOK";
             this.buttonOK.NoAccentTextColor = System.Drawing.Color.Empty;
             this.buttonOK.Size = new System.Drawing.Size(86, 26);
             this.buttonOK.TabIndex = 8;
             this.buttonOK.Text = "&OK";
-            this.buttonOK.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.buttonOK.Type = MaterialSkin2Framework.Controls.MaterialButton.MaterialButtonType.Contained;
             this.buttonOK.UseAccentColor = false;
             this.buttonOK.UseVisualStyleBackColor = true;
             this.buttonOK.Click += new System.EventHandler(this.Button1_Click);
@@ -188,7 +188,7 @@ namespace UltimateBlueScreenSimulator
             this.stringEditor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.stringEditor.Location = new System.Drawing.Point(0, 0);
             this.stringEditor.MaxLength = 65536;
-            this.stringEditor.MouseState = MaterialSkin.MouseState.OUT;
+            this.stringEditor.MouseState = MaterialSkin2Framework.MouseState.OUT;
             this.stringEditor.Name = "stringEditor";
             this.stringEditor.Size = new System.Drawing.Size(400, 175);
             this.stringEditor.TabIndex = 1;
@@ -209,20 +209,20 @@ namespace UltimateBlueScreenSimulator
             // 
             this.colorButton.AutoSize = false;
             this.colorButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.colorButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.colorButton.Density = MaterialSkin2Framework.Controls.MaterialButton.MaterialButtonDensity.Default;
             this.colorButton.Depth = 0;
             this.colorButton.ForeColor = System.Drawing.SystemColors.ControlText;
             this.colorButton.HighEmphasis = true;
             this.colorButton.Icon = null;
             this.colorButton.Location = new System.Drawing.Point(56, 10);
             this.colorButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.colorButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.colorButton.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.colorButton.Name = "colorButton";
             this.colorButton.NoAccentTextColor = System.Drawing.Color.Empty;
             this.colorButton.Size = new System.Drawing.Size(75, 23);
             this.colorButton.TabIndex = 3;
             this.colorButton.Text = "Change";
-            this.colorButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.colorButton.Type = MaterialSkin2Framework.Controls.MaterialButton.MaterialButtonType.Contained;
             this.colorButton.UseAccentColor = false;
             this.colorButton.UseVisualStyleBackColor = true;
             this.colorButton.Click += new System.EventHandler(this.ColorButton_Click);
@@ -249,9 +249,9 @@ namespace UltimateBlueScreenSimulator
             this.specificPropsFlowLayoutPanel.Controls.Add(this.fontProps);
             this.specificPropsFlowLayoutPanel.Controls.Add(this.blinkProps);
             this.specificPropsFlowLayoutPanel.Controls.Add(this.colorProps);
-            this.specificPropsFlowLayoutPanel.Location = new System.Drawing.Point(414, 52);
+            this.specificPropsFlowLayoutPanel.Location = new System.Drawing.Point(412, 52);
             this.specificPropsFlowLayoutPanel.Name = "specificPropsFlowLayoutPanel";
-            this.specificPropsFlowLayoutPanel.Size = new System.Drawing.Size(424, 269);
+            this.specificPropsFlowLayoutPanel.Size = new System.Drawing.Size(424, 300);
             this.specificPropsFlowLayoutPanel.TabIndex = 2;
             // 
             // xpMsgChooser
@@ -272,7 +272,7 @@ namespace UltimateBlueScreenSimulator
             this.autoRadio.Location = new System.Drawing.Point(0, 0);
             this.autoRadio.Margin = new System.Windows.Forms.Padding(0);
             this.autoRadio.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.autoRadio.MouseState = MaterialSkin.MouseState.HOVER;
+            this.autoRadio.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.autoRadio.Name = "autoRadio";
             this.autoRadio.Ripple = true;
             this.autoRadio.Size = new System.Drawing.Size(68, 37);
@@ -289,7 +289,7 @@ namespace UltimateBlueScreenSimulator
             this.manualRadio.Location = new System.Drawing.Point(68, 0);
             this.manualRadio.Margin = new System.Windows.Forms.Padding(0);
             this.manualRadio.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.manualRadio.MouseState = MaterialSkin.MouseState.HOVER;
+            this.manualRadio.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.manualRadio.Name = "manualRadio";
             this.manualRadio.Ripple = true;
             this.manualRadio.Size = new System.Drawing.Size(89, 37);
@@ -327,7 +327,7 @@ namespace UltimateBlueScreenSimulator
             this.defaultRadioBtn.Location = new System.Drawing.Point(0, 0);
             this.defaultRadioBtn.Margin = new System.Windows.Forms.Padding(0);
             this.defaultRadioBtn.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.defaultRadioBtn.MouseState = MaterialSkin.MouseState.HOVER;
+            this.defaultRadioBtn.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.defaultRadioBtn.Name = "defaultRadioBtn";
             this.defaultRadioBtn.Ripple = true;
             this.defaultRadioBtn.Size = new System.Drawing.Size(87, 37);
@@ -344,7 +344,7 @@ namespace UltimateBlueScreenSimulator
             this.transparentRadioBtn.Location = new System.Drawing.Point(87, 0);
             this.transparentRadioBtn.Margin = new System.Windows.Forms.Padding(0);
             this.transparentRadioBtn.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.transparentRadioBtn.MouseState = MaterialSkin.MouseState.HOVER;
+            this.transparentRadioBtn.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.transparentRadioBtn.Name = "transparentRadioBtn";
             this.transparentRadioBtn.Ripple = true;
             this.transparentRadioBtn.Size = new System.Drawing.Size(121, 37);
@@ -360,7 +360,7 @@ namespace UltimateBlueScreenSimulator
             this.customRadioBtn.Location = new System.Drawing.Point(208, 0);
             this.customRadioBtn.Margin = new System.Windows.Forms.Padding(0);
             this.customRadioBtn.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.customRadioBtn.MouseState = MaterialSkin.MouseState.HOVER;
+            this.customRadioBtn.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.customRadioBtn.Name = "customRadioBtn";
             this.customRadioBtn.Ripple = true;
             this.customRadioBtn.Size = new System.Drawing.Size(90, 37);
@@ -373,7 +373,7 @@ namespace UltimateBlueScreenSimulator
             // 
             this.browseButton.AutoSize = false;
             this.browseButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.browseButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.browseButton.Density = MaterialSkin2Framework.Controls.MaterialButton.MaterialButtonDensity.Default;
             this.browseButton.Depth = 0;
             this.browseButton.Enabled = false;
             this.browseButton.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -381,13 +381,13 @@ namespace UltimateBlueScreenSimulator
             this.browseButton.Icon = null;
             this.browseButton.Location = new System.Drawing.Point(12, 72);
             this.browseButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.browseButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.browseButton.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.browseButton.Name = "browseButton";
             this.browseButton.NoAccentTextColor = System.Drawing.Color.Empty;
             this.browseButton.Size = new System.Drawing.Size(75, 23);
             this.browseButton.TabIndex = 5;
             this.browseButton.Text = "Browse";
-            this.browseButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.browseButton.Type = MaterialSkin2Framework.Controls.MaterialButton.MaterialButtonType.Contained;
             this.browseButton.UseAccentColor = false;
             this.browseButton.UseVisualStyleBackColor = true;
             this.browseButton.Click += new System.EventHandler(this.BrowseButton_Click);
@@ -398,7 +398,7 @@ namespace UltimateBlueScreenSimulator
             this.filenameLabel.Depth = 0;
             this.filenameLabel.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.filenameLabel.Location = new System.Drawing.Point(9, 47);
-            this.filenameLabel.MouseState = MaterialSkin.MouseState.HOVER;
+            this.filenameLabel.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.filenameLabel.Name = "filenameLabel";
             this.filenameLabel.Size = new System.Drawing.Size(121, 19);
             this.filenameLabel.TabIndex = 1;
@@ -423,7 +423,7 @@ namespace UltimateBlueScreenSimulator
             this.timeoutBox.LeadingIcon = null;
             this.timeoutBox.Location = new System.Drawing.Point(9, 3);
             this.timeoutBox.MaxLength = 50;
-            this.timeoutBox.MouseState = MaterialSkin.MouseState.OUT;
+            this.timeoutBox.MouseState = MaterialSkin2Framework.MouseState.OUT;
             this.timeoutBox.Multiline = false;
             this.timeoutBox.Name = "timeoutBox";
             this.timeoutBox.Size = new System.Drawing.Size(47, 36);
@@ -439,7 +439,7 @@ namespace UltimateBlueScreenSimulator
             this.secondsLabel.Depth = 0;
             this.secondsLabel.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.secondsLabel.Location = new System.Drawing.Point(62, 12);
-            this.secondsLabel.MouseState = MaterialSkin.MouseState.HOVER;
+            this.secondsLabel.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.secondsLabel.Name = "secondsLabel";
             this.secondsLabel.Size = new System.Drawing.Size(60, 19);
             this.secondsLabel.TabIndex = 0;
@@ -459,20 +459,20 @@ namespace UltimateBlueScreenSimulator
             // 
             this.fontChangeButton.AutoSize = false;
             this.fontChangeButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.fontChangeButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.fontChangeButton.Density = MaterialSkin2Framework.Controls.MaterialButton.MaterialButtonDensity.Default;
             this.fontChangeButton.Depth = 0;
             this.fontChangeButton.ForeColor = System.Drawing.SystemColors.ControlText;
             this.fontChangeButton.HighEmphasis = true;
             this.fontChangeButton.Icon = null;
             this.fontChangeButton.Location = new System.Drawing.Point(11, 54);
             this.fontChangeButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.fontChangeButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.fontChangeButton.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.fontChangeButton.Name = "fontChangeButton";
             this.fontChangeButton.NoAccentTextColor = System.Drawing.Color.Empty;
             this.fontChangeButton.Size = new System.Drawing.Size(75, 23);
             this.fontChangeButton.TabIndex = 5;
             this.fontChangeButton.Text = "Change";
-            this.fontChangeButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.fontChangeButton.Type = MaterialSkin2Framework.Controls.MaterialButton.MaterialButtonType.Contained;
             this.fontChangeButton.UseAccentColor = false;
             this.fontChangeButton.UseVisualStyleBackColor = true;
             this.fontChangeButton.Click += new System.EventHandler(this.FontChangeButton_Click);
@@ -503,7 +503,7 @@ namespace UltimateBlueScreenSimulator
             this.speedTrackbar.Depth = 0;
             this.speedTrackbar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.speedTrackbar.Location = new System.Drawing.Point(7, 28);
-            this.speedTrackbar.MouseState = MaterialSkin.MouseState.HOVER;
+            this.speedTrackbar.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.speedTrackbar.Name = "speedTrackbar";
             this.speedTrackbar.RangeMax = 2000;
             this.speedTrackbar.RangeMin = 1;
@@ -513,7 +513,7 @@ namespace UltimateBlueScreenSimulator
             this.speedTrackbar.TabIndex = 5;
             this.speedTrackbar.Text = "My Data";
             this.speedTrackbar.Value = 100;
-            this.speedTrackbar.onValueChanged += new MaterialSkin.Controls.MaterialSlider.ValueChanged(this.speedTrackbar_onValueChanged);
+            this.speedTrackbar.onValueChanged += new MaterialSkin2Framework.Controls.MaterialSlider.ValueChanged(this.speedTrackbar_onValueChanged);
             // 
             // blinkingDash
             // 
@@ -521,7 +521,7 @@ namespace UltimateBlueScreenSimulator
             this.blinkingDash.Depth = 0;
             this.blinkingDash.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.blinkingDash.Location = new System.Drawing.Point(74, 12);
-            this.blinkingDash.MouseState = MaterialSkin.MouseState.HOVER;
+            this.blinkingDash.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.blinkingDash.Name = "blinkingDash";
             this.blinkingDash.Size = new System.Drawing.Size(8, 19);
             this.blinkingDash.TabIndex = 4;
@@ -533,7 +533,7 @@ namespace UltimateBlueScreenSimulator
             this.previewLabel.Depth = 0;
             this.previewLabel.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.previewLabel.Location = new System.Drawing.Point(8, 12);
-            this.previewLabel.MouseState = MaterialSkin.MouseState.HOVER;
+            this.previewLabel.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.previewLabel.Name = "previewLabel";
             this.previewLabel.Size = new System.Drawing.Size(60, 19);
             this.previewLabel.TabIndex = 3;
@@ -544,9 +544,9 @@ namespace UltimateBlueScreenSimulator
             this.materialLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.materialLabel1.Depth = 0;
             this.materialLabel1.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel1.Location = new System.Drawing.Point(417, 333);
+            this.materialLabel1.Location = new System.Drawing.Point(415, 364);
             this.materialLabel1.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel1.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.materialLabel1.Name = "materialLabel1";
             this.materialLabel1.Size = new System.Drawing.Size(177, 23);
             this.materialLabel1.TabIndex = 0;
@@ -558,7 +558,7 @@ namespace UltimateBlueScreenSimulator
             // 
             this.bugcheckPreview.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.bugcheckPreview.Image = global::UltimateBlueScreenSimulator.Properties.Resources.loadpic;
-            this.bugcheckPreview.Location = new System.Drawing.Point(417, 362);
+            this.bugcheckPreview.Location = new System.Drawing.Point(415, 393);
             this.bugcheckPreview.Margin = new System.Windows.Forms.Padding(0);
             this.bugcheckPreview.Name = "bugcheckPreview";
             this.bugcheckPreview.Size = new System.Drawing.Size(421, 310);
@@ -585,7 +585,7 @@ namespace UltimateBlueScreenSimulator
             // 
             this.whereTheButtonsLink.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.whereTheButtonsLink.AutoSize = true;
-            this.whereTheButtonsLink.Location = new System.Drawing.Point(12, 725);
+            this.whereTheButtonsLink.Location = new System.Drawing.Point(12, 756);
             this.whereTheButtonsLink.Name = "whereTheButtonsLink";
             this.whereTheButtonsLink.Size = new System.Drawing.Size(189, 13);
             this.whereTheButtonsLink.TabIndex = 7;
@@ -599,7 +599,7 @@ namespace UltimateBlueScreenSimulator
             this.label1.AutoSize = true;
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label1.ForeColor = System.Drawing.Color.Red;
-            this.label1.Location = new System.Drawing.Point(9, 688);
+            this.label1.Location = new System.Drawing.Point(9, 719);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(329, 13);
             this.label1.TabIndex = 9;
@@ -612,10 +612,10 @@ namespace UltimateBlueScreenSimulator
             this.updatePreviewCheck.Checked = true;
             this.updatePreviewCheck.CheckState = System.Windows.Forms.CheckState.Checked;
             this.updatePreviewCheck.Depth = 0;
-            this.updatePreviewCheck.Location = new System.Drawing.Point(591, 324);
+            this.updatePreviewCheck.Location = new System.Drawing.Point(589, 355);
             this.updatePreviewCheck.Margin = new System.Windows.Forms.Padding(0);
             this.updatePreviewCheck.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.updatePreviewCheck.MouseState = MaterialSkin.MouseState.HOVER;
+            this.updatePreviewCheck.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.updatePreviewCheck.Name = "updatePreviewCheck";
             this.updatePreviewCheck.ReadOnly = false;
             this.updatePreviewCheck.Ripple = true;
@@ -631,7 +631,7 @@ namespace UltimateBlueScreenSimulator
             this.materialLabel2.Depth = 0;
             this.materialLabel2.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.materialLabel2.Location = new System.Drawing.Point(9, 30);
-            this.materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel2.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.materialLabel2.Name = "materialLabel2";
             this.materialLabel2.Size = new System.Drawing.Size(72, 19);
             this.materialLabel2.TabIndex = 11;
@@ -641,7 +641,7 @@ namespace UltimateBlueScreenSimulator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(844, 716);
+            this.ClientSize = new System.Drawing.Size(842, 747);
             this.Controls.Add(this.materialLabel2);
             this.Controls.Add(this.updatePreviewCheck);
             this.Controls.Add(this.materialLabel1);
@@ -653,7 +653,7 @@ namespace UltimateBlueScreenSimulator
             this.Controls.Add(this.specificProps);
             this.Controls.Add(this.MessageView);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
-            this.FormStyle = MaterialSkin.Controls.MaterialForm.FormStyles.ActionBar_None;
+            this.FormStyle = MaterialSkin2Framework.Controls.MaterialForm.FormStyles.ActionBar_None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(534, 206);
             this.Name = "StringEdit";
@@ -686,41 +686,41 @@ namespace UltimateBlueScreenSimulator
 
         #endregion
         private MaterialListView MessageView;
-        private MaterialSkin.Controls.MaterialLabel specificProps;
-        private MaterialSkin.Controls.MaterialButton buttonOK;
+        private MaterialSkin2Framework.Controls.MaterialLabel specificProps;
+        private MaterialSkin2Framework.Controls.MaterialButton buttonOK;
         private System.Windows.Forms.Panel stringProps;
-        private MaterialSkin.Controls.MaterialMultiLineTextBox stringEditor;
+        private MaterialSkin2Framework.Controls.MaterialMultiLineTextBox stringEditor;
         private System.Windows.Forms.Panel colorProps;
-        private MaterialSkin.Controls.MaterialButton colorButton;
+        private MaterialSkin2Framework.Controls.MaterialButton colorButton;
         private System.Windows.Forms.Label colorPreview;
         private System.Windows.Forms.FlowLayoutPanel specificPropsFlowLayoutPanel;
         private System.Windows.Forms.ColorDialog colorChooser;
         private System.Windows.Forms.Panel blinkProps;
-        private MaterialSkin.Controls.MaterialSlider speedTrackbar;
-        private MaterialSkin.Controls.MaterialLabel blinkingDash;
-        private MaterialSkin.Controls.MaterialLabel previewLabel;
+        private MaterialSkin2Framework.Controls.MaterialSlider speedTrackbar;
+        private MaterialSkin2Framework.Controls.MaterialLabel blinkingDash;
+        private MaterialSkin2Framework.Controls.MaterialLabel previewLabel;
         private System.Windows.Forms.Timer blinkywinky;
         private System.Windows.Forms.Panel fontProps;
-        private MaterialSkin.Controls.MaterialButton fontChangeButton;
+        private MaterialSkin2Framework.Controls.MaterialButton fontChangeButton;
         private System.Windows.Forms.Label fontPreview;
         private System.Windows.Forms.FontDialog fontChooser;
         private System.Windows.Forms.Panel timeoutProps;
-        private MaterialSkin.Controls.MaterialTextBox timeoutBox;
-        private MaterialSkin.Controls.MaterialLabel secondsLabel;
+        private MaterialSkin2Framework.Controls.MaterialTextBox timeoutBox;
+        private MaterialSkin2Framework.Controls.MaterialLabel secondsLabel;
         private System.Windows.Forms.ToolTip simpleToolTip;
         private System.Windows.Forms.Panel qrProps;
-        private MaterialSkin.Controls.MaterialButton browseButton;
-        private MaterialSkin.Controls.MaterialLabel filenameLabel;
+        private MaterialSkin2Framework.Controls.MaterialButton browseButton;
+        private MaterialSkin2Framework.Controls.MaterialLabel filenameLabel;
         private System.Windows.Forms.FlowLayoutPanel radioFlowLayoutPanel;
-        private MaterialSkin.Controls.MaterialRadioButton defaultRadioBtn;
-        private MaterialSkin.Controls.MaterialRadioButton transparentRadioBtn;
-        private MaterialSkin.Controls.MaterialRadioButton customRadioBtn;
+        private MaterialSkin2Framework.Controls.MaterialRadioButton defaultRadioBtn;
+        private MaterialSkin2Framework.Controls.MaterialRadioButton transparentRadioBtn;
+        private MaterialSkin2Framework.Controls.MaterialRadioButton customRadioBtn;
         private System.Windows.Forms.OpenFileDialog customQRBrowser;
         private System.Windows.Forms.LinkLabel whereTheButtonsLink;
         internal System.Windows.Forms.ImageList AllIcons;
         private System.Windows.Forms.FlowLayoutPanel xpMsgChooser;
-        private MaterialSkin.Controls.MaterialRadioButton autoRadio;
-        private MaterialSkin.Controls.MaterialRadioButton manualRadio;
+        private MaterialSkin2Framework.Controls.MaterialRadioButton autoRadio;
+        private MaterialSkin2Framework.Controls.MaterialRadioButton manualRadio;
         private System.Windows.Forms.Label label1;
         private MaterialLabel materialLabel1;
         private System.Windows.Forms.PictureBox bugcheckPreview;

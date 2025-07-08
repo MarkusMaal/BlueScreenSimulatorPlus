@@ -11,8 +11,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
-using MaterialSkin;
-using MaterialSkin.Controls;
+using MaterialSkin2Framework;
+using MaterialSkin2Framework.Controls;
 using Microsoft.Win32;
 using SimulatorDatabase;
 using static System.Windows.Forms.Design.AxImporter;
@@ -867,7 +867,7 @@ namespace UltimateBlueScreenSimulator
             Control tb1;
             if (f is MaterialForm)
             {
-                tb1 = FindControl(f, "textBox1") as MaterialTextBox;
+                tb1 = FindControl(f, "textBox1") as MaterialTextBox2;
             } else
             {
                 tb1 = FindControl(f, "textBox1") as TextBox;

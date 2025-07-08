@@ -6,7 +6,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization; // alias to ms to avoid conflict with ColorScheme
 using System.Threading;
 using System.Windows.Forms;
-using ms = MaterialSkin;
+using ms = MaterialSkin2Framework;
 
 namespace UltimateBlueScreenSimulator
 {

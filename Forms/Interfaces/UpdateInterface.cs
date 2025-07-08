@@ -6,8 +6,8 @@ using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Security.Cryptography;
-using MaterialSkin.Controls;
-using MaterialSkin;
+using MaterialSkin2Framework.Controls;
+using MaterialSkin2Framework;
 
 namespace UltimateBlueScreenSimulator
 {

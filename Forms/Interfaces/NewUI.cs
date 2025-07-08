@@ -11,8 +11,8 @@ using System.Text;
 using System.Text.Json;
 using System.Threading;
 using System.Windows.Forms;
-using MaterialSkin;
-using MaterialSkin.Controls;
+using MaterialSkin2Framework;
+using MaterialSkin2Framework.Controls;
 using Microsoft.Win32;
 using SimulatorDatabase;
 using UltimateBlueScreenSimulator.Forms.Interfaces;
@@ -43,7 +43,7 @@ namespace UltimateBlueScreenSimulator
                 Primary.Blue400, Accent.Indigo700,
                 TextShade.WHITE
             );
-            Font = new Font(Font.Name, 8.25f * 96f / CreateGraphics().DpiX, Font.Style, Font.Unit, Font.GdiCharSet, Font.GdiVerticalFont);
+            //Font = new Font(Font.Name, 8.25f * 96f / CreateGraphics().DpiX, Font.Style, Font.Unit, Font.GdiCharSet, Font.GdiVerticalFont);
         }
 
         internal void RelocateButtons()
@@ -341,11 +341,14 @@ namespace UltimateBlueScreenSimulator
             switch (materialTabControl1.SelectedIndex)
             {
                 case 1:
-                    FilterLog();
+                    //materialTabControl1.SelectedIndex = 0;
+                    //materialTabControl1.TabPages[0].Show();
+                    PrankMode pm = new PrankMode();
+                    //pm.Show();
                     break;
                 case 2:
-                    materialTabControl1.SelectedIndex = 0;
-                    materialTabControl1.TabPages[0].Show();
+                    //materialTabControl1.SelectedIndex = 0;
+                    //materialTabControl1.TabPages[0].Show();
                     if (!abopen)
                     {
                         AboutSettingsDialog ab1 = new AboutSettingsDialog
@@ -364,6 +367,9 @@ namespace UltimateBlueScreenSimulator
                     }
                     break;
                 case 3:
+                    FilterLog();
+                    break;
+                case 4:
                     materialTabControl1.SelectedIndex = 0;
                     materialTabControl1.TabPages[0].Show();
                     if (!abopen)
@@ -380,12 +386,6 @@ namespace UltimateBlueScreenSimulator
                     {
                         MessageBox.Show("The window is already open", "Cannot open window", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
-                    break;
-                case 4:
-                    materialTabControl1.SelectedIndex = 0;
-                    materialTabControl1.TabPages[0].Show();
-                    PrankMode pm = new PrankMode();
-                    pm.Show();
                     break;
                 case 5:
                     materialTabControl1.SelectedIndex = 0;
@@ -1004,6 +1004,17 @@ namespace UltimateBlueScreenSimulator
         private void materialButton3_Click_1(object sender, EventArgs e)
         {
 
+        }
+
+        private void whyNoDeviceButton_Click(object sender, EventArgs e)
+        {
+            PrankMode.Button5_Click(sender, e);
+        }
+
+        private void cancelButton_Click(object sender, EventArgs e)
+        {
+            Forms.Legacy.PrankMode pm = new Forms.Legacy.PrankMode();
+            pm.Show();
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿
-using MaterialSkin.Controls;
+using MaterialSkin2Framework.Controls;
 
 namespace UltimateBlueScreenSimulator
 {
@@ -33,9 +33,9 @@ namespace UltimateBlueScreenSimulator
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Gen));
-            this.genProgressBar = new MaterialSkin.Controls.MaterialProgressBar();
+            this.genProgressBar = new MaterialSkin2Framework.Controls.MaterialProgressBar();
             this.genTimer = new System.Windows.Forms.Timer(this.components);
-            this.genLabel = new MaterialSkin.Controls.MaterialLabel();
+            this.genLabel = new MaterialSkin2Framework.Controls.MaterialLabel();
             this.SuspendLayout();
             // 
             // genProgressBar
@@ -44,7 +44,7 @@ namespace UltimateBlueScreenSimulator
             | System.Windows.Forms.AnchorStyles.Right)));
             this.genProgressBar.Depth = 0;
             this.genProgressBar.Location = new System.Drawing.Point(9, 53);
-            this.genProgressBar.MouseState = MaterialSkin.MouseState.HOVER;
+            this.genProgressBar.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.genProgressBar.Name = "genProgressBar";
             this.genProgressBar.Size = new System.Drawing.Size(297, 5);
             this.genProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
@@ -61,7 +61,7 @@ namespace UltimateBlueScreenSimulator
             this.genLabel.Depth = 0;
             this.genLabel.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.genLabel.Location = new System.Drawing.Point(6, 21);
-            this.genLabel.MouseState = MaterialSkin.MouseState.HOVER;
+            this.genLabel.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.genLabel.Name = "genLabel";
             this.genLabel.Size = new System.Drawing.Size(300, 19);
             this.genLabel.TabIndex = 1;

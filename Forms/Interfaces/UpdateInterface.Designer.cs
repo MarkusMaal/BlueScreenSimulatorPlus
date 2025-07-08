@@ -30,20 +30,20 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UpdateInterface));
-            this.updateHeading = new MaterialSkin.Controls.MaterialLabel();
-            this.updateDescriptionLabel = new MaterialSkin.Controls.MaterialLabel();
+            this.updateHeading = new MaterialSkin2Framework.Controls.MaterialLabel();
+            this.updateDescriptionLabel = new MaterialSkin2Framework.Controls.MaterialLabel();
             this.updateStepsPanel = new System.Windows.Forms.TableLayoutPanel();
             this.TempStatus = new System.Windows.Forms.PictureBox();
             this.Launchstatus = new System.Windows.Forms.PictureBox();
             this.HashStatus = new System.Windows.Forms.PictureBox();
             this.DownloadStatus = new System.Windows.Forms.PictureBox();
-            this.downloadUpdateLabel = new MaterialSkin.Controls.MaterialLabel();
-            this.hashCheckLabel = new MaterialSkin.Controls.MaterialLabel();
-            this.installAndLaunchLabel = new MaterialSkin.Controls.MaterialLabel();
-            this.delTempLabel = new MaterialSkin.Controls.MaterialLabel();
-            this.updateProgress = new MaterialSkin.Controls.MaterialProgressBar();
-            this.warningLabel = new MaterialSkin.Controls.MaterialLabel();
-            this.dloadState = new MaterialSkin.Controls.MaterialLabel();
+            this.downloadUpdateLabel = new MaterialSkin2Framework.Controls.MaterialLabel();
+            this.hashCheckLabel = new MaterialSkin2Framework.Controls.MaterialLabel();
+            this.installAndLaunchLabel = new MaterialSkin2Framework.Controls.MaterialLabel();
+            this.delTempLabel = new MaterialSkin2Framework.Controls.MaterialLabel();
+            this.updateProgress = new MaterialSkin2Framework.Controls.MaterialProgressBar();
+            this.warningLabel = new MaterialSkin2Framework.Controls.MaterialLabel();
+            this.dloadState = new MaterialSkin2Framework.Controls.MaterialLabel();
             this.hashWait = new System.Windows.Forms.Timer(this.components);
             this.installWait = new System.Windows.Forms.Timer(this.components);
             this.cleanWait = new System.Windows.Forms.Timer(this.components);
@@ -60,9 +60,9 @@
             this.updateHeading.AutoSize = true;
             this.updateHeading.Depth = 0;
             this.updateHeading.Font = new System.Drawing.Font("Roboto", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.updateHeading.FontType = MaterialSkin.MaterialSkinManager.fontType.H5;
+            this.updateHeading.FontType = MaterialSkin2Framework.MaterialSkinManager.fontType.H5;
             this.updateHeading.Location = new System.Drawing.Point(12, 35);
-            this.updateHeading.MouseState = MaterialSkin.MouseState.HOVER;
+            this.updateHeading.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.updateHeading.Name = "updateHeading";
             this.updateHeading.Size = new System.Drawing.Size(247, 29);
             this.updateHeading.TabIndex = 0;
@@ -73,9 +73,9 @@
             this.updateDescriptionLabel.AutoSize = true;
             this.updateDescriptionLabel.Depth = 0;
             this.updateDescriptionLabel.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.updateDescriptionLabel.FontType = MaterialSkin.MaterialSkinManager.fontType.Caption;
+            this.updateDescriptionLabel.FontType = MaterialSkin2Framework.MaterialSkinManager.fontType.Caption;
             this.updateDescriptionLabel.Location = new System.Drawing.Point(14, 73);
-            this.updateDescriptionLabel.MouseState = MaterialSkin.MouseState.HOVER;
+            this.updateDescriptionLabel.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.updateDescriptionLabel.Name = "updateDescriptionLabel";
             this.updateDescriptionLabel.Size = new System.Drawing.Size(362, 14);
             this.updateDescriptionLabel.TabIndex = 1;
@@ -103,7 +103,7 @@
             this.updateStepsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.updateStepsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.updateStepsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.updateStepsPanel.Size = new System.Drawing.Size(556, 78);
+            this.updateStepsPanel.Size = new System.Drawing.Size(572, 78);
             this.updateStepsPanel.TabIndex = 2;
             // 
             // TempStatus
@@ -159,11 +159,11 @@
             this.downloadUpdateLabel.Depth = 0;
             this.downloadUpdateLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.downloadUpdateLabel.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.downloadUpdateLabel.FontType = MaterialSkin.MaterialSkinManager.fontType.Caption;
+            this.downloadUpdateLabel.FontType = MaterialSkin2Framework.MaterialSkinManager.fontType.Caption;
             this.downloadUpdateLabel.Location = new System.Drawing.Point(28, 0);
-            this.downloadUpdateLabel.MouseState = MaterialSkin.MouseState.HOVER;
+            this.downloadUpdateLabel.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.downloadUpdateLabel.Name = "downloadUpdateLabel";
-            this.downloadUpdateLabel.Size = new System.Drawing.Size(525, 19);
+            this.downloadUpdateLabel.Size = new System.Drawing.Size(541, 19);
             this.downloadUpdateLabel.TabIndex = 0;
             this.downloadUpdateLabel.Text = "Downloading the update";
             this.downloadUpdateLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -173,11 +173,11 @@
             this.hashCheckLabel.Depth = 0;
             this.hashCheckLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.hashCheckLabel.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.hashCheckLabel.FontType = MaterialSkin.MaterialSkinManager.fontType.Caption;
+            this.hashCheckLabel.FontType = MaterialSkin2Framework.MaterialSkinManager.fontType.Caption;
             this.hashCheckLabel.Location = new System.Drawing.Point(28, 19);
-            this.hashCheckLabel.MouseState = MaterialSkin.MouseState.HOVER;
+            this.hashCheckLabel.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.hashCheckLabel.Name = "hashCheckLabel";
-            this.hashCheckLabel.Size = new System.Drawing.Size(525, 19);
+            this.hashCheckLabel.Size = new System.Drawing.Size(541, 19);
             this.hashCheckLabel.TabIndex = 1;
             this.hashCheckLabel.Text = "Hashchecking";
             this.hashCheckLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -187,11 +187,11 @@
             this.installAndLaunchLabel.Depth = 0;
             this.installAndLaunchLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.installAndLaunchLabel.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.installAndLaunchLabel.FontType = MaterialSkin.MaterialSkinManager.fontType.Caption;
+            this.installAndLaunchLabel.FontType = MaterialSkin2Framework.MaterialSkinManager.fontType.Caption;
             this.installAndLaunchLabel.Location = new System.Drawing.Point(28, 38);
-            this.installAndLaunchLabel.MouseState = MaterialSkin.MouseState.HOVER;
+            this.installAndLaunchLabel.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.installAndLaunchLabel.Name = "installAndLaunchLabel";
-            this.installAndLaunchLabel.Size = new System.Drawing.Size(525, 20);
+            this.installAndLaunchLabel.Size = new System.Drawing.Size(541, 20);
             this.installAndLaunchLabel.TabIndex = 2;
             this.installAndLaunchLabel.Text = "Installing and launching the new update";
             this.installAndLaunchLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -201,11 +201,11 @@
             this.delTempLabel.Depth = 0;
             this.delTempLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.delTempLabel.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.delTempLabel.FontType = MaterialSkin.MaterialSkinManager.fontType.Caption;
+            this.delTempLabel.FontType = MaterialSkin2Framework.MaterialSkinManager.fontType.Caption;
             this.delTempLabel.Location = new System.Drawing.Point(28, 58);
-            this.delTempLabel.MouseState = MaterialSkin.MouseState.HOVER;
+            this.delTempLabel.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.delTempLabel.Name = "delTempLabel";
-            this.delTempLabel.Size = new System.Drawing.Size(525, 20);
+            this.delTempLabel.Size = new System.Drawing.Size(541, 20);
             this.delTempLabel.TabIndex = 3;
             this.delTempLabel.Text = "Deleting temporary update files";
             this.delTempLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -216,9 +216,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.updateProgress.Depth = 0;
             this.updateProgress.Location = new System.Drawing.Point(17, 194);
-            this.updateProgress.MouseState = MaterialSkin.MouseState.HOVER;
+            this.updateProgress.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.updateProgress.Name = "updateProgress";
-            this.updateProgress.Size = new System.Drawing.Size(556, 5);
+            this.updateProgress.Size = new System.Drawing.Size(572, 5);
             this.updateProgress.TabIndex = 3;
             // 
             // warningLabel
@@ -226,10 +226,10 @@
             this.warningLabel.AutoSize = true;
             this.warningLabel.Depth = 0;
             this.warningLabel.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.warningLabel.FontType = MaterialSkin.MaterialSkinManager.fontType.Caption;
+            this.warningLabel.FontType = MaterialSkin2Framework.MaterialSkinManager.fontType.Caption;
             this.warningLabel.ForeColor = System.Drawing.Color.Red;
             this.warningLabel.Location = new System.Drawing.Point(14, 243);
-            this.warningLabel.MouseState = MaterialSkin.MouseState.HOVER;
+            this.warningLabel.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.warningLabel.Name = "warningLabel";
             this.warningLabel.Size = new System.Drawing.Size(162, 14);
             this.warningLabel.TabIndex = 4;
@@ -240,9 +240,9 @@
             this.dloadState.AutoSize = true;
             this.dloadState.Depth = 0;
             this.dloadState.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.dloadState.FontType = MaterialSkin.MaterialSkinManager.fontType.Caption;
+            this.dloadState.FontType = MaterialSkin2Framework.MaterialSkinManager.fontType.Caption;
             this.dloadState.Location = new System.Drawing.Point(14, 225);
-            this.dloadState.MouseState = MaterialSkin.MouseState.HOVER;
+            this.dloadState.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.dloadState.Name = "dloadState";
             this.dloadState.Size = new System.Drawing.Size(233, 14);
             this.dloadState.TabIndex = 5;
@@ -273,7 +273,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(585, 507);
+            this.ClientSize = new System.Drawing.Size(601, 551);
             this.Controls.Add(this.dloadState);
             this.Controls.Add(this.warningLabel);
             this.Controls.Add(this.updateProgress);
@@ -281,7 +281,7 @@
             this.Controls.Add(this.updateDescriptionLabel);
             this.Controls.Add(this.updateHeading);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.FormStyle = MaterialSkin.Controls.MaterialForm.FormStyles.ActionBar_None;
+            this.FormStyle = MaterialSkin2Framework.Controls.MaterialForm.FormStyles.ActionBar_None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -305,20 +305,20 @@
 
         #endregion
 
-        private MaterialSkin.Controls.MaterialLabel updateHeading;
-        private MaterialSkin.Controls.MaterialLabel updateDescriptionLabel;
+        private MaterialSkin2Framework.Controls.MaterialLabel updateHeading;
+        private MaterialSkin2Framework.Controls.MaterialLabel updateDescriptionLabel;
         private System.Windows.Forms.TableLayoutPanel updateStepsPanel;
-        private MaterialSkin.Controls.MaterialLabel downloadUpdateLabel;
-        private MaterialSkin.Controls.MaterialLabel hashCheckLabel;
-        private MaterialSkin.Controls.MaterialLabel installAndLaunchLabel;
-        private MaterialSkin.Controls.MaterialLabel delTempLabel;
+        private MaterialSkin2Framework.Controls.MaterialLabel downloadUpdateLabel;
+        private MaterialSkin2Framework.Controls.MaterialLabel hashCheckLabel;
+        private MaterialSkin2Framework.Controls.MaterialLabel installAndLaunchLabel;
+        private MaterialSkin2Framework.Controls.MaterialLabel delTempLabel;
         private System.Windows.Forms.PictureBox TempStatus;
         private System.Windows.Forms.PictureBox Launchstatus;
         private System.Windows.Forms.PictureBox HashStatus;
         private System.Windows.Forms.PictureBox DownloadStatus;
-        private MaterialSkin.Controls.MaterialProgressBar updateProgress;
-        private MaterialSkin.Controls.MaterialLabel warningLabel;
-        private MaterialSkin.Controls.MaterialLabel dloadState;
+        private MaterialSkin2Framework.Controls.MaterialProgressBar updateProgress;
+        private MaterialSkin2Framework.Controls.MaterialLabel warningLabel;
+        private MaterialSkin2Framework.Controls.MaterialLabel dloadState;
         private System.Windows.Forms.Timer hashWait;
         private System.Windows.Forms.Timer installWait;
         private System.Windows.Forms.Timer cleanWait;

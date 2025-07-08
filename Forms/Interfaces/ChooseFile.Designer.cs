@@ -30,11 +30,11 @@ namespace UltimateBlueScreenSimulator
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChooseFile));
-            this.fileBrowser = new MaterialSkin.Controls.MaterialListView();
+            this.fileBrowser = new MaterialSkin2Framework.Controls.MaterialListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.okButton = new MaterialSkin.Controls.MaterialButton();
-            this.customizeFilesButton = new MaterialSkin.Controls.MaterialButton();
+            this.okButton = new MaterialSkin2Framework.Controls.MaterialButton();
+            this.customizeFilesButton = new MaterialSkin2Framework.Controls.MaterialButton();
             this.SuspendLayout();
             // 
             // fileBrowser
@@ -54,7 +54,7 @@ namespace UltimateBlueScreenSimulator
             this.fileBrowser.Location = new System.Drawing.Point(3, 64);
             this.fileBrowser.MinimumSize = new System.Drawing.Size(200, 100);
             this.fileBrowser.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.fileBrowser.MouseState = MaterialSkin.MouseState.OUT;
+            this.fileBrowser.MouseState = MaterialSkin2Framework.MouseState.OUT;
             this.fileBrowser.Name = "fileBrowser";
             this.fileBrowser.OwnerDraw = true;
             this.fileBrowser.Size = new System.Drawing.Size(582, 214);
@@ -79,20 +79,20 @@ namespace UltimateBlueScreenSimulator
             this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.okButton.AutoSize = false;
             this.okButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.okButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.okButton.Density = MaterialSkin2Framework.Controls.MaterialButton.MaterialButtonDensity.Default;
             this.okButton.Depth = 0;
             this.okButton.Enabled = false;
             this.okButton.HighEmphasis = true;
             this.okButton.Icon = null;
             this.okButton.Location = new System.Drawing.Point(506, 287);
             this.okButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.okButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.okButton.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.okButton.Name = "okButton";
             this.okButton.NoAccentTextColor = System.Drawing.Color.Empty;
             this.okButton.Size = new System.Drawing.Size(75, 24);
             this.okButton.TabIndex = 2;
             this.okButton.Text = "OK";
-            this.okButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.okButton.Type = MaterialSkin2Framework.Controls.MaterialButton.MaterialButtonType.Contained;
             this.okButton.UseAccentColor = false;
             this.okButton.UseVisualStyleBackColor = true;
             this.okButton.Click += new System.EventHandler(this.okButton_Click);
@@ -102,19 +102,19 @@ namespace UltimateBlueScreenSimulator
             this.customizeFilesButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.customizeFilesButton.AutoSize = false;
             this.customizeFilesButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.customizeFilesButton.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.customizeFilesButton.Density = MaterialSkin2Framework.Controls.MaterialButton.MaterialButtonDensity.Default;
             this.customizeFilesButton.Depth = 0;
             this.customizeFilesButton.HighEmphasis = true;
             this.customizeFilesButton.Icon = null;
             this.customizeFilesButton.Location = new System.Drawing.Point(398, 287);
             this.customizeFilesButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.customizeFilesButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.customizeFilesButton.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.customizeFilesButton.Name = "customizeFilesButton";
             this.customizeFilesButton.NoAccentTextColor = System.Drawing.Color.Empty;
             this.customizeFilesButton.Size = new System.Drawing.Size(100, 24);
             this.customizeFilesButton.TabIndex = 2;
             this.customizeFilesButton.Text = "Customize";
-            this.customizeFilesButton.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.customizeFilesButton.Type = MaterialSkin2Framework.Controls.MaterialButton.MaterialButtonType.Contained;
             this.customizeFilesButton.UseAccentColor = false;
             this.customizeFilesButton.UseVisualStyleBackColor = true;
             this.customizeFilesButton.Click += new System.EventHandler(this.customizeFilesButton_Click);
@@ -140,8 +140,8 @@ namespace UltimateBlueScreenSimulator
         #endregion
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
-        internal MaterialSkin.Controls.MaterialListView fileBrowser;
-        private MaterialSkin.Controls.MaterialButton okButton;
-        private MaterialSkin.Controls.MaterialButton customizeFilesButton;
+        internal MaterialSkin2Framework.Controls.MaterialListView fileBrowser;
+        private MaterialSkin2Framework.Controls.MaterialButton okButton;
+        private MaterialSkin2Framework.Controls.MaterialButton customizeFilesButton;
     }
 }

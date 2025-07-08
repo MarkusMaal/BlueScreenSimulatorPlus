@@ -4,8 +4,8 @@ using System.Drawing;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
-using MaterialSkin;
-using MaterialSkin.Controls;
+using MaterialSkin2Framework;
+using MaterialSkin2Framework.Controls;
 using SimulatorDatabase;
 using UltimateBlueScreenSimulator.Forms.Interfaces;
 
