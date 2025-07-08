@@ -5,9 +5,7 @@ using System.Drawing;
 using System.IO;
 using System.Reflection;
 using System.Threading;
-using System.Windows.Controls.Primitives;
 using System.Windows.Forms;
-using System.Xml.Linq;
 using SimulatorDatabase;
 using UltimateBlueScreenSimulator.Forms.Interfaces;
 
@@ -36,7 +34,7 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
             }
             this.labelVersion.Text = String.Format("Version {0} with Verifile 1.2", asmVer);
             this.labelCopyright.Text = AssemblyCopyright;
-            this.labelCompanyName.Text = "Codename LotsaSpaghetti\nLanguage: C# (.NET framework, Windows Forms)\nCreated by: Markus Maal a.k.a. mmaal (markustegelane)\n\nThis program can only be provided free of charge (if you had to pay for this, please ask for a refund). This program is provided as is, without a warranty.\nMarkuse tarkvara (Markus' software)";
+            this.labelCompanyName.Text = "Codename LotsaSpaghetti\nLanguage: C# (.NET framework, Windows Forms)\nCreated by: Markus Maal a.k.a. MarkusTegelane\n\nThis program can only be provided free of charge (if you had to pay for this, please ask for a refund). This program is provided as is, without a warranty.\nMarkuse tarkvara (Markus' software)";
         }
 
         #region Assembly Attribute Accessors
@@ -1388,6 +1386,8 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
         {
             if (selectAllBox.Checked)
             {
+                configList.BackColor = SystemColors.Highlight;
+                configList.ForeColor = SystemColors.HighlightText;
                 configList.ClearSelected();
                 resetHackButton.Enabled = true;
                 resetButton.Enabled = true;
@@ -1409,6 +1409,14 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
             helpTip.SetToolTip(resetButton, "Reset all settings in this configuration");
             helpTip.SetToolTip(removeCfg, "Removes the configuration, meaning it will no longer be accessible in the main menu or any other part of the program.");
             osName.Text = "Select a configuration to modify/remove it";
+            if (Program.f2.nightThemeToolStripMenuItem.Checked)
+            {
+                configList.BackColor = Color.Black;
+                configList.ForeColor = Color.Gray;
+                return;
+            }
+            configList.BackColor = SystemColors.Window;
+            configList.ForeColor = SystemColors.WindowText;
         }
 
         private void LogoPictureBox_Click(object sender, EventArgs e)
@@ -1466,6 +1474,26 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
             {
                 MessageBox.Show("Screenshot saved as " + Program.dr.Screenshot(this), "Screenshot taken!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Cursor.Show();
+            }
+        }
+
+        private void configList_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            AddBluescreen ab = new AddBluescreen();
+            BlueScreen me = Program.templates.GetAt(configList.SelectedIndex);
+            ab.Preload(me);
+            if (ab.ShowDialog() == DialogResult.OK)
+            {
+                int backup = configList.SelectedIndex;
+                configList.Items.Clear();
+                foreach (BlueScreen bs in Program.templates.GetAll())
+                {
+                    configList.Items.Add(bs.GetString("friendlyname"));
+                }
+                configList.SelectedIndex = backup;
+                BlueScreen template = Program.templates.GetAt(configList.SelectedIndex);
+                if (template == null) return;
+                osName.Text = string.Format("Selected configuration: {0}", template.GetString("friendlyname"));
             }
         }
     }

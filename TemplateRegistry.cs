@@ -138,7 +138,14 @@ namespace UltimateBlueScreenSimulator
         /// <returns>Crash screen template</returns>
         public BlueScreen GetAt(int idx)
         {
-            return bluescreens[idx];
+            try
+            {
+                return bluescreens[idx];
+            } catch (Exception ex)
+            {
+                Program.gs.Log("Error", $"Tried to get template at index {idx}, which didn't exist");
+                return null;
+            }
         }
 
         /// <summary>

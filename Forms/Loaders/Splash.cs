@@ -14,17 +14,13 @@ namespace UltimateBlueScreenSimulator
         Color[] colors = new Color[] { Color.FromArgb(255, 198, 0), Color.Blue, Color.Cyan, Color.OrangeRed, Color.Purple, Color.Green, Color.Indigo, Color.LightBlue, Color.LightGreen, Color.Lime, Color.Orange, Color.Pink, Color.Purple, Color.Red, Color.Teal, Color.Yellow};
         public Splash()
         {
-            Program.gs.Log("Info", "Initializing splash screen");
+            Thread.Sleep(100);
             InitializeComponent();
         }
 
         private void Timer1_Tick(object sender, EventArgs e)
         {
             SplashText.Text = Program.load_message;
-            if (Program.load_message == "Enabling visual styles")
-            {
-                Program.load_message = "Splash screen preview. Press ESC to exit.";
-            }
             appMarketedVersionLabel.ForeColor = colors[(int)Program.gs.ColorScheme];
         }
 
@@ -44,18 +40,17 @@ namespace UltimateBlueScreenSimulator
 
         private void Splash_Load(object sender, EventArgs e)
         {
-            Program.gs.Log("Info", "Enabling visual styles");
+            Program.gs.Log("Info", "Displaying splash screen");
             label2.Visible = Program.gs.DevBuild;
+            if (!Program.gs.EnableEggs) return;
             if ((DateTime.Now.Month == 10) && (DateTime.Now.Day == 31))
             {
                 splashEmoticon.Text = ":(";
             }
-            Random r = new Random();
             if ((DateTime.Now.Month == 7) && (DateTime.Now.Day == 19))
             {
-                label1.Text = "advanced crowstrike simulation technology";
+                label1.Text = "advanced crowstrike ssimulation technology";
             }
-            Application.EnableVisualStyles();
         }
     }
 }

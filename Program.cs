@@ -173,7 +173,7 @@ namespace UltimateBlueScreenSimulator
                     args = clip.args
                 };
                 spl.ShowDialog();
-            } catch
+            } catch (ThreadAbortException)
             {
                 Thread.ResetAbort();
                 return;

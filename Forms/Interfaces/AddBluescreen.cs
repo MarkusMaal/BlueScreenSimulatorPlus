@@ -11,6 +11,9 @@ namespace UltimateBlueScreenSimulator
     {
         string base_os = "Windows 1.x/2.x";
         BlueScreen me;
+
+        
+
         public AddBluescreen()
         {
             MaterialSkinManager materialSkinManager = Program.f1.materialSkinManager;
@@ -32,6 +35,7 @@ namespace UltimateBlueScreenSimulator
                 templatePicker.SelectedIndex = 1;
                 templatePicker.SelectedIndex = 0;
             }
+            pictureBox1.Image = AllIcons.Images[0];
         }
 
         internal void Preload(BlueScreen me)
@@ -59,77 +63,82 @@ namespace UltimateBlueScreenSimulator
                 case "Windows 1.x/2.x":
                     osBox.Text = "Windows 1.x/2.x";
                     friendlyBox.Text = "Windows 1.x/2.x (Text mode, Standard)";
-                    iconBox.SelectedIndex = 0;
+                    iconBox.SelectedIndex = (int)Icons.Flag2D;
                     break;
                 case "Windows 3.1x":
                     osBox.Text = "Windows 3.1x";
                     friendlyBox.Text = "Windows 3.1x (Text mode, Standard)";
-                    iconBox.SelectedIndex = 0;
+                    iconBox.SelectedIndex = (int)Icons.Flag2D;
                     break;
                 case "Windows 9x/Me":
                     osBox.Text = "Windows 9x/Me";
                     friendlyBox.Text = "Windows 9x/Millennium Edition (Text mode, Standard)";
-                    iconBox.SelectedIndex = 0;
+                    iconBox.SelectedIndex = (int)Icons.Flag2D;
                     break;
                 case "Windows CE":
                     osBox.Text = "Windows CE";
                     friendlyBox.Text = "Windows CE 3.0 and later (750x400, Standard)";
-                    iconBox.SelectedIndex = 1;
+                    iconBox.SelectedIndex = (int)Icons.Flag3D;
                     break;
                 case "Windows NT 3.1":
                     osBox.Text = "Windows NT 3.x/4.0";
                     friendlyBox.Text = "Windows NT 3.1x (Text mode, Standard)";
-                    iconBox.SelectedIndex = 0;
+                    iconBox.SelectedIndex = (int)Icons.Flag2D;
                     break;
                 case "Windows NT 3.x/4.0":
                     osBox.Text = "Windows NT 3.x/4.0";
                     friendlyBox.Text = "Windows NT 4.0/3.5x (Text mode, Standard)";
-                    iconBox.SelectedIndex = 0;
+                    iconBox.SelectedIndex = (int)Icons.Flag2D;
                     break;
                 case "Windows 2000":
                     osBox.Text = "Windows 2000";
                     friendlyBox.Text = "Windows 2000 Professional/Server Family (640x480, Standard)";
-                    iconBox.SelectedIndex = 0;
+                    iconBox.SelectedIndex = (int)Icons.Flag2D;
                     break;
                 case "Windows XP":
                     osBox.Text = "Windows XP";
                     friendlyBox.Text = "Windows XP (640x480, Standard)";
-                    iconBox.SelectedIndex = 1;
+                    iconBox.SelectedIndex = (int)Icons.Flag3D;
                     break;
                 case "Windows Vista":
                     osBox.Text = "Windows Vista";
                     friendlyBox.Text = "Windows Vista (640x480, Standard)";
-                    iconBox.SelectedIndex = 1;
+                    iconBox.SelectedIndex = (int)Icons.Flag3D;
                     break;
                 case "Windows 7":
                     osBox.Text = "Windows 7";
                     friendlyBox.Text = "Windows 7 (640x480, ClearType)";
-                    iconBox.SelectedIndex = 1;
+                    iconBox.SelectedIndex = (int)Icons.Flag3D;
                     break;
                 case "BOOTMGR":
                     osBox.Text = "BOOTMGR";
                     friendlyBox.Text = "Windows Boot Manager (1024x768, Standard)";
-                    iconBox.SelectedIndex = 1;
+                    iconBox.SelectedIndex = (int)Icons.Flag3D;
                     break;
                 case "Windows 8 Beta":
                     osBox.Text = "Windows 8 Beta";
                     friendlyBox.Text = "Windows 8 Beta (Native, ClearType)";
-                    iconBox.SelectedIndex = 2;
+                    iconBox.SelectedIndex = (int)Icons.Flag3D;
                     break;
                 case "Windows 8/8.1":
                     osBox.Text = "Windows 8/8.1";
                     friendlyBox.Text = "Windows 8/8.1 (Native, ClearType)";
-                    iconBox.SelectedIndex = 3;
+                    iconBox.SelectedIndex = (int)Icons.Window3D;
                     break;
                 case "Windows 10":
                     osBox.Text = "Windows 10";
                     friendlyBox.Text = "Windows 10 (Native, ClearType)";
-                    iconBox.SelectedIndex = 3;
+                    iconBox.SelectedIndex = (int)Icons.Window3D;
                     break;
                 case "Windows 11":
                     osBox.Text = "Windows 11";
                     friendlyBox.Text = "Windows 11 (Native, ClearType)";
-                    iconBox.SelectedIndex = 2;
+                    iconBox.SelectedIndex = (int)Icons.Window2D;
+                    break;
+                case "Windows 11 Beta":
+                    osBox.Text = "Windows 11 Beta";
+                    friendlyBox.Text = "Windows 11 Beta (Native, ClearType)";
+                    iconBox.SelectedIndex = (int)Icons.Window2D;
                     break;
             }
             base_os = templatePicker.SelectedItem.ToString();
@@ -158,7 +167,8 @@ namespace UltimateBlueScreenSimulator
             {
                 Program.templates.AddTemplate(osBox.Text, friendlyBox.Text, base_os);
                 Program.templates.GetLast().SetString("icon", iconBox.SelectedItem.ToString());
-            } else
+            }
+            else
             {
                 me.SetString("friendlyname", friendlyBox.Text);
                 me.SetString("os", osBox.Text);
@@ -206,6 +216,11 @@ namespace UltimateBlueScreenSimulator
                 MessageBox.Show("Screenshot saved as " + Program.dr.Screenshot(this), "Screenshot taken!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Cursor.Show();
             }
+        }
+
+        private void iconBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            pictureBox1.Image = AllIcons.Images[iconBox.SelectedIndex];
         }
     }
 }

@@ -29,6 +29,7 @@ namespace UltimateBlueScreenSimulator
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddBluescreen));
             this.templateLabel = new MaterialSkin.Controls.MaterialLabel();
             this.osNameLabel = new MaterialSkin.Controls.MaterialLabel();
@@ -41,6 +42,9 @@ namespace UltimateBlueScreenSimulator
             this.iconBox = new MaterialSkin.Controls.MaterialComboBox();
             this.friendlyBox = new MaterialSkin.Controls.MaterialTextBox();
             this.osBox = new MaterialSkin.Controls.MaterialTextBox();
+            this.AllIcons = new System.Windows.Forms.ImageList(this.components);
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // templateLabel
@@ -181,7 +185,8 @@ namespace UltimateBlueScreenSimulator
             "Windows 8 Beta",
             "Windows 8/8.1",
             "Windows 10",
-            "Windows 11"});
+            "Windows 11",
+            "Windows 11 Beta"});
             this.templatePicker.Location = new System.Drawing.Point(15, 95);
             this.templatePicker.MaxDropDownItems = 4;
             this.templatePicker.MouseState = MaterialSkin.MouseState.OUT;
@@ -215,10 +220,11 @@ namespace UltimateBlueScreenSimulator
             this.iconBox.MaxDropDownItems = 4;
             this.iconBox.MouseState = MaterialSkin.MouseState.OUT;
             this.iconBox.Name = "iconBox";
-            this.iconBox.Size = new System.Drawing.Size(121, 35);
+            this.iconBox.Size = new System.Drawing.Size(140, 35);
             this.iconBox.StartIndex = 0;
             this.iconBox.TabIndex = 16;
             this.iconBox.UseTallSize = false;
+            this.iconBox.SelectedIndexChanged += new System.EventHandler(this.iconBox_SelectedIndexChanged);
             // 
             // friendlyBox
             // 
@@ -262,11 +268,33 @@ namespace UltimateBlueScreenSimulator
             this.osBox.UseTallSize = false;
             this.osBox.TextChanged += new System.EventHandler(this.JustifyWindowsWarriors);
             // 
+            // AllIcons
+            // 
+            this.AllIcons.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("AllIcons.ImageStream")));
+            this.AllIcons.TransparentColor = System.Drawing.Color.Transparent;
+            this.AllIcons.Images.SetKeyName(0, "artage-io-48148_1564916990.ico");
+            this.AllIcons.Images.SetKeyName(1, "Tatice-Operating-Systems-Windows.ico");
+            this.AllIcons.Images.SetKeyName(2, "Dakirby309-Windows-8-Metro-Folders-OS-Windows-8-Metro.ico");
+            this.AllIcons.Images.SetKeyName(3, "new-windows-logo (2).ico");
+            this.AllIcons.Images.SetKeyName(4, "string.png");
+            this.AllIcons.Images.SetKeyName(5, "setting.png");
+            this.AllIcons.Images.SetKeyName(6, "theming.png");
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(274, 236);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(16, 16);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 19;
+            this.pictureBox1.TabStop = false;
+            // 
             // AddBluescreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(438, 372);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.osBox);
             this.Controls.Add(this.friendlyBox);
             this.Controls.Add(this.iconBox);
@@ -285,6 +313,7 @@ namespace UltimateBlueScreenSimulator
             this.Text = "Add error screen";
             this.Load += new System.EventHandler(this.Initialize);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AddBluescreen_KeyDown);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -302,5 +331,7 @@ namespace UltimateBlueScreenSimulator
         private MaterialSkin.Controls.MaterialComboBox iconBox;
         private MaterialSkin.Controls.MaterialTextBox friendlyBox;
         private MaterialSkin.Controls.MaterialTextBox osBox;
+        internal System.Windows.Forms.ImageList AllIcons;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

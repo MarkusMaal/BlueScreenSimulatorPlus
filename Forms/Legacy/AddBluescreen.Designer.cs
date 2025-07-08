@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddBluescreen));
             this.templatePicker = new System.Windows.Forms.ComboBox();
             this.osNameLabel = new System.Windows.Forms.Label();
@@ -40,6 +41,9 @@
             this.cancelButton = new System.Windows.Forms.Button();
             this.templateLabel = new System.Windows.Forms.Label();
             this.specifyOsBox = new System.Windows.Forms.CheckBox();
+            this.AllIcons = new System.Windows.Forms.ImageList(this.components);
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // templatePicker
@@ -63,7 +67,8 @@
             "Windows 8 Beta",
             "Windows 8/8.1",
             "Windows 10",
-            "Windows 11"});
+            "Windows 11",
+            "Windows 11 Beta"});
             this.templatePicker.Location = new System.Drawing.Point(12, 26);
             this.templatePicker.Name = "templatePicker";
             this.templatePicker.Size = new System.Drawing.Size(357, 21);
@@ -130,6 +135,7 @@
             this.iconBox.Name = "iconBox";
             this.iconBox.Size = new System.Drawing.Size(99, 21);
             this.iconBox.TabIndex = 6;
+            this.iconBox.SelectedIndexChanged += new System.EventHandler(this.iconBox_SelectedIndexChanged);
             // 
             // okButton
             // 
@@ -174,12 +180,34 @@
             this.specifyOsBox.UseVisualStyleBackColor = true;
             this.specifyOsBox.CheckedChanged += new System.EventHandler(this.ConfirmCustomOS);
             // 
+            // AllIcons
+            // 
+            this.AllIcons.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("AllIcons.ImageStream")));
+            this.AllIcons.TransparentColor = System.Drawing.Color.Transparent;
+            this.AllIcons.Images.SetKeyName(0, "artage-io-48148_1564916990.ico");
+            this.AllIcons.Images.SetKeyName(1, "Tatice-Operating-Systems-Windows.ico");
+            this.AllIcons.Images.SetKeyName(2, "Dakirby309-Windows-8-Metro-Folders-OS-Windows-8-Metro.ico");
+            this.AllIcons.Images.SetKeyName(3, "new-windows-logo (2).ico");
+            this.AllIcons.Images.SetKeyName(4, "string.png");
+            this.AllIcons.Images.SetKeyName(5, "setting.png");
+            this.AllIcons.Images.SetKeyName(6, "theming.png");
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(193, 115);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(16, 16);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 20;
+            this.pictureBox1.TabStop = false;
+            // 
             // AddBluescreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
             this.ClientSize = new System.Drawing.Size(381, 217);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.specifyOsBox);
             this.Controls.Add(this.templateLabel);
             this.Controls.Add(this.cancelButton);
@@ -198,6 +226,7 @@
             this.Text = "Add error screen";
             this.Load += new System.EventHandler(this.Initialize);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AddBluescreen_KeyDown);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -216,5 +245,7 @@
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.Label templateLabel;
         private System.Windows.Forms.CheckBox specifyOsBox;
+        internal System.Windows.Forms.ImageList AllIcons;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

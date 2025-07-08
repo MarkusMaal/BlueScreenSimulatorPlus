@@ -22,6 +22,14 @@ using System.Security.Cryptography.X509Certificates;
 namespace SimulatorDatabase
 {
 
+    public enum Icons
+    {
+        Flag2D,
+        Flag3D,
+        Window3D,
+        Window2D
+    }
+
     public class DrawRoutines
     {
         private bool BlinkState { get; set; }

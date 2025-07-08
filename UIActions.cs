@@ -334,6 +334,7 @@ namespace UltimateBlueScreenSimulator
                     SetControlVisible(fp, "crashDumpBox", false);
                     SetControlVisible(fp, "greenBox", false);
                     SetControlVisible(fp, "serverBox", false);
+                    SetControlChecked(fp, "blackScreenBox", me.GetBool("blackscreen"));
                     break;
                 case "Windows 8 Beta":
                     ExplicitShow.AddRange(new string[]
