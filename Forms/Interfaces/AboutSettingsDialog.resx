@@ -120,9 +120,6 @@
   <metadata name="helpTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>16, 12</value>
   </metadata>
-  <metadata name="helpTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>16, 12</value>
-  </metadata>
   <data name="hashBox.ToolTip" xml:space="preserve">
     <value>Generates a hash of the downloaded file and checks it against the original hash from the server. If they match, the installation continues, if they don't, installation will fail. It is recommended to leave this setting enabled.</value>
   </data>

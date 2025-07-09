@@ -47,18 +47,23 @@ namespace UltimateBlueScreenSimulator
             saveBsconfig.Filter = filters.ToString().Substring(0, filters.Length - 1);
             //Get assembly information about the program
             this.Text = String.Format("About {0}", AssemblyTitle);
-            this.labelProductName.Text = "Blue Screen Simulator Plus";
-            if (Program.gs.DevBuild) { this.labelProductName.Text += " [Development Build]"; }
+            Font = new Font(Font.Name, 8.25f * 96f / CreateGraphics().DpiX, Font.Style, Font.Unit, Font.GdiCharSet, Font.GdiVerticalFont);
+
+        }
+
+        public static void GetAbout(Dictionary<string, Control> controls)
+        {
+            controls["labelProductName"].Text = "Blue Screen Simulator Plus";
+            if (Program.gs.DevBuild) {
+                controls["labelProductName"].Text += "[Development Build]"; }
             string asmVer = AssemblyVersion.Replace(".0", "");
             if (!asmVer.Contains("."))
             {
                 asmVer += ".0";
             }
-            this.labelVersion.Text = String.Format("Version {0} with Verifile 1.2", asmVer);
-            this.labelCopyright.Text = AssemblyCopyright;
-            this.labelCompanyName.Text = "Codename LotsaSpaghetti\nLanguage: C# (.NET framework, Windows Forms)\nCreated by: Markus Maal a.k.a. MarkusTegelane\n\nThis program can only be provided free of charge (if you had to pay for this, please ask for a refund). This program is provided as is, without a warranty.\nMarkuse tarkvara (Markus' software)";
-            Font = new Font(Font.Name, 8.25f * 96f / CreateGraphics().DpiX, Font.Style, Font.Unit, Font.GdiCharSet, Font.GdiVerticalFont);
-
+            controls["labelVersion"].Text = String.Format("Version {0} with Verifile 1.2", asmVer);
+            controls["labelCopyright"].Text = AssemblyCopyright;
+            controls["labelCompanyName"].Text = "Codename LotsaSpaghetti\nLanguage: C# (.NET framework, Windows Forms)\nCreated by: Markus Maal a.k.a. MarkusTegelane\n\nThis program can only be provided free of charge (if you had to pay for this, please ask for a refund). This program is provided as is, without a warranty.\nMarkuse tarkvara (Markus' software)";
         }
 
         #region Assembly Attribute Accessors
@@ -80,7 +85,7 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        public string AssemblyVersion
+        public static string AssemblyVersion
         {
             get
             {
@@ -101,7 +106,7 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        public string AssemblyProduct
+        public static string AssemblyProduct
         {
             get
             {
@@ -114,7 +119,7 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        public string AssemblyCopyright
+        public static string AssemblyCopyright
         {
             get
             {
@@ -149,27 +154,12 @@ namespace UltimateBlueScreenSimulator
                 demoReelTimer.Enabled = true;
                 return;
             }
-            if (Program.gs.NightTheme)
-            {
-                markusSoftwareLogo.Image = Properties.Resources.msoftware_dm;
-                veriFileLogo.Image = Properties.Resources.verifile_dm;
-            }
             Program.f1.abopen = true;
             rtlSwitch.Visible = Program.gs.DevBuild;
             //Hide settings tabs
-            if (!SettingTab)
-            {
-                updatePanel.Dispose();
-                simulatorSettingsPanel.Dispose();
-                appearancePanel.Dispose();
-                rndFactButton.Visible = Program.gs.EnableEggs;
-            }
             //Hide help/about tabs and get settings
             if (SettingTab)
             {
-                aboutPanel.Dispose();
-                commandLinePanel.Dispose();
-                helpPanel.Dispose();
                 eggHunterButton.Checked = Program.gs.EnableEggs;
                 darkDetectCheck.Checked = Program.gs.AutoDark;
                 materialSwitch1.Checked = Program.gs.QuickHelp;
@@ -278,27 +268,22 @@ namespace UltimateBlueScreenSimulator
                 }
                 devFlowPanel.Visible = Program.gs.DevBuild;
             }
-            else if (aboutSettingsTabControl.SelectedTab.Text == "Command line help")
-            {
-                //Loads command line help
-                commandLineHelpDisplay.Text = Program.cmds.Replace("\n", Environment.NewLine);
-            }
         }
 
         //Help texts
-        private void QuickHelp_Help(object sender, EventArgs e)
+        public static void QuickHelp_Help(Control c)
         {
-            helpDisplay.Text = "How to quickly get help?\n\nFor items that have [?] at the end, you can just hover over them for more information.".Replace("\n", Environment.NewLine);
+            c.Text = "How to quickly get help?\n\nFor items that have [?] at the end, you can just hover over them for more information.".Replace("\n", Environment.NewLine);
         }
 
-        private void QuickHelp_Purpose(object sender, EventArgs e)
+        public static void QuickHelp_Purpose(Control c)
         {
-            helpDisplay.Text = "What is the purpose of this program?\n\nThis program can be used as a way of screenshotting bluescreens without actually crashing your computer or messing with virtual machines. You can also use this program for pranking purposes (no harm will be done to the system).".Replace("\n", Environment.NewLine);
+            c.Text = "What is the purpose of this program?\n\nThis program can be used as a way of screenshotting bluescreens without actually crashing your computer or messing with virtual machines. You can also use this program for pranking purposes (no harm will be done to the system).".Replace("\n", Environment.NewLine);
         }
 
-        private void QuickHelp_SystemRequirements(object sender, EventArgs e)
+        public static void QuickHelp_SystemRequirements(Control c)
         {
-            helpDisplay.Text = "System requirements:\n\nOS: Windows 7 or later (Windows Vista partially works as well)\nInstalled fonts: Segoe UI (with Semilight variant), Consolas, Lucida Console\n200MB of available RAM (recommended minimum)\n100MB of available RAM (absolute minimum)\nx86 or compatible processor\nRead-Write storage media\nMicrosoft.NET Framework 4.5.2\n1000+ bps internet connection (for updates and online help functionality)\nScreen resolution: 1024x720 or higher (1280x720 or higher recommended)".Replace("\n", Environment.NewLine);
+            c.Text = "System requirements:\n\nOS: Windows 7 or later (Windows Vista partially works as well)\nInstalled fonts: Segoe UI (with Semilight variant), Consolas, Lucida Console\n200MB of available RAM (recommended minimum)\n100MB of available RAM (absolute minimum)\nx86 or compatible processor\nRead-Write storage media\nMicrosoft.NET Framework 4.5.2\n1000+ bps internet connection (for updates and online help functionality)\nScreen resolution: 1024x720 or higher (1280x720 or higher recommended)".Replace("\n", Environment.NewLine);
         }
 
         //Closes the dialog and sets dialogresult to ok
@@ -674,7 +659,7 @@ namespace UltimateBlueScreenSimulator
             primaryServerBox.Enabled = true;
         }
 
-        private void UserManualButtonClick(object sender, EventArgs e)
+        public static void UserManualButtonClick()
         {
             if (Program.DoWeHaveInternet(1000))
             {
@@ -723,14 +708,14 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void Button2_Click(object sender, EventArgs e)
+        public static void SourceCode(object sender, EventArgs e)
         {
             Process p = new Process();
             p.StartInfo.FileName = "https://github.com/MarkusMaal/BlueScreenSimulatorPlus";
             p.Start();
         }
 
-        private void Button3_Click(object sender, EventArgs e)
+        public static void Copying(object sender, EventArgs e)
         {
             TextView tv = new TextView
             {
@@ -741,8 +726,7 @@ namespace UltimateBlueScreenSimulator
             tv.Dispose();
         }
 
-        /* DONE: Remove devbuild text from the stable release 2.1 */
-        private void Button4_Click(object sender, EventArgs e)
+        public static void RandomFact(object sender, EventArgs e)
         {
             if (Program.gs.EnableEggs)
             {
@@ -818,31 +802,7 @@ namespace UltimateBlueScreenSimulator
             osName.Text = "Select a configuration to modify/remove it";
         }
 
-        private void LogoPictureBox_Click(object sender, EventArgs e)
-        {
-            if (Program.gs.EnableEggs)
-            {
-                if (r.Next(0, 255) == 13)
-                {
-                    logoPictureBox.Image = Properties.Resources.success;
-                    foreach (BlueScreen bs in Program.templates.GetAll())
-                    {
-                        if (bs.GetString("os") == "Windows 10")
-                        {
-                            bs.SetText("Information text with dump", "Your P");
-                            bs.SetText("Information text without dump", "Your P");
-                            bs.SetText("Additional information", "");
-                            bs.SetText("Culprit file", "");
-                            bs.SetText("Error code", "");
-                            bs.SetText("Progress", "");
-                            bs.SetBool("qr", false);
-                        }
-                    }
-                }
-            }
-        }
-
-        private void button3_Click_1(object sender, EventArgs e)
+        public static void Changelog(object sender, EventArgs e)
         {
             MessageBox.Show(Program.changelog + "\n\nYou can find a more detailed changelog in the official BlueScreenSimulatorPlus GitHub page.", "What's new?", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }

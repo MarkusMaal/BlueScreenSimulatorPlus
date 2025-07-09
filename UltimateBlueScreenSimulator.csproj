@@ -106,6 +106,8 @@
     <Compile Include="Forms\Interfaces\NTdtor.Designer.cs">
       <DependentUpon>NTdtor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Interfaces\PrankModeActions.cs" />
+    <Compile Include="Forms\Interfaces\SettingsActions.cs" />
     <Compile Include="Forms\Interfaces\TestSuite.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -280,12 +282,6 @@
     </Compile>
     <Compile Include="Forms\Simulators\old_bluescreen.Designer.cs">
       <DependentUpon>old_bluescreen.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Interfaces\PrankMode.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Interfaces\PrankMode.Designer.cs">
-      <DependentUpon>PrankMode.cs</DependentUpon>
     </Compile>
     <Compile Include="MaterialSkin\Controls\SizableMaterialButton.cs">
       <SubType>Component</SubType>
@@ -476,9 +472,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Simulators\old_bluescreen.resx">
       <DependentUpon>old_bluescreen.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Interfaces\PrankMode.resx">
-      <DependentUpon>PrankMode.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Interfaces\ProgressTuner.resx">
       <DependentUpon>ProgressTuner.cs</DependentUpon>

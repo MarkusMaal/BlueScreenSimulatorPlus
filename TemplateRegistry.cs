@@ -55,7 +55,7 @@ namespace UltimateBlueScreenSimulator
         /// </summary>
         public IDictionary<string, string> filters = new Dictionary<string, string>()
         {
-            { "Bluescreen simulator 3.0 configuration files", "*.json" },
+            { "Bluescreen simulator 3.x configuration files", "*.json" },
             { "Bluescreen simulator 2.1 configuration files", "*.bs2cfg;*.bs2" },
             { "Bluescreen simulator 2.0 configuration files", "*.bs2cfg;*.bs2" },
             { "Bluescreen simulator 1.x configuration files", "*.bscfg;*.bsc" },

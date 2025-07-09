@@ -35,7 +35,10 @@ namespace UltimateBlueScreenSimulator
                 templatePicker.SelectedIndex = 1;
                 templatePicker.SelectedIndex = 0;
             }
-            pictureBox1.Image = AllIcons.Images[0];
+            if (AllIcons.Images.Count > 0)
+            {
+                pictureBox1.Image = AllIcons.Images[0];
+            }
         }
 
         internal void Preload(BlueScreen me)
@@ -220,7 +223,10 @@ namespace UltimateBlueScreenSimulator
 
         private void iconBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            pictureBox1.Image = AllIcons.Images[iconBox.SelectedIndex];
+            if (AllIcons.Images.Count > iconBox.SelectedIndex)
+            {
+                pictureBox1.Image = AllIcons.Images[iconBox.SelectedIndex];
+            }
         }
     }
 }

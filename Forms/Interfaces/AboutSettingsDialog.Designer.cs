@@ -32,25 +32,7 @@ namespace UltimateBlueScreenSimulator
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AboutSettingsDialog));
-            this.aboutTable = new System.Windows.Forms.TableLayoutPanel();
-            this.logoPictureBox = new System.Windows.Forms.PictureBox();
-            this.logoDisplayFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.markusSoftwareLogo = new System.Windows.Forms.PictureBox();
-            this.veriFileLogo = new System.Windows.Forms.PictureBox();
-            this.labelProductName = new MaterialSkin2Framework.Controls.MaterialLabel();
-            this.labelVersion = new MaterialSkin2Framework.Controls.MaterialLabel();
-            this.labelCopyright = new MaterialSkin2Framework.Controls.MaterialLabel();
-            this.labelCompanyName = new MaterialSkin2Framework.Controls.MaterialLabel();
-            this.okButton = new MaterialSkin2Framework.Controls.MaterialButton();
-            this.materialCard4 = new System.Windows.Forms.Panel();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.materialButton2 = new MaterialSkin2Framework.Controls.MaterialButton();
-            this.materialButton3 = new MaterialSkin2Framework.Controls.MaterialButton();
-            this.rndFactButton = new MaterialSkin2Framework.Controls.MaterialButton();
-            this.materialButton5 = new MaterialSkin2Framework.Controls.MaterialButton();
             this.aboutSettingsTabControl = new MaterialSkin2Framework.Controls.MaterialTabControl();
-            this.aboutPanel = new System.Windows.Forms.TabPage();
-            this.materialCard5 = new System.Windows.Forms.Panel();
             this.updatePanel = new System.Windows.Forms.TabPage();
             this.materialCard6 = new System.Windows.Forms.Panel();
             this.updatePanelHeading = new MaterialSkin2Framework.Controls.MaterialLabel();
@@ -104,18 +86,6 @@ namespace UltimateBlueScreenSimulator
             this.eggHunterButton = new MaterialSkin2Framework.Controls.MaterialCheckbox();
             this.osName = new MaterialSkin2Framework.Controls.MaterialLabel();
             this.configList = new MaterialSkin2Framework.Controls.MaterialListBox();
-            this.helpPanel = new System.Windows.Forms.TabPage();
-            this.materialCard2 = new System.Windows.Forms.Panel();
-            this.helpButtonsFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.howToGetHelpButton = new MaterialSkin2Framework.Controls.MaterialButton();
-            this.purposesOfThisProgramButton = new MaterialSkin2Framework.Controls.MaterialButton();
-            this.systemRequirementsButton1 = new MaterialSkin2Framework.Controls.MaterialButton();
-            this.materialButton1 = new MaterialSkin2Framework.Controls.MaterialButton();
-            this.materialCard1 = new System.Windows.Forms.Panel();
-            this.helpDisplay = new MaterialSkin2Framework.Controls.MaterialMultiLineTextBox2();
-            this.commandLinePanel = new System.Windows.Forms.TabPage();
-            this.materialCard3 = new System.Windows.Forms.Panel();
-            this.commandLineHelpDisplay = new MaterialSkin2Framework.Controls.MaterialMultiLineTextBox2();
             this.appearancePanel = new System.Windows.Forms.TabPage();
             this.legacyInterfaceCheck = new MaterialSkin2Framework.Controls.MaterialCheckbox();
             this.materialButton10 = new MaterialSkin2Framework.Controls.MaterialButton();
@@ -139,16 +109,7 @@ namespace UltimateBlueScreenSimulator
             this.checkIfLoadedSaved = new System.Windows.Forms.Timer(this.components);
             this.demoReelTimer = new System.Windows.Forms.Timer(this.components);
             this.materialTabSelector1 = new MaterialSkin2Framework.Controls.MaterialTabSelector();
-            this.aboutTable.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).BeginInit();
-            this.logoDisplayFlowPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.markusSoftwareLogo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.veriFileLogo)).BeginInit();
-            this.materialCard4.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
             this.aboutSettingsTabControl.SuspendLayout();
-            this.aboutPanel.SuspendLayout();
-            this.materialCard5.SuspendLayout();
             this.updatePanel.SuspendLayout();
             this.materialCard6.SuspendLayout();
             this.updateSettingsFlowPanel.SuspendLayout();
@@ -157,300 +118,16 @@ namespace UltimateBlueScreenSimulator
             this.materialCard7.SuspendLayout();
             this.devFlowPanel.SuspendLayout();
             this.configEditingButtonsFlowPanel.SuspendLayout();
-            this.helpPanel.SuspendLayout();
-            this.materialCard2.SuspendLayout();
-            this.helpButtonsFlowPanel.SuspendLayout();
-            this.materialCard1.SuspendLayout();
-            this.commandLinePanel.SuspendLayout();
-            this.materialCard3.SuspendLayout();
             this.appearancePanel.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // aboutTable
-            // 
-            this.aboutTable.ColumnCount = 2;
-            this.aboutTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 26.56546F));
-            this.aboutTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 73.43453F));
-            this.aboutTable.Controls.Add(this.logoPictureBox, 0, 0);
-            this.aboutTable.Controls.Add(this.logoDisplayFlowPanel, 1, 4);
-            this.aboutTable.Controls.Add(this.labelProductName, 1, 0);
-            this.aboutTable.Controls.Add(this.labelVersion, 1, 1);
-            this.aboutTable.Controls.Add(this.labelCopyright, 1, 2);
-            this.aboutTable.Controls.Add(this.labelCompanyName, 1, 3);
-            this.aboutTable.Controls.Add(this.okButton, 1, 6);
-            this.aboutTable.Controls.Add(this.materialCard4, 1, 5);
-            this.aboutTable.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.aboutTable.Location = new System.Drawing.Point(0, 0);
-            this.aboutTable.Name = "aboutTable";
-            this.aboutTable.RowCount = 7;
-            this.aboutTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.19195F));
-            this.aboutTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.572755F));
-            this.aboutTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.19195F));
-            this.aboutTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 38.833F));
-            this.aboutTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 26.55936F));
-            this.aboutTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 17.12538F));
-            this.aboutTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 41F));
-            this.aboutTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.aboutTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.aboutTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.aboutTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.aboutTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.aboutTable.Size = new System.Drawing.Size(720, 482);
-            this.aboutTable.TabIndex = 0;
-            // 
-            // logoPictureBox
-            // 
-            this.logoPictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.logoPictureBox.Image = global::UltimateBlueScreenSimulator.Properties.Resources.bsodbanner31;
-            this.logoPictureBox.Location = new System.Drawing.Point(3, 3);
-            this.logoPictureBox.Name = "logoPictureBox";
-            this.aboutTable.SetRowSpan(this.logoPictureBox, 7);
-            this.logoPictureBox.Size = new System.Drawing.Size(185, 476);
-            this.logoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.logoPictureBox.TabIndex = 12;
-            this.logoPictureBox.TabStop = false;
-            this.logoPictureBox.Click += new System.EventHandler(this.LogoPictureBox_Click);
-            // 
-            // logoDisplayFlowPanel
-            // 
-            this.logoDisplayFlowPanel.AutoScroll = true;
-            this.logoDisplayFlowPanel.Controls.Add(this.markusSoftwareLogo);
-            this.logoDisplayFlowPanel.Controls.Add(this.veriFileLogo);
-            this.logoDisplayFlowPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.logoDisplayFlowPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.logoDisplayFlowPanel.Location = new System.Drawing.Point(194, 251);
-            this.logoDisplayFlowPanel.Name = "logoDisplayFlowPanel";
-            this.logoDisplayFlowPanel.Size = new System.Drawing.Size(523, 110);
-            this.logoDisplayFlowPanel.TabIndex = 25;
-            // 
-            // markusSoftwareLogo
-            // 
-            this.markusSoftwareLogo.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.markusSoftwareLogo.Image = global::UltimateBlueScreenSimulator.Properties.Resources.msoftware;
-            this.markusSoftwareLogo.Location = new System.Drawing.Point(0, 0);
-            this.markusSoftwareLogo.Margin = new System.Windows.Forms.Padding(0);
-            this.markusSoftwareLogo.Name = "markusSoftwareLogo";
-            this.markusSoftwareLogo.Size = new System.Drawing.Size(302, 107);
-            this.markusSoftwareLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.markusSoftwareLogo.TabIndex = 0;
-            this.markusSoftwareLogo.TabStop = false;
-            // 
-            // veriFileLogo
-            // 
-            this.veriFileLogo.Image = global::UltimateBlueScreenSimulator.Properties.Resources.verifile;
-            this.veriFileLogo.Location = new System.Drawing.Point(302, 0);
-            this.veriFileLogo.Margin = new System.Windows.Forms.Padding(0);
-            this.veriFileLogo.Name = "veriFileLogo";
-            this.veriFileLogo.Size = new System.Drawing.Size(311, 107);
-            this.veriFileLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.veriFileLogo.TabIndex = 1;
-            this.veriFileLogo.TabStop = false;
-            // 
-            // labelProductName
-            // 
-            this.labelProductName.Depth = 0;
-            this.labelProductName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelProductName.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.labelProductName.FontType = MaterialSkin2Framework.MaterialSkinManager.fontType.Body2;
-            this.labelProductName.Location = new System.Drawing.Point(197, 0);
-            this.labelProductName.Margin = new System.Windows.Forms.Padding(6, 0, 3, 0);
-            this.labelProductName.MaximumSize = new System.Drawing.Size(0, 17);
-            this.labelProductName.MouseState = MaterialSkin2Framework.MouseState.HOVER;
-            this.labelProductName.Name = "labelProductName";
-            this.labelProductName.Size = new System.Drawing.Size(520, 17);
-            this.labelProductName.TabIndex = 19;
-            this.labelProductName.Text = "Product Name";
-            this.labelProductName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // labelVersion
-            // 
-            this.labelVersion.Depth = 0;
-            this.labelVersion.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelVersion.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.labelVersion.FontType = MaterialSkin2Framework.MaterialSkinManager.fontType.Body2;
-            this.labelVersion.Location = new System.Drawing.Point(197, 27);
-            this.labelVersion.Margin = new System.Windows.Forms.Padding(6, 0, 3, 0);
-            this.labelVersion.MaximumSize = new System.Drawing.Size(0, 17);
-            this.labelVersion.MouseState = MaterialSkin2Framework.MouseState.HOVER;
-            this.labelVersion.Name = "labelVersion";
-            this.labelVersion.Size = new System.Drawing.Size(520, 17);
-            this.labelVersion.TabIndex = 0;
-            this.labelVersion.Text = "Version";
-            this.labelVersion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // labelCopyright
-            // 
-            this.labelCopyright.Depth = 0;
-            this.labelCopyright.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelCopyright.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.labelCopyright.FontType = MaterialSkin2Framework.MaterialSkinManager.fontType.Body2;
-            this.labelCopyright.Location = new System.Drawing.Point(197, 51);
-            this.labelCopyright.Margin = new System.Windows.Forms.Padding(6, 0, 3, 0);
-            this.labelCopyright.MaximumSize = new System.Drawing.Size(0, 17);
-            this.labelCopyright.MouseState = MaterialSkin2Framework.MouseState.HOVER;
-            this.labelCopyright.Name = "labelCopyright";
-            this.labelCopyright.Size = new System.Drawing.Size(520, 17);
-            this.labelCopyright.TabIndex = 21;
-            this.labelCopyright.Text = "Copyright";
-            this.labelCopyright.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // labelCompanyName
-            // 
-            this.labelCompanyName.Depth = 0;
-            this.labelCompanyName.Dock = System.Windows.Forms.DockStyle.Top;
-            this.labelCompanyName.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.labelCompanyName.FontType = MaterialSkin2Framework.MaterialSkinManager.fontType.Body2;
-            this.labelCompanyName.Location = new System.Drawing.Point(197, 78);
-            this.labelCompanyName.Margin = new System.Windows.Forms.Padding(6, 0, 3, 0);
-            this.labelCompanyName.MouseState = MaterialSkin2Framework.MouseState.HOVER;
-            this.labelCompanyName.Name = "labelCompanyName";
-            this.labelCompanyName.Size = new System.Drawing.Size(520, 126);
-            this.labelCompanyName.TabIndex = 22;
-            // 
-            // okButton
-            // 
-            this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.okButton.AutoSize = false;
-            this.okButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.okButton.BackColor = System.Drawing.SystemColors.Control;
-            this.okButton.Density = MaterialSkin2Framework.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.okButton.Depth = 0;
-            this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.okButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.okButton.HighEmphasis = true;
-            this.okButton.Icon = null;
-            this.okButton.Location = new System.Drawing.Point(631, 446);
-            this.okButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.okButton.MouseState = MaterialSkin2Framework.MouseState.HOVER;
-            this.okButton.Name = "okButton";
-            this.okButton.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.okButton.Size = new System.Drawing.Size(85, 30);
-            this.okButton.TabIndex = 24;
-            this.okButton.Text = "&OK";
-            this.okButton.Type = MaterialSkin2Framework.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.okButton.UseAccentColor = false;
-            this.okButton.UseVisualStyleBackColor = false;
-            this.okButton.Click += new System.EventHandler(this.OkButton_Click);
-            // 
-            // materialCard4
-            // 
-            this.materialCard4.Controls.Add(this.flowLayoutPanel1);
-            this.materialCard4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.materialCard4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialCard4.Location = new System.Drawing.Point(191, 364);
-            this.materialCard4.Margin = new System.Windows.Forms.Padding(0);
-            this.materialCard4.Name = "materialCard4";
-            this.materialCard4.Size = new System.Drawing.Size(529, 75);
-            this.materialCard4.TabIndex = 26;
-            // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.AutoScroll = true;
-            this.flowLayoutPanel1.Controls.Add(this.materialButton2);
-            this.flowLayoutPanel1.Controls.Add(this.materialButton3);
-            this.flowLayoutPanel1.Controls.Add(this.rndFactButton);
-            this.flowLayoutPanel1.Controls.Add(this.materialButton5);
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(529, 75);
-            this.flowLayoutPanel1.TabIndex = 27;
-            this.flowLayoutPanel1.WrapContents = false;
-            // 
-            // materialButton2
-            // 
-            this.materialButton2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.materialButton2.CharacterCasing = MaterialSkin2Framework.Controls.MaterialButton.CharacterCasingEnum.Normal;
-            this.materialButton2.Density = MaterialSkin2Framework.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.materialButton2.Depth = 0;
-            this.materialButton2.HighEmphasis = true;
-            this.materialButton2.Icon = null;
-            this.materialButton2.Location = new System.Drawing.Point(4, 6);
-            this.materialButton2.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.materialButton2.MouseState = MaterialSkin2Framework.MouseState.HOVER;
-            this.materialButton2.Name = "materialButton2";
-            this.materialButton2.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.materialButton2.Size = new System.Drawing.Size(119, 36);
-            this.materialButton2.TabIndex = 4;
-            this.materialButton2.Text = "Source code";
-            this.materialButton2.Type = MaterialSkin2Framework.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.materialButton2.UseAccentColor = false;
-            this.materialButton2.UseVisualStyleBackColor = true;
-            this.materialButton2.Click += new System.EventHandler(this.Button2_Click);
-            // 
-            // materialButton3
-            // 
-            this.materialButton3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.materialButton3.CharacterCasing = MaterialSkin2Framework.Controls.MaterialButton.CharacterCasingEnum.Normal;
-            this.materialButton3.Density = MaterialSkin2Framework.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.materialButton3.Depth = 0;
-            this.materialButton3.HighEmphasis = true;
-            this.materialButton3.Icon = null;
-            this.materialButton3.Location = new System.Drawing.Point(131, 6);
-            this.materialButton3.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.materialButton3.MouseState = MaterialSkin2Framework.MouseState.HOVER;
-            this.materialButton3.Name = "materialButton3";
-            this.materialButton3.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.materialButton3.Size = new System.Drawing.Size(84, 36);
-            this.materialButton3.TabIndex = 4;
-            this.materialButton3.Text = "Copying";
-            this.materialButton3.Type = MaterialSkin2Framework.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.materialButton3.UseAccentColor = false;
-            this.materialButton3.UseVisualStyleBackColor = true;
-            this.materialButton3.Click += new System.EventHandler(this.Button3_Click);
-            // 
-            // rndFactButton
-            // 
-            this.rndFactButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.rndFactButton.CharacterCasing = MaterialSkin2Framework.Controls.MaterialButton.CharacterCasingEnum.Normal;
-            this.rndFactButton.Density = MaterialSkin2Framework.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.rndFactButton.Depth = 0;
-            this.rndFactButton.HighEmphasis = true;
-            this.rndFactButton.Icon = null;
-            this.rndFactButton.Location = new System.Drawing.Point(223, 6);
-            this.rndFactButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.rndFactButton.MouseState = MaterialSkin2Framework.MouseState.HOVER;
-            this.rndFactButton.Name = "rndFactButton";
-            this.rndFactButton.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.rndFactButton.Size = new System.Drawing.Size(148, 36);
-            this.rndFactButton.TabIndex = 5;
-            this.rndFactButton.Text = "Random factoid";
-            this.rndFactButton.Type = MaterialSkin2Framework.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.rndFactButton.UseAccentColor = false;
-            this.rndFactButton.UseVisualStyleBackColor = true;
-            this.rndFactButton.Click += new System.EventHandler(this.Button4_Click);
-            // 
-            // materialButton5
-            // 
-            this.materialButton5.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.materialButton5.CharacterCasing = MaterialSkin2Framework.Controls.MaterialButton.CharacterCasingEnum.Normal;
-            this.materialButton5.Density = MaterialSkin2Framework.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.materialButton5.Depth = 0;
-            this.materialButton5.HighEmphasis = true;
-            this.materialButton5.Icon = null;
-            this.materialButton5.Location = new System.Drawing.Point(379, 6);
-            this.materialButton5.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.materialButton5.MouseState = MaterialSkin2Framework.MouseState.HOVER;
-            this.materialButton5.Name = "materialButton5";
-            this.materialButton5.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.materialButton5.Size = new System.Drawing.Size(118, 36);
-            this.materialButton5.TabIndex = 5;
-            this.materialButton5.Text = "What\'s new?";
-            this.materialButton5.Type = MaterialSkin2Framework.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.materialButton5.UseAccentColor = false;
-            this.materialButton5.UseVisualStyleBackColor = true;
-            this.materialButton5.Click += new System.EventHandler(this.button3_Click_1);
             // 
             // aboutSettingsTabControl
             // 
             this.aboutSettingsTabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.aboutSettingsTabControl.Controls.Add(this.aboutPanel);
             this.aboutSettingsTabControl.Controls.Add(this.updatePanel);
             this.aboutSettingsTabControl.Controls.Add(this.simulatorSettingsPanel);
-            this.aboutSettingsTabControl.Controls.Add(this.helpPanel);
-            this.aboutSettingsTabControl.Controls.Add(this.commandLinePanel);
             this.aboutSettingsTabControl.Controls.Add(this.appearancePanel);
             this.aboutSettingsTabControl.Depth = 0;
             this.aboutSettingsTabControl.Location = new System.Drawing.Point(3, 75);
@@ -463,28 +140,6 @@ namespace UltimateBlueScreenSimulator
             this.aboutSettingsTabControl.Size = new System.Drawing.Size(734, 514);
             this.aboutSettingsTabControl.TabIndex = 1;
             this.aboutSettingsTabControl.SelectedIndexChanged += new System.EventHandler(this.TabSwitcher);
-            // 
-            // aboutPanel
-            // 
-            this.aboutPanel.BackColor = System.Drawing.Color.White;
-            this.aboutPanel.Controls.Add(this.materialCard5);
-            this.aboutPanel.Location = new System.Drawing.Point(4, 22);
-            this.aboutPanel.Name = "aboutPanel";
-            this.aboutPanel.Padding = new System.Windows.Forms.Padding(3);
-            this.aboutPanel.Size = new System.Drawing.Size(726, 488);
-            this.aboutPanel.TabIndex = 0;
-            this.aboutPanel.Text = "About";
-            // 
-            // materialCard5
-            // 
-            this.materialCard5.Controls.Add(this.aboutTable);
-            this.materialCard5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.materialCard5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialCard5.Location = new System.Drawing.Point(3, 3);
-            this.materialCard5.Margin = new System.Windows.Forms.Padding(0);
-            this.materialCard5.Name = "materialCard5";
-            this.materialCard5.Size = new System.Drawing.Size(720, 482);
-            this.materialCard5.TabIndex = 1;
             // 
             // updatePanel
             // 
@@ -1519,219 +1174,6 @@ namespace UltimateBlueScreenSimulator
             this.configList.SelectedIndexChanged += new MaterialSkin2Framework.Controls.MaterialListBox.SelectedIndexChangedEventHandler(this.ConfigSelector);
             this.configList.DoubleClick += new System.EventHandler(this.configList_DoubleClick);
             // 
-            // helpPanel
-            // 
-            this.helpPanel.BackColor = System.Drawing.Color.White;
-            this.helpPanel.Controls.Add(this.materialCard2);
-            this.helpPanel.Controls.Add(this.materialCard1);
-            this.helpPanel.Location = new System.Drawing.Point(4, 22);
-            this.helpPanel.Name = "helpPanel";
-            this.helpPanel.Size = new System.Drawing.Size(726, 488);
-            this.helpPanel.TabIndex = 2;
-            this.helpPanel.Text = "Help";
-            // 
-            // materialCard2
-            // 
-            this.materialCard2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.materialCard2.Controls.Add(this.helpButtonsFlowPanel);
-            this.materialCard2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialCard2.Location = new System.Drawing.Point(0, 0);
-            this.materialCard2.Margin = new System.Windows.Forms.Padding(0);
-            this.materialCard2.Name = "materialCard2";
-            this.materialCard2.Size = new System.Drawing.Size(730, 49);
-            this.materialCard2.TabIndex = 3;
-            // 
-            // helpButtonsFlowPanel
-            // 
-            this.helpButtonsFlowPanel.Controls.Add(this.howToGetHelpButton);
-            this.helpButtonsFlowPanel.Controls.Add(this.purposesOfThisProgramButton);
-            this.helpButtonsFlowPanel.Controls.Add(this.systemRequirementsButton1);
-            this.helpButtonsFlowPanel.Controls.Add(this.materialButton1);
-            this.helpButtonsFlowPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.helpButtonsFlowPanel.Location = new System.Drawing.Point(0, 0);
-            this.helpButtonsFlowPanel.Margin = new System.Windows.Forms.Padding(0);
-            this.helpButtonsFlowPanel.Name = "helpButtonsFlowPanel";
-            this.helpButtonsFlowPanel.Size = new System.Drawing.Size(730, 49);
-            this.helpButtonsFlowPanel.TabIndex = 1;
-            // 
-            // howToGetHelpButton
-            // 
-            this.howToGetHelpButton.AutoSize = false;
-            this.howToGetHelpButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.howToGetHelpButton.CharacterCasing = MaterialSkin2Framework.Controls.MaterialButton.CharacterCasingEnum.Normal;
-            this.howToGetHelpButton.Density = MaterialSkin2Framework.Controls.MaterialButton.MaterialButtonDensity.Dense;
-            this.howToGetHelpButton.Depth = 0;
-            this.howToGetHelpButton.HighEmphasis = true;
-            this.howToGetHelpButton.Icon = null;
-            this.howToGetHelpButton.Location = new System.Drawing.Point(4, 6);
-            this.howToGetHelpButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.howToGetHelpButton.MouseState = MaterialSkin2Framework.MouseState.HOVER;
-            this.howToGetHelpButton.Name = "howToGetHelpButton";
-            this.howToGetHelpButton.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.howToGetHelpButton.Size = new System.Drawing.Size(124, 32);
-            this.howToGetHelpButton.TabIndex = 4;
-            this.howToGetHelpButton.Text = "How to get help?";
-            this.howToGetHelpButton.Type = MaterialSkin2Framework.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.howToGetHelpButton.UseAccentColor = false;
-            this.howToGetHelpButton.UseVisualStyleBackColor = true;
-            this.howToGetHelpButton.Click += new System.EventHandler(this.QuickHelp_Help);
-            // 
-            // purposesOfThisProgramButton
-            // 
-            this.purposesOfThisProgramButton.AutoSize = false;
-            this.purposesOfThisProgramButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.purposesOfThisProgramButton.CharacterCasing = MaterialSkin2Framework.Controls.MaterialButton.CharacterCasingEnum.Normal;
-            this.purposesOfThisProgramButton.Density = MaterialSkin2Framework.Controls.MaterialButton.MaterialButtonDensity.Dense;
-            this.purposesOfThisProgramButton.Depth = 0;
-            this.purposesOfThisProgramButton.HighEmphasis = true;
-            this.purposesOfThisProgramButton.Icon = null;
-            this.purposesOfThisProgramButton.Location = new System.Drawing.Point(136, 6);
-            this.purposesOfThisProgramButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.purposesOfThisProgramButton.MouseState = MaterialSkin2Framework.MouseState.HOVER;
-            this.purposesOfThisProgramButton.Name = "purposesOfThisProgramButton";
-            this.purposesOfThisProgramButton.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.purposesOfThisProgramButton.Size = new System.Drawing.Size(177, 32);
-            this.purposesOfThisProgramButton.TabIndex = 5;
-            this.purposesOfThisProgramButton.Text = "Purposes of this program";
-            this.purposesOfThisProgramButton.Type = MaterialSkin2Framework.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.purposesOfThisProgramButton.UseAccentColor = false;
-            this.purposesOfThisProgramButton.UseVisualStyleBackColor = true;
-            this.purposesOfThisProgramButton.Click += new System.EventHandler(this.QuickHelp_Purpose);
-            // 
-            // systemRequirementsButton1
-            // 
-            this.systemRequirementsButton1.AutoSize = false;
-            this.systemRequirementsButton1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.systemRequirementsButton1.CharacterCasing = MaterialSkin2Framework.Controls.MaterialButton.CharacterCasingEnum.Normal;
-            this.systemRequirementsButton1.Density = MaterialSkin2Framework.Controls.MaterialButton.MaterialButtonDensity.Dense;
-            this.systemRequirementsButton1.Depth = 0;
-            this.systemRequirementsButton1.HighEmphasis = true;
-            this.systemRequirementsButton1.Icon = null;
-            this.systemRequirementsButton1.Location = new System.Drawing.Point(321, 6);
-            this.systemRequirementsButton1.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.systemRequirementsButton1.MouseState = MaterialSkin2Framework.MouseState.HOVER;
-            this.systemRequirementsButton1.Name = "systemRequirementsButton1";
-            this.systemRequirementsButton1.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.systemRequirementsButton1.Size = new System.Drawing.Size(149, 32);
-            this.systemRequirementsButton1.TabIndex = 6;
-            this.systemRequirementsButton1.Text = "System requirements";
-            this.systemRequirementsButton1.Type = MaterialSkin2Framework.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.systemRequirementsButton1.UseAccentColor = false;
-            this.systemRequirementsButton1.UseVisualStyleBackColor = true;
-            this.systemRequirementsButton1.Click += new System.EventHandler(this.QuickHelp_SystemRequirements);
-            // 
-            // materialButton1
-            // 
-            this.materialButton1.AutoSize = false;
-            this.materialButton1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.materialButton1.CharacterCasing = MaterialSkin2Framework.Controls.MaterialButton.CharacterCasingEnum.Normal;
-            this.materialButton1.Density = MaterialSkin2Framework.Controls.MaterialButton.MaterialButtonDensity.Dense;
-            this.materialButton1.Depth = 0;
-            this.materialButton1.HighEmphasis = true;
-            this.materialButton1.Icon = null;
-            this.materialButton1.Location = new System.Drawing.Point(478, 6);
-            this.materialButton1.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.materialButton1.MouseState = MaterialSkin2Framework.MouseState.HOVER;
-            this.materialButton1.Name = "materialButton1";
-            this.materialButton1.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.materialButton1.Size = new System.Drawing.Size(101, 32);
-            this.materialButton1.TabIndex = 6;
-            this.materialButton1.Text = "User manual";
-            this.materialButton1.Type = MaterialSkin2Framework.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.materialButton1.UseAccentColor = false;
-            this.materialButton1.UseVisualStyleBackColor = true;
-            this.materialButton1.Click += new System.EventHandler(this.UserManualButtonClick);
-            // 
-            // materialCard1
-            // 
-            this.materialCard1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.materialCard1.Controls.Add(this.helpDisplay);
-            this.materialCard1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialCard1.Location = new System.Drawing.Point(0, 51);
-            this.materialCard1.Margin = new System.Windows.Forms.Padding(14);
-            this.materialCard1.Name = "materialCard1";
-            this.materialCard1.Size = new System.Drawing.Size(723, 505);
-            this.materialCard1.TabIndex = 2;
-            // 
-            // helpDisplay
-            // 
-            this.helpDisplay.AnimateReadOnly = false;
-            this.helpDisplay.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.helpDisplay.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
-            this.helpDisplay.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.helpDisplay.Depth = 0;
-            this.helpDisplay.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.helpDisplay.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.helpDisplay.HideSelection = true;
-            this.helpDisplay.Location = new System.Drawing.Point(0, 0);
-            this.helpDisplay.Margin = new System.Windows.Forms.Padding(0);
-            this.helpDisplay.MaxLength = 32767;
-            this.helpDisplay.MouseState = MaterialSkin2Framework.MouseState.OUT;
-            this.helpDisplay.Name = "helpDisplay";
-            this.helpDisplay.PasswordChar = '\0';
-            this.helpDisplay.ReadOnly = true;
-            this.helpDisplay.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.helpDisplay.SelectedText = "";
-            this.helpDisplay.SelectionLength = 0;
-            this.helpDisplay.SelectionStart = 0;
-            this.helpDisplay.ShortcutsEnabled = true;
-            this.helpDisplay.Size = new System.Drawing.Size(723, 505);
-            this.helpDisplay.TabIndex = 0;
-            this.helpDisplay.TabStop = false;
-            this.helpDisplay.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.helpDisplay.UseSystemPasswordChar = false;
-            // 
-            // commandLinePanel
-            // 
-            this.commandLinePanel.BackColor = System.Drawing.Color.White;
-            this.commandLinePanel.Controls.Add(this.materialCard3);
-            this.commandLinePanel.Location = new System.Drawing.Point(4, 22);
-            this.commandLinePanel.Name = "commandLinePanel";
-            this.commandLinePanel.Size = new System.Drawing.Size(726, 488);
-            this.commandLinePanel.TabIndex = 3;
-            this.commandLinePanel.Text = "Command line help";
-            // 
-            // materialCard3
-            // 
-            this.materialCard3.Controls.Add(this.commandLineHelpDisplay);
-            this.materialCard3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.materialCard3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialCard3.Location = new System.Drawing.Point(0, 0);
-            this.materialCard3.Margin = new System.Windows.Forms.Padding(0);
-            this.materialCard3.Name = "materialCard3";
-            this.materialCard3.Size = new System.Drawing.Size(726, 488);
-            this.materialCard3.TabIndex = 1;
-            // 
-            // commandLineHelpDisplay
-            // 
-            this.commandLineHelpDisplay.AnimateReadOnly = false;
-            this.commandLineHelpDisplay.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.commandLineHelpDisplay.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
-            this.commandLineHelpDisplay.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.commandLineHelpDisplay.Depth = 0;
-            this.commandLineHelpDisplay.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.commandLineHelpDisplay.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.commandLineHelpDisplay.HideSelection = true;
-            this.commandLineHelpDisplay.Location = new System.Drawing.Point(0, 0);
-            this.commandLineHelpDisplay.MaxLength = 32767;
-            this.commandLineHelpDisplay.MouseState = MaterialSkin2Framework.MouseState.OUT;
-            this.commandLineHelpDisplay.Name = "commandLineHelpDisplay";
-            this.commandLineHelpDisplay.PasswordChar = '\0';
-            this.commandLineHelpDisplay.ReadOnly = true;
-            this.commandLineHelpDisplay.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.commandLineHelpDisplay.SelectedText = "";
-            this.commandLineHelpDisplay.SelectionLength = 0;
-            this.commandLineHelpDisplay.SelectionStart = 0;
-            this.commandLineHelpDisplay.ShortcutsEnabled = false;
-            this.commandLineHelpDisplay.Size = new System.Drawing.Size(726, 488);
-            this.commandLineHelpDisplay.TabIndex = 0;
-            this.commandLineHelpDisplay.TabStop = false;
-            this.commandLineHelpDisplay.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.commandLineHelpDisplay.UseSystemPasswordChar = false;
-            // 
             // appearancePanel
             // 
             this.appearancePanel.BackColor = System.Drawing.Color.White;
@@ -2116,7 +1558,6 @@ namespace UltimateBlueScreenSimulator
             // 
             // AboutSettingsDialog
             // 
-            this.AcceptButton = this.okButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(740, 592);
@@ -2135,17 +1576,7 @@ namespace UltimateBlueScreenSimulator
             this.Load += new System.EventHandler(this.SetInitalInterface);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AboutSettingsDialog_KeyDown);
             this.Resize += new System.EventHandler(this.OnMeResized);
-            this.aboutTable.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).EndInit();
-            this.logoDisplayFlowPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.markusSoftwareLogo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.veriFileLogo)).EndInit();
-            this.materialCard4.ResumeLayout(false);
-            this.flowLayoutPanel1.ResumeLayout(false);
-            this.flowLayoutPanel1.PerformLayout();
             this.aboutSettingsTabControl.ResumeLayout(false);
-            this.aboutPanel.ResumeLayout(false);
-            this.materialCard5.ResumeLayout(false);
             this.updatePanel.ResumeLayout(false);
             this.materialCard6.ResumeLayout(false);
             this.materialCard6.PerformLayout();
@@ -2159,12 +1590,6 @@ namespace UltimateBlueScreenSimulator
             this.devFlowPanel.ResumeLayout(false);
             this.devFlowPanel.PerformLayout();
             this.configEditingButtonsFlowPanel.ResumeLayout(false);
-            this.helpPanel.ResumeLayout(false);
-            this.materialCard2.ResumeLayout(false);
-            this.helpButtonsFlowPanel.ResumeLayout(false);
-            this.materialCard1.ResumeLayout(false);
-            this.commandLinePanel.ResumeLayout(false);
-            this.materialCard3.ResumeLayout(false);
             this.appearancePanel.ResumeLayout(false);
             this.appearancePanel.PerformLayout();
             this.ResumeLayout(false);
@@ -2172,18 +1597,8 @@ namespace UltimateBlueScreenSimulator
         }
 
         #endregion
-
-        private System.Windows.Forms.TableLayoutPanel aboutTable;
-        private System.Windows.Forms.PictureBox logoPictureBox;
-        private MaterialLabel labelProductName;
-        private MaterialLabel labelVersion;
-        private MaterialLabel labelCopyright;
-        private MaterialLabel labelCompanyName;
         private MaterialTabControl aboutSettingsTabControl;
-        private System.Windows.Forms.TabPage aboutPanel;
         private System.Windows.Forms.TabPage updatePanel;
-        private System.Windows.Forms.TabPage helpPanel;
-        private System.Windows.Forms.TabPage commandLinePanel;
         private MaterialButton updateCheckButton;
         private System.Windows.Forms.ToolTip helpTip;
         private MaterialButton unsignButton;
@@ -2202,14 +1617,10 @@ namespace UltimateBlueScreenSimulator
         private MaterialCheckbox hideInFullscreenButton;
         private MaterialLabel configListHeading;
         private MaterialLabel simulatorSettingsHeading;
-        private System.Windows.Forms.FlowLayoutPanel helpButtonsFlowPanel;
         private System.Windows.Forms.Timer updateCheckerTimer;
         private MaterialLabel noticeLabel;
         private MaterialLabel simulatorSettingsNotice;
         private MaterialCheckbox eggHunterButton;
-        private System.Windows.Forms.FlowLayoutPanel logoDisplayFlowPanel;
-        private System.Windows.Forms.PictureBox markusSoftwareLogo;
-        private System.Windows.Forms.PictureBox veriFileLogo;
         private MaterialSkin2Framework.Controls.MaterialListBox configList;
         private MaterialLabel osName;
         private MaterialButton resetButton;
@@ -2237,22 +1648,6 @@ namespace UltimateBlueScreenSimulator
         private MaterialCheckbox randomnessCheckBox;
         private MaterialCheckbox selectAllBox;
         private MaterialLabel label1;
-        private MaterialSkin2Framework.Controls.MaterialButton howToGetHelpButton;
-        private MaterialSkin2Framework.Controls.MaterialButton purposesOfThisProgramButton;
-        private MaterialSkin2Framework.Controls.MaterialButton systemRequirementsButton1;
-        private MaterialSkin2Framework.Controls.MaterialButton materialButton1;
-        private MaterialMultiLineTextBox2 commandLineHelpDisplay;
-        private MaterialMultiLineTextBox2 helpDisplay;
-        private System.Windows.Forms.Panel materialCard1;
-        private System.Windows.Forms.Panel materialCard2;
-        private System.Windows.Forms.Panel materialCard3;
-        private System.Windows.Forms.Panel materialCard4;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private MaterialButton materialButton2;
-        private MaterialButton materialButton3;
-        private MaterialButton rndFactButton;
-        private MaterialButton materialButton5;
-        private System.Windows.Forms.Panel materialCard5;
         private System.Windows.Forms.Panel materialCard6;
         private System.Windows.Forms.Panel materialCard7;
         private MaterialButton materialButton4;
@@ -2270,7 +1665,6 @@ namespace UltimateBlueScreenSimulator
         private MaterialComboBox primaryColorBox;
         private MaterialButton materialButton7;
         private MaterialCheckbox autosaveCheck;
-        internal MaterialButton okButton;
         private System.Windows.Forms.Timer demoReelTimer;
         private MaterialButton materialButton8;
         private MaterialButton materialButton10;

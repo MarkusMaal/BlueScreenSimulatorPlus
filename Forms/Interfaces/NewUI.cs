@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Buffers.Binary;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
 using System.Threading;
@@ -90,7 +88,7 @@ namespace UltimateBlueScreenSimulator
 
         private void NewUi1_ResizeEnd(object sender, EventArgs e)
         {
-            int sub = 70;
+            int sub = 90;
             this.errorCode.Width = this.Width - sub;
             WXOptions.Width = this.Width - sub;
             ntPanel.Width = this.Width - sub;
@@ -158,6 +156,11 @@ namespace UltimateBlueScreenSimulator
 
         private void materialFloatingActionButton1_Click(object sender, EventArgs e)
         {
+            if (materialTabControl1.SelectedTab.Text == "Prank mode")
+            {
+                PrankModeActions.OKClick(this, closePrank, bestMatchRadio, timeRadio, appRadio, triggerAppBox, friendlyMessageBox, letCloseBox);
+                return;
+            }
             if (ModifierKeys.HasFlag(Keys.Shift))
             {
                 BlueScreen cloned = CloneMe(UIActions.me);
@@ -338,41 +341,40 @@ namespace UltimateBlueScreenSimulator
 
         private void materialTabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            label7.Visible = false;
+            button1.Visible = false;
+            button3.Visible = false;
             switch (materialTabControl1.SelectedIndex)
             {
+                case 0:
+                    label7.Visible = !winMode.Checked;
+                    button1.Visible = true;
+                    button3.Visible = true;
+                    quickHelp.SetToolTip(button1, "Starts the simulation");
+                    break;
                 case 1:
-                    //materialTabControl1.SelectedIndex = 0;
-                    //materialTabControl1.TabPages[0].Show();
-                    PrankMode pm = new PrankMode();
-                    //pm.Show();
+                    PrankModeActions.InitPrankMode(UIActions.GenerateControlDictionary(new Control[] { bestMatchRadio, bestMatchRadio, matchAllRadio, letCloseBox }));
+                    button1.Visible = true;
+                    quickHelp.SetToolTip(button1, "Starts a simulation based on the conditions you set");
                     break;
                 case 2:
                     //materialTabControl1.SelectedIndex = 0;
                     //materialTabControl1.TabPages[0].Show();
-                    if (!abopen)
+                    SettingsActions.Initialize(loadBsconfig, saveBsconfig, UIActions.GenerateControlDictionary(new Control[]
                     {
-                        AboutSettingsDialog ab1 = new AboutSettingsDialog
-                        {
-                            Text = "Settings",
-                            SettingTab = true
-                        };
-                        ab1.okButton.DialogResult = DialogResult.None;
-                        ab1.ShowDialog();
-                        ab1.Dispose();
-                        abopen = false;
-                    }
-                    else
-                    {
-                        MessageBox.Show("Settings window is already open", "Cannot open settings", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
+                        rtlSwitch, eggHunterButton, darkDetectCheck, materialSwitch1, accentBox, primaryColorBox, darkMode,
+                        scalingModeBox, hideInFullscreenButton, updateImmediatelyRadio, updateOnCloseRadio, noUpdatesRadio,
+                        autoUpdateRadio, primaryServerBox, legacyInterfaceCheck, hashBox
+                    }), quickHelp);
                     break;
                 case 3:
                     FilterLog();
                     break;
                 case 4:
-                    materialTabControl1.SelectedIndex = 0;
-                    materialTabControl1.TabPages[0].Show();
-                    if (!abopen)
+                    HelpTabChange(sender, e);
+                    //materialTabControl1.SelectedIndex = 0;
+                    //materialTabControl1.TabPages[0].Show();
+                    /*if (!abopen)
                     {
                         AboutSettingsDialog ab1 = new AboutSettingsDialog
                         {
@@ -385,7 +387,7 @@ namespace UltimateBlueScreenSimulator
                     else
                     {
                         MessageBox.Show("The window is already open", "Cannot open window", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
+                    }*/
                     break;
                 case 5:
                     materialTabControl1.SelectedIndex = 0;
@@ -543,6 +545,11 @@ namespace UltimateBlueScreenSimulator
                 }
                 else if (e.AssociatedControl.Name == "button1")
                 {
+                    if (materialTabControl1.SelectedTab.Text == "Prank mode")
+                    {
+                        quickHelp.ToolTipTitle = "Start prank mode";
+                        return;
+                    }
                     quickHelp.ToolTipTitle = "Simulate";
                 }
                 else if (e.AssociatedControl.Name == "button3")
@@ -594,6 +601,8 @@ namespace UltimateBlueScreenSimulator
             {
                 if (System.IO.File.Exists(Program.prefix + "vercheck.txt"))
                 {
+                    updateCheckButton.Enabled = true;
+                    updateCheckButton.Text = "Check for updates";
                     string[] lines = System.IO.File.ReadAllLines(Program.prefix + "vercheck.txt");
                     if (Convert.ToDouble(lines[0].Replace(".", ",").Replace("\r", "").Replace("\n", "").Trim()) > Convert.ToDouble(UIActions.version.Replace(".", ",")))
                     {
@@ -1008,13 +1017,356 @@ namespace UltimateBlueScreenSimulator
 
         private void whyNoDeviceButton_Click(object sender, EventArgs e)
         {
-            PrankMode.Button5_Click(sender, e);
+            PrankModeActions.USBTroubleshoot(sender, e);
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
         {
             Forms.Legacy.PrankMode pm = new Forms.Legacy.PrankMode();
             pm.Show();
+        }
+
+        private void HelpButtonClick(object sender, EventArgs e)
+        {
+            switch (((Control)sender).Text)
+            {
+                case "Source code":
+                    AboutSettingsDialog.SourceCode(sender, e);
+                    break;
+                case "Copying":
+                    AboutSettingsDialog.Copying(sender, e);
+                    break;
+                case "Random factoid":
+                    AboutSettingsDialog.RandomFact(sender, e);
+                    break;
+                case "What's new?":
+                    AboutSettingsDialog.Changelog(sender, e);
+                    break;
+                case "How to get help?":
+                    AboutSettingsDialog.QuickHelp_Help(helpDisplay);
+                    break;
+                case "Purposes of this program":
+                    AboutSettingsDialog.QuickHelp_Purpose(helpDisplay);
+                    break;
+                case "System requirements":
+                    AboutSettingsDialog.QuickHelp_SystemRequirements(helpDisplay);
+                    break;
+                case "User manual":
+                    AboutSettingsDialog.UserManualButtonClick();
+                    break;
+            }
+        }
+
+        private void HelpTabChange(object sender, EventArgs e)
+        {
+            switch (aboutTabControl.SelectedTab.Text)
+            {
+                case "About":
+                    if (Program.gs.NightTheme)
+                    {
+                        markusSoftwareLogo.Image = Properties.Resources.msoftware_dm;
+                        veriFileLogo.Image = Properties.Resources.verifile_dm;
+                    }
+                    rndFactButton.Visible = Program.gs.EnableEggs;
+                    AboutSettingsDialog.GetAbout(new Dictionary<string, Control>
+                    {
+                        { "labelProductName", labelProductName },
+                        { "labelVersion", labelVersion },
+                        { "labelCopyright", labelCopyright },
+                        { "labelCompanyName", labelCompanyName },
+                    });
+                    break;
+                case "Help":
+                    break;
+                case "Command line help":
+                    commandLineHelpDisplay.Text = Program.cmds.Replace("\n", Environment.NewLine);
+                    break;
+            }
+        }
+
+        private void PMBestAllMatch(object sender, EventArgs e)
+        {
+            PrankModeActions.BestAllMatchCheck(bestMatchRadio, matchAllRadio, letCloseBox);
+        }
+
+        private void PMToggleVisible(object sender, EventArgs e)
+        {
+            PrankModeActions.ToggleVisible(UIActions.GenerateControlDictionary(new Control[] { timePanel, timerBox, timeRadio, appRadio, triggerAppBox, usbRadio, usbPanel, resetDeviceButton, appPanel }), usbFinder);
+        }
+
+        private void usbFinder_Tick(object sender, EventArgs e)
+        {
+            PrankModeActions.TimerTick(deviceInfoLabel, resetDeviceButton, usbFinder);
+        }
+
+        private void PMUpdateFriendlyMessage(object sender, EventArgs e)
+        {
+            PrankModeActions.UpdateFriendlyMessage(
+                UIActions.GenerateControlDictionary(new Control[]
+                {
+                    friendlyMessageContentsBox, friendlyMessageTitleBox, friendlyMessageIconPanel,
+                    friendlyMessageButtonsPanel, previewFriendlyMessageButton, timerBox
+                }),
+                UIActions.GenerateRadioButtonDictionary(new MaterialRadioButton[]
+                {
+                    errorRadio, warningRadio, questionRadio, infoRadio, noneRadio, okRadio, okCancelRadio,
+                    retryIgnoreAboutRadio, yesNoRadio, yesNoCancelRadio, retryCancelRadio
+                })
+            );
+        }
+
+        private void PMToggleFriendlyMessage(object sender, EventArgs e)
+        {
+            PrankModeActions.ToggleFriendlyMessage(UIActions.GenerateControlDictionary(new Control[]
+            {
+                friendlyMessageBox, friendlyMessageContentsBox, friendlyMessageTitleBox,
+                friendlyMessageIconPanel, friendlyMessageButtonsPanel, previewFriendlyMessageButton
+            }));
+        }
+
+        private void previewFriendlyMessageButton_Click(object sender, EventArgs e)
+        {
+            PrankModeActions.ShowMessage();
+        }
+
+        private void closePrank_CheckedChanged(object sender, EventArgs e)
+        {
+            PrankModeActions.ReopenCheckedChanged(closePrank);
+        }
+
+        private void resetDeviceButton_Click(object sender, EventArgs e)
+        {
+            PrankModeActions.USBReset(deviceInfoLabel, resetDeviceButton, usbFinder);
+        }
+
+        private void letCloseBox_CheckedChanged(object sender, EventArgs e)
+        {
+            PrankModeActions.LetCloseBox_CheckedChanged(letCloseBox);
+        }
+
+        private void materialTabControl2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SettingsActions.TabSwitcher(UIActions.GenerateControlDictionary(new Control[]
+            {
+                aboutSettingsTabControl, noticeLabel, unsignButton, updateCheckButton, autoUpdateRadio,
+                noUpdatesRadio, darkDetectCheck, hashBox, updateImmediatelyRadio, updateOnCloseRadio,
+                primaryServerBox, eggHunterButton, autosaveCheck, scalingModeBox, multiDisplayBox,
+                hideInFullscreenButton, configList, randomnessCheckBox, devFlowPanel
+            }));
+        }
+
+        private void updateCheckButton_Click(object sender, EventArgs e)
+        {
+            SettingsActions.CheckForUpdates(updateCheckButton, updateCheckerTimer);
+        }
+
+        private void UpdateSettings(object sender, EventArgs e)
+        {
+            SettingsActions.UpdateSettings(UIActions.GenerateControlDictionary(new Control[]
+            {
+                autoUpdateRadio, hashBox, updateOnCloseRadio, randomnessCheckBox,
+                hideInFullscreenButton, eggHunterButton, autosaveCheck, multiDisplayBox,
+                scalingModeBox, darkMode, darkDetectCheck, legacyInterfaceCheck, primaryColorBox,
+                accentBox, materialSwitch1, primaryServerBox
+            }));
+        }
+
+        private void materialButton24_Click(object sender, EventArgs e)
+        {
+            SettingsActions.RandomTheme(accentBox, primaryColorBox);
+        }
+
+        private void materialButton25_Click(object sender, EventArgs e)
+        {
+            SettingsActions.DefaultTheme(accentBox, primaryColorBox);
+        }
+
+        private void configList_SelectedIndexChanged(object sender, MaterialListBoxItem selectedItem)
+        {
+            SettingsActions.ConfigSelector(resetButton, resetHackButton, removeCfg, configList, osName, selectedItem);
+        }
+
+        private void SetUpdateServer(object sender, EventArgs e)
+        {
+            SettingsActions.ChangeUpdateServer((Control)sender, primaryServerBox);
+        }
+
+        private void selectAllBox_CheckedChanged(object sender, EventArgs e)
+        {
+            resetHackButton.Enabled = selectAllBox.Checked;
+            resetButton.Enabled = selectAllBox.Checked;
+            removeCfg.Enabled = selectAllBox.Checked;
+            configList.Enabled = !selectAllBox.Checked;
+            if (selectAllBox.Checked)
+            {
+                removeCfg.Text = "Remove configs [?]";
+                configList.SelectedItem = null;
+                quickHelp.SetToolTip(resetHackButton, "Deletes everything under the 'additional options' menu for all configurations");
+                quickHelp.SetToolTip(resetButton, "Reset all settings within all configurations");
+                quickHelp.SetToolTip(removeCfg, "Removes all configurations. This is useful, if you're making your own custom skin packs and want only a few operating systems to be visible.");
+                osName.Text = "All selected";
+                configList.SelectedItems.Clear();
+                return;
+            }
+            configList.SelectedItems.Clear();
+            removeCfg.Text = "Remove config [?]";
+            quickHelp.SetToolTip(resetHackButton, "Deletes everything under the 'additional options' menu for this configuration");
+            quickHelp.SetToolTip(resetButton, "Reset all settings in this configuration");
+            quickHelp.SetToolTip(removeCfg, "Removes the configuration, meaning it will no longer be accessible in the main menu or any other part of the program.");
+            osName.Text = "Select a configuration to modify/remove it";
+        }
+
+        private void SimulatorConfigActionButtonClick(object sender, EventArgs e)
+        {
+            SettingsActions.SimulatorSettingsAction(this, (Control)sender, configList, loadBsconfig, saveBsconfig);
+        }
+
+        private void rtlSwitch_CheckedChanged(object sender, EventArgs e)
+        {
+            this.RightToLeft = rtlSwitch.Checked ? RightToLeft.Yes : RightToLeft.Inherit;
+        }
+
+        private void DevButtonsClick(object sender, EventArgs e)
+        {
+            TextView tv;
+            string jsonString;
+            switch (((Control)sender).Name)
+            {
+                case "devPerformTest":
+                    new TestSuite().Show();
+                    break;
+                case "devRestartApp":
+                    Application.Restart();
+                    break;
+                case "devGen":
+                    Program.loadfinished = false;
+                    Gen g = new Gen();
+                    g.Show();
+                    Program.load_message = "Testing...";
+                    Thread dummyThread = new Thread(new ThreadStart(() => {
+                        for (int i = 0; i <= 100; i++)
+                        {
+                            Program.load_progress = i;
+                            Thread.Sleep(50);
+                        }
+                        Thread.Sleep(150);
+                        Program.loadfinished = true;
+                    }));
+                    dummyThread.Start();
+                    break;
+                case "devEmbed":
+                    this.Enabled = false;
+                    string filename = "";
+                    string backup = loadBsconfig.Filter;
+                    loadBsconfig.Filter = "Executables|*.exe";
+                    if (loadBsconfig.ShowDialog() == DialogResult.OK)
+                    {
+                        filename = loadBsconfig.FileName;
+                    }
+                    if ((filename != "") && MessageBox.Show("Are you sure?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                    {
+                        this.Hide();
+                        Program.f1.Hide();
+                        jsonString = Program.GetEmbedded(filename);
+                        if (jsonString != "")
+                        {
+                            if (MessageBox.Show("Embedded data found! Press Yes to preview error message. Press No to view embedded data.", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                            {
+                                Program.dr = new DrawRoutines();
+                                Thread th = new Thread(new ThreadStart(() => {
+                                    // initialize BlueScreen object
+                                    UIActions.me = Program.templates.LoadSingleConfig(jsonString);
+                                    // display the crash screen
+                                    UIActions.me.Show();
+                                }));
+                                th.Start();
+                                th.Join();
+                            }
+                            else
+                            {
+                                tv = new TextView();
+                                tv.Text = jsonString;
+                                tv.Title = "JSON data";
+                                tv.ShowDialog();
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("No embedded data was found.", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        }
+                        Program.f1.Show();
+                        this.Show();
+                        this.BringToFront();
+                    }
+                    loadBsconfig.Filter = backup;
+                    loadBsconfig.FileName = "";
+                    this.Enabled = true;
+                    break;
+                case "devNewAllButton":
+                        Program.templates.Reset();
+                        configList.Items.Clear();
+                        foreach (BlueScreen bs in Program.templates.GetAll())
+                        {
+                            configList.Items.Add(new MaterialListBoxItem(bs.GetString("friendlyname")));
+                        }
+                        break;
+                case "devDictEditButton":
+                    try
+                    {
+                        DictEdit de = new DictEdit
+                        {
+                            me = Program.templates.GetAt(configList.SelectedIndex)
+                        };
+                        de.Show();
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Please select a configuration, silly", AboutSettingsDialog.AssemblyProduct, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+                    break;
+                case "devSplashButton":
+                    Splash spl = new Splash();
+                    spl.SplashText.Text = "Idling. Press ESC to exit.";
+                    spl.veriFileTimer.Enabled = false;
+                    spl.Show();
+                    break;
+                case "devSerialize":
+                    var options = new JsonSerializerOptions { WriteIndented = true };
+                    jsonString = JsonSerializer.Serialize(Program.templates, options);
+                    tv = new TextView
+                    {
+                        Title = "Output",
+                        Text = jsonString.ToString()
+                    };
+                    tv.Show();
+                    break;
+                case "devWindowedSettings":
+                    AboutSettingsDialog ab1 = new AboutSettingsDialog
+                    {
+                        Text = "Settings",
+                        SettingTab = true
+                    };
+                    ab1.ShowDialog();
+                    ab1.Dispose();
+                    abopen = false;
+                    break;
+            }
+        }
+
+        private void configList_DoubleClick(object sender, EventArgs e)
+        {
+            AddBluescreen ab = new AddBluescreen();
+            BlueScreen me = Program.templates.GetAt(configList.SelectedIndex);
+            ab.Preload(me);
+            if (ab.ShowDialog() == DialogResult.OK)
+            {
+                configList.Items.Clear();
+                foreach (BlueScreen bs in Program.templates.GetAll())
+                {
+                    configList.Items.Add(new MaterialListBoxItem(bs.GetString("friendlyname")));
+                }
+                osName.Text = string.Format("Selected configuration: {0}", Program.templates.GetAt(configList.SelectedIndex).GetString("friendlyname"));
+            }
         }
     }
 }

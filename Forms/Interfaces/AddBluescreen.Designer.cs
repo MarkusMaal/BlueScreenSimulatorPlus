@@ -307,13 +307,13 @@ namespace UltimateBlueScreenSimulator
             // 
             this.AllIcons.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("AllIcons.ImageStream")));
             this.AllIcons.TransparentColor = System.Drawing.Color.Transparent;
-            this.AllIcons.Images.SetKeyName(0, "artage-io-48148_1564916990.ico");
+            /*this.AllIcons.Images.SetKeyName(0, "artage-io-48148_1564916990.ico");
             this.AllIcons.Images.SetKeyName(1, "Tatice-Operating-Systems-Windows.ico");
             this.AllIcons.Images.SetKeyName(2, "Dakirby309-Windows-8-Metro-Folders-OS-Windows-8-Metro.ico");
             this.AllIcons.Images.SetKeyName(3, "new-windows-logo (2).ico");
             this.AllIcons.Images.SetKeyName(4, "string.png");
             this.AllIcons.Images.SetKeyName(5, "setting.png");
-            this.AllIcons.Images.SetKeyName(6, "theming.png");
+            this.AllIcons.Images.SetKeyName(6, "theming.png");*/
             // 
             // AddBluescreen
             // 

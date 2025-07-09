@@ -128,7 +128,7 @@ namespace UltimateBlueScreenSimulator
             this.MessageView.Name = "MessageView";
             this.MessageView.OwnerDraw = true;
             this.MessageView.ShowGroups = false;
-            this.MessageView.Size = new System.Drawing.Size(394, 653);
+            this.MessageView.Size = new System.Drawing.Size(410, 692);
             this.MessageView.SmallImageList = this.AllIcons;
             this.MessageView.TabIndex = 0;
             this.MessageView.UseCompatibleStateImageBehavior = false;
@@ -140,7 +140,7 @@ namespace UltimateBlueScreenSimulator
             this.specificProps.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.specificProps.Depth = 0;
             this.specificProps.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.specificProps.Location = new System.Drawing.Point(412, 27);
+            this.specificProps.Location = new System.Drawing.Point(428, 27);
             this.specificProps.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.specificProps.Name = "specificProps";
             this.specificProps.Size = new System.Drawing.Size(403, 22);
@@ -156,7 +156,7 @@ namespace UltimateBlueScreenSimulator
             this.buttonOK.ForeColor = System.Drawing.SystemColors.ControlText;
             this.buttonOK.HighEmphasis = true;
             this.buttonOK.Icon = null;
-            this.buttonOK.Location = new System.Drawing.Point(750, 712);
+            this.buttonOK.Location = new System.Drawing.Point(766, 751);
             this.buttonOK.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.buttonOK.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.buttonOK.Name = "buttonOK";
@@ -249,9 +249,9 @@ namespace UltimateBlueScreenSimulator
             this.specificPropsFlowLayoutPanel.Controls.Add(this.fontProps);
             this.specificPropsFlowLayoutPanel.Controls.Add(this.blinkProps);
             this.specificPropsFlowLayoutPanel.Controls.Add(this.colorProps);
-            this.specificPropsFlowLayoutPanel.Location = new System.Drawing.Point(412, 52);
+            this.specificPropsFlowLayoutPanel.Location = new System.Drawing.Point(428, 52);
             this.specificPropsFlowLayoutPanel.Name = "specificPropsFlowLayoutPanel";
-            this.specificPropsFlowLayoutPanel.Size = new System.Drawing.Size(424, 300);
+            this.specificPropsFlowLayoutPanel.Size = new System.Drawing.Size(424, 339);
             this.specificPropsFlowLayoutPanel.TabIndex = 2;
             // 
             // xpMsgChooser
@@ -544,7 +544,7 @@ namespace UltimateBlueScreenSimulator
             this.materialLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.materialLabel1.Depth = 0;
             this.materialLabel1.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel1.Location = new System.Drawing.Point(415, 364);
+            this.materialLabel1.Location = new System.Drawing.Point(431, 403);
             this.materialLabel1.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.materialLabel1.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.materialLabel1.Name = "materialLabel1";
@@ -558,7 +558,7 @@ namespace UltimateBlueScreenSimulator
             // 
             this.bugcheckPreview.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.bugcheckPreview.Image = global::UltimateBlueScreenSimulator.Properties.Resources.loadpic;
-            this.bugcheckPreview.Location = new System.Drawing.Point(415, 393);
+            this.bugcheckPreview.Location = new System.Drawing.Point(431, 432);
             this.bugcheckPreview.Margin = new System.Windows.Forms.Padding(0);
             this.bugcheckPreview.Name = "bugcheckPreview";
             this.bugcheckPreview.Size = new System.Drawing.Size(421, 310);
@@ -585,7 +585,7 @@ namespace UltimateBlueScreenSimulator
             // 
             this.whereTheButtonsLink.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.whereTheButtonsLink.AutoSize = true;
-            this.whereTheButtonsLink.Location = new System.Drawing.Point(12, 756);
+            this.whereTheButtonsLink.Location = new System.Drawing.Point(12, 795);
             this.whereTheButtonsLink.Name = "whereTheButtonsLink";
             this.whereTheButtonsLink.Size = new System.Drawing.Size(189, 13);
             this.whereTheButtonsLink.TabIndex = 7;
@@ -599,7 +599,7 @@ namespace UltimateBlueScreenSimulator
             this.label1.AutoSize = true;
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label1.ForeColor = System.Drawing.Color.Red;
-            this.label1.Location = new System.Drawing.Point(9, 719);
+            this.label1.Location = new System.Drawing.Point(9, 758);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(329, 13);
             this.label1.TabIndex = 9;
@@ -612,7 +612,7 @@ namespace UltimateBlueScreenSimulator
             this.updatePreviewCheck.Checked = true;
             this.updatePreviewCheck.CheckState = System.Windows.Forms.CheckState.Checked;
             this.updatePreviewCheck.Depth = 0;
-            this.updatePreviewCheck.Location = new System.Drawing.Point(589, 355);
+            this.updatePreviewCheck.Location = new System.Drawing.Point(605, 394);
             this.updatePreviewCheck.Margin = new System.Windows.Forms.Padding(0);
             this.updatePreviewCheck.MouseLocation = new System.Drawing.Point(-1, -1);
             this.updatePreviewCheck.MouseState = MaterialSkin2Framework.MouseState.HOVER;
@@ -641,7 +641,7 @@ namespace UltimateBlueScreenSimulator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(842, 747);
+            this.ClientSize = new System.Drawing.Size(858, 786);
             this.Controls.Add(this.materialLabel2);
             this.Controls.Add(this.updatePreviewCheck);
             this.Controls.Add(this.materialLabel1);

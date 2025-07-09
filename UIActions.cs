@@ -977,5 +977,35 @@ namespace UltimateBlueScreenSimulator
             return new Color[] { gen, inv };
         }
 
+        /// <summary>
+        /// Generate a dictionary from a list of controls
+        /// </summary>
+        /// <param name="controls">Array of controls you want to turn into a dictionary</param>
+        /// <returns>Keys containing the names of the controls and values, which contain the controls themselves</returns>
+        public static Dictionary<string, Control> GenerateControlDictionary(Control[] controls)
+        {
+            Dictionary<string, Control> result = new Dictionary<string, Control>();
+            foreach (Control control in controls)
+            {
+                result[control.Name] = control;
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// Generate a dictionary from a list of radio buttons
+        /// </summary>
+        /// <param name="controls">Array of radiobuttons you want to turn into a dictionary</param>
+        /// <returns>Keys containing the names of the controls and values, which contain the radio buttons themselves</returns>
+        public static Dictionary<string, MaterialRadioButton> GenerateRadioButtonDictionary(MaterialRadioButton[] controls)
+        {
+            Dictionary<string, MaterialRadioButton> result = new Dictionary<string, MaterialRadioButton>();
+            foreach (MaterialRadioButton control in controls)
+            {
+                result[control.Name] = control;
+            }
+            return result;
+        }
+
     }
 }

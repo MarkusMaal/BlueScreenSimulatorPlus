@@ -305,7 +305,7 @@
             this.letCloseBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.letCloseBox.Location = new System.Drawing.Point(12, 212);
             this.letCloseBox.Name = "letCloseBox";
-            this.letCloseBox.Size = new System.Drawing.Size(277, 17);
+            this.letCloseBox.Size = new System.Drawing.Size(283, 17);
             this.letCloseBox.TabIndex = 3;
             this.letCloseBox.Text = "Allow the user to close the crash screen using ALT+F4";
             this.letCloseBox.UseVisualStyleBackColor = true;

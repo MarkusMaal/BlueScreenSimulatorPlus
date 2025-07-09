@@ -1,15 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Controls.Primitives;
 using System.Windows.Forms;
 using MaterialSkin2Framework;
 using MaterialSkin2Framework.Controls;
 using Microsoft.Win32;
 using SimulatorDatabase;
 
-namespace UltimateBlueScreenSimulator
+namespace UltimateBlueScreenSimulator.Forms.Interfaces
 {
-    public partial class PrankMode : MaterialForm
+    internal class PrankModeActions
     {
         readonly static string releaseId = Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion", "ProductName", "").ToString();
         readonly static int buildNumber = Convert.ToInt32(Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion", "CurrentBuild", "0").ToString());
@@ -24,8 +28,6 @@ namespace UltimateBlueScreenSimulator
         static int contain = 0;
         static MessageBoxIcon MsgBoxIcon = MessageBoxIcon.Exclamation;
         static MessageBoxButtons MsgBoxType = MessageBoxButtons.OK;
-        static BlueScreen me;
-        static bool newUi = false;
         static readonly List<string> blackninja = new List<string>
         {
             "Windows Vista/7",
@@ -37,37 +39,10 @@ namespace UltimateBlueScreenSimulator
             "Windows 1.x/2.x"
         };
 
-        public PrankMode()
+        public static void InitPrankMode(Dictionary<string, Control> c)
         {
-            MaterialSkinManager materialSkinManager = Program.f1.materialSkinManager;
-            materialSkinManager.AddFormToManage(this);
-            InitializeComponent();
-            Font = new Font(Font.Name, 8.25f * 96f / CreateGraphics().DpiX, Font.Style, Font.Unit, Font.GdiCharSet, Font.GdiVerticalFont);
-        }
-
-        internal void PrankMode_Load(object sender, EventArgs e)
-        {
-            // old method for setting night theme
-            /*if (Program.f1.nightThemeToolStripMenuItem.Checked)
-            {
-                this.BackColor = System.Drawing.Color.Black;
-                this.ForeColor = System.Drawing.Color.Gray;
-                friendlyMessageContentsBox.BackColor = this.BackColor;
-                friendlyMessageContentsBox.ForeColor = this.ForeColor;
-                friendlyMessageContentsBox.BorderStyle = BorderStyle.FixedSingle;
-                friendlyMessageTitleBox.BackColor = this.BackColor;
-                friendlyMessageTitleBox.ForeColor = this.ForeColor;
-                friendlyMessageTitleBox.BorderStyle = BorderStyle.FixedSingle;
-                triggerAppBox.BackColor = this.BackColor;
-                triggerAppBox.ForeColor = this.ForeColor;
-                triggerAppBox.BorderStyle = BorderStyle.FixedSingle;
-                timerBox.BackColor = this.BackColor;
-                timerBox.ForeColor = this.ForeColor;
-                timerBox.BorderStyle = BorderStyle.FixedSingle;
-
-            }*/
             string winver = releaseId;
-            if (bestMatchRadio.Checked == true)
+            if (((MaterialRadioButton)c["bestMatchRadio"]).Checked == true)
             {
                 Program.f1.winMode.Checked = false;
                 //this code identifies Windows 11
@@ -169,184 +144,143 @@ namespace UltimateBlueScreenSimulator
                         }
                     }
                 }
-                me = Program.templates.GetAt(contain);
+                UIActions.me = Program.templates.GetAt(contain);
                 if (contain == -1)
                 {
-                    bestMatchRadio.Checked = false;
-                    bestMatchRadio.Enabled = false;
-                    matchAllRadio.Checked = true;
-                    matchAllRadio.Enabled = false;
+                    ((MaterialCheckbox)c["bestMatchRadio"]).Checked = false;
+                    ((MaterialCheckbox)c["bestMatchRadio"]).Enabled = false;
+                    ((MaterialCheckbox)c["matchAllRadio"]).Checked = true;
+                    ((MaterialCheckbox)c["matchAllRadio"]).Enabled = false;
                     MessageBox.Show("Due to blue screen simulator plus configuration or the specific version of Windows you are using, it is not possible to use a bluescreen similar to one that your Windows version uses. If this is what you want to do, please enable your Windows version in BSSP settings or settings file. If this message still pops up, then use a different Windows version.", "Unable to autodetect Windows version", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
             }
-            letCloseBox.Enabled = !blackninja.Contains(Program.templates.GetAt(contain).GetString("os"));
+            c["letCloseBox"].Enabled = !blackninja.Contains(Program.templates.GetAt(contain).GetString("os"));
         }
 
-        public void RadioButton3_CheckedChanged(object sender, EventArgs e)
+        public static void ToggleVisible(Dictionary<string, Control> c, Timer usbFinder)
         {
-            if (timeRadio.Checked == true)
+            Control timePanel = c["timePanel"];
+            Control timerBox = c["timerBox"];
+            MaterialRadioButton timeRadio = (MaterialRadioButton)c["timeRadio"];
+            MaterialRadioButton appRadio = (MaterialRadioButton)c["appRadio"];
+            Control triggerAppBox = c["triggerAppBox"];
+            MaterialRadioButton usbRadio = (MaterialRadioButton)c["usbRadio"];
+            Control usbPanel = c["usbPanel"];
+            MaterialButton resetDeviceButton = (MaterialButton)c["resetDeviceButton"];
+            Control appPanel = c["appPanel"];
+            timePanel.Visible = timeRadio.Checked;
+            timerBox.Enabled = timeRadio.Checked;
+            timecatch = timeRadio.Checked;
+            usbPanel.Visible = usbRadio.Checked;
+            if (usbPanel.Visible)
             {
-                timePanel.Visible = true;
-                timerBox.Enabled = true;
-                timecatch = true;
-            } else
-            {
-                timePanel.Visible = false;
-                timerBox.Enabled = false;
-                timecatch = false;
+                if (devinfo.Length == 0)
+                {
+                    currentDevs = USBDeviceInfo.GetUSBDevices();
+                    prevDevs = USBDeviceInfo.GetUSBDevices();
+                    usbFinder.Enabled = true;
+                    resetDeviceButton.Enabled = false;
+                } else
+                {
+                    resetDeviceButton.Enabled = true;
+                }
             }
+            appPanel.Visible = appRadio.Checked;
+            triggerAppBox.Enabled = appRadio.Checked;
         }
 
-        public void RadioButton4_CheckedChanged(object sender, EventArgs e)
+        public static void ToggleFriendlyMessage(Dictionary<string, Control> c)
         {
-            if (appRadio.Checked == true)
-            {
-                appPanel.Visible = true;
-                triggerAppBox.Enabled = true;
-            }
-            else
-            {
-                appPanel.Visible = false;
-                triggerAppBox.Enabled = false;
-            }
+            MaterialCheckbox friendlyMessageBox = (MaterialCheckbox)c["friendlyMessageBox"];
+            Control friendlyMessageContentsBox = c["friendlyMessageContentsBox"];
+            Control friendlyMessageTitleBox = c["friendlyMessageTitleBox"];
+            Control friendlyMessageIconPanel = c["friendlyMessageIconPanel"];
+            Control friendlyMessageButtonsPanel = c["friendlyMessageButtonsPanel"];
+            Control previewFriendlyMessageButton = c["previewFriendlyMessageButton"];
+            bool isVisible = friendlyMessageBox.Checked;
+            friendlyMessageContentsBox.Enabled = isVisible;
+            friendlyMessageTitleBox.Enabled = isVisible;
+            friendlyMessageIconPanel.Enabled = isVisible;
+            friendlyMessageButtonsPanel.Enabled = isVisible;
+            previewFriendlyMessageButton.Enabled = isVisible;
         }
 
-        public void CheckBox2_CheckedChanged(object sender, EventArgs e)
+        public static void UpdateFriendlyMessage(Dictionary<string, Control> c, Dictionary<string, MaterialRadioButton> radioButtons)
         {
-            if (friendlyMessageBox.Checked == true)
-            {
-                friendlyMessageContentsBox.Enabled = true;
-                friendlyMessageTitleBox.Enabled = true;
-                friendlyMessageIconPanel.Enabled = true;
-                friendlyMessageButtonsPanel.Enabled = true;
-                previewFriendlyMessageButton.Enabled = true;
-            } else
-            {
-                friendlyMessageContentsBox.Enabled = false;
-                friendlyMessageTitleBox.Enabled = false;
-                friendlyMessageIconPanel.Enabled = false;
-                friendlyMessageButtonsPanel.Enabled = false;
-                previewFriendlyMessageButton.Enabled = false;
-            }
-        }
-
-        public void TextBox2_TextChanged(object sender, EventArgs e)
-        {
+            Control friendlyMessageContentsBox = c["friendlyMessageContentsBox"];
+            Control friendlyMessageTitleBox = c["friendlyMessageTitleBox"];
+            Control friendlyMessageIconPanel = c["friendlyMessageIconPanel"];
+            Control friendlyMessageButtonsPanel = c["friendlyMessageButtonsPanel"];
+            Control previewFriendlyMessageButton = c["previewFriendlyMessageButton"];
+            MaterialRadioButton errorRadio = radioButtons["errorRadio"];
+            MaterialRadioButton warningRadio = radioButtons["warningRadio"];
+            MaterialRadioButton questionRadio = radioButtons["questionRadio"];
+            MaterialRadioButton infoRadio = radioButtons["infoRadio"];
+            MaterialRadioButton noneRadio = radioButtons["noneRadio"];
+            MaterialRadioButton okRadio = radioButtons["okRadio"];
+            MaterialRadioButton okCancelRadio = radioButtons["okCancelRadio"]; 
+            MaterialRadioButton retryIgnoreAboutRadio = radioButtons["retryIgnoreAboutRadio"]; 
+            MaterialRadioButton yesNoRadio = radioButtons["yesNoRadio"];
+            MaterialRadioButton yesNoCancelRadio = radioButtons["yesNoCancelRadio"];
+            MaterialRadioButton retryCancelRadio = radioButtons["retryCancelRadio"];
+            Control timerBox = c["timerBox"];
             MsgBoxMessage = friendlyMessageContentsBox.Text;
-        }
-
-        public void TextBox3_TextChanged(object sender, EventArgs e)
-        {
             MsgBoxTitle = friendlyMessageTitleBox.Text;
-        }
-
-        public void RadioButton5_CheckedChanged(object sender, EventArgs e)
-        {
-            if (errorRadio.Checked == true)
+            Dictionary<MaterialRadioButton, MessageBoxIcon> msgIcons = new Dictionary<MaterialRadioButton, MessageBoxIcon>()
             {
-                MsgBoxIcon = MessageBoxIcon.Error;
-            }
-        }
-
-        public void RadioButton6_CheckedChanged(object sender, EventArgs e)
-        {
-            if (warningRadio.Checked == true)
+                { errorRadio, MessageBoxIcon.Error },
+                { warningRadio, MessageBoxIcon.Exclamation },
+                { questionRadio, MessageBoxIcon.Question },
+                { infoRadio, MessageBoxIcon.Information },
+                { noneRadio, MessageBoxIcon.None }
+            };
+            Dictionary<MaterialRadioButton, MessageBoxButtons> msgButtons = new Dictionary<MaterialRadioButton, MessageBoxButtons>()
             {
-                MsgBoxIcon = MessageBoxIcon.Exclamation;
-            }
-        }
-
-        public void RadioButton7_CheckedChanged(object sender, EventArgs e)
-        {
-            if (questionRadio.Checked == true)
+                { okRadio, MessageBoxButtons.OK },
+                { okCancelRadio, MessageBoxButtons.OK },
+                { retryIgnoreAboutRadio, MessageBoxButtons.AbortRetryIgnore },
+                { yesNoRadio, MessageBoxButtons.YesNo },
+                { yesNoCancelRadio, MessageBoxButtons.YesNoCancel },
+                { retryCancelRadio, MessageBoxButtons.RetryCancel },
+            };
+            foreach (KeyValuePair<MaterialRadioButton, MessageBoxIcon> pair in msgIcons)
             {
-                MsgBoxIcon = MessageBoxIcon.Question;
+                if (pair.Key.Checked)
+                {
+                    MsgBoxIcon = pair.Value;
+                    break;
+                }
             }
-        }
-
-        public void RadioButton8_CheckedChanged(object sender, EventArgs e)
-        {
-            if (infoRadio.Checked == true)
+            foreach (KeyValuePair<MaterialRadioButton, MessageBoxButtons> pair in msgButtons)
             {
-                MsgBoxIcon = MessageBoxIcon.Information;
+                if (pair.Key.Checked)
+                {
+                    MsgBoxType = pair.Value;
+                    break;
+                }
             }
+            time = timerBox.Text.Split(':');
         }
 
-        public void RadioButton9_CheckedChanged(object sender, EventArgs e)
-        {
-            if (noneRadio.Checked == true)
-            {
-                MsgBoxIcon = MessageBoxIcon.None;
-            }
-        }
-
-        public void RadioButton10_CheckedChanged(object sender, EventArgs e)
-        {
-            if (okRadio.Checked == true)
-            {
-                MsgBoxType = MessageBoxButtons.OK;
-            }
-        }
-
-        public void RadioButton11_CheckedChanged(object sender, EventArgs e)
-        {
-            if (okCancelRadio.Checked == true)
-            {
-                MsgBoxType = MessageBoxButtons.OKCancel;
-            }
-        }
-
-        public void RadioButton12_CheckedChanged(object sender, EventArgs e)
-        {
-            if (retryIgnoreAboutRadio.Checked == true)
-            {
-                MsgBoxType = MessageBoxButtons.AbortRetryIgnore;
-            }
-        }
-
-        public void RadioButton13_CheckedChanged(object sender, EventArgs e)
-        {
-            if (yesNoRadio.Checked == true)
-            {
-                MsgBoxType = MessageBoxButtons.YesNo;
-            }
-        }
-
-        public void RadioButton14_CheckedChanged(object sender, EventArgs e)
-        {
-            if (yesNoCancelRadio.Checked == true)
-            {
-                MsgBoxType = MessageBoxButtons.YesNoCancel;
-            }
-        }
-
-        public static void Button1_Click(object sender, EventArgs e)
+        public static void ShowMessage()
         {
             MessageBox.Show(MsgBoxMessage, MsgBoxTitle, MsgBoxType, MsgBoxIcon);
         }
 
-        public void RadioButton2_Click(object sender, EventArgs e)
+        public static void BestAllMatchCheck(MaterialRadioButton bestMatchRadio, MaterialRadioButton matchAllRadio, MaterialCheckbox letCloseBox)
         {
-            if (bestMatchRadio.Enabled == true)
-            { 
-                if (matchAllRadio.Checked == true)
-                {
-                    if (MessageBox.Show("This option may not look legitimate. Are you sure you'd like to continue?", "This prank may not look legitimate", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.No)
-                    {
-                        matchAllRadio.Checked = false;
-                        bestMatchRadio.Checked = true;
-                    }
-                }
+            letCloseBox.Enabled = !blackninja.Contains(UIActions.me.GetString("os"));
+            letCloseBox.Checked = matchAllRadio.Checked;
+            if (bestMatchRadio.Enabled && matchAllRadio.Checked && (MessageBox.Show("This option may not look legitimate. Are you sure you'd like to continue?", "This prank may not look legitimate", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.No))
+            {
+                matchAllRadio.Checked = false;
+                bestMatchRadio.Checked = true;
             }
         }
 
-        public void Button3_Click(object sender, EventArgs e)
-        {
-            this.Close();
-            Program.gs.PM_CloseMainUI = false;
-        }
-
-        public void Button2_Click(object sender, EventArgs e)
+        public static void OKClick(Form f, MaterialCheckbox closePrank, MaterialRadioButton bestMatchRadio,
+            MaterialRadioButton timeRadio, MaterialRadioButton appRadio, Control triggerAppBox, MaterialCheckbox friendlyMessageBox,
+            MaterialCheckbox letCloseBox)
         {
             string messageA = "The program will now be hidden. Once the prank has been triggered, the program will reopen itself.";
             string messageB = "The program will now be hidden. Once the prank has been triggered, the program will reopen iteself and then close after exiting the blue screen.";
@@ -366,7 +300,7 @@ namespace UltimateBlueScreenSimulator
                 string winver = releaseId;
 
                 //this makes sure that the blue screen type matches the OS
-                if (bestMatchRadio.Checked == true)
+                if (bestMatchRadio.Checked)
                 {
                     if (buildNumber >= 22000) { winver = "Windows 11"; }
                     Program.f1.winMode.Checked = false;
@@ -381,7 +315,7 @@ namespace UltimateBlueScreenSimulator
                 }
                 //this code handles blue screen triggers and final message, if exists
                 string[] emptydev = { };
-                if (timeRadio.Checked == true)
+                if (timeRadio.Checked)
                 {
                     Program.gs.PM_Timecatch = timecatch;
                     int hrs = Convert.ToInt32(time[0].Replace("00", "0").Replace("01", "1").Replace("02", "2").Replace("03", "3").Replace("04", "4").Replace("05", "5").Replace("06", "6").Replace("07", "7").Replace("08", "8").Replace("09", "9"));
@@ -391,13 +325,15 @@ namespace UltimateBlueScreenSimulator
                     Program.gs.PM_Time = timex;
                     Program.gs.PM_UsbDevice = emptydev;
                     Program.f1.prankModeTimer.Interval = 1000;
-                } else if (appRadio.Checked)
+                }
+                else if (appRadio.Checked)
                 {
                     Program.gs.PM_Timecatch = false;
                     Program.gs.PM_AppName = triggerAppBox.Text;
                     Program.gs.PM_UsbDevice = emptydev;
                     Program.f1.prankModeTimer.Interval = 1000;
-                } else
+                }
+                else
                 {
                     Program.gs.PM_Timecatch = false;
                     Program.gs.PM_UsbDevice = devinfo;
@@ -405,56 +341,20 @@ namespace UltimateBlueScreenSimulator
                 }
                 if (friendlyMessageBox.Checked == true)
                 {
-                    Program.gs.PM_ShowMessage  = true;
+                    Program.gs.PM_ShowMessage = true;
                     Program.gs.PM_MsgIcon = MsgBoxIcon;
                     Program.gs.PM_MsgType = MsgBoxType;
                     Program.gs.PM_MsgText = MsgBoxMessage;
                     Program.gs.PM_MsgTitle = MsgBoxTitle;
                 }
-                Program.f1.Hide();
+                f.Hide();
                 Program.f1.waterBox.Checked = false;
                 Program.f1.prankModeTimer.Enabled = true;
                 Program.gs.PM_Lockout = !letCloseBox.Checked;
-                this.Close();
             }
         }
 
-        public void MaskedTextBox1_TextChanged(object sender, EventArgs e)
-        {
-            time = timerBox.Text.Split(':');
-        }
-
-        public void RadioButton15_CheckedChanged(object sender, EventArgs e)
-        {
-            if (retryCancelRadio.Checked == true)
-            {
-                MsgBoxType = MessageBoxButtons.RetryCancel;
-            }
-        }
-
-        public void RadioButton16_CheckedChanged(object sender, EventArgs e)
-        {
-            if (usbRadio.Checked == true)
-            {
-                usbPanel.Visible = true;
-                if (devinfo.Length == 0)
-                {
-                    currentDevs = USBDeviceInfo.GetUSBDevices();
-                    prevDevs = USBDeviceInfo.GetUSBDevices();
-                    usbFinder.Enabled = true;
-                    resetDeviceButton.Enabled = false;
-                } else
-                {
-                    resetDeviceButton.Enabled = true;
-                }
-            }
-            else
-            {
-                usbPanel.Visible = false;
-            }
-        }
-
-        public void Button4_Click(object sender, EventArgs e)
+        public static void USBReset(Control deviceInfoLabel, Control resetDeviceButton, Timer usbFinder)
         {
             string[] dinfo = { };
             deviceInfoLabel.Text = "No trigger device\r\n(Unplug and) plug in desired trigger device";
@@ -465,7 +365,7 @@ namespace UltimateBlueScreenSimulator
             usbFinder.Enabled = true;
         }
 
-        public void Timer1_Tick(object sender, EventArgs e)
+        public static void TimerTick(Control deviceInfoLabel, Control resetDeviceButton, Timer usbFinder)
         {
             prevDevs = currentDevs;
             currentDevs = USBDeviceInfo.GetUSBDevices();
@@ -486,12 +386,12 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        public static void Button5_Click(object sender, EventArgs e)
+        public static void USBTroubleshoot(object sender, EventArgs e)
         {
             MessageBox.Show(" - A standard user account doesn't have access to all devices plugged into the computer. Sometimes, certain devices are only detected when the program is started as an administrator.\r\n - Try a different USB port, such as the one on your case. USB hubs might not update the device properly sometimes.\r\n - Try a different trigger device", "Device troubleshooting", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        public void LetCloseBox_CheckedChanged(object sender, EventArgs e)
+        public static void LetCloseBox_CheckedChanged(MaterialCheckbox letCloseBox)
         {
             if (!letCloseBox.Checked)
             {
@@ -502,20 +402,7 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        public void MatchAllRadio_CheckedChanged(object sender, EventArgs e)
-        {
-            if (matchAllRadio.Checked)
-            {
-                letCloseBox.Enabled = !blackninja.Contains(UIActions.me.GetString("os"));
-                letCloseBox.Checked = true;
-            } else
-            {
-                letCloseBox.Enabled = !blackninja.Contains(me.GetString("os"));
-                letCloseBox.Checked = true;
-            }
-        }
-
-        public void checkBox1_CheckedChanged(object sender, EventArgs e)
+        public static void ReopenCheckedChanged(MaterialCheckbox closePrank)
         {
             Program.gs.PM_CloseMainUI = !closePrank.Checked;
         }
@@ -525,15 +412,6 @@ namespace UltimateBlueScreenSimulator
             if (Program.f1.Visible)
             {
                 Program.gs.PM_Lockout = false;
-            }
-        }
-
-        public void PrankMode_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.F2)
-            {
-                MessageBox.Show("Screenshot saved as " + Program.dr.Screenshot(this), "Screenshot taken!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Cursor.Show();
             }
         }
     }
