@@ -21,14 +21,14 @@ using UltimateBlueScreenSimulator.Forms.Legacy;
 
 namespace UltimateBlueScreenSimulator
 {
-    static class Program
+    internal static class Program
     {
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         //Form creation
-        public static NewUI f1;
-        public static Main f2;
+        public static NewUI F1 { get; set; }
+        public static Main F2 { get; set; }
         public static Splash spl;
         public static DrawRoutines dr;
         public static GlobalSettings gs = new GlobalSettings();
@@ -56,7 +56,7 @@ namespace UltimateBlueScreenSimulator
         public static Thread splt;
         public static CLIProcessor clip;
         public static TemplateRegistry templates;
-        public static readonly byte[] footerBytes = new byte[] { 0x42, 0x33, 0x65, 0x72 };
+        public readonly static byte[] footerBytes = new byte[] { 0x42, 0x33, 0x65, 0x72 };
         public static string[] validnames = new string[]
         {
                 "blue screen simulator plus",
@@ -66,6 +66,54 @@ namespace UltimateBlueScreenSimulator
         };
         public static bool isScreensaver = Process.GetCurrentProcess().MainModule.ModuleName.ToLower().EndsWith(".scr");
         public static RegistryKey wineKey = Registry.LocalMachine.OpenSubKey(@"Software\Wine", false);
+
+
+        public readonly static string[] tips =
+        {
+                "Material Design is a design language developed by Google in 2014!",
+                "You can close a bugcheck by pressing ALT+F4",
+                "There is a crash screen for a program that simulates crash screens, right?",
+                "The codename for version 2.0 came from a song that was playing in the background during the development process",
+                "If Microsoft decides to change their error screens, I'll push an update that adds these changes",
+                "Configuration files store every property about all error screens",
+                "Windows Vista/7 blue screen scrolls, when there is too much information on screen",
+                "There are rainbow easter eggs for Windows XP, Vista, 7, CE, and 1.x/2.x blue screens",
+                "In prank mode, the watermark on a bugcheck is disabled automatically",
+                "There are three error screens in this program, that technically aren't blue screens",
+                "This program, for the most part, also works in ReactOS, which is an open source Windows clone based on reverse engineering",
+                "The first Windows XP bluescreen I ever saw displayed DRIVER_IRQL_NOT_LESS_OR_EQUAL as the error code",
+                "You can also use the Enter key to close Windows 9x bluescreens",
+                "Microsoft originally planned to replace a blue screen with a black one as early as Windows 8",
+                "Every major Windows release, up until later builds of Windows 11, has had some sort of a blue screen",
+                "Blue is a color that symbolises peace",
+                "Windows 2000 blue screen didn't use rasterized fonts in previous versions, because I figured it looked 'close enough' to the original",
+                "If you use the 'choose' button when setting a culprit file, you might see some weird filenames...",
+                "The background of the logo graphic in the about screen displays two major colors used by bugcheck screens - black and blue",
+                "This program isn't a copy of FlyTech's work, instead it was developed from scratch, because of the limitations I saw when trying out FlyTech's blue screen simulator.",
+                "You can use progress tuner to make more realistic progress indicators for modern bugchecks",
+                "There is no random factoid here",
+                "The splash screen crashes were really annoying to debug when building version 3.1, because they would only occur occasionally",
+                "I actually used a super ultrawide monitor for testing this version of BSSP",
+                "Is this the last version? Yesn't!",
+                "Liftoff, we have liftoff!",
+                "Every major version of BSSP (1.x, 2.x, 3.x) has its own save file format. There are rumors that the next simulator will use XML as the save format.",
+                "We got Blue Screen Simulator Plus 3.1 before GTA VI",
+                "I hope she made lotsa spaghetti!",
+                "öӧӧöӧӧӧӧӧӧӧӧӧӧӧöӧӧӧöӧöӧööӧӧӧӧӧöӧӧöӧӧӧöӧӧöö ӧöööӧööӧö ӧöӧӧӧӧöӧöӧӧöӧöӧӧ öӧӧöӧӧӧöӧӧӧöӧööӧöӧööӧöӧӧӧöӧӧöӧӧӧöӧӧöö öӧööӧöööӧööööӧöӧӧӧӧöӧöӧӧӧöö",
+                "This simulator gives Microsoft and Crowdstrike PTSD without actually crashing computers",
+                "KERNEL PANIC!\n\nPlease reboot your computer.\n\nAttempted to kill init! exitcode=0x0000000b",
+                "\"That's what I get for working at Microsoft\"\n - Gabe Newell",
+                "Your computer was restarted because of a problem.\n\nClick Report to see more detailed information and send a report to Apple.",
+                "There's truth, lies and statistics....",
+                "There is a chance you saw this factoid already",
+                $"The lucky number for this session is {BlueScreen.r.Next(0,9999)}",
+                "In a 2014 presentation, Microsoft discussed the name for the next version of Windows, which they originally wanted to call Windows One, but instead decided to go for Windows 10, because the giants before them already made Windows 1.0.",
+                "I'm everyone. I'm everywhere. I see everything. I hear everybody.",
+                "There is no escape.",
+                "1 + 1 = 10 (at least that's what computers think)",
+                "Please stop clicking the \"Random factoid\" button!",
+                "target: void"
+            };
 
         [STAThread]
         public static int Main(string[] args)
@@ -103,12 +151,11 @@ namespace UltimateBlueScreenSimulator
                 gs.Log("Info", "Initializing draw routines");
                 dr = new DrawRoutines();
                 //Initialize forms
-                f2 = new Main();
                 gs.Log("Info", "Creating initial form");
-                f1 = new NewUI();
+                F1 = new NewUI();
                 //Set default selection indexes for combo boxes
-                f1.windowVersion.SelectedIndex = 0;
-                f1.comboBox2.SelectedIndex = 0;
+                F1.windowVersion.SelectedIndex = 0;
+                F1.comboBox2.SelectedIndex = 0;
                 clip.ProcessArgs();
                 if (halt)
                 {
@@ -118,6 +165,10 @@ namespace UltimateBlueScreenSimulator
                 try
                 {
                     gs = gs.LoadSettings();
+                    if (gs.LegacyUI)
+                    {
+                        F2 = new Main();
+                    }
                     if (wineKey != null)
                     {
                         gs.Log("Warning", "Wine registry key detected - the user may have launched this program in Linux or macOS. This may cause unexpected glitches!");
@@ -146,11 +197,11 @@ namespace UltimateBlueScreenSimulator
                 //run application
                 if (gs.LegacyUI || force_legacy)
                 {
-                    Application.Run(f2);
+                    Application.Run(F2);
                 }
                 else
                 {
-                    Application.Run(f1);
+                    Application.Run(F1);
                 }
                 return gs.ErrorCode;
             }
@@ -185,19 +236,28 @@ namespace UltimateBlueScreenSimulator
         /// </summary>
         public static void ReloadNTErrors()
         {
-            f1.comboBox1.Items.Clear();
-            f2.comboBox1.Items.Clear();
+            F1.comboBox1.Items.Clear();
+            if (gs.LegacyUI)
+            {
+                F2.comboBox1.Items.Clear();
+            }
             try
             {
                 foreach (string element in templates.NtErrors)
                 {
                     string[] codesplit = element.Split('\t');
                     string final = codesplit[1].ToString() + " (" + codesplit[0].ToString() + ")";
-                    f1.comboBox1.Items.Add(final);
-                    f2.comboBox1.Items.Add(final);
+                    F1.comboBox1.Items.Add(final);
+                    if (gs.LegacyUI)
+                    {
+                        F2.comboBox1.Items.Add(final);
+                    }
                 }
-                f1.comboBox1.SelectedIndex = 9;
-                f2.comboBox1.SelectedIndex = 9;
+                F1.comboBox1.SelectedIndex = 9;
+                if (gs.LegacyUI)
+                {
+                    F2.comboBox1.SelectedIndex = 9;
+                }
             }
             catch
             {
@@ -207,19 +267,28 @@ namespace UltimateBlueScreenSimulator
 
         public static void ReloadNxErrors()
         {
-            f1.nineXErrorCode.Items.Clear();
-            f2.nineXErrorCode.Items.Clear();
+            F1.nineXErrorCode.Items.Clear();
+            if (gs.LegacyUI)
+            {
+                F2.nineXErrorCode.Items.Clear();
+            }
             try
             {
                 foreach (string element in templates.NxErrors)
                 {
                     string[] codesplit = element.Split('\t');
                     string final = codesplit[0].ToString() + ": " + codesplit[1].ToString();
-                    f1.nineXErrorCode.Items.Add(final);
-                    f2.nineXErrorCode.Items.Add(final);
+                    F1.nineXErrorCode.Items.Add(final);
+                    if (gs.LegacyUI)
+                    {
+                        F2.nineXErrorCode.Items.Add(final);
+                    }
                 }
-                f1.nineXErrorCode.SelectedIndex = 9;
-                f2.nineXErrorCode.SelectedIndex = 9;
+                F1.nineXErrorCode.SelectedIndex = 9;
+                if (gs.LegacyUI)
+                {
+                    F2.nineXErrorCode.SelectedIndex = 9;
+                }
             } catch
             {
                 gs.ErrorCode = 20;
@@ -239,7 +308,7 @@ namespace UltimateBlueScreenSimulator
         /// </summary>
         /// <param name="ex">Caught exception</param>
         /// <param name="type">Error type (e.g. VioletScreen)</param>
-        static private void DisplayMetaError(Exception ex, string type)
+        private static void DisplayMetaError(Exception ex, string type)
         {
             gs.Log("Critical", $"{type} exception: {ex.Message}\n{ex.StackTrace}");
             Metaerror me = new Metaerror()
@@ -272,7 +341,9 @@ namespace UltimateBlueScreenSimulator
         public static bool DoWeHaveInternet(long minimumSpeed)
         {
             if (!NetworkInterface.GetIsNetworkAvailable())
+            {
                 return false;
+            }
 
             foreach (NetworkInterface ni in NetworkInterface.GetAllNetworkInterfaces())
             {
@@ -280,21 +351,29 @@ namespace UltimateBlueScreenSimulator
                 if ((ni.OperationalStatus != OperationalStatus.Up) ||
                     (ni.NetworkInterfaceType == NetworkInterfaceType.Loopback) ||
                     (ni.NetworkInterfaceType == NetworkInterfaceType.Tunnel))
+                {
                     continue;
+                }
 
                 // this allow to filter modems, serial, etc.
                 // I use 10000000 as a minimum speed for most cases
                 if (ni.Speed < minimumSpeed)
+                {
                     continue;
+                }
 
                 // discard virtual cards (virtual box, virtual pc, etc.)
                 if ((ni.Description.IndexOf("virtual", StringComparison.OrdinalIgnoreCase) >= 0) ||
                     (ni.Name.IndexOf("virtual", StringComparison.OrdinalIgnoreCase) >= 0))
+                {
                     continue;
+                }
 
                 // discard "Microsoft Loopback Adapter", it will not show as NetworkInterfaceType.Loopback but as Ethernet Card.
                 if (ni.Description.Equals("Microsoft Loopback Adapter", StringComparison.OrdinalIgnoreCase))
+                {
                     continue;
+                }
 
                 return true;
             }
@@ -359,7 +438,7 @@ namespace UltimateBlueScreenSimulator
                 {
                     templates = new TemplateRegistry();
                     dr = new DrawRoutines();
-                    f1 = new NewUI();
+                    F1 = new NewUI();
 
                     Thread th = new Thread(new ThreadStart(() => {
                         // initialize BlueScreen object
@@ -405,7 +484,7 @@ namespace UltimateBlueScreenSimulator
             string filename = appname ?? System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName;
             string tempname = Path.GetTempPath() + "\\BSSP.temp";
             File.Copy(filename, tempname);
-            FileInfo fi = new FileInfo(tempname);
+            _ = new FileInfo(tempname);
             List<byte> discoveredFootBytes = new List<byte>();
             bool footerFound = false;
             bool actualFooterFound = false;

@@ -643,7 +643,7 @@
             // 
             this.blink.Enabled = true;
             this.blink.Interval = 1000;
-            this.blink.Tick += new System.EventHandler(this.blink_Tick);
+            this.blink.Tick += new System.EventHandler(this.Blink_Tick);
             // 
             // TestSuite
             // 

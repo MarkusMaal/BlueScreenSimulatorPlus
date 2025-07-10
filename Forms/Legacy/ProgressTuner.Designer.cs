@@ -62,7 +62,7 @@
             this.progressTrackBar.TabIndex = 0;
             this.progressTrackBar.TickFrequency = 1000;
             this.progressTrackBar.TickStyle = System.Windows.Forms.TickStyle.Both;
-            this.progressTrackBar.ValueChanged += new System.EventHandler(this.progressTrackBar_Scroll);
+            this.progressTrackBar.ValueChanged += new System.EventHandler(this.ProgressTrackBar_Scroll);
             // 
             // totalTimeText
             // 
@@ -72,7 +72,7 @@
             this.totalTimeText.TabIndex = 2;
             this.totalTimeText.Text = "10.0";
             this.totalTimeText.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.totalTimeText.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.totalTimeText.TextChanged += new System.EventHandler(this.TextBox1_TextChanged);
             // 
             // label1
             // 
@@ -103,7 +103,7 @@
             this.deleteKeyFrame.TabIndex = 3;
             this.deleteKeyFrame.Text = "&Delete KF";
             this.deleteKeyFrame.UseVisualStyleBackColor = true;
-            this.deleteKeyFrame.Click += new System.EventHandler(this.deleteKeyFrame_Click);
+            this.deleteKeyFrame.Click += new System.EventHandler(this.DeleteKeyFrame_Click);
             // 
             // nextKeyFrameButton
             // 
@@ -114,7 +114,7 @@
             this.nextKeyFrameButton.TabIndex = 6;
             this.nextKeyFrameButton.Text = "KF&+";
             this.nextKeyFrameButton.UseVisualStyleBackColor = true;
-            this.nextKeyFrameButton.Click += new System.EventHandler(this.nextKeyFrameButton_Click);
+            this.nextKeyFrameButton.Click += new System.EventHandler(this.NextKeyFrameButton_Click);
             // 
             // previousKeyFrameButton
             // 
@@ -125,7 +125,7 @@
             this.previousKeyFrameButton.TabIndex = 5;
             this.previousKeyFrameButton.Text = "&-KF";
             this.previousKeyFrameButton.UseVisualStyleBackColor = true;
-            this.previousKeyFrameButton.Click += new System.EventHandler(this.previousKeyFrameButton_Click);
+            this.previousKeyFrameButton.Click += new System.EventHandler(this.PreviousKeyFrameButton_Click);
             // 
             // progressVisualization
             // 
@@ -193,7 +193,7 @@
             this.randomButton.TabIndex = 7;
             this.randomButton.Text = "&Random";
             this.randomButton.UseVisualStyleBackColor = true;
-            this.randomButton.Click += new System.EventHandler(this.randomButton_Click);
+            this.randomButton.Click += new System.EventHandler(this.RandomButton_Click);
             // 
             // repeatButton
             // 
@@ -205,7 +205,7 @@
             this.repeatButton.TabIndex = 8;
             this.repeatButton.Text = "R&epeat";
             this.repeatButton.UseVisualStyleBackColor = true;
-            this.repeatButton.Click += new System.EventHandler(this.repeatButton_Click);
+            this.repeatButton.Click += new System.EventHandler(this.RepeatButton_Click);
             // 
             // okButton
             // 

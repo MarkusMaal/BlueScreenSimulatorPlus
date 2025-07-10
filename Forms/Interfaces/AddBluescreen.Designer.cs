@@ -224,7 +224,7 @@ namespace UltimateBlueScreenSimulator
             this.iconBox.StartIndex = 0;
             this.iconBox.TabIndex = 16;
             this.iconBox.UseTallSize = false;
-            this.iconBox.SelectedIndexChanged += new System.EventHandler(this.iconBox_SelectedIndexChanged);
+            this.iconBox.SelectedIndexChanged += new System.EventHandler(this.IconBox_SelectedIndexChanged);
             // 
             // friendlyBox
             // 

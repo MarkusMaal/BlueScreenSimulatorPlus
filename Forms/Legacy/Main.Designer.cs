@@ -94,7 +94,6 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.prankModeTimer = new System.Windows.Forms.Timer(this.components);
-            this.updateCheckerTimer = new System.Windows.Forms.Timer(this.components);
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.menuBar = new System.Windows.Forms.MenuStrip();
             this.simulatorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -105,6 +104,7 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.nightThemeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.screenshotToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.advancedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.blueScreenHacksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -118,11 +118,10 @@
             this.quickHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.commandLineSyntaxToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.showTraceLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.waitPopup = new System.Windows.Forms.Timer(this.components);
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.showTraceLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.screenshotToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.flowLayoutPanel1.SuspendLayout();
             this.WXOptions.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
@@ -243,7 +242,7 @@
             this.autoBox.Text = "Auto restart [?]";
             this.quickHelp.SetToolTip(this.autoBox, "Closes the crash screen automatically. Also displays a different bugcheck.");
             this.autoBox.UseVisualStyleBackColor = true;
-            this.autoBox.CheckedChanged += new System.EventHandler(this.generalCheckUncheck);
+            this.autoBox.CheckedChanged += new System.EventHandler(this.GeneralCheckUncheck);
             this.autoBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Button7_KeyDown);
             // 
             // serverBox
@@ -251,26 +250,26 @@
             this.serverBox.AutoSize = true;
             this.serverBox.Location = new System.Drawing.Point(104, 3);
             this.serverBox.Name = "serverBox";
-            this.serverBox.Size = new System.Drawing.Size(130, 17);
+            this.serverBox.Size = new System.Drawing.Size(123, 17);
             this.serverBox.TabIndex = 3;
             this.serverBox.Text = "Server bugcheck [?]";
             this.quickHelp.SetToolTip(this.serverBox, "Displays a crash screen without an emoticon :(");
             this.serverBox.UseVisualStyleBackColor = true;
-            this.serverBox.CheckedChanged += new System.EventHandler(this.generalCheckUncheck);
+            this.serverBox.CheckedChanged += new System.EventHandler(this.GeneralCheckUncheck);
             this.serverBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Button7_KeyDown);
             // 
             // greenBox
             // 
             this.greenBox.AutoSize = true;
-            this.greenBox.Location = new System.Drawing.Point(240, 3);
+            this.greenBox.Location = new System.Drawing.Point(233, 3);
             this.greenBox.Name = "greenBox";
             this.greenBox.Size = new System.Drawing.Size(113, 17);
             this.greenBox.TabIndex = 4;
             this.greenBox.Text = "Insider Preview [?]";
-            this.quickHelp.SetToolTip(this.greenBox, "Shows a green screen instead of a blue/black screen (from Windows Insider Preview build" +
-        "s)");
+            this.quickHelp.SetToolTip(this.greenBox, "Shows a green screen instead of a blue/black screen (from Windows Insider Preview" +
+        " builds)");
             this.greenBox.UseVisualStyleBackColor = true;
-            this.greenBox.CheckedChanged += new System.EventHandler(this.generalCheckUncheck);
+            this.greenBox.CheckedChanged += new System.EventHandler(this.GeneralCheckUncheck);
             this.greenBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Button7_KeyDown);
             // 
             // qrBox
@@ -278,14 +277,14 @@
             this.qrBox.AutoSize = true;
             this.qrBox.Checked = true;
             this.qrBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.qrBox.Location = new System.Drawing.Point(359, 3);
+            this.qrBox.Location = new System.Drawing.Point(352, 3);
             this.qrBox.Name = "qrBox";
             this.qrBox.Size = new System.Drawing.Size(84, 17);
             this.qrBox.TabIndex = 5;
             this.qrBox.Text = "QR code [?]";
             this.quickHelp.SetToolTip(this.qrBox, "Displays the QR code, visible on most Windows 10 versions");
             this.qrBox.UseVisualStyleBackColor = true;
-            this.qrBox.CheckedChanged += new System.EventHandler(this.generalCheckUncheck);
+            this.qrBox.CheckedChanged += new System.EventHandler(this.GeneralCheckUncheck);
             this.qrBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Button7_KeyDown);
             // 
             // memoryBox
@@ -299,7 +298,7 @@
             this.quickHelp.SetToolTip(this.memoryBox, "Displays memory addresses at the top left of the screen (optional feature in Wind" +
         "ows 8+ bluescreens)");
             this.memoryBox.UseVisualStyleBackColor = true;
-            this.memoryBox.CheckedChanged += new System.EventHandler(this.generalCheckUncheck);
+            this.memoryBox.CheckedChanged += new System.EventHandler(this.GeneralCheckUncheck);
             // 
             // devPCBox
             // 
@@ -313,7 +312,7 @@
             this.devPCBox.Text = "Replace \"PC\" with \"device\" [?]";
             this.quickHelp.SetToolTip(this.devPCBox, "On newer builds of Windows 10, the blue screen may say \"device\" instead of \"PC\"");
             this.devPCBox.UseVisualStyleBackColor = true;
-            this.devPCBox.CheckedChanged += new System.EventHandler(this.generalCheckUncheck);
+            this.devPCBox.CheckedChanged += new System.EventHandler(this.GeneralCheckUncheck);
             // 
             // blackScreenBox
             // 
@@ -326,7 +325,7 @@
             this.quickHelp.SetToolTip(this.blackScreenBox, "On older versions of Windows 11, the screen was black instead of blue.");
             this.blackScreenBox.UseVisualStyleBackColor = true;
             this.blackScreenBox.Visible = false;
-            this.blackScreenBox.CheckedChanged += new System.EventHandler(this.generalCheckUncheck);
+            this.blackScreenBox.CheckedChanged += new System.EventHandler(this.GeneralCheckUncheck);
             // 
             // crashDumpBox
             // 
@@ -341,7 +340,7 @@
             this.quickHelp.SetToolTip(this.crashDumpBox, "Simulates the progress for creating a crash dump.");
             this.crashDumpBox.UseVisualStyleBackColor = true;
             this.crashDumpBox.Visible = false;
-            this.crashDumpBox.CheckedChanged += new System.EventHandler(this.generalCheckUncheck);
+            this.crashDumpBox.CheckedChanged += new System.EventHandler(this.GeneralCheckUncheck);
             // 
             // errorCode
             // 
@@ -372,7 +371,7 @@
             this.button4.TabIndex = 5;
             this.button4.Text = "Customize";
             this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click_2);
+            this.button4.Click += new System.EventHandler(this.Button4_Click_2);
             // 
             // button2
             // 
@@ -414,7 +413,7 @@
             this.checkBox2.Text = "Show potential culprit file";
             this.quickHelp.SetToolTip(this.checkBox2, "If enabled, displays a file that may have caused the problem");
             this.checkBox2.UseVisualStyleBackColor = true;
-            this.checkBox2.CheckedChanged += new System.EventHandler(this.generalCheckUncheck);
+            this.checkBox2.CheckedChanged += new System.EventHandler(this.GeneralCheckUncheck);
             this.checkBox2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Button7_KeyDown);
             // 
             // textBox1
@@ -473,7 +472,7 @@
             this.addInfFile.Text = "Show additional information about the file [?]\r\n";
             this.quickHelp.SetToolTip(this.addInfFile, "Display additional information below the stop code");
             this.addInfFile.UseVisualStyleBackColor = true;
-            this.addInfFile.CheckedChanged += new System.EventHandler(this.generalCheckUncheck);
+            this.addInfFile.CheckedChanged += new System.EventHandler(this.GeneralCheckUncheck);
             // 
             // ntPanel
             // 
@@ -498,7 +497,7 @@
             this.displayOsBox.Text = "Bootscreen [?]";
             this.quickHelp.SetToolTip(this.displayOsBox, "Displays name of the operating system on top");
             this.displayOsBox.UseVisualStyleBackColor = true;
-            this.displayOsBox.CheckedChanged += new System.EventHandler(this.generalCheckUncheck);
+            this.displayOsBox.CheckedChanged += new System.EventHandler(this.GeneralCheckUncheck);
             // 
             // blinkBox
             // 
@@ -510,7 +509,7 @@
             this.blinkBox.Text = "Blink cursor [?]";
             this.quickHelp.SetToolTip(this.blinkBox, "Displays blinking caret cursor, as seen in NT 3.x versions");
             this.blinkBox.UseVisualStyleBackColor = true;
-            this.blinkBox.CheckedChanged += new System.EventHandler(this.generalCheckUncheck);
+            this.blinkBox.CheckedChanged += new System.EventHandler(this.GeneralCheckUncheck);
             this.blinkBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Button7_KeyDown);
             // 
             // troubleshootBox
@@ -523,7 +522,7 @@
             this.troubleshootBox.Text = "Troubleshooting info [?]";
             this.quickHelp.SetToolTip(this.troubleshootBox, "Shows the text that could potentially help you solve the issue");
             this.troubleshootBox.UseVisualStyleBackColor = true;
-            this.troubleshootBox.CheckedChanged += new System.EventHandler(this.generalCheckUncheck);
+            this.troubleshootBox.CheckedChanged += new System.EventHandler(this.GeneralCheckUncheck);
             this.troubleshootBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Button7_KeyDown);
             // 
             // amdBox
@@ -536,7 +535,7 @@
             this.amdBox.Text = "AMD processor [?]";
             this.quickHelp.SetToolTip(this.amdBox, "Displays \"AUTHENTICAMD\" instead of \"GENUINEINTEL\" on the NT blue screen");
             this.amdBox.UseVisualStyleBackColor = true;
-            this.amdBox.CheckedChanged += new System.EventHandler(this.generalCheckUncheck);
+            this.amdBox.CheckedChanged += new System.EventHandler(this.GeneralCheckUncheck);
             this.amdBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Button7_KeyDown);
             // 
             // stackBox
@@ -552,7 +551,7 @@
             this.quickHelp.SetToolTip(this.stackBox, "Displays developer debug information on the NT blue screen\r\nNote: The blue screen" +
         " may take longer to load if enabled");
             this.stackBox.UseVisualStyleBackColor = true;
-            this.stackBox.CheckedChanged += new System.EventHandler(this.generalCheckUncheck);
+            this.stackBox.CheckedChanged += new System.EventHandler(this.GeneralCheckUncheck);
             this.stackBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Button7_KeyDown);
             // 
             // nineXmessage
@@ -619,7 +618,7 @@
             this.button5.TabIndex = 6;
             this.button5.Text = "Customize";
             this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click_1);
+            this.button5.Click += new System.EventHandler(this.Button5_Click_1);
             // 
             // nineXErrorCode
             // 
@@ -658,7 +657,7 @@
             this.acpiBox.Text = "ACPI error screen [?]";
             this.quickHelp.SetToolTip(this.acpiBox, "Only displays the stop code (Windows Vista/7 only)");
             this.acpiBox.UseVisualStyleBackColor = true;
-            this.acpiBox.CheckedChanged += new System.EventHandler(this.generalCheckUncheck);
+            this.acpiBox.CheckedChanged += new System.EventHandler(this.GeneralCheckUncheck);
             this.acpiBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Button7_KeyDown);
             // 
             // checkBox1
@@ -668,13 +667,13 @@
             this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox1.Location = new System.Drawing.Point(3, 330);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(237, 17);
+            this.checkBox1.Size = new System.Drawing.Size(243, 17);
             this.checkBox1.TabIndex = 7;
             this.checkBox1.Text = "Show error description on the crash screen [?]";
             this.quickHelp.SetToolTip(this.checkBox1, "Displays error description in addition to STOP code (e.g. IRQL_NOT_LESS_OR_EQUAL)" +
         "");
             this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.generalCheckUncheck);
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.GeneralCheckUncheck);
             // 
             // rainbowBox
             // 
@@ -687,7 +686,7 @@
             this.quickHelp.SetToolTip(this.rainbowBox, "Displays a rainbow gradient as the background image");
             this.rainbowBox.UseVisualStyleBackColor = true;
             this.rainbowBox.Visible = false;
-            this.rainbowBox.CheckedChanged += new System.EventHandler(this.generalCheckUncheck);
+            this.rainbowBox.CheckedChanged += new System.EventHandler(this.GeneralCheckUncheck);
             // 
             // countdownBox
             // 
@@ -702,7 +701,7 @@
         "own would be displayed.");
             this.countdownBox.UseVisualStyleBackColor = true;
             this.countdownBox.Visible = false;
-            this.countdownBox.CheckStateChanged += new System.EventHandler(this.generalCheckUncheck);
+            this.countdownBox.CheckStateChanged += new System.EventHandler(this.GeneralCheckUncheck);
             // 
             // dumpBox
             // 
@@ -717,7 +716,7 @@
             this.quickHelp.SetToolTip(this.dumpBox, "Enable to display dumping process in Windows XP/Vista/7 bluescreens");
             this.dumpBox.UseVisualStyleBackColor = true;
             this.dumpBox.Visible = false;
-            this.dumpBox.CheckedChanged += new System.EventHandler(this.generalCheckUncheck);
+            this.dumpBox.CheckedChanged += new System.EventHandler(this.GeneralCheckUncheck);
             // 
             // winPanel
             // 
@@ -739,7 +738,7 @@
             this.playSndBox.Text = "Play sound [?]";
             this.quickHelp.SetToolTip(this.playSndBox, "Plays constant beep noise while displaying the blue screen");
             this.playSndBox.UseVisualStyleBackColor = true;
-            this.playSndBox.CheckedChanged += new System.EventHandler(this.generalCheckUncheck);
+            this.playSndBox.CheckedChanged += new System.EventHandler(this.GeneralCheckUncheck);
             // 
             // flowLayoutPanel3
             // 
@@ -798,7 +797,7 @@
             this.halfBox.Text = "Low resolution [?]";
             this.quickHelp.SetToolTip(this.halfBox, "Lowers the resolution resulting in taller text when viewed in fullscreen mode");
             this.halfBox.UseVisualStyleBackColor = true;
-            this.halfBox.CheckedChanged += new System.EventHandler(this.generalCheckUncheck);
+            this.halfBox.CheckedChanged += new System.EventHandler(this.GeneralCheckUncheck);
             // 
             // waterBox
             // 
@@ -812,7 +811,7 @@
             this.waterBox.Text = "Display watermark [?]";
             this.quickHelp.SetToolTip(this.waterBox, "Displays a watermark to let the user know that this a simulator");
             this.waterBox.UseVisualStyleBackColor = true;
-            this.waterBox.CheckedChanged += new System.EventHandler(this.generalCheckUncheck);
+            this.waterBox.CheckedChanged += new System.EventHandler(this.GeneralCheckUncheck);
             // 
             // winMode
             // 
@@ -824,7 +823,7 @@
             this.winMode.Text = "Windowed mode [?]";
             this.quickHelp.SetToolTip(this.winMode, "Does not full screen bluescreens, which results in better quality");
             this.winMode.UseVisualStyleBackColor = true;
-            this.winMode.CheckedChanged += new System.EventHandler(this.generalCheckUncheck);
+            this.winMode.CheckedChanged += new System.EventHandler(this.GeneralCheckUncheck);
             // 
             // flowLayoutPanel4
             // 
@@ -863,9 +862,9 @@
             this.eCodeEditButton.Size = new System.Drawing.Size(113, 23);
             this.eCodeEditButton.TabIndex = 11;
             this.eCodeEditButton.Text = "Error &code editor";
-            this.quickHelp.SetToolTip(this.eCodeEditButton, "Allows you to configure how memory codes are being displayed on crash screens. Whe" +
-        "n the screen uses less than 16 digits, the first digits will be used (e.g. first" +
-        " 8 digits)");
+            this.quickHelp.SetToolTip(this.eCodeEditButton, "Allows you to configure how memory codes are being displayed on crash screens. Wh" +
+        "en the screen uses less than 16 digits, the first digits will be used (e.g. firs" +
+        "t 8 digits)");
             this.eCodeEditButton.UseVisualStyleBackColor = true;
             this.eCodeEditButton.Click += new System.EventHandler(this.Button4_Click);
             this.eCodeEditButton.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Button7_KeyDown);
@@ -880,9 +879,9 @@
             this.advNTButton.Size = new System.Drawing.Size(153, 23);
             this.advNTButton.TabIndex = 12;
             this.advNTButton.Text = "Advanced &NT code options";
-            this.quickHelp.SetToolTip(this.advNTButton, "Allows you to configure how memory codes are being displayed on crash screens. Whe" +
-        "n the screen uses less than 16 digits, the first digits will be used (e.g. first" +
-        " 8 digits)");
+            this.quickHelp.SetToolTip(this.advNTButton, "Allows you to configure how memory codes are being displayed on crash screens. Wh" +
+        "en the screen uses less than 16 digits, the first digits will be used (e.g. firs" +
+        "t 8 digits)");
             this.advNTButton.UseVisualStyleBackColor = true;
             this.advNTButton.Visible = false;
             this.advNTButton.Click += new System.EventHandler(this.AdvNTButton_Click);
@@ -900,7 +899,7 @@
             this.quickHelp.SetToolTip(this.progressTuneButton, "Allows you to adjust the timing and increments of the progress indicator on vario" +
         "us crash screens.");
             this.progressTuneButton.UseVisualStyleBackColor = true;
-            this.progressTuneButton.Click += new System.EventHandler(this.button4_Click_1);
+            this.progressTuneButton.Click += new System.EventHandler(this.Button4_Click_1);
             // 
             // embedExeButton
             // 
@@ -915,7 +914,7 @@
             this.quickHelp.SetToolTip(this.embedExeButton, "Creates a .EXE file containing this bluescreen configuration, which will be auto-" +
         "simulated after running it.");
             this.embedExeButton.UseVisualStyleBackColor = true;
-            this.embedExeButton.Click += new System.EventHandler(this.embedExeButton_Click);
+            this.embedExeButton.Click += new System.EventHandler(this.EmbedExeButton_Click);
             // 
             // button1
             // 
@@ -970,7 +969,7 @@
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(15, 429);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(245, 13);
+            this.label7.Size = new System.Drawing.Size(251, 13);
             this.label7.TabIndex = 6;
             this.label7.Text = "Press Escape, F7, or Alt+F4 to exit the crash screen";
             // 
@@ -987,11 +986,6 @@
             // 
             this.prankModeTimer.Interval = 1000;
             this.prankModeTimer.Tick += new System.EventHandler(this.Timer2_Tick);
-            // 
-            // updateCheckerTimer
-            // 
-            this.updateCheckerTimer.Interval = 6000;
-            this.updateCheckerTimer.Tick += new System.EventHandler(this.Timer3_Tick);
             // 
             // linkLabel1
             // 
@@ -1044,7 +1038,7 @@
             // simulateToolStripMenuItem
             // 
             this.simulateToolStripMenuItem.Name = "simulateToolStripMenuItem";
-            this.simulateToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.simulateToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.simulateToolStripMenuItem.Text = "&Simulate";
             this.simulateToolStripMenuItem.Click += new System.EventHandler(this.SimulateToolStripMenuItem_Click);
             // 
@@ -1054,7 +1048,7 @@
             this.autoUpdateToolStripMenuItem,
             this.simulatorSettingsToolStripMenuItem});
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.settingsToolStripMenuItem.Text = "Settings";
             this.settingsToolStripMenuItem.DropDownOpening += new System.EventHandler(this.SimulatorToolStripMenuItem_DropDownOpening);
             // 
@@ -1062,7 +1056,7 @@
             // 
             this.autoUpdateToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.autoUpdateToolStripMenuItem.Name = "autoUpdateToolStripMenuItem";
-            this.autoUpdateToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.autoUpdateToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.autoUpdateToolStripMenuItem.Text = "Auto&Update";
             this.autoUpdateToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.autoUpdateToolStripMenuItem.Click += new System.EventHandler(this.AutoUpdateToolStripMenuItem_Click);
@@ -1071,7 +1065,7 @@
             // 
             this.simulatorSettingsToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.simulatorSettingsToolStripMenuItem.Name = "simulatorSettingsToolStripMenuItem";
-            this.simulatorSettingsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.simulatorSettingsToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.simulatorSettingsToolStripMenuItem.Text = "Si&mulator settings";
             this.simulatorSettingsToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.simulatorSettingsToolStripMenuItem.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
@@ -1081,26 +1075,34 @@
             // 
             this.toolStripSeparator1.AutoSize = false;
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 3);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(174, 3);
             // 
             // nightThemeToolStripMenuItem
             // 
             this.nightThemeToolStripMenuItem.CheckOnClick = true;
             this.nightThemeToolStripMenuItem.Name = "nightThemeToolStripMenuItem";
-            this.nightThemeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.nightThemeToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.nightThemeToolStripMenuItem.Text = "Night theme";
             this.nightThemeToolStripMenuItem.CheckStateChanged += new System.EventHandler(this.LightSwitch);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(174, 6);
+            // 
+            // screenshotToolStripMenuItem
+            // 
+            this.screenshotToolStripMenuItem.Name = "screenshotToolStripMenuItem";
+            this.screenshotToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F2;
+            this.screenshotToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.screenshotToolStripMenuItem.Text = "Take screenshot";
+            this.screenshotToolStripMenuItem.Click += new System.EventHandler(this.ScreenshotToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.exitToolStripMenuItem.Text = "E&xit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
@@ -1147,7 +1149,7 @@
             this.progressTunerToolStripMenuItem.Name = "progressTunerToolStripMenuItem";
             this.progressTunerToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
             this.progressTunerToolStripMenuItem.Text = "Progress &Tuner";
-            this.progressTunerToolStripMenuItem.Click += new System.EventHandler(this.progressTunerToolStripMenuItem_Click);
+            this.progressTunerToolStripMenuItem.Click += new System.EventHandler(this.ProgressTunerToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
@@ -1205,6 +1207,13 @@
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(186, 6);
             // 
+            // showTraceLogToolStripMenuItem
+            // 
+            this.showTraceLogToolStripMenuItem.Name = "showTraceLogToolStripMenuItem";
+            this.showTraceLogToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.showTraceLogToolStripMenuItem.Text = "Show trace &log";
+            this.showTraceLogToolStripMenuItem.Click += new System.EventHandler(this.ShowTraceLogToolStripMenuItem_Click);
+            // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
@@ -1219,21 +1228,6 @@
             // saveFileDialog1
             // 
             this.saveFileDialog1.Filter = "Log files|*.log";
-            // 
-            // showTraceLogToolStripMenuItem
-            // 
-            this.showTraceLogToolStripMenuItem.Name = "showTraceLogToolStripMenuItem";
-            this.showTraceLogToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
-            this.showTraceLogToolStripMenuItem.Text = "Show trace &log";
-            this.showTraceLogToolStripMenuItem.Click += new System.EventHandler(this.showTraceLogToolStripMenuItem_Click);
-            // 
-            // screenshotToolStripMenuItem
-            // 
-            this.screenshotToolStripMenuItem.Name = "screenshotToolStripMenuItem";
-            this.screenshotToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F2;
-            this.screenshotToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.screenshotToolStripMenuItem.Text = "Take screenshot";
-            this.screenshotToolStripMenuItem.Click += new System.EventHandler(this.screenshotToolStripMenuItem_Click);
             // 
             // Main
             // 
@@ -1324,7 +1318,6 @@
         internal System.Windows.Forms.TextBox textBox1;
         internal System.Windows.Forms.CheckBox checkBox2;
         internal System.Windows.Forms.CheckBox checkBox1;
-        public System.Windows.Forms.Timer updateCheckerTimer;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.CheckBox memoryBox;
         public System.Windows.Forms.TextBox textBox2;

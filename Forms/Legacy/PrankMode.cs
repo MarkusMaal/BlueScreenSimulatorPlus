@@ -15,21 +15,21 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
 {
     public partial class PrankMode : Form
     {
-        readonly string releaseId = Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion", "ProductName", "").ToString();
-        readonly int buildNumber = Convert.ToInt32(Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion", "CurrentBuild", "0").ToString());
+        private readonly string releaseId = Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion", "ProductName", "").ToString();
+        private readonly int buildNumber = Convert.ToInt32(Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion", "CurrentBuild", "0").ToString());
 
-        string MsgBoxMessage = "Enter a message here.";
-        string MsgBoxTitle = "Enter a title here";
-        string[] time = { "00", "05", "00" };
-        List<USBDeviceInfo> currentDevs = new List<USBDeviceInfo>();
-        List<USBDeviceInfo> prevDevs = new List<USBDeviceInfo>();
-        string[] devinfo = { };
-        bool timecatch = true;
-        int contain = 0;
-        MessageBoxIcon MsgBoxIcon = MessageBoxIcon.Exclamation;
-        MessageBoxButtons MsgBoxType = MessageBoxButtons.OK;
-        BlueScreen me;
-        readonly List<string> blackninja = new List<string>
+        private string MsgBoxMessage = "Enter a message here.";
+        private string MsgBoxTitle = "Enter a title here";
+        private string[] time = { "00", "05", "00" };
+        private List<USBDeviceInfo> currentDevs = new List<USBDeviceInfo>();
+        private List<USBDeviceInfo> prevDevs = new List<USBDeviceInfo>();
+        private string[] devinfo = { };
+        private bool timecatch = true;
+        private int contain = 0;
+        private MessageBoxIcon MsgBoxIcon = MessageBoxIcon.Exclamation;
+        private MessageBoxButtons MsgBoxType = MessageBoxButtons.OK;
+        private BlueScreen me;
+        private readonly List<string> blackninja = new List<string>
         {
             "Windows Vista/7",
             "Windows XP",
@@ -46,7 +46,7 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
 
         private void PrankMode_Load(object sender, EventArgs e)
         {
-            if (Program.f2.nightThemeToolStripMenuItem.Checked)
+            if (Program.F2.nightThemeToolStripMenuItem.Checked)
             {
                 this.BackColor = System.Drawing.Color.Black;
                 this.ForeColor = System.Drawing.Color.Gray;
@@ -67,13 +67,13 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
             string winver = releaseId;
             if (bestMatchRadio.Checked == true)
             {
-                Program.f2.winMode.Checked = false;
+                Program.F2.winMode.Checked = false;
                 //this code identifies Windows 11
                 if (winver.Contains("Windows 11"))
                 {
-                    for (int i = 0; i < Program.f1.windowVersion.Items.Count; i++)
+                    for (int i = 0; i < Program.F1.windowVersion.Items.Count; i++)
                     {
-                        if (Program.f1.windowVersion.Items[i].ToString().Contains("Windows 11"))
+                        if (Program.F1.windowVersion.Items[i].ToString().Contains("Windows 11"))
                         {
                             contain = i;
                         }
@@ -82,9 +82,9 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
                 //this code identifies Windows 10
                 else if (winver.Contains("Windows 10"))
                 {
-                    for (int i = 0; i < Program.f1.windowVersion.Items.Count; i++)
+                    for (int i = 0; i < Program.F1.windowVersion.Items.Count; i++)
                     {
-                        if (Program.f1.windowVersion.Items[i].ToString().Contains("Windows 10"))
+                        if (Program.F1.windowVersion.Items[i].ToString().Contains("Windows 10"))
                         {
                             contain = i;
                         }
@@ -93,9 +93,9 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
                 //this code identifies Windows 8 or Windows 8.1
                 else if (winver.Contains("Windows 8"))
                 {
-                    for (int i = 0; i < Program.f1.windowVersion.Items.Count; i++)
+                    for (int i = 0; i < Program.F1.windowVersion.Items.Count; i++)
                     {
-                        if (Program.f1.windowVersion.Items[i].ToString().Contains("Windows 8"))
+                        if (Program.F1.windowVersion.Items[i].ToString().Contains("Windows 8"))
                         {
                             contain = i;
                         }
@@ -104,9 +104,9 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
                 //this code identifies Windows 7 or Windows Vista
                 else if ((winver.Contains("Windows 7")) || (winver.Contains("Windows Vista")))
                 {
-                    for (int i = 0; i < Program.f1.windowVersion.Items.Count; i++)
+                    for (int i = 0; i < Program.F1.windowVersion.Items.Count; i++)
                     {
-                        if (Program.f1.windowVersion.Items[i].ToString().Contains("Windows Vista"))
+                        if (Program.F1.windowVersion.Items[i].ToString().Contains("Windows Vista"))
                         {
                             contain = i;
                         }
@@ -115,9 +115,9 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
                 //this code identifies Windows XP
                 else if (winver.Contains("Windows XP"))
                 {
-                    for (int i = 0; i < Program.f1.windowVersion.Items.Count; i++)
+                    for (int i = 0; i < Program.F1.windowVersion.Items.Count; i++)
                     {
-                        if (Program.f1.windowVersion.Items[i].ToString().Contains("Windows XP"))
+                        if (Program.F1.windowVersion.Items[i].ToString().Contains("Windows XP"))
                         {
                             contain = i;
                         }
@@ -126,9 +126,9 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
                 //this code identifies Windows 2000
                 else if ((winver.Contains("Windows 2000")) || (winver.Contains("Windows NT 5")))
                 {
-                    for (int i = 0; i < Program.f1.windowVersion.Items.Count; i++)
+                    for (int i = 0; i < Program.F1.windowVersion.Items.Count; i++)
                     {
-                        if (Program.f1.windowVersion.Items[i].ToString().Contains("Windows 2000"))
+                        if (Program.F1.windowVersion.Items[i].ToString().Contains("Windows 2000"))
                         {
                             contain = i;
                         }
@@ -137,9 +137,9 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
                 //this code identifies Windows 95 or Windows 98
                 else if ((winver.Contains("Windows 95")) || (winver.Contains("Windows 98")))
                 {
-                    for (int i = 0; i < Program.f1.windowVersion.Items.Count; i++)
+                    for (int i = 0; i < Program.F1.windowVersion.Items.Count; i++)
                     {
-                        if (Program.f1.windowVersion.Items[i].ToString().Contains("Windows 9x"))
+                        if (Program.F1.windowVersion.Items[i].ToString().Contains("Windows 9x"))
                         {
                             contain = i;
                         }
@@ -148,9 +148,9 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
                 //this code identifies old Windows NT versions
                 else if ((winver.Contains("Windows NT 4")) || (winver.Contains("Windows NT 3")))
                 {
-                    for (int i = 0; i < Program.f1.windowVersion.Items.Count; i++)
+                    for (int i = 0; i < Program.F1.windowVersion.Items.Count; i++)
                     {
-                        if (Program.f1.windowVersion.Items[i].ToString().Contains("Windows NT"))
+                        if (Program.F1.windowVersion.Items[i].ToString().Contains("Windows NT"))
                         {
                             contain = i;
                         }
@@ -159,9 +159,9 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
                 //this code identifies Windows 3.1x or unknown Windows versions
                 else
                 {
-                    for (int i = 0; i < Program.f1.windowVersion.Items.Count; i++)
+                    for (int i = 0; i < Program.F1.windowVersion.Items.Count; i++)
                     {
-                        if (Program.f1.windowVersion.Items[i].ToString().Contains("Windows 3.1"))
+                        if (Program.F1.windowVersion.Items[i].ToString().Contains("Windows 3.1"))
                         {
                             contain = i;
                         }
@@ -342,7 +342,7 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
 
         private void Button3_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
             Program.gs.PM_CloseMainUI = false;
         }
 
@@ -350,11 +350,7 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
         {
             string messageA = "The program will now be hidden. Once the prank has been triggered, the program will reopen itself.";
             string messageB = "The program will now be hidden. Once the prank has been triggered, the program will reopen iteself and then close after exiting the blue screen.";
-            string message = "You are not " + /* garbage, please trust me on this! */
-                             "supposed " /*ly, they were hanging out... */ +
-                             /*...*/ "to " + "see " /* who actually did this! */ +
-                             "this " + /* message was for you */ ", John!";
-            message = messageB;
+            string message = messageB;
             if (closePrank.Checked)
             {
                 message = messageA;
@@ -369,13 +365,13 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
                 if (bestMatchRadio.Checked == true)
                 {
                     if (buildNumber >= 22000) { winver = "Windows 11"; }
-                    Program.f1.winMode.Checked = false;
+                    Program.F1.winMode.Checked = false;
                     for (int i = 0; i < Program.templates.BlueScreens.Length; i++)
                     {
                         if (winver.Contains(Program.templates.BlueScreens[i].GetString("os")))
                         {
                             UIActions.me = Program.templates.BlueScreens[i];
-                            Program.f2.windowVersion.SelectedIndex = Program.f2.windowVersion.Items.Count - 1 - i;
+                            Program.F2.windowVersion.SelectedIndex = Program.F2.windowVersion.Items.Count - 1 - i;
                         }
                     }
                 }
@@ -383,41 +379,41 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
                 string[] emptydev = { };
                 if (timeRadio.Checked == true)
                 {
-                    Program.f2.timecatch = timecatch;
+                    Program.F2.timecatch = timecatch;
                     int hrs = Convert.ToInt32(time[0].Replace("00", "0").Replace("01", "1").Replace("02", "2").Replace("03", "3").Replace("04", "4").Replace("05", "5").Replace("06", "6").Replace("07", "7").Replace("08", "8").Replace("09", "9"));
                     int mins = Convert.ToInt32(time[1].Replace("00", "0").Replace("01", "1").Replace("02", "2").Replace("03", "3").Replace("04", "4").Replace("05", "5").Replace("06", "6").Replace("07", "7").Replace("08", "8").Replace("09", "9"));
                     int secs = Convert.ToInt32(time[2].Replace("00", "0").Replace("01", "1").Replace("02", "2").Replace("03", "3").Replace("04", "4").Replace("05", "5").Replace("06", "6").Replace("07", "7").Replace("08", "8").Replace("09", "9"));
                     int[] timex = { hrs, mins, secs };
-                    Program.f2.time = timex;
-                    Program.f2.usb_device = emptydev;
-                    Program.f2.prankModeTimer.Interval = 1000;
+                    Program.F2.time = timex;
+                    Program.F2.usb_device = emptydev;
+                    Program.F2.prankModeTimer.Interval = 1000;
                 }
                 else if (appRadio.Checked)
                 {
-                    Program.f2.timecatch = false;
-                    Program.f2.appname = triggerAppBox.Text;
-                    Program.f2.usb_device = emptydev;
-                    Program.f2.prankModeTimer.Interval = 1000;
+                    Program.F2.timecatch = false;
+                    Program.F2.appname = triggerAppBox.Text;
+                    Program.F2.usb_device = emptydev;
+                    Program.F2.prankModeTimer.Interval = 1000;
                 }
                 else
                 {
-                    Program.f2.timecatch = false;
-                    Program.f2.usb_device = devinfo;
-                    Program.f2.prankModeTimer.Interval = 100;
+                    Program.F2.timecatch = false;
+                    Program.F2.usb_device = devinfo;
+                    Program.F2.prankModeTimer.Interval = 100;
                 }
                 if (friendlyMessageBox.Checked == true)
                 {
-                    Program.f2.showmsg = true;
-                    Program.f2.MsgBoxIcon = MsgBoxIcon;
-                    Program.f2.MsgBoxType = MsgBoxType;
-                    Program.f2.MsgBoxMessage = MsgBoxMessage;
-                    Program.f2.MsgBoxTitle = MsgBoxTitle;
+                    Program.F2.showmsg = true;
+                    Program.F2.MsgBoxIcon = MsgBoxIcon;
+                    Program.F2.MsgBoxType = MsgBoxType;
+                    Program.F2.MsgBoxMessage = MsgBoxMessage;
+                    Program.F2.MsgBoxTitle = MsgBoxTitle;
                 }
-                Program.f2.Hide();
-                Program.f2.waterBox.Checked = false;
-                Program.f2.prankModeTimer.Enabled = true;
-                Program.f2.lockout = !letCloseBox.Checked;
-                this.Close();
+                Program.F2.Hide();
+                Program.F2.waterBox.Checked = false;
+                Program.F2.prankModeTimer.Enabled = true;
+                Program.F2.lockout = !letCloseBox.Checked;
+                Close();
             }
         }
 
@@ -519,16 +515,16 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
             }
         }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        private void CheckBox1_CheckedChanged(object sender, EventArgs e)
         {
-            Program.f2.closecuzhidden = !closePrank.Checked;
+            Program.F2.closecuzhidden = !closePrank.Checked;
         }
 
         private void PrankMode_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (Program.f2.Visible)
+            if (Program.F2.Visible)
             {
-                Program.f2.closecuzhidden = false;
+                Program.F2.closecuzhidden = false;
             }
         }
 

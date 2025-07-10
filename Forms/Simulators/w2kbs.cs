@@ -15,12 +15,12 @@ namespace UltimateBlueScreenSimulator
         private bool naturalclose = false;
         public string whatfail = "";
         internal BlueScreen me = Program.templates.GetAt(0);
-        string state = "0";
-        bool inr = false;
-        bool ing = false;
-        bool inb = false;
+        private string state = "0";
+        private bool inr = false;
+        private bool ing = false;
+        private bool inb = false;
         internal string errorCode;
-        readonly string[] letters = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ":", ",", ".", "+", "*", "(", ")", "[", "]", "{", "}", "/", "\\", "-", "_", " ", "'" };
+        private readonly string[] letters = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ":", ",", ".", "+", "*", "(", ")", "[", "]", "{", "}", "/", "\\", "-", "_", " ", "'" };
 
         // NT4 specific options
         public string ver = "4.0 (Service Pack 6)";
@@ -148,7 +148,9 @@ namespace UltimateBlueScreenSimulator
                 {
                     Color pixelColor = img.GetPixel(i, j);
                     if (pixelColor == black)
+                    {
                         img.SetPixel(i, j, white);
+                    }
                 }
             }
             return img;
@@ -162,23 +164,23 @@ namespace UltimateBlueScreenSimulator
                 if (Program.TestDicts(letters, me))
                 {
                     screenUpdater.Enabled = false;
-                    this.Close();
+                    Close();
                     return;
                 }
                 if (Program.gs.EnableEggs)
                 {
-                    if (this.BackColor == this.ForeColor)
+                    if (BackColor == ForeColor)
                     {
-                        this.BackColor = Color.Red;
+                        BackColor = Color.Red;
                         rainBowScreen.Enabled = true;
                     }
                 }
-                this.Icon = me.GetIcon();
-                this.Text = me.GetString("friendlyname");
+                Icon = me.GetIcon();
+                Text = me.GetString("friendlyname");
                 List<Bitmap> lines = new List<Bitmap>();
                 if (!me.GetBool("threepointone"))
                 {
-                    lines.Add(WriteWord(" ", this.BackColor, this.ForeColor));
+                    lines.Add(WriteWord(" ", BackColor, ForeColor));
                 }
                 if (me.GetString("os").Equals("Windows 2000"))
                 {
@@ -201,29 +203,29 @@ namespace UltimateBlueScreenSimulator
 
                     foreach (string l in SafeSplit(errorCode))
                     {
-                        if (l.Replace("\r", "\n").Replace("\n", "") == "") { lines.Add(WriteWord(" ", this.BackColor, this.ForeColor)); continue; }
-                        lines.Add(WriteWord(l.Replace("\r", "\n").Replace("\n", ""), this.BackColor, this.ForeColor));
+                        if (l.Replace("\r", "\n").Replace("\n", "") == "") { lines.Add(WriteWord(" ", BackColor, ForeColor)); continue; }
+                        lines.Add(WriteWord(l.Replace("\r", "\n").Replace("\n", ""), BackColor, ForeColor));
                     }
-                    lines.Add(WriteWord(" ", this.BackColor, this.ForeColor));
+                    lines.Add(WriteWord(" ", BackColor, ForeColor));
 
                     foreach (string l in SafeSplit(me.GetTexts()["Troubleshooting introduction"]))
                     {
-                        if (l.Replace("\r", "\n").Replace("\n", "") == "") { lines.Add(WriteWord(" ", this.BackColor, this.ForeColor)); continue; }
-                        lines.Add(WriteWord(l.Replace("\r", "\n").Replace("\n", ""), this.BackColor, this.ForeColor));
+                        if (l.Replace("\r", "\n").Replace("\n", "") == "") { lines.Add(WriteWord(" ", BackColor, ForeColor)); continue; }
+                        lines.Add(WriteWord(l.Replace("\r", "\n").Replace("\n", ""), BackColor, ForeColor));
                     }
-                    lines.Add(WriteWord(" ", this.BackColor, this.ForeColor));
+                    lines.Add(WriteWord(" ", BackColor, ForeColor));
 
                     foreach (string l in SafeSplit(me.GetTexts()["Troubleshooting text"]))
                     {
-                        if (l.Replace("\r", "\n").Replace("\n", "") == "") { lines.Add(WriteWord(" ", this.BackColor, this.ForeColor)); continue; }
-                        lines.Add(WriteWord(l.Replace("\r", "\n").Replace("\n", ""), this.BackColor, this.ForeColor));
+                        if (l.Replace("\r", "\n").Replace("\n", "") == "") { lines.Add(WriteWord(" ", BackColor, ForeColor)); continue; }
+                        lines.Add(WriteWord(l.Replace("\r", "\n").Replace("\n", ""), BackColor, ForeColor));
                     }
-                    lines.Add(WriteWord(" ", this.BackColor, this.ForeColor));
+                    lines.Add(WriteWord(" ", BackColor, ForeColor));
 
                     foreach (string l in SafeSplit(me.GetTexts()["Additional troubleshooting information"]))
                     {
-                        if (l.Replace("\r", "\n").Replace("\n", "") == "") { lines.Add(WriteWord(" ", this.BackColor, this.ForeColor)); continue; }
-                        lines.Add(WriteWord(l.Replace("\r", "\n").Replace("\n", ""), this.BackColor, this.ForeColor));
+                        if (l.Replace("\r", "\n").Replace("\n", "") == "") { lines.Add(WriteWord(" ", BackColor, ForeColor)); continue; }
+                        lines.Add(WriteWord(l.Replace("\r", "\n").Replace("\n", ""), BackColor, ForeColor));
                     }
                 }
                 else
@@ -239,7 +241,7 @@ namespace UltimateBlueScreenSimulator
                     }
                     if (!me.GetBool("bootscreen") && me.GetBool("threepointone"))
                     {
-                        lines.Add(WriteWord(" ", this.BackColor, this.ForeColor));
+                        lines.Add(WriteWord(" ", BackColor, ForeColor));
                     }
                     Program.load_progress = 2;
                     Program.load_message = "Processing error code";
@@ -362,15 +364,15 @@ namespace UltimateBlueScreenSimulator
                     }
                     z++;
                 }
-                if (!fullscreen) { this.FormBorderStyle = FormBorderStyle.FixedSingle; this.ShowInTaskbar = true; this.ShowIcon = true; }
-                int[] colors = { this.BackColor.R + 50, this.BackColor.G + 50, this.BackColor.B + 50 };
+                if (!fullscreen) { FormBorderStyle = FormBorderStyle.FixedSingle; ShowInTaskbar = true; ShowIcon = true; }
+                int[] colors = { BackColor.R + 50, BackColor.G + 50, BackColor.B + 50 };
                 if (colors[0] > 255) { colors[0] -= 255; }
                 if (colors[1] > 255) { colors[1] -= 255; }
                 if (colors[2] > 255) { colors[2] -= 255; }
                 waterMarkText.ForeColor = Color.FromArgb(colors[0], colors[1], colors[2]);
                 Program.loadfinished = true;
 
-                if (fullscreen && (this.Opacity != 0.0))
+                if (fullscreen && (Opacity != 0.0))
                 {
                     Program.dr.Init(this);
                 }
@@ -378,10 +380,10 @@ namespace UltimateBlueScreenSimulator
             {
                 Program.loadfinished = true;
                 screenUpdater.Enabled = false;
-                this.Hide();
+                Hide();
                 if (Program.gs.EnableEggs && !Program.gs.DevBuild) { me.Crash(ex, "OrangeScreen"); }
                 else { MessageBox.Show("The crash screen cannot be displayed due to an error.\n\n" + ex.Message + "\n\n" + ex.StackTrace, "E R R O R", MessageBoxButtons.OK, MessageBoxIcon.Error); }
-                this.Close();
+                Close();
             }
         }
 
@@ -390,8 +392,8 @@ namespace UltimateBlueScreenSimulator
             List<Bitmap> lines = new List<Bitmap>();
             foreach (string l in SafeSplit(content))
             {
-                if (l.Replace("\r", "\n").Replace("\n", "") == "") { lines.Add(WriteWord(" ", this.BackColor, this.ForeColor)); continue; }
-                lines.Add(WriteWord(l.Replace("\r", "\n").Replace("\n", ""), this.BackColor, this.ForeColor));
+                if (l.Replace("\r", "\n").Replace("\n", "") == "") { lines.Add(WriteWord(" ", BackColor, ForeColor)); continue; }
+                lines.Add(WriteWord(l.Replace("\r", "\n").Replace("\n", ""), BackColor, ForeColor));
             }
             return lines;
         }
@@ -427,7 +429,7 @@ namespace UltimateBlueScreenSimulator
 
         private void Timer1_Tick(object sender, EventArgs e)
         {
-            if (this.Opacity == 0.0) { return; }
+            if (Opacity == 0.0) { return; }
             if (screenUpdater.Interval != me.GetInt("blink_speed")) { screenUpdater.Interval = me.GetInt("blink_speed"); }
             if (fullscreen)
             {
@@ -436,7 +438,7 @@ namespace UltimateBlueScreenSimulator
                     if (ws.Visible == false)
                     {
                         naturalclose = true;
-                        this.Close();
+                        Close();
                     }
                     try
                     {
@@ -450,11 +452,11 @@ namespace UltimateBlueScreenSimulator
                     catch
                     {
                         naturalclose = true;
-                        this.Close();
+                        Close();
                     }
                 }
-                this.BringToFront();
-                this.Activate();
+                BringToFront();
+                Activate();
             }
             if (blink && me.GetString("os").Equals("Windows NT 3.x/4.0"))
             {
@@ -482,9 +484,9 @@ namespace UltimateBlueScreenSimulator
 
         private void RainBowScreen_Tick(object sender, EventArgs e)
         {
-            int r = this.BackColor.R;
-            int gr = this.BackColor.G;
-            int b = this.BackColor.B;
+            int r = BackColor.R;
+            int gr = BackColor.G;
+            int b = BackColor.B;
             if (state == "1")
             {
                 if (inr == false)
@@ -560,16 +562,16 @@ namespace UltimateBlueScreenSimulator
                 state = "1";
                 gr += 1;
             }
-            this.BackColor = Color.FromArgb(r, gr, b);
-            foreach (Control c in this.Controls)
+            BackColor = Color.FromArgb(r, gr, b);
+            foreach (Control c in Controls)
             {
-                int[] colorsa = { this.BackColor.R - 100, this.BackColor.G - 100, this.BackColor.B - 100 };
+                int[] colorsa = { BackColor.R - 100, BackColor.G - 100, BackColor.B - 100 };
                 if (colorsa[0] < 0) { colorsa[0] += 255; }
                 if (colorsa[1] < 0) { colorsa[1] += 255; }
                 if (colorsa[2] < 0) { colorsa[2] += 255; }
                 c.ForeColor = Color.FromArgb(colorsa[0], colorsa[1], colorsa[2]);
             }
-            int[] colors = { this.BackColor.R + 20, this.BackColor.G + 20, this.BackColor.B + 20 };
+            int[] colors = { BackColor.R + 20, BackColor.G + 20, BackColor.B + 20 };
             if (colors[0] > 255) { colors[0] -= 255; }
             if (colors[1] > 255) { colors[1] -= 255; }
             if (colors[2] > 255) { colors[2] -= 255; }

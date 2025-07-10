@@ -84,9 +84,9 @@
             this.codefilesList.TabIndex = 0;
             this.codefilesList.UseCompatibleStateImageBehavior = false;
             this.codefilesList.View = System.Windows.Forms.View.Details;
-            this.codefilesList.SelectedIndexChanged += new System.EventHandler(this.codefilesList_SelectedIndexChanged);
-            this.codefilesList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.codefilesList_KeyDown);
-            this.codefilesList.MouseClick += new System.Windows.Forms.MouseEventHandler(this.codefilesList_MouseClick);
+            this.codefilesList.SelectedIndexChanged += new System.EventHandler(this.CodefilesList_SelectedIndexChanged);
+            this.codefilesList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CodefilesList_KeyDown);
+            this.codefilesList.MouseClick += new System.Windows.Forms.MouseEventHandler(this.CodefilesList_MouseClick);
             // 
             // fileColumn
             // 
@@ -118,7 +118,7 @@
             this.delCodeButton.Type = MaterialSkin2Framework.Controls.MaterialButton.MaterialButtonType.Contained;
             this.delCodeButton.UseAccentColor = false;
             this.delCodeButton.UseVisualStyleBackColor = true;
-            this.delCodeButton.Click += new System.EventHandler(this.materialButton2_Click);
+            this.delCodeButton.Click += new System.EventHandler(this.MaterialButton2_Click);
             // 
             // randCodesList
             // 
@@ -150,8 +150,8 @@
             this.randCodesList.Size = new System.Drawing.Size(521, 180);
             this.randCodesList.Style = MaterialSkin2Framework.Controls.MaterialListBox.ListBoxStyle.TwoLine;
             this.randCodesList.TabIndex = 3;
-            this.randCodesList.SelectedIndexChanged += new MaterialSkin2Framework.Controls.MaterialListBox.SelectedIndexChangedEventHandler(this.randCodesList_SelectedIndexChanged);
-            this.randCodesList.MouseClick += new System.Windows.Forms.MouseEventHandler(this.randCodesList_MouseClick);
+            this.randCodesList.SelectedIndexChanged += new MaterialSkin2Framework.Controls.MaterialListBox.SelectedIndexChangedEventHandler(this.RandCodesList_SelectedIndexChanged);
+            this.randCodesList.MouseClick += new System.Windows.Forms.MouseEventHandler(this.RandCodesList_MouseClick);
             // 
             // materialLabel2
             // 
@@ -184,7 +184,7 @@
             this.codeBox.Text = "";
             this.codeBox.TrailingIcon = null;
             this.codeBox.UseTallSize = false;
-            this.codeBox.TextChanged += new System.EventHandler(this.codeBox_TextChanged);
+            this.codeBox.TextChanged += new System.EventHandler(this.CodeBox_TextChanged);
             // 
             // filenameBox
             // 
@@ -205,7 +205,7 @@
             this.filenameBox.Text = "";
             this.filenameBox.TrailingIcon = null;
             this.filenameBox.UseTallSize = false;
-            this.filenameBox.TextChanged += new System.EventHandler(this.filenameBox_TextChanged);
+            this.filenameBox.TextChanged += new System.EventHandler(this.FilenameBox_TextChanged);
             // 
             // browseButton
             // 
@@ -226,7 +226,7 @@
             this.browseButton.Type = MaterialSkin2Framework.Controls.MaterialButton.MaterialButtonType.Contained;
             this.browseButton.UseAccentColor = false;
             this.browseButton.UseVisualStyleBackColor = true;
-            this.browseButton.Click += new System.EventHandler(this.browseButton_Click);
+            this.browseButton.Click += new System.EventHandler(this.BrowseButton_Click);
             // 
             // materialLabel3
             // 
@@ -304,7 +304,7 @@
             this.delEntryButton.Type = MaterialSkin2Framework.Controls.MaterialButton.MaterialButtonType.Contained;
             this.delEntryButton.UseAccentColor = false;
             this.delEntryButton.UseVisualStyleBackColor = true;
-            this.delEntryButton.Click += new System.EventHandler(this.materialButton4_Click);
+            this.delEntryButton.Click += new System.EventHandler(this.MaterialButton4_Click);
             // 
             // materialButton3
             // 
@@ -325,7 +325,7 @@
             this.materialButton3.Type = MaterialSkin2Framework.Controls.MaterialButton.MaterialButtonType.Contained;
             this.materialButton3.UseAccentColor = false;
             this.materialButton3.UseVisualStyleBackColor = true;
-            this.materialButton3.Click += new System.EventHandler(this.materialButton3_Click);
+            this.materialButton3.Click += new System.EventHandler(this.MaterialButton3_Click);
             // 
             // materialButton5
             // 
@@ -346,7 +346,7 @@
             this.materialButton5.Type = MaterialSkin2Framework.Controls.MaterialButton.MaterialButtonType.Contained;
             this.materialButton5.UseAccentColor = false;
             this.materialButton5.UseVisualStyleBackColor = true;
-            this.materialButton5.Click += new System.EventHandler(this.materialButton5_Click);
+            this.materialButton5.Click += new System.EventHandler(this.MaterialButton5_Click);
             // 
             // fixedButton
             // 
@@ -367,7 +367,7 @@
             this.fixedButton.Type = MaterialSkin2Framework.Controls.MaterialButton.MaterialButtonType.Contained;
             this.fixedButton.UseAccentColor = false;
             this.fixedButton.UseVisualStyleBackColor = true;
-            this.fixedButton.Click += new System.EventHandler(this.fixedButton_Click);
+            this.fixedButton.Click += new System.EventHandler(this.FixedButton_Click);
             // 
             // fixedRandomButton
             // 
@@ -388,7 +388,7 @@
             this.fixedRandomButton.Type = MaterialSkin2Framework.Controls.MaterialButton.MaterialButtonType.Contained;
             this.fixedRandomButton.UseAccentColor = false;
             this.fixedRandomButton.UseVisualStyleBackColor = true;
-            this.fixedRandomButton.Click += new System.EventHandler(this.fixedRandomButton_Click);
+            this.fixedRandomButton.Click += new System.EventHandler(this.FixedRandomButton_Click);
             // 
             // randomButton
             // 
@@ -409,7 +409,7 @@
             this.randomButton.Type = MaterialSkin2Framework.Controls.MaterialButton.MaterialButtonType.Contained;
             this.randomButton.UseAccentColor = false;
             this.randomButton.UseVisualStyleBackColor = true;
-            this.randomButton.Click += new System.EventHandler(this.randomButton_Click);
+            this.randomButton.Click += new System.EventHandler(this.RandomButton_Click);
             // 
             // zeroButton
             // 
@@ -430,7 +430,7 @@
             this.zeroButton.Type = MaterialSkin2Framework.Controls.MaterialButton.MaterialButtonType.Contained;
             this.zeroButton.UseAccentColor = false;
             this.zeroButton.UseVisualStyleBackColor = true;
-            this.zeroButton.Click += new System.EventHandler(this.zeroButton_Click);
+            this.zeroButton.Click += new System.EventHandler(this.ZeroButton_Click);
             // 
             // NTdtor
             // 

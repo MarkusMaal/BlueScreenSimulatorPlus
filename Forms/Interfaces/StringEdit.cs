@@ -21,7 +21,7 @@ namespace UltimateBlueScreenSimulator
         private bool checkDone = true;
         public StringEdit()
         {
-            MaterialSkinManager materialSkinManager = Program.f1.materialSkinManager;
+            MaterialSkinManager materialSkinManager = Program.F1.materialSkinManager;
             materialSkinManager.AddFormToManage(this);
             InitializeComponent();
             Font = new Font(Font.Name, 8.25f * 96f / CreateGraphics().DpiX, Font.Style, Font.Unit, Font.GdiCharSet, Font.GdiVerticalFont);
@@ -53,6 +53,10 @@ namespace UltimateBlueScreenSimulator
 
         private void UpdateMessageView()
         {
+            if (me == null)
+            {
+                return;
+            }
             if (MessageView.Items.Count == 0)
             {
                 MessageView.Columns.Add("Property");
@@ -271,7 +275,7 @@ namespace UltimateBlueScreenSimulator
                 HideAllProps();
                 if (selection == "Horizontal margin")
                 {
-                    this.type = "margin-x";
+                    type = "margin-x";
                     secondsLabel.Text = "%";
                     timeoutProps.Visible = true;
                     timeoutBox.Text = me.GetInt("margin-x").ToString();
@@ -279,7 +283,7 @@ namespace UltimateBlueScreenSimulator
                 }
                 else if (selection == "Vertical margin")
                 {
-                    this.type = "margin-y";
+                    type = "margin-y";
                     secondsLabel.Text = "%";
                     timeoutProps.Visible = true;
                     timeoutBox.Text = me.GetInt("margin-y").ToString();
@@ -287,8 +291,8 @@ namespace UltimateBlueScreenSimulator
                 }
                 else if (selection.StartsWith("Title: "))
                 {
-                    this.type = "title";
-                    this.editable = MessageView.SelectedItems[0].Text.Substring(7);
+                    type = "title";
+                    editable = MessageView.SelectedItems[0].Text.Substring(7);
                     stringEditor.Text = MessageView.SelectedItems[0].SubItems[1].Text;
                     HideAllProps();
                     stringProps.Visible = true;
@@ -296,8 +300,8 @@ namespace UltimateBlueScreenSimulator
                 }
                 else if (selection.StartsWith("Text: "))
                 {
-                    this.type = "text";
-                    this.editable = MessageView.SelectedItems[0].Text.Substring(6);
+                    type = "text";
+                    editable = MessageView.SelectedItems[0].Text.Substring(6);
                     stringEditor.Text = MessageView.SelectedItems[0].SubItems[1].Text;
                     HideAllProps();
                     stringProps.Visible = true;
@@ -316,8 +320,8 @@ namespace UltimateBlueScreenSimulator
                 }
                 else if (selection.StartsWith("String: "))
                 {
-                    this.type = "string";
-                    this.editable = MessageView.SelectedItems[0].Text.Substring(8).ToLower();
+                    type = "string";
+                    editable = MessageView.SelectedItems[0].Text.Substring(8).ToLower();
                     stringEditor.Text = MessageView.SelectedItems[0].SubItems[1].Text;
                     HideAllProps();
                     stringProps.Visible = true;
@@ -325,8 +329,8 @@ namespace UltimateBlueScreenSimulator
                 }
                 else if (selection == "Background color")
                 {
-                    this.theme_bg = true;
-                    this.theme_hl = false;
+                    theme_bg = true;
+                    theme_hl = false;
                     colorPreview.BackColor = me.GetTheme(true);
                     HideAllProps();
                     colorProps.Visible = true;
@@ -334,8 +338,8 @@ namespace UltimateBlueScreenSimulator
                 }
                 else if (selection == "Foreground color")
                 {
-                    this.theme_bg = false;
-                    this.theme_hl = false;
+                    theme_bg = false;
+                    theme_hl = false;
                     colorPreview.BackColor = me.GetTheme(false);
                     HideAllProps();
                     colorProps.Visible = true;
@@ -343,8 +347,8 @@ namespace UltimateBlueScreenSimulator
                 }
                 else if (selection == "Highlight background")
                 {
-                    this.theme_bg = true;
-                    this.theme_hl = true;
+                    theme_bg = true;
+                    theme_hl = true;
                     colorPreview.BackColor = me.GetTheme(true, true);
                     HideAllProps();
                     colorProps.Visible = true;
@@ -352,8 +356,8 @@ namespace UltimateBlueScreenSimulator
                 }
                 else if (selection == "Highlight foreground")
                 {
-                    this.theme_bg = false;
-                    this.theme_hl = true;
+                    theme_bg = false;
+                    theme_hl = true;
                     colorPreview.BackColor = me.GetTheme(false, true);
                     HideAllProps();
                     colorProps.Visible = true;
@@ -427,15 +431,15 @@ namespace UltimateBlueScreenSimulator
         {
             if (stringProps.Visible)
             {
-                if (this.type == "title")
+                if (type == "title")
                 {
                     me.SetTitle(editable, stringEditor.Text);
                 }
-                else if (this.type == "text")
+                else if (type == "text")
                 {
                     me.SetText(editable, stringEditor.Text);
                 }
-                else if (this.type == "string")
+                else if (type == "string")
                 {
                     me.SetString(editable, stringEditor.Text);
                 }
@@ -468,7 +472,7 @@ namespace UltimateBlueScreenSimulator
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void Blinkywinky_Tick(object sender, EventArgs e)
@@ -541,7 +545,7 @@ namespace UltimateBlueScreenSimulator
             MessageBox.Show("They have been moved to a new location. The new location is Settings > Simulator settings > Save/Load configurations", "About the save and load button", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void autoRadio_CheckedChanged(object sender, EventArgs e)
+        private void AutoRadio_CheckedChanged(object sender, EventArgs e)
         {
             if (autoRadio.Checked)
             {
@@ -550,7 +554,7 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void manualRadio_CheckedChanged(object sender, EventArgs e)
+        private void ManualRadio_CheckedChanged(object sender, EventArgs e)
         {
             if (manualRadio.Checked)
             {
@@ -559,11 +563,10 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void speedTrackbar_onValueChanged(object sender, int newValue)
+        private void SpeedTrackbar_onValueChanged(object sender, int newValue)
         {
             if (newValue == 0)
             {
-                newValue = 1;
                 speedTrackbar.Value = 1;
             }
             if (blinkingDash.Text == "_")
@@ -587,28 +590,23 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void bugcheckPreview_Paint(object sender, PaintEventArgs e)
+        private void BugcheckPreview_Paint(object sender, PaintEventArgs e)
         {
-            this.BringToFront();
+            BringToFront();
         }
 
-        private void bugcheckPreview_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void materialLabel1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void materialCheckbox1_CheckedChanged(object sender, EventArgs e)
+        private void MaterialCheckbox1_CheckedChanged(object sender, EventArgs e)
         {
             if (updatePreviewCheck.Checked)
             {
                 checkDone = false;
                 bugcheckPreview.Image = Properties.Resources.loadpic;
                 new Thread(() => {
+                    if (me == null)
+                    {
+                        return;
+                    }
+
                     me.ShowSpecial(bugcheckPreview);
                     checkDone = true;
                 }).Start();

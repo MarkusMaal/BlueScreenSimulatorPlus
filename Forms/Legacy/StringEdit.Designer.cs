@@ -239,7 +239,7 @@
             this.autoRadio.TabStop = true;
             this.autoRadio.Text = "Auto";
             this.autoRadio.UseVisualStyleBackColor = true;
-            this.autoRadio.CheckedChanged += new System.EventHandler(this.autoRadio_CheckedChanged);
+            this.autoRadio.CheckedChanged += new System.EventHandler(this.AutoRadio_CheckedChanged);
             // 
             // manualRadio
             // 
@@ -250,7 +250,7 @@
             this.manualRadio.TabIndex = 1;
             this.manualRadio.Text = "Manual";
             this.manualRadio.UseVisualStyleBackColor = true;
-            this.manualRadio.CheckedChanged += new System.EventHandler(this.manualRadio_CheckedChanged);
+            this.manualRadio.CheckedChanged += new System.EventHandler(this.ManualRadio_CheckedChanged);
             // 
             // qrProps
             // 
@@ -461,7 +461,7 @@
             this.bugcheckPreview.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.bugcheckPreview.TabIndex = 12;
             this.bugcheckPreview.TabStop = false;
-            this.bugcheckPreview.Paint += new System.Windows.Forms.PaintEventHandler(this.bugcheckPreview_Paint);
+            this.bugcheckPreview.Paint += new System.Windows.Forms.PaintEventHandler(this.BugcheckPreview_Paint);
             // 
             // label2
             // 
@@ -484,7 +484,7 @@
             this.updatePreviewCheck.TabIndex = 14;
             this.updatePreviewCheck.Text = "Update preview automatically";
             this.updatePreviewCheck.UseVisualStyleBackColor = true;
-            this.updatePreviewCheck.CheckedChanged += new System.EventHandler(this.updatePreviewCheck_CheckedChanged);
+            this.updatePreviewCheck.CheckedChanged += new System.EventHandler(this.UpdatePreviewCheck_CheckedChanged);
             // 
             // StringEdit
             // 

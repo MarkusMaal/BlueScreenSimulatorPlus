@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Management;
 using System.Reflection;
 using System.Text;
@@ -26,16 +27,16 @@ namespace UltimateBlueScreenSimulator
             switch (e.KeyCode)
             {
                 case Keys.Escape:
-                    this.DialogResult = DialogResult.Abort;
-                    this.Close();
+                    DialogResult = DialogResult.Abort;
+                    Close();
                     break;
                 case Keys.Enter:
-                    this.DialogResult = DialogResult.Ignore;
-                    this.Close();
+                    DialogResult = DialogResult.Ignore;
+                    Close();
                     break;
                 case Keys.Space:
-                    this.DialogResult = DialogResult.Retry;
-                    this.Close();
+                    DialogResult = DialogResult.Retry;
+                    Close();
                     break;
             }
             Program.gs.Log("Fatal", technicalinfoLabel.Text);
@@ -56,16 +57,16 @@ namespace UltimateBlueScreenSimulator
             switch (type)
             {
                 case "GreenScreen":
-                    this.BackColor = Color.ForestGreen;
-                    this.ForeColor = Color.White;
+                    BackColor = Color.ForestGreen;
+                    ForeColor = Color.White;
                     break;
                 case "OrangeScreen":
-                    this.BackColor = Color.DarkOrange;
-                    this.ForeColor = Color.White;
+                    BackColor = Color.DarkOrange;
+                    ForeColor = Color.White;
                     break;
                 case "VioletScreen":
-                    this.BackColor = Color.BlueViolet;
-                    this.ForeColor = Color.White;
+                    BackColor = Color.BlueViolet;
+                    ForeColor = Color.White;
                     retryButton.Visible = true;
                     abortButton.Visible = true;
                     break;
@@ -74,20 +75,20 @@ namespace UltimateBlueScreenSimulator
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.Ignore;
-            this.Close();
+            DialogResult = DialogResult.Ignore;
+            Close();
         }
 
         private void Button2_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.Retry;
-            this.Close();
+            DialogResult = DialogResult.Retry;
+            Close();
         }
 
         private void Button3_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.Abort;
-            this.Close();
+            DialogResult = DialogResult.Abort;
+            Close();
         }
 
         private void Metaerror_KeyDown(object sender, KeyEventArgs e)
@@ -107,7 +108,7 @@ namespace UltimateBlueScreenSimulator
         {
             string result = string.Empty;
             ManagementObjectSearcher searcher = new ManagementObjectSearcher("SELECT Caption FROM Win32_OperatingSystem");
-            foreach (ManagementObject os in searcher.Get())
+            foreach (ManagementObject os in searcher.Get().Cast<ManagementObject>())
             {
                 result = os["Caption"].ToString();
                 break;
@@ -119,8 +120,10 @@ namespace UltimateBlueScreenSimulator
         {
             try
             {
-                SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-                saveFileDialog1.Filter = "Log files|*.log";
+                SaveFileDialog saveFileDialog1 = new SaveFileDialog
+                {
+                    Filter = "Log files|*.log"
+                };
 
                 if (saveFileDialog1.ShowDialog() == DialogResult.OK)
                 {

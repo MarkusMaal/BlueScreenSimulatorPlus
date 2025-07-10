@@ -27,7 +27,7 @@ namespace UltimateBlueScreenSimulator.Forms.Interfaces
 
         private void ClearActions()
         {
-            this.BeginInvoke(new MethodInvoker(delegate {
+            BeginInvoke(new MethodInvoker(delegate {
                 for (int i = 1; i <= 10; i++)
                 {
                     tableLayoutPanel2.Controls[$"actionLabel{i}"].Text = "";
@@ -38,7 +38,7 @@ namespace UltimateBlueScreenSimulator.Forms.Interfaces
 
         private void SetActions(string[] actionLabels)
         {
-            this.BeginInvoke(new MethodInvoker(delegate {
+            BeginInvoke(new MethodInvoker(delegate {
                 for (int i = 1; i <= 10; i++)
                 {
                     if (i > actionLabels.Length)
@@ -53,7 +53,7 @@ namespace UltimateBlueScreenSimulator.Forms.Interfaces
 
         private void HighlightSubtest(int i, bool success)
         {
-            this.BeginInvoke(new MethodInvoker(delegate {
+            BeginInvoke(new MethodInvoker(delegate {
                 if (i > 1)
                 {
                     ((PictureBox)tableLayoutPanel2.Controls[$"actionPic{i - 1}"]).Image = success ? Properties.Resources.success : Properties.Resources.failure;
@@ -68,7 +68,7 @@ namespace UltimateBlueScreenSimulator.Forms.Interfaces
 
         private void LogError(string testType, string message)
         {
-            this.BeginInvoke(new MethodInvoker(delegate {
+            BeginInvoke(new MethodInvoker(delegate {
                 badTestLog.Text += $"[{DateTime.Now}] {testType} - {message}\r\n";
             }));
         }
@@ -267,8 +267,12 @@ namespace UltimateBlueScreenSimulator.Forms.Interfaces
             for (int i = 1; i <= numindicies; i++)
             {
                 TemplateRegistry tempreg = Program.templates;
-                this.BeginInvoke(new MethodInvoker(delegate {
-                    if (i > 4) return;
+                BeginInvoke(new MethodInvoker(delegate {
+                    if (i > 4)
+                    {
+                        return;
+                    }
+
                     tempreg.LoadConfig(documents + $"\\test{i}.json");
                     bool has_cust_emoticon = false;
                     bool has_bad_emoticon = false;
@@ -299,7 +303,7 @@ namespace UltimateBlueScreenSimulator.Forms.Interfaces
 
         private void NextTest(int id)
         {
-            this.BeginInvoke(new MethodInvoker(delegate {
+            BeginInvoke(new MethodInvoker(delegate {
                 string LastTestName = tableLayoutPanel1.Controls["label" + (id - 1)].Text;
                 bool hasFailed = false;
                 foreach (Control c in tableLayoutPanel2.Controls)
@@ -353,7 +357,7 @@ namespace UltimateBlueScreenSimulator.Forms.Interfaces
             }
         }
 
-        private void blink_Tick(object sender, EventArgs e)
+        private void Blink_Tick(object sender, EventArgs e)
         {
             noticeLabel.ForeColor = ((noticeLabel.ForeColor == SystemColors.ControlText) ? Color.Red : SystemColors.ControlText);
         }

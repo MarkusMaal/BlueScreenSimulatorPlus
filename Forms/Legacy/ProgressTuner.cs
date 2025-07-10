@@ -15,14 +15,14 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
     public partial class ProgressTuner : Form
     {
         internal IDictionary<int, int> KFrames = new Dictionary<int, int>();
-        Bitmap bmp = new Bitmap(1000, 10);
-        int last = 0;
+        private Bitmap bmp = new Bitmap(1000, 10);
+        private int last = 0;
         public ProgressTuner()
         {
             InitializeComponent();
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void TextBox1_TextChanged(object sender, EventArgs e)
         {
             try
             {
@@ -53,7 +53,7 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
 
         }
 
-        private void progressTrackBar_Scroll(object sender, EventArgs e)
+        private void ProgressTrackBar_Scroll(object sender, EventArgs e)
         {
             SetLabelText();
             if (KFrames.ContainsKey(progressTrackBar.Value))
@@ -76,13 +76,13 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
             progressPositionLabel.Text = string.Format("total: {0}%, position: {1}s", totalpercent, ((float)progressTrackBar.Value / 100.0f).ToString().Replace(",", "."));
         }
 
-        private void randomButton_Click(object sender, EventArgs e)
+        private void RandomButton_Click(object sender, EventArgs e)
         {
             Random r = new Random();
             incPercent.Text = r.Next(0, 10).ToString();
         }
 
-        private void nextKeyFrameButton_Click(object sender, EventArgs e)
+        private void NextKeyFrameButton_Click(object sender, EventArgs e)
         {
             foreach (int position in KFrames.Keys)
             {
@@ -98,7 +98,7 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
             }
         }
 
-        private void previousKeyFrameButton_Click(object sender, EventArgs e)
+        private void PreviousKeyFrameButton_Click(object sender, EventArgs e)
         {
             int minimum = 0;
             foreach (int position in KFrames.Keys)
@@ -121,7 +121,7 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
             repeatButton.Enabled = true;
         }
 
-        private void deleteKeyFrame_Click(object sender, EventArgs e)
+        private void DeleteKeyFrame_Click(object sender, EventArgs e)
         {
             if (KFrames.ContainsKey(progressTrackBar.Value))
             {
@@ -131,7 +131,7 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
             SetLabelText();
         }
 
-        private void repeatButton_Click(object sender, EventArgs e)
+        private void RepeatButton_Click(object sender, EventArgs e)
         {
             if (KFrames.ContainsKey(progressTrackBar.Value + last))
             {
@@ -150,14 +150,14 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
 
         private void OKClick(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.OK;
-            this.Close();
+            DialogResult = DialogResult.OK;
+            Close();
         }
 
         private void CancelClick(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.Cancel;
-            this.Close();
+            DialogResult = DialogResult.Cancel;
+            Close();
         }
 
         private void ClearAll(object sender, EventArgs e)

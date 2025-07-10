@@ -15,7 +15,7 @@ namespace UltimateBlueScreenSimulator
     {
         public BTS()
         {
-            MaterialSkinManager materialSkinManager = Program.f1.materialSkinManager;
+            MaterialSkinManager materialSkinManager = Program.F1.materialSkinManager;
             materialSkinManager.AddFormToManage(this);
             InitializeComponent();
             Font = new Font(Font.Name, 8.25f * 96f / CreateGraphics().DpiX, Font.Style, Font.Unit, Font.GdiCharSet, Font.GdiVerticalFont);
@@ -23,7 +23,7 @@ namespace UltimateBlueScreenSimulator
 
         private void CloseClick(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void ChangeAllSizeMode()

@@ -31,7 +31,7 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
                     fileBrowser.Items.Add(lvi);
                 }
             }
-            if (Program.f2.nightThemeToolStripMenuItem.Checked)
+            if (Program.F2.nightThemeToolStripMenuItem.Checked)
             {
                 fileBrowser.BackColor = System.Drawing.Color.Black;
                 fileBrowser.ForeColor = System.Drawing.Color.Gray;
@@ -48,8 +48,8 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
                     return;
                 }
             }
-            this.DialogResult = DialogResult.OK;
-            this.Close();
+            DialogResult = DialogResult.OK;
+            Close();
         }
 
         private void Repopulate()
@@ -69,30 +69,30 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void Button2_Click(object sender, EventArgs e)
         {
             MessageTableEditor mte = new MessageTableEditor
             {
                 nt_errors = false,
-                Location = this.Location,
-                Size = this.Size,
+                Location = Location,
+                Size = Size,
                 StartPosition = FormStartPosition.Manual
             };
             Hide();
             mte.ShowDialog();
-            this.Location = mte.Location;
-            this.Size = mte.Size;
+            Location = mte.Location;
+            Size = mte.Size;
             Repopulate();
             Show();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.OK;
+            DialogResult = DialogResult.OK;
             Close();
         }
 
-        private void fileBrowser_SelectedIndexChanged(object sender, EventArgs e)
+        private void FileBrowser_SelectedIndexChanged(object sender, EventArgs e)
         {
             okButton.Enabled = fileBrowser.SelectedItems.Count > 0;
         }

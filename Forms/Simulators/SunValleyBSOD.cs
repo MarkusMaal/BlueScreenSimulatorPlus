@@ -138,7 +138,7 @@ namespace UltimateBlueScreenSimulator.Forms.Simulators
             }
         }
 
-        private void progressUpdater_Tick(object sender, EventArgs e)
+        private void ProgressUpdater_Tick(object sender, EventArgs e)
         {
             try
             {
@@ -149,7 +149,7 @@ namespace UltimateBlueScreenSimulator.Forms.Simulators
                 if ((oldmode && (progress >= 99)) || (progressmillis == maxprogressmillis))
                 {
                     progressUpdater.Enabled = false;
-                    if (me.GetBool("autoclose") && me.GetBool("crashdump")) { this.Close(); }
+                    if (me.GetBool("autoclose") && me.GetBool("crashdump")) { Close(); }
                     progressIndicator.Text = me.GetTexts()["Progress"].Replace("{0}", "100");
                 }
                 if (oldmode)
@@ -183,7 +183,7 @@ namespace UltimateBlueScreenSimulator.Forms.Simulators
             }
         }
 
-        private void screenUpdater_Tick(object sender, EventArgs e)
+        private void ScreenUpdater_Tick(object sender, EventArgs e)
         {
             if (!me.GetBool("windowed"))
             {

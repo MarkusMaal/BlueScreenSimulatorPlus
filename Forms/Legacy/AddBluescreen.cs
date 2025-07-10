@@ -6,8 +6,8 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
 {
     public partial class AddBluescreen : Form
     {
-        string base_os = "Windows 1.x/2.x";
-        BlueScreen me;
+        private string base_os = "Windows 1.x/2.x";
+        private BlueScreen me;
 
         public AddBluescreen()
         {
@@ -16,13 +16,13 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
 
         private void CancelClick(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.Cancel;
-            this.Close();
+            DialogResult = DialogResult.Cancel;
+            Close();
         }
 
         private void Initialize(object sender, EventArgs e)
         {
-            if (this.Text != "Edit bugcheck")
+            if (Text != "Edit bugcheck")
             {
                 templatePicker.SelectedIndex = 1;
                 templatePicker.SelectedIndex = 0;
@@ -33,7 +33,7 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
         {
             templatePicker.Text = me.GetString("os");
             templatePicker.Enabled = false;
-            this.Text = "Edit bugcheck";
+            Text = "Edit bugcheck";
 
             osBox.Text = me.GetString("os");
             friendlyBox.Text = me.GetString("friendlyname");
@@ -156,7 +156,7 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
 
         private void MakeBluescreen(object sender, EventArgs e)
         {
-            if (this.Text != "Edit bugcheck")
+            if (Text != "Edit bugcheck")
             {
                 Program.templates.AddTemplate(osBox.Text, friendlyBox.Text, base_os);
                 Program.templates.GetLast().SetString("icon", iconBox.SelectedItem.ToString());
@@ -167,8 +167,8 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
                 me.SetString("os", osBox.Text);
                 me.SetString("icon", iconBox.SelectedItem.ToString());
             }
-            this.DialogResult = DialogResult.OK;
-            this.Close();
+            DialogResult = DialogResult.OK;
+            Close();
         }
 
         private void JustifyWindowsWarriors(object sender, EventArgs e)
@@ -211,7 +211,7 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
             }
         }
 
-        private void iconBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void IconBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             pictureBox1.Image = AllIcons.Images[iconBox.SelectedIndex];
         }

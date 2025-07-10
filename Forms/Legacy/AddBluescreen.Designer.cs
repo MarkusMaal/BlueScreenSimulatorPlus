@@ -135,7 +135,7 @@
             this.iconBox.Name = "iconBox";
             this.iconBox.Size = new System.Drawing.Size(99, 21);
             this.iconBox.TabIndex = 6;
-            this.iconBox.SelectedIndexChanged += new System.EventHandler(this.iconBox_SelectedIndexChanged);
+            this.iconBox.SelectedIndexChanged += new System.EventHandler(this.IconBox_SelectedIndexChanged);
             // 
             // okButton
             // 

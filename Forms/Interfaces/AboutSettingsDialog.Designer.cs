@@ -103,7 +103,6 @@ namespace UltimateBlueScreenSimulator
             this.accentBox = new MaterialSkin2Framework.Controls.MaterialComboBox();
             this.darkMode = new MaterialSkin2Framework.Controls.MaterialSwitch();
             this.helpTip = new System.Windows.Forms.ToolTip(this.components);
-            this.updateCheckerTimer = new System.Windows.Forms.Timer(this.components);
             this.saveBsconfig = new System.Windows.Forms.SaveFileDialog();
             this.loadBsconfig = new System.Windows.Forms.OpenFileDialog();
             this.checkIfLoadedSaved = new System.Windows.Forms.Timer(this.components);
@@ -609,7 +608,7 @@ namespace UltimateBlueScreenSimulator
             this.materialButton6.Type = MaterialSkin2Framework.Controls.MaterialButton.MaterialButtonType.Contained;
             this.materialButton6.UseAccentColor = false;
             this.materialButton6.UseVisualStyleBackColor = true;
-            this.materialButton6.Click += new System.EventHandler(this.materialButton6_Click_1);
+            this.materialButton6.Click += new System.EventHandler(this.MaterialButton6_Click_1);
             // 
             // devSplashButton
             // 
@@ -720,7 +719,7 @@ namespace UltimateBlueScreenSimulator
             this.materialButton4.Type = MaterialSkin2Framework.Controls.MaterialButton.MaterialButtonType.Contained;
             this.materialButton4.UseAccentColor = false;
             this.materialButton4.UseVisualStyleBackColor = true;
-            this.materialButton4.Click += new System.EventHandler(this.materialButton4_Click);
+            this.materialButton4.Click += new System.EventHandler(this.MaterialButton4_Click);
             // 
             // devRestartApp
             // 
@@ -762,7 +761,7 @@ namespace UltimateBlueScreenSimulator
             this.materialButton12.Type = MaterialSkin2Framework.Controls.MaterialButton.MaterialButtonType.Contained;
             this.materialButton12.UseAccentColor = false;
             this.materialButton12.UseVisualStyleBackColor = true;
-            this.materialButton12.Click += new System.EventHandler(this.materialButton12_Click);
+            this.materialButton12.Click += new System.EventHandler(this.MaterialButton12_Click);
             // 
             // selectAllBox
             // 
@@ -1172,7 +1171,7 @@ namespace UltimateBlueScreenSimulator
             this.configList.Size = new System.Drawing.Size(282, 160);
             this.configList.TabIndex = 9;
             this.configList.SelectedIndexChanged += new MaterialSkin2Framework.Controls.MaterialListBox.SelectedIndexChangedEventHandler(this.ConfigSelector);
-            this.configList.DoubleClick += new System.EventHandler(this.configList_DoubleClick);
+            this.configList.DoubleClick += new System.EventHandler(this.ConfigList_DoubleClick);
             // 
             // appearancePanel
             // 
@@ -1214,7 +1213,7 @@ namespace UltimateBlueScreenSimulator
             this.legacyInterfaceCheck.Text = "Classic UI [?]";
             this.helpTip.SetToolTip(this.legacyInterfaceCheck, "Enables the interface from previous versions, similar to 2.1 and earlier");
             this.legacyInterfaceCheck.UseVisualStyleBackColor = true;
-            this.legacyInterfaceCheck.CheckedChanged += new System.EventHandler(this.legacyInterfaceCheck_CheckedChanged);
+            this.legacyInterfaceCheck.CheckedChanged += new System.EventHandler(this.LegacyInterfaceCheck_CheckedChanged);
             // 
             // materialButton10
             // 
@@ -1277,7 +1276,7 @@ namespace UltimateBlueScreenSimulator
             this.materialButton11.Type = MaterialSkin2Framework.Controls.MaterialButton.MaterialButtonType.Contained;
             this.materialButton11.UseAccentColor = false;
             this.materialButton11.UseVisualStyleBackColor = true;
-            this.materialButton11.Click += new System.EventHandler(this.materialButton11_Click);
+            this.materialButton11.Click += new System.EventHandler(this.MaterialButton11_Click);
             // 
             // materialButton8
             // 
@@ -1298,7 +1297,7 @@ namespace UltimateBlueScreenSimulator
             this.materialButton8.Type = MaterialSkin2Framework.Controls.MaterialButton.MaterialButtonType.Contained;
             this.materialButton8.UseAccentColor = false;
             this.materialButton8.UseVisualStyleBackColor = true;
-            this.materialButton8.Click += new System.EventHandler(this.materialButton8_Click);
+            this.materialButton8.Click += new System.EventHandler(this.MaterialButton8_Click);
             // 
             // darkDetectCheck
             // 
@@ -1319,7 +1318,7 @@ namespace UltimateBlueScreenSimulator
             this.helpTip.SetToolTip(this.darkDetectCheck, "Automatically switches the program to night mode on startup if Windows is configu" +
         "red to use dark mode.");
             this.darkDetectCheck.UseVisualStyleBackColor = true;
-            this.darkDetectCheck.CheckedChanged += new System.EventHandler(this.darkDetectCheck_CheckedChanged);
+            this.darkDetectCheck.CheckedChanged += new System.EventHandler(this.DarkDetectCheck_CheckedChanged);
             // 
             // materialSwitch1
             // 
@@ -1339,7 +1338,7 @@ namespace UltimateBlueScreenSimulator
             this.helpTip.SetToolTip(this.materialSwitch1, "Determines whether or not to display these popups when you hover over various con" +
         "trols");
             this.materialSwitch1.UseVisualStyleBackColor = true;
-            this.materialSwitch1.CheckedChanged += new System.EventHandler(this.materialSwitch1_CheckedChanged);
+            this.materialSwitch1.CheckedChanged += new System.EventHandler(this.MaterialSwitch1_CheckedChanged);
             // 
             // rtlSwitch
             // 
@@ -1357,7 +1356,7 @@ namespace UltimateBlueScreenSimulator
             this.helpTip.SetToolTip(this.rtlSwitch, "Forces right to left layout");
             this.rtlSwitch.UseVisualStyleBackColor = true;
             this.rtlSwitch.Visible = false;
-            this.rtlSwitch.CheckedChanged += new System.EventHandler(this.rtlSwitch_CheckedChanged);
+            this.rtlSwitch.CheckedChanged += new System.EventHandler(this.RtlSwitch_CheckedChanged);
             // 
             // materialLabel2
             // 
@@ -1449,7 +1448,7 @@ namespace UltimateBlueScreenSimulator
             this.primaryColorBox.TabIndex = 12;
             this.helpTip.SetToolTip(this.primaryColorBox, "Color of the titlebar and most buttons.");
             this.primaryColorBox.UseTallSize = false;
-            this.primaryColorBox.SelectedIndexChanged += new System.EventHandler(this.materialComboBox1_SelectedIndexChanged);
+            this.primaryColorBox.SelectedIndexChanged += new System.EventHandler(this.MaterialComboBox1_SelectedIndexChanged);
             // 
             // accentBox
             // 
@@ -1491,7 +1490,7 @@ namespace UltimateBlueScreenSimulator
             this.accentBox.TabIndex = 12;
             this.helpTip.SetToolTip(this.accentBox, "Color of various highlights, such as checkboxes and important buttons");
             this.accentBox.UseTallSize = false;
-            this.accentBox.SelectedIndexChanged += new System.EventHandler(this.accentBox_SelectedIndexChanged);
+            this.accentBox.SelectedIndexChanged += new System.EventHandler(this.AccentBox_SelectedIndexChanged);
             // 
             // darkMode
             // 
@@ -1509,17 +1508,13 @@ namespace UltimateBlueScreenSimulator
             this.helpTip.SetToolTip(this.darkMode, "Night mode applies a dark background color that is easier to look at in lower lig" +
         "ht levels");
             this.darkMode.UseVisualStyleBackColor = true;
-            this.darkMode.CheckedChanged += new System.EventHandler(this.darkMode_CheckedChanged);
+            this.darkMode.CheckedChanged += new System.EventHandler(this.DarkMode_CheckedChanged);
             // 
             // helpTip
             // 
             this.helpTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.helpTip.ToolTipTitle = "Quick help";
-            this.helpTip.Popup += new System.Windows.Forms.PopupEventHandler(this.helpTip_Popup);
-            // 
-            // updateCheckerTimer
-            // 
-            this.updateCheckerTimer.Tick += new System.EventHandler(this.UpdateTimer_Tick);
+            this.helpTip.Popup += new System.Windows.Forms.PopupEventHandler(this.HelpTip_Popup);
             // 
             // saveBsconfig
             // 
@@ -1539,7 +1534,7 @@ namespace UltimateBlueScreenSimulator
             // demoReelTimer
             // 
             this.demoReelTimer.Interval = 1000;
-            this.demoReelTimer.Tick += new System.EventHandler(this.demoReelTimer_Tick);
+            this.demoReelTimer.Tick += new System.EventHandler(this.DemoReelTimer_Tick);
             // 
             // materialTabSelector1
             // 
@@ -1617,7 +1612,6 @@ namespace UltimateBlueScreenSimulator
         private MaterialCheckbox hideInFullscreenButton;
         private MaterialLabel configListHeading;
         private MaterialLabel simulatorSettingsHeading;
-        private System.Windows.Forms.Timer updateCheckerTimer;
         private MaterialLabel noticeLabel;
         private MaterialLabel simulatorSettingsNotice;
         private MaterialCheckbox eggHunterButton;

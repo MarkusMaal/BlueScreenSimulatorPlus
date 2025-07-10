@@ -72,7 +72,7 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
             this.delCodeButton.TabIndex = 2;
             this.delCodeButton.Text = "Delete code";
             this.delCodeButton.UseVisualStyleBackColor = true;
-            this.delCodeButton.Click += new System.EventHandler(this.materialButton2_Click);
+            this.delCodeButton.Click += new System.EventHandler(this.MaterialButton2_Click);
             // 
             // randCodesList
             // 
@@ -90,8 +90,8 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
             this.randCodesList.Name = "randCodesList";
             this.randCodesList.Size = new System.Drawing.Size(525, 224);
             this.randCodesList.TabIndex = 3;
-            this.randCodesList.MouseClick += new System.Windows.Forms.MouseEventHandler(this.randCodesList_MouseClick);
-            this.randCodesList.SelectedIndexChanged += new System.EventHandler(this.randCodesList_SelectedIndexChanged);
+            this.randCodesList.MouseClick += new System.Windows.Forms.MouseEventHandler(this.RandCodesList_MouseClick);
+            this.randCodesList.SelectedIndexChanged += new System.EventHandler(this.RandCodesList_SelectedIndexChanged);
             // 
             // materialLabel2
             // 
@@ -114,7 +114,7 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
             this.codeBox.Name = "codeBox";
             this.codeBox.Size = new System.Drawing.Size(240, 19);
             this.codeBox.TabIndex = 4;
-            this.codeBox.TextChanged += new System.EventHandler(this.codeBox_TextChanged);
+            this.codeBox.TextChanged += new System.EventHandler(this.CodeBox_TextChanged);
             // 
             // filenameBox
             // 
@@ -127,7 +127,7 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
             this.filenameBox.Name = "filenameBox";
             this.filenameBox.Size = new System.Drawing.Size(455, 19);
             this.filenameBox.TabIndex = 4;
-            this.filenameBox.TextChanged += new System.EventHandler(this.filenameBox_TextChanged);
+            this.filenameBox.TextChanged += new System.EventHandler(this.FilenameBox_TextChanged);
             // 
             // browseButton
             // 
@@ -140,7 +140,7 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
             this.browseButton.TabIndex = 2;
             this.browseButton.Text = "..";
             this.browseButton.UseVisualStyleBackColor = true;
-            this.browseButton.Click += new System.EventHandler(this.browseButton_Click);
+            this.browseButton.Click += new System.EventHandler(this.BrowseButton_Click);
             // 
             // materialLabel3
             // 
@@ -196,9 +196,9 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
             this.codefilesList.TabIndex = 0;
             this.codefilesList.UseCompatibleStateImageBehavior = false;
             this.codefilesList.View = System.Windows.Forms.View.Details;
-            this.codefilesList.SelectedIndexChanged += new System.EventHandler(this.codefilesList_SelectedIndexChanged);
-            this.codefilesList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.codefilesList_KeyDown);
-            this.codefilesList.MouseClick += new System.Windows.Forms.MouseEventHandler(this.codefilesList_MouseClick);
+            this.codefilesList.SelectedIndexChanged += new System.EventHandler(this.CodefilesList_SelectedIndexChanged);
+            this.codefilesList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CodefilesList_KeyDown);
+            this.codefilesList.MouseClick += new System.Windows.Forms.MouseEventHandler(this.CodefilesList_MouseClick);
             // 
             // columnHeader1
             // 
@@ -238,7 +238,7 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
             this.delEntryButton.TabIndex = 2;
             this.delEntryButton.Text = "Delete entry";
             this.delEntryButton.UseVisualStyleBackColor = true;
-            this.delEntryButton.Click += new System.EventHandler(this.materialButton4_Click);
+            this.delEntryButton.Click += new System.EventHandler(this.MaterialButton4_Click);
             // 
             // materialButton3
             // 
@@ -251,7 +251,7 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
             this.materialButton3.TabIndex = 2;
             this.materialButton3.Text = "Add code";
             this.materialButton3.UseVisualStyleBackColor = true;
-            this.materialButton3.Click += new System.EventHandler(this.materialButton3_Click);
+            this.materialButton3.Click += new System.EventHandler(this.MaterialButton3_Click);
             // 
             // materialButton5
             // 
@@ -264,7 +264,7 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
             this.materialButton5.TabIndex = 2;
             this.materialButton5.Text = "Add file \\w codes";
             this.materialButton5.UseVisualStyleBackColor = true;
-            this.materialButton5.Click += new System.EventHandler(this.materialButton5_Click);
+            this.materialButton5.Click += new System.EventHandler(this.MaterialButton5_Click);
             // 
             // fixedButton
             // 
@@ -277,7 +277,7 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
             this.fixedButton.TabIndex = 2;
             this.fixedButton.Text = "F";
             this.fixedButton.UseVisualStyleBackColor = true;
-            this.fixedButton.Click += new System.EventHandler(this.fixedButton_Click);
+            this.fixedButton.Click += new System.EventHandler(this.FixedButton_Click);
             // 
             // fixedRandomButton
             // 
@@ -290,7 +290,7 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
             this.fixedRandomButton.TabIndex = 2;
             this.fixedRandomButton.Text = "Gen";
             this.fixedRandomButton.UseVisualStyleBackColor = true;
-            this.fixedRandomButton.Click += new System.EventHandler(this.fixedRandomButton_Click);
+            this.fixedRandomButton.Click += new System.EventHandler(this.FixedRandomButton_Click);
             // 
             // randomButton
             // 
@@ -303,7 +303,7 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
             this.randomButton.TabIndex = 2;
             this.randomButton.Text = "R";
             this.randomButton.UseVisualStyleBackColor = true;
-            this.randomButton.Click += new System.EventHandler(this.randomButton_Click);
+            this.randomButton.Click += new System.EventHandler(this.RandomButton_Click);
             // 
             // zeroButton
             // 
@@ -316,7 +316,7 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
             this.zeroButton.TabIndex = 2;
             this.zeroButton.Text = "0";
             this.zeroButton.UseVisualStyleBackColor = true;
-            this.zeroButton.Click += new System.EventHandler(this.zeroButton_Click);
+            this.zeroButton.Click += new System.EventHandler(this.ZeroButton_Click);
             // 
             // IndexForm
             // 

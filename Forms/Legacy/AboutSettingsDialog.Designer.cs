@@ -109,7 +109,6 @@
             this.commandLinePanel = new System.Windows.Forms.TabPage();
             this.commandLineHelpDisplay = new System.Windows.Forms.TextBox();
             this.helpTip = new System.Windows.Forms.ToolTip(this.components);
-            this.updateCheckerTimer = new System.Windows.Forms.Timer(this.components);
             this.saveBsconfig = new System.Windows.Forms.SaveFileDialog();
             this.loadBsconfig = new System.Windows.Forms.OpenFileDialog();
             this.checkIfLoadedSaved = new System.Windows.Forms.Timer(this.components);
@@ -319,7 +318,7 @@
             this.button3.TabIndex = 3;
             this.button3.Text = "What\'s new";
             this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click_1);
+            this.button3.Click += new System.EventHandler(this.Button3_Click_1);
             // 
             // aboutSettingsTabControl
             // 
@@ -386,9 +385,10 @@
             this.darkDetectCheck.TabIndex = 14;
             this.darkDetectCheck.Text = "Enable dark mode detection [?]";
             this.helpTip.SetToolTip(this.darkDetectCheck, "Automatically switches the program to night mode on startup if Windows is configu" +
-        "red to use dark mode.");
+        "red to use dark mode. ");
             this.darkDetectCheck.UseVisualStyleBackColor = true;
-            this.darkDetectCheck.CheckedChanged += new System.EventHandler(this.darkDetectCheck_CheckedChanged);
+            this.darkDetectCheck.Visible = false;
+            this.darkDetectCheck.CheckedChanged += new System.EventHandler(this.DarkDetectCheck_CheckedChanged);
             // 
             // customServerButton
             // 
@@ -654,7 +654,7 @@
             this.legacyInterfaceCheck.Text = "Classic UI [?]";
             this.helpTip.SetToolTip(this.legacyInterfaceCheck, "Enables the interface from previous versions, similar to 2.1 and earlier");
             this.legacyInterfaceCheck.UseVisualStyleBackColor = true;
-            this.legacyInterfaceCheck.CheckedChanged += new System.EventHandler(this.legacyInterfaceCheck_CheckedChanged);
+            this.legacyInterfaceCheck.CheckedChanged += new System.EventHandler(this.LegacyInterfaceCheck_CheckedChanged);
             // 
             // autosaveCheck
             // 
@@ -799,7 +799,7 @@
             this.button4.TabIndex = 25;
             this.button4.Text = "[TEST] Test suite";
             this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click_1);
+            this.button4.Click += new System.EventHandler(this.Button4_Click_1);
             // 
             // multiDisplayBox
             // 
@@ -940,7 +940,7 @@
             this.configList.Size = new System.Drawing.Size(201, 124);
             this.configList.TabIndex = 9;
             this.configList.SelectedIndexChanged += new System.EventHandler(this.ConfigSelector);
-            this.configList.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.configList_MouseDoubleClick);
+            this.configList.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.ConfigList_MouseDoubleClick);
             // 
             // eggHunterButton
             // 
@@ -1149,10 +1149,6 @@
             this.commandLineHelpDisplay.Size = new System.Drawing.Size(542, 365);
             this.commandLineHelpDisplay.TabIndex = 0;
             // 
-            // updateCheckerTimer
-            // 
-            this.updateCheckerTimer.Tick += new System.EventHandler(this.UpdateTimer_Tick);
-            // 
             // saveBsconfig
             // 
             this.saveBsconfig.Filter = "Bluescreen simulator 2.1 configuration files|*.bs2cfg;*.bs2|Bluescreen simulator " +
@@ -1255,7 +1251,6 @@
         private System.Windows.Forms.TextBox helpDisplay;
         private System.Windows.Forms.Button purposesOfThisProgramButton;
         private System.Windows.Forms.Button systemRequirementsButton;
-        private System.Windows.Forms.Timer updateCheckerTimer;
         private System.Windows.Forms.Label noticeLabel;
         private System.Windows.Forms.Label simulatorSettingsNotice;
         private System.Windows.Forms.CheckBox eggHunterButton;

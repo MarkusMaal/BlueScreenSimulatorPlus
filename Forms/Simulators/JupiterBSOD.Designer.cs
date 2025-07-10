@@ -91,7 +91,7 @@
             // screenUpdater
             // 
             this.screenUpdater.Enabled = true;
-            this.screenUpdater.Tick += new System.EventHandler(this.screenUpdater_Tick);
+            this.screenUpdater.Tick += new System.EventHandler(this.ScreenUpdater_Tick);
             // 
             // JupiterBSOD
             // 

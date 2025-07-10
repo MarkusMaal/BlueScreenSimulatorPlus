@@ -79,7 +79,7 @@
             // screenUpdater
             // 
             this.screenUpdater.Enabled = true;
-            this.screenUpdater.Tick += new System.EventHandler(this.screenUpdater_Tick);
+            this.screenUpdater.Tick += new System.EventHandler(this.ScreenUpdater_Tick);
             // 
             // memCodes
             // 
@@ -110,7 +110,7 @@
             // 
             this.progressUpdater.Enabled = true;
             this.progressUpdater.Interval = 500;
-            this.progressUpdater.Tick += new System.EventHandler(this.progressUpdater_Tick);
+            this.progressUpdater.Tick += new System.EventHandler(this.ProgressUpdater_Tick);
             // 
             // SunValleyBSOD
             // 

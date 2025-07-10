@@ -67,9 +67,9 @@
             this.messageList.TabIndex = 0;
             this.messageList.UseCompatibleStateImageBehavior = false;
             this.messageList.View = System.Windows.Forms.View.Details;
-            this.messageList.AfterLabelEdit += new System.Windows.Forms.LabelEditEventHandler(this.materialListView1_AfterLabelEdit);
-            this.messageList.SelectedIndexChanged += new System.EventHandler(this.materialListView1_SelectedIndexChanged);
-            this.messageList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.messageList_KeyDown);
+            this.messageList.AfterLabelEdit += new System.Windows.Forms.LabelEditEventHandler(this.MaterialListView1_AfterLabelEdit);
+            this.messageList.SelectedIndexChanged += new System.EventHandler(this.MaterialListView1_SelectedIndexChanged);
+            this.messageList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MessageList_KeyDown);
             // 
             // columnHeader1
             // 
@@ -95,7 +95,7 @@
             this.addButton.TabIndex = 7;
             this.addButton.Text = "&Add";
             this.addButton.UseVisualStyleBackColor = true;
-            this.addButton.Click += new System.EventHandler(this.materialButton1_Click);
+            this.addButton.Click += new System.EventHandler(this.MaterialButton1_Click);
             // 
             // removeButton
             // 
@@ -112,7 +112,7 @@
             this.removeButton.TabIndex = 6;
             this.removeButton.Text = "&Remove";
             this.removeButton.UseVisualStyleBackColor = true;
-            this.removeButton.Click += new System.EventHandler(this.materialButton2_Click);
+            this.removeButton.Click += new System.EventHandler(this.MaterialButton2_Click);
             // 
             // editButton
             // 
@@ -130,7 +130,7 @@
             this.editButton.TabIndex = 5;
             this.editButton.Text = "&Edit";
             this.editButton.UseVisualStyleBackColor = true;
-            this.editButton.Click += new System.EventHandler(this.editButton_Click);
+            this.editButton.Click += new System.EventHandler(this.EditButton_Click);
             // 
             // textTextBox
             // 
@@ -174,7 +174,7 @@
             this.clearButton.TabIndex = 4;
             this.clearButton.Text = "&Clear";
             this.clearButton.UseVisualStyleBackColor = true;
-            this.clearButton.Click += new System.EventHandler(this.clearButton_Click);
+            this.clearButton.Click += new System.EventHandler(this.ClearButton_Click);
             // 
             // MessageTableEditor
             // 

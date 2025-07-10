@@ -8,10 +8,10 @@ namespace UltimateBlueScreenSimulator
 {
     public partial class ClickIt2 : Form
     {
-        bool dm = false;
-        long t = 0;
-        int val = 1;
-        int colored = 0;
+        private bool dm = false;
+        private long t = 0;
+        private int val = 1;
+        private int colored = 0;
         // int seed = 0;
         // Koodinimi: Vaarikas
         public ClickIt2()
@@ -48,7 +48,11 @@ namespace UltimateBlueScreenSimulator
         public void Rndgen()
         {
             Random rnd = new Random();
-            for (int val = 0; val < 100; ++val) ;
+            for (int val = 0; val < 100; ++val)
+            {
+                ;
+            }
+
             val = rnd.Next(1, 40);
             if (val == 1) { button1.Visible = true; }
             if (val == 2) { button2.Visible = true; }
@@ -91,8 +95,12 @@ namespace UltimateBlueScreenSimulator
             if (val == 39) { button39.Visible = true; }
             if (val == 40) { button40.Visible = true; }
 
-            if (checkBox1.Checked == false) { comboBox1.BackColor = this.BackColor; textBox1.BackColor = Color.WhiteSmoke; goto endof; }
-            for (int colored = 0; colored < 100; ++colored) ;
+            if (checkBox1.Checked == false) { comboBox1.BackColor = BackColor; textBox1.BackColor = Color.WhiteSmoke; goto endof; }
+            for (int colored = 0; colored < 100; ++colored)
+            {
+                ;
+            }
+
             colored = rnd.Next(1, 120);
             if (DateTime.Today.Month == 12)
             {
@@ -109,181 +117,185 @@ namespace UltimateBlueScreenSimulator
                     colored = 94;
                 }
             }
-            if (colored == 1) { this.BackColor = Color.AliceBlue; }
-            if (colored == 2) { this.BackColor = Color.AntiqueWhite; }
-            if (colored == 3) { this.BackColor = Color.Aqua; }
-            if (colored == 4) { this.BackColor = Color.Aquamarine; }
-            if (colored == 5) { this.BackColor = Color.Azure; }
-            if (colored == 6) { this.BackColor = Color.Beige; }
-            if (colored == 7) { this.BackColor = Color.Bisque; }
-            if (colored == 8) { this.BackColor = Color.BlanchedAlmond; }
-            if (colored == 9) { this.BackColor = Color.Blue; }
-            if (colored == 10) { this.BackColor = Color.BlueViolet; }
-            if (colored == 11) { this.BackColor = Color.Brown; }
-            if (colored == 12) { this.BackColor = Color.BurlyWood; }
-            if (colored == 13) { this.BackColor = Color.CadetBlue; }
-            if (colored == 14) { this.BackColor = Color.Chartreuse; }
-            if (colored == 15) { this.BackColor = Color.Chocolate; }
-            if (colored == 16) { this.BackColor = Color.Coral; }
-            if (colored == 17) { this.BackColor = Color.CornflowerBlue; }
-            if (colored == 18) { this.BackColor = Color.Cornsilk; }
-            if (colored == 19) { this.BackColor = Color.Crimson; }
-            if (colored == 20) { this.BackColor = Color.Cyan; }
-            if (colored == 21) { this.BackColor = Color.DeepPink; }
-            if (colored == 22) { this.BackColor = Color.DeepSkyBlue; }
-            if (colored == 23) { this.BackColor = Color.DodgerBlue; }
-            if (colored == 24) { this.BackColor = Color.Firebrick; }
-            if (colored == 25) { this.BackColor = Color.FloralWhite; }
-            if (colored == 26) { this.BackColor = Color.ForestGreen; }
-            if (colored == 27) { this.BackColor = Color.Fuchsia; }
-            if (colored == 28) { this.BackColor = Color.Gainsboro; }
-            if (colored == 29) { this.BackColor = Color.GhostWhite; }
-            if (colored == 30) { this.BackColor = Color.Gold; }
-            if (colored == 31) { this.BackColor = Color.Goldenrod; }
-            if (colored == 32) { this.BackColor = Color.Green; }
-            if (colored == 33) { this.BackColor = Color.GreenYellow; }
-            if (colored == 34) { this.BackColor = Color.Honeydew; }
-            if (colored == 35) { this.BackColor = Color.HotPink; }
-            if (colored == 36) { this.BackColor = Color.IndianRed; }
-            if (colored == 37) { this.BackColor = Color.Indigo; }
-            if (colored == 38) { this.BackColor = Color.Ivory; }
-            if (colored == 39) { this.BackColor = Color.Khaki; }
-            if (colored == 40) { this.BackColor = Color.Lavender; }
-            if (colored == 41) { this.BackColor = Color.LavenderBlush; }
-            if (colored == 42) { this.BackColor = Color.LawnGreen; }
-            if (colored == 43) { this.BackColor = Color.LemonChiffon; }
-            if (colored == 44) { this.BackColor = Color.LightBlue; }
-            if (colored == 45) { this.BackColor = Color.LightCoral; }
-            if (colored == 46) { this.BackColor = Color.LightCyan; }
-            if (colored == 47) { this.BackColor = Color.LightGoldenrodYellow; }
-            if (colored == 48) { this.BackColor = Color.LightGray; }
-            if (colored == 49) { this.BackColor = Color.LightGreen; }
-            if (colored == 50) { this.BackColor = Color.LightPink; }
-            if (colored == 51) { this.BackColor = Color.LightSalmon; }
-            if (colored == 52) { this.BackColor = Color.LightSeaGreen; }
-            if (colored == 53) { this.BackColor = Color.LightSkyBlue; }
-            if (colored == 54) { this.BackColor = Color.LightSlateGray; }
-            if (colored == 55) { this.BackColor = Color.LightSteelBlue; }
-            if (colored == 56) { this.BackColor = Color.LightYellow; }
-            if (colored == 57) { this.BackColor = Color.Lime; }
-            if (colored == 58) { this.BackColor = Color.LimeGreen; }
-            if (colored == 59) { this.BackColor = Color.Linen; }
-            if (colored == 60) { this.BackColor = Color.Magenta; }
-            if (colored == 61) { this.BackColor = Color.Maroon; }
-            if (colored == 62) { this.BackColor = Color.MediumAquamarine; }
-            if (colored == 63) { this.BackColor = Color.MediumBlue; }
-            if (colored == 64) { this.BackColor = Color.MediumOrchid; }
-            if (colored == 65) { this.BackColor = Color.MediumPurple; }
-            if (colored == 66) { this.BackColor = Color.MediumSeaGreen; }
-            if (colored == 67) { this.BackColor = Color.MediumSlateBlue; }
-            if (colored == 68) { this.BackColor = Color.MediumSpringGreen; }
-            if (colored == 69) { this.BackColor = Color.MediumTurquoise; }
-            if (colored == 70) { this.BackColor = Color.MediumVioletRed; }
-            if (colored == 71) { this.BackColor = Color.MidnightBlue; }
-            if (colored == 72) { this.BackColor = Color.MintCream; }
-            if (colored == 73) { this.BackColor = Color.MistyRose; }
-            if (colored == 74) { this.BackColor = Color.Moccasin; }
-            if (colored == 75) { this.BackColor = Color.NavajoWhite; }
-            if (colored == 76) { this.BackColor = Color.Navy; }
-            if (colored == 77) { this.BackColor = Color.OldLace; }
-            if (colored == 78) { this.BackColor = Color.Olive; }
-            if (colored == 79) { this.BackColor = Color.OliveDrab; }
-            if (colored == 80) { this.BackColor = Color.Orange; }
-            if (colored == 81) { this.BackColor = Color.OrangeRed; }
-            if (colored == 82) { this.BackColor = Color.Orchid; }
-            if (colored == 83) { this.BackColor = Color.PaleGoldenrod; }
-            if (colored == 84) { this.BackColor = Color.PaleGreen; }
-            if (colored == 85) { this.BackColor = Color.PaleTurquoise; }
-            if (colored == 86) { this.BackColor = Color.PaleVioletRed; }
-            if (colored == 87) { this.BackColor = Color.PapayaWhip; }
-            if (colored == 88) { this.BackColor = Color.PeachPuff; }
-            if (colored == 89) { this.BackColor = Color.Peru; }
-            if (colored == 90) { this.BackColor = Color.Pink; }
-            if (colored == 91) { this.BackColor = Color.Plum; }
-            if (colored == 92) { this.BackColor = Color.PowderBlue; }
-            if (colored == 93) { this.BackColor = Color.Purple; }
-            if (colored == 94) { this.BackColor = Color.Red; }
-            if (colored == 95) { this.BackColor = Color.RosyBrown; }
-            if (colored == 96) { this.BackColor = Color.RoyalBlue; }
-            if (colored == 97) { this.BackColor = Color.SaddleBrown; }
-            if (colored == 98) { this.BackColor = Color.Salmon; }
-            if (colored == 99) { this.BackColor = Color.SandyBrown; }
-            if (colored == 100) { this.BackColor = Color.SeaGreen; }
-            if (colored == 101) { this.BackColor = Color.SeaShell; }
-            if (colored == 102) { this.BackColor = Color.Sienna; }
-            if (colored == 103) { this.BackColor = Color.Silver; }
-            if (colored == 104) { this.BackColor = Color.SkyBlue; }
-            if (colored == 105) { this.BackColor = Color.SlateBlue; }
-            if (colored == 106) { this.BackColor = Color.SlateGray; }
-            if (colored == 107) { this.BackColor = Color.Snow; }
-            if (colored == 108) { this.BackColor = Color.SpringGreen; }
-            if (colored == 109) { this.BackColor = Color.SteelBlue; }
-            if (colored == 110) { this.BackColor = Color.Tan; }
-            if (colored == 111) { this.BackColor = Color.Teal; }
-            if (colored == 112) { this.BackColor = Color.Thistle; }
-            if (colored == 113) { this.BackColor = Color.Tomato; }
-            if (colored == 114) { this.BackColor = Color.Turquoise; }
-            if (colored == 115) { this.BackColor = Color.Violet; }
-            if (colored == 116) { this.BackColor = Color.Wheat; }
-            if (colored == 117) { this.BackColor = Color.White; }
-            if (colored == 118) { this.BackColor = Color.WhiteSmoke; }
-            if (colored == 119) { this.BackColor = Color.Yellow; }
-            if (colored == 120) { this.BackColor = Color.YellowGreen; }
-            this.ForeColor = Color.FromArgb(255 - this.BackColor.R, 255 - this.BackColor.G, 255 - this.BackColor.B);
-            comboBox1.ForeColor = Color.FromArgb(255 - this.BackColor.R, 255 - this.BackColor.G, 255 - this.BackColor.B);
-            textBox1.ForeColor = Color.FromArgb(255 - this.BackColor.R, 255 - this.BackColor.G, 255 - this.BackColor.B);
-            if (colored == 13) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-            if (colored == 15) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-            if (colored == 16) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-            if (colored == 17) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-            if (colored == 22) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-            if (colored == 23) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-            if (colored == 35) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-            if (colored == 36) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-            if (colored == 45) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-            if (colored == 52) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-            if (colored == 54) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-            if (colored == 58) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-            if (colored == 64) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-            if (colored == 65) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-            if (colored == 66) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-            if (colored == 67) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-            if (colored == 78) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-            if (colored == 79) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-            if (colored == 80) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-            if (colored == 81) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-            if (colored == 82) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-            if (colored == 86) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-            if (colored == 89) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-            if (colored == 91) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-            if (colored == 95) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-            if (colored == 96) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-            if (colored == 98) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-            if (colored == 100) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-            if (colored == 105) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-            if (colored == 106) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-            if (colored == 109) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-            if (colored == 111) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-            if (colored == 113) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-            if (colored == 115) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+            // I'm not fixing this spaghetti, because:
+            //      a) it's funny
+            //      b) it's history
+            //      c) it's only run when you trigger the easter egg
+            if (colored == 1) { BackColor = Color.AliceBlue; }
+            if (colored == 2) { BackColor = Color.AntiqueWhite; }
+            if (colored == 3) { BackColor = Color.Aqua; }
+            if (colored == 4) { BackColor = Color.Aquamarine; }
+            if (colored == 5) { BackColor = Color.Azure; }
+            if (colored == 6) { BackColor = Color.Beige; }
+            if (colored == 7) { BackColor = Color.Bisque; }
+            if (colored == 8) { BackColor = Color.BlanchedAlmond; }
+            if (colored == 9) { BackColor = Color.Blue; }
+            if (colored == 10) { BackColor = Color.BlueViolet; }
+            if (colored == 11) { BackColor = Color.Brown; }
+            if (colored == 12) { BackColor = Color.BurlyWood; }
+            if (colored == 13) { BackColor = Color.CadetBlue; }
+            if (colored == 14) { BackColor = Color.Chartreuse; }
+            if (colored == 15) { BackColor = Color.Chocolate; }
+            if (colored == 16) { BackColor = Color.Coral; }
+            if (colored == 17) { BackColor = Color.CornflowerBlue; }
+            if (colored == 18) { BackColor = Color.Cornsilk; }
+            if (colored == 19) { BackColor = Color.Crimson; }
+            if (colored == 20) { BackColor = Color.Cyan; }
+            if (colored == 21) { BackColor = Color.DeepPink; }
+            if (colored == 22) { BackColor = Color.DeepSkyBlue; }
+            if (colored == 23) { BackColor = Color.DodgerBlue; }
+            if (colored == 24) { BackColor = Color.Firebrick; }
+            if (colored == 25) { BackColor = Color.FloralWhite; }
+            if (colored == 26) { BackColor = Color.ForestGreen; }
+            if (colored == 27) { BackColor = Color.Fuchsia; }
+            if (colored == 28) { BackColor = Color.Gainsboro; }
+            if (colored == 29) { BackColor = Color.GhostWhite; }
+            if (colored == 30) { BackColor = Color.Gold; }
+            if (colored == 31) { BackColor = Color.Goldenrod; }
+            if (colored == 32) { BackColor = Color.Green; }
+            if (colored == 33) { BackColor = Color.GreenYellow; }
+            if (colored == 34) { BackColor = Color.Honeydew; }
+            if (colored == 35) { BackColor = Color.HotPink; }
+            if (colored == 36) { BackColor = Color.IndianRed; }
+            if (colored == 37) { BackColor = Color.Indigo; }
+            if (colored == 38) { BackColor = Color.Ivory; }
+            if (colored == 39) { BackColor = Color.Khaki; }
+            if (colored == 40) { BackColor = Color.Lavender; }
+            if (colored == 41) { BackColor = Color.LavenderBlush; }
+            if (colored == 42) { BackColor = Color.LawnGreen; }
+            if (colored == 43) { BackColor = Color.LemonChiffon; }
+            if (colored == 44) { BackColor = Color.LightBlue; }
+            if (colored == 45) { BackColor = Color.LightCoral; }
+            if (colored == 46) { BackColor = Color.LightCyan; }
+            if (colored == 47) { BackColor = Color.LightGoldenrodYellow; }
+            if (colored == 48) { BackColor = Color.LightGray; }
+            if (colored == 49) { BackColor = Color.LightGreen; }
+            if (colored == 50) { BackColor = Color.LightPink; }
+            if (colored == 51) { BackColor = Color.LightSalmon; }
+            if (colored == 52) { BackColor = Color.LightSeaGreen; }
+            if (colored == 53) { BackColor = Color.LightSkyBlue; }
+            if (colored == 54) { BackColor = Color.LightSlateGray; }
+            if (colored == 55) { BackColor = Color.LightSteelBlue; }
+            if (colored == 56) { BackColor = Color.LightYellow; }
+            if (colored == 57) { BackColor = Color.Lime; }
+            if (colored == 58) { BackColor = Color.LimeGreen; }
+            if (colored == 59) { BackColor = Color.Linen; }
+            if (colored == 60) { BackColor = Color.Magenta; }
+            if (colored == 61) { BackColor = Color.Maroon; }
+            if (colored == 62) { BackColor = Color.MediumAquamarine; }
+            if (colored == 63) { BackColor = Color.MediumBlue; }
+            if (colored == 64) { BackColor = Color.MediumOrchid; }
+            if (colored == 65) { BackColor = Color.MediumPurple; }
+            if (colored == 66) { BackColor = Color.MediumSeaGreen; }
+            if (colored == 67) { BackColor = Color.MediumSlateBlue; }
+            if (colored == 68) { BackColor = Color.MediumSpringGreen; }
+            if (colored == 69) { BackColor = Color.MediumTurquoise; }
+            if (colored == 70) { BackColor = Color.MediumVioletRed; }
+            if (colored == 71) { BackColor = Color.MidnightBlue; }
+            if (colored == 72) { BackColor = Color.MintCream; }
+            if (colored == 73) { BackColor = Color.MistyRose; }
+            if (colored == 74) { BackColor = Color.Moccasin; }
+            if (colored == 75) { BackColor = Color.NavajoWhite; }
+            if (colored == 76) { BackColor = Color.Navy; }
+            if (colored == 77) { BackColor = Color.OldLace; }
+            if (colored == 78) { BackColor = Color.Olive; }
+            if (colored == 79) { BackColor = Color.OliveDrab; }
+            if (colored == 80) { BackColor = Color.Orange; }
+            if (colored == 81) { BackColor = Color.OrangeRed; }
+            if (colored == 82) { BackColor = Color.Orchid; }
+            if (colored == 83) { BackColor = Color.PaleGoldenrod; }
+            if (colored == 84) { BackColor = Color.PaleGreen; }
+            if (colored == 85) { BackColor = Color.PaleTurquoise; }
+            if (colored == 86) { BackColor = Color.PaleVioletRed; }
+            if (colored == 87) { BackColor = Color.PapayaWhip; }
+            if (colored == 88) { BackColor = Color.PeachPuff; }
+            if (colored == 89) { BackColor = Color.Peru; }
+            if (colored == 90) { BackColor = Color.Pink; }
+            if (colored == 91) { BackColor = Color.Plum; }
+            if (colored == 92) { BackColor = Color.PowderBlue; }
+            if (colored == 93) { BackColor = Color.Purple; }
+            if (colored == 94) { BackColor = Color.Red; }
+            if (colored == 95) { BackColor = Color.RosyBrown; }
+            if (colored == 96) { BackColor = Color.RoyalBlue; }
+            if (colored == 97) { BackColor = Color.SaddleBrown; }
+            if (colored == 98) { BackColor = Color.Salmon; }
+            if (colored == 99) { BackColor = Color.SandyBrown; }
+            if (colored == 100) { BackColor = Color.SeaGreen; }
+            if (colored == 101) { BackColor = Color.SeaShell; }
+            if (colored == 102) { BackColor = Color.Sienna; }
+            if (colored == 103) { BackColor = Color.Silver; }
+            if (colored == 104) { BackColor = Color.SkyBlue; }
+            if (colored == 105) { BackColor = Color.SlateBlue; }
+            if (colored == 106) { BackColor = Color.SlateGray; }
+            if (colored == 107) { BackColor = Color.Snow; }
+            if (colored == 108) { BackColor = Color.SpringGreen; }
+            if (colored == 109) { BackColor = Color.SteelBlue; }
+            if (colored == 110) { BackColor = Color.Tan; }
+            if (colored == 111) { BackColor = Color.Teal; }
+            if (colored == 112) { BackColor = Color.Thistle; }
+            if (colored == 113) { BackColor = Color.Tomato; }
+            if (colored == 114) { BackColor = Color.Turquoise; }
+            if (colored == 115) { BackColor = Color.Violet; }
+            if (colored == 116) { BackColor = Color.Wheat; }
+            if (colored == 117) { BackColor = Color.White; }
+            if (colored == 118) { BackColor = Color.WhiteSmoke; }
+            if (colored == 119) { BackColor = Color.Yellow; }
+            if (colored == 120) { BackColor = Color.YellowGreen; }
+            ForeColor = Color.FromArgb(255 - BackColor.R, 255 - BackColor.G, 255 - BackColor.B);
+            comboBox1.ForeColor = Color.FromArgb(255 - BackColor.R, 255 - BackColor.G, 255 - BackColor.B);
+            textBox1.ForeColor = Color.FromArgb(255 - BackColor.R, 255 - BackColor.G, 255 - BackColor.B);
+            if (colored == 13) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+            if (colored == 15) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+            if (colored == 16) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+            if (colored == 17) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+            if (colored == 22) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+            if (colored == 23) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+            if (colored == 35) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+            if (colored == 36) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+            if (colored == 45) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+            if (colored == 52) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+            if (colored == 54) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+            if (colored == 58) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+            if (colored == 64) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+            if (colored == 65) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+            if (colored == 66) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+            if (colored == 67) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+            if (colored == 78) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+            if (colored == 79) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+            if (colored == 80) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+            if (colored == 81) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+            if (colored == 82) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+            if (colored == 86) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+            if (colored == 89) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+            if (colored == 91) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+            if (colored == 95) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+            if (colored == 96) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+            if (colored == 98) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+            if (colored == 100) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+            if (colored == 105) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+            if (colored == 106) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+            if (colored == 109) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+            if (colored == 111) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+            if (colored == 113) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+            if (colored == 115) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
 
             if (DateTime.Today.Month == 12)
             {
                 if (DateTime.Today.Day == 24)
                 {
-                    this.ForeColor = Color.ForestGreen; comboBox1.ForeColor = Color.ForestGreen; textBox1.ForeColor = Color.ForestGreen;
+                    ForeColor = Color.ForestGreen; comboBox1.ForeColor = Color.ForestGreen; textBox1.ForeColor = Color.ForestGreen;
                 }
                 else if (DateTime.Today.Day == 25)
                 {
-                    this.ForeColor = Color.ForestGreen; comboBox1.ForeColor = Color.ForestGreen; textBox1.ForeColor = Color.ForestGreen;
+                    ForeColor = Color.ForestGreen; comboBox1.ForeColor = Color.ForestGreen; textBox1.ForeColor = Color.ForestGreen;
                 }
                 else if (DateTime.Today.Day == 26)
                 {
-                    this.ForeColor = Color.ForestGreen; comboBox1.ForeColor = Color.ForestGreen; textBox1.ForeColor = Color.ForestGreen;
+                    ForeColor = Color.ForestGreen; comboBox1.ForeColor = Color.ForestGreen; textBox1.ForeColor = Color.ForestGreen;
                 }
             }
-            textBox1.BackColor = this.BackColor;
-            comboBox1.BackColor = this.BackColor;
+            textBox1.BackColor = BackColor;
+            comboBox1.BackColor = BackColor;
         endof:;
         }
 
@@ -331,10 +343,10 @@ namespace UltimateBlueScreenSimulator
         {
             if (checkBox1.Checked == false)
             {
-                this.BackColor = Color.WhiteSmoke;
+                BackColor = Color.WhiteSmoke;
                 textBox1.BackColor = Color.WhiteSmoke;
                 comboBox1.BackColor = Color.WhiteSmoke;
-                this.ForeColor = Color.Black;
+                ForeColor = Color.Black;
                 comboBox1.ForeColor = Color.Black;
                 textBox1.ForeColor = Color.Black;
             }
@@ -638,13 +650,13 @@ namespace UltimateBlueScreenSimulator
                         return;
                     }
                     listBox1.SelectedIndex = 0;
-                    Int64.TryParse(listBox1.SelectedItem.ToString(), out t);
+                    long.TryParse(listBox1.SelectedItem.ToString(), out t);
                     listBox1.SelectedIndex = 1;
-                    Int32.TryParse(listBox1.SelectedItem.ToString(), out int g);
+                    int.TryParse(listBox1.SelectedItem.ToString(), out int g);
                     if (g == 1) { checkBox1.Checked = true; }
                     if (g == 0) { checkBox1.Checked = false; }
                     listBox1.SelectedIndex = 2;
-                    Int32.TryParse(listBox1.SelectedItem.ToString(), out int b);
+                    int.TryParse(listBox1.SelectedItem.ToString(), out int b);
                     if (b == 1) { comboBox1.SelectedIndex = 0; }
                     if (b == 2) { comboBox1.SelectedIndex = 1; }
                     if (b == 3) { comboBox1.SelectedIndex = 2; }
@@ -657,7 +669,7 @@ namespace UltimateBlueScreenSimulator
                         label1.Text = "Attempts: " + t;
                     }
                     listBox1.SelectedIndex = 3;
-                    Int32.TryParse(listBox1.SelectedItem.ToString(), out val);
+                    int.TryParse(listBox1.SelectedItem.ToString(), out val);
                     if (val == 1) { button1.Visible = true; }
                     if (val == 2) { button2.Visible = true; }
                     if (val == 3) { button3.Visible = true; }
@@ -698,167 +710,167 @@ namespace UltimateBlueScreenSimulator
                     if (val == 38) { button38.Visible = true; }
                     if (val == 39) { button39.Visible = true; }
                     if (val == 40) { button40.Visible = true; }
-                    if (checkBox1.Checked == false) { comboBox1.BackColor = this.BackColor; this.BackColor = Color.WhiteSmoke; textBox1.BackColor = Color.WhiteSmoke; goto endof; }
+                    if (checkBox1.Checked == false) { comboBox1.BackColor = BackColor; BackColor = Color.WhiteSmoke; textBox1.BackColor = Color.WhiteSmoke; goto endof; }
                     listBox1.SelectedIndex = 4;
-                    Int32.TryParse(listBox1.SelectedItem.ToString(), out colored);
-                    if (colored == 1) { this.BackColor = Color.AliceBlue; }
-                    if (colored == 2) { this.BackColor = Color.AntiqueWhite; }
-                    if (colored == 3) { this.BackColor = Color.Aqua; }
-                    if (colored == 4) { this.BackColor = Color.Aquamarine; }
-                    if (colored == 5) { this.BackColor = Color.Azure; }
-                    if (colored == 6) { this.BackColor = Color.Beige; }
-                    if (colored == 7) { this.BackColor = Color.Bisque; }
-                    if (colored == 8) { this.BackColor = Color.BlanchedAlmond; }
-                    if (colored == 9) { this.BackColor = Color.Blue; }
-                    if (colored == 10) { this.BackColor = Color.BlueViolet; }
-                    if (colored == 11) { this.BackColor = Color.Brown; }
-                    if (colored == 12) { this.BackColor = Color.BurlyWood; }
-                    if (colored == 13) { this.BackColor = Color.CadetBlue; }
-                    if (colored == 14) { this.BackColor = Color.Chartreuse; }
-                    if (colored == 15) { this.BackColor = Color.Chocolate; }
-                    if (colored == 16) { this.BackColor = Color.Coral; }
-                    if (colored == 17) { this.BackColor = Color.CornflowerBlue; }
-                    if (colored == 18) { this.BackColor = Color.Cornsilk; }
-                    if (colored == 19) { this.BackColor = Color.Crimson; }
-                    if (colored == 20) { this.BackColor = Color.Cyan; }
-                    if (colored == 21) { this.BackColor = Color.DeepPink; }
-                    if (colored == 22) { this.BackColor = Color.DeepSkyBlue; }
-                    if (colored == 23) { this.BackColor = Color.DodgerBlue; }
-                    if (colored == 24) { this.BackColor = Color.Firebrick; }
-                    if (colored == 25) { this.BackColor = Color.FloralWhite; }
-                    if (colored == 26) { this.BackColor = Color.ForestGreen; }
-                    if (colored == 27) { this.BackColor = Color.Fuchsia; }
-                    if (colored == 28) { this.BackColor = Color.Gainsboro; }
-                    if (colored == 29) { this.BackColor = Color.GhostWhite; }
-                    if (colored == 30) { this.BackColor = Color.Gold; }
-                    if (colored == 31) { this.BackColor = Color.Goldenrod; }
-                    if (colored == 32) { this.BackColor = Color.Green; }
-                    if (colored == 33) { this.BackColor = Color.GreenYellow; }
-                    if (colored == 34) { this.BackColor = Color.Honeydew; }
-                    if (colored == 35) { this.BackColor = Color.HotPink; }
-                    if (colored == 36) { this.BackColor = Color.IndianRed; }
-                    if (colored == 37) { this.BackColor = Color.Indigo; }
-                    if (colored == 38) { this.BackColor = Color.Ivory; }
-                    if (colored == 39) { this.BackColor = Color.Khaki; }
-                    if (colored == 40) { this.BackColor = Color.Lavender; }
-                    if (colored == 41) { this.BackColor = Color.LavenderBlush; }
-                    if (colored == 42) { this.BackColor = Color.LawnGreen; }
-                    if (colored == 43) { this.BackColor = Color.LemonChiffon; }
-                    if (colored == 44) { this.BackColor = Color.LightBlue; }
-                    if (colored == 45) { this.BackColor = Color.LightCoral; }
-                    if (colored == 46) { this.BackColor = Color.LightCyan; }
-                    if (colored == 47) { this.BackColor = Color.LightGoldenrodYellow; }
-                    if (colored == 48) { this.BackColor = Color.LightGray; }
-                    if (colored == 49) { this.BackColor = Color.LightGreen; }
-                    if (colored == 50) { this.BackColor = Color.LightPink; }
-                    if (colored == 51) { this.BackColor = Color.LightSalmon; }
-                    if (colored == 52) { this.BackColor = Color.LightSeaGreen; }
-                    if (colored == 53) { this.BackColor = Color.LightSkyBlue; }
-                    if (colored == 54) { this.BackColor = Color.LightSlateGray; }
-                    if (colored == 55) { this.BackColor = Color.LightSteelBlue; }
-                    if (colored == 56) { this.BackColor = Color.LightYellow; }
-                    if (colored == 57) { this.BackColor = Color.Lime; }
-                    if (colored == 58) { this.BackColor = Color.LimeGreen; }
-                    if (colored == 59) { this.BackColor = Color.Linen; }
-                    if (colored == 60) { this.BackColor = Color.Magenta; }
-                    if (colored == 61) { this.BackColor = Color.Maroon; }
-                    if (colored == 62) { this.BackColor = Color.MediumAquamarine; }
-                    if (colored == 63) { this.BackColor = Color.MediumBlue; }
-                    if (colored == 64) { this.BackColor = Color.MediumOrchid; }
-                    if (colored == 65) { this.BackColor = Color.MediumPurple; }
-                    if (colored == 66) { this.BackColor = Color.MediumSeaGreen; }
-                    if (colored == 67) { this.BackColor = Color.MediumSlateBlue; }
-                    if (colored == 68) { this.BackColor = Color.MediumSpringGreen; }
-                    if (colored == 69) { this.BackColor = Color.MediumTurquoise; }
-                    if (colored == 70) { this.BackColor = Color.MediumVioletRed; }
-                    if (colored == 71) { this.BackColor = Color.MidnightBlue; }
-                    if (colored == 72) { this.BackColor = Color.MintCream; }
-                    if (colored == 73) { this.BackColor = Color.MistyRose; }
-                    if (colored == 74) { this.BackColor = Color.Moccasin; }
-                    if (colored == 75) { this.BackColor = Color.NavajoWhite; }
-                    if (colored == 76) { this.BackColor = Color.Navy; }
-                    if (colored == 77) { this.BackColor = Color.OldLace; }
-                    if (colored == 78) { this.BackColor = Color.Olive; }
-                    if (colored == 79) { this.BackColor = Color.OliveDrab; }
-                    if (colored == 80) { this.BackColor = Color.Orange; }
-                    if (colored == 81) { this.BackColor = Color.OrangeRed; }
-                    if (colored == 82) { this.BackColor = Color.Orchid; }
-                    if (colored == 83) { this.BackColor = Color.PaleGoldenrod; }
-                    if (colored == 84) { this.BackColor = Color.PaleGreen; }
-                    if (colored == 85) { this.BackColor = Color.PaleTurquoise; }
-                    if (colored == 86) { this.BackColor = Color.PaleVioletRed; }
-                    if (colored == 87) { this.BackColor = Color.PapayaWhip; }
-                    if (colored == 88) { this.BackColor = Color.PeachPuff; }
-                    if (colored == 89) { this.BackColor = Color.Peru; }
-                    if (colored == 90) { this.BackColor = Color.Pink; }
-                    if (colored == 91) { this.BackColor = Color.Plum; }
-                    if (colored == 92) { this.BackColor = Color.PowderBlue; }
-                    if (colored == 93) { this.BackColor = Color.Purple; }
-                    if (colored == 94) { this.BackColor = Color.Red; }
-                    if (colored == 95) { this.BackColor = Color.RosyBrown; }
-                    if (colored == 96) { this.BackColor = Color.RoyalBlue; }
-                    if (colored == 97) { this.BackColor = Color.SaddleBrown; }
-                    if (colored == 98) { this.BackColor = Color.Salmon; }
-                    if (colored == 99) { this.BackColor = Color.SandyBrown; }
-                    if (colored == 100) { this.BackColor = Color.SeaGreen; }
-                    if (colored == 101) { this.BackColor = Color.SeaShell; }
-                    if (colored == 102) { this.BackColor = Color.Sienna; }
-                    if (colored == 103) { this.BackColor = Color.Silver; }
-                    if (colored == 104) { this.BackColor = Color.SkyBlue; }
-                    if (colored == 105) { this.BackColor = Color.SlateBlue; }
-                    if (colored == 106) { this.BackColor = Color.SlateGray; }
-                    if (colored == 107) { this.BackColor = Color.Snow; }
-                    if (colored == 108) { this.BackColor = Color.SpringGreen; }
-                    if (colored == 109) { this.BackColor = Color.SteelBlue; }
-                    if (colored == 110) { this.BackColor = Color.Tan; }
-                    if (colored == 111) { this.BackColor = Color.Teal; }
-                    if (colored == 112) { this.BackColor = Color.Thistle; }
-                    if (colored == 113) { this.BackColor = Color.Tomato; }
-                    if (colored == 114) { this.BackColor = Color.Turquoise; }
-                    if (colored == 115) { this.BackColor = Color.Violet; }
-                    if (colored == 116) { this.BackColor = Color.Wheat; }
-                    if (colored == 117) { this.BackColor = Color.White; }
-                    if (colored == 118) { this.BackColor = Color.WhiteSmoke; }
-                    if (colored == 119) { this.BackColor = Color.Yellow; }
-                    if (colored == 120) { this.BackColor = Color.YellowGreen; }
-                    comboBox1.ForeColor = Color.FromArgb(255 - this.BackColor.R, 255 - this.BackColor.G, 255 - this.BackColor.B);
-                    textBox1.ForeColor = Color.FromArgb(255 - this.BackColor.R, 255 - this.BackColor.G, 255 - this.BackColor.B);
-                    this.ForeColor = Color.FromArgb(255 - this.BackColor.R, 255 - this.BackColor.G, 255 - this.BackColor.B);
-                    if (colored == 13) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-                    if (colored == 15) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-                    if (colored == 16) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-                    if (colored == 17) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-                    if (colored == 22) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-                    if (colored == 23) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-                    if (colored == 35) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-                    if (colored == 36) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-                    if (colored == 45) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-                    if (colored == 52) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-                    if (colored == 54) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-                    if (colored == 58) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-                    if (colored == 64) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-                    if (colored == 66) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-                    if (colored == 67) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-                    if (colored == 78) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-                    if (colored == 79) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-                    if (colored == 80) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-                    if (colored == 81) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-                    if (colored == 82) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-                    if (colored == 86) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-                    if (colored == 89) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-                    if (colored == 91) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-                    if (colored == 95) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-                    if (colored == 96) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-                    if (colored == 98) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-                    if (colored == 100) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-                    if (colored == 105) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-                    if (colored == 106) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-                    if (colored == 109) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-                    if (colored == 111) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-                    if (colored == 113) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-                    if (colored == 115) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-                    textBox1.BackColor = this.BackColor;
-                    comboBox1.BackColor = this.BackColor;
+                    int.TryParse(listBox1.SelectedItem.ToString(), out colored);
+                    if (colored == 1) { BackColor = Color.AliceBlue; }
+                    if (colored == 2) { BackColor = Color.AntiqueWhite; }
+                    if (colored == 3) { BackColor = Color.Aqua; }
+                    if (colored == 4) { BackColor = Color.Aquamarine; }
+                    if (colored == 5) { BackColor = Color.Azure; }
+                    if (colored == 6) { BackColor = Color.Beige; }
+                    if (colored == 7) { BackColor = Color.Bisque; }
+                    if (colored == 8) { BackColor = Color.BlanchedAlmond; }
+                    if (colored == 9) { BackColor = Color.Blue; }
+                    if (colored == 10) { BackColor = Color.BlueViolet; }
+                    if (colored == 11) { BackColor = Color.Brown; }
+                    if (colored == 12) { BackColor = Color.BurlyWood; }
+                    if (colored == 13) { BackColor = Color.CadetBlue; }
+                    if (colored == 14) { BackColor = Color.Chartreuse; }
+                    if (colored == 15) { BackColor = Color.Chocolate; }
+                    if (colored == 16) { BackColor = Color.Coral; }
+                    if (colored == 17) { BackColor = Color.CornflowerBlue; }
+                    if (colored == 18) { BackColor = Color.Cornsilk; }
+                    if (colored == 19) { BackColor = Color.Crimson; }
+                    if (colored == 20) { BackColor = Color.Cyan; }
+                    if (colored == 21) { BackColor = Color.DeepPink; }
+                    if (colored == 22) { BackColor = Color.DeepSkyBlue; }
+                    if (colored == 23) { BackColor = Color.DodgerBlue; }
+                    if (colored == 24) { BackColor = Color.Firebrick; }
+                    if (colored == 25) { BackColor = Color.FloralWhite; }
+                    if (colored == 26) { BackColor = Color.ForestGreen; }
+                    if (colored == 27) { BackColor = Color.Fuchsia; }
+                    if (colored == 28) { BackColor = Color.Gainsboro; }
+                    if (colored == 29) { BackColor = Color.GhostWhite; }
+                    if (colored == 30) { BackColor = Color.Gold; }
+                    if (colored == 31) { BackColor = Color.Goldenrod; }
+                    if (colored == 32) { BackColor = Color.Green; }
+                    if (colored == 33) { BackColor = Color.GreenYellow; }
+                    if (colored == 34) { BackColor = Color.Honeydew; }
+                    if (colored == 35) { BackColor = Color.HotPink; }
+                    if (colored == 36) { BackColor = Color.IndianRed; }
+                    if (colored == 37) { BackColor = Color.Indigo; }
+                    if (colored == 38) { BackColor = Color.Ivory; }
+                    if (colored == 39) { BackColor = Color.Khaki; }
+                    if (colored == 40) { BackColor = Color.Lavender; }
+                    if (colored == 41) { BackColor = Color.LavenderBlush; }
+                    if (colored == 42) { BackColor = Color.LawnGreen; }
+                    if (colored == 43) { BackColor = Color.LemonChiffon; }
+                    if (colored == 44) { BackColor = Color.LightBlue; }
+                    if (colored == 45) { BackColor = Color.LightCoral; }
+                    if (colored == 46) { BackColor = Color.LightCyan; }
+                    if (colored == 47) { BackColor = Color.LightGoldenrodYellow; }
+                    if (colored == 48) { BackColor = Color.LightGray; }
+                    if (colored == 49) { BackColor = Color.LightGreen; }
+                    if (colored == 50) { BackColor = Color.LightPink; }
+                    if (colored == 51) { BackColor = Color.LightSalmon; }
+                    if (colored == 52) { BackColor = Color.LightSeaGreen; }
+                    if (colored == 53) { BackColor = Color.LightSkyBlue; }
+                    if (colored == 54) { BackColor = Color.LightSlateGray; }
+                    if (colored == 55) { BackColor = Color.LightSteelBlue; }
+                    if (colored == 56) { BackColor = Color.LightYellow; }
+                    if (colored == 57) { BackColor = Color.Lime; }
+                    if (colored == 58) { BackColor = Color.LimeGreen; }
+                    if (colored == 59) { BackColor = Color.Linen; }
+                    if (colored == 60) { BackColor = Color.Magenta; }
+                    if (colored == 61) { BackColor = Color.Maroon; }
+                    if (colored == 62) { BackColor = Color.MediumAquamarine; }
+                    if (colored == 63) { BackColor = Color.MediumBlue; }
+                    if (colored == 64) { BackColor = Color.MediumOrchid; }
+                    if (colored == 65) { BackColor = Color.MediumPurple; }
+                    if (colored == 66) { BackColor = Color.MediumSeaGreen; }
+                    if (colored == 67) { BackColor = Color.MediumSlateBlue; }
+                    if (colored == 68) { BackColor = Color.MediumSpringGreen; }
+                    if (colored == 69) { BackColor = Color.MediumTurquoise; }
+                    if (colored == 70) { BackColor = Color.MediumVioletRed; }
+                    if (colored == 71) { BackColor = Color.MidnightBlue; }
+                    if (colored == 72) { BackColor = Color.MintCream; }
+                    if (colored == 73) { BackColor = Color.MistyRose; }
+                    if (colored == 74) { BackColor = Color.Moccasin; }
+                    if (colored == 75) { BackColor = Color.NavajoWhite; }
+                    if (colored == 76) { BackColor = Color.Navy; }
+                    if (colored == 77) { BackColor = Color.OldLace; }
+                    if (colored == 78) { BackColor = Color.Olive; }
+                    if (colored == 79) { BackColor = Color.OliveDrab; }
+                    if (colored == 80) { BackColor = Color.Orange; }
+                    if (colored == 81) { BackColor = Color.OrangeRed; }
+                    if (colored == 82) { BackColor = Color.Orchid; }
+                    if (colored == 83) { BackColor = Color.PaleGoldenrod; }
+                    if (colored == 84) { BackColor = Color.PaleGreen; }
+                    if (colored == 85) { BackColor = Color.PaleTurquoise; }
+                    if (colored == 86) { BackColor = Color.PaleVioletRed; }
+                    if (colored == 87) { BackColor = Color.PapayaWhip; }
+                    if (colored == 88) { BackColor = Color.PeachPuff; }
+                    if (colored == 89) { BackColor = Color.Peru; }
+                    if (colored == 90) { BackColor = Color.Pink; }
+                    if (colored == 91) { BackColor = Color.Plum; }
+                    if (colored == 92) { BackColor = Color.PowderBlue; }
+                    if (colored == 93) { BackColor = Color.Purple; }
+                    if (colored == 94) { BackColor = Color.Red; }
+                    if (colored == 95) { BackColor = Color.RosyBrown; }
+                    if (colored == 96) { BackColor = Color.RoyalBlue; }
+                    if (colored == 97) { BackColor = Color.SaddleBrown; }
+                    if (colored == 98) { BackColor = Color.Salmon; }
+                    if (colored == 99) { BackColor = Color.SandyBrown; }
+                    if (colored == 100) { BackColor = Color.SeaGreen; }
+                    if (colored == 101) { BackColor = Color.SeaShell; }
+                    if (colored == 102) { BackColor = Color.Sienna; }
+                    if (colored == 103) { BackColor = Color.Silver; }
+                    if (colored == 104) { BackColor = Color.SkyBlue; }
+                    if (colored == 105) { BackColor = Color.SlateBlue; }
+                    if (colored == 106) { BackColor = Color.SlateGray; }
+                    if (colored == 107) { BackColor = Color.Snow; }
+                    if (colored == 108) { BackColor = Color.SpringGreen; }
+                    if (colored == 109) { BackColor = Color.SteelBlue; }
+                    if (colored == 110) { BackColor = Color.Tan; }
+                    if (colored == 111) { BackColor = Color.Teal; }
+                    if (colored == 112) { BackColor = Color.Thistle; }
+                    if (colored == 113) { BackColor = Color.Tomato; }
+                    if (colored == 114) { BackColor = Color.Turquoise; }
+                    if (colored == 115) { BackColor = Color.Violet; }
+                    if (colored == 116) { BackColor = Color.Wheat; }
+                    if (colored == 117) { BackColor = Color.White; }
+                    if (colored == 118) { BackColor = Color.WhiteSmoke; }
+                    if (colored == 119) { BackColor = Color.Yellow; }
+                    if (colored == 120) { BackColor = Color.YellowGreen; }
+                    comboBox1.ForeColor = Color.FromArgb(255 - BackColor.R, 255 - BackColor.G, 255 - BackColor.B);
+                    textBox1.ForeColor = Color.FromArgb(255 - BackColor.R, 255 - BackColor.G, 255 - BackColor.B);
+                    ForeColor = Color.FromArgb(255 - BackColor.R, 255 - BackColor.G, 255 - BackColor.B);
+                    if (colored == 13) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+                    if (colored == 15) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+                    if (colored == 16) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+                    if (colored == 17) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+                    if (colored == 22) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+                    if (colored == 23) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+                    if (colored == 35) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+                    if (colored == 36) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+                    if (colored == 45) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+                    if (colored == 52) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+                    if (colored == 54) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+                    if (colored == 58) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+                    if (colored == 64) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+                    if (colored == 66) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+                    if (colored == 67) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+                    if (colored == 78) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+                    if (colored == 79) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+                    if (colored == 80) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+                    if (colored == 81) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+                    if (colored == 82) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+                    if (colored == 86) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+                    if (colored == 89) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+                    if (colored == 91) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+                    if (colored == 95) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+                    if (colored == 96) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+                    if (colored == 98) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+                    if (colored == 100) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+                    if (colored == 105) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+                    if (colored == 106) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+                    if (colored == 109) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+                    if (colored == 111) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+                    if (colored == 113) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+                    if (colored == 115) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+                    textBox1.BackColor = BackColor;
+                    comboBox1.BackColor = BackColor;
                 endof:;
                     /* listBox1.SelectedIndex = 5;
                      Int32.TryParse(listBox1.SelectedItem.ToString(), out seed);
@@ -1001,165 +1013,165 @@ namespace UltimateBlueScreenSimulator
                         colored = 94;
                     }
                 }
-                if (colored == 1) { this.BackColor = Color.AliceBlue; }
-                if (colored == 2) { this.BackColor = Color.AntiqueWhite; }
-                if (colored == 3) { this.BackColor = Color.Aqua; }
-                if (colored == 4) { this.BackColor = Color.Aquamarine; }
-                if (colored == 5) { this.BackColor = Color.Azure; }
-                if (colored == 6) { this.BackColor = Color.Beige; }
-                if (colored == 7) { this.BackColor = Color.Bisque; }
-                if (colored == 8) { this.BackColor = Color.BlanchedAlmond; }
-                if (colored == 9) { this.BackColor = Color.Blue; }
-                if (colored == 10) { this.BackColor = Color.BlueViolet; }
-                if (colored == 11) { this.BackColor = Color.Brown; }
-                if (colored == 12) { this.BackColor = Color.BurlyWood; }
-                if (colored == 13) { this.BackColor = Color.CadetBlue; }
-                if (colored == 14) { this.BackColor = Color.Chartreuse; }
-                if (colored == 15) { this.BackColor = Color.Chocolate; }
-                if (colored == 16) { this.BackColor = Color.Coral; }
-                if (colored == 17) { this.BackColor = Color.CornflowerBlue; }
-                if (colored == 18) { this.BackColor = Color.Cornsilk; }
-                if (colored == 19) { this.BackColor = Color.Crimson; }
-                if (colored == 20) { this.BackColor = Color.Cyan; }
-                if (colored == 21) { this.BackColor = Color.DeepPink; }
-                if (colored == 22) { this.BackColor = Color.DeepSkyBlue; }
-                if (colored == 23) { this.BackColor = Color.DodgerBlue; }
-                if (colored == 24) { this.BackColor = Color.Firebrick; }
-                if (colored == 25) { this.BackColor = Color.FloralWhite; }
-                if (colored == 26) { this.BackColor = Color.ForestGreen; }
-                if (colored == 27) { this.BackColor = Color.Fuchsia; }
-                if (colored == 28) { this.BackColor = Color.Gainsboro; }
-                if (colored == 29) { this.BackColor = Color.GhostWhite; }
-                if (colored == 30) { this.BackColor = Color.Gold; }
-                if (colored == 31) { this.BackColor = Color.Goldenrod; }
-                if (colored == 32) { this.BackColor = Color.Green; }
-                if (colored == 33) { this.BackColor = Color.GreenYellow; }
-                if (colored == 34) { this.BackColor = Color.Honeydew; }
-                if (colored == 35) { this.BackColor = Color.HotPink; }
-                if (colored == 36) { this.BackColor = Color.IndianRed; }
-                if (colored == 37) { this.BackColor = Color.Indigo; }
-                if (colored == 38) { this.BackColor = Color.Ivory; }
-                if (colored == 39) { this.BackColor = Color.Khaki; }
-                if (colored == 40) { this.BackColor = Color.Lavender; }
-                if (colored == 41) { this.BackColor = Color.LavenderBlush; }
-                if (colored == 42) { this.BackColor = Color.LawnGreen; }
-                if (colored == 43) { this.BackColor = Color.LemonChiffon; }
-                if (colored == 44) { this.BackColor = Color.LightBlue; }
-                if (colored == 45) { this.BackColor = Color.LightCoral; }
-                if (colored == 46) { this.BackColor = Color.LightCyan; }
-                if (colored == 47) { this.BackColor = Color.LightGoldenrodYellow; }
-                if (colored == 48) { this.BackColor = Color.LightGray; }
-                if (colored == 49) { this.BackColor = Color.LightGreen; }
-                if (colored == 50) { this.BackColor = Color.LightPink; }
-                if (colored == 51) { this.BackColor = Color.LightSalmon; }
-                if (colored == 52) { this.BackColor = Color.LightSeaGreen; }
-                if (colored == 53) { this.BackColor = Color.LightSkyBlue; }
-                if (colored == 54) { this.BackColor = Color.LightSlateGray; }
-                if (colored == 55) { this.BackColor = Color.LightSteelBlue; }
-                if (colored == 56) { this.BackColor = Color.LightYellow; }
-                if (colored == 57) { this.BackColor = Color.Lime; }
-                if (colored == 58) { this.BackColor = Color.LimeGreen; }
-                if (colored == 59) { this.BackColor = Color.Linen; }
-                if (colored == 60) { this.BackColor = Color.Magenta; }
-                if (colored == 61) { this.BackColor = Color.Maroon; }
-                if (colored == 62) { this.BackColor = Color.MediumAquamarine; }
-                if (colored == 63) { this.BackColor = Color.MediumBlue; }
-                if (colored == 64) { this.BackColor = Color.MediumOrchid; }
-                if (colored == 65) { this.BackColor = Color.MediumPurple; }
-                if (colored == 66) { this.BackColor = Color.MediumSeaGreen; }
-                if (colored == 67) { this.BackColor = Color.MediumSlateBlue; }
-                if (colored == 68) { this.BackColor = Color.MediumSpringGreen; }
-                if (colored == 69) { this.BackColor = Color.MediumTurquoise; }
-                if (colored == 70) { this.BackColor = Color.MediumVioletRed; }
-                if (colored == 71) { this.BackColor = Color.MidnightBlue; }
-                if (colored == 72) { this.BackColor = Color.MintCream; }
-                if (colored == 73) { this.BackColor = Color.MistyRose; }
-                if (colored == 74) { this.BackColor = Color.Moccasin; }
-                if (colored == 75) { this.BackColor = Color.NavajoWhite; }
-                if (colored == 76) { this.BackColor = Color.Navy; }
-                if (colored == 77) { this.BackColor = Color.OldLace; }
-                if (colored == 78) { this.BackColor = Color.Olive; }
-                if (colored == 79) { this.BackColor = Color.OliveDrab; }
-                if (colored == 80) { this.BackColor = Color.Orange; }
-                if (colored == 81) { this.BackColor = Color.OrangeRed; }
-                if (colored == 82) { this.BackColor = Color.Orchid; }
-                if (colored == 83) { this.BackColor = Color.PaleGoldenrod; }
-                if (colored == 84) { this.BackColor = Color.PaleGreen; }
-                if (colored == 85) { this.BackColor = Color.PaleTurquoise; }
-                if (colored == 86) { this.BackColor = Color.PaleVioletRed; }
-                if (colored == 87) { this.BackColor = Color.PapayaWhip; }
-                if (colored == 88) { this.BackColor = Color.PeachPuff; }
-                if (colored == 89) { this.BackColor = Color.Peru; }
-                if (colored == 90) { this.BackColor = Color.Pink; }
-                if (colored == 91) { this.BackColor = Color.Plum; }
-                if (colored == 92) { this.BackColor = Color.PowderBlue; }
-                if (colored == 93) { this.BackColor = Color.Purple; }
-                if (colored == 94) { this.BackColor = Color.Red; }
-                if (colored == 95) { this.BackColor = Color.RosyBrown; }
-                if (colored == 96) { this.BackColor = Color.RoyalBlue; }
-                if (colored == 97) { this.BackColor = Color.SaddleBrown; }
-                if (colored == 98) { this.BackColor = Color.Salmon; }
-                if (colored == 99) { this.BackColor = Color.SandyBrown; }
-                if (colored == 100) { this.BackColor = Color.SeaGreen; }
-                if (colored == 101) { this.BackColor = Color.SeaShell; }
-                if (colored == 102) { this.BackColor = Color.Sienna; }
-                if (colored == 103) { this.BackColor = Color.Silver; }
-                if (colored == 104) { this.BackColor = Color.SkyBlue; }
-                if (colored == 105) { this.BackColor = Color.SlateBlue; }
-                if (colored == 106) { this.BackColor = Color.SlateGray; }
-                if (colored == 107) { this.BackColor = Color.Snow; }
-                if (colored == 108) { this.BackColor = Color.SpringGreen; }
-                if (colored == 109) { this.BackColor = Color.SteelBlue; }
-                if (colored == 110) { this.BackColor = Color.Tan; }
-                if (colored == 111) { this.BackColor = Color.Teal; }
-                if (colored == 112) { this.BackColor = Color.Thistle; }
-                if (colored == 113) { this.BackColor = Color.Tomato; }
-                if (colored == 114) { this.BackColor = Color.Turquoise; }
-                if (colored == 115) { this.BackColor = Color.Violet; }
-                if (colored == 116) { this.BackColor = Color.Wheat; }
-                if (colored == 117) { this.BackColor = Color.White; }
-                if (colored == 118) { this.BackColor = Color.WhiteSmoke; }
-                if (colored == 119) { this.BackColor = Color.Yellow; }
-                if (colored == 120) { this.BackColor = Color.YellowGreen; }
-                this.ForeColor = Color.FromArgb(255 - this.BackColor.R, 255 - this.BackColor.G, 255 - this.BackColor.B);
-                comboBox1.ForeColor = Color.FromArgb(255 - this.BackColor.R, 255 - this.BackColor.G, 255 - this.BackColor.B);
-                textBox1.ForeColor = Color.FromArgb(255 - this.BackColor.R, 255 - this.BackColor.G, 255 - this.BackColor.B);
-                if (colored == 13) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-                if (colored == 15) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-                if (colored == 16) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-                if (colored == 17) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-                if (colored == 22) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-                if (colored == 23) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-                if (colored == 35) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-                if (colored == 36) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-                if (colored == 45) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-                if (colored == 52) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-                if (colored == 54) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-                if (colored == 58) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-                if (colored == 64) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-                if (colored == 65) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-                if (colored == 66) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-                if (colored == 67) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-                if (colored == 78) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-                if (colored == 79) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-                if (colored == 80) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-                if (colored == 81) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-                if (colored == 82) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-                if (colored == 86) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-                if (colored == 89) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-                if (colored == 91) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-                if (colored == 95) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-                if (colored == 96) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-                if (colored == 98) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-                if (colored == 100) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-                if (colored == 105) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-                if (colored == 106) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-                if (colored == 109) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-                if (colored == 111) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-                if (colored == 113) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-                if (colored == 115) { this.ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
-                textBox1.BackColor = this.BackColor;
-                comboBox1.BackColor = this.BackColor;
+                if (colored == 1) { BackColor = Color.AliceBlue; }
+                if (colored == 2) { BackColor = Color.AntiqueWhite; }
+                if (colored == 3) { BackColor = Color.Aqua; }
+                if (colored == 4) { BackColor = Color.Aquamarine; }
+                if (colored == 5) { BackColor = Color.Azure; }
+                if (colored == 6) { BackColor = Color.Beige; }
+                if (colored == 7) { BackColor = Color.Bisque; }
+                if (colored == 8) { BackColor = Color.BlanchedAlmond; }
+                if (colored == 9) { BackColor = Color.Blue; }
+                if (colored == 10) { BackColor = Color.BlueViolet; }
+                if (colored == 11) { BackColor = Color.Brown; }
+                if (colored == 12) { BackColor = Color.BurlyWood; }
+                if (colored == 13) { BackColor = Color.CadetBlue; }
+                if (colored == 14) { BackColor = Color.Chartreuse; }
+                if (colored == 15) { BackColor = Color.Chocolate; }
+                if (colored == 16) { BackColor = Color.Coral; }
+                if (colored == 17) { BackColor = Color.CornflowerBlue; }
+                if (colored == 18) { BackColor = Color.Cornsilk; }
+                if (colored == 19) { BackColor = Color.Crimson; }
+                if (colored == 20) { BackColor = Color.Cyan; }
+                if (colored == 21) { BackColor = Color.DeepPink; }
+                if (colored == 22) { BackColor = Color.DeepSkyBlue; }
+                if (colored == 23) { BackColor = Color.DodgerBlue; }
+                if (colored == 24) { BackColor = Color.Firebrick; }
+                if (colored == 25) { BackColor = Color.FloralWhite; }
+                if (colored == 26) { BackColor = Color.ForestGreen; }
+                if (colored == 27) { BackColor = Color.Fuchsia; }
+                if (colored == 28) { BackColor = Color.Gainsboro; }
+                if (colored == 29) { BackColor = Color.GhostWhite; }
+                if (colored == 30) { BackColor = Color.Gold; }
+                if (colored == 31) { BackColor = Color.Goldenrod; }
+                if (colored == 32) { BackColor = Color.Green; }
+                if (colored == 33) { BackColor = Color.GreenYellow; }
+                if (colored == 34) { BackColor = Color.Honeydew; }
+                if (colored == 35) { BackColor = Color.HotPink; }
+                if (colored == 36) { BackColor = Color.IndianRed; }
+                if (colored == 37) { BackColor = Color.Indigo; }
+                if (colored == 38) { BackColor = Color.Ivory; }
+                if (colored == 39) { BackColor = Color.Khaki; }
+                if (colored == 40) { BackColor = Color.Lavender; }
+                if (colored == 41) { BackColor = Color.LavenderBlush; }
+                if (colored == 42) { BackColor = Color.LawnGreen; }
+                if (colored == 43) { BackColor = Color.LemonChiffon; }
+                if (colored == 44) { BackColor = Color.LightBlue; }
+                if (colored == 45) { BackColor = Color.LightCoral; }
+                if (colored == 46) { BackColor = Color.LightCyan; }
+                if (colored == 47) { BackColor = Color.LightGoldenrodYellow; }
+                if (colored == 48) { BackColor = Color.LightGray; }
+                if (colored == 49) { BackColor = Color.LightGreen; }
+                if (colored == 50) { BackColor = Color.LightPink; }
+                if (colored == 51) { BackColor = Color.LightSalmon; }
+                if (colored == 52) { BackColor = Color.LightSeaGreen; }
+                if (colored == 53) { BackColor = Color.LightSkyBlue; }
+                if (colored == 54) { BackColor = Color.LightSlateGray; }
+                if (colored == 55) { BackColor = Color.LightSteelBlue; }
+                if (colored == 56) { BackColor = Color.LightYellow; }
+                if (colored == 57) { BackColor = Color.Lime; }
+                if (colored == 58) { BackColor = Color.LimeGreen; }
+                if (colored == 59) { BackColor = Color.Linen; }
+                if (colored == 60) { BackColor = Color.Magenta; }
+                if (colored == 61) { BackColor = Color.Maroon; }
+                if (colored == 62) { BackColor = Color.MediumAquamarine; }
+                if (colored == 63) { BackColor = Color.MediumBlue; }
+                if (colored == 64) { BackColor = Color.MediumOrchid; }
+                if (colored == 65) { BackColor = Color.MediumPurple; }
+                if (colored == 66) { BackColor = Color.MediumSeaGreen; }
+                if (colored == 67) { BackColor = Color.MediumSlateBlue; }
+                if (colored == 68) { BackColor = Color.MediumSpringGreen; }
+                if (colored == 69) { BackColor = Color.MediumTurquoise; }
+                if (colored == 70) { BackColor = Color.MediumVioletRed; }
+                if (colored == 71) { BackColor = Color.MidnightBlue; }
+                if (colored == 72) { BackColor = Color.MintCream; }
+                if (colored == 73) { BackColor = Color.MistyRose; }
+                if (colored == 74) { BackColor = Color.Moccasin; }
+                if (colored == 75) { BackColor = Color.NavajoWhite; }
+                if (colored == 76) { BackColor = Color.Navy; }
+                if (colored == 77) { BackColor = Color.OldLace; }
+                if (colored == 78) { BackColor = Color.Olive; }
+                if (colored == 79) { BackColor = Color.OliveDrab; }
+                if (colored == 80) { BackColor = Color.Orange; }
+                if (colored == 81) { BackColor = Color.OrangeRed; }
+                if (colored == 82) { BackColor = Color.Orchid; }
+                if (colored == 83) { BackColor = Color.PaleGoldenrod; }
+                if (colored == 84) { BackColor = Color.PaleGreen; }
+                if (colored == 85) { BackColor = Color.PaleTurquoise; }
+                if (colored == 86) { BackColor = Color.PaleVioletRed; }
+                if (colored == 87) { BackColor = Color.PapayaWhip; }
+                if (colored == 88) { BackColor = Color.PeachPuff; }
+                if (colored == 89) { BackColor = Color.Peru; }
+                if (colored == 90) { BackColor = Color.Pink; }
+                if (colored == 91) { BackColor = Color.Plum; }
+                if (colored == 92) { BackColor = Color.PowderBlue; }
+                if (colored == 93) { BackColor = Color.Purple; }
+                if (colored == 94) { BackColor = Color.Red; }
+                if (colored == 95) { BackColor = Color.RosyBrown; }
+                if (colored == 96) { BackColor = Color.RoyalBlue; }
+                if (colored == 97) { BackColor = Color.SaddleBrown; }
+                if (colored == 98) { BackColor = Color.Salmon; }
+                if (colored == 99) { BackColor = Color.SandyBrown; }
+                if (colored == 100) { BackColor = Color.SeaGreen; }
+                if (colored == 101) { BackColor = Color.SeaShell; }
+                if (colored == 102) { BackColor = Color.Sienna; }
+                if (colored == 103) { BackColor = Color.Silver; }
+                if (colored == 104) { BackColor = Color.SkyBlue; }
+                if (colored == 105) { BackColor = Color.SlateBlue; }
+                if (colored == 106) { BackColor = Color.SlateGray; }
+                if (colored == 107) { BackColor = Color.Snow; }
+                if (colored == 108) { BackColor = Color.SpringGreen; }
+                if (colored == 109) { BackColor = Color.SteelBlue; }
+                if (colored == 110) { BackColor = Color.Tan; }
+                if (colored == 111) { BackColor = Color.Teal; }
+                if (colored == 112) { BackColor = Color.Thistle; }
+                if (colored == 113) { BackColor = Color.Tomato; }
+                if (colored == 114) { BackColor = Color.Turquoise; }
+                if (colored == 115) { BackColor = Color.Violet; }
+                if (colored == 116) { BackColor = Color.Wheat; }
+                if (colored == 117) { BackColor = Color.White; }
+                if (colored == 118) { BackColor = Color.WhiteSmoke; }
+                if (colored == 119) { BackColor = Color.Yellow; }
+                if (colored == 120) { BackColor = Color.YellowGreen; }
+                ForeColor = Color.FromArgb(255 - BackColor.R, 255 - BackColor.G, 255 - BackColor.B);
+                comboBox1.ForeColor = Color.FromArgb(255 - BackColor.R, 255 - BackColor.G, 255 - BackColor.B);
+                textBox1.ForeColor = Color.FromArgb(255 - BackColor.R, 255 - BackColor.G, 255 - BackColor.B);
+                if (colored == 13) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+                if (colored == 15) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+                if (colored == 16) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+                if (colored == 17) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+                if (colored == 22) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+                if (colored == 23) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+                if (colored == 35) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+                if (colored == 36) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+                if (colored == 45) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+                if (colored == 52) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+                if (colored == 54) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+                if (colored == 58) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+                if (colored == 64) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+                if (colored == 65) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+                if (colored == 66) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+                if (colored == 67) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+                if (colored == 78) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+                if (colored == 79) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+                if (colored == 80) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+                if (colored == 81) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+                if (colored == 82) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+                if (colored == 86) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+                if (colored == 89) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+                if (colored == 91) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+                if (colored == 95) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+                if (colored == 96) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+                if (colored == 98) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+                if (colored == 100) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+                if (colored == 105) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+                if (colored == 106) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+                if (colored == 109) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+                if (colored == 111) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+                if (colored == 113) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+                if (colored == 115) { ForeColor = Color.White; comboBox1.ForeColor = Color.White; textBox1.ForeColor = Color.White; }
+                textBox1.BackColor = BackColor;
+                comboBox1.BackColor = BackColor;
             }
         }
 

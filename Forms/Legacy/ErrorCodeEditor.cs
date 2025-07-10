@@ -21,7 +21,7 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
         internal string c3;
         internal string c4;
         private bool init = false;
-        private string topText = "The following error code method will be used:\r\n\r\n{0}";
+        private readonly string topText = "The following error code method will be used:\r\n\r\n{0}";
         public ErrorCodeEditor()
         {
             InitializeComponent();
@@ -147,7 +147,7 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
             return -1;
         }
 
-        private void codeContent_TextChanged(object sender, EventArgs e)
+        private void CodeContent_TextChanged(object sender, EventArgs e)
         {
             if (ValidateField())
             {
@@ -189,17 +189,17 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
             }
         }
 
-        private void materialButton2_Click(object sender, EventArgs e)
+        private void MaterialButton2_Click(object sender, EventArgs e)
         {
             codeContent.Text = "RRRRRRRRRRRRRRRR";
         }
 
-        private void materialButton1_Click(object sender, EventArgs e)
+        private void MaterialButton1_Click(object sender, EventArgs e)
         {
             codeContent.Text = "0000000000000000";
         }
 
-        private void materialButton3_Click(object sender, EventArgs e)
+        private void MaterialButton3_Click(object sender, EventArgs e)
         {
             if (ValidateField())
             {
@@ -211,7 +211,7 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
             }
         }
 
-        private void materialButton4_Click(object sender, EventArgs e)
+        private void MaterialButton4_Click(object sender, EventArgs e)
         {
             if (ValidateField())
             {

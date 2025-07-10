@@ -25,10 +25,10 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
             HideAllProps();
             MessageView.Clear();
             UpdateMessageView();
-            if (Program.f2.nightThemeToolStripMenuItem.Checked)
+            if (Program.F2.nightThemeToolStripMenuItem.Checked)
             {
-                this.BackColor = Color.Black;
-                this.ForeColor = Color.Gray;
+                BackColor = Color.Black;
+                ForeColor = Color.Gray;
                 MessageView.BackColor = Color.Black;
                 MessageView.ForeColor = Color.Gray;
                 MessageView.GridLines = false;
@@ -210,7 +210,7 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
                 string selection = MessageView.SelectedItems[0].Text;
                 if (selection == "Horizontal margin")
                 {
-                    this.type = "margin-x";
+                    type = "margin-x";
                     secondsLabel.Text = "%";
                     timeoutProps.Visible = true;
                     timeoutBox.Text = me.GetInt("margin-x").ToString();
@@ -218,7 +218,7 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
                 }
                 else if (selection == "Vertical margin")
                 {
-                    this.type = "margin-y";
+                    type = "margin-y";
                     secondsLabel.Text = "%";
                     timeoutProps.Visible = true;
                     timeoutBox.Text = me.GetInt("margin-y").ToString();
@@ -226,8 +226,8 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
                 }
                 else if (selection.StartsWith("Title: "))
                 {
-                    this.type = "title";
-                    this.editable = MessageView.SelectedItems[0].Text.Substring(7);
+                    type = "title";
+                    editable = MessageView.SelectedItems[0].Text.Substring(7);
                     stringEditor.Text = MessageView.SelectedItems[0].SubItems[1].Text;
                     HideAllProps();
                     stringProps.Visible = true;
@@ -235,8 +235,8 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
                 }
                 else if (selection.StartsWith("Text: "))
                 {
-                    this.type = "text";
-                    this.editable = MessageView.SelectedItems[0].Text.Substring(6);
+                    type = "text";
+                    editable = MessageView.SelectedItems[0].Text.Substring(6);
                     stringEditor.Text = MessageView.SelectedItems[0].SubItems[1].Text;
                     HideAllProps();
                     stringProps.Visible = true;
@@ -256,8 +256,8 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
                 }
                 else if (selection.StartsWith("String: "))
                 {
-                    this.type = "string";
-                    this.editable = MessageView.SelectedItems[0].Text.Substring(8).ToLower();
+                    type = "string";
+                    editable = MessageView.SelectedItems[0].Text.Substring(8).ToLower();
                     stringEditor.Text = MessageView.SelectedItems[0].SubItems[1].Text;
                     HideAllProps();
                     stringProps.Visible = true;
@@ -265,8 +265,8 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
                 }
                 else if (selection == "Background color")
                 {
-                    this.theme_bg = true;
-                    this.theme_hl = false;
+                    theme_bg = true;
+                    theme_hl = false;
                     colorPreview.BackColor = me.GetTheme(true);
                     HideAllProps();
                     colorProps.Visible = true;
@@ -274,8 +274,8 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
                 }
                 else if (selection == "Foreground color")
                 {
-                    this.theme_bg = false;
-                    this.theme_hl = false;
+                    theme_bg = false;
+                    theme_hl = false;
                     colorPreview.BackColor = me.GetTheme(false);
                     HideAllProps();
                     colorProps.Visible = true;
@@ -283,8 +283,8 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
                 }
                 else if (selection == "Highlight background")
                 {
-                    this.theme_bg = true;
-                    this.theme_hl = true;
+                    theme_bg = true;
+                    theme_hl = true;
                     colorPreview.BackColor = me.GetTheme(true, true);
                     HideAllProps();
                     colorProps.Visible = true;
@@ -292,8 +292,8 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
                 }
                 else if (selection == "Highlight foreground")
                 {
-                    this.theme_bg = false;
-                    this.theme_hl = true;
+                    theme_bg = false;
+                    theme_hl = true;
                     colorPreview.BackColor = me.GetTheme(false, true);
                     HideAllProps();
                     colorProps.Visible = true;
@@ -376,19 +376,19 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
         {
             if (stringProps.Visible)
             {
-                if (this.type == "title")
+                if (type == "title")
                 {
                     me.SetTitle(editable, stringEditor.Text);
                     MessageView.Clear();
                     UpdateMessageView();
                 }
-                else if (this.type == "text")
+                else if (type == "text")
                 {
                     me.SetText(editable, stringEditor.Text);
                     MessageView.Clear();
                     UpdateMessageView();
                 }
-                else if (this.type == "string")
+                else if (type == "string")
                 {
                     me.SetString(editable, stringEditor.Text);
                     MessageView.Clear();
@@ -424,7 +424,7 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void TrackBar1_Scroll(object sender, EventArgs e)
@@ -519,7 +519,7 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
             MessageBox.Show("They have been moved to a new location. The new location is Settings > Simulator settings > Save/Load configurations", "About the save and load button", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void autoRadio_CheckedChanged(object sender, EventArgs e)
+        private void AutoRadio_CheckedChanged(object sender, EventArgs e)
         {
             if (autoRadio.Checked)
             {
@@ -528,7 +528,7 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
             }
         }
 
-        private void manualRadio_CheckedChanged(object sender, EventArgs e)
+        private void ManualRadio_CheckedChanged(object sender, EventArgs e)
         {
             if (manualRadio.Checked)
             {
@@ -546,13 +546,13 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
             }
         }
 
-        private void bugcheckPreview_Paint(object sender, PaintEventArgs e)
+        private void BugcheckPreview_Paint(object sender, PaintEventArgs e)
         {
-            this.BringToFront();
-            this.Activate();
+            BringToFront();
+            Activate();
         }
 
-        private void updatePreviewCheck_CheckedChanged(object sender, EventArgs e)
+        private void UpdatePreviewCheck_CheckedChanged(object sender, EventArgs e)
         {
             if (updatePreviewCheck.Checked)
             {

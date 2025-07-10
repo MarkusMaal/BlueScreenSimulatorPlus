@@ -8,7 +8,7 @@ namespace UltimateBlueScreenSimulator
 {
     public partial class BootMgr : Form
     {
-        private bool naturalclose = false;
+        private readonly bool naturalclose = false;
         internal BlueScreen me;
         private int moves = 0;
         public BootMgr()
@@ -30,12 +30,12 @@ namespace UltimateBlueScreenSimulator
         {
             if (e.KeyCode == Keys.Escape)
             {
-                this.Close();
+                Close();
             }
             else if (e.KeyCode == Keys.Enter)
             {
-                this.Close();
-            } else if (e.KeyCode == Keys.F7) { this.Close(); }
+                Close();
+            } else if (e.KeyCode == Keys.F7) { Close(); }
             else if ((e.KeyCode == Keys.F2) && me.GetBool("windowed"))
             {
                 string output = Program.dr.Screenshot(this);
@@ -48,13 +48,13 @@ namespace UltimateBlueScreenSimulator
         {
             try
             {
-                this.Icon = me.GetIcon();
-                this.Text = me.GetString("friendlyname");
+                Icon = me.GetIcon();
+                Text = me.GetString("friendlyname");
                 Color bg = me.GetTheme(true);
                 Color fg = me.GetTheme(false);
                 Color hbg = me.GetTheme(true, true);
                 Color hfg = me.GetTheme(false, true);
-                this.BackColor = bg; this.ForeColor = fg;
+                BackColor = bg; ForeColor = fg;
                 IDictionary<string, string> txt = me.GetTexts();
                 IDictionary<string, string> titles = me.GetTitles();
                 //this.Font = me.GetFont();
@@ -71,42 +71,42 @@ namespace UltimateBlueScreenSimulator
                 bootmgrStatusCode.BackColor = hbg != bg ? hbg : Color.Transparent; bootmgrStatusCode.ForeColor = hfg; bootmgrStatusCode.Text = me.GetString("code").ToLower();
                 bootmgrInfoDetails.BackColor = hbg != bg ? hbg : Color.Transparent; bootmgrInfoDetails.ForeColor = hfg; bootmgrInfoDetails.Text = txt["Error description"];
 
-                this.TopMost = false;
+                TopMost = false;
                 if (me.GetBool("rainbow"))
                 {
                     Program.dr.DrawRainbow(this);
                 }
                 Program.loadfinished = true;
-                if (!me.GetBool("windowed") && (this.Opacity != 0.0))
+                if (!me.GetBool("windowed") && (Opacity != 0.0))
                 {
                     Program.dr.Init(this);
                 } else
                 {
-                    this.Text = me.GetString("friendlyname");
-                    this.Icon = me.GetIcon();
-                    this.FormBorderStyle = FormBorderStyle.FixedSingle;
+                    Text = me.GetString("friendlyname");
+                    Icon = me.GetIcon();
+                    FormBorderStyle = FormBorderStyle.FixedSingle;
                 }
-                this.waterMarkText.Visible = me.GetBool("watermark");
-                int[] colors = { this.BackColor.R + 50, this.BackColor.G + 50, this.BackColor.B + 50 };
+                waterMarkText.Visible = me.GetBool("watermark");
+                int[] colors = { BackColor.R + 50, BackColor.G + 50, BackColor.B + 50 };
                 if (colors[0] > 255) { colors[0] -= 255; }
                 if (colors[1] > 255) { colors[1] -= 255; }
                 if (colors[2] > 255) { colors[2] -= 255; }
                 waterMarkText.ForeColor = Color.FromArgb(colors[0], colors[1], colors[2]);
-                this.Hide();
+                Hide();
             } catch (Exception ex)
             {
                 Program.loadfinished = true;
                 screenUpdater.Enabled = false;
-                this.Hide();
+                Hide();
                 if (Program.gs.EnableEggs) { me.Crash(ex, "OrangeScreen"); }
                 else { MessageBox.Show("The crash screen cannot be displayed due to an error.\n\n" + ex.Message + "\n\n" + ex.StackTrace, "E R R O R", MessageBoxButtons.OK, MessageBoxIcon.Error); }
-                this.Close();
+                Close();
             }
         }
 
         private void UpdateScreen(object sender, EventArgs e)
         {
-            if (this.Opacity != 0.0)
+            if (Opacity != 0.0)
             {
                 Program.dr.DrawAll();
             }
@@ -130,7 +130,7 @@ namespace UltimateBlueScreenSimulator
             moves++;
             if (moves > 50 && Program.isScreensaver && Program.gs.MouseMoveExit)
             {
-                this.Close();
+                Close();
             }
         }
     }

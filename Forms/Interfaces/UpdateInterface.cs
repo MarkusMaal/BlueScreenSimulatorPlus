@@ -14,13 +14,13 @@ namespace UltimateBlueScreenSimulator
     public partial class UpdateInterface : MaterialForm
     {
         public bool finalize = false;
-        WebClient webClient;               // Our WebClient that will be doing the downloading for us
-        readonly Stopwatch sw = new Stopwatch();    // The stopwatch which we will be using to calculate the download speed
-        string GoodHash = "6ABA5BC55589EE8D64E30B36596E5517";
+        private WebClient webClient;               // Our WebClient that will be doing the downloading for us
+        private readonly Stopwatch sw = new Stopwatch();    // The stopwatch which we will be using to calculate the download speed
+        private string GoodHash = "6ABA5BC55589EE8D64E30B36596E5517";
 
         public UpdateInterface()
         {
-            MaterialSkinManager materialSkinManager = Program.f1.materialSkinManager;
+            MaterialSkinManager materialSkinManager = Program.F1.materialSkinManager;
             materialSkinManager.AddFormToManage(this);
             InitializeComponent();
             Font = new Font(Font.Name, 8.25f * 96f / CreateGraphics().DpiX, Font.Style, Font.Unit, Font.GdiCharSet, Font.GdiVerticalFont);
@@ -99,6 +99,9 @@ namespace UltimateBlueScreenSimulator
         private void ProgressChanged(object sender, DownloadProgressChangedEventArgs e)
         {
             // Calculate download speed and output it to labelSpeed.
+            if (!this.Visible) {
+                return;
+            }
             dloadState.Text = string.Format("{0} KB downloaded (Transfer rate: {1} kb/s)", (e.BytesReceived / 1024d).ToString("0.00"), (e.BytesReceived / 1024d / sw.Elapsed.TotalSeconds).ToString("0.00"));
 
             // Update the progressbar percentage only when the value is not the same.
@@ -162,7 +165,7 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        void SetStatus(PictureBox pb, string status)
+        private void SetStatus(PictureBox pb, string status)
         {
             if (status == "Success")
             {
@@ -187,7 +190,7 @@ namespace UltimateBlueScreenSimulator
             updateProgress.Visible = false;
             hashWait.Enabled = false;
             MD5 d5 = MD5.Create();
-            Byte[] hash = d5.ComputeHash(File.ReadAllBytes("BSSP.exe"));
+            byte[] hash = d5.ComputeHash(File.ReadAllBytes("BSSP.exe"));
             string comparate = BitConverter.ToString(hash).Replace("-", "").ToLowerInvariant();
             if (comparate.ToUpper() == GoodHash)
             {
@@ -207,9 +210,9 @@ namespace UltimateBlueScreenSimulator
                 } else
                 {
                     SetStatus(Launchstatus, "Processing");
-                    Program.f1.Show();
-                    this.Hide();
-                    this.Close();
+                    Program.F1.Show();
+                    Hide();
+                    Close();
                 }
             }
         }
@@ -222,8 +225,8 @@ namespace UltimateBlueScreenSimulator
             p.StartInfo.FileName = "BSSP.exe";
             p.StartInfo.Arguments = "/finalize_update";
             p.Start();
-            Program.f1.Close();
-            this.Close();
+            Program.F1.Close();
+            Close();
         }
 
         private void CleanWait_Tick(object sender, EventArgs e)
@@ -250,7 +253,7 @@ namespace UltimateBlueScreenSimulator
             p.StartInfo.FileName = "finish.bat";
             p.StartInfo.WorkingDirectory = Environment.CurrentDirectory;
             p.Start();
-            this.Close();
+            Close();
         }
 
         private void BlinkBlink_Tick(object sender, EventArgs e)

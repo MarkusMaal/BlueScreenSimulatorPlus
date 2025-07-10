@@ -27,7 +27,7 @@ namespace UltimateBlueScreenSimulator
 
         public readonly bool betabuild = false;
         public bool abopen = false;
-        bool doubleCheck = false;
+        private bool doubleCheck = false;
 
         public NewUI()
         {
@@ -63,10 +63,6 @@ namespace UltimateBlueScreenSimulator
         {
             RelocateButtons();
             aboutSettingsButton.Visible = Program.gs.DevBuild;
-            if (!Program.gs.DevBuild)
-            {
-                materialTabControl1.TabPages.Remove(materialTabControl1.TabPages["tabPage5"]);
-            }
             UIActions.InitializeForm(this);
             try
             {
@@ -81,29 +77,33 @@ namespace UltimateBlueScreenSimulator
             catch
             {
                 Program.gs.Log("Error", "Error detecting dark mode. It's possible that this host OS does not support dark mode.");
-                this.Enabled = true;
+                Enabled = true;
             }
             Program.gs.ApplyScheme();
+            if (Program.gs.AutoUpdate)
+            {
+                UIActions.CheckUpdates(this);
+            }
         }
 
         private void NewUi1_ResizeEnd(object sender, EventArgs e)
         {
             int sub = 90;
-            this.errorCode.Width = this.Width - sub;
-            WXOptions.Width = this.Width - sub;
-            ntPanel.Width = this.Width - sub;
-            nineXmessage.Width = this.Width - sub;
-            winPanel.Width = this.Width - sub;
-            errorCode.Width = this.Width - sub;
-            flowLayoutPanel4.Width = this.Width - sub;
+            errorCode.Width = Width - sub;
+            WXOptions.Width = Width - sub;
+            ntPanel.Width = Width - sub;
+            nineXmessage.Width = Width - sub;
+            winPanel.Width = Width - sub;
+            errorCode.Width = Width - sub;
+            flowLayoutPanel4.Width = Width - sub;
             RelocateButtons();
         }
 
 
-        private void windowVersion_SelectedIndexChanged(object sender, EventArgs e)
+        private void WindowVersion_SelectedIndexChanged(object sender, EventArgs e)
         {
             quickHelp.Active = Program.gs.QuickHelp;
-            if (this.Visible)
+            if (Visible)
             {
                 UIActions.HideSelection(this);
             }
@@ -154,7 +154,7 @@ namespace UltimateBlueScreenSimulator
             return cloned;
         }
 
-        private void materialFloatingActionButton1_Click(object sender, EventArgs e)
+        private void MaterialFloatingActionButton1_Click(object sender, EventArgs e)
         {
             if (materialTabControl1.SelectedTab.Text == "Prank mode")
             {
@@ -229,7 +229,7 @@ namespace UltimateBlueScreenSimulator
             UIActions.Crash(this);
         }
 
-        private void materialButton3_Click(object sender, EventArgs e)
+        private void MaterialButton3_Click(object sender, EventArgs e)
         {
             ChooseFile cf = new ChooseFile();
             if (cf.ShowDialog() == DialogResult.OK)
@@ -239,7 +239,7 @@ namespace UltimateBlueScreenSimulator
             cf.Dispose();
         }
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
+        private void TextBox2_TextChanged(object sender, EventArgs e)
         {
             if (Program.gs.EnableEggs)
             {
@@ -277,10 +277,10 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void materialFloatingActionButton2_Click(object sender, EventArgs e)
+        private void MaterialFloatingActionButton2_Click(object sender, EventArgs e)
         {
             Program.loadfinished = false;
-            BlueScreen bs = UIActions.RandFunction(this, ModifierKeys.HasFlag(Keys.Shift));
+            UIActions.RandFunction(this, ModifierKeys.HasFlag(Keys.Shift));
             
             /*if (MessageBox.Show("Save this configuration?", "I'm feeling unlucky", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
@@ -292,7 +292,7 @@ namespace UltimateBlueScreenSimulator
             //button1.PerformClick();
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (UIActions.me is null) { return; }
             UIActions.me.SetString("code", comboBox1.SelectedItem.ToString());
@@ -339,7 +339,7 @@ namespace UltimateBlueScreenSimulator
             logIf.Text = filteredLog.ToString();
         }
 
-        private void materialTabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        private void MaterialTabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
             label7.Visible = false;
             button1.Visible = false;
@@ -394,7 +394,7 @@ namespace UltimateBlueScreenSimulator
                     materialTabControl1.TabPages[0].Show();
                     if (MessageBox.Show("The old UI doesn't have all of the new features. Do you still want to continue?.", "Restore old layout", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                     {
-                        this.Hide();
+                        Hide();
                         Main m = new Main();
                         m.Show();
                     }
@@ -402,12 +402,12 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        private void ComboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
             UIActions.me.SetString("screen_mode", comboBox2.SelectedItem.ToString());
         }
 
-        private void win1startup_CheckedChanged(object sender, EventArgs e)
+        private void Win1startup_CheckedChanged(object sender, EventArgs e)
         {
             if (win1startup.Checked)
             {
@@ -423,7 +423,7 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void advOptionsButton_Click(object sender, EventArgs e)
+        private void AdvOptionsButton_Click(object sender, EventArgs e)
         {
             if (Program.gs.EnableEggs)
             {
@@ -472,7 +472,7 @@ namespace UltimateBlueScreenSimulator
             bh.Show();
         }
 
-        private void eCodeEditButton_Click(object sender, EventArgs e)
+        private void ECodeEditButton_Click(object sender, EventArgs e)
         {
             if (Program.gs.EnableEggs)
             {
@@ -483,6 +483,11 @@ namespace UltimateBlueScreenSimulator
                     return;
                 }
             }
+            if (UIActions.me == null)
+            {
+                return;
+            }
+
             ErrorCodeEditor iform = new ErrorCodeEditor
             {
                 me = UIActions.me,
@@ -494,7 +499,7 @@ namespace UltimateBlueScreenSimulator
             iform.Show();
         }
 
-        private void advNTButton_Click(object sender, EventArgs e)
+        private void AdvNTButton_Click(object sender, EventArgs e)
         {
             int backup = windowVersion.SelectedIndex;
             NTdtor iform = new NTdtor
@@ -507,11 +512,13 @@ namespace UltimateBlueScreenSimulator
             windowVersion.SelectedIndex = backup;
         }
 
-        private void progressTuneButton_Click(object sender, EventArgs e)
+        private void ProgressTuneButton_Click(object sender, EventArgs e)
         {
-            ProgressTuner pt = new ProgressTuner();
-            pt.KFrames = UIActions.me.AllProgress();
-            pt.Text = string.Format("Progress tuner - {0}", UIActions.me.GetString("friendlyname"));
+            ProgressTuner pt = new ProgressTuner
+            {
+                KFrames = UIActions.me.AllProgress(),
+                Text = string.Format("Progress tuner - {0}", UIActions.me.GetString("friendlyname"))
+            };
             if (pt.KFrames.Count > 0)
             {
                 pt.progressTrackBar.RangeMax = UIActions.me.GetInt("progressmillis");
@@ -527,7 +534,7 @@ namespace UltimateBlueScreenSimulator
             pt.Dispose();
         }
 
-        private void quickHelp_Popup(object sender, PopupEventArgs e)
+        private void QuickHelp_Popup(object sender, PopupEventArgs e)
         {
             if (e.AssociatedControl != null)
             {
@@ -563,111 +570,11 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void materialButton6_Click(object sender, EventArgs e)
+        private void MaterialButton6_Click(object sender, EventArgs e)
         {
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 File.WriteAllText(saveFileDialog1.FileName, Program.gs.GetLog(false), Encoding.Unicode);
-            }
-        }
-
-        private void updateCheckerTimer_Tick(object sender, EventArgs e)
-        {
-
-            if (System.IO.File.Exists("BSSP.exe"))
-            {
-                updateCheckerTimer.Enabled = false;
-                //MessageBox.Show("Thank you for installing the latest version of Blue screen simulator plus :)\n\nWhat's new?\n" + Program.changelog + "\n\nYou can find a more detailed changelog in the official BlueScreenSimulatorPlus GitHub page.", "Update was successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                int tries = 0;
-                while (System.IO.File.Exists("BSSP.exe"))
-                {
-                    tries += 1;
-                    try
-                    {
-                        System.IO.File.Move("BSSP.exe", Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\BSSP_old.exe");
-                        System.IO.File.Delete(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\BSSP_old.exe");
-                    }
-                    catch
-                    {
-                        //yo
-                    }
-                    if (tries > 64)
-                    {
-                        break;
-                    }
-                }
-            }
-            try
-            {
-                if (System.IO.File.Exists(Program.prefix + "vercheck.txt"))
-                {
-                    updateCheckButton.Enabled = true;
-                    updateCheckButton.Text = "Check for updates";
-                    string[] lines = System.IO.File.ReadAllLines(Program.prefix + "vercheck.txt");
-                    if (Convert.ToDouble(lines[0].Replace(".", ",").Replace("\r", "").Replace("\n", "").Trim()) > Convert.ToDouble(UIActions.version.Replace(".", ",")))
-                    {
-                        updateCheckerTimer.Enabled = false;
-                        System.IO.File.Delete(Program.prefix + "vercheck.txt");
-                        if (MessageBox.Show("A new version of blue screen simulator is available. Would you like to update now?", "Update available", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                        {
-                            System.IO.File.WriteAllText("hash.txt", lines[1].Trim());
-                            if (Program.gs.PostponeUpdate == false)
-                            {
-                                UpdateInterface ui = new UpdateInterface();
-                                ui.Show();
-                                this.Hide();
-                            }
-                            else
-                            {
-                                Program.gs.UpdateAfterExit = true;
-                                MessageBox.Show("The update has been postponed to install when the program is closed.");
-                            }
-                        }
-                    }
-                    else
-                    {
-                        if (updateCheckerTimer.Interval == 5999)
-                        {
-                            updateCheckerTimer.Interval = 6000;
-                            updateCheckerTimer.Enabled = false;
-                            System.IO.File.Delete(Program.prefix + "vercheck.txt");
-                            if (MessageBox.Show("A new version of blue screen simulator is available. Would you like to update now?", "Update available", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                            {
-                                System.IO.File.WriteAllText("hash.txt", lines[1].Trim());
-                                if (Program.gs.PostponeUpdate == false)
-                                {
-                                    UpdateInterface ui = new UpdateInterface();
-                                    ui.Show();
-                                    this.Hide();
-                                }
-                                else
-                                {
-                                    Program.gs.UpdateAfterExit = true;
-                                    MessageBox.Show("The update has been postponed to install when the program is closed.");
-                                }
-                            }
-                        }
-                        else if (updateCheckerTimer.Interval == 5998)
-                        {
-                            updateCheckerTimer.Interval = 6000;
-                            updateCheckerTimer.Enabled = false;
-                            MessageBox.Show("This version of blue screen simulator plus is up to date", "Blue screens simulator plus", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
-                        else
-                        {
-                            System.IO.File.Delete(Program.prefix + "vercheck.txt");
-                        }
-                    }
-                }
-            }
-            catch (Exception ex) when (!Debugger.IsAttached)
-            {
-
-                if (updateCheckerTimer.Interval != 6000)
-                {
-                    MessageBox.Show("An error has occoured.\n\nFatal exception: " + ex.Message + "\n\nStack trace\n" + ex.StackTrace, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                updateCheckerTimer.Enabled = false;
             }
         }
 
@@ -701,7 +608,7 @@ namespace UltimateBlueScreenSimulator
                 {
                     UpdateInterface ui = new UpdateInterface();
                     ui.Show();
-                    this.Hide();
+                    Hide();
                     Program.gs.UpdateAfterExit = false;
                     e.Cancel = true;
                 }
@@ -720,7 +627,7 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void prankModeTimer_Tick(object sender, EventArgs e)
+        private void PrankModeTimer_Tick(object sender, EventArgs e)
         {
             if (Program.gs.PM_Timecatch)
             {
@@ -795,7 +702,7 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void waitPopup_Tick(object sender, EventArgs e)
+        private void WaitPopup_Tick(object sender, EventArgs e)
         {
             if (!UIActions.bsod_starter.IsAlive)
             {
@@ -803,7 +710,7 @@ namespace UltimateBlueScreenSimulator
                 {
                     waitPopup.Enabled = false;
                     this.WindowState = FormWindowState.Normal;
-                    Program.f1.Show();
+                    Program.F1.Show();
                 }
                 else
                 {
@@ -845,7 +752,7 @@ namespace UltimateBlueScreenSimulator
             if (Program.verificate)
             {
                 // to prevent race conditions
-                Program.clip.ExitSplash(this);
+                Program.clip.ExitSplash();
             }
             this.TopMost = true;
             this.TopMost = false;
@@ -855,14 +762,16 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void customizeCodesButton_Click(object sender, EventArgs e)
+        private void CustomizeCodesButton_Click(object sender, EventArgs e)
         {
-            MessageTableEditor mte = new MessageTableEditor();
-            mte.nt_errors = true;
+            MessageTableEditor mte = new MessageTableEditor
+            {
+                nt_errors = true
+            };
             mte.ShowDialog();
         }
 
-        private void blackScreenBox_MouseHover(object sender, EventArgs e)
+        private void BlackScreenBox_MouseHover(object sender, EventArgs e)
         {
             if (sender is MaterialCheckbox)
             {
@@ -878,7 +787,7 @@ namespace UltimateBlueScreenSimulator
         }
 
 
-        private void embedExeButton_Click(object sender, EventArgs e)
+        private void EmbedExeButton_Click(object sender, EventArgs e)
         {
             string filter_backup = saveFileDialog1.Filter;
             saveFileDialog1.Filter = "Windows Executables|*.exe|Windows screensaver files|*.scr";
@@ -915,8 +824,7 @@ namespace UltimateBlueScreenSimulator
                 using (BinaryReader reader = new BinaryReader(new FileStream(tempname, FileMode.Open)))
                 {
                     byte[] buffer = new byte[1];
-                    int bytesRead;
-                    while ((bytesRead = reader.Read(buffer, 0, buffer.Length)) > 0)
+                    while ((_ = reader.Read(buffer, 0, buffer.Length)) > 0)
                     {
                         data.AddRange(buffer);
                     }
@@ -933,13 +841,12 @@ namespace UltimateBlueScreenSimulator
                 data.AddRange(Encoding.UTF8.GetBytes(jsonEmbed));
                 File.WriteAllBytes(saveFileDialog1.FileName, data.ToArray());
                 data.Clear();
-                data = null;
                 MessageBox.Show("Executable saved successfully!", "Create embedded executable", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             saveFileDialog1.Filter = filter_backup;
         }
 
-        private void nineXErrorCode_SelectedIndexChanged(object sender, EventArgs e)
+        private void NineXErrorCode_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (UIActions.me != null)
             {
@@ -956,7 +863,7 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void materialButton2_Click(object sender, EventArgs e)
+        private void MaterialButton2_Click(object sender, EventArgs e)
         {
             new MessageTableEditor
             {
@@ -981,12 +888,12 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void traceFatalCheck_CheckedChanged(object sender, EventArgs e)
+        private void TraceFatalCheck_CheckedChanged(object sender, EventArgs e)
         {
             FilterLog();
         }
 
-        private void aboutSettingsButton_Click(object sender, EventArgs e)
+        private void AboutSettingsButton_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Are you sure?", "Demo mode", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
@@ -1005,22 +912,22 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void generalCheckUncheck(object sender, EventArgs e)
+        private void GeneralCheckUncheck(object sender, EventArgs e)
         {
             UIActions.UpdateBool(this, (MaterialCheckbox)sender);
         }
 
-        private void materialButton3_Click_1(object sender, EventArgs e)
+        private void MaterialButton3_Click_1(object sender, EventArgs e)
         {
 
         }
 
-        private void whyNoDeviceButton_Click(object sender, EventArgs e)
+        private void WhyNoDeviceButton_Click(object sender, EventArgs e)
         {
             PrankModeActions.USBTroubleshoot(sender, e);
         }
 
-        private void cancelButton_Click(object sender, EventArgs e)
+        private void CancelButton_Click(object sender, EventArgs e)
         {
             Forms.Legacy.PrankMode pm = new Forms.Legacy.PrankMode();
             pm.Show();
@@ -1094,7 +1001,7 @@ namespace UltimateBlueScreenSimulator
             PrankModeActions.ToggleVisible(UIActions.GenerateControlDictionary(new Control[] { timePanel, timerBox, timeRadio, appRadio, triggerAppBox, usbRadio, usbPanel, resetDeviceButton, appPanel }), usbFinder);
         }
 
-        private void usbFinder_Tick(object sender, EventArgs e)
+        private void UsbFinder_Tick(object sender, EventArgs e)
         {
             PrankModeActions.TimerTick(deviceInfoLabel, resetDeviceButton, usbFinder);
         }
@@ -1124,27 +1031,27 @@ namespace UltimateBlueScreenSimulator
             }));
         }
 
-        private void previewFriendlyMessageButton_Click(object sender, EventArgs e)
+        private void PreviewFriendlyMessageButton_Click(object sender, EventArgs e)
         {
             PrankModeActions.ShowMessage();
         }
 
-        private void closePrank_CheckedChanged(object sender, EventArgs e)
+        private void ClosePrank_CheckedChanged(object sender, EventArgs e)
         {
             PrankModeActions.ReopenCheckedChanged(closePrank);
         }
 
-        private void resetDeviceButton_Click(object sender, EventArgs e)
+        private void ResetDeviceButton_Click(object sender, EventArgs e)
         {
             PrankModeActions.USBReset(deviceInfoLabel, resetDeviceButton, usbFinder);
         }
 
-        private void letCloseBox_CheckedChanged(object sender, EventArgs e)
+        private void LetCloseBox_CheckedChanged(object sender, EventArgs e)
         {
             PrankModeActions.LetCloseBox_CheckedChanged(letCloseBox);
         }
 
-        private void materialTabControl2_SelectedIndexChanged(object sender, EventArgs e)
+        private void MaterialTabControl2_SelectedIndexChanged(object sender, EventArgs e)
         {
             SettingsActions.TabSwitcher(UIActions.GenerateControlDictionary(new Control[]
             {
@@ -1155,9 +1062,9 @@ namespace UltimateBlueScreenSimulator
             }));
         }
 
-        private void updateCheckButton_Click(object sender, EventArgs e)
+        private void UpdateCheckButton_Click(object sender, EventArgs e)
         {
-            SettingsActions.CheckForUpdates(updateCheckButton, updateCheckerTimer);
+            SettingsActions.CheckForUpdates(updateCheckButton);
         }
 
         private void UpdateSettings(object sender, EventArgs e)
@@ -1171,17 +1078,17 @@ namespace UltimateBlueScreenSimulator
             }));
         }
 
-        private void materialButton24_Click(object sender, EventArgs e)
+        private void MaterialButton24_Click(object sender, EventArgs e)
         {
             SettingsActions.RandomTheme(accentBox, primaryColorBox);
         }
 
-        private void materialButton25_Click(object sender, EventArgs e)
+        private void MaterialButton25_Click(object sender, EventArgs e)
         {
             SettingsActions.DefaultTheme(accentBox, primaryColorBox);
         }
 
-        private void configList_SelectedIndexChanged(object sender, MaterialListBoxItem selectedItem)
+        private void ConfigList_SelectedIndexChanged(object sender, MaterialListBoxItem selectedItem)
         {
             SettingsActions.ConfigSelector(resetButton, resetHackButton, removeCfg, configList, osName, selectedItem);
         }
@@ -1191,7 +1098,7 @@ namespace UltimateBlueScreenSimulator
             SettingsActions.ChangeUpdateServer((Control)sender, primaryServerBox);
         }
 
-        private void selectAllBox_CheckedChanged(object sender, EventArgs e)
+        private void SelectAllBox_CheckedChanged(object sender, EventArgs e)
         {
             resetHackButton.Enabled = selectAllBox.Checked;
             resetButton.Enabled = selectAllBox.Checked;
@@ -1221,7 +1128,7 @@ namespace UltimateBlueScreenSimulator
             SettingsActions.SimulatorSettingsAction(this, (Control)sender, configList, loadBsconfig, saveBsconfig);
         }
 
-        private void rtlSwitch_CheckedChanged(object sender, EventArgs e)
+        private void RtlSwitch_CheckedChanged(object sender, EventArgs e)
         {
             this.RightToLeft = rtlSwitch.Checked ? RightToLeft.Yes : RightToLeft.Inherit;
         }
@@ -1265,8 +1172,8 @@ namespace UltimateBlueScreenSimulator
                     }
                     if ((filename != "") && MessageBox.Show("Are you sure?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                     {
-                        this.Hide();
-                        Program.f1.Hide();
+                        Hide();
+                        Program.F1.Hide();
                         jsonString = Program.GetEmbedded(filename);
                         if (jsonString != "")
                         {
@@ -1284,9 +1191,11 @@ namespace UltimateBlueScreenSimulator
                             }
                             else
                             {
-                                tv = new TextView();
-                                tv.Text = jsonString;
-                                tv.Title = "JSON data";
+                                tv = new TextView
+                                {
+                                    Text = jsonString,
+                                    Title = "JSON data"
+                                };
                                 tv.ShowDialog();
                             }
                         }
@@ -1294,13 +1203,13 @@ namespace UltimateBlueScreenSimulator
                         {
                             MessageBox.Show("No embedded data was found.", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         }
-                        Program.f1.Show();
-                        this.Show();
-                        this.BringToFront();
+                        Program.F1.Show();
+                        Show();
+                        BringToFront();
                     }
                     loadBsconfig.Filter = backup;
                     loadBsconfig.FileName = "";
-                    this.Enabled = true;
+                    Enabled = true;
                     break;
                 case "devNewAllButton":
                         Program.templates.Reset();
@@ -1327,11 +1236,10 @@ namespace UltimateBlueScreenSimulator
                 case "devSplashButton":
                     Splash spl = new Splash();
                     spl.SplashText.Text = "Idling. Press ESC to exit.";
-                    spl.veriFileTimer.Enabled = false;
                     spl.Show();
                     break;
                 case "devSerialize":
-                    var options = new JsonSerializerOptions { WriteIndented = true };
+                    JsonSerializerOptions options = new JsonSerializerOptions { WriteIndented = true };
                     jsonString = JsonSerializer.Serialize(Program.templates, options);
                     tv = new TextView
                     {
@@ -1353,7 +1261,7 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void configList_DoubleClick(object sender, EventArgs e)
+        private void ConfigList_DoubleClick(object sender, EventArgs e)
         {
             AddBluescreen ab = new AddBluescreen();
             BlueScreen me = Program.templates.GetAt(configList.SelectedIndex);

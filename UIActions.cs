@@ -2,7 +2,9 @@
 using System.Buffers.Binary;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Security.Cryptography;
@@ -35,7 +37,7 @@ namespace UltimateBlueScreenSimulator
         {
             //hide all controls
             FlowLayoutPanel container = ((FlowLayoutPanel)FindControl(f, "flowLayoutPanel1"));
-            if (f is FlowLayoutPanel panel) container = panel;
+            if (f is FlowLayoutPanel panel) { container = panel; }
             if (container is null)
             {
                 return;
@@ -440,14 +442,14 @@ namespace UltimateBlueScreenSimulator
             {
                 SetControlVisible(fp, s, true);
             }
-            bool inlist = false;
+            /*bool inlist = false;
             foreach (string item in ((ComboBox)FindControl(fp.Controls["errorCode"], "comboBox1")).Items)
             {
                 if (item == me.GetString("code"))
                 {
                     inlist = true;
                 }
-            }
+            }*/
             if (fp.Controls["nineXmessage"].Visible)
             {
                 ((ComboBox)FindControl(fp, "comboBox2")).Items.Clear();
@@ -689,8 +691,8 @@ namespace UltimateBlueScreenSimulator
             SetControlVisible(f, "ntPanel", false);
             SetControlEnabled(f, "checkBox2", true);
             if (((ComboBox)FindControl(f, "windowVersion")).Items.Count > 0) { ((ComboBox)FindControl(f, "windowVersion")).SelectedIndex = 0; }
-            string winver = "";
-            int os_build = 0;
+            string winver;
+            int os_build;
             try
             {
                 winver = Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion", "ProductName", "").ToString();
@@ -733,7 +735,7 @@ namespace UltimateBlueScreenSimulator
         /// <param name="f">Name of the form, which to display the message for</param>
         private static void ProcessErrors(Form f)
         {
-            Program.clip.ExitSplash(f);
+            Program.clip.ExitSplash();
 
             switch (Program.gs.ErrorCode)
             {
@@ -962,7 +964,9 @@ namespace UltimateBlueScreenSimulator
         public static byte[] GetHash(string inputString)
         {
             using (HashAlgorithm algorithm = SHA256.Create())
+            {
                 return algorithm.ComputeHash(Encoding.UTF8.GetBytes(inputString));
+            }
         }
 
         /// <summary>
@@ -1005,6 +1009,117 @@ namespace UltimateBlueScreenSimulator
                 result[control.Name] = control;
             }
             return result;
+        }
+
+        private static bool IsFileInUseGeneric(FileInfo file)
+        {
+            try
+            {
+                using (FileStream stream = file.Open(FileMode.Open, FileAccess.Read, FileShare.None))
+                {
+                }
+            }
+            catch (IOException)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Performs an update check
+        /// </summary>
+        /// <param name="f">Form where the check is invoked from</param>
+        /// <param name="updateCheckButton">The "Check for updates" button</param>
+        public static void CheckUpdates(Form f, Control updateCheckButton = null)
+        {
+            UpdateInterface ui = new UpdateInterface();
+            new Thread(() => {
+                if (File.Exists("BSSP.exe"))
+                {
+                    //MessageBox.Show("Thank you for installing the latest version of Blue screen simulator plus :)\n\nWhat's new?\n" + Program.changelog + "\n\nYou can find a more detailed changelog in the official BlueScreenSimulatorPlus GitHub page.", "Update was successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    int tries = 0;
+                    while (File.Exists("BSSP.exe"))
+                    {
+                        tries += 1;
+                        try
+                        {
+                            File.Move("BSSP.exe", Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\BSSP_old.exe");
+                            File.Delete(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\BSSP_old.exe");
+                        }
+                        catch
+                        {
+                            //yo
+                        }
+                        if (tries > 64)
+                        {
+                            break;
+                        }
+                    }
+                    return;
+                }
+                try
+                {
+                    ui.DownloadFile(Program.gs.UpdateServer + "/bssp_version.txt", Program.prefix + "vercheck.txt");
+                    Thread.Sleep(500);
+                    while (IsFileInUseGeneric(new FileInfo(Program.prefix + "vercheck.txt")) || !File.Exists(Program.prefix + "vercheck.txt"))
+                    {
+                        Thread.Sleep(100);
+                    }
+                    if (updateCheckButton != null)
+                    {
+                        f.BeginInvoke(new MethodInvoker(delegate {
+                            updateCheckButton.Enabled = true;
+                            updateCheckButton.Text = "Check for updates";
+                        }));
+                    }
+                    string[] lines = new string[] { };
+                    using (StreamReader reader = new StreamReader(Program.prefix + "vercheck.txt"))
+                    {
+                        lines = reader.ReadToEnd().Split('\n');
+                        reader.Close();
+                    }
+                    if (((lines.Length > 3) || (lines.Length < 2)))
+                    {
+                        if (updateCheckButton != null)
+                        {
+                            MessageBox.Show("Update server didn't return valid data, try using another update server.", AboutSettingsDialog.AssemblyProduct, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        File.Delete(Program.prefix + "vercheck.txt");
+                        return;
+                    }
+                    if (Convert.ToDouble(lines[0].Replace(".", ",").Replace("\r", "").Replace("\n", "").Trim()) > Convert.ToDouble(UIActions.version.Replace(".", ",")))
+                    {
+                        File.Delete(Program.prefix + "vercheck.txt");
+                        if (MessageBox.Show("A new version of blue screen simulator is available. Would you like to update now?", "Update available", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            File.WriteAllText("hash.txt", lines[1].Trim());
+                            if (!Program.gs.PostponeUpdate)
+                            {
+                                f.BeginInvoke(new MethodInvoker(delegate {
+                                    ui.Show();
+                                    f.Hide();
+                                }));
+                            }
+                            else
+                            {
+                                Program.gs.UpdateAfterExit = true;
+                                MessageBox.Show("The update has been postponed to install when the program is closed.");
+                            }
+                        }
+                        return;
+                    }
+                    if (updateCheckButton != null)
+                    {
+                        MessageBox.Show("This version of blue screen simulator plus is up to date", "Blue screens simulator plus", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    File.Delete(Program.prefix + "vercheck.txt");
+                }
+                catch (Exception ex) when (!Debugger.IsAttached)
+                {
+                    MessageBox.Show("An error has occoured.\n\nFatal exception: " + ex.Message + "\n\nStack trace\n" + ex.StackTrace, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }).Start();
         }
 
     }

@@ -11,17 +11,17 @@ namespace UltimateBlueScreenSimulator
     public partial class ProgressTuner : MaterialForm
     {
         internal IDictionary<int, int> KFrames = new Dictionary<int, int>();
-        Bitmap bmp = new Bitmap(1000, 10);
-        int last = 0;
+        private Bitmap bmp = new Bitmap(1000, 10);
+        private int last = 0;
         public ProgressTuner()
         {
-            MaterialSkinManager materialSkinManager = Program.f1.materialSkinManager;
+            MaterialSkinManager materialSkinManager = Program.F1.materialSkinManager;
             materialSkinManager.AddFormToManage(this);
             InitializeComponent();
             Font = new Font(Font.Name, 8.25f * 96f / CreateGraphics().DpiX, Font.Style, Font.Unit, Font.GdiCharSet, Font.GdiVerticalFont);
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void TextBox1_TextChanged(object sender, EventArgs e)
         {
             try
             {
@@ -60,13 +60,13 @@ namespace UltimateBlueScreenSimulator
             progressPositionLabel.Text = string.Format("total: {0}%, position: {1}s", totalpercent, ((float)progressTrackBar.Value / 100.0f).ToString().Replace(",", "."));
         }
 
-        private void randomButton_Click(object sender, EventArgs e)
+        private void RandomButton_Click(object sender, EventArgs e)
         {
             Random r = new Random();
             incPercent.Text = r.Next(0, 10).ToString();
         }
 
-        private void nextKeyFrameButton_Click(object sender, EventArgs e)
+        private void NextKeyFrameButton_Click(object sender, EventArgs e)
         {
             foreach (int position in KFrames.Keys)
             {
@@ -75,14 +75,14 @@ namespace UltimateBlueScreenSimulator
                     try
                     {
                         progressTrackBar.Value = position;
-                        progressTrackBar_Scroll(sender, progressTrackBar.Value);
+                        ProgressTrackBar_Scroll(sender, progressTrackBar.Value);
                     } catch { }
                     break;
                 }
             }
         }
 
-        private void previousKeyFrameButton_Click(object sender, EventArgs e)
+        private void PreviousKeyFrameButton_Click(object sender, EventArgs e)
         {
             int minimum = 0;
             foreach (int position in KFrames.Keys)
@@ -93,7 +93,7 @@ namespace UltimateBlueScreenSimulator
                 }
             }
             progressTrackBar.Value = minimum;
-            progressTrackBar_Scroll(sender, progressTrackBar.Value);
+            ProgressTrackBar_Scroll(sender, progressTrackBar.Value);
         }
 
         private void AddKeyFrame_Click(object sender, EventArgs e)
@@ -106,7 +106,7 @@ namespace UltimateBlueScreenSimulator
             repeatButton.Enabled = true;
         }
 
-        private void deleteKeyFrame_Click(object sender, EventArgs e)
+        private void DeleteKeyFrame_Click(object sender, EventArgs e)
         {
             if (KFrames.ContainsKey(progressTrackBar.Value))
             {
@@ -116,7 +116,7 @@ namespace UltimateBlueScreenSimulator
             SetLabelText();
         }
 
-        private void repeatButton_Click(object sender, EventArgs e)
+        private void RepeatButton_Click(object sender, EventArgs e)
         {
             if (KFrames.ContainsKey(progressTrackBar.Value + last))
             {
@@ -128,7 +128,7 @@ namespace UltimateBlueScreenSimulator
             try
             {
                 progressTrackBar.Value += last;
-                progressTrackBar_Scroll(sender, progressTrackBar.Value);
+                ProgressTrackBar_Scroll(sender, progressTrackBar.Value);
             }
             catch { }
             repeatButton.Enabled = true;
@@ -136,14 +136,14 @@ namespace UltimateBlueScreenSimulator
 
         private void OKClick(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.OK;
-            this.Close();
+            DialogResult = DialogResult.OK;
+            Close();
         }
 
         private void CancelClick(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.Cancel;
-            this.Close();
+            DialogResult = DialogResult.Cancel;
+            Close();
         }
 
         private void ClearAll(object sender, EventArgs e)
@@ -160,7 +160,7 @@ namespace UltimateBlueScreenSimulator
         {
         }
 
-        private void progressTrackBar_Scroll(object sender, int newValue)
+        private void ProgressTrackBar_Scroll(object sender, int newValue)
         {
             SetLabelText();
             if (KFrames.ContainsKey(progressTrackBar.Value))

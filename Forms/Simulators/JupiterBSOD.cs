@@ -15,7 +15,7 @@ namespace UltimateBlueScreenSimulator
     {
         internal BlueScreen me;
         private IDictionary<string, string> texts;
-        int time = 0;
+        private int time = 0;
         private int moves = 0;
         public JupiterBSOD()
         {
@@ -90,7 +90,11 @@ namespace UltimateBlueScreenSimulator
                     ProgressLabel.Visible = false;
                     time = 0;
                 }
-                if (this.Opacity == 0.0) return;
+                if (this.Opacity == 0.0)
+                {
+                    return;
+                }
+
                 this.Icon = me.GetIcon();
                 if (!me.GetBool("windowed"))
                 {
@@ -113,7 +117,7 @@ namespace UltimateBlueScreenSimulator
                 else
                 {
                     me.Crash(ex, "YellowScreen");
-                    this.Close();
+                    Close();
                 }
             }
         }
@@ -134,14 +138,18 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void screenUpdater_Tick(object sender, EventArgs e)
+        private void ScreenUpdater_Tick(object sender, EventArgs e)
         {
-            if (this.Opacity == 0.0) return;
+            if (this.Opacity == 0.0)
+            {
+                return;
+            }
+
             if (!me.GetBool("windowed"))
             {
                 Program.dr.DrawAll();
-                this.BringToFront();
-                this.Activate();
+                BringToFront();
+                Activate();
             }
         }
 
@@ -191,7 +199,7 @@ namespace UltimateBlueScreenSimulator
             moves++;
             if (moves > 50 && Program.isScreensaver && Program.gs.MouseMoveExit)
             {
-                this.Close();
+                Close();
             }
         }
     }

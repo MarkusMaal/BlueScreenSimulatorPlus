@@ -20,9 +20,9 @@ namespace UltimateBlueScreenSimulator
         public string processortype = "GenuineIntel";
         public string error = "User manually initiated crash (0xDEADDEAD)";
         internal BlueScreen me = Program.templates.GetAt(0);
-        IDictionary<string, string> txt;
-        private int charsize;
-        readonly string[] letters = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ":", ",", ".", "+", "*", "(", ")", "[", "]", "{", "}", "/", "\\", "-", "_", " " };
+        private IDictionary<string, string> txt;
+        private readonly int charsize;
+        private readonly string[] letters = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ":", ",", ".", "+", "*", "(", ")", "[", "]", "{", "}", "/", "\\", "-", "_", " " };
         public NTBSOD()
         {
             //
@@ -36,7 +36,7 @@ namespace UltimateBlueScreenSimulator
             InitializeComponent();
         }
 
-        string GenSpace(int spacecount)
+        private string GenSpace(int spacecount)
         {
             string outspace = "";
             for (int i = 0; i < spacecount; i++)
@@ -230,10 +230,10 @@ namespace UltimateBlueScreenSimulator
             {
                 Program.loadfinished = true;
                 screenUpdater.Enabled = false;
-                this.Hide();
+                Hide();
                 if (Program.gs.EnableEggs) { me.Crash(ex, "OrangeScreen"); }
                 else { MessageBox.Show("The crash screen cannot be displayed due to an error.\n\n" + ex.Message + "\n\n" + ex.StackTrace, "E R R O R", MessageBoxButtons.OK, MessageBoxIcon.Error); }
-                this.Close();
+                Close();
             }
         }
 
@@ -317,7 +317,9 @@ namespace UltimateBlueScreenSimulator
                 {
                     Color pixelColor = img.GetPixel(i, j);
                     if (pixelColor == black)
+                    {
                         img.SetPixel(i, j, white);
+                    }
                 }
             }
             return img;
@@ -329,8 +331,8 @@ namespace UltimateBlueScreenSimulator
             if (fullscreen)
             {
                 Program.dr.DrawAll();
-                this.BringToFront();
-                this.Activate();
+                BringToFront();
+                Activate();
             }
             if (blink)
             {
@@ -359,19 +361,19 @@ namespace UltimateBlueScreenSimulator
             {
                 try
                 {
-                    foreach (Control c in this.tableLayoutPanel1.Controls)
+                    foreach (Control c in tableLayoutPanel1.Controls)
                     {
                         if (c is PictureBox box && box.Image != null) { box.Image.Dispose(); c.Dispose(); }
                     }
-                    foreach (Control c in this.ntContainer.Controls)
+                    foreach (Control c in ntContainer.Controls)
                     {
                         if (c is PictureBox box && box.Image != null) { box.Image.Dispose(); c.Dispose(); }
                     }
-                    foreach (Control c in this.flowLayoutPanel2.Controls)
+                    foreach (Control c in flowLayoutPanel2.Controls)
                     {
                         if (c is PictureBox box && box.Image != null) { box.Image.Dispose(); c.Dispose(); }
                     }
-                    foreach (Control c in this.flowLayoutPanel3.Controls)
+                    foreach (Control c in flowLayoutPanel3.Controls)
                     {
                         if (c is PictureBox box && box.Image != null) { box.Image.Dispose(); c.Dispose(); }
                     }
@@ -397,7 +399,7 @@ namespace UltimateBlueScreenSimulator
             }
             try
             {
-                this.Dispose();
+                Dispose();
             } catch
             {
                 Console.WriteLine("Warning: \"NTSOD\" forcibly closed from external source!!!");

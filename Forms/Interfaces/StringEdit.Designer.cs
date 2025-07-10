@@ -280,7 +280,7 @@ namespace UltimateBlueScreenSimulator
             this.autoRadio.TabStop = true;
             this.autoRadio.Text = "Auto";
             this.autoRadio.UseVisualStyleBackColor = true;
-            this.autoRadio.CheckedChanged += new System.EventHandler(this.autoRadio_CheckedChanged);
+            this.autoRadio.CheckedChanged += new System.EventHandler(this.AutoRadio_CheckedChanged);
             // 
             // manualRadio
             // 
@@ -296,7 +296,7 @@ namespace UltimateBlueScreenSimulator
             this.manualRadio.TabIndex = 1;
             this.manualRadio.Text = "Manual";
             this.manualRadio.UseVisualStyleBackColor = true;
-            this.manualRadio.CheckedChanged += new System.EventHandler(this.manualRadio_CheckedChanged);
+            this.manualRadio.CheckedChanged += new System.EventHandler(this.ManualRadio_CheckedChanged);
             // 
             // qrProps
             // 
@@ -513,7 +513,7 @@ namespace UltimateBlueScreenSimulator
             this.speedTrackbar.TabIndex = 5;
             this.speedTrackbar.Text = "My Data";
             this.speedTrackbar.Value = 100;
-            this.speedTrackbar.onValueChanged += new MaterialSkin2Framework.Controls.MaterialSlider.ValueChanged(this.speedTrackbar_onValueChanged);
+            this.speedTrackbar.onValueChanged += new MaterialSkin2Framework.Controls.MaterialSlider.ValueChanged(this.SpeedTrackbar_onValueChanged);
             // 
             // blinkingDash
             // 
@@ -552,7 +552,6 @@ namespace UltimateBlueScreenSimulator
             this.materialLabel1.TabIndex = 0;
             this.materialLabel1.Text = "Preview";
             this.materialLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.materialLabel1.Click += new System.EventHandler(this.materialLabel1_Click);
             // 
             // bugcheckPreview
             // 
@@ -565,8 +564,7 @@ namespace UltimateBlueScreenSimulator
             this.bugcheckPreview.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.bugcheckPreview.TabIndex = 1;
             this.bugcheckPreview.TabStop = false;
-            this.bugcheckPreview.Click += new System.EventHandler(this.bugcheckPreview_Click);
-            this.bugcheckPreview.Paint += new System.Windows.Forms.PaintEventHandler(this.bugcheckPreview_Paint);
+            this.bugcheckPreview.Paint += new System.Windows.Forms.PaintEventHandler(this.BugcheckPreview_Paint);
             // 
             // blinkywinky
             // 
@@ -623,7 +621,7 @@ namespace UltimateBlueScreenSimulator
             this.updatePreviewCheck.TabIndex = 10;
             this.updatePreviewCheck.Text = "Automatically update preview";
             this.updatePreviewCheck.UseVisualStyleBackColor = true;
-            this.updatePreviewCheck.CheckedChanged += new System.EventHandler(this.materialCheckbox1_CheckedChanged);
+            this.updatePreviewCheck.CheckedChanged += new System.EventHandler(this.MaterialCheckbox1_CheckedChanged);
             // 
             // materialLabel2
             // 

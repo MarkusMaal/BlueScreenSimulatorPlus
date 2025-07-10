@@ -283,6 +283,7 @@
     <Compile Include="Forms\Simulators\old_bluescreen.Designer.cs">
       <DependentUpon>old_bluescreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="MaterialSkin\Controls\SizableMaterialButton.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -535,6 +536,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="bssp3_icon.ico" />
+    <None Include="Resources\BSSP_manual.pdf" />
     <None Include="Resources\loadpic.png" />
     <None Include="Resources\msoftware_dm.png" />
     <None Include="Resources\verifile_dm.png" />

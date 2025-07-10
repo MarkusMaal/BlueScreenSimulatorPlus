@@ -20,8 +20,8 @@ namespace UltimateBlueScreenSimulator
         private void WindowScreen_Load(object sender, EventArgs e)
         {
             if (!Program.gs.ShowCursor) { Cursor.Hide(); }
-            if (this.primary) { this.Text += " (primary)"; }
-            else { this.Text += " (secondary)"; }
+            if (primary) { Text += " (primary)"; }
+            else { Text += " (secondary)"; }
         }
 
         internal void ShowCursor()
@@ -31,7 +31,7 @@ namespace UltimateBlueScreenSimulator
 
         private void WindowScreen_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (!Program.gs.PM_Lockout) { this.Hide(); }
+            if (!Program.gs.PM_Lockout) { Hide(); }
             // Prevent closing when Alt + F4 is pressed
             if (e.CloseReason == CloseReason.UserClosing)
             {
@@ -54,10 +54,10 @@ namespace UltimateBlueScreenSimulator
             }
             if ((screenDisplay != null) && (screenDisplay.Image != null))
             { 
-                this.screenDisplay.Image.Dispose();
-                this.screenDisplay.Dispose();
+                screenDisplay.Image.Dispose();
+                screenDisplay.Dispose();
             }
-            this.Dispose();
+            Dispose();
         }
 
         private void WindowScreen_MouseMove(object sender, MouseEventArgs e)
@@ -65,7 +65,7 @@ namespace UltimateBlueScreenSimulator
             moves++;
             if (moves > 50 && Program.isScreensaver && Program.gs.MouseMoveExit)
             {
-                this.Close();
+                Close();
             }
         }
 
@@ -74,7 +74,7 @@ namespace UltimateBlueScreenSimulator
             moves++;
             if (moves > 50 && Program.isScreensaver && Program.gs.MouseMoveExit)
             {
-                this.Close();
+                Close();
             }
         }
     }

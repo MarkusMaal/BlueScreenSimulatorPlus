@@ -29,8 +29,8 @@ namespace UltimateBlueScreenSimulator
         {
             if (Program.loadfinished)
             {
-                this.Dispose();
-                this.Close();
+                Dispose();
+                Close();
             }
             if (Program.load_progress < 100)
             {
@@ -38,8 +38,8 @@ namespace UltimateBlueScreenSimulator
                 genProgressBar.Value = Program.load_progress;
                 if (Program.load_progress < 10)
                 {
-                    this.Activate();
-                    this.BringToFront();
+                    Activate();
+                    BringToFront();
                 }
             }
             else if (Program.load_progress > 100)
@@ -54,10 +54,10 @@ namespace UltimateBlueScreenSimulator
 
         private void Gen_Load(object sender, EventArgs e)
         {
-            genLabel.BackColor = this.BackColor;
+            genLabel.BackColor = BackColor;
             if (Program.gs.NightTheme)
             {
-                this.BackColor = Color.Black;
+                BackColor = Color.Black;
             }
         }
 

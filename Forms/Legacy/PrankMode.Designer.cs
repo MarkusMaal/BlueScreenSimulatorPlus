@@ -594,7 +594,7 @@
             this.closePrank.TabIndex = 15;
             this.closePrank.Text = "Re-open after ending prank mode";
             this.closePrank.UseVisualStyleBackColor = true;
-            this.closePrank.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.closePrank.CheckedChanged += new System.EventHandler(this.CheckBox1_CheckedChanged);
             // 
             // PrankMode
             // 

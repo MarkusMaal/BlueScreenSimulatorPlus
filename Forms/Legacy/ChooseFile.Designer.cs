@@ -59,7 +59,7 @@
             this.fileBrowser.UseCompatibleStateImageBehavior = false;
             this.fileBrowser.View = System.Windows.Forms.View.Details;
             this.fileBrowser.ItemActivate += new System.EventHandler(this.WhenUserSelectsTheDesiredFile);
-            this.fileBrowser.SelectedIndexChanged += new System.EventHandler(this.fileBrowser_SelectedIndexChanged);
+            this.fileBrowser.SelectedIndexChanged += new System.EventHandler(this.FileBrowser_SelectedIndexChanged);
             // 
             // FileName
             // 
@@ -79,7 +79,7 @@
             this.okButton.TabIndex = 1;
             this.okButton.Text = "OK";
             this.okButton.UseVisualStyleBackColor = true;
-            this.okButton.Click += new System.EventHandler(this.button1_Click);
+            this.okButton.Click += new System.EventHandler(this.Button1_Click);
             // 
             // button2
             // 
@@ -89,7 +89,7 @@
             this.button2.TabIndex = 1;
             this.button2.Text = "Customize";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.button2.Click += new System.EventHandler(this.Button2_Click);
             // 
             // ChooseFile
             // 

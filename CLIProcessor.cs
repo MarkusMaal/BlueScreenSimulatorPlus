@@ -19,7 +19,7 @@ namespace UltimateBlueScreenSimulator
         public CLIProcessor(string[] args)
         {
             this.args = args;
-            this.checkvalue = false;
+            checkvalue = false;
         }
 
         ///<summary>
@@ -119,7 +119,7 @@ namespace UltimateBlueScreenSimulator
                 case "file":
                     //displays errror cuplrit file if specified in arguments
                     Program.gs.Log("Info", "Setting culprit file");
-                    Program.f1.checkBox2.Checked = true;
+                    Program.F1.checkBox2.Checked = true;
                     ecode = value;
                     foreach (BlueScreen bs in Program.templates.GetAll())
                     {
@@ -129,35 +129,18 @@ namespace UltimateBlueScreenSimulator
                     {
                         Program.gs.ErrorCode = 16;
                     }
-                    Program.f1.textBox2.Text = ecode;
+                    Program.F1.textBox2.Text = ecode;
                     break;
             }
         }
         ///<summary>
         ///Closes the splash screen
         ///</summary>
-        internal void ExitSplash(Form f = null)
+        internal void ExitSplash()
         {
             if (!CheckNoSplash())
             {
-                new Thread(() => {
-                    Program.gs.Log("Info", "Safely closing splash screen");
-                    Thread.Sleep(500);
-                    if (f != null)
-                    {
-                        f.BeginInvoke(new MethodInvoker(delegate {
-                            Program.splt.Abort();
-                            Program.splt.Join();
-                            f.TopMost = true;
-                            f.TopMost = false;
-                            f.Focus();
-                        }));
-                    } else
-                    {
-                        Program.splt.Abort();
-                        Program.splt.Join();
-                    }
-                }).Start();
+                Program.gs.Log("Info", "Safely closing splash screen");
             }
         }
 
@@ -168,7 +151,7 @@ namespace UltimateBlueScreenSimulator
         private void ProcessFlag(string arg)
         {
             // key is the flag, value determines which boolean to force
-            var forceFlags = new Dictionary<string, string>()
+            Dictionary<string, string> forceFlags = new Dictionary<string, string>()
             {
                 {"wm", "watermark"}, {"desc", "show_description"}, {"ac", "autoclose"},
                 {"ap", "acpi"}, {"amd", "amd"}, {"blink", "blink"}, {"gs", "insider"},
@@ -207,13 +190,13 @@ namespace UltimateBlueScreenSimulator
                     break;
                 case "c":
                     ExitSplash();
-                    UIActions.GetOS(Program.f1);
+                    UIActions.GetOS(Program.F1);
                     break;
                 case "doneupdate":
                     File.Delete("BSSP.exe");
                     break;
                 case "random":
-                    UIActions.RandFunction(Program.f1, false);
+                    UIActions.RandFunction(Program.F1, false);
                     break;
                 case "hwm":
                     ForceBool("watermark", false);
@@ -238,9 +221,9 @@ namespace UltimateBlueScreenSimulator
             if (args.Contains("/h"))
             {
                 Program.gs.Log("Info", "Hiding main interface");
-                Program.f1.WindowState = FormWindowState.Minimized;
-                Program.f1.ShowInTaskbar = false;
-                Program.f1.ShowIcon = false;
+                Program.F1.WindowState = FormWindowState.Minimized;
+                Program.F1.ShowInTaskbar = false;
+                Program.F1.ShowIcon = false;
                 Program.gs.PM_CloseMainUI = true;
                 if (!args.Contains("/c"))
                 {
@@ -251,7 +234,7 @@ namespace UltimateBlueScreenSimulator
             if (args.Contains("/c"))
             {
                 Program.gs.Log("Info", "Starting simulation from command line");
-                UIActions.Crash(Program.f1);
+                UIActions.Crash(Program.F1);
             }
             //Post update scripts
             if (args.Contains("/finalize_update"))
@@ -271,7 +254,7 @@ namespace UltimateBlueScreenSimulator
         ///</summary>
         public bool CheckNoSplash()
         {
-            return this.args.Contains("/finalize_update") || this.args.Contains("/hidesplash");
+            return args.Contains("/finalize_update") || args.Contains("/hidesplash");
         }
 
         ///<summary>
@@ -279,7 +262,7 @@ namespace UltimateBlueScreenSimulator
         ///</summary>
         public bool CheckPreviewSplash()
         {
-            return this.args.Contains("/preview_splash");
+            return args.Contains("/preview_splash");
         }
     }
 }

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.IO;
-using System.Linq;
 using System.Management;
 using System.Security.Cryptography;
 using System.Text;
 using System.Windows.Forms;
+using System.Linq;
 
 namespace UltimateBlueScreenSimulator
 {
@@ -150,7 +150,7 @@ namespace UltimateBlueScreenSimulator
             }
 
         }
-        string Q()
+        private string Q()
         {
             string gg = "CPI" + Ff();
             try
@@ -171,7 +171,7 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        string Uu()
+        private string Uu()
         {
             using (ManagementObjectSearcher o = new ManagementObjectSearcher("SELECT * FROM Win32_BIOS"))
 
@@ -180,17 +180,14 @@ namespace UltimateBlueScreenSimulator
             {
 
                 StringBuilder t = new StringBuilder();
-                foreach (ManagementObject mo in moc)
-
+                foreach (string version in from ManagementObject mo in moc
+                                        let BIOSVersions = (string[])mo["BIOSVersion"]
+                                        from string version in BIOSVersions
+                                        select version)
                 {
-
-                    string[] BIOSVersions = (string[])mo["BIOSVersion"];
-                    foreach (string version in BIOSVersions)
-                    {
-                        t.AppendLine(string.Format("{0}", version));
-                    }
-
+                    t.AppendLine(string.Format("{0}", version));
                 }
+
                 return t.ToString().Split('\n')[0].ToString();
             }
         }
@@ -200,22 +197,22 @@ namespace UltimateBlueScreenSimulator
             string l = string.Empty;
             ManagementClass mc = new ManagementClass("win32_processor");
             ManagementObjectCollection moc = mc.GetInstances();
-
-            foreach (ManagementObject mo in moc)
+            foreach (ManagementObject mo in from ManagementObject mo in moc
+                               where l == ""
+                               select mo)
             {
-                if (l == "")
+                try
                 {
-                    try
-                    {
-                        l = mo.Properties["processorID"].Value.ToString();
-                    }
-                    catch
-                    {
-                        l = "a";
-                    }
-                    break;
+                    l = mo.Properties["processorID"].Value.ToString();
                 }
+                catch
+                {
+                    l = "a";
+                }
+
+                break;
             }
+
             return l;
         }
         public static string J(string z)
@@ -249,7 +246,7 @@ namespace UltimateBlueScreenSimulator
             get {
                 try
                 {
-                    foreach (ManagementObject queryObj in aa.Get())
+                    foreach (ManagementObject queryObj in aa.Get().Cast<ManagementObject>())
                     {
                         return queryObj["Product"].ToString();
                     }

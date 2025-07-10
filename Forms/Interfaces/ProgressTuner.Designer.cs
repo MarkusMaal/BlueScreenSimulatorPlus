@@ -67,7 +67,7 @@ namespace UltimateBlueScreenSimulator
             this.progressTrackBar.Size = new System.Drawing.Size(715, 40);
             this.progressTrackBar.TabIndex = 0;
             this.progressTrackBar.Text = "My Data";
-            this.progressTrackBar.onValueChanged += new MaterialSkin2Framework.Controls.MaterialSlider.ValueChanged(this.progressTrackBar_Scroll);
+            this.progressTrackBar.onValueChanged += new MaterialSkin2Framework.Controls.MaterialSlider.ValueChanged(this.ProgressTrackBar_Scroll);
             // 
             // totalTimeText
             // 
@@ -86,7 +86,7 @@ namespace UltimateBlueScreenSimulator
             this.totalTimeText.Text = "10.0";
             this.totalTimeText.TrailingIcon = null;
             this.totalTimeText.UseTallSize = false;
-            this.totalTimeText.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.totalTimeText.TextChanged += new System.EventHandler(this.TextBox1_TextChanged);
             // 
             // label1
             // 
@@ -140,7 +140,7 @@ namespace UltimateBlueScreenSimulator
             this.deleteKeyFrame.Type = MaterialSkin2Framework.Controls.MaterialButton.MaterialButtonType.Contained;
             this.deleteKeyFrame.UseAccentColor = false;
             this.deleteKeyFrame.UseVisualStyleBackColor = true;
-            this.deleteKeyFrame.Click += new System.EventHandler(this.deleteKeyFrame_Click);
+            this.deleteKeyFrame.Click += new System.EventHandler(this.DeleteKeyFrame_Click);
             // 
             // nextKeyFrameButton
             // 
@@ -161,7 +161,7 @@ namespace UltimateBlueScreenSimulator
             this.nextKeyFrameButton.Type = MaterialSkin2Framework.Controls.MaterialButton.MaterialButtonType.Contained;
             this.nextKeyFrameButton.UseAccentColor = false;
             this.nextKeyFrameButton.UseVisualStyleBackColor = true;
-            this.nextKeyFrameButton.Click += new System.EventHandler(this.nextKeyFrameButton_Click);
+            this.nextKeyFrameButton.Click += new System.EventHandler(this.NextKeyFrameButton_Click);
             // 
             // previousKeyFrameButton
             // 
@@ -182,7 +182,7 @@ namespace UltimateBlueScreenSimulator
             this.previousKeyFrameButton.Type = MaterialSkin2Framework.Controls.MaterialButton.MaterialButtonType.Contained;
             this.previousKeyFrameButton.UseAccentColor = false;
             this.previousKeyFrameButton.UseVisualStyleBackColor = true;
-            this.previousKeyFrameButton.Click += new System.EventHandler(this.previousKeyFrameButton_Click);
+            this.previousKeyFrameButton.Click += new System.EventHandler(this.PreviousKeyFrameButton_Click);
             // 
             // progressVisualization
             // 
@@ -282,7 +282,7 @@ namespace UltimateBlueScreenSimulator
             this.randomButton.Type = MaterialSkin2Framework.Controls.MaterialButton.MaterialButtonType.Contained;
             this.randomButton.UseAccentColor = false;
             this.randomButton.UseVisualStyleBackColor = true;
-            this.randomButton.Click += new System.EventHandler(this.randomButton_Click);
+            this.randomButton.Click += new System.EventHandler(this.RandomButton_Click);
             // 
             // repeatButton
             // 
@@ -304,7 +304,7 @@ namespace UltimateBlueScreenSimulator
             this.repeatButton.Type = MaterialSkin2Framework.Controls.MaterialButton.MaterialButtonType.Contained;
             this.repeatButton.UseAccentColor = false;
             this.repeatButton.UseVisualStyleBackColor = true;
-            this.repeatButton.Click += new System.EventHandler(this.repeatButton_Click);
+            this.repeatButton.Click += new System.EventHandler(this.RepeatButton_Click);
             // 
             // okButton
             // 

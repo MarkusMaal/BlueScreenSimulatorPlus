@@ -31,11 +31,11 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
 
         private void ProgressChecker(object sender, EventArgs e)
         {
-            this.Text = Program.load_message;
+            Text = Program.load_message;
             if (Program.loadfinished)
             {
-                this.Dispose();
-                this.Close();
+                Dispose();
+                Close();
             }
             if (Program.load_progress < 100)
             {
@@ -43,8 +43,8 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
                 genProgressBar.Value = Program.load_progress;
                 if (Program.load_progress < 10)
                 {
-                    this.Activate();
-                    this.BringToFront();
+                    Activate();
+                    BringToFront();
                 }
             }
             else if (Program.load_progress > 100)

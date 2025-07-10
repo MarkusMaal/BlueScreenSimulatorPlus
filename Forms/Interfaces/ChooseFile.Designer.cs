@@ -62,7 +62,7 @@ namespace UltimateBlueScreenSimulator
             this.fileBrowser.UseCompatibleStateImageBehavior = false;
             this.fileBrowser.View = System.Windows.Forms.View.Details;
             this.fileBrowser.ItemActivate += new System.EventHandler(this.WhenUserSelectsTheDesiredFile);
-            this.fileBrowser.SelectedIndexChanged += new System.EventHandler(this.fileBrowser_SelectedIndexChanged);
+            this.fileBrowser.SelectedIndexChanged += new System.EventHandler(this.FileBrowser_SelectedIndexChanged);
             // 
             // columnHeader1
             // 
@@ -95,7 +95,7 @@ namespace UltimateBlueScreenSimulator
             this.okButton.Type = MaterialSkin2Framework.Controls.MaterialButton.MaterialButtonType.Contained;
             this.okButton.UseAccentColor = false;
             this.okButton.UseVisualStyleBackColor = true;
-            this.okButton.Click += new System.EventHandler(this.okButton_Click);
+            this.okButton.Click += new System.EventHandler(this.OkButton_Click);
             // 
             // customizeFilesButton
             // 
@@ -117,7 +117,7 @@ namespace UltimateBlueScreenSimulator
             this.customizeFilesButton.Type = MaterialSkin2Framework.Controls.MaterialButton.MaterialButtonType.Contained;
             this.customizeFilesButton.UseAccentColor = false;
             this.customizeFilesButton.UseVisualStyleBackColor = true;
-            this.customizeFilesButton.Click += new System.EventHandler(this.customizeFilesButton_Click);
+            this.customizeFilesButton.Click += new System.EventHandler(this.CustomizeFilesButton_Click);
             // 
             // ChooseFile
             // 

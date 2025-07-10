@@ -13,7 +13,7 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
 {
     public partial class IndexForm : Form
     {
-        bool locked = false;
+        private bool locked = false;
         internal BlueScreen me;
         private readonly string validChars = "0123456789ABCDEFR";
 
@@ -83,7 +83,7 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
             locked = false;
         }
 
-        private void codefilesList_SelectedIndexChanged(object sender, EventArgs e)
+        private void CodefilesList_SelectedIndexChanged(object sender, EventArgs e)
         {
             delEntryButton.Enabled = codefilesList.SelectedIndices.Count > 0;
             if (codefilesList.SelectedItems.Count == 1)
@@ -135,7 +135,7 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
             UpdateCodeList();
         }
 
-        private void codefilesList_KeyDown(object sender, KeyEventArgs e)
+        private void CodefilesList_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Delete)
             {
@@ -143,12 +143,12 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
             }
         }
 
-        private void materialButton4_Click(object sender, EventArgs e)
+        private void MaterialButton4_Click(object sender, EventArgs e)
         {
             DeleteSelectedEntries();
         }
 
-        private void materialButton5_Click(object sender, EventArgs e)
+        private void MaterialButton5_Click(object sender, EventArgs e)
         {
             List<string> codes = new List<string>();
             foreach (string m in randCodesList.Items)
@@ -159,7 +159,7 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
             UpdateCodeList();
         }
 
-        private void materialButton3_Click(object sender, EventArgs e)
+        private void MaterialButton3_Click(object sender, EventArgs e)
         {
             foreach (int idx in codefilesList.SelectedIndices)
             {
@@ -168,7 +168,7 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
             UpdateCodeList();
         }
 
-        private void materialButton2_Click(object sender, EventArgs e)
+        private void MaterialButton2_Click(object sender, EventArgs e)
         {
             foreach (int idx in codefilesList.SelectedIndices)
             {
@@ -177,7 +177,7 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
             UpdateCodeList();
         }
 
-        private void randCodesList_MouseClick(object sender, MouseEventArgs e)
+        private void RandCodesList_MouseClick(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
             {
@@ -186,7 +186,7 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
             delCodeButton.Enabled = randCodesList.SelectedIndex != -1;
         }
 
-        private void browseButton_Click(object sender, EventArgs e)
+        private void BrowseButton_Click(object sender, EventArgs e)
         {
             Forms.Legacy.ChooseFile cf = new Forms.Legacy.ChooseFile();
             if (cf.ShowDialog() == DialogResult.OK)
@@ -195,7 +195,7 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
             }
         }
 
-        private void codefilesList_MouseClick(object sender, MouseEventArgs e)
+        private void CodefilesList_MouseClick(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
             {
@@ -203,7 +203,7 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
             }
         }
 
-        private void filenameBox_TextChanged(object sender, EventArgs e)
+        private void FilenameBox_TextChanged(object sender, EventArgs e)
         {
             if ((codefilesList.SelectedItems.Count > 0) && (filenameBox.Text.Length > 0))
             {
@@ -225,7 +225,7 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
             return newStr == "";
         }
 
-        private void codeBox_TextChanged(object sender, EventArgs e)
+        private void CodeBox_TextChanged(object sender, EventArgs e)
         {
             int bck = randCodesList.SelectedIndex;
             if ((randCodesList.SelectedIndex != -1))
@@ -271,7 +271,7 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
             UpdateCodeList();
         }
 
-        private void fixedRandomButton_Click(object sender, EventArgs e)
+        private void FixedRandomButton_Click(object sender, EventArgs e)
         {
             if (randCodesList.SelectedItems.Count > 0)
             {
@@ -283,7 +283,7 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
             }
         }
 
-        private void randomButton_Click(object sender, EventArgs e)
+        private void RandomButton_Click(object sender, EventArgs e)
         {
             if (randCodesList.SelectedItems.Count > 0)
             {
@@ -295,7 +295,7 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
             }
         }
 
-        private void zeroButton_Click(object sender, EventArgs e)
+        private void ZeroButton_Click(object sender, EventArgs e)
         {
             if (randCodesList.SelectedItems.Count > 0)
             {
@@ -307,7 +307,7 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
             }
         }
 
-        private void fixedButton_Click(object sender, EventArgs e)
+        private void FixedButton_Click(object sender, EventArgs e)
         {
             if (randCodesList.SelectedItems.Count > 0)
             {
@@ -319,7 +319,7 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
             }
         }
 
-        private void randCodesList_SelectedIndexChanged(object sender, EventArgs e)
+        private void RandCodesList_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (randCodesList.SelectedIndex != -1)
             {

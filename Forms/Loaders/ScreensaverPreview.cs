@@ -17,16 +17,16 @@ namespace UltimateBlueScreenSimulator.Forms.Loaders
     public partial class ScreensaverPreview : Form
     {
         [DllImport("user32.dll")]
-        static extern IntPtr SetParent(IntPtr hWndChild, IntPtr hWndNewParent);
+        private static extern IntPtr SetParent(IntPtr hWndChild, IntPtr hWndNewParent);
 
         [DllImport("user32.dll")]
-        static extern int SetWindowLong(IntPtr hWnd, int nIndex, IntPtr dwNewLong);
+        private static extern int SetWindowLong(IntPtr hWnd, int nIndex, IntPtr dwNewLong);
 
         [DllImport("user32.dll", SetLastError = true)]
-        static extern int GetWindowLong(IntPtr hWnd, int nIndex);
+        private static extern int GetWindowLong(IntPtr hWnd, int nIndex);
 
         [DllImport("user32.dll")]
-        static extern bool GetClientRect(IntPtr hWnd, out Rectangle lpRect);
+        private static extern bool GetClientRect(IntPtr hWnd, out Rectangle lpRect);
 
         public ScreensaverPreview(IntPtr PreviewWndHandle)
         {
@@ -39,20 +39,19 @@ namespace UltimateBlueScreenSimulator.Forms.Loaders
             SetWindowLong(this.Handle, -16, new IntPtr(GetWindowLong(this.Handle, -16) | 0x40000000));
 
             // Place our window inside the parent
-            Rectangle ParentRect;
-            GetClientRect(PreviewWndHandle, out ParentRect);
+            GetClientRect(PreviewWndHandle, out Rectangle ParentRect);
             Size = ParentRect.Size;
             Location = new Point(0, 0);
 
             settingsPreview.Text = $"Selected OS: {UIActions.me.GetString("os")}\nTemplate: {UIActions.me.GetString("friendlyname")}";
 
             new Thread(() => {
-                this.BeginInvoke(new MethodInvoker(delegate {
+                BeginInvoke(new MethodInvoker(delegate {
                     screenSaverPreviewImage.Visible = false;
                 }));
                 UIActions.me.ShowSpecial(screenSaverPreviewImage);
                 Thread.Sleep(1000);
-                this.BeginInvoke(new MethodInvoker(delegate {
+                BeginInvoke(new MethodInvoker(delegate {
                     screenSaverPreviewImage.Visible = true;
                 }));
             }).Start();

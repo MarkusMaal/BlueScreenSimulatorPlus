@@ -18,8 +18,6 @@ namespace UltimateBlueScreenSimulator.Forms.Interfaces
     {
         private static bool Lock = true;
 
-        private static Random r = new Random();
-
         public static void Initialize(OpenFileDialog loadBsconfig, SaveFileDialog saveBsconfig, Dictionary<string, Control> c, ToolTip helpTip)
         {
             Lock = true;
@@ -34,7 +32,7 @@ namespace UltimateBlueScreenSimulator.Forms.Interfaces
             }
             loadBsconfig.Filter = all + filters.ToString().Substring(0, filters.Length - 1);
             saveBsconfig.Filter = filters.ToString().Substring(0, filters.Length - 1);
-            Program.f1.abopen = true;
+            Program.F1.abopen = true;
             
             c["rtlSwitch"].Visible = Program.gs.DevBuild;
             //Hide settings tabs
@@ -166,7 +164,7 @@ namespace UltimateBlueScreenSimulator.Forms.Interfaces
         }
 
 
-        public static void CheckForUpdates(Control updateCheckButton, System.Windows.Forms.Timer updateCheckerTimer)
+        public static void CheckForUpdates(Control updateCheckButton)
         {
             //This code starts the check for updates
             if (Program.DoWeHaveInternet(1000))
@@ -175,13 +173,9 @@ namespace UltimateBlueScreenSimulator.Forms.Interfaces
                 {
                     File.Delete(Program.prefix + "vercheck.txt");
                 }
-                UpdateInterface ui = new UpdateInterface();
-                ui.DownloadFile(Program.gs.UpdateServer + "/bssp_version.txt", Program.prefix + "vercheck.txt");
                 updateCheckButton.Enabled = false;
                 updateCheckButton.Text = "Please wait now ...";
-                updateCheckerTimer.Enabled = true;
-                Program.f1.updateCheckerTimer.Interval = 5998;
-                Program.f1.updateCheckerTimer.Enabled = true;
+                UIActions.CheckUpdates(Program.F1, updateCheckButton);
             }
             else
             {
@@ -191,8 +185,8 @@ namespace UltimateBlueScreenSimulator.Forms.Interfaces
 
         public static void RandomTheme(MaterialComboBox accentBox, MaterialComboBox primaryColorBox)
         {
-            accentBox.SelectedIndex = r.Next(0, accentBox.Items.Count - 1);
-            primaryColorBox.SelectedIndex = r.Next(0, primaryColorBox.Items.Count - 1);
+            accentBox.SelectedIndex = BlueScreen.r.Next(0, accentBox.Items.Count - 1);
+            primaryColorBox.SelectedIndex = BlueScreen.r.Next(0, primaryColorBox.Items.Count - 1);
         }
 
         public static void DefaultTheme(MaterialComboBox accentBox, MaterialComboBox primaryColorBox)
@@ -219,7 +213,11 @@ namespace UltimateBlueScreenSimulator.Forms.Interfaces
 
         public static void UpdateSettings(Dictionary<string, Control> c)
         {
-            if (Lock) return;
+            if (Lock)
+            {
+                return;
+            }
+
             Control primaryServerBox = c["primaryServerBox"];
             MaterialRadioButton autoUpdateRadio = (MaterialRadioButton)c["autoUpdateRadio"];
             MaterialCheckbox hashBox = (MaterialCheckbox)c["hashBox"];
@@ -252,23 +250,23 @@ namespace UltimateBlueScreenSimulator.Forms.Interfaces
             Program.gs.ColorScheme = (GlobalSettings.ColorSchemes)accentBox.SelectedIndex;
             Program.gs.QuickHelp = materialSwitch1.Checked;
             Program.gs.UpdateServer = primaryServerBox.Text;
-            Program.f1.quickHelp.Active = materialSwitch1.Checked;
+            Program.F1.quickHelp.Active = materialSwitch1.Checked;
             Program.gs.ColorScheme = (GlobalSettings.ColorSchemes)accentBox.SelectedIndex;
             Program.gs.PrimaryColor = (GlobalSettings.ColorSchemes)primaryColorBox.SelectedIndex;
             Program.gs.ApplyScheme();
 
             // applies the color to titlebars immediately
-            Program.f1.Refresh();
-            Program.f1.nineXmessage.Refresh();
+            Program.F1.Refresh();
+            Program.F1.nineXmessage.Refresh();
             if (darkMode.Checked)
             {
-                Program.f1.materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
+                Program.F1.materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
             }
             else
             {
-                Program.f1.materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
+                Program.F1.materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
             }
-            Program.f1.RelocateButtons();
+            Program.F1.RelocateButtons();
         }
 
 
@@ -355,9 +353,9 @@ namespace UltimateBlueScreenSimulator.Forms.Interfaces
                     {
                         configList.Items.Clear();
                         Program.templates.Clear();
-                        Program.f1.resetHackButton.Enabled = false;
-                        Program.f1.resetButton.Enabled = false;
-                        Program.f1.removeCfg.Enabled = false;
+                        Program.F1.resetHackButton.Enabled = false;
+                        Program.F1.resetButton.Enabled = false;
+                        Program.F1.removeCfg.Enabled = false;
                         MessageBox.Show("Configurations erased. All configurations must be re-added manually.\nNote: Do not use the main interface before adding any configurations!", "Nuke mode", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
@@ -424,7 +422,7 @@ namespace UltimateBlueScreenSimulator.Forms.Interfaces
                     }
                     break;
             }
-            UIActions.GetOS(Program.f1);
+            UIActions.GetOS(Program.F1);
         }
 
         private static void ConfigLoader(string filename, Form f)
@@ -433,13 +431,13 @@ namespace UltimateBlueScreenSimulator.Forms.Interfaces
             Program.templates.saveFinished = true;
             f.BeginInvoke(new MethodInvoker(delegate {
                 f.Enabled = true;
-                Program.f1.configList.Items.Clear();
+                Program.F1.configList.Items.Clear();
                 foreach (BlueScreen bs in Program.templates.GetAll())
                 {
-                    Program.f1.configList.Items.Add(new MaterialListBoxItem(bs.GetString("friendlyname")));
+                    Program.F1.configList.Items.Add(new MaterialListBoxItem(bs.GetString("friendlyname")));
                 }
-                Program.f1.loadBsconfig.FileName = "";
-                Program.f1.saveBsconfig.FileName = "";
+                Program.F1.loadBsconfig.FileName = "";
+                Program.F1.saveBsconfig.FileName = "";
                 Program.ReloadNTErrors();
             }));
             Thread.CurrentThread.Abort();

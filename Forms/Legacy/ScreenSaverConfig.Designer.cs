@@ -81,7 +81,7 @@
             this.eggHunterButton.Text = "&Enable easter eggs [?]";
             this.helpTip.SetToolTip(this.eggHunterButton, "Turns on/off the fun stuff");
             this.eggHunterButton.UseVisualStyleBackColor = true;
-            this.eggHunterButton.CheckedChanged += new System.EventHandler(this.eggHunterButton_CheckedChanged);
+            this.eggHunterButton.CheckedChanged += new System.EventHandler(this.EggHunterButton_CheckedChanged);
             // 
             // simulatorSettingsNotice
             // 
@@ -113,7 +113,7 @@
             this.scalingModeBox.TabIndex = 4;
             this.helpTip.SetToolTip(this.scalingModeBox, "Specifies how crash screens in full screen mode should be scaled. Bicubic scaling " +
         "is recommended.");
-            this.scalingModeBox.SelectedIndexChanged += new System.EventHandler(this.scalingModeBox_SelectedIndexChanged);
+            this.scalingModeBox.SelectedIndexChanged += new System.EventHandler(this.ScalingModeBox_SelectedIndexChanged);
             // 
             // scalingModeLabel
             // 
@@ -136,7 +136,7 @@
             this.hideInFullscreenButton.Text = "&Hide cursor when displaying a bugcheck [?]";
             this.helpTip.SetToolTip(this.hideInFullscreenButton, "Hides Windows cursor from the simulated crash screen");
             this.hideInFullscreenButton.UseVisualStyleBackColor = true;
-            this.hideInFullscreenButton.CheckedChanged += new System.EventHandler(this.hideInFullscreenButton_CheckedChanged);
+            this.hideInFullscreenButton.CheckedChanged += new System.EventHandler(this.HideInFullscreenButton_CheckedChanged);
             // 
             // mouseMoveAutoExitCheckBox
             // 
@@ -148,7 +148,7 @@
             this.mouseMoveAutoExitCheckBox.Text = "E&xit the simulation when moving the mouse [?]";
             this.helpTip.SetToolTip(this.mouseMoveAutoExitCheckBox, "Returns to desktop when you move the mouse cursor");
             this.mouseMoveAutoExitCheckBox.UseVisualStyleBackColor = true;
-            this.mouseMoveAutoExitCheckBox.CheckedChanged += new System.EventHandler(this.mouseMoveAutoExitCheckBox_CheckedChanged);
+            this.mouseMoveAutoExitCheckBox.CheckedChanged += new System.EventHandler(this.MouseMoveAutoExitCheckBox_CheckedChanged);
             // 
             // button1
             // 
@@ -159,7 +159,7 @@
             this.button1.TabIndex = 6;
             this.button1.Text = "&OK";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
             // button2
             // 
@@ -170,7 +170,7 @@
             this.button2.TabIndex = 5;
             this.button2.Text = "&Cancel";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.button2.Click += new System.EventHandler(this.Button2_Click);
             // 
             // ScreenSaverConfig
             // 

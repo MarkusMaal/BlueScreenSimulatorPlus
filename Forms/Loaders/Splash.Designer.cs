@@ -28,12 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Splash));
             this.splashEmoticon = new System.Windows.Forms.Label();
             this.splashPlus = new System.Windows.Forms.Label();
             this.appNameLabel = new System.Windows.Forms.Label();
-            this.veriFileTimer = new System.Windows.Forms.Timer(this.components);
             this.appMarketedVersionLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.SplashText = new System.Windows.Forms.Label();
@@ -77,12 +75,6 @@
             this.appNameLabel.TabIndex = 2;
             this.appNameLabel.Text = "Blue Screen Simulator Plus";
             this.appNameLabel.UseWaitCursor = true;
-            // 
-            // veriFileTimer
-            // 
-            this.veriFileTimer.Enabled = true;
-            this.veriFileTimer.Interval = 15;
-            this.veriFileTimer.Tick += new System.EventHandler(this.Timer1_Tick);
             // 
             // appMarketedVersionLabel
             // 
@@ -180,7 +172,6 @@
         private System.Windows.Forms.Label splashEmoticon;
         private System.Windows.Forms.Label splashPlus;
         private System.Windows.Forms.Label appNameLabel;
-        internal System.Windows.Forms.Timer veriFileTimer;
         private System.Windows.Forms.Label appMarketedVersionLabel;
         private System.Windows.Forms.Label label1;
         internal System.Windows.Forms.Label SplashText;

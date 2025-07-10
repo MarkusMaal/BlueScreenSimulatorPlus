@@ -13,8 +13,8 @@ namespace UltimateBlueScreenSimulator
     public partial class DictEdit : Form
     {
         internal BlueScreen me;
-        string key;
-        bool initialization = false;
+        private string key;
+        private bool initialization = false;
         public DictEdit()
         {
             InitializeComponent();
@@ -26,7 +26,7 @@ namespace UltimateBlueScreenSimulator
             Reload();
         }
 
-        void Reload()
+        private void Reload()
         {
             listView1.Items.Clear();
             switch (comboBox1.SelectedItem.ToString())

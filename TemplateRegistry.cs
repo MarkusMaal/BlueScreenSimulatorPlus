@@ -141,7 +141,7 @@ namespace UltimateBlueScreenSimulator
             try
             {
                 return bluescreens[idx];
-            } catch (Exception ex)
+            } catch
             {
                 Program.gs.Log("Error", $"Tried to get template at index {idx}, which didn't exist");
                 return null;
@@ -238,11 +238,11 @@ namespace UltimateBlueScreenSimulator
         {
             string filedata;
             filterIndex--;
-            if (CheckFormat(filterIndex, "3.0"))
+            if (CheckFormat(filterIndex, "3.x"))
             {
                 try
                 {
-                    var options = new JsonSerializerOptions { WriteIndented = true };
+                    JsonSerializerOptions options = new JsonSerializerOptions { WriteIndented = true };
                     filedata = JsonSerializer.Serialize(Program.templates, options);
                     File.WriteAllText(filename, filedata);
                     saveFinished = true;
@@ -262,12 +262,20 @@ namespace UltimateBlueScreenSimulator
             }
             else if (CheckFormat(filterIndex, "2.1"))
             {
-                if (!ignoreErrors) MessageBox.Show("Warning: Custom NT error codes and culprit files will not be saved with this format.", "Legacy format selected", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                if (!ignoreErrors)
+                {
+                    MessageBox.Show("Warning: Custom NT error codes and culprit files will not be saved with this format.", "Legacy format selected", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+
                 filedata = "*** Blue screen simulator plus 2.1 ***";
             }
             else if (CheckFormat(filterIndex, "2.0"))
             {
-                if (!ignoreErrors) MessageBox.Show("Warning: Custom NT error codes, culprit files and progress tuner data will not be saved and there won't be Windows Vista/7 separation with this format.", "Legacy format selected", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                if (!ignoreErrors)
+                {
+                    MessageBox.Show("Warning: Custom NT error codes, culprit files and progress tuner data will not be saved and there won't be Windows Vista/7 separation with this format.", "Legacy format selected", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+
                 filedata = "*** Blue screen simulator plus 2.0 ***";
             }
             else
@@ -276,11 +284,17 @@ namespace UltimateBlueScreenSimulator
                 if (filedata != " * ERROR * ")
                 {
                     File.WriteAllText(filename, filedata, System.Text.Encoding.Unicode);
-                    if (!ignoreErrors) MessageBox.Show("Configuration saved successfully", "Blue screen simulator 1.x configuration file creator", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (!ignoreErrors)
+                    {
+                        MessageBox.Show("Configuration saved successfully", "Blue screen simulator 1.x configuration file creator", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
                 else
                 {
-                    if (!ignoreErrors) MessageBox.Show("Configuration was not saved, because an error occoured.\n\nBefore attempting to save to 1.x format, make sure that the following operating systems exist in your configuration list:\n\nWindows 10 and/or 11\nWindows Vista or Windows 7\nWindows XP\nWindows CE\nWindows NT 3.x/4.0\nWindows 9x/Me\nWindows 3.1x", "Blue screen simulator 1.x configuration file creator", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    if (!ignoreErrors)
+                    {
+                        MessageBox.Show("Configuration was not saved, because an error occoured.\n\nBefore attempting to save to 1.x format, make sure that the following operating systems exist in your configuration list:\n\nWindows 10 and/or 11\nWindows Vista or Windows 7\nWindows XP\nWindows CE\nWindows NT 3.x/4.0\nWindows 9x/Me\nWindows 3.1x", "Blue screen simulator 1.x configuration file creator", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
                 saveFinished = true;
                 Thread.CurrentThread.Abort();
@@ -470,7 +484,6 @@ namespace UltimateBlueScreenSimulator
         {
             string filedata = File.ReadAllText(filename);
             string version = filedata.Split('\n')[0];
-            string databases = "";
             bool added_randomness = false;
             if (version.StartsWith("*** Blue screen simulator plus 1."))
             {
@@ -1131,7 +1144,7 @@ namespace UltimateBlueScreenSimulator
         /// Gets and sets all of the configuration templates. You should only use this when saving/loading configurations.
         /// </summary>
         public BlueScreen[] BlueScreens {
-            get { return this.bluescreens.ToArray(); }
+            get { return bluescreens.ToArray(); }
             set { bluescreens = value.ToList(); }
         }
     }

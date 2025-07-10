@@ -69,9 +69,9 @@
             this.messageList.TabIndex = 0;
             this.messageList.UseCompatibleStateImageBehavior = false;
             this.messageList.View = System.Windows.Forms.View.Details;
-            this.messageList.AfterLabelEdit += new System.Windows.Forms.LabelEditEventHandler(this.materialListView1_AfterLabelEdit);
-            this.messageList.SelectedIndexChanged += new System.EventHandler(this.materialListView1_SelectedIndexChanged);
-            this.messageList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.messageList_KeyDown);
+            this.messageList.AfterLabelEdit += new System.Windows.Forms.LabelEditEventHandler(this.MaterialListView1_AfterLabelEdit);
+            this.messageList.SelectedIndexChanged += new System.EventHandler(this.MaterialListView1_SelectedIndexChanged);
+            this.messageList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MessageList_KeyDown);
             // 
             // columnHeader1
             // 
@@ -105,7 +105,7 @@
             this.addButton.Type = MaterialSkin2Framework.Controls.MaterialButton.MaterialButtonType.Contained;
             this.addButton.UseAccentColor = false;
             this.addButton.UseVisualStyleBackColor = true;
-            this.addButton.Click += new System.EventHandler(this.materialButton1_Click);
+            this.addButton.Click += new System.EventHandler(this.MaterialButton1_Click);
             // 
             // removeButton
             // 
@@ -130,7 +130,7 @@
             this.removeButton.Type = MaterialSkin2Framework.Controls.MaterialButton.MaterialButtonType.Contained;
             this.removeButton.UseAccentColor = true;
             this.removeButton.UseVisualStyleBackColor = true;
-            this.removeButton.Click += new System.EventHandler(this.materialButton2_Click);
+            this.removeButton.Click += new System.EventHandler(this.MaterialButton2_Click);
             // 
             // editButton
             // 
@@ -156,7 +156,7 @@
             this.editButton.Type = MaterialSkin2Framework.Controls.MaterialButton.MaterialButtonType.Contained;
             this.editButton.UseAccentColor = false;
             this.editButton.UseVisualStyleBackColor = true;
-            this.editButton.Click += new System.EventHandler(this.editButton_Click);
+            this.editButton.Click += new System.EventHandler(this.EditButton_Click);
             // 
             // textTextBox
             // 
@@ -254,7 +254,7 @@
             this.clearButton.Type = MaterialSkin2Framework.Controls.MaterialButton.MaterialButtonType.Contained;
             this.clearButton.UseAccentColor = true;
             this.clearButton.UseVisualStyleBackColor = true;
-            this.clearButton.Click += new System.EventHandler(this.clearButton_Click);
+            this.clearButton.Click += new System.EventHandler(this.ClearButton_Click);
             // 
             // MessageTableEditor
             // 

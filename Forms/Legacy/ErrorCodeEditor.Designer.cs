@@ -126,7 +126,7 @@
             this.codeContent.Name = "codeContent";
             this.codeContent.Size = new System.Drawing.Size(729, 26);
             this.codeContent.TabIndex = 2;
-            this.codeContent.TextChanged += new System.EventHandler(this.codeContent_TextChanged);
+            this.codeContent.TextChanged += new System.EventHandler(this.CodeContent_TextChanged);
             // 
             // topLabel
             // 
@@ -168,7 +168,7 @@
             this.materialButton2.TabIndex = 5;
             this.materialButton2.Text = "Random code";
             this.materialButton2.UseVisualStyleBackColor = true;
-            this.materialButton2.Click += new System.EventHandler(this.materialButton2_Click);
+            this.materialButton2.Click += new System.EventHandler(this.MaterialButton2_Click);
             // 
             // materialButton3
             // 
@@ -180,7 +180,7 @@
             this.materialButton3.TabIndex = 6;
             this.materialButton3.Text = "Calculate";
             this.materialButton3.UseVisualStyleBackColor = true;
-            this.materialButton3.Click += new System.EventHandler(this.materialButton3_Click);
+            this.materialButton3.Click += new System.EventHandler(this.MaterialButton3_Click);
             // 
             // materialButton1
             // 
@@ -192,7 +192,7 @@
             this.materialButton1.TabIndex = 0;
             this.materialButton1.Text = "Null code";
             this.materialButton1.UseVisualStyleBackColor = true;
-            this.materialButton1.Click += new System.EventHandler(this.materialButton1_Click);
+            this.materialButton1.Click += new System.EventHandler(this.MaterialButton1_Click);
             // 
             // materialButton4
             // 
@@ -204,7 +204,7 @@
             this.materialButton4.TabIndex = 5;
             this.materialButton4.Text = "Apply to all";
             this.materialButton4.UseVisualStyleBackColor = true;
-            this.materialButton4.Click += new System.EventHandler(this.materialButton4_Click);
+            this.materialButton4.Click += new System.EventHandler(this.MaterialButton4_Click);
             // 
             // ErrorCodeEditor
             // 

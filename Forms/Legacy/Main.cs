@@ -97,10 +97,8 @@ namespace UltimateBlueScreenSimulator
 
         internal bool displayone = false; // TODO: figure out wtf is this boolean used for
         
-        string version = Assembly.GetExecutingAssembly().GetName().Version.ToString().Replace(".", "").Substring(0, 1) + "." + Assembly.GetExecutingAssembly().GetName().Version.ToString().Replace(".", "").Substring(1);
-
         public static ThreadStart ts;
-        Thread bsod_starter;
+        private readonly Thread bsod_starter;
 
         public Main()
         {
@@ -139,52 +137,23 @@ namespace UltimateBlueScreenSimulator
                 UIActions.me.Crash(ex, "OrangeScreen");
             }
         }
-
-        public bool DoWeHaveInternet(long minimumSpeed)
-        {
-            if (!NetworkInterface.GetIsNetworkAvailable())
-                return false;
-
-            foreach (NetworkInterface ni in NetworkInterface.GetAllNetworkInterfaces())
-            {
-                // discard because of standard reasons
-                if ((ni.OperationalStatus != OperationalStatus.Up) ||
-                    (ni.NetworkInterfaceType == NetworkInterfaceType.Loopback) ||
-                    (ni.NetworkInterfaceType == NetworkInterfaceType.Tunnel))
-                    continue;
-
-                // this allow to filter modems, serial, etc.
-                // I use 10000000 as a minimum speed for most cases
-                if (ni.Speed < minimumSpeed)
-                    continue;
-
-                // discard virtual cards (virtual box, virtual pc, etc.)
-                if ((ni.Description.IndexOf("virtual", StringComparison.OrdinalIgnoreCase) >= 0) ||
-                    (ni.Name.IndexOf("virtual", StringComparison.OrdinalIgnoreCase) >= 0))
-                    continue;
-
-                // discard "Microsoft Loopback Adapter", it will not show as NetworkInterfaceType.Loopback but as Ethernet Card.
-                if (ni.Description.Equals("Microsoft Loopback Adapter", StringComparison.OrdinalIgnoreCase))
-                    continue;
-
-                return true;
-            }
-            return false;
-        }
-
         private void Initialize(object sender, EventArgs e)
         {
             UIActions.InitializeForm(this);
-            bool DarkMode = (int)Registry.GetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize", "AppsUseLightTheme", 1) == 0;
-            /*if (DarkMode && autodark)
+            /*bool DarkMode = (int)Registry.GetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize", "AppsUseLightTheme", 1) == 0;
+            if (DarkMode && autodark)
             {
                 nightThemeToolStripMenuItem.PerformClick();
             }*/
             // to prevent race conditions
-            Program.clip.ExitSplash(this);
+            Program.clip.ExitSplash();
             this.TopMost = true;
             this.TopMost = false;
             Focus();
+            if (Program.gs.AutoUpdate)
+            {
+                UIActions.CheckUpdates(this);
+            }
         }
 
         private void Button1_Click(object sender, EventArgs e)
@@ -437,104 +406,9 @@ namespace UltimateBlueScreenSimulator
         {
             UpdateInterface ui = new UpdateInterface();
             ui.Show();
-            this.Hide();
+            Hide();
         }
 
-        private void Timer3_Tick(object sender, EventArgs e)
-        {
-
-            if (System.IO.File.Exists("BSSP.exe"))
-            {
-                updateCheckerTimer.Enabled = false;
-                //MessageBox.Show("Thank you for installing the latest version of Blue screen simulator plus :)\n\nWhat's new?\n" + Program.changelog + "\n\nYou can find a more detailed changelog in the official BlueScreenSimulatorPlus GitHub page.", "Update was successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                int tries = 0;
-                while (System.IO.File.Exists("BSSP.exe"))
-                {
-                    tries += 1;
-                    try
-                    {
-                        System.IO.File.Move("BSSP.exe", Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\BSSP_old.exe");
-                        System.IO.File.Delete(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\BSSP_old.exe");
-                    }
-                    catch
-                    {
-                        //yo
-                    }
-                    if (tries > 64)
-                    {
-                        break;
-                    }
-                }
-            }
-            try
-            { 
-                if (System.IO.File.Exists(Program.prefix + "vercheck.txt"))
-                {
-                    string[] lines = System.IO.File.ReadAllLines(Program.prefix + "vercheck.txt");
-                    if (Convert.ToDouble(lines[0].Replace(".", ",").Replace("\r", "").Replace("\n", "").Trim()) > Convert.ToDouble(version.Replace(".", ",")))
-                    {
-                        updateCheckerTimer.Enabled = false;
-                        System.IO.File.Delete(Program.prefix + "vercheck.txt");
-                        if (MessageBox.Show("A new version of blue screen simulator is available. Would you like to update now?", "Update available", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                        {
-                            System.IO.File.WriteAllText("hash.txt", lines[1].Trim());
-                            if (postponeupdate == false)
-                            { 
-                                UpdateInterface ui = new UpdateInterface();
-                                ui.Show();
-                                this.Hide();
-                            }
-                            else
-                            {
-                                realpostpone = true;
-                                MessageBox.Show("The update has been postponed to install when the program is closed.");
-                            }
-                        }
-                    } else
-                    {
-                        if (updateCheckerTimer.Interval == 5999)
-                        {
-                            updateCheckerTimer.Interval = 6000;
-                            updateCheckerTimer.Enabled = false;
-                            System.IO.File.Delete(Program.prefix + "vercheck.txt");
-                            if (MessageBox.Show("A new version of blue screen simulator is available. Would you like to update now?", "Update available", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                            {
-                                System.IO.File.WriteAllText("hash.txt", lines[1].Trim());
-                                if (postponeupdate == false)
-                                {
-                                    UpdateInterface ui = new UpdateInterface();
-                                    ui.Show();
-                                    this.Hide();
-                                }
-                                else
-                                {
-                                    realpostpone = true;
-                                    MessageBox.Show("The update has been postponed to install when the program is closed.");
-                                }
-                            }
-                        }
-                        else if (updateCheckerTimer.Interval == 5998)
-                        {
-                            updateCheckerTimer.Interval = 6000;
-                            updateCheckerTimer.Enabled = false;
-                            MessageBox.Show("This version of blue screen simulator plus is up to date", "Blue screens simulator plus", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
-                        else
-                        {
-                            System.IO.File.Delete(Program.prefix + "vercheck.txt");
-                        }
-                    }
-                }
-            } catch (Exception ex)
-            {
-
-                if (updateCheckerTimer.Interval != 6000)
-                {
-                    MessageBox.Show("An error has occoured.\n\nFatal exception: " + ex.Message + "\n\nStack trace\n" + ex.StackTrace, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                updateCheckerTimer.Enabled = false;
-            }
-        }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -555,7 +429,7 @@ namespace UltimateBlueScreenSimulator
                 {
                     UpdateInterface ui = new UpdateInterface();
                     ui.Show();
-                    this.Hide();
+                    Hide();
                     realpostpone = false;
                     e.Cancel = true;
                 }
@@ -570,7 +444,7 @@ namespace UltimateBlueScreenSimulator
             }
             if (!e.Cancel)
             {
-                if (!Program.f1.Visible)
+                if (!Program.F1.Visible)
                 {
                     Application.Exit();
                 }
@@ -872,7 +746,7 @@ namespace UltimateBlueScreenSimulator
 
         private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -963,7 +837,7 @@ namespace UltimateBlueScreenSimulator
                 {
                     waitPopup.Enabled = false;
                     this.WindowState = FormWindowState.Normal;
-                    Program.f1.Show();
+                    Program.F1.Show();
                 }
                 else
                 {
@@ -1004,7 +878,7 @@ namespace UltimateBlueScreenSimulator
 
         private void ContentsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (DoWeHaveInternet(1000))
+            if (Program.DoWeHaveInternet(1000))
             {
                 // online user manual
                 Process p = new Process();
@@ -1081,23 +955,25 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void button4_Click_1(object sender, EventArgs e)
+        private void Button4_Click_1(object sender, EventArgs e)
         {
             if (UIActions.me.GetString("os") == "Windows 8 Beta")
             {
                 MessageBox.Show("Progress tuner is not available for this OS, dummy!", "Progress tuner", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            Forms.Legacy.ProgressTuner pt = new Forms.Legacy.ProgressTuner();
-            pt.KFrames = UIActions.me.AllProgress();
-            pt.Text = string.Format("Progress tuner - {0}", UIActions.me.GetString("friendlyname"));
+            Forms.Legacy.ProgressTuner pt = new Forms.Legacy.ProgressTuner
+            {
+                KFrames = UIActions.me.AllProgress(),
+                Text = string.Format("Progress tuner - {0}", UIActions.me.GetString("friendlyname"))
+            };
             if (pt.KFrames.Count > 0)
             {
                 pt.progressTrackBar.Maximum = UIActions.me.GetInt("progressmillis");
             }
             pt.ReloadBitmap();
             pt.SetLabelText();
-            if (this.nightThemeToolStripMenuItem.Checked)
+            if (nightThemeToolStripMenuItem.Checked)
             {
                 pt.BackColor = Color.Black;
                 pt.ForeColor = Color.White;
@@ -1111,7 +987,7 @@ namespace UltimateBlueScreenSimulator
             pt.Dispose();
         }
 
-        private void progressTunerToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ProgressTunerToolStripMenuItem_Click(object sender, EventArgs e)
         {
             progressTuneButton.PerformClick();
         }
@@ -1122,12 +998,12 @@ namespace UltimateBlueScreenSimulator
             UIActions.me.SetString("screen_mode", comboBox2.SelectedItem.ToString());
         }
 
-        private void generalCheckUncheck(object sender, EventArgs e)
+        private void GeneralCheckUncheck(object sender, EventArgs e)
         {
             UIActions.UpdateBool(this, (CheckBox)sender);
         }
 
-        private void embedExeButton_Click(object sender, EventArgs e)
+        private void EmbedExeButton_Click(object sender, EventArgs e)
         {
             string filter_backup = saveFileDialog1.Filter;
             saveFileDialog1.Filter = "Windows Executables|*.exe|Windows screensaver files|*.scr";
@@ -1164,8 +1040,7 @@ namespace UltimateBlueScreenSimulator
                 using (BinaryReader reader = new BinaryReader(new FileStream(tempname, FileMode.Open)))
                 {
                     byte[] buffer = new byte[1];
-                    int bytesRead;
-                    while ((bytesRead = reader.Read(buffer, 0, buffer.Length)) > 0)
+                    while ((_ = reader.Read(buffer, 0, buffer.Length)) > 0)
                     {
                         data.AddRange(buffer);
                     }
@@ -1182,13 +1057,12 @@ namespace UltimateBlueScreenSimulator
                 data.AddRange(Encoding.UTF8.GetBytes(jsonEmbed));
                 File.WriteAllBytes(saveFileDialog1.FileName, data.ToArray());
                 data.Clear();
-                data = null;
                 MessageBox.Show("Executable saved successfully!", "Create embedded executable", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             saveFileDialog1.Filter = filter_backup;
         }
 
-        private void button4_Click_2(object sender, EventArgs e)
+        private void Button4_Click_2(object sender, EventArgs e)
         {
             new Forms.Legacy.MessageTableEditor
             {
@@ -1196,7 +1070,7 @@ namespace UltimateBlueScreenSimulator
             }.ShowDialog();
         }
 
-        private void button5_Click_1(object sender, EventArgs e)
+        private void Button5_Click_1(object sender, EventArgs e)
         {
             new Forms.Legacy.MessageTableEditor
             {
@@ -1204,13 +1078,13 @@ namespace UltimateBlueScreenSimulator
             }.ShowDialog();
         }
 
-        private void screenshotToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ScreenshotToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Screenshot saved as " + Program.dr.Screenshot(this), "Screenshot taken!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             Cursor.Show();
         }
 
-        private void showTraceLogToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ShowTraceLogToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string logData = Program.gs.GetLog();
             StringBuilder filteredLog = new StringBuilder();

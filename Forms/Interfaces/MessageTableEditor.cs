@@ -18,19 +18,19 @@ namespace UltimateBlueScreenSimulator.Forms.Interfaces
         internal bool nx_errors = false;
         public MessageTableEditor()
         {
-            MaterialSkinManager materialSkinManager = Program.f1.materialSkinManager;
+            MaterialSkinManager materialSkinManager = Program.F1.materialSkinManager;
             materialSkinManager.AddFormToManage(this);
             InitializeComponent();
         }
 
-        private void materialListView1_AfterLabelEdit(object sender, LabelEditEventArgs e)
+        private void MaterialListView1_AfterLabelEdit(object sender, LabelEditEventArgs e)
         {
             textTextBox.Text = messageList.SelectedItems[0].Text;
             subitemTextBox.Text = messageList.SelectedItems[0].SubItems[1].Text;
             UpdateTemplate();
         }
 
-        void UpdateTemplate()
+        private void UpdateTemplate()
         {
             List<string> errorPairs = new List<string>();
             if (nx_errors)
@@ -81,14 +81,16 @@ namespace UltimateBlueScreenSimulator.Forms.Interfaces
                 {
                     continue;
                 }
-                ListViewItem lvi = new ListViewItem();
-                lvi.Text = nt_error.Split(nt_errors || nx_errors ? '\t' : ':')[0];
+                ListViewItem lvi = new ListViewItem
+                {
+                    Text = nt_error.Split(nt_errors || nx_errors ? '\t' : ':')[0]
+                };
                 lvi.SubItems.Add(nt_error.Split(nt_errors || nx_errors ? '\t' : ':')[1]);
                 messageList.Items.Add(lvi);
             }
         }
 
-        private void materialButton1_Click(object sender, EventArgs e)
+        private void MaterialButton1_Click(object sender, EventArgs e)
         {
             messageList.Items.Add(new ListViewItem()
             {
@@ -101,7 +103,7 @@ namespace UltimateBlueScreenSimulator.Forms.Interfaces
             UpdateTemplate();
         }
 
-        private void materialListView1_SelectedIndexChanged(object sender, EventArgs e)
+        private void MaterialListView1_SelectedIndexChanged(object sender, EventArgs e)
         {
             bool enabled = messageList.SelectedIndices.Count > 0;
             removeButton.Enabled = enabled;
@@ -112,7 +114,7 @@ namespace UltimateBlueScreenSimulator.Forms.Interfaces
             subitemTextBox.Text = messageList.SelectedIndices.Count == 1 ? messageList.SelectedItems[0].SubItems[1].Text : "";
         }
 
-        private void materialButton2_Click(object sender, EventArgs e)
+        private void MaterialButton2_Click(object sender, EventArgs e)
         {
             foreach (ListViewItem lvi in messageList.SelectedItems)
             {
@@ -121,7 +123,7 @@ namespace UltimateBlueScreenSimulator.Forms.Interfaces
             UpdateTemplate();
         }
 
-        private void editButton_Click(object sender, EventArgs e)
+        private void EditButton_Click(object sender, EventArgs e)
         {
             foreach (int i in messageList.SelectedIndices)
             {
@@ -143,13 +145,13 @@ namespace UltimateBlueScreenSimulator.Forms.Interfaces
             UpdateTemplate();
         }
 
-        private void clearButton_Click(object sender, EventArgs e)
+        private void ClearButton_Click(object sender, EventArgs e)
         {
             messageList.Items.Clear();
             UpdateTemplate();
         }
 
-        private void messageList_KeyDown(object sender, KeyEventArgs e)
+        private void MessageList_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Delete)
             {

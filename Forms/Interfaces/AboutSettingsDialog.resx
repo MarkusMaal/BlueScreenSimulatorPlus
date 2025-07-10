@@ -131,9 +131,6 @@ this may result in behaviour, which is unintended by the original configuration 
   <data name="addCfg.ToolTip" xml:space="preserve">
     <value>This will let you add your own configuration for any operating system available and setup your own custom settings that are separated from other configurations. This will also carry over, if you save configurations.</value>
   </data>
-  <metadata name="updateCheckerTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>105, 13</value>
-  </metadata>
   <metadata name="saveBsconfig.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>433, 13</value>
   </metadata>

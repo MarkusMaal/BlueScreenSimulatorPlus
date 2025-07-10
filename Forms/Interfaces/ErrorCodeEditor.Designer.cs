@@ -34,7 +34,7 @@
             this.chooseCode3 = new MaterialSkin2Framework.Controls.MaterialRadioButton();
             this.chooseCode4 = new MaterialSkin2Framework.Controls.MaterialRadioButton();
             this.codeListPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.codeContent = new MaterialSkin2Framework.Controls.MaterialTextBox();
+            this.codeContent = new MaterialSkin2Framework.Controls.MaterialTextBox2();
             this.topLabel = new MaterialSkin2Framework.Controls.MaterialLabel();
             this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
             this.materialButton2 = new MaterialSkin2Framework.Controls.MaterialButton();
@@ -135,7 +135,6 @@
             this.codeContent.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.codeContent.AnimateReadOnly = false;
-            this.codeContent.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.codeContent.Depth = 0;
             this.codeContent.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.codeContent.LeadingIcon = null;
@@ -143,13 +142,12 @@
             this.codeContent.Margin = new System.Windows.Forms.Padding(20, 20, 3, 3);
             this.codeContent.MaxLength = 50;
             this.codeContent.MouseState = MaterialSkin2Framework.MouseState.OUT;
-            this.codeContent.Multiline = false;
             this.codeContent.Name = "codeContent";
             this.codeContent.Size = new System.Drawing.Size(710, 50);
             this.codeContent.TabIndex = 2;
             this.codeContent.Text = "";
             this.codeContent.TrailingIcon = global::UltimateBlueScreenSimulator.Properties.Resources.success;
-            this.codeContent.TextChanged += new System.EventHandler(this.codeContent_TextChanged);
+            this.codeContent.TextChanged += new System.EventHandler(this.CodeContent_TextChanged);
             // 
             // topLabel
             // 
@@ -202,7 +200,7 @@
             this.materialButton2.Type = MaterialSkin2Framework.Controls.MaterialButton.MaterialButtonType.Contained;
             this.materialButton2.UseAccentColor = false;
             this.materialButton2.UseVisualStyleBackColor = true;
-            this.materialButton2.Click += new System.EventHandler(this.materialButton2_Click);
+            this.materialButton2.Click += new System.EventHandler(this.MaterialButton2_Click);
             // 
             // materialButton3
             // 
@@ -222,7 +220,7 @@
             this.materialButton3.Type = MaterialSkin2Framework.Controls.MaterialButton.MaterialButtonType.Contained;
             this.materialButton3.UseAccentColor = false;
             this.materialButton3.UseVisualStyleBackColor = true;
-            this.materialButton3.Click += new System.EventHandler(this.materialButton3_Click);
+            this.materialButton3.Click += new System.EventHandler(this.MaterialButton3_Click);
             // 
             // materialButton1
             // 
@@ -242,7 +240,7 @@
             this.materialButton1.Type = MaterialSkin2Framework.Controls.MaterialButton.MaterialButtonType.Contained;
             this.materialButton1.UseAccentColor = false;
             this.materialButton1.UseVisualStyleBackColor = true;
-            this.materialButton1.Click += new System.EventHandler(this.materialButton1_Click);
+            this.materialButton1.Click += new System.EventHandler(this.MaterialButton1_Click);
             // 
             // materialButton4
             // 
@@ -262,7 +260,7 @@
             this.materialButton4.Type = MaterialSkin2Framework.Controls.MaterialButton.MaterialButtonType.Contained;
             this.materialButton4.UseAccentColor = false;
             this.materialButton4.UseVisualStyleBackColor = true;
-            this.materialButton4.Click += new System.EventHandler(this.materialButton4_Click);
+            this.materialButton4.Click += new System.EventHandler(this.MaterialButton4_Click);
             // 
             // ErrorCodeEditor
             // 
@@ -296,7 +294,7 @@
         private MaterialSkin2Framework.Controls.MaterialRadioButton chooseCode3;
         private MaterialSkin2Framework.Controls.MaterialRadioButton chooseCode4;
         private System.Windows.Forms.FlowLayoutPanel codeListPanel;
-        private MaterialSkin2Framework.Controls.MaterialTextBox codeContent;
+        private MaterialSkin2Framework.Controls.MaterialTextBox2 codeContent;
         private MaterialSkin2Framework.Controls.MaterialLabel topLabel;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
         private MaterialSkin2Framework.Controls.MaterialButton materialButton2;
