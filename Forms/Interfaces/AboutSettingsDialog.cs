@@ -283,7 +283,7 @@ namespace UltimateBlueScreenSimulator
 
         public static void QuickHelp_SystemRequirements(Control c)
         {
-            c.Text = "System requirements:\n\nOS: Windows 7 or later (Windows Vista partially works as well)\nInstalled fonts: Segoe UI (with Semilight variant), Consolas, Lucida Console\n200MB of available RAM (recommended minimum)\n100MB of available RAM (absolute minimum)\nx86 or compatible processor\nRead-Write storage media\nMicrosoft.NET Framework 4.5.2\n1000+ bps internet connection (for updates and online help functionality)\nScreen resolution: 1024x720 or higher (1280x720 or higher recommended)".Replace("\n", Environment.NewLine);
+            c.Text = "System requirements:\n\nOS: Windows 7 or later (Windows Vista partially works as well)\nInstalled fonts: Segoe UI (with Semilight variant), Consolas, Lucida Console\n200MB of available RAM (recommended minimum)\n100MB of available RAM (absolute minimum)\nx86 or compatible processor\nRead-Write storage media\nMicrosoft.NET Framework 4.8.1\n1000+ bps internet connection (for updates and online help functionality)\nScreen resolution: 1024x720 or higher (1280x720 or higher recommended)".Replace("\n", Environment.NewLine);
         }
 
         //Closes the dialog and sets dialogresult to ok

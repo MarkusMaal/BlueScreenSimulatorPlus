@@ -174,6 +174,7 @@
             this.devGen = new MaterialSkin2Framework.Controls.MaterialButton();
             this.devRestartApp = new MaterialSkin2Framework.Controls.MaterialButton();
             this.devPerformTest = new MaterialSkin2Framework.Controls.MaterialButton();
+            this.devWindowedSettings = new MaterialSkin2Framework.Controls.MaterialButton();
             this.selectAllBox = new MaterialSkin2Framework.Controls.MaterialCheckbox();
             this.configListHeading = new MaterialSkin2Framework.Controls.MaterialLabel();
             this.randomnessCheckBox = new MaterialSkin2Framework.Controls.MaterialCheckbox();
@@ -260,7 +261,6 @@
             this.usbFinder = new System.Windows.Forms.Timer(this.components);
             this.loadBsconfig = new System.Windows.Forms.OpenFileDialog();
             this.saveBsconfig = new System.Windows.Forms.SaveFileDialog();
-            this.devWindowedSettings = new MaterialSkin2Framework.Controls.MaterialButton();
             this.winPanel.SuspendLayout();
             this.ntPanel.SuspendLayout();
             this.materialTabControl1.SuspendLayout();
@@ -992,7 +992,7 @@
             this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.button1.Icon = global::UltimateBlueScreenSimulator.Properties.Resources.play;
             this.button1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.button1.Location = new System.Drawing.Point(-252, -181);
+            this.button1.Location = new System.Drawing.Point(-236, -137);
             this.button1.Mini = true;
             this.button1.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.button1.Name = "button1";
@@ -1011,7 +1011,7 @@
             this.button3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.button3.Icon = global::UltimateBlueScreenSimulator.Properties.Resources.question;
             this.button3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.button3.Location = new System.Drawing.Point(-252, -131);
+            this.button3.Location = new System.Drawing.Point(-236, -87);
             this.button3.Mini = true;
             this.button3.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.button3.Name = "button3";
@@ -1202,7 +1202,7 @@
             this.materialTabControl1.Controls.Add(this.aboutTab);
             this.materialTabControl1.Depth = 0;
             this.materialTabControl1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialTabControl1.ImageList = this.imageList2;
+            this.materialTabControl1.ImageList = this.imageList1;
             this.materialTabControl1.Location = new System.Drawing.Point(-3, 64);
             this.materialTabControl1.Margin = new System.Windows.Forms.Padding(0);
             this.materialTabControl1.MouseState = MaterialSkin2Framework.MouseState.HOVER;
@@ -1210,7 +1210,7 @@
             this.materialTabControl1.Name = "materialTabControl1";
             this.materialTabControl1.SelectedIndex = 0;
             this.materialTabControl1.ShowToolTips = true;
-            this.materialTabControl1.Size = new System.Drawing.Size(938, 706);
+            this.materialTabControl1.Size = new System.Drawing.Size(954, 750);
             this.materialTabControl1.TabIndex = 1;
             this.quickHelp.SetToolTip(this.materialTabControl1, "Tabs (in order):\r\nSimulator\r\nTrace log\r\nSettings\r\nHelp and about\r\nPrank mode");
             this.materialTabControl1.SelectedIndexChanged += new System.EventHandler(this.materialTabControl1_SelectedIndexChanged);
@@ -1226,7 +1226,7 @@
             this.tabPage1.Location = new System.Drawing.Point(39, 4);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(895, 698);
+            this.tabPage1.Size = new System.Drawing.Size(911, 742);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Simulator";
             // 
@@ -1277,7 +1277,7 @@
             this.windowVersion.MaxDropDownItems = 4;
             this.windowVersion.MouseState = MaterialSkin2Framework.MouseState.OUT;
             this.windowVersion.Name = "windowVersion";
-            this.windowVersion.Size = new System.Drawing.Size(724, 49);
+            this.windowVersion.Size = new System.Drawing.Size(740, 49);
             this.windowVersion.StartIndex = 0;
             this.windowVersion.TabIndex = 0;
             this.windowVersion.SelectedIndexChanged += new System.EventHandler(this.windowVersion_SelectedIndexChanged);
@@ -1310,7 +1310,7 @@
             this.flowLayoutPanel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.flowLayoutPanel1.Location = new System.Drawing.Point(9, 62);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(821, 577);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(837, 621);
             this.flowLayoutPanel1.TabIndex = 3;
             this.flowLayoutPanel1.WrapContents = false;
             // 
@@ -2638,7 +2638,7 @@
             this.updatePanel.Location = new System.Drawing.Point(4, 22);
             this.updatePanel.Name = "updatePanel";
             this.updatePanel.Padding = new System.Windows.Forms.Padding(3);
-            this.updatePanel.Size = new System.Drawing.Size(861, 700);
+            this.updatePanel.Size = new System.Drawing.Size(825, 618);
             this.updatePanel.TabIndex = 1;
             this.updatePanel.Text = "Update settings";
             // 
@@ -2666,7 +2666,7 @@
             this.materialCard6.Location = new System.Drawing.Point(3, 3);
             this.materialCard6.Margin = new System.Windows.Forms.Padding(0);
             this.materialCard6.Name = "materialCard6";
-            this.materialCard6.Size = new System.Drawing.Size(855, 694);
+            this.materialCard6.Size = new System.Drawing.Size(819, 612);
             this.materialCard6.TabIndex = 15;
             // 
             // updatePanelHeading
@@ -2696,7 +2696,7 @@
             this.customServerButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.customServerButton.HighEmphasis = true;
             this.customServerButton.Icon = null;
-            this.customServerButton.Location = new System.Drawing.Point(754, 304);
+            this.customServerButton.Location = new System.Drawing.Point(718, 304);
             this.customServerButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.customServerButton.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.customServerButton.Name = "customServerButton";
@@ -2775,7 +2775,7 @@
             this.primaryServerButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.primaryServerButton.HighEmphasis = true;
             this.primaryServerButton.Icon = null;
-            this.primaryServerButton.Location = new System.Drawing.Point(575, 304);
+            this.primaryServerButton.Location = new System.Drawing.Point(539, 304);
             this.primaryServerButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.primaryServerButton.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.primaryServerButton.Name = "primaryServerButton";
@@ -2821,7 +2821,7 @@
             this.backupServerButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.backupServerButton.HighEmphasis = true;
             this.backupServerButton.Icon = null;
-            this.backupServerButton.Location = new System.Drawing.Point(668, 304);
+            this.backupServerButton.Location = new System.Drawing.Point(632, 304);
             this.backupServerButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.backupServerButton.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.backupServerButton.Name = "backupServerButton";
@@ -2905,7 +2905,7 @@
             this.primaryServerBox.MouseState = MaterialSkin2Framework.MouseState.OUT;
             this.primaryServerBox.Multiline = false;
             this.primaryServerBox.Name = "primaryServerBox";
-            this.primaryServerBox.Size = new System.Drawing.Size(816, 36);
+            this.primaryServerBox.Size = new System.Drawing.Size(780, 36);
             this.primaryServerBox.TabIndex = 10;
             this.primaryServerBox.Text = "";
             this.primaryServerBox.TrailingIcon = null;
@@ -2965,7 +2965,7 @@
             this.noticeLabel.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.noticeLabel.FontType = MaterialSkin2Framework.MaterialSkinManager.fontType.Caption;
             this.noticeLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.noticeLabel.Location = new System.Drawing.Point(492, 26);
+            this.noticeLabel.Location = new System.Drawing.Point(456, 26);
             this.noticeLabel.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.noticeLabel.Name = "noticeLabel";
             this.noticeLabel.Size = new System.Drawing.Size(343, 18);
@@ -3099,7 +3099,7 @@
             this.devFlowPanel.Controls.Add(this.devPerformTest);
             this.devFlowPanel.Controls.Add(this.devWindowedSettings);
             this.devFlowPanel.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.devFlowPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.devFlowPanel.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.devFlowPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.devFlowPanel.Location = new System.Drawing.Point(199, 3);
             this.devFlowPanel.Name = "devFlowPanel";
@@ -3294,6 +3294,29 @@
             this.devPerformTest.UseAccentColor = false;
             this.devPerformTest.UseVisualStyleBackColor = false;
             this.devPerformTest.Click += new System.EventHandler(this.DevButtonsClick);
+            // 
+            // devWindowedSettings
+            // 
+            this.devWindowedSettings.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.devWindowedSettings.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.devWindowedSettings.CharacterCasing = MaterialSkin2Framework.Controls.MaterialButton.CharacterCasingEnum.Normal;
+            this.devWindowedSettings.Density = MaterialSkin2Framework.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.devWindowedSettings.Depth = 0;
+            this.devWindowedSettings.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.devWindowedSettings.HighEmphasis = true;
+            this.devWindowedSettings.Icon = null;
+            this.devWindowedSettings.Location = new System.Drawing.Point(4, 6);
+            this.devWindowedSettings.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.devWindowedSettings.MouseState = MaterialSkin2Framework.MouseState.HOVER;
+            this.devWindowedSettings.Name = "devWindowedSettings";
+            this.devWindowedSettings.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.devWindowedSettings.Size = new System.Drawing.Size(212, 36);
+            this.devWindowedSettings.TabIndex = 27;
+            this.devWindowedSettings.Text = "[DEV] Windowed settings";
+            this.devWindowedSettings.Type = MaterialSkin2Framework.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.devWindowedSettings.UseAccentColor = false;
+            this.devWindowedSettings.UseVisualStyleBackColor = false;
+            this.devWindowedSettings.Click += new System.EventHandler(this.DevButtonsClick);
             // 
             // selectAllBox
             // 
@@ -3739,7 +3762,7 @@
             this.appearancePanel.Controls.Add(this.darkMode);
             this.appearancePanel.Location = new System.Drawing.Point(4, 22);
             this.appearancePanel.Name = "appearancePanel";
-            this.appearancePanel.Size = new System.Drawing.Size(861, 700);
+            this.appearancePanel.Size = new System.Drawing.Size(825, 618);
             this.appearancePanel.TabIndex = 5;
             this.appearancePanel.Text = "Appearance";
             // 
@@ -4082,7 +4105,7 @@
             this.tabPage2.Location = new System.Drawing.Point(39, 4);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(895, 698);
+            this.tabPage2.Size = new System.Drawing.Size(911, 742);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Trace log";
             // 
@@ -4184,7 +4207,7 @@
             this.logIf.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.logIf.Name = "logIf";
             this.logIf.ReadOnly = true;
-            this.logIf.Size = new System.Drawing.Size(803, 615);
+            this.logIf.Size = new System.Drawing.Size(819, 659);
             this.logIf.TabIndex = 3;
             this.logIf.Text = "Logging interface 1.0";
             // 
@@ -4199,7 +4222,7 @@
             this.materialButton6.HighEmphasis = true;
             this.materialButton6.Icon = null;
             this.materialButton6.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.materialButton6.Location = new System.Drawing.Point(675, 15);
+            this.materialButton6.Location = new System.Drawing.Point(691, 15);
             this.materialButton6.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.materialButton6.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.materialButton6.Name = "materialButton6";
@@ -4220,7 +4243,7 @@
             this.aboutTab.ImageKey = "info";
             this.aboutTab.Location = new System.Drawing.Point(39, 4);
             this.aboutTab.Name = "aboutTab";
-            this.aboutTab.Size = new System.Drawing.Size(895, 698);
+            this.aboutTab.Size = new System.Drawing.Size(911, 742);
             this.aboutTab.TabIndex = 3;
             this.aboutTab.Text = "Help and about";
             // 
@@ -4237,7 +4260,7 @@
             this.materialTabSelector1.Location = new System.Drawing.Point(1, 0);
             this.materialTabSelector1.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.materialTabSelector1.Name = "materialTabSelector1";
-            this.materialTabSelector1.Size = new System.Drawing.Size(1009, 48);
+            this.materialTabSelector1.Size = new System.Drawing.Size(1025, 48);
             this.materialTabSelector1.TabIndex = 4;
             this.materialTabSelector1.Text = "materialTabSelector1";
             // 
@@ -4258,18 +4281,18 @@
             this.aboutTabControl.Name = "aboutTabControl";
             this.aboutTabControl.Padding = new System.Drawing.Point(0, 0);
             this.aboutTabControl.SelectedIndex = 0;
-            this.aboutTabControl.Size = new System.Drawing.Size(827, 647);
+            this.aboutTabControl.Size = new System.Drawing.Size(843, 691);
             this.aboutTabControl.TabIndex = 3;
             this.aboutTabControl.SelectedIndexChanged += new System.EventHandler(this.HelpTabChange);
             // 
             // aboutPanel
             // 
-            this.aboutPanel.BackColor = System.Drawing.Color.White;
+            this.aboutPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.aboutPanel.Controls.Add(this.materialCard5);
             this.aboutPanel.Location = new System.Drawing.Point(4, 22);
             this.aboutPanel.Name = "aboutPanel";
             this.aboutPanel.Padding = new System.Windows.Forms.Padding(3);
-            this.aboutPanel.Size = new System.Drawing.Size(819, 621);
+            this.aboutPanel.Size = new System.Drawing.Size(835, 665);
             this.aboutPanel.TabIndex = 0;
             this.aboutPanel.Text = "About";
             // 
@@ -4283,7 +4306,7 @@
             this.materialCard5.Location = new System.Drawing.Point(3, 3);
             this.materialCard5.Margin = new System.Windows.Forms.Padding(0);
             this.materialCard5.Name = "materialCard5";
-            this.materialCard5.Size = new System.Drawing.Size(813, 615);
+            this.materialCard5.Size = new System.Drawing.Size(829, 659);
             this.materialCard5.TabIndex = 1;
             // 
             // aboutTable
@@ -4317,7 +4340,7 @@
             this.aboutTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.aboutTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.aboutTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.aboutTable.Size = new System.Drawing.Size(813, 615);
+            this.aboutTable.Size = new System.Drawing.Size(829, 659);
             this.aboutTable.TabIndex = 0;
             // 
             // logoPictureBox
@@ -4330,7 +4353,7 @@
             this.logoPictureBox.Location = new System.Drawing.Point(3, 3);
             this.logoPictureBox.Name = "logoPictureBox";
             this.aboutTable.SetRowSpan(this.logoPictureBox, 7);
-            this.logoPictureBox.Size = new System.Drawing.Size(209, 609);
+            this.logoPictureBox.Size = new System.Drawing.Size(214, 653);
             this.logoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.logoPictureBox.TabIndex = 12;
             this.logoPictureBox.TabStop = false;
@@ -4345,9 +4368,9 @@
             this.logoDisplayFlowPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.logoDisplayFlowPanel.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.logoDisplayFlowPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.logoDisplayFlowPanel.Location = new System.Drawing.Point(218, 325);
+            this.logoDisplayFlowPanel.Location = new System.Drawing.Point(223, 351);
             this.logoDisplayFlowPanel.Name = "logoDisplayFlowPanel";
-            this.logoDisplayFlowPanel.Size = new System.Drawing.Size(592, 145);
+            this.logoDisplayFlowPanel.Size = new System.Drawing.Size(603, 157);
             this.logoDisplayFlowPanel.TabIndex = 25;
             // 
             // markusSoftwareLogo
@@ -4387,12 +4410,12 @@
             this.labelProductName.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.labelProductName.FontType = MaterialSkin2Framework.MaterialSkinManager.fontType.Body2;
             this.labelProductName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.labelProductName.Location = new System.Drawing.Point(221, 0);
+            this.labelProductName.Location = new System.Drawing.Point(226, 0);
             this.labelProductName.Margin = new System.Windows.Forms.Padding(6, 0, 3, 0);
             this.labelProductName.MaximumSize = new System.Drawing.Size(0, 17);
             this.labelProductName.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.labelProductName.Name = "labelProductName";
-            this.labelProductName.Size = new System.Drawing.Size(589, 17);
+            this.labelProductName.Size = new System.Drawing.Size(600, 17);
             this.labelProductName.TabIndex = 19;
             this.labelProductName.Text = "Product Name";
             this.labelProductName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -4405,12 +4428,12 @@
             this.labelVersion.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.labelVersion.FontType = MaterialSkin2Framework.MaterialSkinManager.fontType.Body2;
             this.labelVersion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.labelVersion.Location = new System.Drawing.Point(221, 35);
+            this.labelVersion.Location = new System.Drawing.Point(226, 38);
             this.labelVersion.Margin = new System.Windows.Forms.Padding(6, 0, 3, 0);
             this.labelVersion.MaximumSize = new System.Drawing.Size(0, 17);
             this.labelVersion.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.labelVersion.Name = "labelVersion";
-            this.labelVersion.Size = new System.Drawing.Size(589, 17);
+            this.labelVersion.Size = new System.Drawing.Size(600, 17);
             this.labelVersion.TabIndex = 0;
             this.labelVersion.Text = "Version";
             this.labelVersion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -4423,12 +4446,12 @@
             this.labelCopyright.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.labelCopyright.FontType = MaterialSkin2Framework.MaterialSkinManager.fontType.Body2;
             this.labelCopyright.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.labelCopyright.Location = new System.Drawing.Point(221, 66);
+            this.labelCopyright.Location = new System.Drawing.Point(226, 72);
             this.labelCopyright.Margin = new System.Windows.Forms.Padding(6, 0, 3, 0);
             this.labelCopyright.MaximumSize = new System.Drawing.Size(0, 17);
             this.labelCopyright.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.labelCopyright.Name = "labelCopyright";
-            this.labelCopyright.Size = new System.Drawing.Size(589, 17);
+            this.labelCopyright.Size = new System.Drawing.Size(600, 17);
             this.labelCopyright.TabIndex = 21;
             this.labelCopyright.Text = "Copyright";
             this.labelCopyright.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -4441,11 +4464,11 @@
             this.labelCompanyName.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.labelCompanyName.FontType = MaterialSkin2Framework.MaterialSkinManager.fontType.Body2;
             this.labelCompanyName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.labelCompanyName.Location = new System.Drawing.Point(221, 101);
+            this.labelCompanyName.Location = new System.Drawing.Point(226, 110);
             this.labelCompanyName.Margin = new System.Windows.Forms.Padding(6, 0, 3, 0);
             this.labelCompanyName.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.labelCompanyName.Name = "labelCompanyName";
-            this.labelCompanyName.Size = new System.Drawing.Size(589, 126);
+            this.labelCompanyName.Size = new System.Drawing.Size(600, 126);
             this.labelCompanyName.TabIndex = 22;
             // 
             // materialCard4
@@ -4455,10 +4478,10 @@
             this.materialCard4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.materialCard4.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.materialCard4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialCard4.Location = new System.Drawing.Point(215, 473);
+            this.materialCard4.Location = new System.Drawing.Point(220, 511);
             this.materialCard4.Margin = new System.Windows.Forms.Padding(0);
             this.materialCard4.Name = "materialCard4";
-            this.materialCard4.Size = new System.Drawing.Size(598, 97);
+            this.materialCard4.Size = new System.Drawing.Size(609, 105);
             this.materialCard4.TabIndex = 26;
             // 
             // flowLayoutPanel2
@@ -4474,7 +4497,7 @@
             this.flowLayoutPanel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(598, 97);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(609, 105);
             this.flowLayoutPanel2.TabIndex = 27;
             this.flowLayoutPanel2.WrapContents = false;
             // 
@@ -4572,12 +4595,12 @@
             // 
             // helpPanel
             // 
-            this.helpPanel.BackColor = System.Drawing.Color.White;
+            this.helpPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.helpPanel.Controls.Add(this.materialCard2);
             this.helpPanel.Controls.Add(this.materialCard1);
             this.helpPanel.Location = new System.Drawing.Point(4, 22);
             this.helpPanel.Name = "helpPanel";
-            this.helpPanel.Size = new System.Drawing.Size(889, 771);
+            this.helpPanel.Size = new System.Drawing.Size(819, 621);
             this.helpPanel.TabIndex = 2;
             this.helpPanel.Text = "Help";
             // 
@@ -4592,7 +4615,7 @@
             this.materialCard2.Location = new System.Drawing.Point(0, 0);
             this.materialCard2.Margin = new System.Windows.Forms.Padding(0);
             this.materialCard2.Name = "materialCard2";
-            this.materialCard2.Size = new System.Drawing.Size(893, 49);
+            this.materialCard2.Size = new System.Drawing.Size(823, 49);
             this.materialCard2.TabIndex = 3;
             // 
             // helpButtonsFlowPanel
@@ -4608,7 +4631,7 @@
             this.helpButtonsFlowPanel.Location = new System.Drawing.Point(0, 0);
             this.helpButtonsFlowPanel.Margin = new System.Windows.Forms.Padding(0);
             this.helpButtonsFlowPanel.Name = "helpButtonsFlowPanel";
-            this.helpButtonsFlowPanel.Size = new System.Drawing.Size(893, 49);
+            this.helpButtonsFlowPanel.Size = new System.Drawing.Size(823, 49);
             this.helpButtonsFlowPanel.TabIndex = 1;
             // 
             // howToGetHelpButton
@@ -4719,7 +4742,7 @@
             this.materialCard1.Location = new System.Drawing.Point(0, 51);
             this.materialCard1.Margin = new System.Windows.Forms.Padding(14);
             this.materialCard1.Name = "materialCard1";
-            this.materialCard1.Size = new System.Drawing.Size(886, 788);
+            this.materialCard1.Size = new System.Drawing.Size(816, 638);
             this.materialCard1.TabIndex = 2;
             // 
             // helpDisplay
@@ -4745,7 +4768,7 @@
             this.helpDisplay.SelectionLength = 0;
             this.helpDisplay.SelectionStart = 0;
             this.helpDisplay.ShortcutsEnabled = true;
-            this.helpDisplay.Size = new System.Drawing.Size(886, 788);
+            this.helpDisplay.Size = new System.Drawing.Size(816, 638);
             this.helpDisplay.TabIndex = 0;
             this.helpDisplay.TabStop = false;
             this.helpDisplay.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -4753,11 +4776,11 @@
             // 
             // commandLinePanel
             // 
-            this.commandLinePanel.BackColor = System.Drawing.Color.White;
+            this.commandLinePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.commandLinePanel.Controls.Add(this.materialCard3);
             this.commandLinePanel.Location = new System.Drawing.Point(4, 22);
             this.commandLinePanel.Name = "commandLinePanel";
-            this.commandLinePanel.Size = new System.Drawing.Size(889, 771);
+            this.commandLinePanel.Size = new System.Drawing.Size(819, 621);
             this.commandLinePanel.TabIndex = 3;
             this.commandLinePanel.Text = "Command line help";
             // 
@@ -4771,7 +4794,7 @@
             this.materialCard3.Location = new System.Drawing.Point(0, 0);
             this.materialCard3.Margin = new System.Windows.Forms.Padding(0);
             this.materialCard3.Name = "materialCard3";
-            this.materialCard3.Size = new System.Drawing.Size(889, 771);
+            this.materialCard3.Size = new System.Drawing.Size(819, 621);
             this.materialCard3.TabIndex = 1;
             // 
             // commandLineHelpDisplay
@@ -4796,7 +4819,7 @@
             this.commandLineHelpDisplay.SelectionLength = 0;
             this.commandLineHelpDisplay.SelectionStart = 0;
             this.commandLineHelpDisplay.ShortcutsEnabled = false;
-            this.commandLineHelpDisplay.Size = new System.Drawing.Size(889, 771);
+            this.commandLineHelpDisplay.Size = new System.Drawing.Size(819, 621);
             this.commandLineHelpDisplay.TabIndex = 0;
             this.commandLineHelpDisplay.TabStop = false;
             this.commandLineHelpDisplay.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -4855,7 +4878,7 @@
             this.label7.Depth = 0;
             this.label7.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.label7.Location = new System.Drawing.Point(14, 680);
+            this.label7.Location = new System.Drawing.Point(14, 724);
             this.label7.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(357, 19);
@@ -4895,33 +4918,10 @@
     "2.0 configuration files|*.bs2cfg;*.bs2|Bluescreen simulator 1.x configuration fi" +
     "les|*.bscfg;*.bsc";
             // 
-            // devWindowedSettings
-            // 
-            this.devWindowedSettings.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.devWindowedSettings.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-            this.devWindowedSettings.CharacterCasing = MaterialSkin2Framework.Controls.MaterialButton.CharacterCasingEnum.Normal;
-            this.devWindowedSettings.Density = MaterialSkin2Framework.Controls.MaterialButton.MaterialButtonDensity.Default;
-            this.devWindowedSettings.Depth = 0;
-            this.devWindowedSettings.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.devWindowedSettings.HighEmphasis = true;
-            this.devWindowedSettings.Icon = null;
-            this.devWindowedSettings.Location = new System.Drawing.Point(4, 6);
-            this.devWindowedSettings.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.devWindowedSettings.MouseState = MaterialSkin2Framework.MouseState.HOVER;
-            this.devWindowedSettings.Name = "devWindowedSettings";
-            this.devWindowedSettings.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.devWindowedSettings.Size = new System.Drawing.Size(212, 36);
-            this.devWindowedSettings.TabIndex = 27;
-            this.devWindowedSettings.Text = "[DEV] Windowed settings";
-            this.devWindowedSettings.Type = MaterialSkin2Framework.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.devWindowedSettings.UseAccentColor = false;
-            this.devWindowedSettings.UseVisualStyleBackColor = false;
-            this.devWindowedSettings.Click += new System.EventHandler(this.DevButtonsClick);
-            // 
             // NewUI
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
-            this.ClientSize = new System.Drawing.Size(872, 766);
+            this.ClientSize = new System.Drawing.Size(888, 810);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button1);
