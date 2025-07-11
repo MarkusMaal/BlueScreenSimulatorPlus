@@ -154,6 +154,9 @@ namespace UltimateBlueScreenSimulator
             {
                 UIActions.CheckUpdates(this);
             }
+            if (Program.gs.QuickHelp) { return; }
+            UIActions.RemoveQuestionMark(flowLayoutPanel1, Program.gs.QuickHelp);
+            quickHelp.Active = Program.gs.QuickHelp;
         }
 
         private void Button1_Click(object sender, EventArgs e)

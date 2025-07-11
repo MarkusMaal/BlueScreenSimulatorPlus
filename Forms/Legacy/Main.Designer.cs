@@ -1289,7 +1289,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Panel WXOptions;
-        private System.Windows.Forms.ToolTip quickHelp;
         private System.Windows.Forms.Panel errorCode;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button1;
@@ -1377,6 +1376,7 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.ToolStripMenuItem showTraceLogToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem screenshotToolStripMenuItem;
+        public System.Windows.Forms.ToolTip quickHelp;
     }
 }
 

@@ -84,11 +84,13 @@ namespace UltimateBlueScreenSimulator
             {
                 UIActions.CheckUpdates(this);
             }
+            if (Program.gs.QuickHelp) { return; }
+            UIActions.RemoveQuestionMark(materialTabControl1, Program.gs.QuickHelp);
         }
 
         private void NewUi1_ResizeEnd(object sender, EventArgs e)
         {
-            int sub = 90;
+            int sub = 120;
             errorCode.Width = Width - sub;
             WXOptions.Width = Width - sub;
             ntPanel.Width = Width - sub;
@@ -1076,6 +1078,11 @@ namespace UltimateBlueScreenSimulator
                 scalingModeBox, darkMode, darkDetectCheck, legacyInterfaceCheck, primaryColorBox,
                 accentBox, materialSwitch1, primaryServerBox
             }));
+            if (sender is MaterialSwitch ms)
+            {
+                if (ms.Name != "materialSwitch1") { return; }
+                UIActions.RemoveQuestionMark(materialTabControl1, materialSwitch1.Checked);
+            }
         }
 
         private void MaterialButton24_Click(object sender, EventArgs e)

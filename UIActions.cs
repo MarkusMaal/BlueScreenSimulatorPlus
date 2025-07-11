@@ -141,6 +141,43 @@ namespace UltimateBlueScreenSimulator
         }
 
         /// <summary>
+        /// Allows you to remove or restore [?] on various UI elements
+        /// </summary>
+        /// <param name="container">Container where the UI elements are located</param>
+        /// <param name="show">Visibility</param>
+        public static void RemoveQuestionMark(Control container, bool show)
+        {
+            Program.gs.Log("Info", $"Hiding question marks in {container.Name}");
+            foreach (Control c in container.Controls)
+            {
+                if (c is FlowLayoutPanel flp)
+                {
+                    RemoveQuestionMark(flp, show);
+                }
+                else if (c is Panel p)
+                {
+                    RemoveQuestionMark(p, show);
+                }
+                else if (c is MaterialTabControl tc)
+                {
+                    RemoveQuestionMark(tc, show);
+                }
+                else if (c is TabPage tp)
+                {
+                    RemoveQuestionMark(tp, show);
+                }
+                if (show && c.Text.Contains("​"))
+                {
+                    c.Text = c.Text.Replace("​", " [?]");
+                }
+                else if (c.Text.Contains("[?]"))
+                {
+                   c.Text = c.Text.Replace(" [?]", "​");
+                }
+            }
+        }
+
+        /// <summary>
         /// Allows you to check or uncheck either a CheckBox or MaterialCheckbox from a container
         /// </summary>
         /// <param name="container">The container to search the control from</param>
@@ -583,6 +620,10 @@ namespace UltimateBlueScreenSimulator
                 }
             }
             //this code identifies Windows 11
+            if (os_build >= 26200)
+            {
+                SetOS("Windows 11", f);
+            }
             if (os_build >= 22000)
             {
                 SetOS("Windows 11 (", f);
@@ -1011,6 +1052,11 @@ namespace UltimateBlueScreenSimulator
             return result;
         }
 
+        /// <summary>
+        /// Check if a file is in use by another process
+        /// </summary>
+        /// <param name="file">The file you want to check</param>
+        /// <returns>true when the file is in use, false otherwise</returns>
         private static bool IsFileInUseGeneric(FileInfo file)
         {
             try

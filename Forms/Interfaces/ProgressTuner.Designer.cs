@@ -33,7 +33,7 @@ namespace UltimateBlueScreenSimulator
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProgressTuner));
             this.progressTrackBar = new MaterialSkin2Framework.Controls.MaterialSlider();
-            this.totalTimeText = new MaterialSkin2Framework.Controls.MaterialTextBox();
+            this.totalTimeText = new MaterialSkin2Framework.Controls.MaterialTextBox2();
             this.label1 = new MaterialSkin2Framework.Controls.MaterialLabel();
             this.addKeyFrame = new MaterialSkin2Framework.Controls.MaterialButton();
             this.deleteKeyFrame = new MaterialSkin2Framework.Controls.MaterialButton();
@@ -42,7 +42,7 @@ namespace UltimateBlueScreenSimulator
             this.progressVisualization = new System.Windows.Forms.PictureBox();
             this.label2 = new MaterialSkin2Framework.Controls.MaterialLabel();
             this.label3 = new MaterialSkin2Framework.Controls.MaterialLabel();
-            this.incPercent = new MaterialSkin2Framework.Controls.MaterialTextBox();
+            this.incPercent = new MaterialSkin2Framework.Controls.MaterialTextBox2();
             this.label4 = new MaterialSkin2Framework.Controls.MaterialLabel();
             this.progressPositionLabel = new MaterialSkin2Framework.Controls.MaterialLabel();
             this.randomButton = new MaterialSkin2Framework.Controls.MaterialButton();
@@ -72,14 +72,12 @@ namespace UltimateBlueScreenSimulator
             // totalTimeText
             // 
             this.totalTimeText.AnimateReadOnly = false;
-            this.totalTimeText.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.totalTimeText.Depth = 0;
             this.totalTimeText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.totalTimeText.LeadingIcon = null;
             this.totalTimeText.Location = new System.Drawing.Point(97, 159);
             this.totalTimeText.MaxLength = 50;
             this.totalTimeText.MouseState = MaterialSkin2Framework.MouseState.OUT;
-            this.totalTimeText.Multiline = false;
             this.totalTimeText.Name = "totalTimeText";
             this.totalTimeText.Size = new System.Drawing.Size(65, 36);
             this.totalTimeText.TabIndex = 2;
@@ -222,14 +220,12 @@ namespace UltimateBlueScreenSimulator
             // incPercent
             // 
             this.incPercent.AnimateReadOnly = false;
-            this.incPercent.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.incPercent.Depth = 0;
             this.incPercent.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.incPercent.LeadingIcon = null;
             this.incPercent.Location = new System.Drawing.Point(112, 117);
             this.incPercent.MaxLength = 50;
             this.incPercent.MouseState = MaterialSkin2Framework.MouseState.OUT;
-            this.incPercent.Multiline = false;
             this.incPercent.Name = "incPercent";
             this.incPercent.Size = new System.Drawing.Size(50, 36);
             this.incPercent.TabIndex = 1;
@@ -418,7 +414,7 @@ namespace UltimateBlueScreenSimulator
         private System.Windows.Forms.PictureBox progressVisualization;
         private MaterialLabel label2;
         private MaterialLabel label3;
-        private MaterialTextBox incPercent;
+        private MaterialTextBox2 incPercent;
         private MaterialLabel label4;
         private MaterialLabel progressPositionLabel;
         private MaterialButton randomButton;
@@ -426,7 +422,7 @@ namespace UltimateBlueScreenSimulator
         private MaterialButton okButton;
         private MaterialButton cancelButton;
         internal MaterialSlider progressTrackBar;
-        internal MaterialTextBox totalTimeText;
+        internal MaterialTextBox2 totalTimeText;
         private MaterialButton clearButton;
     }
 }

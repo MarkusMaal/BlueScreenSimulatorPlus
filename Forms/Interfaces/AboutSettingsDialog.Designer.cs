@@ -46,7 +46,7 @@ namespace UltimateBlueScreenSimulator
             this.updateTimeFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.updateImmediatelyRadio = new MaterialSkin2Framework.Controls.MaterialRadioButton();
             this.updateOnCloseRadio = new MaterialSkin2Framework.Controls.MaterialRadioButton();
-            this.primaryServerBox = new MaterialSkin2Framework.Controls.MaterialTextBox();
+            this.primaryServerBox = new MaterialSkin2Framework.Controls.MaterialTextBox2();
             this.updateSettingsLabel = new MaterialSkin2Framework.Controls.MaterialLabel();
             this.primaryServerLabel = new MaterialSkin2Framework.Controls.MaterialLabel();
             this.updateTimeLabel = new MaterialSkin2Framework.Controls.MaterialLabel();
@@ -390,7 +390,6 @@ namespace UltimateBlueScreenSimulator
             this.primaryServerBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.primaryServerBox.AnimateReadOnly = false;
-            this.primaryServerBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.primaryServerBox.Depth = 0;
             this.primaryServerBox.Enabled = false;
             this.primaryServerBox.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
@@ -398,7 +397,6 @@ namespace UltimateBlueScreenSimulator
             this.primaryServerBox.Location = new System.Drawing.Point(19, 333);
             this.primaryServerBox.MaxLength = 50;
             this.primaryServerBox.MouseState = MaterialSkin2Framework.MouseState.OUT;
-            this.primaryServerBox.Multiline = false;
             this.primaryServerBox.Name = "primaryServerBox";
             this.primaryServerBox.Size = new System.Drawing.Size(687, 36);
             this.primaryServerBox.TabIndex = 10;
@@ -1630,7 +1628,7 @@ namespace UltimateBlueScreenSimulator
         internal MaterialButton loadCfg;
         private MaterialButton devNewAllButton;
         private MaterialButton devDictEditButton;
-        private MaterialTextBox primaryServerBox;
+        private MaterialTextBox2 primaryServerBox;
         private MaterialLabel primaryServerLabel;
         private MaterialButton primaryServerButton;
         private MaterialButton backupServerButton;

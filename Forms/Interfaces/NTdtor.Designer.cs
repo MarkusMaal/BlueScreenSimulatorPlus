@@ -40,8 +40,8 @@
             this.delCodeButton = new MaterialSkin2Framework.Controls.MaterialButton();
             this.randCodesList = new MaterialSkin2Framework.Controls.MaterialListBox();
             this.materialLabel2 = new MaterialSkin2Framework.Controls.MaterialLabel();
-            this.codeBox = new MaterialSkin2Framework.Controls.MaterialTextBox();
-            this.filenameBox = new MaterialSkin2Framework.Controls.MaterialTextBox();
+            this.codeBox = new MaterialSkin2Framework.Controls.MaterialTextBox2();
+            this.filenameBox = new MaterialSkin2Framework.Controls.MaterialTextBox2();
             this.browseButton = new MaterialSkin2Framework.Controls.MaterialButton();
             this.materialLabel3 = new MaterialSkin2Framework.Controls.MaterialLabel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
@@ -170,14 +170,12 @@
             this.codeBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.codeBox.AnimateReadOnly = false;
-            this.codeBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.codeBox.Depth = 0;
             this.codeBox.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.codeBox.LeadingIcon = null;
             this.codeBox.Location = new System.Drawing.Point(9, 102);
             this.codeBox.MaxLength = 8;
             this.codeBox.MouseState = MaterialSkin2Framework.MouseState.OUT;
-            this.codeBox.Multiline = false;
             this.codeBox.Name = "codeBox";
             this.codeBox.Size = new System.Drawing.Size(236, 36);
             this.codeBox.TabIndex = 4;
@@ -191,14 +189,12 @@
             this.filenameBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.filenameBox.AnimateReadOnly = false;
-            this.filenameBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.filenameBox.Depth = 0;
             this.filenameBox.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.filenameBox.LeadingIcon = null;
             this.filenameBox.Location = new System.Drawing.Point(9, 31);
             this.filenameBox.MaxLength = 50;
             this.filenameBox.MouseState = MaterialSkin2Framework.MouseState.OUT;
-            this.filenameBox.Multiline = false;
             this.filenameBox.Name = "filenameBox";
             this.filenameBox.Size = new System.Drawing.Size(451, 36);
             this.filenameBox.TabIndex = 4;
@@ -462,8 +458,8 @@
         private MaterialSkin2Framework.Controls.MaterialButton delCodeButton;
         private MaterialSkin2Framework.Controls.MaterialListBox randCodesList;
         private MaterialSkin2Framework.Controls.MaterialLabel materialLabel2;
-        private MaterialSkin2Framework.Controls.MaterialTextBox codeBox;
-        private MaterialSkin2Framework.Controls.MaterialTextBox filenameBox;
+        private MaterialSkin2Framework.Controls.MaterialTextBox2 codeBox;
+        private MaterialSkin2Framework.Controls.MaterialTextBox2 filenameBox;
         private MaterialSkin2Framework.Controls.MaterialButton browseButton;
         private MaterialSkin2Framework.Controls.MaterialLabel materialLabel3;
         private System.Windows.Forms.SplitContainer splitContainer1;

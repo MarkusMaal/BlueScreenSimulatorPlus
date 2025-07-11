@@ -827,6 +827,7 @@ namespace UltimateBlueScreenSimulator
                     }));
                 }
             }
+
             Program.load_message = message;
             log1.Add(msg);
         }

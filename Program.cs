@@ -45,7 +45,7 @@ namespace UltimateBlueScreenSimulator
         public static int load_progress = 100;
         public static string load_message = "Initializing...";
         public static bool hidden = false;
-        internal static string changelog = "*CHANGE THIS*";
+        internal static string changelog = "+ Improved UI design - you can now navigate between tabs without opening the drawer on the left\r\n+ Integrated several windows in Material UI into tabs for faster operation\r\n+ Classic UI option for accessibility and those who prefer it\r\n+ Screensaver export\r\n+ The new Windows 11 Beta bugcheck simulator (black screen)\r\n+ Pop-in effect for modern bugchecks\r\n+ Crash screen preview in additional options\r\n* Faster update checker and user friendly error messages during check failures\r\n* Bug fixes\r\n? New easter eggs";
 
         public static bool hide_splash = false;
         public static bool force_legacy = false;
@@ -111,6 +111,7 @@ namespace UltimateBlueScreenSimulator
                 "I'm everyone. I'm everywhere. I see everything. I hear everybody.",
                 "There is no escape.",
                 "1 + 1 = 10 (at least that's what computers think)",
+                "Windows 8 and later crash screens have a text pop-in effect, which makes them look more authentic!",
                 "Please stop clicking the \"Random factoid\" button!",
                 "target: void"
             };

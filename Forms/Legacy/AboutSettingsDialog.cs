@@ -156,6 +156,9 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
                 hideInFullscreenButton.Checked = !Program.gs.ShowCursor;
             }
             aboutSettingsTabControl.SelectedIndex = tab_id;
+            if (Program.gs.QuickHelp) { return; }
+            UIActions.RemoveQuestionMark(aboutSettingsTabControl, Program.gs.QuickHelp);
+            helpTip.Active = Program.gs.QuickHelp;
         }
 
         private void TabSwitcher(object sender, EventArgs e)
@@ -222,6 +225,7 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
                     configList.Items.Add(bs.GetString("friendlyname"));
                 }
                 devFlowPanel.Visible = Program.gs.DevBuild;
+                quickHelpCheck.Checked = Program.gs.QuickHelp;
             }
             else if (aboutSettingsTabControl.SelectedTab.Text == "Command line help")
             {
@@ -1453,6 +1457,16 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
 
                 osName.Text = string.Format("Selected configuration: {0}", template.GetString("friendlyname"));
             }
+        }
+
+        private void quickHelpCheck_CheckedChanged(object sender, EventArgs e)
+        {
+            bool b = quickHelpCheck.Checked;
+            Program.gs.QuickHelp = b;
+            helpTip.Active = b;
+            Program.F2.quickHelp.Active = b;
+            UIActions.RemoveQuestionMark(aboutSettingsTabControl, b);
+            UIActions.RemoveQuestionMark(Program.F2, b);
         }
     }
 }

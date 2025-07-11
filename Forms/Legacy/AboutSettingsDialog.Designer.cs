@@ -112,6 +112,8 @@
             this.saveBsconfig = new System.Windows.Forms.SaveFileDialog();
             this.loadBsconfig = new System.Windows.Forms.OpenFileDialog();
             this.checkIfLoadedSaved = new System.Windows.Forms.Timer(this.components);
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.quickHelpCheck = new System.Windows.Forms.CheckBox();
             this.aboutTable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).BeginInit();
             this.logoDisplayFlowPanel.SuspendLayout();
@@ -130,6 +132,7 @@
             this.helpPanelChild.SuspendLayout();
             this.helpButtonsFlowPanel.SuspendLayout();
             this.commandLinePanel.SuspendLayout();
+            this.flowLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // aboutTable
@@ -616,8 +619,7 @@
             // 
             // simulatorSettingsPanel
             // 
-            this.simulatorSettingsPanel.Controls.Add(this.legacyInterfaceCheck);
-            this.simulatorSettingsPanel.Controls.Add(this.autosaveCheck);
+            this.simulatorSettingsPanel.Controls.Add(this.flowLayoutPanel2);
             this.simulatorSettingsPanel.Controls.Add(this.label1);
             this.simulatorSettingsPanel.Controls.Add(this.selectAllBox);
             this.simulatorSettingsPanel.Controls.Add(this.randomnessCheckBox);
@@ -627,7 +629,6 @@
             this.simulatorSettingsPanel.Controls.Add(this.configEditingButtonsFlowPanel);
             this.simulatorSettingsPanel.Controls.Add(this.osName);
             this.simulatorSettingsPanel.Controls.Add(this.configList);
-            this.simulatorSettingsPanel.Controls.Add(this.eggHunterButton);
             this.simulatorSettingsPanel.Controls.Add(this.simulatorSettingsNotice);
             this.simulatorSettingsPanel.Controls.Add(this.scalingModeBox);
             this.simulatorSettingsPanel.Controls.Add(this.scalingModeLabel);
@@ -646,8 +647,8 @@
             this.legacyInterfaceCheck.AutoSize = true;
             this.legacyInterfaceCheck.Checked = true;
             this.legacyInterfaceCheck.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.legacyInterfaceCheck.Location = new System.Drawing.Point(266, 238);
-            this.legacyInterfaceCheck.Margin = new System.Windows.Forms.Padding(0);
+            this.legacyInterfaceCheck.Location = new System.Drawing.Point(249, 3);
+            this.legacyInterfaceCheck.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
             this.legacyInterfaceCheck.Name = "legacyInterfaceCheck";
             this.legacyInterfaceCheck.Size = new System.Drawing.Size(88, 17);
             this.legacyInterfaceCheck.TabIndex = 28;
@@ -661,8 +662,8 @@
             this.autosaveCheck.AutoSize = true;
             this.autosaveCheck.Checked = true;
             this.autosaveCheck.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.autosaveCheck.Location = new System.Drawing.Point(155, 238);
-            this.autosaveCheck.Margin = new System.Windows.Forms.Padding(0);
+            this.autosaveCheck.Location = new System.Drawing.Point(138, 3);
+            this.autosaveCheck.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
             this.autosaveCheck.Name = "autosaveCheck";
             this.autosaveCheck.Size = new System.Drawing.Size(111, 17);
             this.autosaveCheck.TabIndex = 27;
@@ -684,7 +685,7 @@
             // 
             this.selectAllBox.AutoSize = true;
             this.selectAllBox.CheckAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.selectAllBox.Location = new System.Drawing.Point(378, 191);
+            this.selectAllBox.Location = new System.Drawing.Point(380, 192);
             this.selectAllBox.Name = "selectAllBox";
             this.selectAllBox.Size = new System.Drawing.Size(153, 17);
             this.selectAllBox.TabIndex = 25;
@@ -947,7 +948,7 @@
             this.eggHunterButton.AutoSize = true;
             this.eggHunterButton.Checked = true;
             this.eggHunterButton.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.eggHunterButton.Location = new System.Drawing.Point(20, 238);
+            this.eggHunterButton.Location = new System.Drawing.Point(3, 3);
             this.eggHunterButton.Name = "eggHunterButton";
             this.eggHunterButton.Size = new System.Drawing.Size(132, 17);
             this.eggHunterButton.TabIndex = 8;
@@ -1166,6 +1167,33 @@
             // 
             this.checkIfLoadedSaved.Tick += new System.EventHandler(this.WaitUntilComplete);
             // 
+            // flowLayoutPanel2
+            // 
+            this.flowLayoutPanel2.Controls.Add(this.eggHunterButton);
+            this.flowLayoutPanel2.Controls.Add(this.autosaveCheck);
+            this.flowLayoutPanel2.Controls.Add(this.legacyInterfaceCheck);
+            this.flowLayoutPanel2.Controls.Add(this.quickHelpCheck);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(17, 235);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(512, 24);
+            this.flowLayoutPanel2.TabIndex = 29;
+            this.flowLayoutPanel2.WrapContents = false;
+            // 
+            // quickHelpCheck
+            // 
+            this.quickHelpCheck.AutoSize = true;
+            this.quickHelpCheck.Checked = true;
+            this.quickHelpCheck.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.quickHelpCheck.Location = new System.Drawing.Point(337, 3);
+            this.quickHelpCheck.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.quickHelpCheck.Name = "quickHelpCheck";
+            this.quickHelpCheck.Size = new System.Drawing.Size(78, 17);
+            this.quickHelpCheck.TabIndex = 29;
+            this.quickHelpCheck.Text = "Tooltips [?]";
+            this.helpTip.SetToolTip(this.quickHelpCheck, "Shows text such as this when hover over various UI elements");
+            this.quickHelpCheck.UseVisualStyleBackColor = true;
+            this.quickHelpCheck.CheckedChanged += new System.EventHandler(this.quickHelpCheck_CheckedChanged);
+            // 
             // AboutSettingsDialog
             // 
             this.AcceptButton = this.okButton;
@@ -1208,6 +1236,8 @@
             this.helpButtonsFlowPanel.ResumeLayout(false);
             this.commandLinePanel.ResumeLayout(false);
             this.commandLinePanel.PerformLayout();
+            this.flowLayoutPanel2.ResumeLayout(false);
+            this.flowLayoutPanel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1297,5 +1327,7 @@
         private System.Windows.Forms.CheckBox legacyInterfaceCheck;
         private System.Windows.Forms.CheckBox autosaveCheck;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
+        private System.Windows.Forms.CheckBox quickHelpCheck;
     }
 }

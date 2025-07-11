@@ -55,7 +55,7 @@ namespace UltimateBlueScreenSimulator
             this.browseButton = new MaterialSkin2Framework.Controls.MaterialButton();
             this.filenameLabel = new MaterialSkin2Framework.Controls.MaterialLabel();
             this.timeoutProps = new System.Windows.Forms.Panel();
-            this.timeoutBox = new MaterialSkin2Framework.Controls.MaterialTextBox();
+            this.timeoutBox = new MaterialSkin2Framework.Controls.MaterialTextBox2();
             this.secondsLabel = new MaterialSkin2Framework.Controls.MaterialLabel();
             this.fontProps = new System.Windows.Forms.Panel();
             this.fontChangeButton = new MaterialSkin2Framework.Controls.MaterialButton();
@@ -128,7 +128,7 @@ namespace UltimateBlueScreenSimulator
             this.MessageView.Name = "MessageView";
             this.MessageView.OwnerDraw = true;
             this.MessageView.ShowGroups = false;
-            this.MessageView.Size = new System.Drawing.Size(410, 692);
+            this.MessageView.Size = new System.Drawing.Size(426, 731);
             this.MessageView.SmallImageList = this.AllIcons;
             this.MessageView.TabIndex = 0;
             this.MessageView.UseCompatibleStateImageBehavior = false;
@@ -140,7 +140,7 @@ namespace UltimateBlueScreenSimulator
             this.specificProps.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.specificProps.Depth = 0;
             this.specificProps.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.specificProps.Location = new System.Drawing.Point(428, 27);
+            this.specificProps.Location = new System.Drawing.Point(444, 27);
             this.specificProps.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.specificProps.Name = "specificProps";
             this.specificProps.Size = new System.Drawing.Size(403, 22);
@@ -156,7 +156,7 @@ namespace UltimateBlueScreenSimulator
             this.buttonOK.ForeColor = System.Drawing.SystemColors.ControlText;
             this.buttonOK.HighEmphasis = true;
             this.buttonOK.Icon = null;
-            this.buttonOK.Location = new System.Drawing.Point(766, 751);
+            this.buttonOK.Location = new System.Drawing.Point(782, 790);
             this.buttonOK.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.buttonOK.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.buttonOK.Name = "buttonOK";
@@ -249,9 +249,9 @@ namespace UltimateBlueScreenSimulator
             this.specificPropsFlowLayoutPanel.Controls.Add(this.fontProps);
             this.specificPropsFlowLayoutPanel.Controls.Add(this.blinkProps);
             this.specificPropsFlowLayoutPanel.Controls.Add(this.colorProps);
-            this.specificPropsFlowLayoutPanel.Location = new System.Drawing.Point(428, 52);
+            this.specificPropsFlowLayoutPanel.Location = new System.Drawing.Point(444, 52);
             this.specificPropsFlowLayoutPanel.Name = "specificPropsFlowLayoutPanel";
-            this.specificPropsFlowLayoutPanel.Size = new System.Drawing.Size(424, 339);
+            this.specificPropsFlowLayoutPanel.Size = new System.Drawing.Size(424, 378);
             this.specificPropsFlowLayoutPanel.TabIndex = 2;
             // 
             // xpMsgChooser
@@ -417,19 +417,32 @@ namespace UltimateBlueScreenSimulator
             // timeoutBox
             // 
             this.timeoutBox.AnimateReadOnly = false;
-            this.timeoutBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.timeoutBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
+            this.timeoutBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+            this.timeoutBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.timeoutBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
             this.timeoutBox.Depth = 0;
-            this.timeoutBox.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.timeoutBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.timeoutBox.HideSelection = true;
             this.timeoutBox.LeadingIcon = null;
             this.timeoutBox.Location = new System.Drawing.Point(9, 3);
             this.timeoutBox.MaxLength = 50;
             this.timeoutBox.MouseState = MaterialSkin2Framework.MouseState.OUT;
-            this.timeoutBox.Multiline = false;
             this.timeoutBox.Name = "timeoutBox";
+            this.timeoutBox.PasswordChar = '\0';
+            this.timeoutBox.PrefixSuffixText = null;
+            this.timeoutBox.ReadOnly = false;
+            this.timeoutBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.timeoutBox.SelectedText = "";
+            this.timeoutBox.SelectionLength = 0;
+            this.timeoutBox.SelectionStart = 0;
+            this.timeoutBox.ShortcutsEnabled = true;
             this.timeoutBox.Size = new System.Drawing.Size(47, 36);
             this.timeoutBox.TabIndex = 1;
-            this.timeoutBox.Text = "";
+            this.timeoutBox.TabStop = false;
+            this.timeoutBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.timeoutBox.TrailingIcon = null;
+            this.timeoutBox.UseSystemPasswordChar = false;
             this.timeoutBox.UseTallSize = false;
             this.timeoutBox.TextChanged += new System.EventHandler(this.TimeoutBox_TextChanged);
             // 
@@ -544,7 +557,7 @@ namespace UltimateBlueScreenSimulator
             this.materialLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.materialLabel1.Depth = 0;
             this.materialLabel1.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel1.Location = new System.Drawing.Point(431, 403);
+            this.materialLabel1.Location = new System.Drawing.Point(447, 442);
             this.materialLabel1.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.materialLabel1.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.materialLabel1.Name = "materialLabel1";
@@ -557,7 +570,7 @@ namespace UltimateBlueScreenSimulator
             // 
             this.bugcheckPreview.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.bugcheckPreview.Image = global::UltimateBlueScreenSimulator.Properties.Resources.loadpic;
-            this.bugcheckPreview.Location = new System.Drawing.Point(431, 432);
+            this.bugcheckPreview.Location = new System.Drawing.Point(447, 471);
             this.bugcheckPreview.Margin = new System.Windows.Forms.Padding(0);
             this.bugcheckPreview.Name = "bugcheckPreview";
             this.bugcheckPreview.Size = new System.Drawing.Size(421, 310);
@@ -583,7 +596,7 @@ namespace UltimateBlueScreenSimulator
             // 
             this.whereTheButtonsLink.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.whereTheButtonsLink.AutoSize = true;
-            this.whereTheButtonsLink.Location = new System.Drawing.Point(12, 795);
+            this.whereTheButtonsLink.Location = new System.Drawing.Point(12, 834);
             this.whereTheButtonsLink.Name = "whereTheButtonsLink";
             this.whereTheButtonsLink.Size = new System.Drawing.Size(189, 13);
             this.whereTheButtonsLink.TabIndex = 7;
@@ -597,7 +610,7 @@ namespace UltimateBlueScreenSimulator
             this.label1.AutoSize = true;
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label1.ForeColor = System.Drawing.Color.Red;
-            this.label1.Location = new System.Drawing.Point(9, 758);
+            this.label1.Location = new System.Drawing.Point(9, 797);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(329, 13);
             this.label1.TabIndex = 9;
@@ -610,7 +623,7 @@ namespace UltimateBlueScreenSimulator
             this.updatePreviewCheck.Checked = true;
             this.updatePreviewCheck.CheckState = System.Windows.Forms.CheckState.Checked;
             this.updatePreviewCheck.Depth = 0;
-            this.updatePreviewCheck.Location = new System.Drawing.Point(605, 394);
+            this.updatePreviewCheck.Location = new System.Drawing.Point(621, 433);
             this.updatePreviewCheck.Margin = new System.Windows.Forms.Padding(0);
             this.updatePreviewCheck.MouseLocation = new System.Drawing.Point(-1, -1);
             this.updatePreviewCheck.MouseState = MaterialSkin2Framework.MouseState.HOVER;
@@ -639,7 +652,7 @@ namespace UltimateBlueScreenSimulator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(858, 786);
+            this.ClientSize = new System.Drawing.Size(874, 825);
             this.Controls.Add(this.materialLabel2);
             this.Controls.Add(this.updatePreviewCheck);
             this.Controls.Add(this.materialLabel1);
@@ -703,7 +716,7 @@ namespace UltimateBlueScreenSimulator
         private System.Windows.Forms.Label fontPreview;
         private System.Windows.Forms.FontDialog fontChooser;
         private System.Windows.Forms.Panel timeoutProps;
-        private MaterialSkin2Framework.Controls.MaterialTextBox timeoutBox;
+        private MaterialSkin2Framework.Controls.MaterialTextBox2 timeoutBox;
         private MaterialSkin2Framework.Controls.MaterialLabel secondsLabel;
         private System.Windows.Forms.ToolTip simpleToolTip;
         private System.Windows.Forms.Panel qrProps;
