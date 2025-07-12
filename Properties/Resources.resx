@@ -270,4 +270,10 @@ Advanced Startup Options, and then select Safe Mode.</value>
   <data name="BSSP_manual" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\BSSP_manual.pdf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="fonts" xml:space="preserve">
+    <value>Segoe UI;Consolas;Lucida Console;Segoe UI Variable Display;Segoe UI Variable Small;Segoe UI Semilight;Lucida Sans Typewriter</value>
+  </data>
+  <data name="optionalFonts" xml:space="preserve">
+    <value>Roboto;Microsoft Sans Serif;Roboto Medium</value>
+  </data>
 </root>

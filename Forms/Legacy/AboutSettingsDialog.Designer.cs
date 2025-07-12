@@ -67,8 +67,11 @@
             this.noUpdatesRadio = new System.Windows.Forms.RadioButton();
             this.updatePanelHeading = new System.Windows.Forms.Label();
             this.simulatorSettingsPanel = new System.Windows.Forms.TabPage();
-            this.legacyInterfaceCheck = new System.Windows.Forms.CheckBox();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.eggHunterButton = new System.Windows.Forms.CheckBox();
             this.autosaveCheck = new System.Windows.Forms.CheckBox();
+            this.legacyInterfaceCheck = new System.Windows.Forms.CheckBox();
+            this.quickHelpCheck = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.selectAllBox = new System.Windows.Forms.CheckBox();
             this.randomnessCheckBox = new System.Windows.Forms.CheckBox();
@@ -91,7 +94,6 @@
             this.addCfg = new System.Windows.Forms.Button();
             this.osName = new System.Windows.Forms.Label();
             this.configList = new System.Windows.Forms.ListBox();
-            this.eggHunterButton = new System.Windows.Forms.CheckBox();
             this.simulatorSettingsNotice = new System.Windows.Forms.Label();
             this.scalingModeBox = new System.Windows.Forms.ComboBox();
             this.scalingModeLabel = new System.Windows.Forms.Label();
@@ -112,8 +114,6 @@
             this.saveBsconfig = new System.Windows.Forms.SaveFileDialog();
             this.loadBsconfig = new System.Windows.Forms.OpenFileDialog();
             this.checkIfLoadedSaved = new System.Windows.Forms.Timer(this.components);
-            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
-            this.quickHelpCheck = new System.Windows.Forms.CheckBox();
             this.aboutTable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).BeginInit();
             this.logoDisplayFlowPanel.SuspendLayout();
@@ -126,13 +126,13 @@
             this.updateTimeFlowPanel.SuspendLayout();
             this.updateSettingsFlowPanel.SuspendLayout();
             this.simulatorSettingsPanel.SuspendLayout();
+            this.flowLayoutPanel2.SuspendLayout();
             this.devFlowPanel.SuspendLayout();
             this.configEditingButtonsFlowPanel.SuspendLayout();
             this.helpPanel.SuspendLayout();
             this.helpPanelChild.SuspendLayout();
             this.helpButtonsFlowPanel.SuspendLayout();
             this.commandLinePanel.SuspendLayout();
-            this.flowLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // aboutTable
@@ -642,20 +642,31 @@
             this.simulatorSettingsPanel.Text = "Simulator settings";
             this.simulatorSettingsPanel.UseVisualStyleBackColor = true;
             // 
-            // legacyInterfaceCheck
+            // flowLayoutPanel2
             // 
-            this.legacyInterfaceCheck.AutoSize = true;
-            this.legacyInterfaceCheck.Checked = true;
-            this.legacyInterfaceCheck.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.legacyInterfaceCheck.Location = new System.Drawing.Point(249, 3);
-            this.legacyInterfaceCheck.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.legacyInterfaceCheck.Name = "legacyInterfaceCheck";
-            this.legacyInterfaceCheck.Size = new System.Drawing.Size(88, 17);
-            this.legacyInterfaceCheck.TabIndex = 28;
-            this.legacyInterfaceCheck.Text = "Classic UI [?]";
-            this.helpTip.SetToolTip(this.legacyInterfaceCheck, "Enables the interface from previous versions, similar to 2.1 and earlier");
-            this.legacyInterfaceCheck.UseVisualStyleBackColor = true;
-            this.legacyInterfaceCheck.CheckedChanged += new System.EventHandler(this.LegacyInterfaceCheck_CheckedChanged);
+            this.flowLayoutPanel2.Controls.Add(this.eggHunterButton);
+            this.flowLayoutPanel2.Controls.Add(this.autosaveCheck);
+            this.flowLayoutPanel2.Controls.Add(this.legacyInterfaceCheck);
+            this.flowLayoutPanel2.Controls.Add(this.quickHelpCheck);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(17, 235);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(512, 24);
+            this.flowLayoutPanel2.TabIndex = 29;
+            this.flowLayoutPanel2.WrapContents = false;
+            // 
+            // eggHunterButton
+            // 
+            this.eggHunterButton.AutoSize = true;
+            this.eggHunterButton.Checked = true;
+            this.eggHunterButton.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.eggHunterButton.Location = new System.Drawing.Point(3, 3);
+            this.eggHunterButton.Name = "eggHunterButton";
+            this.eggHunterButton.Size = new System.Drawing.Size(132, 17);
+            this.eggHunterButton.TabIndex = 8;
+            this.eggHunterButton.Text = "Enable easter eggs [?]";
+            this.helpTip.SetToolTip(this.eggHunterButton, "Turns on/off secret functionality in the program");
+            this.eggHunterButton.UseVisualStyleBackColor = true;
+            this.eggHunterButton.CheckedChanged += new System.EventHandler(this.EggHunter);
             // 
             // autosaveCheck
             // 
@@ -671,6 +682,36 @@
             this.helpTip.SetToolTip(this.autosaveCheck, "Automatically saves changes made to the simulator templates");
             this.autosaveCheck.UseVisualStyleBackColor = true;
             this.autosaveCheck.CheckedChanged += new System.EventHandler(this.AutosaveCheckChanged);
+            // 
+            // legacyInterfaceCheck
+            // 
+            this.legacyInterfaceCheck.AutoSize = true;
+            this.legacyInterfaceCheck.Checked = true;
+            this.legacyInterfaceCheck.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.legacyInterfaceCheck.Location = new System.Drawing.Point(249, 3);
+            this.legacyInterfaceCheck.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.legacyInterfaceCheck.Name = "legacyInterfaceCheck";
+            this.legacyInterfaceCheck.Size = new System.Drawing.Size(88, 17);
+            this.legacyInterfaceCheck.TabIndex = 28;
+            this.legacyInterfaceCheck.Text = "Classic UI [?]";
+            this.helpTip.SetToolTip(this.legacyInterfaceCheck, "Enables the interface from previous versions, similar to 2.1 and earlier");
+            this.legacyInterfaceCheck.UseVisualStyleBackColor = true;
+            this.legacyInterfaceCheck.CheckedChanged += new System.EventHandler(this.LegacyInterfaceCheck_CheckedChanged);
+            // 
+            // quickHelpCheck
+            // 
+            this.quickHelpCheck.AutoSize = true;
+            this.quickHelpCheck.Checked = true;
+            this.quickHelpCheck.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.quickHelpCheck.Location = new System.Drawing.Point(337, 3);
+            this.quickHelpCheck.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.quickHelpCheck.Name = "quickHelpCheck";
+            this.quickHelpCheck.Size = new System.Drawing.Size(78, 17);
+            this.quickHelpCheck.TabIndex = 29;
+            this.quickHelpCheck.Text = "Tooltips [?]";
+            this.helpTip.SetToolTip(this.quickHelpCheck, "Shows text such as this when hover over various UI elements");
+            this.quickHelpCheck.UseVisualStyleBackColor = true;
+            this.quickHelpCheck.CheckedChanged += new System.EventHandler(this.quickHelpCheck_CheckedChanged);
             // 
             // label1
             // 
@@ -943,20 +984,6 @@
             this.configList.SelectedIndexChanged += new System.EventHandler(this.ConfigSelector);
             this.configList.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.ConfigList_MouseDoubleClick);
             // 
-            // eggHunterButton
-            // 
-            this.eggHunterButton.AutoSize = true;
-            this.eggHunterButton.Checked = true;
-            this.eggHunterButton.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.eggHunterButton.Location = new System.Drawing.Point(3, 3);
-            this.eggHunterButton.Name = "eggHunterButton";
-            this.eggHunterButton.Size = new System.Drawing.Size(132, 17);
-            this.eggHunterButton.TabIndex = 8;
-            this.eggHunterButton.Text = "Enable easter eggs [?]";
-            this.helpTip.SetToolTip(this.eggHunterButton, "Turns on/off secret functionality in the program");
-            this.eggHunterButton.UseVisualStyleBackColor = true;
-            this.eggHunterButton.CheckedChanged += new System.EventHandler(this.EggHunter);
-            // 
             // simulatorSettingsNotice
             // 
             this.simulatorSettingsNotice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -1167,33 +1194,6 @@
             // 
             this.checkIfLoadedSaved.Tick += new System.EventHandler(this.WaitUntilComplete);
             // 
-            // flowLayoutPanel2
-            // 
-            this.flowLayoutPanel2.Controls.Add(this.eggHunterButton);
-            this.flowLayoutPanel2.Controls.Add(this.autosaveCheck);
-            this.flowLayoutPanel2.Controls.Add(this.legacyInterfaceCheck);
-            this.flowLayoutPanel2.Controls.Add(this.quickHelpCheck);
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(17, 235);
-            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(512, 24);
-            this.flowLayoutPanel2.TabIndex = 29;
-            this.flowLayoutPanel2.WrapContents = false;
-            // 
-            // quickHelpCheck
-            // 
-            this.quickHelpCheck.AutoSize = true;
-            this.quickHelpCheck.Checked = true;
-            this.quickHelpCheck.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.quickHelpCheck.Location = new System.Drawing.Point(337, 3);
-            this.quickHelpCheck.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.quickHelpCheck.Name = "quickHelpCheck";
-            this.quickHelpCheck.Size = new System.Drawing.Size(78, 17);
-            this.quickHelpCheck.TabIndex = 29;
-            this.quickHelpCheck.Text = "Tooltips [?]";
-            this.helpTip.SetToolTip(this.quickHelpCheck, "Shows text such as this when hover over various UI elements");
-            this.quickHelpCheck.UseVisualStyleBackColor = true;
-            this.quickHelpCheck.CheckedChanged += new System.EventHandler(this.quickHelpCheck_CheckedChanged);
-            // 
             // AboutSettingsDialog
             // 
             this.AcceptButton = this.okButton;
@@ -1228,6 +1228,8 @@
             this.updateSettingsFlowPanel.PerformLayout();
             this.simulatorSettingsPanel.ResumeLayout(false);
             this.simulatorSettingsPanel.PerformLayout();
+            this.flowLayoutPanel2.ResumeLayout(false);
+            this.flowLayoutPanel2.PerformLayout();
             this.devFlowPanel.ResumeLayout(false);
             this.configEditingButtonsFlowPanel.ResumeLayout(false);
             this.helpPanel.ResumeLayout(false);
@@ -1236,8 +1238,6 @@
             this.helpButtonsFlowPanel.ResumeLayout(false);
             this.commandLinePanel.ResumeLayout(false);
             this.commandLinePanel.PerformLayout();
-            this.flowLayoutPanel2.ResumeLayout(false);
-            this.flowLayoutPanel2.PerformLayout();
             this.ResumeLayout(false);
 
         }

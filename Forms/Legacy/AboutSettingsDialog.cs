@@ -1258,7 +1258,7 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
             {
                 // online user manual
                 Process p = new Process();
-                p.StartInfo.FileName = "https://markustegelane.ml/bssp/help.pdf";
+                p.StartInfo.FileName = Program.gs.UpdateServer.Replace("/app", "") + "/bssp/help.pdf";
                 p.Start();
             }
             else

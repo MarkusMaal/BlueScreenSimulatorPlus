@@ -98,7 +98,22 @@ namespace UltimateBlueScreenSimulator.Forms.Interfaces
                 return;
             }
 
-            delEntryButton.Enabled = codefilesList.SelectedIndices.Count > 0;
+            codeBox.Enabled = codefilesList.SelectedIndices.Count > 0;
+            fixedButton.Enabled = codeBox.Enabled;
+            fixedRandomButton.Enabled = codeBox.Enabled;
+            randomButton.Enabled = codeBox.Enabled;
+            zeroButton.Enabled = codeBox.Enabled;
+            delCodeButton.Enabled = false;
+            if (codeBox.Enabled)
+            {
+                activeModeLabel.Text = "Edit mode";
+            } else
+            {
+                activeModeLabel.Text = "Insert mode";
+            }
+            activeModeLabel.Text += " (click to toggle)";
+
+                delEntryButton.Enabled = codefilesList.SelectedIndices.Count > 0;
             if (codefilesList.SelectedItems.Count == 1)
             {
                 KeyValuePair<string, string[]> currentFile = me.GetFile(codefilesList.SelectedIndices[0]);
@@ -155,7 +170,17 @@ namespace UltimateBlueScreenSimulator.Forms.Interfaces
             if (e.KeyCode == Keys.Delete)
             {
                 DeleteSelectedEntries();
+            } else if ((e.KeyCode == Keys.D) && (e.Control))
+            {
+                List<string> codes = new List<string>();
+                foreach (MaterialListBoxItem m in randCodesList.Items)
+                {
+                    codes.Add(m.Text);
+                }
+                me.PushFile(filenameBox.Text, codes.ToArray());
+                UpdateCodeList();
             }
+            NTdtor_KeyDown(sender, e);
         }
 
         private void MaterialButton4_Click(object sender, EventArgs e)
@@ -176,20 +201,36 @@ namespace UltimateBlueScreenSimulator.Forms.Interfaces
 
         private void MaterialButton3_Click(object sender, EventArgs e)
         {
-            foreach (int idx in codefilesList.SelectedIndices)
+            if (codefilesList.SelectedItems.Count > 0)
             {
-                me.PushCode(idx, "RRRRRRRR");
+                foreach (int idx in codefilesList.SelectedIndices)
+                {
+                    me.PushCode(idx, "RRRRRRRR");
+                }
+            } else
+            {
+                randCodesList.Items.Add(new MaterialListBoxItem()
+                {
+                    Text = "RRRRRRRR",
+                    SecondaryText = "Code " + (randCodesList.Items.Count + 1)
+                });
             }
             UpdateCodeList();
         }
 
         private void MaterialButton2_Click(object sender, EventArgs e)
         {
-            foreach (int idx in codefilesList.SelectedIndices)
+            if (codefilesList.SelectedIndices.Count > 0)
             {
-                me.RemoveCode(idx, randCodesList.SelectedIndex);
+                foreach (int idx in codefilesList.SelectedIndices)
+                {
+                    me.RemoveCode(idx, randCodesList.SelectedIndex);
+                }
+                UpdateCodeList();
+            } else 
+            {
+                randCodesList.Items.RemoveAt(randCodesList.SelectedIndex);
             }
-            UpdateCodeList();
         }
 
         private void RandCodesList_MouseClick(object sender, MouseEventArgs e)
@@ -309,7 +350,7 @@ namespace UltimateBlueScreenSimulator.Forms.Interfaces
 
         private void FixedRandomButton_Click(object sender, EventArgs e)
         {
-            if (randCodesList.SelectedItems.Count > 0)
+            if (randCodesList.SelectedIndex != -1)
             {
                 codeBox.Text = me.GenHex(8, codeBox.Text);
             } else
@@ -320,7 +361,7 @@ namespace UltimateBlueScreenSimulator.Forms.Interfaces
 
         private void RandomButton_Click(object sender, EventArgs e)
         {
-            if (randCodesList.SelectedItems.Count > 0)
+            if (randCodesList.SelectedIndex != -1)
             {
                 codeBox.Text = "RRRRRRRR";
             } else
@@ -331,7 +372,7 @@ namespace UltimateBlueScreenSimulator.Forms.Interfaces
 
         private void ZeroButton_Click(object sender, EventArgs e)
         {
-            if (randCodesList.SelectedItems.Count > 0)
+            if (randCodesList.SelectedIndex != -1)
             {
                 codeBox.Text = "00000000";
             } else
@@ -342,7 +383,7 @@ namespace UltimateBlueScreenSimulator.Forms.Interfaces
 
         private void FixedButton_Click(object sender, EventArgs e)
         {
-            if (randCodesList.SelectedItems.Count > 0)
+            if (randCodesList.SelectedIndex != -1)
             {
                 codeBox.Text = codeBox.Text;
             }
@@ -358,6 +399,22 @@ namespace UltimateBlueScreenSimulator.Forms.Interfaces
             {
                 MessageBox.Show("Screenshot saved as " + Program.dr.Screenshot(this), "Screenshot taken!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Cursor.Show();
+            } else if (e.KeyCode == Keys.Insert)
+            {
+                activeModeLabel_Click(sender, e);
+            }
+        }
+
+        private void activeModeLabel_Click(object sender, EventArgs e)
+        {
+            if (activeModeLabel.Text.StartsWith("Edit mode"))
+            {
+                codefilesList.SelectedIndices.Clear();
+                codefilesList.SelectedItems.Clear();
+            }
+            else
+            {
+                codefilesList.SelectedIndices.Add(0);
             }
         }
     }

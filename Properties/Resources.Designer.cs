@@ -301,6 +301,15 @@ namespace UltimateBlueScreenSimulator.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Segoe UI;Consolas;Lucida Console;Segoe UI Variable Display;Segoe UI Variable Small;Segoe UI Semilight;Lucida Sans Typewriter.
+        /// </summary>
+        internal static string fonts {
+            get {
+                return ResourceManager.GetString("fonts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to *** Blue screen simulator plus 1.11 ***
         ///FACE :(
         ///MODERN 16:113:170,255:255:255
@@ -393,6 +402,15 @@ namespace UltimateBlueScreenSimulator.Properties {
         internal static string NTERRORDATABASE {
             get {
                 return ResourceManager.GetString("NTERRORDATABASE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Roboto;Microsoft Sans Serif;Roboto Medium.
+        /// </summary>
+        internal static string optionalFonts {
+            get {
+                return ResourceManager.GetString("optionalFonts", resourceCulture);
             }
         }
         

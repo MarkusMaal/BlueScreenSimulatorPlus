@@ -10,6 +10,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing.Text;
 using System.IO;
 using System.Linq;
 using System.Net.NetworkInformation;
@@ -121,8 +122,14 @@ namespace UltimateBlueScreenSimulator
         {
             try
             {
+                gs.Log("Info", "Checking fonts");
                 // Process CLI args
                 clip = new CLIProcessor(args);
+                if (!clip.CheckNoSplash() && CheckFonts().Length > 0)
+                {
+                    MessageBox.Show("The following fonts must be installed before you can use this program:\n\n" + string.Join("\n", CheckFonts()), "Cannot start this program", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return 95;
+                }
                 //Application initialization
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
@@ -166,6 +173,16 @@ namespace UltimateBlueScreenSimulator
                 try
                 {
                     gs = gs.LoadSettings();
+                    bool missingFonts = !gs.LegacyUI && (CheckFonts(true).Length > 0);
+                    if (missingFonts)
+                    {
+                        clip.ExitSplash();
+                    }
+                    if (missingFonts && (MessageBox.Show("The following optional fonts used by this program were not found:\n\n" + string.Join("\n", CheckFonts(true)) + "\n\nYou can proceed without installing these fonts, however some UI elements may not look right. Do you still want to start this program?", "Notice", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No))
+                    {
+                        Application.Exit();
+                        return 0;
+                    }
                     if (gs.LegacyUI)
                     {
                         F2 = new Main();
@@ -302,6 +319,28 @@ namespace UltimateBlueScreenSimulator
         public static void DllError()
         {
             MessageBox.Show("Required DLL files are missing. To use the save and load feature, all DLLs must be present in the application's working directory.", "DLL error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private static string[] CheckFonts(bool optionalFonts = false)
+        {
+            using (InstalledFontCollection fontsCollection = new InstalledFontCollection())
+            {
+                System.Drawing.FontFamily[] fontFamilies = fontsCollection.Families;
+                List<string> fonts = new List<string>();
+                foreach (System.Drawing.FontFamily font in fontFamilies)
+                {
+                    fonts.Add(font.Name);
+                }
+                List<string> missing_fonts = new List<string>();
+                foreach (string font in (optionalFonts ? Properties.Resources.optionalFonts : Properties.Resources.fonts).Split(';'))
+                {
+                    if (!fonts.Contains(font))
+                    {
+                        missing_fonts.Add(font);
+                    }
+                }
+                return missing_fonts.ToArray();
+            }
         }
 
         /// <summary>
@@ -479,6 +518,11 @@ namespace UltimateBlueScreenSimulator
             return true;
         }
 
+        /// <summary>
+        /// Obtain embedded configuration within the running program (embed to executable option)
+        /// </summary>
+        /// <param name="appname">Path to exe (optional, defaults to current app)</param>
+        /// <returns>Embedded settings JSON data as string</returns>
         public static string GetEmbedded(string appname = null)
         {
             List<byte> data = new List<byte>();

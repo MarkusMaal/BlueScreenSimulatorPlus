@@ -9,7 +9,6 @@ using System.Text.Json.Serialization;
 using System.Threading;
 using System.Windows.Forms;
 using SimulatorDatabase;
-using static System.Windows.Forms.Design.AxImporter;
 
 namespace UltimateBlueScreenSimulator
 {

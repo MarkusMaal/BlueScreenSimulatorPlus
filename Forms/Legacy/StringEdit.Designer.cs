@@ -115,7 +115,7 @@
             this.MessageView.MultiSelect = false;
             this.MessageView.Name = "MessageView";
             this.MessageView.ShowGroups = false;
-            this.MessageView.Size = new System.Drawing.Size(390, 545);
+            this.MessageView.Size = new System.Drawing.Size(432, 568);
             this.MessageView.SmallImageList = this.AllIcons;
             this.MessageView.TabIndex = 0;
             this.MessageView.UseCompatibleStateImageBehavior = false;
@@ -137,7 +137,7 @@
             // specificProps
             // 
             this.specificProps.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.specificProps.Location = new System.Drawing.Point(407, 20);
+            this.specificProps.Location = new System.Drawing.Point(449, 20);
             this.specificProps.Name = "specificProps";
             this.specificProps.Size = new System.Drawing.Size(383, 13);
             this.specificProps.TabIndex = 4;
@@ -146,7 +146,7 @@
             // 
             this.buttonOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonOK.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.buttonOK.Location = new System.Drawing.Point(744, 600);
+            this.buttonOK.Location = new System.Drawing.Point(786, 623);
             this.buttonOK.Name = "buttonOK";
             this.buttonOK.Size = new System.Drawing.Size(75, 23);
             this.buttonOK.TabIndex = 8;
@@ -213,9 +213,9 @@
             this.specificPropsFlowLayoutPanel.Controls.Add(this.fontProps);
             this.specificPropsFlowLayoutPanel.Controls.Add(this.blinkProps);
             this.specificPropsFlowLayoutPanel.Controls.Add(this.colorProps);
-            this.specificPropsFlowLayoutPanel.Location = new System.Drawing.Point(410, 39);
+            this.specificPropsFlowLayoutPanel.Location = new System.Drawing.Point(452, 39);
             this.specificPropsFlowLayoutPanel.Name = "specificPropsFlowLayoutPanel";
-            this.specificPropsFlowLayoutPanel.Size = new System.Drawing.Size(404, 212);
+            this.specificPropsFlowLayoutPanel.Size = new System.Drawing.Size(404, 235);
             this.specificPropsFlowLayoutPanel.TabIndex = 2;
             // 
             // xpMsgChooser
@@ -444,7 +444,7 @@
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.Color.Red;
-            this.label1.Location = new System.Drawing.Point(12, 604);
+            this.label1.Location = new System.Drawing.Point(12, 627);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(329, 13);
             this.label1.TabIndex = 10;
@@ -454,7 +454,7 @@
             // 
             this.bugcheckPreview.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.bugcheckPreview.Image = global::UltimateBlueScreenSimulator.Properties.Resources.loadpic;
-            this.bugcheckPreview.Location = new System.Drawing.Point(410, 283);
+            this.bugcheckPreview.Location = new System.Drawing.Point(452, 306);
             this.bugcheckPreview.Margin = new System.Windows.Forms.Padding(0);
             this.bugcheckPreview.Name = "bugcheckPreview";
             this.bugcheckPreview.Size = new System.Drawing.Size(404, 301);
@@ -467,7 +467,7 @@
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(407, 265);
+            this.label2.Location = new System.Drawing.Point(449, 288);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(45, 13);
             this.label2.TabIndex = 13;
@@ -475,10 +475,11 @@
             // 
             // updatePreviewCheck
             // 
+            this.updatePreviewCheck.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.updatePreviewCheck.AutoSize = true;
             this.updatePreviewCheck.Checked = true;
             this.updatePreviewCheck.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.updatePreviewCheck.Location = new System.Drawing.Point(654, 264);
+            this.updatePreviewCheck.Location = new System.Drawing.Point(696, 287);
             this.updatePreviewCheck.Name = "updatePreviewCheck";
             this.updatePreviewCheck.Size = new System.Drawing.Size(165, 17);
             this.updatePreviewCheck.TabIndex = 14;
@@ -490,7 +491,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(831, 635);
+            this.ClientSize = new System.Drawing.Size(873, 658);
             this.Controls.Add(this.updatePreviewCheck);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.bugcheckPreview);
@@ -502,7 +503,7 @@
             this.Controls.Add(this.MessageView);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(534, 206);
+            this.MinimumSize = new System.Drawing.Size(534, 630);
             this.Name = "StringEdit";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;

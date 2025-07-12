@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using SimulatorDatabase;
 
@@ -24,7 +18,12 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
 
         private void NTdtor_Load(object sender, EventArgs e)
         {
-            this.Text += " - " + me.GetString("friendlyname");
+            if (me == null)
+            {
+                return;
+            }
+
+            Text += " - " + me.GetString("friendlyname");
             UpdateCodeList();
         }
 
@@ -85,6 +84,27 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
 
         private void CodefilesList_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (me == null)
+            {
+                return;
+            }
+
+            codeBox.Enabled = codefilesList.SelectedIndices.Count > 0;
+            fixedButton.Enabled = codeBox.Enabled;
+            fixedRandomButton.Enabled = codeBox.Enabled;
+            randomButton.Enabled = codeBox.Enabled;
+            zeroButton.Enabled = codeBox.Enabled;
+            delCodeButton.Enabled = false;
+            if (codeBox.Enabled)
+            {
+                activeModeLabel.Text = "Edit mode";
+            }
+            else
+            {
+                activeModeLabel.Text = "Insert mode";
+            }
+            activeModeLabel.Text += " (click to toggle)";
+
             delEntryButton.Enabled = codefilesList.SelectedIndices.Count > 0;
             if (codefilesList.SelectedItems.Count == 1)
             {
@@ -114,7 +134,6 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
                 foreach (string code in me.GetFile(codefilesList.SelectedIndices[0]).Value)
                 {
                     randCodesList.Items.Add(code);
-                    //mlbi.SecondaryText = $"Code {i}";
                     i++;
                 }
                 if (bck != randCodesList.Items.Count)
@@ -141,6 +160,17 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
             {
                 DeleteSelectedEntries();
             }
+            else if ((e.KeyCode == Keys.D) && (e.Control))
+            {
+                List<string> codes = new List<string>();
+                foreach (string m in randCodesList.Items)
+                {
+                    codes.Add(m);
+                }
+                me.PushFile(filenameBox.Text, codes.ToArray());
+                UpdateCodeList();
+            }
+            IndexForm_KeyDown(sender, e);
         }
 
         private void MaterialButton4_Click(object sender, EventArgs e)
@@ -161,20 +191,34 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
 
         private void MaterialButton3_Click(object sender, EventArgs e)
         {
-            foreach (int idx in codefilesList.SelectedIndices)
+            if (codefilesList.SelectedItems.Count > 0)
             {
-                me.PushCode(idx, "RRRRRRRR");
+                foreach (int idx in codefilesList.SelectedIndices)
+                {
+                    me.PushCode(idx, "RRRRRRRR");
+                }
+            }
+            else
+            {
+                randCodesList.Items.Add("RRRRRRRR");
             }
             UpdateCodeList();
         }
 
         private void MaterialButton2_Click(object sender, EventArgs e)
         {
-            foreach (int idx in codefilesList.SelectedIndices)
+            if (codefilesList.SelectedIndices.Count > 0)
             {
-                me.RemoveCode(idx, randCodesList.SelectedIndex);
+                foreach (int idx in codefilesList.SelectedIndices)
+                {
+                    me.RemoveCode(idx, randCodesList.SelectedIndex);
+                }
+                UpdateCodeList();
             }
-            UpdateCodeList();
+            else
+            {
+                randCodesList.Items.RemoveAt(randCodesList.SelectedIndex);
+            }
         }
 
         private void RandCodesList_MouseClick(object sender, MouseEventArgs e)
@@ -186,9 +230,19 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
             delCodeButton.Enabled = randCodesList.SelectedIndex != -1;
         }
 
+        private void RandCodesList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (randCodesList.SelectedIndex != -1)
+            {
+                codeBox.Text = randCodesList.SelectedItem.ToString();
+            }
+            delCodeButton.Enabled = randCodesList.SelectedIndex != -1;
+
+        }
+
         private void BrowseButton_Click(object sender, EventArgs e)
         {
-            Forms.Legacy.ChooseFile cf = new Forms.Legacy.ChooseFile();
+            ChooseFile cf = new ChooseFile();
             if (cf.ShowDialog() == DialogResult.OK)
             {
                 filenameBox.Text = cf.fileBrowser.SelectedItems[0].Text;
@@ -205,6 +259,11 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
 
         private void FilenameBox_TextChanged(object sender, EventArgs e)
         {
+            if (me == null)
+            {
+                return;
+            }
+
             if ((codefilesList.SelectedItems.Count > 0) && (filenameBox.Text.Length > 0))
             {
                 foreach (int idx in codefilesList.SelectedIndices)
@@ -227,6 +286,11 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
 
         private void CodeBox_TextChanged(object sender, EventArgs e)
         {
+            if (me == null)
+            {
+                return;
+            }
+
             int bck = randCodesList.SelectedIndex;
             if ((randCodesList.SelectedIndex != -1))
             {
@@ -273,7 +337,7 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
 
         private void FixedRandomButton_Click(object sender, EventArgs e)
         {
-            if (randCodesList.SelectedItems.Count > 0)
+            if (randCodesList.SelectedIndex != -1)
             {
                 codeBox.Text = me.GenHex(8, codeBox.Text);
             }
@@ -285,7 +349,7 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
 
         private void RandomButton_Click(object sender, EventArgs e)
         {
-            if (randCodesList.SelectedItems.Count > 0)
+            if (randCodesList.SelectedIndex != -1)
             {
                 codeBox.Text = "RRRRRRRR";
             }
@@ -297,7 +361,7 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
 
         private void ZeroButton_Click(object sender, EventArgs e)
         {
-            if (randCodesList.SelectedItems.Count > 0)
+            if (randCodesList.SelectedIndex != -1)
             {
                 codeBox.Text = "00000000";
             }
@@ -309,7 +373,7 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
 
         private void FixedButton_Click(object sender, EventArgs e)
         {
-            if (randCodesList.SelectedItems.Count > 0)
+            if (randCodesList.SelectedIndex != -1)
             {
                 codeBox.Text = codeBox.Text;
             }
@@ -319,21 +383,29 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
             }
         }
 
-        private void RandCodesList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (randCodesList.SelectedIndex != -1)
-            {
-                codeBox.Text = randCodesList.SelectedItem.ToString();
-            }
-            delCodeButton.Enabled = randCodesList.SelectedIndex != -1;
-        }
-
         private void IndexForm_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.F2)
             {
                 MessageBox.Show("Screenshot saved as " + Program.dr.Screenshot(this), "Screenshot taken!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Cursor.Show();
+            }
+            else if (e.KeyCode == Keys.Insert)
+            {
+                activeModeLabel_Click(sender, e);
+            }
+        }
+
+        private void activeModeLabel_Click(object sender, EventArgs e)
+        {
+            if (activeModeLabel.Text.StartsWith("Edit mode"))
+            {
+                codefilesList.SelectedIndices.Clear();
+                codefilesList.SelectedItems.Clear();
+            }
+            else
+            {
+                codefilesList.SelectedIndices.Add(0);
             }
         }
     }

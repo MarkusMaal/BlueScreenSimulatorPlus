@@ -31,7 +31,7 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem(new string[] {
             "Example",
             "RRRRRRRR"}, -1);
             this.delCodeButton = new System.Windows.Forms.Button();
@@ -53,6 +53,7 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
             this.fixedRandomButton = new System.Windows.Forms.Button();
             this.randomButton = new System.Windows.Forms.Button();
             this.zeroButton = new System.Windows.Forms.Button();
+            this.activeModeLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -88,7 +89,7 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
             "RRRRRRRR"});
             this.randCodesList.Location = new System.Drawing.Point(12, 100);
             this.randCodesList.Name = "randCodesList";
-            this.randCodesList.Size = new System.Drawing.Size(525, 224);
+            this.randCodesList.Size = new System.Drawing.Size(525, 284);
             this.randCodesList.TabIndex = 3;
             this.randCodesList.MouseClick += new System.Windows.Forms.MouseEventHandler(this.RandCodesList_MouseClick);
             this.randCodesList.SelectedIndexChanged += new System.EventHandler(this.RandCodesList_SelectedIndexChanged);
@@ -164,6 +165,7 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.activeModeLabel);
             this.splitContainer1.Panel2.Controls.Add(this.flowLayoutPanel1);
             this.splitContainer1.Panel2.Controls.Add(this.materialLabel3);
             this.splitContainer1.Panel2.Controls.Add(this.filenameBox);
@@ -189,7 +191,7 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
             this.codefilesList.GridLines = true;
             this.codefilesList.HideSelection = false;
             this.codefilesList.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1});
+            listViewItem6});
             this.codefilesList.Location = new System.Drawing.Point(0, 0);
             this.codefilesList.Name = "codefilesList";
             this.codefilesList.Size = new System.Drawing.Size(434, 507);
@@ -220,10 +222,10 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
             this.flowLayoutPanel1.Controls.Add(this.materialButton3);
             this.flowLayoutPanel1.Controls.Add(this.materialButton5);
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(9, 327);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(9, 425);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(525, 180);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(525, 82);
             this.flowLayoutPanel1.TabIndex = 5;
             this.flowLayoutPanel1.WrapContents = false;
             // 
@@ -318,6 +320,19 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
             this.zeroButton.UseVisualStyleBackColor = true;
             this.zeroButton.Click += new System.EventHandler(this.ZeroButton_Click);
             // 
+            // activeModeLabel
+            // 
+            this.activeModeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.activeModeLabel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.activeModeLabel.Location = new System.Drawing.Point(9, 402);
+            this.activeModeLabel.Name = "activeModeLabel";
+            this.activeModeLabel.Size = new System.Drawing.Size(525, 23);
+            this.activeModeLabel.TabIndex = 6;
+            this.activeModeLabel.Text = "Insert mode (click to toggle)";
+            this.activeModeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.activeModeLabel.Click += new System.EventHandler(this.activeModeLabel_Click);
+            // 
             // IndexForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -361,5 +376,6 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
         private System.Windows.Forms.ListView codefilesList;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.Label activeModeLabel;
     }
 }

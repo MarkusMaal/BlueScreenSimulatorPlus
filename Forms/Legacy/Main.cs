@@ -149,6 +149,7 @@ namespace UltimateBlueScreenSimulator
             Program.clip.ExitSplash();
             this.TopMost = true;
             this.TopMost = false;
+            Program.isScreensaver = false;
             Focus();
             if (Program.gs.AutoUpdate)
             {

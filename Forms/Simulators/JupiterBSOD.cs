@@ -183,14 +183,14 @@ namespace UltimateBlueScreenSimulator
         // for prank mode purposes
         private void JupiterBSOD_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (Program.gs.PM_CloseMainUI)
-            {
-                Application.Exit();
-            }
             if (Program.gs.PM_ShowMessage)
             {
                 MessageBox.Show(Program.gs.PM_MsgText, Program.gs.PM_MsgTitle, Program.gs.PM_MsgType, Program.gs.PM_MsgIcon);
                 Program.gs.PM_ShowMessage = false;
+            }
+            if (Program.gs.PM_CloseMainUI)
+            {
+                Application.Exit();
             }
         }
 

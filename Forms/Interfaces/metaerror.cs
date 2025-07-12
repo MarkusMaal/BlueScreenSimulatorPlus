@@ -127,7 +127,7 @@ namespace UltimateBlueScreenSimulator
 
                 if (saveFileDialog1.ShowDialog() == DialogResult.OK)
                 {
-                    string preLine = "Blue Screen Simulator Plus version " + Assembly.GetExecutingAssembly().GetName().Version.ToString().Replace(".", "").Substring(0, 1) + "." + Assembly.GetExecutingAssembly().GetName().Version.ToString().Replace(".", "").Substring(1) + " [TRACE LOG]\n";
+                    string preLine = "Blue Screen Simulator Plus version " + UIActions.Version + " [TRACE LOG]\n";
                     preLine += "Operating System: " + GetOSFriendlyName() + "\n";
                     File.WriteAllText(saveFileDialog1.FileName, preLine + Program.gs.GetLog(false), Encoding.Unicode);
                     MessageBox.Show("Trace log dumped successfully!", "Blue Screen Simulator Plus", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -136,7 +136,7 @@ namespace UltimateBlueScreenSimulator
             {
                 try
                 {
-                    string preLine = "Blue Screen Simulator Plus version " + Assembly.GetExecutingAssembly().GetName().Version.ToString().Replace(".", "").Substring(0, 1) + "." + Assembly.GetExecutingAssembly().GetName().Version.ToString().Replace(".", "").Substring(1) + " [TRACE LOG]\n";
+                    string preLine = "Blue Screen Simulator Plus version " + UIActions.Version + " [TRACE LOG]\n";
                     preLine += "Operating System: " + GetOSFriendlyName() + "\n";
                     File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.Desktop)  + "\\bssp_dump.log", preLine + Program.gs.GetLog(false), Encoding.Unicode);
                     MessageBox.Show("Trace log dumped successfully! Due to the fact this error was triggered from a secondary thread, we were unable to ask where to save the log file, so we saved it to the desktop as bssp_dump.log.", "Blue Screen Simulator Plus", MessageBoxButtons.OK, MessageBoxIcon.Information);

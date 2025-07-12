@@ -708,7 +708,7 @@ namespace UltimateBlueScreenSimulator
         {
             if (!UIActions.bsod_starter.IsAlive)
             {
-                if (!Program.gs.PM_Lockout)
+                if (!Program.gs.PM_CloseMainUI)
                 {
                     waitPopup.Enabled = false;
                     this.WindowState = FormWindowState.Normal;

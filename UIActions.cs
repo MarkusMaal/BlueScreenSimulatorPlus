@@ -1,23 +1,19 @@
 ﻿using System;
 using System.Buffers.Binary;
 using System.Collections.Generic;
-using System.ComponentModel.Design;
 using System.Diagnostics;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml.Linq;
-using MaterialSkin2Framework;
 using MaterialSkin2Framework.Controls;
 using Microsoft.Win32;
 using SimulatorDatabase;
-using static System.Windows.Forms.Design.AxImporter;
 
 namespace UltimateBlueScreenSimulator
 {
@@ -27,7 +23,21 @@ namespace UltimateBlueScreenSimulator
         public static Thread bsod_starter;
         public static BlueScreen me;
         public static WindowScreen specialwindow;
-        public static string version = Assembly.GetExecutingAssembly().GetName().Version.ToString().Replace(".", "").Substring(0, 1) + "." + Assembly.GetExecutingAssembly().GetName().Version.ToString().Replace(".", "").Substring(1);
+
+        public static string Version {
+            get {
+                string verStr = string.Join(".", Assembly.GetExecutingAssembly().GetName().Version.ToString().Split('.').Take(3).ToArray());
+                while (verStr.EndsWith(".0"))
+                {
+                    verStr = verStr.Substring(0, verStr.Length - 2);
+                }
+                if (!verStr.Contains("."))
+                {
+                    verStr += ".0";
+                }
+                return verStr;
+            }
+        }
 
         /// <summary>
         /// Hides controls related to settings from current form
@@ -339,6 +349,7 @@ namespace UltimateBlueScreenSimulator
                     SetControlVisible(fp, "devPCBox", false);
                     SetControlChecked(fp, "autoBox", true);
                     SetControlChecked(fp, "blackScreenBox", me.GetBool("blackscreen"));
+                    SetControlVisible(fp, "crashDumpBox", true);
                     break;
                 case "Windows 10":
                     ExplicitShow.AddRange(new string[]
@@ -356,6 +367,7 @@ namespace UltimateBlueScreenSimulator
                         "progressTuneButton"
                     });
                     SetControlVisible(fp, "blackScreenBox", false);
+                    SetControlVisible(fp, "crashDumpBox", true);
                     SetControlChecked(fp, "autoBox", true);
                     break;
                 case "Windows 8/8.1":
@@ -373,6 +385,7 @@ namespace UltimateBlueScreenSimulator
                     SetControlVisible(fp, "crashDumpBox", false);
                     SetControlVisible(fp, "greenBox", false);
                     SetControlVisible(fp, "serverBox", false);
+                    SetControlVisible(fp, "crashDumpBox", false);
                     SetControlChecked(fp, "blackScreenBox", me.GetBool("blackscreen"));
                     break;
                 case "Windows 8 Beta":
@@ -699,16 +712,7 @@ namespace UltimateBlueScreenSimulator
             {
                 ProcessErrors(f);
             }
-            string verStr = Convert.ToDouble(version.Replace(".", ",")).ToString().Replace(",", ".");
-            while (verStr.EndsWith("0"))
-            {
-                verStr = verStr.Substring(0, verStr.Length - 1);
-            }
-            if (!verStr.Contains("."))
-            {
-                verStr += ".0";
-            }
-            f.Text = $"Blue Screen Simulator Plus {verStr}";
+            f.Text = $"Blue Screen Simulator Plus {Version}";
             if (Program.gs.DevBuild)
             {
                 f.Text += "          // UNDER CONSTRUCTION //";
@@ -1134,7 +1138,7 @@ namespace UltimateBlueScreenSimulator
                         File.Delete(Program.prefix + "vercheck.txt");
                         return;
                     }
-                    if (Convert.ToDouble(lines[0].Replace(".", ",").Replace("\r", "").Replace("\n", "").Trim()) > Convert.ToDouble(UIActions.version.Replace(".", ",")))
+                    if (Convert.ToDouble(lines[0].Replace("\r", "").Replace("\n", "").Trim(), CultureInfo.CreateSpecificCulture("en-US")) > Convert.ToDouble(Version, CultureInfo.CreateSpecificCulture("en-US")))
                     {
                         File.Delete(Program.prefix + "vercheck.txt");
                         if (MessageBox.Show("A new version of blue screen simulator is available. Would you like to update now?", "Update available", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)

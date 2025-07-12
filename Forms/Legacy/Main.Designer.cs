@@ -1038,7 +1038,7 @@
             // simulateToolStripMenuItem
             // 
             this.simulateToolStripMenuItem.Name = "simulateToolStripMenuItem";
-            this.simulateToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.simulateToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.simulateToolStripMenuItem.Text = "&Simulate";
             this.simulateToolStripMenuItem.Click += new System.EventHandler(this.SimulateToolStripMenuItem_Click);
             // 
@@ -1048,7 +1048,7 @@
             this.autoUpdateToolStripMenuItem,
             this.simulatorSettingsToolStripMenuItem});
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.settingsToolStripMenuItem.Text = "Settings";
             this.settingsToolStripMenuItem.DropDownOpening += new System.EventHandler(this.SimulatorToolStripMenuItem_DropDownOpening);
             // 
@@ -1075,26 +1075,28 @@
             // 
             this.toolStripSeparator1.AutoSize = false;
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(174, 3);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 3);
+            this.toolStripSeparator1.Visible = false;
             // 
             // nightThemeToolStripMenuItem
             // 
             this.nightThemeToolStripMenuItem.CheckOnClick = true;
             this.nightThemeToolStripMenuItem.Name = "nightThemeToolStripMenuItem";
-            this.nightThemeToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.nightThemeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.nightThemeToolStripMenuItem.Text = "Night theme";
+            this.nightThemeToolStripMenuItem.Visible = false;
             this.nightThemeToolStripMenuItem.CheckStateChanged += new System.EventHandler(this.LightSwitch);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(174, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(177, 6);
             // 
             // screenshotToolStripMenuItem
             // 
             this.screenshotToolStripMenuItem.Name = "screenshotToolStripMenuItem";
             this.screenshotToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F2;
-            this.screenshotToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.screenshotToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.screenshotToolStripMenuItem.Text = "Take screenshot";
             this.screenshotToolStripMenuItem.Click += new System.EventHandler(this.ScreenshotToolStripMenuItem_Click);
             // 
@@ -1102,7 +1104,7 @@
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exitToolStripMenuItem.Text = "E&xit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 

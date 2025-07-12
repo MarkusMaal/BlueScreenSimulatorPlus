@@ -811,6 +811,10 @@ namespace UltimateBlueScreenSimulator
                 }));
             } else if (message.Contains("Safely closing"))
             {
+                if (!Program.spl.Visible)
+                {
+                    return;
+                }
                 Program.spl.BeginInvoke(new MethodInvoker(delegate {
                     Program.spl.Close();
                 }));
