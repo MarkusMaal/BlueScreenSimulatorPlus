@@ -242,10 +242,13 @@ namespace UltimateBlueScreenSimulator
                     File.Move("Blue.screen.simulator.plus.exe", "Blue screen simulator plus.exe");
                 }
             }
-            File.SetAttributes("Blue screen simulator plus.exe", FileAttributes.Hidden);
-            File.Delete("Blue screen simulator plus.exe");
+            if (File.Exists("Blue screen simulator plus.exe"))
+            {
+                File.SetAttributes("Blue screen simulator plus.exe", FileAttributes.Hidden);
+                File.Delete("Blue screen simulator plus.exe");
+            }
             File.Move("BSSP_new.exe", "Blue screen simulator plus.exe");
-            System.IO.File.WriteAllText("finish.bat", Properties.Resources.final);
+            File.WriteAllText("finish.bat", Properties.Resources.final);
             Process p = new Process();
             p.StartInfo.UseShellExecute = true;
             p.StartInfo.CreateNoWindow = true;

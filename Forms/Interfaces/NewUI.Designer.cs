@@ -558,7 +558,7 @@
             this.memoryBox.Depth = 0;
             this.memoryBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.memoryBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.memoryBox.Location = new System.Drawing.Point(0, 37);
+            this.memoryBox.Location = new System.Drawing.Point(582, 0);
             this.memoryBox.Margin = new System.Windows.Forms.Padding(0);
             this.memoryBox.MouseLocation = new System.Drawing.Point(-1, -1);
             this.memoryBox.MouseState = MaterialSkin2Framework.MouseState.HOVER;
@@ -580,7 +580,7 @@
             this.devPCBox.Depth = 0;
             this.devPCBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.devPCBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.devPCBox.Location = new System.Drawing.Point(209, 37);
+            this.devPCBox.Location = new System.Drawing.Point(0, 37);
             this.devPCBox.Margin = new System.Windows.Forms.Padding(0);
             this.devPCBox.MouseLocation = new System.Drawing.Point(-1, -1);
             this.devPCBox.MouseState = MaterialSkin2Framework.MouseState.HOVER;
@@ -602,7 +602,7 @@
             this.blackScreenBox.Depth = 0;
             this.blackScreenBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.blackScreenBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.blackScreenBox.Location = new System.Drawing.Point(427, 37);
+            this.blackScreenBox.Location = new System.Drawing.Point(218, 37);
             this.blackScreenBox.Margin = new System.Windows.Forms.Padding(0);
             this.blackScreenBox.MouseLocation = new System.Drawing.Point(-1, -1);
             this.blackScreenBox.MouseState = MaterialSkin2Framework.MouseState.HOVER;
@@ -997,7 +997,7 @@
             this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.button1.Icon = global::UltimateBlueScreenSimulator.Properties.Resources.play;
             this.button1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.button1.Location = new System.Drawing.Point(-264, -132);
+            this.button1.Location = new System.Drawing.Point(-253, -128);
             this.button1.Mini = true;
             this.button1.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.button1.Name = "button1";
@@ -1016,7 +1016,7 @@
             this.button3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.button3.Icon = global::UltimateBlueScreenSimulator.Properties.Resources.question;
             this.button3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.button3.Location = new System.Drawing.Point(-264, -82);
+            this.button3.Location = new System.Drawing.Point(-253, -78);
             this.button3.Mini = true;
             this.button3.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.button3.Name = "button3";
@@ -1180,7 +1180,7 @@
             this.crashDumpBox.Depth = 0;
             this.crashDumpBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.crashDumpBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.crashDumpBox.Location = new System.Drawing.Point(571, 37);
+            this.crashDumpBox.Location = new System.Drawing.Point(362, 37);
             this.crashDumpBox.Margin = new System.Windows.Forms.Padding(0);
             this.crashDumpBox.MouseLocation = new System.Drawing.Point(-1, -1);
             this.crashDumpBox.MouseState = MaterialSkin2Framework.MouseState.HOVER;
@@ -1215,7 +1215,7 @@
             this.materialTabControl1.Name = "materialTabControl1";
             this.materialTabControl1.SelectedIndex = 0;
             this.materialTabControl1.ShowToolTips = true;
-            this.materialTabControl1.Size = new System.Drawing.Size(926, 755);
+            this.materialTabControl1.Size = new System.Drawing.Size(937, 759);
             this.materialTabControl1.TabIndex = 0;
             this.quickHelp.SetToolTip(this.materialTabControl1, "Tabs (in order):\r\nSimulator\r\nTrace log\r\nSettings\r\nHelp and about\r\nPrank mode");
             this.materialTabControl1.SelectedIndexChanged += new System.EventHandler(this.MaterialTabControl1_SelectedIndexChanged);
@@ -1231,7 +1231,7 @@
             this.tabPage1.Location = new System.Drawing.Point(39, 4);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(883, 747);
+            this.tabPage1.Size = new System.Drawing.Size(894, 751);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Simulator";
             // 
@@ -1282,7 +1282,7 @@
             this.windowVersion.MaxDropDownItems = 4;
             this.windowVersion.MouseState = MaterialSkin2Framework.MouseState.OUT;
             this.windowVersion.Name = "windowVersion";
-            this.windowVersion.Size = new System.Drawing.Size(712, 49);
+            this.windowVersion.Size = new System.Drawing.Size(723, 49);
             this.windowVersion.StartIndex = 0;
             this.windowVersion.TabIndex = 1;
             this.windowVersion.SelectedIndexChanged += new System.EventHandler(this.WindowVersion_SelectedIndexChanged);
@@ -1315,7 +1315,7 @@
             this.flowLayoutPanel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.flowLayoutPanel1.Location = new System.Drawing.Point(9, 62);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(809, 657);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(820, 661);
             this.flowLayoutPanel1.TabIndex = 3;
             this.flowLayoutPanel1.WrapContents = false;
             // 
@@ -1337,7 +1337,7 @@
             this.WXOptions.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.WXOptions.Location = new System.Drawing.Point(3, 3);
             this.WXOptions.Name = "WXOptions";
-            this.WXOptions.Size = new System.Drawing.Size(708, 74);
+            this.WXOptions.Size = new System.Drawing.Size(791, 74);
             this.WXOptions.TabIndex = 0;
             // 
             // errorCode
@@ -1703,7 +1703,7 @@
             this.tabPage4.ImageKey = "happy";
             this.tabPage4.Location = new System.Drawing.Point(39, 4);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(883, 747);
+            this.tabPage4.Size = new System.Drawing.Size(894, 751);
             this.tabPage4.TabIndex = 4;
             this.tabPage4.Text = "Prank mode";
             // 
@@ -1735,7 +1735,7 @@
             this.panel3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(823, 713);
+            this.panel3.Size = new System.Drawing.Size(834, 717);
             this.panel3.TabIndex = 36;
             // 
             // flowLayoutPanel3
@@ -1751,7 +1751,7 @@
             this.flowLayoutPanel3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.flowLayoutPanel3.Location = new System.Drawing.Point(10, 308);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(600, 95);
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(620, 95);
             this.flowLayoutPanel3.TabIndex = 34;
             this.flowLayoutPanel3.WrapContents = false;
             // 
@@ -1806,7 +1806,7 @@
             this.previewFriendlyMessageButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.previewFriendlyMessageButton.HighEmphasis = true;
             this.previewFriendlyMessageButton.Icon = null;
-            this.previewFriendlyMessageButton.Location = new System.Drawing.Point(617, 367);
+            this.previewFriendlyMessageButton.Location = new System.Drawing.Point(637, 367);
             this.previewFriendlyMessageButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.previewFriendlyMessageButton.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.previewFriendlyMessageButton.Name = "previewFriendlyMessageButton";
@@ -1882,7 +1882,7 @@
             this.bluescreenTypePanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.bluescreenTypePanel.Location = new System.Drawing.Point(15, 60);
             this.bluescreenTypePanel.Name = "bluescreenTypePanel";
-            this.bluescreenTypePanel.Size = new System.Drawing.Size(772, 86);
+            this.bluescreenTypePanel.Size = new System.Drawing.Size(786, 86);
             this.bluescreenTypePanel.TabIndex = 2;
             // 
             // matchAllRadio
@@ -1937,7 +1937,7 @@
             this.triggerFlowPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.triggerFlowPanel.Location = new System.Drawing.Point(15, 210);
             this.triggerFlowPanel.Name = "triggerFlowPanel";
-            this.triggerFlowPanel.Size = new System.Drawing.Size(771, 76);
+            this.triggerFlowPanel.Size = new System.Drawing.Size(786, 76);
             this.triggerFlowPanel.TabIndex = 4;
             // 
             // timePanel
@@ -2206,7 +2206,7 @@
             this.triggerPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.triggerPanel.Location = new System.Drawing.Point(15, 170);
             this.triggerPanel.Name = "triggerPanel";
-            this.triggerPanel.Size = new System.Drawing.Size(772, 41);
+            this.triggerPanel.Size = new System.Drawing.Size(786, 41);
             this.triggerPanel.TabIndex = 3;
             // 
             // usbRadio
@@ -2312,7 +2312,7 @@
             this.friendlyMessageButtonsPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.friendlyMessageButtonsPanel.Location = new System.Drawing.Point(11, 619);
             this.friendlyMessageButtonsPanel.Name = "friendlyMessageButtonsPanel";
-            this.friendlyMessageButtonsPanel.Size = new System.Drawing.Size(770, 54);
+            this.friendlyMessageButtonsPanel.Size = new System.Drawing.Size(790, 54);
             this.friendlyMessageButtonsPanel.TabIndex = 13;
             this.friendlyMessageButtonsPanel.WrapContents = false;
             // 
@@ -2455,7 +2455,7 @@
             this.friendlyMessageTitleBox.SelectionStart = 0;
             this.friendlyMessageTitleBox.ShortcutsEnabled = true;
             this.friendlyMessageTitleBox.ShowAssistiveText = true;
-            this.friendlyMessageTitleBox.Size = new System.Drawing.Size(771, 52);
+            this.friendlyMessageTitleBox.Size = new System.Drawing.Size(791, 52);
             this.friendlyMessageTitleBox.TabIndex = 9;
             this.friendlyMessageTitleBox.TabStop = false;
             this.friendlyMessageTitleBox.Text = "Enter a title here";
@@ -2494,7 +2494,7 @@
             this.friendlyMessageContentsBox.SelectionStart = 0;
             this.friendlyMessageContentsBox.ShortcutsEnabled = true;
             this.friendlyMessageContentsBox.ShowAssistiveText = true;
-            this.friendlyMessageContentsBox.Size = new System.Drawing.Size(771, 52);
+            this.friendlyMessageContentsBox.Size = new System.Drawing.Size(791, 52);
             this.friendlyMessageContentsBox.TabIndex = 10;
             this.friendlyMessageContentsBox.TabStop = false;
             this.friendlyMessageContentsBox.Text = "Enter a message here.";
@@ -2535,7 +2535,7 @@
             this.friendlyMessageIconPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.friendlyMessageIconPanel.Location = new System.Drawing.Point(11, 536);
             this.friendlyMessageIconPanel.Name = "friendlyMessageIconPanel";
-            this.friendlyMessageIconPanel.Size = new System.Drawing.Size(770, 54);
+            this.friendlyMessageIconPanel.Size = new System.Drawing.Size(790, 54);
             this.friendlyMessageIconPanel.TabIndex = 12;
             this.friendlyMessageIconPanel.WrapContents = false;
             // 
@@ -2639,7 +2639,7 @@
             this.tabPage3.ImageKey = "gears";
             this.tabPage3.Location = new System.Drawing.Point(39, 4);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(980, 938);
+            this.tabPage3.Size = new System.Drawing.Size(894, 751);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Settings";
             // 
@@ -2656,7 +2656,7 @@
             this.materialTabSelector2.Location = new System.Drawing.Point(0, 0);
             this.materialTabSelector2.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.materialTabSelector2.Name = "materialTabSelector2";
-            this.materialTabSelector2.Size = new System.Drawing.Size(1069, 48);
+            this.materialTabSelector2.Size = new System.Drawing.Size(983, 48);
             this.materialTabSelector2.TabIndex = 99;
             this.materialTabSelector2.Text = "materialTabSelector2";
             // 
@@ -2677,7 +2677,7 @@
             this.aboutSettingsTabControl.Name = "aboutSettingsTabControl";
             this.aboutSettingsTabControl.Padding = new System.Drawing.Point(0, 0);
             this.aboutSettingsTabControl.SelectedIndex = 0;
-            this.aboutSettingsTabControl.Size = new System.Drawing.Size(918, 884);
+            this.aboutSettingsTabControl.Size = new System.Drawing.Size(832, 697);
             this.aboutSettingsTabControl.TabIndex = 0;
             this.aboutSettingsTabControl.SelectedIndexChanged += new System.EventHandler(this.MaterialTabControl2_SelectedIndexChanged);
             // 
@@ -2685,10 +2685,10 @@
             // 
             this.updatePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.updatePanel.Controls.Add(this.materialCard6);
-            this.updatePanel.Location = new System.Drawing.Point(4, 22);
+            this.updatePanel.Location = new System.Drawing.Point(4, 25);
             this.updatePanel.Name = "updatePanel";
             this.updatePanel.Padding = new System.Windows.Forms.Padding(3);
-            this.updatePanel.Size = new System.Drawing.Size(894, 820);
+            this.updatePanel.Size = new System.Drawing.Size(829, 702);
             this.updatePanel.TabIndex = 1;
             this.updatePanel.Text = "Update settings";
             // 
@@ -2716,7 +2716,7 @@
             this.materialCard6.Location = new System.Drawing.Point(3, 3);
             this.materialCard6.Margin = new System.Windows.Forms.Padding(0);
             this.materialCard6.Name = "materialCard6";
-            this.materialCard6.Size = new System.Drawing.Size(888, 814);
+            this.materialCard6.Size = new System.Drawing.Size(823, 696);
             this.materialCard6.TabIndex = 15;
             // 
             // updatePanelHeading
@@ -2746,7 +2746,7 @@
             this.customServerButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.customServerButton.HighEmphasis = true;
             this.customServerButton.Icon = null;
-            this.customServerButton.Location = new System.Drawing.Point(787, 304);
+            this.customServerButton.Location = new System.Drawing.Point(722, 304);
             this.customServerButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.customServerButton.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.customServerButton.Name = "customServerButton";
@@ -2833,7 +2833,7 @@
             this.primaryServerButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.primaryServerButton.HighEmphasis = true;
             this.primaryServerButton.Icon = null;
-            this.primaryServerButton.Location = new System.Drawing.Point(608, 304);
+            this.primaryServerButton.Location = new System.Drawing.Point(543, 304);
             this.primaryServerButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.primaryServerButton.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.primaryServerButton.Name = "primaryServerButton";
@@ -2881,7 +2881,7 @@
             this.backupServerButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.backupServerButton.HighEmphasis = true;
             this.backupServerButton.Icon = null;
-            this.backupServerButton.Location = new System.Drawing.Point(701, 304);
+            this.backupServerButton.Location = new System.Drawing.Point(636, 304);
             this.backupServerButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.backupServerButton.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.backupServerButton.Name = "backupServerButton";
@@ -2979,7 +2979,7 @@
             this.primaryServerBox.SelectionLength = 0;
             this.primaryServerBox.SelectionStart = 0;
             this.primaryServerBox.ShortcutsEnabled = true;
-            this.primaryServerBox.Size = new System.Drawing.Size(849, 36);
+            this.primaryServerBox.Size = new System.Drawing.Size(784, 36);
             this.primaryServerBox.TabIndex = 7;
             this.primaryServerBox.TabStop = false;
             this.primaryServerBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -3042,7 +3042,7 @@
             this.noticeLabel.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.noticeLabel.FontType = MaterialSkin2Framework.MaterialSkinManager.fontType.Caption;
             this.noticeLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.noticeLabel.Location = new System.Drawing.Point(525, 26);
+            this.noticeLabel.Location = new System.Drawing.Point(460, 26);
             this.noticeLabel.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.noticeLabel.Name = "noticeLabel";
             this.noticeLabel.Size = new System.Drawing.Size(343, 18);
@@ -3101,9 +3101,9 @@
             // 
             this.simulatorSettingsPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.simulatorSettingsPanel.Controls.Add(this.materialCard7);
-            this.simulatorSettingsPanel.Location = new System.Drawing.Point(4, 22);
+            this.simulatorSettingsPanel.Location = new System.Drawing.Point(4, 25);
             this.simulatorSettingsPanel.Name = "simulatorSettingsPanel";
-            this.simulatorSettingsPanel.Size = new System.Drawing.Size(910, 858);
+            this.simulatorSettingsPanel.Size = new System.Drawing.Size(824, 668);
             this.simulatorSettingsPanel.TabIndex = 4;
             this.simulatorSettingsPanel.Text = "Simulator settings";
             // 
@@ -3111,6 +3111,7 @@
             // 
             this.materialCard7.AutoScroll = true;
             this.materialCard7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.materialCard7.Controls.Add(this.osName);
             this.materialCard7.Controls.Add(this.label1);
             this.materialCard7.Controls.Add(this.simulatorSettingsHeading);
             this.materialCard7.Controls.Add(this.devFlowPanel);
@@ -3126,7 +3127,6 @@
             this.materialCard7.Controls.Add(this.configEditingButtonsFlowPanel);
             this.materialCard7.Controls.Add(this.autosaveCheck);
             this.materialCard7.Controls.Add(this.eggHunterButton);
-            this.materialCard7.Controls.Add(this.osName);
             this.materialCard7.Controls.Add(this.configList);
             this.materialCard7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.materialCard7.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
@@ -3134,7 +3134,7 @@
             this.materialCard7.Location = new System.Drawing.Point(0, 0);
             this.materialCard7.Margin = new System.Windows.Forms.Padding(0);
             this.materialCard7.Name = "materialCard7";
-            this.materialCard7.Size = new System.Drawing.Size(910, 858);
+            this.materialCard7.Size = new System.Drawing.Size(824, 668);
             this.materialCard7.TabIndex = 27;
             // 
             // label1
@@ -3144,7 +3144,7 @@
             this.label1.Depth = 0;
             this.label1.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.label1.Location = new System.Drawing.Point(691, 117);
+            this.label1.Location = new System.Drawing.Point(599, 117);
             this.label1.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(1, 130);
@@ -3167,6 +3167,8 @@
             // 
             // devFlowPanel
             // 
+            this.devFlowPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.devFlowPanel.AutoScroll = true;
             this.devFlowPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.devFlowPanel.Controls.Add(this.devSerialize);
@@ -3183,7 +3185,7 @@
             this.devFlowPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.devFlowPanel.Location = new System.Drawing.Point(228, 3);
             this.devFlowPanel.Name = "devFlowPanel";
-            this.devFlowPanel.Size = new System.Drawing.Size(667, 58);
+            this.devFlowPanel.Size = new System.Drawing.Size(595, 58);
             this.devFlowPanel.TabIndex = 0;
             this.devFlowPanel.Visible = false;
             this.devFlowPanel.WrapContents = false;
@@ -3406,7 +3408,7 @@
             this.selectAllBox.CheckAlign = System.Drawing.ContentAlignment.TopLeft;
             this.selectAllBox.Depth = 0;
             this.selectAllBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.selectAllBox.Location = new System.Drawing.Point(664, 260);
+            this.selectAllBox.Location = new System.Drawing.Point(578, 260);
             this.selectAllBox.Margin = new System.Windows.Forms.Padding(0);
             this.selectAllBox.MouseLocation = new System.Drawing.Point(-1, -1);
             this.selectAllBox.MouseState = MaterialSkin2Framework.MouseState.HOVER;
@@ -3519,7 +3521,7 @@
             this.multiDisplayBox.MaxDropDownItems = 4;
             this.multiDisplayBox.MouseState = MaterialSkin2Framework.MouseState.OUT;
             this.multiDisplayBox.Name = "multiDisplayBox";
-            this.multiDisplayBox.Size = new System.Drawing.Size(699, 35);
+            this.multiDisplayBox.Size = new System.Drawing.Size(613, 35);
             this.multiDisplayBox.StartIndex = 0;
             this.multiDisplayBox.TabIndex = 8;
             this.quickHelp.SetToolTip(this.multiDisplayBox, "Specifies what secondary monitors should display while simulating a bugcheck in f" +
@@ -3553,7 +3555,7 @@
             this.scalingModeBox.MaxDropDownItems = 4;
             this.scalingModeBox.MouseState = MaterialSkin2Framework.MouseState.OUT;
             this.scalingModeBox.Name = "scalingModeBox";
-            this.scalingModeBox.Size = new System.Drawing.Size(699, 35);
+            this.scalingModeBox.Size = new System.Drawing.Size(613, 35);
             this.scalingModeBox.StartIndex = 0;
             this.scalingModeBox.TabIndex = 9;
             this.quickHelp.SetToolTip(this.scalingModeBox, "Specifies how bugchecks in full screen mode should be scaled. Bicubic scaling is " +
@@ -3588,7 +3590,7 @@
             this.simulatorSettingsNotice.Location = new System.Drawing.Point(20, 453);
             this.simulatorSettingsNotice.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.simulatorSettingsNotice.Name = "simulatorSettingsNotice";
-            this.simulatorSettingsNotice.Size = new System.Drawing.Size(854, 37);
+            this.simulatorSettingsNotice.Size = new System.Drawing.Size(768, 37);
             this.simulatorSettingsNotice.TabIndex = 7;
             this.simulatorSettingsNotice.Text = "Scaling mode does not affect modern Windows crash screens, as they use the native" +
     " resolution of your monitor without scaling. Setting up multi-monitor behaviour " +
@@ -3607,7 +3609,7 @@
             this.configEditingButtonsFlowPanel.FlowDirection = System.Windows.Forms.FlowDirection.BottomUp;
             this.configEditingButtonsFlowPanel.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.configEditingButtonsFlowPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.configEditingButtonsFlowPanel.Location = new System.Drawing.Point(490, 108);
+            this.configEditingButtonsFlowPanel.Location = new System.Drawing.Point(400, 104);
             this.configEditingButtonsFlowPanel.Name = "configEditingButtonsFlowPanel";
             this.configEditingButtonsFlowPanel.Size = new System.Drawing.Size(404, 150);
             this.configEditingButtonsFlowPanel.TabIndex = 2;
@@ -3814,7 +3816,7 @@
             this.osName.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.osName.FontType = MaterialSkin2Framework.MaterialSkinManager.fontType.Body2;
             this.osName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.osName.Location = new System.Drawing.Point(491, 75);
+            this.osName.Location = new System.Drawing.Point(397, 68);
             this.osName.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.osName.Name = "osName";
             this.osName.Size = new System.Drawing.Size(404, 33);
@@ -3835,7 +3837,7 @@
             this.configList.SelectedIndex = -1;
             this.configList.SelectedItem = null;
             this.configList.ShowScrollBar = true;
-            this.configList.Size = new System.Drawing.Size(463, 160);
+            this.configList.Size = new System.Drawing.Size(365, 160);
             this.configList.TabIndex = 1;
             this.configList.SelectedIndexChanged += new MaterialSkin2Framework.Controls.MaterialListBox.SelectedIndexChangedEventHandler(this.ConfigList_SelectedIndexChanged);
             this.configList.DoubleClick += new System.EventHandler(this.ConfigList_DoubleClick);
@@ -3859,9 +3861,9 @@
             this.appearancePanel.Controls.Add(this.primaryColorBox);
             this.appearancePanel.Controls.Add(this.accentBox);
             this.appearancePanel.Controls.Add(this.darkMode);
-            this.appearancePanel.Location = new System.Drawing.Point(4, 22);
+            this.appearancePanel.Location = new System.Drawing.Point(4, 25);
             this.appearancePanel.Name = "appearancePanel";
-            this.appearancePanel.Size = new System.Drawing.Size(894, 820);
+            this.appearancePanel.Size = new System.Drawing.Size(910, 855);
             this.appearancePanel.TabIndex = 5;
             this.appearancePanel.Text = "Appearance";
             // 
@@ -4217,7 +4219,7 @@
             this.tabPage2.Location = new System.Drawing.Point(39, 4);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(883, 747);
+            this.tabPage2.Size = new System.Drawing.Size(894, 751);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Trace log";
             // 
@@ -4235,7 +4237,7 @@
             this.flowLayoutPanel5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.flowLayoutPanel5.Location = new System.Drawing.Point(164, 16);
             this.flowLayoutPanel5.Name = "flowLayoutPanel5";
-            this.flowLayoutPanel5.Size = new System.Drawing.Size(492, 52);
+            this.flowLayoutPanel5.Size = new System.Drawing.Size(503, 52);
             this.flowLayoutPanel5.TabIndex = 6;
             this.flowLayoutPanel5.WrapContents = false;
             // 
@@ -4337,7 +4339,7 @@
             this.logIf.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.logIf.Name = "logIf";
             this.logIf.ReadOnly = true;
-            this.logIf.Size = new System.Drawing.Size(791, 667);
+            this.logIf.Size = new System.Drawing.Size(802, 671);
             this.logIf.TabIndex = 0;
             this.logIf.Text = "Logging interface 1.0";
             // 
@@ -4352,7 +4354,7 @@
             this.materialButton6.HighEmphasis = true;
             this.materialButton6.Icon = null;
             this.materialButton6.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.materialButton6.Location = new System.Drawing.Point(663, 15);
+            this.materialButton6.Location = new System.Drawing.Point(674, 15);
             this.materialButton6.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.materialButton6.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.materialButton6.Name = "materialButton6";
@@ -4373,7 +4375,7 @@
             this.aboutTab.ImageKey = "info";
             this.aboutTab.Location = new System.Drawing.Point(39, 4);
             this.aboutTab.Name = "aboutTab";
-            this.aboutTab.Size = new System.Drawing.Size(883, 747);
+            this.aboutTab.Size = new System.Drawing.Size(894, 751);
             this.aboutTab.TabIndex = 3;
             this.aboutTab.Text = "Help and about";
             // 
@@ -4390,7 +4392,7 @@
             this.materialTabSelector1.Location = new System.Drawing.Point(1, 0);
             this.materialTabSelector1.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.materialTabSelector1.Name = "materialTabSelector1";
-            this.materialTabSelector1.Size = new System.Drawing.Size(997, 48);
+            this.materialTabSelector1.Size = new System.Drawing.Size(1008, 48);
             this.materialTabSelector1.TabIndex = 4;
             this.materialTabSelector1.Text = "materialTabSelector1";
             // 
@@ -4411,7 +4413,7 @@
             this.aboutTabControl.Name = "aboutTabControl";
             this.aboutTabControl.Padding = new System.Drawing.Point(0, 0);
             this.aboutTabControl.SelectedIndex = 0;
-            this.aboutTabControl.Size = new System.Drawing.Size(815, 696);
+            this.aboutTabControl.Size = new System.Drawing.Size(826, 700);
             this.aboutTabControl.TabIndex = 0;
             this.aboutTabControl.SelectedIndexChanged += new System.EventHandler(this.HelpTabChange);
             // 
@@ -4419,10 +4421,10 @@
             // 
             this.aboutPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.aboutPanel.Controls.Add(this.materialCard5);
-            this.aboutPanel.Location = new System.Drawing.Point(4, 22);
+            this.aboutPanel.Location = new System.Drawing.Point(4, 25);
             this.aboutPanel.Name = "aboutPanel";
             this.aboutPanel.Padding = new System.Windows.Forms.Padding(3);
-            this.aboutPanel.Size = new System.Drawing.Size(904, 861);
+            this.aboutPanel.Size = new System.Drawing.Size(818, 671);
             this.aboutPanel.TabIndex = 0;
             this.aboutPanel.Text = "About";
             // 
@@ -4436,7 +4438,7 @@
             this.materialCard5.Location = new System.Drawing.Point(3, 3);
             this.materialCard5.Margin = new System.Windows.Forms.Padding(0);
             this.materialCard5.Name = "materialCard5";
-            this.materialCard5.Size = new System.Drawing.Size(898, 855);
+            this.materialCard5.Size = new System.Drawing.Size(812, 665);
             this.materialCard5.TabIndex = 1;
             // 
             // aboutTable
@@ -4471,7 +4473,7 @@
             this.aboutTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.aboutTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.aboutTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.aboutTable.Size = new System.Drawing.Size(898, 855);
+            this.aboutTable.Size = new System.Drawing.Size(812, 665);
             this.aboutTable.TabIndex = 0;
             // 
             // logoPictureBox
@@ -4484,7 +4486,7 @@
             this.logoPictureBox.Location = new System.Drawing.Point(3, 3);
             this.logoPictureBox.Name = "logoPictureBox";
             this.aboutTable.SetRowSpan(this.logoPictureBox, 7);
-            this.logoPictureBox.Size = new System.Drawing.Size(232, 849);
+            this.logoPictureBox.Size = new System.Drawing.Size(209, 659);
             this.logoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.logoPictureBox.TabIndex = 12;
             this.logoPictureBox.TabStop = false;
@@ -4499,9 +4501,9 @@
             this.logoDisplayFlowPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.logoDisplayFlowPanel.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.logoDisplayFlowPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.logoDisplayFlowPanel.Location = new System.Drawing.Point(241, 475);
+            this.logoDisplayFlowPanel.Location = new System.Drawing.Point(218, 364);
             this.logoDisplayFlowPanel.Name = "logoDisplayFlowPanel";
-            this.logoDisplayFlowPanel.Size = new System.Drawing.Size(654, 194);
+            this.logoDisplayFlowPanel.Size = new System.Drawing.Size(591, 147);
             this.logoDisplayFlowPanel.TabIndex = 25;
             // 
             // markusSoftwareLogo
@@ -4541,12 +4543,12 @@
             this.labelProductName.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.labelProductName.FontType = MaterialSkin2Framework.MaterialSkinManager.fontType.Body2;
             this.labelProductName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.labelProductName.Location = new System.Drawing.Point(244, 0);
+            this.labelProductName.Location = new System.Drawing.Point(221, 0);
             this.labelProductName.Margin = new System.Windows.Forms.Padding(6, 0, 3, 0);
             this.labelProductName.MaximumSize = new System.Drawing.Size(0, 17);
             this.labelProductName.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.labelProductName.Name = "labelProductName";
-            this.labelProductName.Size = new System.Drawing.Size(651, 17);
+            this.labelProductName.Size = new System.Drawing.Size(588, 17);
             this.labelProductName.TabIndex = 19;
             this.labelProductName.Text = "Product Name";
             this.labelProductName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -4559,12 +4561,12 @@
             this.labelVersion.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.labelVersion.FontType = MaterialSkin2Framework.MaterialSkinManager.fontType.Body2;
             this.labelVersion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.labelVersion.Location = new System.Drawing.Point(244, 45);
+            this.labelVersion.Location = new System.Drawing.Point(221, 34);
             this.labelVersion.Margin = new System.Windows.Forms.Padding(6, 0, 3, 0);
             this.labelVersion.MaximumSize = new System.Drawing.Size(0, 17);
             this.labelVersion.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.labelVersion.Name = "labelVersion";
-            this.labelVersion.Size = new System.Drawing.Size(651, 17);
+            this.labelVersion.Size = new System.Drawing.Size(588, 17);
             this.labelVersion.TabIndex = 0;
             this.labelVersion.Text = "Version";
             this.labelVersion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -4577,12 +4579,12 @@
             this.labelCopyright.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.labelCopyright.FontType = MaterialSkin2Framework.MaterialSkinManager.fontType.Body2;
             this.labelCopyright.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.labelCopyright.Location = new System.Drawing.Point(244, 86);
+            this.labelCopyright.Location = new System.Drawing.Point(221, 66);
             this.labelCopyright.Margin = new System.Windows.Forms.Padding(6, 0, 3, 0);
             this.labelCopyright.MaximumSize = new System.Drawing.Size(0, 17);
             this.labelCopyright.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.labelCopyright.Name = "labelCopyright";
-            this.labelCopyright.Size = new System.Drawing.Size(651, 17);
+            this.labelCopyright.Size = new System.Drawing.Size(588, 17);
             this.labelCopyright.TabIndex = 21;
             this.labelCopyright.Text = "Copyright";
             this.labelCopyright.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -4595,11 +4597,11 @@
             this.labelCompanyName.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.labelCompanyName.FontType = MaterialSkin2Framework.MaterialSkinManager.fontType.Body2;
             this.labelCompanyName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.labelCompanyName.Location = new System.Drawing.Point(244, 132);
+            this.labelCompanyName.Location = new System.Drawing.Point(221, 101);
             this.labelCompanyName.Margin = new System.Windows.Forms.Padding(6, 0, 3, 0);
             this.labelCompanyName.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.labelCompanyName.Name = "labelCompanyName";
-            this.labelCompanyName.Size = new System.Drawing.Size(651, 340);
+            this.labelCompanyName.Size = new System.Drawing.Size(588, 260);
             this.labelCompanyName.TabIndex = 22;
             // 
             // materialCard4
@@ -4609,10 +4611,10 @@
             this.materialCard4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.materialCard4.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.materialCard4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialCard4.Location = new System.Drawing.Point(238, 672);
+            this.materialCard4.Location = new System.Drawing.Point(215, 514);
             this.materialCard4.Margin = new System.Windows.Forms.Padding(0);
             this.materialCard4.Name = "materialCard4";
-            this.materialCard4.Size = new System.Drawing.Size(660, 139);
+            this.materialCard4.Size = new System.Drawing.Size(597, 106);
             this.materialCard4.TabIndex = 26;
             // 
             // flowLayoutPanel2
@@ -4628,7 +4630,7 @@
             this.flowLayoutPanel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(660, 139);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(597, 106);
             this.flowLayoutPanel2.TabIndex = 27;
             this.flowLayoutPanel2.WrapContents = false;
             // 
@@ -4729,9 +4731,9 @@
             this.helpPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.helpPanel.Controls.Add(this.materialCard2);
             this.helpPanel.Controls.Add(this.materialCard1);
-            this.helpPanel.Location = new System.Drawing.Point(4, 22);
+            this.helpPanel.Location = new System.Drawing.Point(4, 25);
             this.helpPanel.Name = "helpPanel";
-            this.helpPanel.Size = new System.Drawing.Size(904, 861);
+            this.helpPanel.Size = new System.Drawing.Size(807, 667);
             this.helpPanel.TabIndex = 2;
             this.helpPanel.Text = "Help";
             // 
@@ -4746,7 +4748,7 @@
             this.materialCard2.Location = new System.Drawing.Point(0, 0);
             this.materialCard2.Margin = new System.Windows.Forms.Padding(0);
             this.materialCard2.Name = "materialCard2";
-            this.materialCard2.Size = new System.Drawing.Size(908, 63);
+            this.materialCard2.Size = new System.Drawing.Size(811, 63);
             this.materialCard2.TabIndex = 3;
             // 
             // helpButtonsFlowPanel
@@ -4763,7 +4765,7 @@
             this.helpButtonsFlowPanel.Location = new System.Drawing.Point(0, 0);
             this.helpButtonsFlowPanel.Margin = new System.Windows.Forms.Padding(0);
             this.helpButtonsFlowPanel.Name = "helpButtonsFlowPanel";
-            this.helpButtonsFlowPanel.Size = new System.Drawing.Size(908, 63);
+            this.helpButtonsFlowPanel.Size = new System.Drawing.Size(811, 63);
             this.helpButtonsFlowPanel.TabIndex = 1;
             this.helpButtonsFlowPanel.WrapContents = false;
             // 
@@ -4875,7 +4877,7 @@
             this.materialCard1.Location = new System.Drawing.Point(0, 62);
             this.materialCard1.Margin = new System.Windows.Forms.Padding(14);
             this.materialCard1.Name = "materialCard1";
-            this.materialCard1.Size = new System.Drawing.Size(901, 799);
+            this.materialCard1.Size = new System.Drawing.Size(804, 605);
             this.materialCard1.TabIndex = 2;
             // 
             // helpDisplay
@@ -4901,7 +4903,7 @@
             this.helpDisplay.SelectionLength = 0;
             this.helpDisplay.SelectionStart = 0;
             this.helpDisplay.ShortcutsEnabled = true;
-            this.helpDisplay.Size = new System.Drawing.Size(901, 799);
+            this.helpDisplay.Size = new System.Drawing.Size(804, 605);
             this.helpDisplay.TabIndex = 0;
             this.helpDisplay.TabStop = false;
             this.helpDisplay.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -4911,9 +4913,9 @@
             // 
             this.commandLinePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.commandLinePanel.Controls.Add(this.materialCard3);
-            this.commandLinePanel.Location = new System.Drawing.Point(4, 22);
+            this.commandLinePanel.Location = new System.Drawing.Point(4, 25);
             this.commandLinePanel.Name = "commandLinePanel";
-            this.commandLinePanel.Size = new System.Drawing.Size(807, 670);
+            this.commandLinePanel.Size = new System.Drawing.Size(807, 667);
             this.commandLinePanel.TabIndex = 3;
             this.commandLinePanel.Text = "Command line help";
             // 
@@ -4927,7 +4929,7 @@
             this.materialCard3.Location = new System.Drawing.Point(0, 0);
             this.materialCard3.Margin = new System.Windows.Forms.Padding(0);
             this.materialCard3.Name = "materialCard3";
-            this.materialCard3.Size = new System.Drawing.Size(807, 670);
+            this.materialCard3.Size = new System.Drawing.Size(807, 667);
             this.materialCard3.TabIndex = 1;
             // 
             // commandLineHelpDisplay
@@ -4952,7 +4954,7 @@
             this.commandLineHelpDisplay.SelectionLength = 0;
             this.commandLineHelpDisplay.SelectionStart = 0;
             this.commandLineHelpDisplay.ShortcutsEnabled = false;
-            this.commandLineHelpDisplay.Size = new System.Drawing.Size(807, 670);
+            this.commandLineHelpDisplay.Size = new System.Drawing.Size(807, 667);
             this.commandLineHelpDisplay.TabIndex = 0;
             this.commandLineHelpDisplay.TabStop = false;
             this.commandLineHelpDisplay.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -5011,7 +5013,7 @@
             this.label7.Depth = 0;
             this.label7.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.label7.Location = new System.Drawing.Point(14, 729);
+            this.label7.Location = new System.Drawing.Point(14, 733);
             this.label7.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(357, 19);
@@ -5049,7 +5051,7 @@
             // NewUI
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
-            this.ClientSize = new System.Drawing.Size(860, 815);
+            this.ClientSize = new System.Drawing.Size(871, 819);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button1);

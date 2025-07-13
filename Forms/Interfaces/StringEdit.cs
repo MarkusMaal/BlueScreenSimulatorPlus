@@ -429,7 +429,10 @@ namespace UltimateBlueScreenSimulator
         private void TextBox1_TextChanged(object sender, EventArgs e)
         {
             // remove zero width space to avoid problems...
-            stringEditor.Text = stringEditor.Text.Replace("​", "");
+            if (stringEditor.Text.Contains("​"))
+            {
+                stringEditor.Text = stringEditor.Text.Replace("​", "");
+            }
             if (stringProps.Visible)
             {
                 if (type == "title")
