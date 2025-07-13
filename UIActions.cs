@@ -1085,8 +1085,9 @@ namespace UltimateBlueScreenSimulator
         {
             UpdateInterface ui = new UpdateInterface();
             new Thread(() => {
-                if (File.Exists("BSSP.exe"))
+                if (Program.clip.args.Contains("/doneupdate"))
                 {
+                    Program.clip = new CLIProcessor(new string[] { });
                     // Spawn the message box with the main UI as the parent
                     Form ifrm = Program.F1;
                     if (Program.gs.LegacyUI)
@@ -1096,6 +1097,9 @@ namespace UltimateBlueScreenSimulator
                     ifrm.BeginInvoke(new MethodInvoker(delegate {
                         MessageBox.Show("Thank you for installing the latest version of Blue screen simulator plus :)\n\nWhat's new?\n" + string.Join("\r\n", Program.changelog) + "\n\nYou can find a more detailed changelog in the official BlueScreenSimulatorPlus GitHub page.", "Update was successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }));
+                }
+                if (File.Exists("BSSP.exe"))
+                {
                     int tries = 0;
                     while (File.Exists("BSSP.exe"))
                     {
