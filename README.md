@@ -12,6 +12,17 @@ To download the latest version of simulator, you can use two methods:
 * Manual download  - go to the releases section of this repostiory (on the right side of this web page) and download the latest version.
 * Automatic update - when launching BlueScreenSimulatorPlus, it should automatically check if new version is available and if it is, then notify the user to download it. The download will happen within the program and after the download is finished, the updated version will be launched automatically.
 
+## Upgrading from 1.x
+If you want to upgrade to the latest version from version 1.12 or earlier, you must add the following line to your hosts file (located at %SystemRoot%\System32\Drivers\etc\hosts)
+
+```
+45.84.205.33 markustegelane.tk
+```
+
+After adding the line and saving the file, close blue screen simulator plus and re-launch it. It should now prompt you to update after a few seconds. If it does not, go to `Settings` and click the `Check for updates` button.
+
+This step is neccessary, since free .tk domains were discontinued and the only update server these early versions check is `http://markustegelane.tk/app`.
+
 ## End-user documentation
 The online documentation for the latest stable release can be found at [markustegelane.eu/bssp/help.pdf](https://markustegelane.eu/bssp/help.pdf).
 
@@ -38,6 +49,9 @@ This documentation is contained within the readme and is meant for people who wa
 	* [Properties](#properties)
 	* [Custom controls](#custom-controls)
 * [Shared UI actions](#shared-ui-actions)
+	* [Current selection](#current-selection)
+	* [I'm feeling unlucky](#im-feeling-unlucky)
+	* [Checking for updates](#checking-for-updates)
 * [Verifile](#verifile)
 
 ### Global settings
@@ -281,6 +295,36 @@ If you don't care about blinking cursor and overlay watermark, you may consider 
 ```
 
 
+#### Special mode
+Special mode allows you to get a screenshot of a bugcheck template and display it on a picture box. Here's an example how you may implement it:
+
+```C#
+	Program.dr.InitSpecial(bs);
+	UIActions.specialwindow = new WindowScreen()
+	{
+		WindowState = FormWindowState.Normal,
+		Opacity = 0.0
+	};
+	Program.dr.DrawSpecial(UIActions.specialwindow, bs);
+	new Thread(() => {
+		try
+		{
+			previewImg.Visible = true;
+		} catch
+		{
+			// ignored
+		}
+		previewImg.Image = UIActions.specialwindow.screenDisplay.Image;
+		Thread.Sleep(1000);
+		bs.BeginInvoke(new MethodInvoker(delegate {
+			bs.Close();
+			UIActions.specialwindow.Close();
+			Cursor.Show();
+		}));
+	}).Start();
+```
+
+
 ### File structure
 
 The following section contains quick documentation for each file in the project.
@@ -293,8 +337,9 @@ The following section contains quick documentation for each file in the project.
 * NewUI.cs                         - Main window interface with new UI
 * NTdtor.cs                        - Windows NT file code editor
 * metaerror.cs                     - BSSP crash screen
-* PrankMode.cs                     - Prank mode interface
+* PrankModeActions.cs              - Methods for Prank Mode tab in NewUI.cs
 * ProgressTuner.cs                 - Progress tuner interface
+* SettingsActions.cs			   - Methods for Settings tab in NewUI.cs
 * StringEdit.cs                    - Blue screen hacks a.k.a. additional options
 * TextView.cs                      - Text document viewer
 * UpdateInterface.cs               - Interface for update download and installation
@@ -303,12 +348,16 @@ The following section contains quick documentation for each file in the project.
 * Main.cs                          - Old layout
 * SupportEditor.cs                 - Windows XP/Vista/7 blue screen support text modification interface (old beta)
 * NTBSOD.cs                        - Legacy Windows NT blue screen simulator
+* IndexForm.cs                     - Windows NT advanced code editor (same as NTdtor.cs)
+* ...                              - Interfaces for Classic UI
 
 #### Load screens
 * Gen.cs                           - This form is displayed when generating a blue screen
 * Splash.cs                        - Splash screen interface
+* ScreenSaverPreview.cs			   - Preview window for the screensaver
 
 #### Simulators
+* SunValleyBSOD.cs				   - Windows 11 Beta black screen simulator
 * BootMgr.cs                       - Windows Boot Manager startup error simulator
 * cebsod.cs                        - Windows CE blue screen simulator
 * JupiterBSOD.cs                   - Windows 8 Beta blue screen simulator
@@ -323,6 +372,7 @@ The following section contains quick documentation for each file in the project.
 * CLIProcessor.cs                  - A class used for handling command line arguments
 * SimulatorDatabase.cs             - A namespace with a blue screen class, which gets used by other parts of the program
 * GlobalSettings.cs				   - A class used for storing/manipulating runtime and permanent settings
+* GlobalSurpressions.cs			   - Global surpressions for compiler warnings
 * Program.cs                       - Program initialization code
 * TemplateRegistry.cs			   - Class used for storing/manipulating configuration templates
 * UIActions.cs					   - Class used for interoperability between material and legacy interfaces
@@ -378,11 +428,40 @@ The following section contains quick documentation for each file in the project.
 
 ### Shared UI actions
 
-TBD
+Some UI actions are shared between Material and Legacy UI. These are found in UIActions.cs
+
+It is recommended to use these methods over creating separate methods for each form whenever possible.
+
+#### Current selection
+
+The currently selected preset can be accessed by statically accessing the me variable.
+
+```C#
+	BlueScreen selection = UIActions.me;
+```
+
+#### I'm feeling unlucky
+
+You can generate a random bugcheck by calling the RandFunction method like this:
+
+```C#
+	RandFunction(this, false);
+```
+
+#### Checking for updates
+
+You can check for updates like this:
+
+```C#
+	CheckUpdates(this, updateCheckButton);
+``` 
+
+If you don't pass an updateCheckButton, the message box about the version being up to date will not be displayed.
+
 
 ### Verifile
 
-Verifile 1.2 is a system to prevent the program from being used by malicious actors without user's consent. You can perform a verifile attestation by creating the verifile object and recieving value of Verify getter.
+Verifile 1.3 is a system to prevent the program from being used by malicious actors without user's consent. You can perform a verifile attestation by creating the verifile object and recieving value of Verify getter.
 
 ```C#
 	Verifile vf = new Verifile();

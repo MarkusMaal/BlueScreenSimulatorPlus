@@ -264,7 +264,7 @@
             this.okButton.Location = new System.Drawing.Point(458, 333);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(75, 23);
-            this.okButton.TabIndex = 24;
+            this.okButton.TabIndex = 2;
             this.okButton.Text = "&OK";
             this.okButton.UseVisualStyleBackColor = false;
             this.okButton.Click += new System.EventHandler(this.OkButton_Click);
@@ -280,7 +280,7 @@
             this.flowLayoutPanel1.Location = new System.Drawing.Point(145, 274);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(388, 50);
-            this.flowLayoutPanel1.TabIndex = 26;
+            this.flowLayoutPanel1.TabIndex = 1;
             this.flowLayoutPanel1.WrapContents = false;
             // 
             // srcCodeButton
@@ -385,7 +385,7 @@
             this.darkDetectCheck.Location = new System.Drawing.Point(349, 320);
             this.darkDetectCheck.Name = "darkDetectCheck";
             this.darkDetectCheck.Size = new System.Drawing.Size(174, 17);
-            this.darkDetectCheck.TabIndex = 14;
+            this.darkDetectCheck.TabIndex = 10;
             this.darkDetectCheck.Text = "Enable dark mode detection [?]";
             this.helpTip.SetToolTip(this.darkDetectCheck, "Automatically switches the program to night mode on startup if Windows is configu" +
         "red to use dark mode. ");
@@ -400,7 +400,7 @@
             this.customServerButton.Location = new System.Drawing.Point(449, 245);
             this.customServerButton.Name = "customServerButton";
             this.customServerButton.Size = new System.Drawing.Size(74, 23);
-            this.customServerButton.TabIndex = 13;
+            this.customServerButton.TabIndex = 6;
             this.customServerButton.Text = "Custom";
             this.helpTip.SetToolTip(this.customServerButton, "This is the last option. If the both servers are down, you can use another server" +
         ", which you can find on my blog if both links are down for some reason.");
@@ -414,7 +414,7 @@
             this.primaryServerButton.Location = new System.Drawing.Point(299, 245);
             this.primaryServerButton.Name = "primaryServerButton";
             this.primaryServerButton.Size = new System.Drawing.Size(71, 23);
-            this.primaryServerButton.TabIndex = 12;
+            this.primaryServerButton.TabIndex = 4;
             this.primaryServerButton.Text = "Primary";
             this.helpTip.SetToolTip(this.primaryServerButton, "This is the server you want to use most of the time.");
             this.primaryServerButton.UseVisualStyleBackColor = true;
@@ -427,7 +427,7 @@
             this.backupServerButton.Location = new System.Drawing.Point(373, 245);
             this.backupServerButton.Name = "backupServerButton";
             this.backupServerButton.Size = new System.Drawing.Size(74, 23);
-            this.backupServerButton.TabIndex = 11;
+            this.backupServerButton.TabIndex = 5;
             this.backupServerButton.Text = "Backup";
             this.helpTip.SetToolTip(this.backupServerButton, "This is the server you should use if the primary server is down.");
             this.backupServerButton.UseVisualStyleBackColor = true;
@@ -441,7 +441,7 @@
             this.primaryServerBox.Location = new System.Drawing.Point(20, 272);
             this.primaryServerBox.Name = "primaryServerBox";
             this.primaryServerBox.Size = new System.Drawing.Size(503, 20);
-            this.primaryServerBox.TabIndex = 10;
+            this.primaryServerBox.TabIndex = 7;
             this.primaryServerBox.Text = "http://nossl.markustegelane.eu/app";
             this.primaryServerBox.TextChanged += new System.EventHandler(this.ChangeUpdateServer);
             // 
@@ -475,7 +475,7 @@
             this.updateCheckButton.Name = "updateCheckButton";
             this.updateCheckButton.Padding = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.updateCheckButton.Size = new System.Drawing.Size(116, 23);
-            this.updateCheckButton.TabIndex = 7;
+            this.updateCheckButton.TabIndex = 9;
             this.updateCheckButton.Text = "Check for updates";
             this.helpTip.SetToolTip(this.updateCheckButton, "Checks for updates right away");
             this.updateCheckButton.UseVisualStyleBackColor = true;
@@ -488,7 +488,7 @@
             this.unsignButton.Location = new System.Drawing.Point(20, 316);
             this.unsignButton.Name = "unsignButton";
             this.unsignButton.Size = new System.Drawing.Size(125, 23);
-            this.unsignButton.TabIndex = 6;
+            this.unsignButton.TabIndex = 8;
             this.unsignButton.Text = "Unsign this computer";
             this.helpTip.SetToolTip(this.unsignButton, "Removes the signature of this computer, which makes the first use dialog show up " +
         "again");
@@ -651,7 +651,7 @@
             this.flowLayoutPanel2.Location = new System.Drawing.Point(17, 235);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
             this.flowLayoutPanel2.Size = new System.Drawing.Size(512, 24);
-            this.flowLayoutPanel2.TabIndex = 29;
+            this.flowLayoutPanel2.TabIndex = 6;
             this.flowLayoutPanel2.WrapContents = false;
             // 
             // eggHunterButton
@@ -662,7 +662,7 @@
             this.eggHunterButton.Location = new System.Drawing.Point(3, 3);
             this.eggHunterButton.Name = "eggHunterButton";
             this.eggHunterButton.Size = new System.Drawing.Size(132, 17);
-            this.eggHunterButton.TabIndex = 8;
+            this.eggHunterButton.TabIndex = 1;
             this.eggHunterButton.Text = "Enable easter eggs [?]";
             this.helpTip.SetToolTip(this.eggHunterButton, "Turns on/off secret functionality in the program");
             this.eggHunterButton.UseVisualStyleBackColor = true;
@@ -677,7 +677,7 @@
             this.autosaveCheck.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
             this.autosaveCheck.Name = "autosaveCheck";
             this.autosaveCheck.Size = new System.Drawing.Size(111, 17);
-            this.autosaveCheck.TabIndex = 27;
+            this.autosaveCheck.TabIndex = 2;
             this.autosaveCheck.Text = "Autosave/load [?]";
             this.helpTip.SetToolTip(this.autosaveCheck, "Automatically saves changes made to the simulator templates");
             this.autosaveCheck.UseVisualStyleBackColor = true;
@@ -692,7 +692,7 @@
             this.legacyInterfaceCheck.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
             this.legacyInterfaceCheck.Name = "legacyInterfaceCheck";
             this.legacyInterfaceCheck.Size = new System.Drawing.Size(88, 17);
-            this.legacyInterfaceCheck.TabIndex = 28;
+            this.legacyInterfaceCheck.TabIndex = 3;
             this.legacyInterfaceCheck.Text = "Classic UI [?]";
             this.helpTip.SetToolTip(this.legacyInterfaceCheck, "Enables the interface from previous versions, similar to 2.1 and earlier");
             this.legacyInterfaceCheck.UseVisualStyleBackColor = true;
@@ -707,7 +707,7 @@
             this.quickHelpCheck.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
             this.quickHelpCheck.Name = "quickHelpCheck";
             this.quickHelpCheck.Size = new System.Drawing.Size(78, 17);
-            this.quickHelpCheck.TabIndex = 29;
+            this.quickHelpCheck.TabIndex = 4;
             this.quickHelpCheck.Text = "Tooltips [?]";
             this.helpTip.SetToolTip(this.quickHelpCheck, "Shows text such as this when hover over various UI elements");
             this.quickHelpCheck.UseVisualStyleBackColor = true;
@@ -729,7 +729,7 @@
             this.selectAllBox.Location = new System.Drawing.Point(380, 192);
             this.selectAllBox.Name = "selectAllBox";
             this.selectAllBox.Size = new System.Drawing.Size(153, 17);
-            this.selectAllBox.TabIndex = 25;
+            this.selectAllBox.TabIndex = 3;
             this.selectAllBox.Text = "Select all configurations [?]";
             this.selectAllBox.TextAlign = System.Drawing.ContentAlignment.TopRight;
             this.helpTip.SetToolTip(this.selectAllBox, "Selects all configurations at once");
@@ -742,7 +742,7 @@
             this.randomnessCheckBox.Location = new System.Drawing.Point(20, 192);
             this.randomnessCheckBox.Name = "randomnessCheckBox";
             this.randomnessCheckBox.Size = new System.Drawing.Size(333, 17);
-            this.randomnessCheckBox.TabIndex = 24;
+            this.randomnessCheckBox.TabIndex = 4;
             this.randomnessCheckBox.Text = "Add randomness to progress counters in legacy configurations [?]";
             this.randomnessCheckBox.UseVisualStyleBackColor = true;
             this.randomnessCheckBox.CheckedChanged += new System.EventHandler(this.RandomnessCheckBox_CheckedChanged);
@@ -761,7 +761,7 @@
             this.devFlowPanel.Location = new System.Drawing.Point(158, 3);
             this.devFlowPanel.Name = "devFlowPanel";
             this.devFlowPanel.Size = new System.Drawing.Size(373, 58);
-            this.devFlowPanel.TabIndex = 23;
+            this.devFlowPanel.TabIndex = 9;
             this.devFlowPanel.Visible = false;
             this.devFlowPanel.WrapContents = false;
             // 
@@ -772,7 +772,7 @@
             this.devSplashButton.Location = new System.Drawing.Point(537, 3);
             this.devSplashButton.Name = "devSplashButton";
             this.devSplashButton.Size = new System.Drawing.Size(82, 34);
-            this.devSplashButton.TabIndex = 22;
+            this.devSplashButton.TabIndex = 7;
             this.devSplashButton.Text = "[DEV] Splash Screen";
             this.devSplashButton.UseVisualStyleBackColor = true;
             this.devSplashButton.Click += new System.EventHandler(this.DisplayDevSplashScreen);
@@ -784,7 +784,7 @@
             this.devDictEditButton.Location = new System.Drawing.Point(468, 3);
             this.devDictEditButton.Name = "devDictEditButton";
             this.devDictEditButton.Size = new System.Drawing.Size(63, 34);
-            this.devDictEditButton.TabIndex = 19;
+            this.devDictEditButton.TabIndex = 6;
             this.devDictEditButton.Text = "[DEV] DictEdit";
             this.devDictEditButton.UseVisualStyleBackColor = true;
             this.devDictEditButton.Click += new System.EventHandler(this.DevDictEdit);
@@ -796,7 +796,7 @@
             this.devNewAllButton.Location = new System.Drawing.Point(398, 3);
             this.devNewAllButton.Name = "devNewAllButton";
             this.devNewAllButton.Size = new System.Drawing.Size(64, 34);
-            this.devNewAllButton.TabIndex = 20;
+            this.devNewAllButton.TabIndex = 5;
             this.devNewAllButton.Text = "[DEV] New All";
             this.devNewAllButton.UseVisualStyleBackColor = true;
             this.devNewAllButton.Click += new System.EventHandler(this.DevNewAll);
@@ -808,7 +808,7 @@
             this.devNukeAllButton.Location = new System.Drawing.Point(295, 3);
             this.devNukeAllButton.Name = "devNukeAllButton";
             this.devNukeAllButton.Size = new System.Drawing.Size(97, 34);
-            this.devNukeAllButton.TabIndex = 21;
+            this.devNukeAllButton.TabIndex = 4;
             this.devNukeAllButton.Text = "[DEV] Nuke All (DANGEROUS!!)";
             this.devNukeAllButton.UseVisualStyleBackColor = true;
             this.devNukeAllButton.Click += new System.EventHandler(this.DevNukeAll);
@@ -818,7 +818,7 @@
             this.devRestartApp.Location = new System.Drawing.Point(199, 3);
             this.devRestartApp.Name = "devRestartApp";
             this.devRestartApp.Size = new System.Drawing.Size(90, 34);
-            this.devRestartApp.TabIndex = 23;
+            this.devRestartApp.TabIndex = 3;
             this.devRestartApp.Text = "[DEV] Restart Application";
             this.devRestartApp.UseVisualStyleBackColor = true;
             this.devRestartApp.Click += new System.EventHandler(this.RestartAll);
@@ -828,7 +828,7 @@
             this.button2.Location = new System.Drawing.Point(101, 3);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(92, 34);
-            this.button2.TabIndex = 24;
+            this.button2.TabIndex = 2;
             this.button2.Text = "[TEST] Progress Tuner";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.Button2_Click_1);
@@ -838,7 +838,7 @@
             this.button4.Location = new System.Drawing.Point(3, 3);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(92, 34);
-            this.button4.TabIndex = 25;
+            this.button4.TabIndex = 1;
             this.button4.Text = "[TEST] Test suite";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.Button4_Click_1);
@@ -857,7 +857,7 @@
             this.multiDisplayBox.Location = new System.Drawing.Point(143, 262);
             this.multiDisplayBox.Name = "multiDisplayBox";
             this.multiDisplayBox.Size = new System.Drawing.Size(370, 21);
-            this.multiDisplayBox.TabIndex = 18;
+            this.multiDisplayBox.TabIndex = 7;
             this.multiDisplayBox.SelectedIndexChanged += new System.EventHandler(this.MultiDisplaySetup);
             // 
             // multiDisplayLabel
@@ -882,7 +882,7 @@
             this.configEditingButtonsFlowPanel.Location = new System.Drawing.Point(227, 97);
             this.configEditingButtonsFlowPanel.Name = "configEditingButtonsFlowPanel";
             this.configEditingButtonsFlowPanel.Size = new System.Drawing.Size(302, 91);
-            this.configEditingButtonsFlowPanel.TabIndex = 16;
+            this.configEditingButtonsFlowPanel.TabIndex = 2;
             // 
             // resetButton
             // 
@@ -980,7 +980,7 @@
             this.configList.Name = "configList";
             this.configList.ScrollAlwaysVisible = true;
             this.configList.Size = new System.Drawing.Size(201, 124);
-            this.configList.TabIndex = 9;
+            this.configList.TabIndex = 1;
             this.configList.SelectedIndexChanged += new System.EventHandler(this.ConfigSelector);
             this.configList.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.ConfigList_MouseDoubleClick);
             // 
@@ -1011,7 +1011,7 @@
             this.scalingModeBox.Location = new System.Drawing.Point(143, 291);
             this.scalingModeBox.Name = "scalingModeBox";
             this.scalingModeBox.Size = new System.Drawing.Size(370, 21);
-            this.scalingModeBox.TabIndex = 6;
+            this.scalingModeBox.TabIndex = 8;
             this.helpTip.SetToolTip(this.scalingModeBox, "Specifies how crash screens in full screen mode should be scaled. Bicubic scaling" +
         " is recommended.");
             this.scalingModeBox.SelectedIndexChanged += new System.EventHandler(this.ScalingModeSetup);
@@ -1033,7 +1033,7 @@
             this.hideInFullscreenButton.Location = new System.Drawing.Point(20, 215);
             this.hideInFullscreenButton.Name = "hideInFullscreenButton";
             this.hideInFullscreenButton.Size = new System.Drawing.Size(294, 17);
-            this.hideInFullscreenButton.TabIndex = 4;
+            this.hideInFullscreenButton.TabIndex = 5;
             this.hideInFullscreenButton.Text = "Hide cursor when displaying a fullscreen crash screen [?]";
             this.helpTip.SetToolTip(this.hideInFullscreenButton, "Hides Windows cursor from the simulated crash screen");
             this.hideInFullscreenButton.UseVisualStyleBackColor = true;

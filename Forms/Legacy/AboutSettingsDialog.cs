@@ -31,7 +31,7 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
             {
                 asmVer += ".0";
             }
-            labelVersion.Text = $"Version {asmVer} with Verifile 1.2";
+            labelVersion.Text = $"Version {asmVer} with Verifile 1.3";
             labelCopyright.Text = AssemblyCopyright;
             labelCompanyName.Text = "Codename LotsaSpaghetti\nLanguage: C# (.NET framework, Windows Forms)\nCreated by: Markus Maal a.k.a. MarkusTegelane\n\nThis program can only be provided free of charge (if you had to pay for this, please ask for a refund). This program is provided as is, without a warranty.\nMarkuse tarkvara (Markus' software)";
         }

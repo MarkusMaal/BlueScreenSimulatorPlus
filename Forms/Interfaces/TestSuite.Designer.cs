@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label11 = new System.Windows.Forms.Label();
             this.testProgress11 = new System.Windows.Forms.PictureBox();
@@ -76,8 +75,6 @@
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.badTestLog = new System.Windows.Forms.TextBox();
-            this.noticeLabel = new System.Windows.Forms.Label();
-            this.blink = new System.Windows.Forms.Timer(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.testProgress11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.testProgress6)).BeginInit();
@@ -628,29 +625,11 @@
             this.badTestLog.Size = new System.Drawing.Size(276, 192);
             this.badTestLog.TabIndex = 4;
             // 
-            // noticeLabel
-            // 
-            this.noticeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.noticeLabel.Location = new System.Drawing.Point(492, 257);
-            this.noticeLabel.Name = "noticeLabel";
-            this.noticeLabel.Size = new System.Drawing.Size(276, 32);
-            this.noticeLabel.TabIndex = 5;
-            this.noticeLabel.Text = "During the tests, BSSP will re-launch several times. Do not interrupt this proces" +
-    "s!";
-            // 
-            // blink
-            // 
-            this.blink.Enabled = true;
-            this.blink.Interval = 1000;
-            this.blink.Tick += new System.EventHandler(this.Blink_Tick);
-            // 
             // TestSuite
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(780, 298);
-            this.Controls.Add(this.noticeLabel);
             this.Controls.Add(this.badTestLog);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.label14);
@@ -740,7 +719,5 @@
         private System.Windows.Forms.TextBox badTestLog;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.PictureBox testProgress11;
-        private System.Windows.Forms.Label noticeLabel;
-        private System.Windows.Forms.Timer blink;
     }
 }

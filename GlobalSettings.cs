@@ -131,7 +131,7 @@ namespace UltimateBlueScreenSimulator
             enableeggs = true;
             randomness = false;
             autodark = true;
-            devmode = true;
+            devmode = false;
             quickhelp = true;
             autosave = true;
             legacyui = false;

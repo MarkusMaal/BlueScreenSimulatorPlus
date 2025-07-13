@@ -203,7 +203,7 @@
             this.flowLayoutPanel1.Location = new System.Drawing.Point(15, 73);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(490, 347);
-            this.flowLayoutPanel1.TabIndex = 3;
+            this.flowLayoutPanel1.TabIndex = 2;
             this.flowLayoutPanel1.WrapContents = false;
             // 
             // WXOptions
@@ -228,7 +228,7 @@
             this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
             this.flowLayoutPanel2.Size = new System.Drawing.Size(464, 69);
-            this.flowLayoutPanel2.TabIndex = 2;
+            this.flowLayoutPanel2.TabIndex = 1;
             // 
             // autoBox
             // 
@@ -357,7 +357,7 @@
             this.errorCode.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.errorCode.Name = "errorCode";
             this.errorCode.Size = new System.Drawing.Size(467, 105);
-            this.errorCode.TabIndex = 3;
+            this.errorCode.TabIndex = 2;
             // 
             // button4
             // 
@@ -368,7 +368,7 @@
             this.button4.Location = new System.Drawing.Point(388, 2);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 5;
+            this.button4.TabIndex = 2;
             this.button4.Text = "Customize";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.Button4_Click_2);
@@ -383,7 +383,7 @@
             this.button2.Location = new System.Drawing.Point(401, 59);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(63, 20);
-            this.button2.TabIndex = 5;
+            this.button2.TabIndex = 6;
             this.button2.Text = "C&hoose";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.Button2_Click_1);
@@ -397,7 +397,7 @@
             this.textBox2.Location = new System.Drawing.Point(151, 59);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(244, 20);
-            this.textBox2.TabIndex = 4;
+            this.textBox2.TabIndex = 5;
             this.textBox2.Text = "vga.sys";
             this.quickHelp.SetToolTip(this.textBox2, "Specific file, that  may have caused the crash");
             this.textBox2.TextChanged += new System.EventHandler(this.TextBox2_TextChanged);
@@ -409,7 +409,7 @@
             this.checkBox2.Location = new System.Drawing.Point(3, 61);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(143, 17);
-            this.checkBox2.TabIndex = 3;
+            this.checkBox2.TabIndex = 4;
             this.checkBox2.Text = "Show potential culprit file";
             this.quickHelp.SetToolTip(this.checkBox2, "If enabled, displays a file that may have caused the problem");
             this.checkBox2.UseVisualStyleBackColor = true;
@@ -424,7 +424,7 @@
             this.textBox1.Location = new System.Drawing.Point(151, 30);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(313, 20);
-            this.textBox1.TabIndex = 2;
+            this.textBox1.TabIndex = 3;
             this.quickHelp.SetToolTip(this.textBox1, "Search for the error code from the NT error message list");
             this.textBox1.TextChanged += new System.EventHandler(this.TextBox1_TextChanged);
             this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Button7_KeyDown);
@@ -468,7 +468,7 @@
             this.addInfFile.Location = new System.Drawing.Point(2, 84);
             this.addInfFile.Name = "addInfFile";
             this.addInfFile.Size = new System.Drawing.Size(234, 17);
-            this.addInfFile.TabIndex = 6;
+            this.addInfFile.TabIndex = 7;
             this.addInfFile.Text = "Show additional information about the file [?]\r\n";
             this.quickHelp.SetToolTip(this.addInfFile, "Display additional information below the stop code");
             this.addInfFile.UseVisualStyleBackColor = true;
@@ -485,7 +485,7 @@
             this.ntPanel.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.ntPanel.Name = "ntPanel";
             this.ntPanel.Size = new System.Drawing.Size(467, 52);
-            this.ntPanel.TabIndex = 4;
+            this.ntPanel.TabIndex = 3;
             // 
             // displayOsBox
             // 
@@ -505,7 +505,7 @@
             this.blinkBox.Location = new System.Drawing.Point(259, 5);
             this.blinkBox.Name = "blinkBox";
             this.blinkBox.Size = new System.Drawing.Size(96, 17);
-            this.blinkBox.TabIndex = 4;
+            this.blinkBox.TabIndex = 3;
             this.blinkBox.Text = "Blink cursor [?]";
             this.quickHelp.SetToolTip(this.blinkBox, "Displays blinking caret cursor, as seen in NT 3.x versions");
             this.blinkBox.UseVisualStyleBackColor = true;
@@ -518,7 +518,7 @@
             this.troubleshootBox.Location = new System.Drawing.Point(2, 28);
             this.troubleshootBox.Name = "troubleshootBox";
             this.troubleshootBox.Size = new System.Drawing.Size(137, 17);
-            this.troubleshootBox.TabIndex = 2;
+            this.troubleshootBox.TabIndex = 4;
             this.troubleshootBox.Text = "Troubleshooting info [?]";
             this.quickHelp.SetToolTip(this.troubleshootBox, "Shows the text that could potentially help you solve the issue");
             this.troubleshootBox.UseVisualStyleBackColor = true;
@@ -531,7 +531,7 @@
             this.amdBox.Location = new System.Drawing.Point(2, 5);
             this.amdBox.Name = "amdBox";
             this.amdBox.Size = new System.Drawing.Size(114, 17);
-            this.amdBox.TabIndex = 2;
+            this.amdBox.TabIndex = 1;
             this.amdBox.Text = "AMD processor [?]";
             this.quickHelp.SetToolTip(this.amdBox, "Displays \"AUTHENTICAMD\" instead of \"GENUINEINTEL\" on the NT blue screen");
             this.amdBox.UseVisualStyleBackColor = true;
@@ -546,7 +546,7 @@
             this.stackBox.Location = new System.Drawing.Point(122, 5);
             this.stackBox.Name = "stackBox";
             this.stackBox.Size = new System.Drawing.Size(131, 17);
-            this.stackBox.TabIndex = 3;
+            this.stackBox.TabIndex = 2;
             this.stackBox.Text = "Display stack trace [?]";
             this.quickHelp.SetToolTip(this.stackBox, "Displays developer debug information on the NT blue screen\r\nNote: The blue screen" +
         " may take longer to load if enabled");
@@ -562,7 +562,7 @@
             this.nineXmessage.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.nineXmessage.Name = "nineXmessage";
             this.nineXmessage.Size = new System.Drawing.Size(467, 25);
-            this.nineXmessage.TabIndex = 5;
+            this.nineXmessage.TabIndex = 4;
             this.nineXmessage.Visible = false;
             // 
             // comboBox2
@@ -603,7 +603,7 @@
             this.panel2.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(467, 25);
-            this.panel2.TabIndex = 21;
+            this.panel2.TabIndex = 5;
             this.panel2.Visible = false;
             // 
             // button5
@@ -615,7 +615,7 @@
             this.button5.Location = new System.Drawing.Point(391, 2);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 6;
+            this.button5.TabIndex = 2;
             this.button5.Text = "Customize";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.Button5_Click_1);
@@ -681,7 +681,7 @@
             this.rainbowBox.Location = new System.Drawing.Point(3, 353);
             this.rainbowBox.Name = "rainbowBox";
             this.rainbowBox.Size = new System.Drawing.Size(83, 17);
-            this.rainbowBox.TabIndex = 19;
+            this.rainbowBox.TabIndex = 8;
             this.rainbowBox.Text = "Rainbow [?]";
             this.quickHelp.SetToolTip(this.rainbowBox, "Displays a rainbow gradient as the background image");
             this.rainbowBox.UseVisualStyleBackColor = true;
@@ -694,7 +694,7 @@
             this.countdownBox.Location = new System.Drawing.Point(3, 376);
             this.countdownBox.Name = "countdownBox";
             this.countdownBox.Size = new System.Drawing.Size(131, 17);
-            this.countdownBox.TabIndex = 20;
+            this.countdownBox.TabIndex = 9;
             this.countdownBox.Text = "Display countdown [?]";
             this.quickHelp.SetToolTip(this.countdownBox, "On the Windows 8 Beta bugcheck, if error dumping is enabled, a countdown to compl" +
         "etion would be displayed. However, if no dumping is enabled/available, no countd" +
@@ -711,7 +711,7 @@
             this.dumpBox.Location = new System.Drawing.Point(3, 399);
             this.dumpBox.Name = "dumpBox";
             this.dumpBox.Size = new System.Drawing.Size(69, 17);
-            this.dumpBox.TabIndex = 8;
+            this.dumpBox.TabIndex = 10;
             this.dumpBox.Text = "Dump [?]";
             this.quickHelp.SetToolTip(this.dumpBox, "Enable to display dumping process in Windows XP/Vista/7 bluescreens");
             this.dumpBox.UseVisualStyleBackColor = true;
@@ -726,7 +726,7 @@
             this.winPanel.Location = new System.Drawing.Point(3, 422);
             this.winPanel.Name = "winPanel";
             this.winPanel.Size = new System.Drawing.Size(461, 70);
-            this.winPanel.TabIndex = 14;
+            this.winPanel.TabIndex = 11;
             // 
             // playSndBox
             // 
@@ -734,7 +734,7 @@
             this.playSndBox.Location = new System.Drawing.Point(1, 53);
             this.playSndBox.Name = "playSndBox";
             this.playSndBox.Size = new System.Drawing.Size(93, 17);
-            this.playSndBox.TabIndex = 10;
+            this.playSndBox.TabIndex = 2;
             this.playSndBox.Text = "Play sound [?]";
             this.quickHelp.SetToolTip(this.playSndBox, "Plays constant beep noise while displaying the blue screen");
             this.playSndBox.UseVisualStyleBackColor = true;
@@ -750,7 +750,7 @@
             this.flowLayoutPanel3.Location = new System.Drawing.Point(0, 3);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
             this.flowLayoutPanel3.Size = new System.Drawing.Size(458, 44);
-            this.flowLayoutPanel3.TabIndex = 9;
+            this.flowLayoutPanel3.TabIndex = 1;
             // 
             // win1startup
             // 
@@ -759,7 +759,7 @@
             this.win1startup.Location = new System.Drawing.Point(3, 3);
             this.win1startup.Name = "win1startup";
             this.win1startup.Size = new System.Drawing.Size(163, 17);
-            this.win1startup.TabIndex = 2;
+            this.win1startup.TabIndex = 1;
             this.win1startup.TabStop = true;
             this.win1startup.Text = "Windows 1.01 startup screen";
             this.win1startup.UseVisualStyleBackColor = true;
@@ -771,7 +771,7 @@
             this.win2startup.Location = new System.Drawing.Point(172, 3);
             this.win2startup.Name = "win2startup";
             this.win2startup.Size = new System.Drawing.Size(163, 17);
-            this.win2startup.TabIndex = 3;
+            this.win2startup.TabIndex = 2;
             this.win2startup.Text = "Windows 2.03 startup screen";
             this.win2startup.UseVisualStyleBackColor = true;
             this.win2startup.CheckedChanged += new System.EventHandler(this.Win2startup_CheckedChanged);
@@ -782,7 +782,7 @@
             this.nostartup.Location = new System.Drawing.Point(341, 3);
             this.nostartup.Name = "nostartup";
             this.nostartup.Size = new System.Drawing.Size(109, 17);
-            this.nostartup.TabIndex = 4;
+            this.nostartup.TabIndex = 3;
             this.nostartup.Text = "No startup screen";
             this.nostartup.UseVisualStyleBackColor = true;
             this.nostartup.CheckedChanged += new System.EventHandler(this.Nostartup_CheckedChanged);
@@ -793,7 +793,7 @@
             this.halfBox.Location = new System.Drawing.Point(100, 53);
             this.halfBox.Name = "halfBox";
             this.halfBox.Size = new System.Drawing.Size(109, 17);
-            this.halfBox.TabIndex = 22;
+            this.halfBox.TabIndex = 3;
             this.halfBox.Text = "Low resolution [?]";
             this.quickHelp.SetToolTip(this.halfBox, "Lowers the resolution resulting in taller text when viewed in fullscreen mode");
             this.halfBox.UseVisualStyleBackColor = true;
@@ -807,7 +807,7 @@
             this.waterBox.Location = new System.Drawing.Point(3, 498);
             this.waterBox.Name = "waterBox";
             this.waterBox.Size = new System.Drawing.Size(127, 17);
-            this.waterBox.TabIndex = 10;
+            this.waterBox.TabIndex = 12;
             this.waterBox.Text = "Display watermark [?]";
             this.quickHelp.SetToolTip(this.waterBox, "Displays a watermark to let the user know that this a simulator");
             this.waterBox.UseVisualStyleBackColor = true;
@@ -819,7 +819,7 @@
             this.winMode.Location = new System.Drawing.Point(3, 521);
             this.winMode.Name = "winMode";
             this.winMode.Size = new System.Drawing.Size(121, 17);
-            this.winMode.TabIndex = 11;
+            this.winMode.TabIndex = 13;
             this.winMode.Text = "Windowed mode [?]";
             this.quickHelp.SetToolTip(this.winMode, "Does not full screen bluescreens, which results in better quality");
             this.winMode.UseVisualStyleBackColor = true;
@@ -835,7 +835,7 @@
             this.flowLayoutPanel4.Location = new System.Drawing.Point(3, 544);
             this.flowLayoutPanel4.Name = "flowLayoutPanel4";
             this.flowLayoutPanel4.Size = new System.Drawing.Size(467, 61);
-            this.flowLayoutPanel4.TabIndex = 18;
+            this.flowLayoutPanel4.TabIndex = 14;
             // 
             // advOptionsButton
             // 
@@ -845,7 +845,7 @@
             this.advOptionsButton.Location = new System.Drawing.Point(3, 3);
             this.advOptionsButton.Name = "advOptionsButton";
             this.advOptionsButton.Size = new System.Drawing.Size(113, 23);
-            this.advOptionsButton.TabIndex = 10;
+            this.advOptionsButton.TabIndex = 1;
             this.advOptionsButton.Text = "Additional &options";
             this.quickHelp.SetToolTip(this.advOptionsButton, "Experimental features to mess with in crash screens");
             this.advOptionsButton.UseVisualStyleBackColor = true;
@@ -860,7 +860,7 @@
             this.eCodeEditButton.Location = new System.Drawing.Point(122, 3);
             this.eCodeEditButton.Name = "eCodeEditButton";
             this.eCodeEditButton.Size = new System.Drawing.Size(113, 23);
-            this.eCodeEditButton.TabIndex = 11;
+            this.eCodeEditButton.TabIndex = 2;
             this.eCodeEditButton.Text = "Error &code editor";
             this.quickHelp.SetToolTip(this.eCodeEditButton, "Allows you to configure how memory codes are being displayed on crash screens. Wh" +
         "en the screen uses less than 16 digits, the first digits will be used (e.g. firs" +
@@ -877,7 +877,7 @@
             this.advNTButton.Location = new System.Drawing.Point(241, 3);
             this.advNTButton.Name = "advNTButton";
             this.advNTButton.Size = new System.Drawing.Size(153, 23);
-            this.advNTButton.TabIndex = 12;
+            this.advNTButton.TabIndex = 3;
             this.advNTButton.Text = "Advanced &NT code options";
             this.quickHelp.SetToolTip(this.advNTButton, "Allows you to configure how memory codes are being displayed on crash screens. Wh" +
         "en the screen uses less than 16 digits, the first digits will be used (e.g. firs" +
@@ -894,7 +894,7 @@
             this.progressTuneButton.Location = new System.Drawing.Point(3, 32);
             this.progressTuneButton.Name = "progressTuneButton";
             this.progressTuneButton.Size = new System.Drawing.Size(113, 23);
-            this.progressTuneButton.TabIndex = 13;
+            this.progressTuneButton.TabIndex = 4;
             this.progressTuneButton.Text = "Progress &tuner";
             this.quickHelp.SetToolTip(this.progressTuneButton, "Allows you to adjust the timing and increments of the progress indicator on vario" +
         "us crash screens.");
@@ -909,7 +909,7 @@
             this.embedExeButton.Location = new System.Drawing.Point(122, 32);
             this.embedExeButton.Name = "embedExeButton";
             this.embedExeButton.Size = new System.Drawing.Size(113, 23);
-            this.embedExeButton.TabIndex = 14;
+            this.embedExeButton.TabIndex = 5;
             this.embedExeButton.Text = "Embed to EXE file";
             this.quickHelp.SetToolTip(this.embedExeButton, "Creates a .EXE file containing this bluescreen configuration, which will be auto-" +
         "simulated after running it.");
@@ -924,7 +924,7 @@
             this.button1.Location = new System.Drawing.Point(436, 445);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(68, 23);
-            this.button1.TabIndex = 14;
+            this.button1.TabIndex = 5;
             this.button1.Text = "&Simulate";
             this.quickHelp.SetToolTip(this.button1, "Starts the simulation");
             this.button1.UseVisualStyleBackColor = true;
@@ -939,7 +939,7 @@
             this.button3.Location = new System.Drawing.Point(319, 445);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(111, 23);
-            this.button3.TabIndex = 13;
+            this.button3.TabIndex = 4;
             this.button3.Text = "&I\'m feeling unlucky";
             this.quickHelp.SetToolTip(this.button3, "This will generate a random bugcheck");
             this.button3.UseVisualStyleBackColor = true;
@@ -954,7 +954,7 @@
             this.button7.Location = new System.Drawing.Point(15, 445);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(69, 23);
-            this.button7.TabIndex = 12;
+            this.button7.TabIndex = 3;
             this.button7.Text = "Settin&gs";
             this.quickHelp.SetToolTip(this.button7, "Configure blue screen simulator\'s settings and allows you to check for updates.\r\n" +
         "Hint: To get help or see information about the program, press ? next to the clos" +
@@ -1030,7 +1030,7 @@
             this.simulatorToolStripMenuItem.Name = "simulatorToolStripMenuItem";
             this.simulatorToolStripMenuItem.Padding = new System.Windows.Forms.Padding(0);
             this.simulatorToolStripMenuItem.Size = new System.Drawing.Size(62, 19);
-            this.simulatorToolStripMenuItem.Text = "Common";
+            this.simulatorToolStripMenuItem.Text = "&Common";
             this.simulatorToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.simulatorToolStripMenuItem.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
             this.simulatorToolStripMenuItem.DropDownOpening += new System.EventHandler(this.SimulatorToolStripMenuItem_DropDownOpening);
@@ -1120,7 +1120,7 @@
             this.advancedToolStripMenuItem.Name = "advancedToolStripMenuItem";
             this.advancedToolStripMenuItem.Padding = new System.Windows.Forms.Padding(0);
             this.advancedToolStripMenuItem.Size = new System.Drawing.Size(64, 19);
-            this.advancedToolStripMenuItem.Text = "Advanced";
+            this.advancedToolStripMenuItem.Text = "&Advanced";
             this.advancedToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.advancedToolStripMenuItem.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
             this.advancedToolStripMenuItem.DropDownOpening += new System.EventHandler(this.SimulatorToolStripMenuItem_DropDownOpening);
@@ -1177,7 +1177,7 @@
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Padding = new System.Windows.Forms.Padding(0);
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(36, 19);
-            this.helpToolStripMenuItem.Text = "Help";
+            this.helpToolStripMenuItem.Text = "&Help";
             this.helpToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.helpToolStripMenuItem.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
             this.helpToolStripMenuItem.DropDownOpening += new System.EventHandler(this.SimulatorToolStripMenuItem_DropDownOpening);

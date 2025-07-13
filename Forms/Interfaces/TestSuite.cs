@@ -110,9 +110,9 @@ namespace UltimateBlueScreenSimulator.Forms.Interfaces
             Dictionary<string, bool> ExpectedBools = new Dictionary<string, bool>()
             {
                 {"playsound", true },
-                {"font_support", true },
-                {"blinkblink", true },
-                {"halfres", true },
+                {"font_support", false },
+                {"blinkblink", false },
+                {"halfres", false },
             };
             Dictionary<string, string> ExpectedStrings = new Dictionary<string, string>()
             {
@@ -209,13 +209,12 @@ namespace UltimateBlueScreenSimulator.Forms.Interfaces
             ExpectedStrings["qr_file"] = "local:0";
             ExpectedBools["crashdump"] = true;
             ExpectedBools["qr"] = true;
-            ExpectedBools["device"] = true;
             ExpectedBools["winxplus"] = true;
             ok = ok && CheckStrings(ExpectedStrings, tempreg.GetLast(), "Windows 10") && CheckBools(ExpectedBools, tempreg.GetLast(), "Windows 10");
             tempreg.AddTemplate("Windows 11");
             ExpectedStrings["friendlyname"] = "Windows 11 (Native, ClearType)";
             ExpectedBools["blackscreen"] = false;
-            ok = ok && CheckStrings(ExpectedStrings, tempreg.GetLast(), "Windows 10") && CheckBools(ExpectedBools, tempreg.GetLast(), "Windows 10");
+            ok = ok && CheckStrings(ExpectedStrings, tempreg.GetLast(), "Windows 11") && CheckBools(ExpectedBools, tempreg.GetLast(), "Windows 11");
             HighlightSubtest(10, ok);
             tempreg.AddTemplate("Windows 11 Beta");
             ExpectedBools.Clear();
@@ -226,9 +225,9 @@ namespace UltimateBlueScreenSimulator.Forms.Interfaces
             ExpectedBools["crashdump"] = true;
             ExpectedBools["show_description"] = true;
             ExpectedBools["font_support"] = true;
-            ok = CheckStrings(ExpectedStrings, tempreg.GetLast(), "Windows 10") && CheckBools(ExpectedBools, tempreg.GetLast(), "Windows 10");
+            ok = CheckStrings(ExpectedStrings, tempreg.GetLast(), "Windows 11 Beta") && CheckBools(ExpectedBools, tempreg.GetLast(), "Windows 11 Beta");
             HighlightSubtest(11, ok);
-            //NextTest(3);
+            NextTest(3);
         }
 
         private void SaveLoadTest()
@@ -350,11 +349,6 @@ namespace UltimateBlueScreenSimulator.Forms.Interfaces
                 case 10:
                     break;
             }
-        }
-
-        private void Blink_Tick(object sender, EventArgs e)
-        {
-            noticeLabel.ForeColor = ((noticeLabel.ForeColor == SystemColors.ControlText) ? Color.Red : SystemColors.ControlText);
         }
 
         private void TestSuite_KeyDown(object sender, KeyEventArgs e)

@@ -165,7 +165,7 @@
             this.materialButton2.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.materialButton2.Name = "materialButton2";
             this.materialButton2.Size = new System.Drawing.Size(93, 26);
-            this.materialButton2.TabIndex = 5;
+            this.materialButton2.TabIndex = 4;
             this.materialButton2.Text = "Random code";
             this.materialButton2.UseVisualStyleBackColor = true;
             this.materialButton2.Click += new System.EventHandler(this.MaterialButton2_Click);
@@ -177,7 +177,7 @@
             this.materialButton3.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.materialButton3.Name = "materialButton3";
             this.materialButton3.Size = new System.Drawing.Size(77, 26);
-            this.materialButton3.TabIndex = 6;
+            this.materialButton3.TabIndex = 3;
             this.materialButton3.Text = "Calculate";
             this.materialButton3.UseVisualStyleBackColor = true;
             this.materialButton3.Click += new System.EventHandler(this.MaterialButton3_Click);
@@ -189,7 +189,7 @@
             this.materialButton1.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.materialButton1.Name = "materialButton1";
             this.materialButton1.Size = new System.Drawing.Size(75, 26);
-            this.materialButton1.TabIndex = 0;
+            this.materialButton1.TabIndex = 2;
             this.materialButton1.Text = "Null code";
             this.materialButton1.UseVisualStyleBackColor = true;
             this.materialButton1.Click += new System.EventHandler(this.MaterialButton1_Click);
@@ -201,7 +201,7 @@
             this.materialButton4.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.materialButton4.Name = "materialButton4";
             this.materialButton4.Size = new System.Drawing.Size(87, 26);
-            this.materialButton4.TabIndex = 5;
+            this.materialButton4.TabIndex = 1;
             this.materialButton4.Text = "Apply to all";
             this.materialButton4.UseVisualStyleBackColor = true;
             this.materialButton4.Click += new System.EventHandler(this.MaterialButton4_Click);
@@ -210,7 +210,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(752, 201);
+            this.ClientSize = new System.Drawing.Size(752, 202);
             this.Controls.Add(this.topLabel);
             this.Controls.Add(this.codeListPanel);
             this.Controls.Add(this.codeContent);

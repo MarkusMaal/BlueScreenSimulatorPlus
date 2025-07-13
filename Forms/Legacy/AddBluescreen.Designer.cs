@@ -92,7 +92,7 @@
             this.osBox.Location = new System.Drawing.Point(88, 60);
             this.osBox.Name = "osBox";
             this.osBox.Size = new System.Drawing.Size(282, 20);
-            this.osBox.TabIndex = 2;
+            this.osBox.TabIndex = 1;
             this.osBox.TextChanged += new System.EventHandler(this.JustifyWindowsWarriors);
             // 
             // friendlyBox
@@ -102,7 +102,7 @@
             this.friendlyBox.Location = new System.Drawing.Point(88, 86);
             this.friendlyBox.Name = "friendlyBox";
             this.friendlyBox.Size = new System.Drawing.Size(282, 20);
-            this.friendlyBox.TabIndex = 4;
+            this.friendlyBox.TabIndex = 2;
             // 
             // friendlyNameLabel
             // 
@@ -134,7 +134,7 @@
             this.iconBox.Location = new System.Drawing.Point(88, 112);
             this.iconBox.Name = "iconBox";
             this.iconBox.Size = new System.Drawing.Size(99, 21);
-            this.iconBox.TabIndex = 6;
+            this.iconBox.TabIndex = 3;
             this.iconBox.SelectedIndexChanged += new System.EventHandler(this.IconBox_SelectedIndexChanged);
             // 
             // okButton
@@ -143,7 +143,7 @@
             this.okButton.Location = new System.Drawing.Point(297, 182);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(75, 23);
-            this.okButton.TabIndex = 7;
+            this.okButton.TabIndex = 6;
             this.okButton.Text = "&OK";
             this.okButton.UseVisualStyleBackColor = true;
             this.okButton.Click += new System.EventHandler(this.MakeBluescreen);
@@ -155,7 +155,7 @@
             this.cancelButton.Location = new System.Drawing.Point(216, 182);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
-            this.cancelButton.TabIndex = 8;
+            this.cancelButton.TabIndex = 5;
             this.cancelButton.Text = "&Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.CancelClick);
@@ -175,7 +175,7 @@
             this.specifyOsBox.Location = new System.Drawing.Point(12, 148);
             this.specifyOsBox.Name = "specifyOsBox";
             this.specifyOsBox.Size = new System.Drawing.Size(212, 17);
-            this.specifyOsBox.TabIndex = 10;
+            this.specifyOsBox.TabIndex = 4;
             this.specifyOsBox.Text = "Specify your own OS (DANGEROUS!!!)";
             this.specifyOsBox.UseVisualStyleBackColor = true;
             this.specifyOsBox.CheckedChanged += new System.EventHandler(this.ConfirmCustomOS);
