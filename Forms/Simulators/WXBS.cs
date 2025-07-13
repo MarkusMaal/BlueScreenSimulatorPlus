@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 using SimulatorDatabase;
 
@@ -23,13 +21,20 @@ namespace UltimateBlueScreenSimulator
         private int progressmillis = 0;
         internal int maxprogressmillis = 0;
         private string secondPart = "";
-        private int moves = 0;
+        private Point initialCursorPosition;
         internal BlueScreen me = Program.templates.GetAt(0);
+        
         public WXBS()
         {
             if (new Verifile().RC() && Program.verificate)
             {
                 InitializeComponent();
+            } else
+            {
+                Program.loadfinished = true;
+                Program.verifile.HideUI();
+                Program.verifile.ShowBad();
+                Application.Exit();
             }
         }
 
@@ -240,14 +245,14 @@ namespace UltimateBlueScreenSimulator
                 {
                     progressUpdater.Enabled = true;
                 }
-                if (!w8 && !me.GetBool("crashdump") && me.GetBool("autoclose"))
+                if (!w8 && !me.GetBool("crashdump") && me.GetBool("autoclose") && me.GetTexts().Keys.Contains("No crashdump with autorestart"))
                 {
                     yourPCranLabel.Text = yourPCranLabel.Text.Substring(0,yourPCranLabel.Text.Length - 2);
-                    secondPart = " " + me.GetTexts()["No crashdump with autorestart"];
-                } else if (!w8 && !me.GetBool("crashdump") && !me.GetBool("autoclose"))
+                    secondPart = " " + (me.GetTexts()["No crashdump with autorestart"]);
+                } else if (!w8 && !me.GetBool("crashdump") && !me.GetBool("autoclose") && me.GetTexts().Keys.Contains("No crashdump"))
                 {
                     yourPCranLabel.Text = yourPCranLabel.Text.Substring(0,yourPCranLabel.Text.Length - 2);
-                    secondPart = " " + me.GetTexts()["No crashdump"] + "\r\n";
+                    secondPart = " " + (me.GetTexts()["No crashdump"]) + "\r\n";
                 }
                 if (Opacity == 0.0)
                 {
@@ -267,6 +272,7 @@ namespace UltimateBlueScreenSimulator
                 {
                     Program.dr.Init(this, true);
                 }
+                initialCursorPosition = Cursor.Position;
             } catch (Exception ex)
             {
                 Program.loadfinished = true;
@@ -292,7 +298,7 @@ namespace UltimateBlueScreenSimulator
                     if ((oldmode && (progress >= 100)) || (progressmillis == maxprogressmillis))
                     {
                         progressUpdater.Enabled = false;
-                        if (me.GetBool("autoclose")) { Close(); }
+                        if (me.GetBool("autoclose") && !Program.isScreensaver) { Close(); }
                         progressIndicator.Text = me.GetTexts()["Progress"].Replace("{0}", "100");
                     }
                     if (oldmode)
@@ -311,7 +317,7 @@ namespace UltimateBlueScreenSimulator
                     {
                         yourPCranLabel.Text = yourPCranLabel.Text.Replace(progress.ToString() + "%", "100%");
                         progressUpdater.Enabled = false;
-                        if (me.GetBool("autoclose"))
+                        if (me.GetBool("autoclose") && !Program.isScreensaver)
                         {
                             Close();
                         }
@@ -417,6 +423,10 @@ namespace UltimateBlueScreenSimulator
                 BringToFront();
                 Activate();
             }
+            if (Program.isScreensaver && Program.gs.MouseMoveExit && (Cursor.Position.X != initialCursorPosition.X) && (Cursor.Position.Y != initialCursorPosition.Y))
+            {
+                Close();
+            }
         }
 
         private void WXBS_KeyDown(object sender, KeyEventArgs e)
@@ -432,24 +442,6 @@ namespace UltimateBlueScreenSimulator
                 string output = Program.dr.Screenshot(this);
                 Cursor.Show();
                 MessageBox.Show($"Image saved as {output}", "Screenshot taken", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-        }
-
-        private void WXBS_Paint(object sender, PaintEventArgs e)
-        {
-        }
-
-        private void WXBS_LocationChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void WXBS_MouseMove(object sender, MouseEventArgs e)
-        {
-            moves++;
-            if (moves > 50 && Program.isScreensaver && Program.gs.MouseMoveExit)
-            {
-                Close();
             }
         }
     }

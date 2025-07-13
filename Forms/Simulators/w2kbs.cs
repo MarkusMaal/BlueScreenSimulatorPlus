@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Windows.Documents;
 using System.Windows.Forms;
 using SimulatorDatabase;
 
@@ -30,6 +29,7 @@ namespace UltimateBlueScreenSimulator
         public string processortype = "GenuineIntel";
         public string error = "User manually initiated crash (0xDEADDEAD)";
         private int moves = 0;
+        private Point initialCursorPosition;
 
         public W2kbs()
         {
@@ -376,6 +376,7 @@ namespace UltimateBlueScreenSimulator
                 {
                     Program.dr.Init(this);
                 }
+                initialCursorPosition = Cursor.Position;
             } catch (Exception ex)
             {
                 Program.loadfinished = true;
@@ -468,6 +469,10 @@ namespace UltimateBlueScreenSimulator
                 {
                     blinkyThing.Visible = false;
                 }
+            }
+            if (Program.isScreensaver && Program.gs.MouseMoveExit && (Cursor.Position.X != initialCursorPosition.X) && (Cursor.Position.Y != initialCursorPosition.Y))
+            {
+                Close();
             }
         }
 

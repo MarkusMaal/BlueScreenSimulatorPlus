@@ -172,7 +172,6 @@ namespace UltimateBlueScreenSimulator
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Xvsbs_FormClosed);
             this.Load += new System.EventHandler(this.Xvsbs_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Vistabs_KeyDown);
-            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Vistabs_MouseMove);
             this.ResumeLayout(false);
             this.PerformLayout();
 

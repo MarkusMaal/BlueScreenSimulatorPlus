@@ -11,6 +11,7 @@ namespace UltimateBlueScreenSimulator
         private readonly bool naturalclose = false;
         internal BlueScreen me;
         private int moves = 0;
+        private Point initialCursorPosition;
         public BootMgr()
         {
             //
@@ -77,6 +78,7 @@ namespace UltimateBlueScreenSimulator
                     Program.dr.DrawRainbow(this);
                 }
                 Program.loadfinished = true;
+                initialCursorPosition = Cursor.Position;
                 if (!me.GetBool("windowed") && (Opacity != 0.0))
                 {
                     Program.dr.Init(this);
@@ -109,6 +111,10 @@ namespace UltimateBlueScreenSimulator
             if (Opacity != 0.0)
             {
                 Program.dr.DrawAll();
+                if (Program.isScreensaver && Program.gs.MouseMoveExit && (Cursor.Position.X != initialCursorPosition.X) && (Cursor.Position.Y != initialCursorPosition.Y))
+                {
+                    Close();
+                }
             }
         }
 

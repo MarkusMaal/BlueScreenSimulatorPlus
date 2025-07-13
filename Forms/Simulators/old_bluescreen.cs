@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using SimulatorDatabase;
 
@@ -23,6 +22,7 @@ namespace UltimateBlueScreenSimulator
         private Color hlf;
         private int moves = 0;
         private readonly string[] letters = { "?", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ":", ",", ".", "+", "*", "!", "_", "-", "(", ")", "/", "\\", "'", " " };
+        private Point initialCursorPosition;
         public Old_bluescreen()
         {
             if (Program.verificate)
@@ -156,6 +156,7 @@ namespace UltimateBlueScreenSimulator
                 if (colors[1] > 255) { colors[1] -= 255; }
                 if (colors[2] > 255) { colors[2] -= 255; }
                 waterMarkText.ForeColor = Color.FromArgb(colors[0], colors[1], colors[2]);
+                initialCursorPosition = Cursor.Position;
             } catch (Exception ex)
             {
                 Program.loadfinished = true;
@@ -296,6 +297,10 @@ namespace UltimateBlueScreenSimulator
                     Program.dr.DrawAll();
                     BringToFront();
                     Activate();
+                }
+                if (Program.isScreensaver && Program.gs.MouseMoveExit && (Cursor.Position.X != initialCursorPosition.X) && (Cursor.Position.Y != initialCursorPosition.Y))
+                {
+                    Close();
                 }
                 if (blinkingColor.Visible == false)
                 {

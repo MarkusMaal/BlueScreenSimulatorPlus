@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Windows.Forms;
 using SimulatorDatabase;
@@ -14,7 +13,6 @@ namespace UltimateBlueScreenSimulator
         public string whatfail = "";
         private bool naturalclose = false;
         private int progress = 0;
-        private int moves = 0;
         private bool inr = false;
         private bool ing = false;
         private bool inb = false;
@@ -28,6 +26,8 @@ namespace UltimateBlueScreenSimulator
 
         private string state = "0";
         private Font commonFont;
+
+        private Point initialCursorPosition;
         public Vistabs()
         {
             //
@@ -187,6 +187,7 @@ namespace UltimateBlueScreenSimulator
                     Program.dr.DrawRainbow(this);
                 }
                 Program.loadfinished = true;
+                initialCursorPosition = Cursor.Position;
             } catch (Exception ex)
             {
                 Program.loadfinished = true;
@@ -259,6 +260,11 @@ namespace UltimateBlueScreenSimulator
                 }
                 if (tardisFade.Enabled == true) { return; }
                 if (rainBowScreen.Enabled == true) { return; }
+
+                if (Program.isScreensaver && Program.gs.MouseMoveExit && (Cursor.Position.X != initialCursorPosition.X) && (Cursor.Position.Y != initialCursorPosition.Y))
+                {
+                    Close();
+                }
             } catch (Exception ex)
             {
                 screenUpdater.Enabled = false;
@@ -486,15 +492,6 @@ namespace UltimateBlueScreenSimulator
                 string output = Program.dr.Screenshot(this);
                 Cursor.Show();
                 MessageBox.Show($"Image saved as {output}", "Screenshot taken", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-        }
-
-        private void Vistabs_MouseMove(object sender, MouseEventArgs e)
-        {
-            moves++;
-            if (moves > 50 && Program.isScreensaver && Program.gs.MouseMoveExit)
-            {
-                Close();
             }
         }
     }

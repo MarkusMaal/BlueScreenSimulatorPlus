@@ -18,6 +18,7 @@ namespace UltimateBlueScreenSimulator.Forms.Simulators
         internal int maxprogressmillis = 0;
         public BlueScreen me;
         private int moves = 0;
+        private Point initialCursorPosition;
 
         public SunValleyBSOD()
         {
@@ -98,6 +99,7 @@ namespace UltimateBlueScreenSimulator.Forms.Simulators
                 {
                     Program.dr.Init(this, true);
                 }
+                initialCursorPosition = Cursor.Position;
             }
             catch (Exception ex) when (!Debugger.IsAttached)
             {
@@ -149,7 +151,7 @@ namespace UltimateBlueScreenSimulator.Forms.Simulators
                 if ((oldmode && (progress >= 99)) || (progressmillis == maxprogressmillis))
                 {
                     progressUpdater.Enabled = false;
-                    if (me.GetBool("autoclose") && me.GetBool("crashdump")) { Close(); }
+                    if (me.GetBool("autoclose") && me.GetBool("crashdump") && !Program.isScreensaver) { Close(); }
                     progressIndicator.Text = me.GetTexts()["Progress"].Replace("{0}", "100");
                 }
                 if (oldmode)
@@ -193,6 +195,10 @@ namespace UltimateBlueScreenSimulator.Forms.Simulators
                 }
                 BringToFront();
                 Activate();
+            }
+            if (Program.isScreensaver && Program.gs.MouseMoveExit && (Cursor.Position.X != initialCursorPosition.X) && (Cursor.Position.Y != initialCursorPosition.Y))
+            {
+                Close();
             }
         }
 

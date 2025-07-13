@@ -235,7 +235,7 @@ namespace UltimateBlueScreenSimulator.Forms.Interfaces
             Dictionary<MaterialRadioButton, MessageBoxButtons> msgButtons = new Dictionary<MaterialRadioButton, MessageBoxButtons>()
             {
                 { okRadio, MessageBoxButtons.OK },
-                { okCancelRadio, MessageBoxButtons.OK },
+                { okCancelRadio, MessageBoxButtons.OKCancel },
                 { retryIgnoreAboutRadio, MessageBoxButtons.AbortRetryIgnore },
                 { yesNoRadio, MessageBoxButtons.YesNo },
                 { yesNoCancelRadio, MessageBoxButtons.YesNoCancel },
@@ -265,11 +265,12 @@ namespace UltimateBlueScreenSimulator.Forms.Interfaces
             MessageBox.Show(MsgBoxMessage, MsgBoxTitle, MsgBoxType, MsgBoxIcon);
         }
 
-        public static void BestAllMatchCheck(MaterialRadioButton bestMatchRadio, MaterialRadioButton matchAllRadio, MaterialCheckbox letCloseBox)
+        public static void BestAllMatchCheck(MaterialRadioButton bestMatchRadio, MaterialRadioButton matchAllRadio, MaterialCheckbox letCloseBox, bool quiet = true)
         {
             letCloseBox.Enabled = !blackninja.Contains(UIActions.me.GetString("os"));
             letCloseBox.Checked = matchAllRadio.Checked;
-            if (bestMatchRadio.Enabled && matchAllRadio.Checked && (MessageBox.Show("This option may not look legitimate. Are you sure you'd like to continue?", "This prank may not look legitimate", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.No))
+
+            if (!quiet && bestMatchRadio.Enabled && matchAllRadio.Checked && (MessageBox.Show("This option may not look legitimate. Are you sure you'd like to continue?", "This prank may not look legitimate", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.No))
             {
                 matchAllRadio.Checked = false;
                 bestMatchRadio.Checked = true;
@@ -385,9 +386,9 @@ namespace UltimateBlueScreenSimulator.Forms.Interfaces
             MessageBox.Show(" - A standard user account doesn't have access to all devices plugged into the computer. Sometimes, certain devices are only detected when the program is started as an administrator.\r\n - Try a different USB port, such as the one on your case. USB hubs might not update the device properly sometimes.\r\n - Try a different trigger device", "Device troubleshooting", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        public static void LetCloseBox_CheckedChanged(MaterialCheckbox letCloseBox)
+        public static void LetCloseBox_CheckedChanged(MaterialCheckbox letCloseBox, bool quiet)
         {
-            if (!letCloseBox.Checked)
+            if (!letCloseBox.Checked && !quiet)
             {
                 if (MessageBox.Show("Warning: This feature is experimental and WILL NOT work with all error screens. If you are unable to close the blue screen, use task manager to end it. Do you still want to continue?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
                 {

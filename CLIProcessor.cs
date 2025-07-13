@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading;
 using System.Windows.Forms;
 using SimulatorDatabase;
 
@@ -173,7 +172,7 @@ namespace UltimateBlueScreenSimulator
             {
                 case "?":
                     ExitSplash();
-                    MessageBox.Show(Program.cmds, "Command line argument usage", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(string.Join("\n", Program.cmds), "Command line argument usage", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Program.gs.ErrorCode = 999;
                     Program.halt = true;
                     break;
@@ -220,10 +219,17 @@ namespace UltimateBlueScreenSimulator
             //hide main interface if /h flag is set
             if (args.Contains("/h"))
             {
+                Program.halt = true;
                 Program.gs.Log("Info", "Hiding main interface");
-                Program.F1.WindowState = FormWindowState.Minimized;
-                Program.F1.ShowInTaskbar = false;
-                Program.F1.ShowIcon = false;
+                Form mf = Program.F1;
+                if (Program.gs.LegacyUI)
+                {
+                    mf = Program.F2;
+                }
+                mf.WindowState = FormWindowState.Minimized;
+                mf.ShowInTaskbar = false;
+                mf.ShowIcon = false;
+                mf.Hide();
                 Program.gs.PM_CloseMainUI = true;
                 if (!args.Contains("/c"))
                 {

@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using SimulatorDatabase;
 
@@ -17,6 +12,7 @@ namespace UltimateBlueScreenSimulator
         private IDictionary<string, string> texts;
         private int time = 0;
         private int moves = 0;
+        private Point initialCursorPosition;
         public JupiterBSOD()
         {
             if (Program.verificate)
@@ -108,6 +104,7 @@ namespace UltimateBlueScreenSimulator
                     Program.dr.DrawRainbow(this);
                 }
                 Program.loadfinished = true;
+                initialCursorPosition = Cursor.Position;
             } catch (Exception ex)
             {
                 if (!Program.verificate)
@@ -131,7 +128,7 @@ namespace UltimateBlueScreenSimulator
             } else
             {
                 timecounter.Enabled = false;
-                if (me.GetBool("autoclose"))
+                if (!Program.isScreensaver && me.GetBool("autoclose"))
                 {
                     Close();
                 }
@@ -150,6 +147,10 @@ namespace UltimateBlueScreenSimulator
                 Program.dr.DrawAll();
                 BringToFront();
                 Activate();
+            }
+            if (Program.isScreensaver && Program.gs.MouseMoveExit && (Cursor.Position.X != initialCursorPosition.X) && (Cursor.Position.Y != initialCursorPosition.Y))
+            {
+                Close();
             }
         }
 

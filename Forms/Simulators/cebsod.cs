@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using SimulatorDatabase;
@@ -17,6 +16,7 @@ namespace UltimateBlueScreenSimulator
 
         private string state = "0";
         private int moves = 0;
+        private Point initialCursorPosition;
 
         public Cebsod()
         {
@@ -31,9 +31,16 @@ namespace UltimateBlueScreenSimulator
                 BringToFront();
                 Activate();
             }
-            if (progress == 0) { Close(); }
+            if (!Program.isScreensaver && (progress == 0)) { Close(); }
             timeOut.Text = timeOut.Text.Replace(progress.ToString(), (progress - 1).ToString());
-            progress--;
+            if (progress > 1)
+            {
+                progress--;
+            }
+            if (Program.isScreensaver && Program.gs.MouseMoveExit && (Cursor.Position.X != initialCursorPosition.X) && (Cursor.Position.Y != initialCursorPosition.Y))
+            {
+                Close();
+            }
         }
 
         private void Initialize(object sender, EventArgs e)
@@ -79,6 +86,7 @@ namespace UltimateBlueScreenSimulator
                     Program.dr.Init(this);
                     Program.loadfinished = true;
                 }
+                initialCursorPosition = Cursor.Position;
             } catch (Exception ex)
             {
                 Program.loadfinished = true;

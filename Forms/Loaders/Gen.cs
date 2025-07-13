@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
-using MaterialSkin2Framework;
-using MaterialSkin2Framework.Controls;
 
 namespace UltimateBlueScreenSimulator
 {

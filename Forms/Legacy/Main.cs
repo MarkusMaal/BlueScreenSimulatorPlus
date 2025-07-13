@@ -5,16 +5,11 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Net.NetworkInformation;
-using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
-using System.Windows.Media.Animation;
-using Microsoft.Win32;
 using SimulatorDatabase;
-using UltimateBlueScreenSimulator.Forms.Interfaces;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+
 namespace UltimateBlueScreenSimulator
 {
     // DEPRECATED: Avoid making changes to this form unless absolutely neccessary! Use NewUI instead!

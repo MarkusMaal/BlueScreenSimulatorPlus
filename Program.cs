@@ -40,13 +40,58 @@ namespace UltimateBlueScreenSimulator
         public readonly static string prefix = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Blue Screen Simulator Plus\";
 
         //Command line syntax
-        public static string cmds = "/? - Displays command line syntax\n/wv xx - Set a specific configuration/os (e.g. \"XP\", spaces require the value to be surrounded with double quotes)\n/h - Doesn't show main GUI. If no simulation is started or the simulation is finished, the program will close.\n/hwm - Hides watermark\n/c - Simulates a system crash\n/config xx - Loads a configuration file (xx is the file name, if there are spaces, you must use double quotes)\n\n/ddesc - Disables error descriptions\n/dqr - Disables QR code on Windows 10/11 crash screen\n/srv - Displays Windows Server bugcheck when wv is set to 10 or 11\n/dac - Disables autoclose feature (Modern blue screens only)\n/gs - Displays green screen when wv is set to 10\n/ap - Displays ACPI blue screen (Windows Vista/7 only)\n/win - Enables windowed mode\n/random - Randomizes the crash screen (does NOT randomize any custom attributes set)\n\n/desc - Forcibly enable error description\n/ac - Forcibly enable autoclose feature\n/dap - Forcibly disable ACPI error screen (Windows Vista/7)\n/damd - Forcibly display \"GenuineIntel\" on Windows NT blue screen\n/dblink - Forcibly disable blinking cursor on Windows NT blue screen\n/dgs - Forcibly disable green screen on Windows 10 blue screen\n/qr - Forcibly enable QR code on Windows 10 blue screen\n/dsrv - Forcibly disable server blue screen when version is set to Windows 10\n/stack - Forcible enable stack trace on Windows NT blue screen\n/dfile - Forcible disables potential culprit file\n/ctd - Forcibly enables countdown\n\n/clr - Clears the verification certificate from this computer, causing the first use message to pop up.\n/hidesplash - Hides the splash screen\n/legacy - Starts the program with Legacy UI";
+        public static string[] cmds = new string[]
+        {
+            "/? - Displays command line syntax",
+            "/wv xx - Set a specific configuration/os (e.g. \"XP\", spaces require the value to be surrounded with double quotes)",
+            "/h - Doesn't show main GUI. If no simulation is started or the simulation is finished, the program will close.",
+            "/hwm - Hides watermark",
+            "/c - Simulates a system crash",
+            "/config xx - Loads a configuration file (xx is the file name, if there are spaces, you must use double quotes)",
+            "",
+            "/ddesc - Disables error descriptions",
+            "/dqr - Disables QR code on Windows 10/11 crash screen",
+            "/srv - Displays Windows Server bugcheck when wv is set to 10 or 11",
+            "/dac - Disables autoclose feature (Modern blue screens only)",
+            "/gs - Displays green screen when wv is set to 10",
+            "/ap - Displays ACPI blue screen (Windows Vista/7 only)",
+            "/win - Enables windowed mode",
+            "/random - Randomizes the crash screen (does NOT randomize any custom attributes set)",
+            "",
+            "/desc - Forcibly enable error description",
+            "/ac - Forcibly enable autoclose feature",
+            "/dap - Forcibly disable ACPI error screen (Windows Vista/7)",
+            "/damd - Forcibly display \"GenuineIntel\" on Windows NT blue screen",
+            "/dblink - Forcibly disable blinking cursor on Windows NT blue screen",
+            "/dgs - Forcibly disable green screen on Windows 10 blue screen",
+            "/qr - Forcibly enable QR code on Windows 10 blue screen",
+            "/dsrv - Forcibly disable server blue screen when version is set to Windows 10",
+            "/stack - Forcible enable stack trace on Windows NT blue screen",
+            "/dfile - Forcible disables potential culprit file",
+            "/ctd - Forcibly enables countdown",
+            "",
+            "/clr - Clears the verification certificate from this computer, causing the first use message to pop up.",
+            "/hidesplash - Hides the splash screen",
+            "/legacy - Starts the program with Legacy UI"
+        };
 
         internal static bool verificate = false;
         public static int load_progress = 100;
         public static string load_message = "Initializing...";
         public static bool hidden = false;
-        internal static string changelog = "+ Improved UI design - you can now navigate between tabs without opening the drawer on the left\r\n+ Integrated several windows in Material UI into tabs for faster operation\r\n+ Classic UI option for accessibility and those who prefer it\r\n+ Screensaver export\r\n+ The new Windows 11 Beta bugcheck simulator (black screen)\r\n+ Pop-in effect for modern bugchecks\r\n+ Crash screen preview in additional options\r\n* Faster update checker and user friendly error messages during check failures\r\n* Bug fixes\r\n? New easter eggs";
+        internal static string[] changelog = new string[]
+        {
+            "+ Improved UI design - you can now navigate between tabs without opening the drawer on the left",
+            "+ Integrated several windows in Material UI into tabs for faster operation",
+            "+ Classic UI option for accessibility and those who prefer it",
+            "+ Screensaver export",
+            "+ The new Windows 11 Beta bugcheck simulator (black screen)",
+            "+ Pop-in effect for modern bugchecks",
+            "+ Crash screen preview in additional options",
+            "* Faster update checker and user friendly error messages during check failures",
+            "* Bug fixes",
+            "? New easter eggs"
+        };
 
         public static bool hide_splash = false;
         public static bool force_legacy = false;
@@ -127,15 +172,21 @@ namespace UltimateBlueScreenSimulator
                 clip = new CLIProcessor(args);
                 if (!clip.CheckNoSplash() && CheckFonts().Length > 0)
                 {
-                    MessageBox.Show("The following fonts must be installed before you can use this program:\n\n" + string.Join("\n", CheckFonts()), "Cannot start this program", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return 95;
+                    switch (MessageBox.Show("The following fonts must be installed before you can use this program:\n\n" + string.Join("\n", CheckFonts()),
+                            "Cannot start this program", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Error))
+                    {
+                        case DialogResult.Abort:
+                            return 95;
+                        case DialogResult.Retry:
+                            Application.Restart();
+                            return 0;
+                        case DialogResult.Ignore:
+                            break;
+                    }
                 }
                 //Application initialization
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-                verifile = new Verifile();
-                verificate = verifile.Verify;
-                gs.Log("Info", "Verifile passed");
                 if (AttachmentReader(args))
                 {
                     return 0;
@@ -152,6 +203,9 @@ namespace UltimateBlueScreenSimulator
                         halt = true;
                     }
                 }
+                verifile = new Verifile();
+                verificate = verifile.Verify;
+                gs.Log("Info", "Verifile passed");
                 // this delay makes sure that the splash screen is actually displayed
                 Thread.Sleep(100);
                 gs.Log("Info", "Initializing configurations list");
@@ -233,7 +287,7 @@ namespace UltimateBlueScreenSimulator
         /// <summary>
         /// Displays the splash screen
         /// </summary>
-        private static void ShowLoading()
+        public static void ShowLoading()
         {
             try
             {
@@ -473,8 +527,12 @@ namespace UltimateBlueScreenSimulator
             string jsondata = GetEmbedded();
             if (jsondata != "")
             {
-                gs.LoadSettings();
-                if (verificate)
+                gs = gs.LoadSettings();
+
+                clip = new CLIProcessor(new string[] { "/hidesplash" });
+                verifile = new Verifile();
+                verificate = verifile.Verify;
+                if (verificate || args.Contains("/p"))
                 {
                     templates = new TemplateRegistry();
                     dr = new DrawRoutines();

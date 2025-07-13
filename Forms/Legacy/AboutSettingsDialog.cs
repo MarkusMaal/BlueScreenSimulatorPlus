@@ -230,7 +230,7 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
             else if (aboutSettingsTabControl.SelectedTab.Text == "Command line help")
             {
                 //Loads command line help
-                commandLineHelpDisplay.Text = Program.cmds.Replace("\n", Environment.NewLine);
+                commandLineHelpDisplay.Text = string.Join(Environment.NewLine, Program.cmds);
             }
         }
 
@@ -1403,7 +1403,7 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
 
         private void Button3_Click_1(object sender, EventArgs e)
         {
-            MessageBox.Show(Program.changelog + "\n\nYou can find a more detailed changelog in the official BlueScreenSimulatorPlus GitHub page.", "What's new?", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(string.Join("\r\n", Program.changelog) + "\n\nYou can find a more detailed changelog in the official BlueScreenSimulatorPlus GitHub page.", "What's new?", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void DarkDetectCheck_CheckedChanged(object sender, EventArgs e)

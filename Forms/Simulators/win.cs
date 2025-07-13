@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Media;
-using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using SimulatorDatabase;
@@ -25,7 +21,7 @@ namespace UltimateBlueScreenSimulator
         private readonly SoundPlayer sp = new SoundPlayer();
         private Bitmap splash = Properties.Resources.win1_splash;
         private int moves = 0;
-
+        private Point initialCursorPosition;
         public Win()
         {
             //
@@ -219,6 +215,7 @@ namespace UltimateBlueScreenSimulator
                 t = new ThreadStart(WriteWord);
                 secondThread = new Thread(t);
                 secondThread.Start();
+                initialCursorPosition = Cursor.Position;
             } catch (Exception ex)
             {
                 Program.loadfinished = true;
@@ -317,6 +314,10 @@ namespace UltimateBlueScreenSimulator
                 image.Clear();
                 displaying = false;
                 locked = true;
+            }
+            if (Program.isScreensaver && Program.gs.MouseMoveExit && (Cursor.Position.X != initialCursorPosition.X) && (Cursor.Position.Y != initialCursorPosition.Y))
+            {
+                Close();
             }
         }
 

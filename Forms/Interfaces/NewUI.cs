@@ -988,7 +988,7 @@ namespace UltimateBlueScreenSimulator
                 case "Help":
                     break;
                 case "Command line help":
-                    commandLineHelpDisplay.Text = Program.cmds.Replace("\n", Environment.NewLine);
+                    commandLineHelpDisplay.Text = string.Join(Environment.NewLine, Program.cmds);
                     break;
             }
         }
@@ -1050,7 +1050,7 @@ namespace UltimateBlueScreenSimulator
 
         private void LetCloseBox_CheckedChanged(object sender, EventArgs e)
         {
-            PrankModeActions.LetCloseBox_CheckedChanged(letCloseBox);
+            PrankModeActions.LetCloseBox_CheckedChanged(letCloseBox, true);
         }
 
         private void MaterialTabControl2_SelectedIndexChanged(object sender, EventArgs e)
@@ -1282,6 +1282,16 @@ namespace UltimateBlueScreenSimulator
                 }
                 osName.Text = string.Format("Selected configuration: {0}", Program.templates.GetAt(configList.SelectedIndex).GetString("friendlyname"));
             }
+        }
+
+        private void LetCloseBox_Click(object sender, EventArgs e)
+        {
+            PrankModeActions.LetCloseBox_CheckedChanged(letCloseBox, false);
+        }
+
+        private void MatchAllRadio_Click(object sender, EventArgs e)
+        {
+            PrankModeActions.BestAllMatchCheck(bestMatchRadio, matchAllRadio, letCloseBox, false);
         }
     }
 }

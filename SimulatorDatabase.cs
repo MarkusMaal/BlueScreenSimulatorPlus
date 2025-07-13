@@ -12,7 +12,6 @@ using System.Drawing.Drawing2D;
 using System.Diagnostics;
 using System.IO;
 using UltimateBlueScreenSimulator.Forms.Simulators;
-using System.Security.Cryptography.X509Certificates;
 
 //
 // This namespace contains classes that are shared between forms that specify
@@ -179,6 +178,11 @@ namespace SimulatorDatabase
         public void Dispose()
         {
             if ((UIActions.specialwindow != null) && (UIActions.specialwindow.Opacity == 0.0))
+            {
+                return;
+            }
+
+            if (Program.halt)
             {
                 return;
             }
@@ -1640,6 +1644,14 @@ namespace SimulatorDatabase
                 f.close = GetBool("autoclose");
                 f.green = GetBool("insider");
                 f.maxprogressmillis = GetInt("progressmillis");
+                if (f.memCodes == null)
+                {
+                    Program.loadfinished = true;
+                    Program.verifile.HideUI();
+                    Program.verifile.ShowBad();
+                    Application.Exit();
+                    return;
+                }
                 f.memCodes.Text = "0x" + GenHex(16, GetString("ecode1")) + "\r\n0x" +
                                     GenHex(16, GetString("ecode2")) + "\r\n0x" +
                                     GenHex(16, GetString("ecode3")) + "\r\n0x" +

@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Windows.Forms;
-using System.IO;
-using System.Linq;
-using Microsoft.Win32;
-using System.Threading;
 using System.Drawing;
 
 namespace UltimateBlueScreenSimulator
@@ -40,7 +36,7 @@ namespace UltimateBlueScreenSimulator
         private void Splash_Load(object sender, EventArgs e)
         {
             SplashText.Text = Program.load_message;
-            Program.gs.Log("Info", "Displaying splash screen");
+            //Program.gs.Log("Info", "Displaying splash screen");
             label2.Visible = Program.gs.DevBuild;
             if (!Program.gs.EnableEggs) {
                 return;

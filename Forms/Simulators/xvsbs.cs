@@ -12,7 +12,6 @@ namespace UltimateBlueScreenSimulator
         public bool fullscreen = true;
         public string whatfail = "";
         private bool naturalclose = false;
-        private int moves = 0;
         private bool inr = false;
         private bool ing = false;
         private bool inb = false;
@@ -20,6 +19,7 @@ namespace UltimateBlueScreenSimulator
         private Color bg;
         private Color fg;
         private IDictionary<string, string> txt;
+        private Point initialCursorPosition;
 
         private string state = "0";
         public Xvsbs()
@@ -133,6 +133,7 @@ namespace UltimateBlueScreenSimulator
                 }
                 naturalclose = false;
                 dumpLabel.Visible = me.GetBool("autoclose") && !me.GetBool("extrafile");
+                initialCursorPosition = Cursor.Position;
             } catch (Exception ex)
             {
                 Program.loadfinished = true;
@@ -383,6 +384,10 @@ namespace UltimateBlueScreenSimulator
                 BringToFront();
                 Activate();
             }
+            if (Program.isScreensaver && Program.gs.MouseMoveExit && (Cursor.Position.X != initialCursorPosition.X) && (Cursor.Position.Y != initialCursorPosition.Y))
+            {
+                Close();
+            }
         }
 
         private void Xvsbs_KeyDown(object sender, KeyEventArgs e)
@@ -397,15 +402,6 @@ namespace UltimateBlueScreenSimulator
                 string output = Program.dr.Screenshot(this);
                 Cursor.Show();
                 MessageBox.Show($"Image saved as {output}", "Screenshot taken", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-        }
-
-        private void Xvsbs_MouseMove(object sender, MouseEventArgs e)
-        {
-            moves++;
-            if (moves > 50 && Program.isScreensaver && Program.gs.MouseMoveExit)
-            {
-                Close();
             }
         }
     }

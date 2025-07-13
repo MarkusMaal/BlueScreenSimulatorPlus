@@ -811,20 +811,23 @@ namespace UltimateBlueScreenSimulator
                 }));
             } else if (message.Contains("Safely closing"))
             {
-                if (!Program.spl.Visible)
+                if ((Program.spl == null) || !Program.spl.Visible)
                 {
                     return;
                 }
+
                 Program.spl.BeginInvoke(new MethodInvoker(delegate {
                     Program.spl.Close();
                 }));
+
                 Thread.Sleep(250);
-                if (Program.gs.LegacyUI)
+                
+                if (Program.gs.LegacyUI && (Program.F1 != null) && Program.F2.Visible)
                 {
                     Program.F2.BeginInvoke(new MethodInvoker(delegate {
                         Program.F2.BringToFront();
                     }));
-                } else
+                } else if ((Program.F1 != null) && Program.F1.Visible)
                 {
                     Program.F1.BeginInvoke(new MethodInvoker(delegate {
                         Program.F1.BringToFront();

@@ -237,10 +237,7 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.WXBS_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.WXBS_FormClosed);
             this.Load += new System.EventHandler(this.WXBS_Load);
-            this.LocationChanged += new System.EventHandler(this.WXBS_LocationChanged);
-            this.Paint += new System.Windows.Forms.PaintEventHandler(this.WXBS_Paint);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.WXBS_KeyDown);
-            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.WXBS_MouseMove);
             this.Resize += new System.EventHandler(this.WXBS_Resize);
             this.verticalFlowPanel.ResumeLayout(false);
             this.verticalFlowPanel.PerformLayout();

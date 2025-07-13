@@ -11,7 +11,6 @@ using MaterialSkin2Framework.Controls;
 using MaterialSkin2Framework;
 using System.Text;
 using System.Text.Json;
-using System.Windows.Media.Animation;
 using UltimateBlueScreenSimulator.Forms.Interfaces;
 
 namespace UltimateBlueScreenSimulator
@@ -761,7 +760,7 @@ namespace UltimateBlueScreenSimulator
 
         public static void Changelog(object sender, EventArgs e)
         {
-            MessageBox.Show(Program.changelog + "\n\nYou can find a more detailed changelog in the official BlueScreenSimulatorPlus GitHub page.", "What's new?", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(string.Join("\r\n", Program.changelog) + "\n\nYou can find a more detailed changelog in the official BlueScreenSimulatorPlus GitHub page.", "What's new?", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void DarkDetectCheck_CheckedChanged(object sender, EventArgs e)
