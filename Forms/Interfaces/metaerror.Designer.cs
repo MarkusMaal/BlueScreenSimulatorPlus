@@ -179,11 +179,11 @@ namespace UltimateBlueScreenSimulator
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI Semilight", 90F);
-            this.label1.Location = new System.Drawing.Point(588, 105);
+            this.label1.Location = new System.Drawing.Point(537, 97);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(128, 159);
+            this.label1.Size = new System.Drawing.Size(232, 159);
             this.label1.TabIndex = 18;
-            this.label1.Text = ");";
+            this.label1.Text = "😓";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // dumpButton
@@ -254,7 +254,7 @@ namespace UltimateBlueScreenSimulator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.ForestGreen;
+            this.BackColor = System.Drawing.Color.DarkGreen;
             this.ClientSize = new System.Drawing.Size(1281, 783);
             this.Controls.Add(this.technicalinfoLabel);
             this.Controls.Add(this.label2);

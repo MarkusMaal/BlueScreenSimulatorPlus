@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using SimulatorDatabase;
 
@@ -13,8 +9,8 @@ namespace UltimateBlueScreenSimulator
     public partial class DictEdit : Form
     {
         internal BlueScreen me;
-        string key;
-        bool initialization = false;
+        private string key;
+        private bool initialization = false;
         public DictEdit()
         {
             InitializeComponent();
@@ -26,7 +22,7 @@ namespace UltimateBlueScreenSimulator
             Reload();
         }
 
-        void Reload()
+        private void Reload()
         {
             listView1.Items.Clear();
             switch (comboBox1.SelectedItem.ToString())
@@ -205,6 +201,15 @@ namespace UltimateBlueScreenSimulator
         private void TextBox2_VisibleChanged(object sender, EventArgs e)
         {
             label3.Visible = ((textBox2.Text == "os") && textBox2.Visible && (comboBox1.SelectedItem.ToString() == "strings"));
+        }
+
+        private void DictEdit_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F2)
+            {
+                MessageBox.Show("Screenshot saved as " + Program.dr.Screenshot(this), "Screenshot taken!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Cursor.Show();
+            }
         }
     }
 }

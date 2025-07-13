@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading;
 using System.Windows.Forms;
 using SimulatorDatabase;
-using System.Text.Json.Serialization;
-using System.Text.Json;
-using static System.Windows.Forms.Design.AxImporter;
 
 namespace UltimateBlueScreenSimulator
 {
@@ -43,7 +43,8 @@ namespace UltimateBlueScreenSimulator
                 "Windows 8 Beta",
                 "Windows 8/8.1",
                 "Windows 10",
-                "Windows 11"};
+                "Windows 11",
+                "Windows 11 Beta"};
 
             Reset();
         }
@@ -53,7 +54,7 @@ namespace UltimateBlueScreenSimulator
         /// </summary>
         public IDictionary<string, string> filters = new Dictionary<string, string>()
         {
-            { "Bluescreen simulator 3.0 configuration files", "*.json" },
+            { "Bluescreen simulator 3.x configuration files", "*.json" },
             { "Bluescreen simulator 2.1 configuration files", "*.bs2cfg;*.bs2" },
             { "Bluescreen simulator 2.0 configuration files", "*.bs2cfg;*.bs2" },
             { "Bluescreen simulator 1.x configuration files", "*.bscfg;*.bsc" },
@@ -120,9 +121,9 @@ namespace UltimateBlueScreenSimulator
         {
             return bluescreens.Last();
         }
-        
+
         /// <summary>
-        /// Allows you to get bluescreen templates as an array
+        /// Allows you to get bugcheck templates as an array
         /// </summary>
         public BlueScreen[] GetAll()
         {
@@ -130,17 +131,24 @@ namespace UltimateBlueScreenSimulator
         }
 
         /// <summary>
-        /// Gets bluescreen template at the specified index
+        /// Gets bugcheck template at the specified index
         /// </summary>
         /// <param name="idx">The index on the list</param>
-        /// <returns>Blue screen template</returns>
+        /// <returns>Crash screen template</returns>
         public BlueScreen GetAt(int idx)
         {
-            return bluescreens[idx];
+            try
+            {
+                return bluescreens[idx];
+            } catch
+            {
+                Program.gs.Log("Error", $"Tried to get template at index {idx}, which didn't exist");
+                return null;
+            }
         }
 
         /// <summary>
-        /// Allows you to edit a bluescreen template at the specified index
+        /// Allows you to edit a bugcheck template at the specified index
         /// </summary>
         /// <param name="idx">The index</param>
         /// <param name="edited">Edited template</param>
@@ -224,27 +232,28 @@ namespace UltimateBlueScreenSimulator
         /// </summary>
         /// <param name="filename">Full file path</param>
         /// <param name="filterIndex">File format filterIndex</param>
-        public void SaveData(string filename, int filterIndex)
+        /// <param name="ignoreErrors">For internal use only: avoid displaying dialog boxes when warnings or errors occur</param>
+        public void SaveData(string filename, int filterIndex, bool ignoreErrors = false)
         {
             string filedata;
             filterIndex--;
-            if (CheckFormat(filterIndex, "3.0"))
+            if (CheckFormat(filterIndex, "3.x"))
             {
                 try
                 {
-                    var options = new JsonSerializerOptions { WriteIndented = true };
+                    JsonSerializerOptions options = new JsonSerializerOptions { WriteIndented = true };
                     filedata = JsonSerializer.Serialize(Program.templates, options);
                     File.WriteAllText(filename, filedata);
                     saveFinished = true;
                     return;
                 }
-                catch (DllNotFoundException)
+                catch (DllNotFoundException) when (!Debugger.IsAttached)
                 {
                     Program.DllError();
                     saveFinished = true;
                     return;
                 }
-                catch (IOException)
+                catch (IOException) when (!Debugger.IsAttached)
                 {
                     Program.DllError();
                     return;
@@ -252,12 +261,20 @@ namespace UltimateBlueScreenSimulator
             }
             else if (CheckFormat(filterIndex, "2.1"))
             {
-                MessageBox.Show("Warning: Custom NT error codes and culprit files will not be saved with this format.", "Legacy format selected", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                if (!ignoreErrors)
+                {
+                    MessageBox.Show("Warning: Custom NT error codes and culprit files will not be saved with this format.", "Legacy format selected", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+
                 filedata = "*** Blue screen simulator plus 2.1 ***";
             }
             else if (CheckFormat(filterIndex, "2.0"))
             {
-                MessageBox.Show("Warning: Custom NT error codes, culprit files and progress tuner data will not be saved and there won't be Windows Vista/7 separation with this format.", "Legacy format selected", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                if (!ignoreErrors)
+                {
+                    MessageBox.Show("Warning: Custom NT error codes, culprit files and progress tuner data will not be saved and there won't be Windows Vista/7 separation with this format.", "Legacy format selected", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+
                 filedata = "*** Blue screen simulator plus 2.0 ***";
             }
             else
@@ -266,11 +283,17 @@ namespace UltimateBlueScreenSimulator
                 if (filedata != " * ERROR * ")
                 {
                     File.WriteAllText(filename, filedata, System.Text.Encoding.Unicode);
-                    MessageBox.Show("Blue screen configuration saved successfully", "Blue screen simulator 1.x configuration file creator", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (!ignoreErrors)
+                    {
+                        MessageBox.Show("Configuration saved successfully", "Blue screen simulator 1.x configuration file creator", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Blue screen configuration was not saved, because an error occoured.\n\nBefore attempting to save to 1.x format, make sure that the following operating systems exist in your configuration list:\n\nWindows 10 and/or 11\nWindows Vista or Windows 7\nWindows XP\nWindows CE\nWindows NT 3.x/4.0\nWindows 9x/Me\nWindows 3.1x", "Blue screen simulator 1.x configuration file creator", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    if (!ignoreErrors)
+                    {
+                        MessageBox.Show("Configuration was not saved, because an error occoured.\n\nBefore attempting to save to 1.x format, make sure that the following operating systems exist in your configuration list:\n\nWindows 10 and/or 11\nWindows Vista or Windows 7\nWindows XP\nWindows CE\nWindows NT 3.x/4.0\nWindows 9x/Me\nWindows 3.1x", "Blue screen simulator 1.x configuration file creator", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
                 saveFinished = true;
                 Thread.CurrentThread.Abort();
@@ -424,15 +447,15 @@ namespace UltimateBlueScreenSimulator
                 me = JsonSerializer.Deserialize<BlueScreen>(data);
                 return me;
             }
-            catch (DllNotFoundException)
+            catch (DllNotFoundException) when (!Debugger.IsAttached)
             {
                 Program.DllError();
             }
-            catch (IOException)
+            catch (IOException) when (!Debugger.IsAttached)
             {
                 Program.DllError();
             }
-            catch (Exception ex)
+            catch (Exception ex) when (!Debugger.IsAttached)
             {
                 MessageBox.Show($"Whoops, something went wrong while trying to load the embedded configuration! The application cannot continue.\r\n\r\nError details:\r\n{ex.Message}\r\n{ex.StackTrace}", "Blue screen simulator plus", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Application.Exit();
@@ -460,7 +483,6 @@ namespace UltimateBlueScreenSimulator
         {
             string filedata = File.ReadAllText(filename);
             string version = filedata.Split('\n')[0];
-            string databases = "";
             bool added_randomness = false;
             if (version.StartsWith("*** Blue screen simulator plus 1."))
             {
@@ -585,13 +607,13 @@ namespace UltimateBlueScreenSimulator
                     tempreg = JsonSerializer.Deserialize<TemplateRegistry>(filedata);
                     return tempreg;
                 }
-                catch (DllNotFoundException)
+                catch (DllNotFoundException) when (!Debugger.IsAttached)
                 {
                     Program.DllError();
                     saveFinished = true;
                     return this;
                 }
-                catch (IOException)
+                catch (IOException) when (!Debugger.IsAttached)
                 {
                     Program.DllError();
                     return this;
@@ -868,14 +890,14 @@ namespace UltimateBlueScreenSimulator
             if (!CheckExist("Windows 10", "Windows 11")) { return " * ERROR * "; }
             while (!bsdefined)
             {
-                foreach (BlueScreen bs in bluescreens) { if ((bs.GetString("os") == "Windows 11") || (bs.GetString("os") == "Windows 10")) { if (MessageBox.Show(string.Format("Would you like to use the following blue screen as the configuration base for modern blue screens and text data for Windows 10 blue screen:\n\n{0}", bs.GetString("friendlyname")), "Legacy save function", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes) { winmodern = bs; bsdefined = true; break; } } }
+                foreach (BlueScreen bs in bluescreens) { if ((bs.GetString("os") == "Windows 11") || (bs.GetString("os") == "Windows 10")) { if (MessageBox.Show(string.Format("Would you like to use the following crash screen as the configuration base for modern bugchecks and text data for Windows 10 blue screen:\n\n{0}", bs.GetString("friendlyname")), "Legacy save function", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes) { winmodern = bs; bsdefined = true; break; } } }
             }
 
             if (!CheckExist("Windows 8/8.1")) { return " * ERROR * "; }
             bsdefined = false;
             while (!bsdefined)
             {
-                foreach (BlueScreen bs in bluescreens) { if ((bs.GetString("os") == "Windows 11") || (bs.GetString("os") == "Windows 10") || (bs.GetString("os") == "Windows 8/8.1")) { if (MessageBox.Show(string.Format("Would you like to use the following blue screen's text data for Windows 8/8.1 blue screens:\n\n{0}", bs.GetString("friendlyname")), "Legacy save function", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes) { wineight = bs; bsdefined = true; break; } } }
+                foreach (BlueScreen bs in bluescreens) { if ((bs.GetString("os") == "Windows 11") || (bs.GetString("os") == "Windows 10") || (bs.GetString("os") == "Windows 8/8.1")) { if (MessageBox.Show(string.Format("Would you like to use the following crash screen's text data for Windows 8/8.1 bugchecks:\n\n{0}", bs.GetString("friendlyname")), "Legacy save function", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes) { wineight = bs; bsdefined = true; break; } } }
             }
 
 
@@ -883,7 +905,7 @@ namespace UltimateBlueScreenSimulator
             bsdefined = false;
             while (!bsdefined)
             {
-                foreach (BlueScreen bs in bluescreens) { if ((bs.GetString("os") == "Windows Vista") || (bs.GetString("os") == "Windows 7")) { if (MessageBox.Show(string.Format("Would you like to use the following blue screen as the configuration base for Windows Vista/7 blue screens:\n\n{0}", bs.GetString("friendlyname")), "Legacy save function", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes) { vista7 = bs; bsdefined = true; break; } } }
+                foreach (BlueScreen bs in bluescreens) { if ((bs.GetString("os") == "Windows Vista") || (bs.GetString("os") == "Windows 7")) { if (MessageBox.Show(string.Format("Would you like to use the following crash screen as the configuration base for Windows Vista/7 blue screens:\n\n{0}", bs.GetString("friendlyname")), "Legacy save function", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes) { vista7 = bs; bsdefined = true; break; } } }
             }
             if (!CheckExist("Windows XP")) { return " * ERROR * "; }
             bsdefined = false;
@@ -893,7 +915,7 @@ namespace UltimateBlueScreenSimulator
                 {
                     if ((bs.GetString("os") == "Windows XP"))
                     {
-                        if (MessageBox.Show(string.Format("Would you like to use the following blue screen as the configuration base for Windows XP blue screen:\n\n{0}", bs.GetString("friendlyname")), "Legacy save function", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        if (MessageBox.Show(string.Format("Would you like to use the following crash screen as the configuration base for Windows XP blue screen:\n\n{0}", bs.GetString("friendlyname")), "Legacy save function", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                         {
                             xp = bs; bsdefined = true; break;
                         }
@@ -908,7 +930,7 @@ namespace UltimateBlueScreenSimulator
                 {
                     if ((bs.GetString("os") == "Windows 2000"))
                     {
-                        if (MessageBox.Show(string.Format("Would you like to use the following blue screen as the configuration base for Windows 2000 blue screen:\n\n{0}", bs.GetString("friendlyname")), "Legacy save function", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        if (MessageBox.Show(string.Format("Would you like to use the following crash screen as the configuration base for Windows 2000 blue screen:\n\n{0}", bs.GetString("friendlyname")), "Legacy save function", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                         {
                             win2k = bs; bsdefined = true; break;
                         }
@@ -923,7 +945,7 @@ namespace UltimateBlueScreenSimulator
                 {
                     if ((bs.GetString("os") == "Windows NT 3.x/4.0"))
                     {
-                        if (MessageBox.Show(string.Format("Would you like to use the following blue screen as the configuration base for Windows NT 3.x/4.0 blue screen:\n\n{0}", bs.GetString("friendlyname")), "Legacy save function", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        if (MessageBox.Show(string.Format("Would you like to use the following crash screen as the configuration base for Windows NT 3.x/4.0 blue screen:\n\n{0}", bs.GetString("friendlyname")), "Legacy save function", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                         {
                             winnt = bs; bsdefined = true; break;
                         }
@@ -938,7 +960,7 @@ namespace UltimateBlueScreenSimulator
                 {
                     if ((bs.GetString("os") == "Windows 9x/Me"))
                     {
-                        if (MessageBox.Show(string.Format("Would you like to use the following blue screen as the configuration base for Windows 9x/Me blue screens:\n\n{0}", bs.GetString("friendlyname")), "Legacy save function", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        if (MessageBox.Show(string.Format("Would you like to use the following crash screen as the configuration base for Windows 9x/Me blue screens:\n\n{0}", bs.GetString("friendlyname")), "Legacy save function", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                         {
                             ninexme = bs; bsdefined = true; break;
                         }
@@ -953,7 +975,7 @@ namespace UltimateBlueScreenSimulator
                 {
                     if ((bs.GetString("os") == "Windows CE"))
                     {
-                        if (MessageBox.Show(string.Format("Would you like to use the following blue screen as the configuration base for Windows CE blue screens:\n\n{0}", bs.GetString("friendlyname")), "Legacy save function", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        if (MessageBox.Show(string.Format("Would you like to use the following crash screen as the configuration base for Windows CE blue screens:\n\n{0}", bs.GetString("friendlyname")), "Legacy save function", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                         {
                             ce = bs; bsdefined = true; break;
                         }
@@ -968,7 +990,7 @@ namespace UltimateBlueScreenSimulator
                 {
                     if ((bs.GetString("os") == "Windows 3.1x"))
                     {
-                        if (MessageBox.Show(string.Format("Would you like to use the following blue screen as the configuration base for Windows 3.1x CTRL+ALT+DELETE screen:\n\n{0}", bs.GetString("friendlyname")), "Legacy save function", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        if (MessageBox.Show(string.Format("Would you like to use the following crash screen as the configuration base for Windows 3.1x CTRL+ALT+DELETE screen:\n\n{0}", bs.GetString("friendlyname")), "Legacy save function", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                         {
                             threeone = bs; bsdefined = true; break;
                         }
@@ -1121,7 +1143,7 @@ namespace UltimateBlueScreenSimulator
         /// Gets and sets all of the configuration templates. You should only use this when saving/loading configurations.
         /// </summary>
         public BlueScreen[] BlueScreens {
-            get { return this.bluescreens.ToArray(); }
+            get { return bluescreens.ToArray(); }
             set { bluescreens = value.ToList(); }
         }
     }

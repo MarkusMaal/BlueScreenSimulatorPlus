@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
-using MaterialSkin;
-using MaterialSkin.Controls;
+using MaterialSkin2Framework;
+using MaterialSkin2Framework.Controls;
 using UltimateBlueScreenSimulator.Forms.Interfaces;
 
 namespace UltimateBlueScreenSimulator
@@ -11,7 +11,7 @@ namespace UltimateBlueScreenSimulator
         public ChooseFile()
         {
             InitializeComponent();
-            MaterialSkinManager materialSkinManager = Program.f1.materialSkinManager;
+            MaterialSkinManager materialSkinManager = Program.F1.materialSkinManager;
             materialSkinManager.AddFormToManage(this);
         }
 
@@ -40,13 +40,13 @@ namespace UltimateBlueScreenSimulator
             Close();
         }
 
-        private void okButton_Click(object sender, EventArgs e)
+        private void OkButton_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.OK;
             Close();
         }
 
-        private void fileBrowser_SelectedIndexChanged(object sender, EventArgs e)
+        private void FileBrowser_SelectedIndexChanged(object sender, EventArgs e)
         {
             okButton.Enabled = fileBrowser.SelectedItems.Count > 0;
         }
@@ -68,7 +68,7 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void customizeFilesButton_Click(object sender, EventArgs e)
+        private void CustomizeFilesButton_Click(object sender, EventArgs e)
         {
             MessageTableEditor mte = new MessageTableEditor
             {
@@ -83,6 +83,15 @@ namespace UltimateBlueScreenSimulator
             this.Size = mte.Size;
             Repopulate();
             Show();
+        }
+
+        private void ChooseFile_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F2)
+            {
+                MessageBox.Show("Screenshot saved as " + Program.dr.Screenshot(this), "Screenshot taken!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Cursor.Show();
+            }
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿
-using MaterialSkin.Controls;
+using MaterialSkin2Framework.Controls;
 
 namespace UltimateBlueScreenSimulator
 {
@@ -32,7 +32,7 @@ namespace UltimateBlueScreenSimulator
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TextView));
-            this.textBox1 = new MaterialSkin.Controls.MaterialMultiLineTextBox();
+            this.textBox1 = new MaterialSkin2Framework.Controls.MaterialMultiLineTextBox();
             this.SuspendLayout();
             // 
             // textBox1
@@ -46,30 +46,32 @@ namespace UltimateBlueScreenSimulator
             this.textBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.textBox1.Location = new System.Drawing.Point(3, 24);
             this.textBox1.Margin = new System.Windows.Forms.Padding(6);
-            this.textBox1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.textBox1.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(501, 359);
+            this.textBox1.Size = new System.Drawing.Size(453, 414);
             this.textBox1.TabIndex = 0;
             this.textBox1.Text = "The quick brown fox jumps over the lazy dog.";
             this.textBox1.WordWrap = false;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.textBox1.TextChanged += new System.EventHandler(this.TextBox1_TextChanged);
             // 
             // TextView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(507, 386);
+            this.ClientSize = new System.Drawing.Size(459, 441);
             this.Controls.Add(this.textBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.FormStyle = MaterialSkin.Controls.MaterialForm.FormStyles.ActionBar_None;
+            this.FormStyle = MaterialSkin2Framework.Controls.MaterialForm.FormStyles.ActionBar_None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "TextView";
             this.Padding = new System.Windows.Forms.Padding(3, 24, 3, 3);
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Sample Title";
             this.Load += new System.EventHandler(this.TextView_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextView_KeyDown);
             this.ResumeLayout(false);
 
         }

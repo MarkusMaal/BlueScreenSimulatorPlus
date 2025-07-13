@@ -2,11 +2,10 @@
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Management;
-using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
-using SimulatorDatabase;
 
 namespace UltimateBlueScreenSimulator
 {
@@ -26,16 +25,16 @@ namespace UltimateBlueScreenSimulator
             switch (e.KeyCode)
             {
                 case Keys.Escape:
-                    this.DialogResult = DialogResult.Abort;
-                    this.Close();
+                    DialogResult = DialogResult.Abort;
+                    Close();
                     break;
                 case Keys.Enter:
-                    this.DialogResult = DialogResult.Ignore;
-                    this.Close();
+                    DialogResult = DialogResult.Ignore;
+                    Close();
                     break;
                 case Keys.Space:
-                    this.DialogResult = DialogResult.Retry;
-                    this.Close();
+                    DialogResult = DialogResult.Retry;
+                    Close();
                     break;
             }
             Program.gs.Log("Fatal", technicalinfoLabel.Text);
@@ -51,21 +50,21 @@ namespace UltimateBlueScreenSimulator
                 {
                     stack_trace = "There is no stack trace available for this error.";
                 }
-                technicalinfoLabel.Text = type + " Exception\n\n" + message + "\n\n" + stack_trace;
+                technicalinfoLabel.Text = type + " Exception\n\n" + message + "\n\n" + stack_trace + "\n\nThe app can be run in Debug mode for additional troubleshooting.";
             }
             switch (type)
             {
                 case "GreenScreen":
-                    this.BackColor = Color.ForestGreen;
-                    this.ForeColor = Color.White;
+                    BackColor = Color.ForestGreen;
+                    ForeColor = Color.White;
                     break;
                 case "OrangeScreen":
-                    this.BackColor = Color.DarkOrange;
-                    this.ForeColor = Color.White;
+                    BackColor = Color.DarkOrange;
+                    ForeColor = Color.White;
                     break;
                 case "VioletScreen":
-                    this.BackColor = Color.BlueViolet;
-                    this.ForeColor = Color.White;
+                    BackColor = Color.BlueViolet;
+                    ForeColor = Color.White;
                     retryButton.Visible = true;
                     abortButton.Visible = true;
                     break;
@@ -74,20 +73,20 @@ namespace UltimateBlueScreenSimulator
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.Ignore;
-            this.Close();
+            DialogResult = DialogResult.Ignore;
+            Close();
         }
 
         private void Button2_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.Retry;
-            this.Close();
+            DialogResult = DialogResult.Retry;
+            Close();
         }
 
         private void Button3_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.Abort;
-            this.Close();
+            DialogResult = DialogResult.Abort;
+            Close();
         }
 
         private void Metaerror_KeyDown(object sender, KeyEventArgs e)
@@ -96,13 +95,18 @@ namespace UltimateBlueScreenSimulator
             {
                 Close();
             }
+            if (e.KeyCode == Keys.F2)
+            {
+                MessageBox.Show("Screenshot saved as " + Program.dr.Screenshot(this), "Screenshot taken!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Cursor.Show();
+            }
         }
 
         public static string GetOSFriendlyName()
         {
             string result = string.Empty;
             ManagementObjectSearcher searcher = new ManagementObjectSearcher("SELECT Caption FROM Win32_OperatingSystem");
-            foreach (ManagementObject os in searcher.Get())
+            foreach (ManagementObject os in searcher.Get().Cast<ManagementObject>())
             {
                 result = os["Caption"].ToString();
                 break;
@@ -114,12 +118,14 @@ namespace UltimateBlueScreenSimulator
         {
             try
             {
-                SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-                saveFileDialog1.Filter = "Log files|*.log";
+                SaveFileDialog saveFileDialog1 = new SaveFileDialog
+                {
+                    Filter = "Log files|*.log"
+                };
 
                 if (saveFileDialog1.ShowDialog() == DialogResult.OK)
                 {
-                    string preLine = "Blue Screen Simulator Plus version " + Assembly.GetExecutingAssembly().GetName().Version.ToString().Replace(".", "").Substring(0, 1) + "." + Assembly.GetExecutingAssembly().GetName().Version.ToString().Replace(".", "").Substring(1) + " [TRACE LOG]\n";
+                    string preLine = "Blue Screen Simulator Plus version " + UIActions.Version + " [TRACE LOG]\n";
                     preLine += "Operating System: " + GetOSFriendlyName() + "\n";
                     File.WriteAllText(saveFileDialog1.FileName, preLine + Program.gs.GetLog(false), Encoding.Unicode);
                     MessageBox.Show("Trace log dumped successfully!", "Blue Screen Simulator Plus", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -128,7 +134,7 @@ namespace UltimateBlueScreenSimulator
             {
                 try
                 {
-                    string preLine = "Blue Screen Simulator Plus version " + Assembly.GetExecutingAssembly().GetName().Version.ToString().Replace(".", "").Substring(0, 1) + "." + Assembly.GetExecutingAssembly().GetName().Version.ToString().Replace(".", "").Substring(1) + " [TRACE LOG]\n";
+                    string preLine = "Blue Screen Simulator Plus version " + UIActions.Version + " [TRACE LOG]\n";
                     preLine += "Operating System: " + GetOSFriendlyName() + "\n";
                     File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.Desktop)  + "\\bssp_dump.log", preLine + Program.gs.GetLog(false), Encoding.Unicode);
                     MessageBox.Show("Trace log dumped successfully! Due to the fact this error was triggered from a secondary thread, we were unable to ask where to save the log file, so we saved it to the desktop as bssp_dump.log.", "Blue Screen Simulator Plus", MessageBoxButtons.OK, MessageBoxIcon.Information);

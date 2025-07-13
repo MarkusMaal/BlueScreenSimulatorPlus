@@ -1,17 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace UltimateBlueScreenSimulator
 {
     public partial class ClickIt : Form
     {
-        int num;
+        private int num;
         public ClickIt()
         {
             InitializeComponent();
@@ -124,12 +118,12 @@ namespace UltimateBlueScreenSimulator
             }
             if (listBox1.Items.Count > 2)
             {
-                this.Close();
+                Close();
             }
             listBox1.SelectedIndex = 0;
-            Int32.TryParse(listBox1.SelectedItem.ToString(), out num);
+            int.TryParse(listBox1.SelectedItem.ToString(), out num);
             listBox1.SelectedIndex = 1;
-            Int32.TryParse(listBox1.SelectedItem.ToString(), out int g);
+            int.TryParse(listBox1.SelectedItem.ToString(), out int g);
             click1.Visible = false;
             click2.Visible = false;
             click3.Visible = false;
@@ -178,7 +172,7 @@ namespace UltimateBlueScreenSimulator
             label2.Text = num.ToString();
             listBox1.Items.Clear();
         }
-        void Ccode()
+        private void Ccode()
         {
             int vb = 0;
             if (click1.Visible == true) { vb = 1; }
@@ -221,7 +215,16 @@ namespace UltimateBlueScreenSimulator
         {
             ClickIt2 ci2 = new ClickIt2();
             ci2.Show();
-            this.Close();
+            Close();
+        }
+
+        private void ClickIt_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F2)
+            {
+                MessageBox.Show("Screenshot saved as " + Program.dr.Screenshot(this), "Screenshot taken!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Cursor.Show();
+            }
         }
     }
 }

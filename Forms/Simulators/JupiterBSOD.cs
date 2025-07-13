@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using SimulatorDatabase;
 
@@ -15,7 +10,9 @@ namespace UltimateBlueScreenSimulator
     {
         internal BlueScreen me;
         private IDictionary<string, string> texts;
-        int time = 0;
+        private int time = 0;
+        private int moves = 0;
+        private Point initialCursorPosition;
         public JupiterBSOD()
         {
             if (Program.verificate)
@@ -47,16 +44,19 @@ namespace UltimateBlueScreenSimulator
         {
             try
             {
-                this.WindowState = FormWindowState.Normal;
-                this.FormBorderStyle = FormBorderStyle.Sizable;
-                this.Text = me.GetString("friendlyname");
-                if (!Program.gs.ShowCursor && !me.GetBool("windowed"))
+                if (this.Opacity != 0.0)
                 {
-                    Cursor.Hide();
+                    this.WindowState = FormWindowState.Normal;
+                    this.FormBorderStyle = FormBorderStyle.Sizable;
+                    this.Text = me.GetString("friendlyname");
+                    if (!Program.gs.ShowCursor && !me.GetBool("windowed"))
+                    {
+                        Cursor.Hide();
+                    }
+                    this.Width = 1024;
+                    this.Height = 768;
+                    this.StartPosition = FormStartPosition.CenterScreen;
                 }
-                this.Width = 1024;
-                this.Height = 768;
-                this.StartPosition = FormStartPosition.CenterScreen;
                 Watermark.Visible = me.GetBool("watermark");
                 texts = me.GetTexts();
                 time = me.GetInt("timer");
@@ -86,6 +86,11 @@ namespace UltimateBlueScreenSimulator
                     ProgressLabel.Visible = false;
                     time = 0;
                 }
+                if (this.Opacity == 0.0)
+                {
+                    return;
+                }
+
                 this.Icon = me.GetIcon();
                 if (!me.GetBool("windowed"))
                 {
@@ -99,6 +104,7 @@ namespace UltimateBlueScreenSimulator
                     Program.dr.DrawRainbow(this);
                 }
                 Program.loadfinished = true;
+                initialCursorPosition = Cursor.Position;
             } catch (Exception ex)
             {
                 if (!Program.verificate)
@@ -108,7 +114,7 @@ namespace UltimateBlueScreenSimulator
                 else
                 {
                     me.Crash(ex, "YellowScreen");
-                    this.Close();
+                    Close();
                 }
             }
         }
@@ -122,20 +128,29 @@ namespace UltimateBlueScreenSimulator
             } else
             {
                 timecounter.Enabled = false;
-                if (me.GetBool("autoclose"))
+                if (!Program.isScreensaver && me.GetBool("autoclose"))
                 {
                     Close();
                 }
             }
         }
 
-        private void screenUpdater_Tick(object sender, EventArgs e)
+        private void ScreenUpdater_Tick(object sender, EventArgs e)
         {
+            if (this.Opacity == 0.0)
+            {
+                return;
+            }
+
             if (!me.GetBool("windowed"))
             {
                 Program.dr.DrawAll();
-                this.BringToFront();
-                this.Activate();
+                BringToFront();
+                Activate();
+            }
+            if (Program.isScreensaver && Program.gs.MouseMoveExit && (Cursor.Position.X != initialCursorPosition.X) && (Cursor.Position.Y != initialCursorPosition.Y))
+            {
+                Close();
             }
         }
 
@@ -169,14 +184,23 @@ namespace UltimateBlueScreenSimulator
         // for prank mode purposes
         private void JupiterBSOD_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (Program.gs.PM_CloseMainUI)
-            {
-                Application.Exit();
-            }
             if (Program.gs.PM_ShowMessage)
             {
                 MessageBox.Show(Program.gs.PM_MsgText, Program.gs.PM_MsgTitle, Program.gs.PM_MsgType, Program.gs.PM_MsgIcon);
                 Program.gs.PM_ShowMessage = false;
+            }
+            if (Program.gs.PM_CloseMainUI)
+            {
+                Application.Exit();
+            }
+        }
+
+        private void JupiterBSOD_MouseMove(object sender, MouseEventArgs e)
+        {
+            moves++;
+            if (moves > 50 && Program.isScreensaver && Program.gs.MouseMoveExit)
+            {
+                Close();
             }
         }
     }

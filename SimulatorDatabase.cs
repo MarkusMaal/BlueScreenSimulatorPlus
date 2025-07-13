@@ -11,6 +11,7 @@ using System.Linq;
 using System.Drawing.Drawing2D;
 using System.Diagnostics;
 using System.IO;
+using UltimateBlueScreenSimulator.Forms.Simulators;
 
 //
 // This namespace contains classes that are shared between forms that specify
@@ -19,6 +20,15 @@ using System.IO;
 //
 namespace SimulatorDatabase
 {
+
+    public enum Icons
+    {
+        Flag2D,
+        Flag3D,
+        Window3D,
+        Window2D
+    }
+
 
     public class DrawRoutines
     {
@@ -55,7 +65,7 @@ namespace SimulatorDatabase
             // for upscaling and multidisplay support
             if (ws.primary || Program.gs.DisplayMode == "mirror")
             {
-                var frm = Program.verificate ? Form.ActiveForm : null;
+                Form frm = Program.verificate ? Form.ActiveForm : null;
                 if (frm is null)
                 {
                     return;
@@ -78,7 +88,7 @@ namespace SimulatorDatabase
                     {
                         using (Graphics b = Graphics.FromImage(bmp))
                         {
-                            b.DrawString("blue screen simulator plus", new Font("Segoe UI", ws.Width / 100, FontStyle.Regular), new SolidBrush(Color.FromArgb(128, Color.Blue)), new Point(2,0));
+                            b.DrawString("blue screen simulator plus", new Font("Segoe UI", ws.Width / 100, FontStyle.Regular), new SolidBrush(Color.FromArgb(128, Color.Blue)), new Point(2, 0));
                         }
                     }
                     Bitmap newImage = new Bitmap(ws.Width, ws.Height);
@@ -90,16 +100,51 @@ namespace SimulatorDatabase
                     }
                     // dispose old images from memory to avoid memory leaks and potentially
                     // actual crashes
-                    if (ws.screenDisplay.Image != null)
-                    {
-                        ws.screenDisplay.Image.Dispose();
-                    }
+                    ws.screenDisplay.Image?.Dispose();
                     ws.screenDisplay.Image = newImage;
                     bmp.Dispose();
                 }
             }
         }
 
+        /// <summary>
+        /// Called when displaying a preview of a bugcheck
+        /// </summary>
+        /// <param name="ws">WindowScreen form</param>
+        public void DrawSpecial(WindowScreen ws, Form special)
+        {
+            // for upscaling and multidisplay support
+            Form frm = special;
+            using (Bitmap bmp = new Bitmap(frm.Width, frm.Height))
+            {
+                frm.DrawToBitmap(bmp, new Rectangle(0, 0, bmp.Width, bmp.Height));
+                if (ForceWatermark)
+                {
+                    using (Graphics b = Graphics.FromImage(bmp))
+                    {
+                        b.DrawString("blue screen simulator plus", new Font("Segoe UI", ws.Width / 100, FontStyle.Regular), new SolidBrush(Color.FromArgb(128, Color.Blue)), new Point(2, 0));
+                    }
+                }
+                Bitmap newImage = new Bitmap(ws.Width, ws.Height);
+                using (Graphics g = Graphics.FromImage(newImage))
+                {
+                    g.InterpolationMode = Program.gs.GetInterpolationMode();
+                    g.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
+                    g.DrawImage(bmp, new Rectangle(0, 0, ws.Width, ws.Height));
+                }
+                // dispose old images from memory to avoid memory leaks and potentially
+                // actual crashes
+                ws.screenDisplay.Image?.Dispose();
+                ws.screenDisplay.Image = newImage;
+                bmp.Dispose();
+            }
+        }
+
+        /// <summary>
+        /// Takes a screenshot of a form
+        /// </summary>
+        /// <param name="meself">The form you want to screenshot</param>
+        /// <returns>Filename of the saved screenshot</returns>
         public string Screenshot(Form meself)
         {
             meself.FormBorderStyle = FormBorderStyle.None;
@@ -132,6 +177,16 @@ namespace SimulatorDatabase
         /// </summary>
         public void Dispose()
         {
+            if ((UIActions.specialwindow != null) && (UIActions.specialwindow.Opacity == 0.0))
+            {
+                return;
+            }
+
+            if (Program.halt)
+            {
+                return;
+            }
+
             foreach (WindowScreen ws in wss)
             {
                 ws.Close();
@@ -157,7 +212,7 @@ namespace SimulatorDatabase
                 {
                     Program.dr.Draw(ws);
                 }
-                catch
+                catch when (!Debugger.IsAttached)
                 {
                     ws.Close();
                 }
@@ -171,9 +226,11 @@ namespace SimulatorDatabase
         public void DrawRainbow(Form form)
         {
             LinearGradientBrush br = new LinearGradientBrush(form.ClientRectangle, Color.Black, Color.Black, 0, false);
-            ColorBlend cb = new ColorBlend();
-            cb.Positions = new[] { 0, 1 / 7f, 2 / 7f, 3 / 7f, 4 / 7f, 5 / 7f, 6 / 7f, 1 };
-            cb.Colors = new[] { Color.Violet, Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.Blue, Color.Indigo, Color.Violet };
+            ColorBlend cb = new ColorBlend
+            {
+                Positions = new[] { 0, 1 / 7f, 2 / 7f, 3 / 7f, 4 / 7f, 5 / 7f, 6 / 7f, 1 },
+                Colors = new[] { Color.Violet, Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.Blue, Color.Indigo, Color.Violet }
+            };
             br.InterpolationColors = cb;
             // rotate
             br.RotateTransform(45);
@@ -186,6 +243,24 @@ namespace SimulatorDatabase
                 g.FillRectangle(br, form.ClientRectangle);
             }
             form.BackgroundImage = bmp;
+        }
+
+        public void InitSpecial(Form frm)
+        {
+            if (frm is null)
+            {
+                throw new ArgumentNullException(nameof(frm));
+            }
+
+            WindowScreen ws = new WindowScreen();
+            if (Program.gs.DisplayMode != "none")
+            {
+                ws.StartPosition = FormStartPosition.CenterScreen;
+                ws.Width = 640;
+                ws.Height = 480;
+                ws.primary = false;
+            }
+            wss.Add(ws);
         }
 
         /// <summary>
@@ -279,7 +354,7 @@ namespace SimulatorDatabase
         }
     }
 
-    struct USBDeviceInfo
+    internal struct USBDeviceInfo
     {
         public USBDeviceInfo(string deviceID, string pnpDeviceID, string description)
         {
@@ -296,10 +371,12 @@ namespace SimulatorDatabase
             List<USBDeviceInfo> devices = new List<USBDeviceInfo>();
 
             ManagementObjectCollection collection;
-            using (var searcher = new ManagementObjectSearcher(@"Select * From Win32_USBHub"))
+            using (ManagementObjectSearcher searcher = new ManagementObjectSearcher(@"Select * From Win32_USBHub"))
+            {
                 collection = searcher.Get();
+            }
 
-            foreach (var device in collection)
+            foreach (ManagementBaseObject device in collection)
             {
                 devices.Add(new USBDeviceInfo(
                 (string)device.GetPropertyValue("DeviceID"),
@@ -418,7 +495,10 @@ namespace SimulatorDatabase
         public IDictionary<int, int> progression { get; set; }
 
         [JsonIgnore]
-        private readonly Random r;
+        private bool special = false;
+
+        [JsonIgnore]
+        public static Random r = new Random();
 
         // constructor
         ///<summary>
@@ -430,7 +510,7 @@ namespace SimulatorDatabase
             {
                 r = new Random();
             }
-            this.r = r;
+            BlueScreen.r = r;
             this.background = Color.FromArgb(0, 0, 0);
             this.foreground = Color.FromArgb(255, 255, 255);
             this.os = base_os;
@@ -453,7 +533,7 @@ namespace SimulatorDatabase
         [JsonConstructor]
         public BlueScreen()
         {
-            this.r = new Random();
+            r = new Random();
             this.background = new Color();
             this.foreground = new Color();
             this.highlight_bg = new Color();
@@ -919,13 +999,17 @@ namespace SimulatorDatabase
         ///<param name="inspir">A string where each character represents if the value is fixed or random (e.g. 63RR25E0, which might return as 631725E0)</param>
         public string GenHex(int lettercount, string inspir)
         {
+            if (inspir.Length < 8)
+            {
+                inspir = "RRRRRRRR";
+            }
             //sleep command is used to make sure that randomization works properly
             //System.Threading.Thread.Sleep(20);
             Log("Info", $"Generating {lettercount} character hex code with template {inspir}");
             string output = "";
             for (int i = 0; i < lettercount; i++)
             {
-                int temp = r.Next(15);
+                int temp = BlueScreen.r.Next(15);
                 char lette = ' ';
                 try
                 {
@@ -944,7 +1028,7 @@ namespace SimulatorDatabase
                         lette = Convert.ToChar((inspir + inspir).Substring(i, 1));
                     }
                 }
-                catch
+                catch when (!Debugger.IsAttached)
                 {
                     Program.gs.Log("Error", $"Failed to generate hex character at position {i} with template \"{inspir + inspir}\". Current configuration may be corrupt, please reset settings!", GetString("friendlyname"));
                     lette = '0';
@@ -1061,16 +1145,16 @@ namespace SimulatorDatabase
             Log("Info", $"Attempting to rename file with index {idx} to {renamed}");
             bool isRenamed = false;
             string[] codes;
-            foreach (KeyValuePair<string, string[]> kvp in this.GetFiles())
+            foreach (KeyValuePair<string, string[]> kvp in from KeyValuePair<string, string[]> kvp in GetFiles()
+                                where GetFile(idx).Key == kvp.Key
+                                select kvp)
             {
-                if (GetFile(idx).Key == kvp.Key)
-                {
-                    codes = kvp.Value;
-                    this.codefiles[idx] = new KeyValuePair<string, string[]>(renamed, codes);
-                    isRenamed = true;
-                    break;
-                }
+                codes = kvp.Value;
+                codefiles[idx] = new KeyValuePair<string, string[]>(renamed, codes);
+                isRenamed = true;
+                break;
             }
+
             if (!isRenamed)
             {
                 Log("Error", $"Couldn't rename {idx}!!! Reason: File does not exist in List!");
@@ -1106,13 +1190,13 @@ namespace SimulatorDatabase
         {
             Log("Info", $"Modifying file at index {idx}");
             bool isModified = false;
-            foreach (KeyValuePair<string, string[]> kvp in this.GetFiles())
+            foreach (KeyValuePair<string, string[]> kvp in GetFiles())
             {
                 if ((GetFile(idx).Key == kvp.Key) && Program.verificate)
                 {
                     string[] codearray = kvp.Value;
                     codearray[subcode] = code;
-                    this.codefiles[idx] = new KeyValuePair<string, string[]>(GetFile(idx).Key, codearray);
+                    codefiles[idx] = new KeyValuePair<string, string[]>(GetFile(idx).Key, codearray);
                     isModified = true;
                     break;
                 }
@@ -1146,7 +1230,7 @@ namespace SimulatorDatabase
             }
             if (filenames.Count > 0)
             {
-                int temp = this.r.Next(filenames.Count - 1);
+                int temp = BlueScreen.r.Next(filenames.Count - 1);
                 // dupes are fine :)
                 /*while (this.GetFiles().ContainsKey(filenames[temp]))
                 {
@@ -1166,10 +1250,21 @@ namespace SimulatorDatabase
             }
         }
 
+        /// <summary>
+        /// Get a preview frame from a simulation
+        /// </summary>
+        /// <param name="previewImg">PictureBox control to display the preview on</param>
+        public void ShowSpecial(PictureBox previewImg)
+        {
+            Log("Info", "Creating special window");
+            special = true;
+            Show(previewImg);
+        }
+
         ///<summary>
         ///Attempts to simulate a crash with this configuration
         ///</summary>
-        public void Show()
+        public void Show(PictureBox previewImg = null)
         {
             Log("Info", "Simulation requested!");
             if (!Program.verificate) { return; }
@@ -1180,101 +1275,167 @@ namespace SimulatorDatabase
                     {
                         me = this
                     };
-                    bm.ShowDialog();
+                    if (special)
+                    {
+                        CreateSpecialWindow(bm, previewImg);
+                    } else
+                    {
+                        bm.ShowDialog();
+                    }
                     Thread.CurrentThread.Abort();
                     break;
+                case "Windows 11 Beta":
+                    SetSunValley(new SunValleyBSOD(), previewImg);
+                    break;
                 case "Windows 11":
-                    SetupWinXabove(new WXBS(), true);
+                    SetupWinXabove(new WXBS(), true, previewImg);
                     break;
                 case "Windows 10":
-                    SetupWinXabove(new WXBS());
+                    SetupWinXabove(new WXBS(), false, previewImg);
                     break;
                 case "Windows 8/8.1":
-                    SetupWin8(new WXBS());
+                    SetupWin8(new WXBS(), previewImg);
                     break;
                 case "Windows 8 Beta":
-                    SetupWin8Beta(new JupiterBSOD());
+                    SetupWin8Beta(new JupiterBSOD(), previewImg);
                     break;
                 case "Windows 7":
-                    SetupVista(new Vistabs());
+                    SetupVista(new Vistabs(), previewImg);
                     break;
                 case "Windows Vista":
-                    SetupVista(new Vistabs());
+                    SetupVista(new Vistabs(), previewImg);
                     break;
                 case "Windows XP":
-                    SetupExperience(new Xvsbs());
+                    SetupExperience(new Xvsbs(), previewImg);
                     break;
                 case "Windows 2000":
-                    Setup2k(new W2kbs());
+                    Setup2k(new W2kbs(), previewImg);
                     break;
                 case "Windows CE":
-                    SetupCE(new Cebsod());
+                    SetupCE(new Cebsod(), previewImg);
                     break;
                 case "Windows NT 3.x/4.0":
-                    SetupNT(new W2kbs());
+                    SetupNT(new W2kbs(), previewImg);
                     break;
                 case "Windows 9x/Me":
-                    Setup9x(new Old_bluescreen());
+                    Setup9x(new Old_bluescreen(), previewImg);
                     break;
                 case "Windows 3.1x":
-                    Setup9x(new Old_bluescreen());
+                    Setup9x(new Old_bluescreen(), previewImg);
                     break;
                 case "Windows 1.x/2.x":
-                    SetupWin(new Win());
+                    SetupWin(new Win(), previewImg);
                     break;
                 default:
                     Program.loadfinished = true;
                     Crash(new NotImplementedException(), "OrangeScreen");
                     break;
             }
+
+            
         }
 
         ///<summary>
         ///Prepares Windows 8 Beta bugcheck for simulation
         ///</summary>
         ///<param name="bs">Form for the simulator</param>
-        private void SetupWin8Beta(JupiterBSOD bs)
+        private void SetupWin8Beta(JupiterBSOD bs, PictureBox previewImg = null)
         {
             try
             {
                 Log("Info", "Setting up Windows 8 Beta simulator");
-                bs.BackColor = this.GetTheme(true);
-                bs.ForeColor = this.GetTheme(false);
-                bs.Font = this.GetFont();
+                bs.BackColor = GetTheme(true);
+                bs.ForeColor = GetTheme(false);
+                bs.Font = GetFont();
+                if (special)
+                {
+                    bs.WindowState = FormWindowState.Minimized;
+                }
             }
-            catch (Exception ex)
+            catch (Exception ex) when (!Debugger.IsAttached)
             {
                 Log("Error", $"Error setting up Windows 8 Beta simulator. Reason: {ex.Message}");
                 MessageBox.Show(ex.Message, "A non-critical error has occoured", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             bs.me = this;
-            bs.ShowDialog();
+            if (special) { CreateSpecialWindow(bs, previewImg); }
+            else { bs.ShowDialog(); }
             CheckMessageJustInCase();
+        }
+
+        /// <summary>
+        /// Generate a preview for a bugcheck configuration template
+        /// </summary>
+        /// <param name="bs">Crash screen form</param>
+        /// <param name="previewImg">PictureBox control to display the preview on</param>
+        private void CreateSpecialWindow(Form bs, PictureBox previewImg)
+        {
+            if (previewImg == null)
+            {
+                return;
+            }
+
+            bs.WindowState = FormWindowState.Normal;
+            bs.FormBorderStyle = FormBorderStyle.None;
+            bs.Opacity = 0.0;
+            bs.ShowInTaskbar = false;
+            if (bs.IsDisposed)
+            {
+                return;
+            }
+
+            bs.Show();
+            bs.Hide();
+            Program.dr.InitSpecial(bs);
+            UIActions.specialwindow = new WindowScreen()
+            {
+                WindowState = FormWindowState.Normal,
+                Opacity = 0.0
+            };
+            Program.dr.DrawSpecial(UIActions.specialwindow, bs);
+            new Thread(() => {
+                try
+                {
+                    previewImg.Visible = true;
+                } catch
+                {
+                    // ignored
+                }
+                previewImg.Image = UIActions.specialwindow.screenDisplay.Image;
+                Thread.Sleep(1000);
+                bs.BeginInvoke(new MethodInvoker(delegate {
+                    bs.Close();
+                    UIActions.specialwindow.Close();
+                    Cursor.Show();
+                }));
+            }).Start();
+            special = false;
         }
 
         ///<summary>
         ///Prepares Windows CE blue screen for simulation
         ///</summary>
         ///<param name="bs">Form for the simulator</param>
-        private void SetupCE(Cebsod bs)
+        private void SetupCE(Cebsod bs, PictureBox previewImg = null)
         {
             try
             {
                 Log("Info", "Setting up Windows CE simulator");
-                bs.BackColor = this.GetTheme(true);
-                bs.ForeColor = this.GetTheme(false);
-                bs.Font = this.GetFont();
+                bs.BackColor = GetTheme(true);
+                bs.ForeColor = GetTheme(false);
+                bs.Font = GetFont();
                 bs.fullscreen = !GetBool("windowed");
                 bs.waterMarkText.Visible = GetBool("watermark");
                 bs.technicalCode.Text = "*** STOP: 0x" + GetString("code").Split(' ')[1].ToString().Replace(")", "").Replace("(", "").ToString().Substring(4, 6) + " (" + GetString("code").Split(' ')[0].ToString().Replace("_", " ").ToLower() + ")";
             }
-            catch (Exception ex)
+            catch (Exception ex) when (!Debugger.IsAttached)
             {
                 Log("Error", $"Error setting up Windows CE simulator. Reason: {ex.Message}");
                 MessageBox.Show(ex.Message, "A non-critical error has occoured", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             bs.me = this;
-            bs.ShowDialog();
+            if (special) { CreateSpecialWindow(bs, previewImg); }
+            else { bs.ShowDialog(); }
             CheckMessageJustInCase();
         }
 
@@ -1302,13 +1463,13 @@ namespace SimulatorDatabase
         ///Prepares Windows NT blue screen for simulation
         ///</summary>
         ///<param name="bs">Form for the simulator</param>
-        private void SetupNT(W2kbs bs)
+        private void SetupNT(W2kbs bs, PictureBox previewImg = null)
         {
             try
             {
                 Log("Info", "Setting up Windows NT simulator");
-                bs.BackColor = this.GetTheme(true);
-                bs.ForeColor = this.GetTheme(false);
+                bs.BackColor = GetTheme(true);
+                bs.ForeColor = GetTheme(false);
                 if (GetBool("show_file")) { bs.whatfail = GetString("culprit"); }
                 bs.error = GetString("code").Substring(0, GetString("code").ToString().Length - 1);
                 bs.fullscreen = !GetBool("windowed");
@@ -1317,38 +1478,40 @@ namespace SimulatorDatabase
                 bs.blink = GetBool("blink");
                 bs.waterMarkText.Visible = GetBool("watermark");
             }
-            catch (Exception ex)
+            catch (Exception ex) when (!Debugger.IsAttached)
             {
                 Log("Error", $"Error setting up Windows NT simulator. Reason: {ex.Message}");
                 MessageBox.Show(ex.Message, "A non-critical error has occoured", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             bs.me = this;
-            bs.ShowDialog();
+            if (special) { CreateSpecialWindow(bs, previewImg); }
+            else { bs.ShowDialog(); }
         }
 
         ///<summary>
         ///Prepares Windows 3.1x/9x/Me blue screen for simulation
         ///</summary>
         ///<param name="bs">Form for the simulator</param>
-        private void Setup9x(Old_bluescreen bs)
+        private void Setup9x(Old_bluescreen bs, PictureBox previewImg = null)
         {
             try
             {
                 Log("Info", "Setting up Windows 3.1x/9x/Me simulator");
-                bs.BackColor = this.GetTheme(true);
-                bs.ForeColor = this.GetTheme(false);
-                bs.window = this.GetBool("windowed");
-                bs.screenmode = this.GetString("screen_mode");
+                bs.BackColor = GetTheme(true);
+                bs.ForeColor = GetTheme(false);
+                bs.window = GetBool("windowed");
+                bs.screenmode = GetString("screen_mode");
                 bs.errorCode = GenHex(2, GetString("ecode1")) + " : " + GenHex(4, GetString("ecode2")) + " : " + GenHex(6, GetString("ecode3"));
-                bs.waterMarkText.Visible = this.GetBool("watermark");
+                bs.waterMarkText.Visible = GetBool("watermark");
             }
-            catch (Exception ex)
+            catch (Exception ex) when (!Debugger.IsAttached)
             {
                 Log("Error", $"Error setting up Windows 3.1x/9x/Me simulator. Reason: {ex.Message}");
                 MessageBox.Show(ex.Message, "A non-critical error has occoured", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             bs.me = this;
-            bs.ShowDialog();
+            if (special) { CreateSpecialWindow(bs, previewImg); }
+            else { bs.ShowDialog(); }
         }
 
 
@@ -1356,134 +1519,181 @@ namespace SimulatorDatabase
         ///Prepares Windows 1.x/2.x blue screen for simulation
         ///</summary>
         ///<param name="bs">Form for the simulator</param>
-        private void SetupWin(Win bs)
+        private void SetupWin(Win bs, PictureBox previewImg = null)
         {
             try
             {
                 Log("Info", "Setting up Windows 1.x/2.x simulator");
-                bs.BackColor = this.GetTheme(true);
-                bs.ForeColor = this.GetTheme(false);
-                bs.window = this.GetBool("windowed");
+                bs.BackColor = GetTheme(true);
+                bs.ForeColor = GetTheme(false);
+                bs.window = GetBool("windowed");
             }
-            catch (Exception ex)
+            catch (Exception ex) when (!Debugger.IsAttached)
             {
                 Log("Error", $"Error setting up Windows 1.x/2.x simulator. Reason: {ex.Message}");
                 MessageBox.Show(ex.Message, "A non-critical error has occoured", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             bs.r = r;
             bs.me = this;
-            bs.ShowDialog();
+            if (special) { CreateSpecialWindow(bs, previewImg); }
+            else { bs.ShowDialog(); }
         }
 
         ///<summary>
         ///Prepares Windows 2000 blue screen for simulation
         ///</summary>
         ///<param name="bs">Form for the simulator</param>
-        private void Setup2k(W2kbs bs)
+        private void Setup2k(W2kbs bs, PictureBox previewImg = null)
         {
             try
             {
                 Log("Info", "Setting up Windows 2000 simulator");
-                bs.BackColor = this.GetTheme(true);
-                bs.ForeColor = this.GetTheme(false);
-                bs.fullscreen = !this.GetBool("windowed");
-                bs.waterMarkText.Visible = this.GetBool("watermark");
-                if (this.GetBool("show_file")) { bs.whatfail = this.GetString("culprit"); }
-                bs.errorCode = string.Format(this.GetTexts()["Error code formatting"].Replace("{1}", "0x{1},0x{2},0x{3},0x{4}"), this.GetString("code").Split(' ')[1].ToString().Replace(")", "").Replace("(", "").ToString(), GenHex(8, this.GetString("ecode1")), GenHex(8, this.GetString("ecode2")), GenHex(8, this.GetString("ecode3")), GenHex(8, this.GetString("ecode4")));
-                bs.errorCode = bs.errorCode + "\n" + this.GetString("code").Split(' ')[0].ToString();
+                bs.BackColor = GetTheme(true);
+                bs.ForeColor = GetTheme(false);
+                bs.fullscreen = !GetBool("windowed");
+                bs.waterMarkText.Visible = GetBool("watermark");
+                if (GetBool("show_file")) { bs.whatfail = GetString("culprit"); }
+                bs.errorCode = string.Format(GetTexts()["Error code formatting"].Replace("{1}", "0x{1},0x{2},0x{3},0x{4}"), GetString("code").Split(' ')[1].ToString().Replace(")", "").Replace("(", "").ToString(), GenHex(8, GetString("ecode1")), GenHex(8, GetString("ecode2")), GenHex(8, GetString("ecode3")), GenHex(8, GetString("ecode4")));
+                bs.errorCode = bs.errorCode + "\n" + GetString("code").Split(' ')[0].ToString();
             }
-            catch (Exception ex)
+            catch (Exception ex) when (!Debugger.IsAttached)
             {
                 Log("Error", $"Error setting up Windows 2000 simulator. Reason: {ex.Message}");
                 MessageBox.Show(ex.Message, "A non-critical error has occoured", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             bs.me = this;
-            bs.ShowDialog();
+            if (special) { CreateSpecialWindow(bs, previewImg); }
+            else { bs.ShowDialog(); }
         }
 
         ///<summary>
         ///Prepares Windows XP blue screen for simulation
         ///</summary>
         ///<param name="bs">Form for the simulator</param>
-        private void SetupExperience(Xvsbs bs)
+        private void SetupExperience(Xvsbs bs, PictureBox previewImg = null)
         {
             try
             {
                 Log("Info", "Setting up Windows XP simulator");
-                bs.BackColor = this.GetTheme(true);
-                bs.ForeColor = this.GetTheme(false);
-                bs.fullscreen = !this.GetBool("windowed");
-                bs.errorCode.Visible = this.GetBool("show_details");
-                bs.waterMarkText.Visible = this.GetBool("watermark");
-                if (this.GetBool("show_file")) { bs.whatfail = this.GetString("culprit"); }
-                bs.errorCode.Text = this.GetString("code").Split(' ')[0].ToString();
-                bs.technicalCode.Text = "*** STOP: " + this.GetString("code").Split(' ')[1].ToString().Replace(")", "").Replace("(", "").ToString() + " (" + GenAddress(4, 8, false) + ")";
-                bs.supportInfo.Text = this.GetTexts()["Technical support"] + "\n\n\nTechnical information:";
+                bs.BackColor = GetTheme(true);
+                bs.ForeColor = GetTheme(false);
+                bs.fullscreen = !GetBool("windowed");
+                bs.errorCode.Visible = GetBool("show_details");
+                bs.waterMarkText.Visible = GetBool("watermark");
+                if (GetBool("show_file")) { bs.whatfail = GetString("culprit"); }
+                bs.errorCode.Text = GetString("code").Split(' ')[0].ToString();
+                bs.technicalCode.Text = "*** STOP: " + GetString("code").Split(' ')[1].ToString().Replace(")", "").Replace("(", "").ToString() + " (" + GenAddress(4, 8, false) + ")";
+                bs.supportInfo.Text = GetTexts()["Technical support"] + "\n\n\nTechnical information:";
             }
-            catch (Exception ex)
+            catch (Exception ex) when (!Debugger.IsAttached)
             {
                 Log("Error", $"Error setting up Windows XP simulator. Reason: {ex.Message}");
                 MessageBox.Show(ex.Message, "A non-critical error has occoured", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             bs.me = this;
-            bs.ShowDialog();
+            if (special) { CreateSpecialWindow(bs, previewImg); }
+            else { bs.ShowDialog(); }
         }
 
         ///<summary>
         ///Prepares Windows Vista blue screen for simulation
         ///</summary>
         ///<param name="bs">Form for the simulator</param>
-        private void SetupVista(Vistabs bs)
+        private void SetupVista(Vistabs bs, PictureBox previewImg = null)
         {
             try
             {
                 Log("Info", "Setting up Windows Vista simulator");
-                bs.BackColor = this.GetTheme(true);
-                bs.ForeColor = this.GetTheme(false);
-                bs.fullscreen = !this.GetBool("windowed");
-                bs.errorCode.Visible = this.GetBool("show_details");
-                bs.waterMarkText.Visible = this.GetBool("watermark");
-                if (this.GetBool("show_file")) { bs.whatfail = this.GetString("culprit"); }
-                if (this.GetBool("acpi"))
+                bs.BackColor = GetTheme(true);
+                bs.ForeColor = GetTheme(false);
+                bs.fullscreen = !GetBool("windowed");
+                bs.errorCode.Visible = GetBool("show_details");
+                bs.waterMarkText.Visible = GetBool("watermark");
+                if (GetBool("show_file")) { bs.whatfail = GetString("culprit"); }
+                if (GetBool("acpi"))
                 {
                     //bs.errorCode.Visible = false;
                     bs.dumpText.Visible = false;
                 }
-                bs.errorCode.Text = this.GetString("code").Split(' ')[0].ToString();
-                bs.technicalCode.Text = "*** STOP: " + this.GetString("code").Split(' ')[1].ToString().Replace(")", "").Replace("(", "").ToString() + " (" + GenAddress(4, 16, false) + ")";
-                bs.supportInfo.Text = this.GetTexts()["Technical support"] + "\n\n\nTechnical information:";
+                bs.errorCode.Text = GetString("code").Split(' ')[0].ToString();
+                bs.technicalCode.Text = "*** STOP: " + GetString("code").Split(' ')[1].ToString().Replace(")", "").Replace("(", "").ToString() + " (" + GenAddress(4, 16, false) + ")";
+                bs.supportInfo.Text = GetTexts()["Technical support"] + "\n\n\nTechnical information:";
             }
-            catch (Exception ex)
+            catch (Exception ex) when (!Debugger.IsAttached)
             {
                 Log("Error", $"Error setting up Windows Vista simulator. Reason: {ex.Message}");
                 MessageBox.Show(ex.Message, "A non-critical error has occoured", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             bs.me = this;
-            bs.ShowDialog();
+            if (special) { CreateSpecialWindow(bs, previewImg); }
+            else { bs.ShowDialog(); }
+        }
+
+
+        /// <summary>
+        /// Prepares Windows 11 Beta black screen for simulation
+        /// </summary>
+        /// <param name="f">Form for the simulator</param>
+        private void SetSunValley(SunValleyBSOD f, PictureBox previewImg = null)
+        {
+            try
+            {
+                Log("Info", "Setting up Sun Valley bugcheck simulator");
+                f.BackColor = GetTheme(true);
+                f.ForeColor = GetTheme(false);
+                f.close = GetBool("autoclose");
+                f.green = GetBool("insider");
+                f.maxprogressmillis = GetInt("progressmillis");
+                if (f.memCodes == null)
+                {
+                    Program.loadfinished = true;
+                    Program.verifile.HideUI();
+                    Program.verifile.ShowBad();
+                    Application.Exit();
+                    return;
+                }
+                f.memCodes.Text = "0x" + GenHex(16, GetString("ecode1")) + "\r\n0x" +
+                                    GenHex(16, GetString("ecode2")) + "\r\n0x" +
+                                    GenHex(16, GetString("ecode3")) + "\r\n0x" +
+                                    GenHex(16, GetString("ecode4"));
+                f.waterMarkText.Visible = GetBool("watermark");
+                if (GetBool("show_file")) { f.whatfail = GetString("culprit"); }
+                if (GetBool("windowed")) { f.WindowState = FormWindowState.Normal; f.FormBorderStyle = FormBorderStyle.Sizable; }
+                f.code = GetString("code").ToString();
+            }
+            catch (Exception ex) when (!Debugger.IsAttached)
+            {
+                Log("Error", $"Error setting up Sun Valley bugcheck simulator. Reason: {ex.Message}");
+                MessageBox.Show(ex.Message, "A non-critical error has occoured", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            f.me = this;
+            if (special) { CreateSpecialWindow(f, previewImg); }
+            else { f.ShowDialog(); }
+            CheckMessageJustInCase();
         }
 
         ///<summary>
-        ///Prepares Windows 10+ blue screen for simulation
+        ///Prepares Windows 10+ crash screen for simulation
         ///</summary>
         ///<param name="bs">Form for the simulator</param>
-        private void SetupWinXabove(WXBS bs, bool w11 = false)
+        private void SetupWinXabove(WXBS bs, bool w11 = false, PictureBox previewImg = null)
         {
             Log("Info", "Setting up Windows 8.x/10/11 simulator in SetupWinXabove method");
             if (bs.emoticonLabel is null) { return; }
-            bs.emoticonLabel.Text = this.GetString("emoticon");
-            bs.BackColor = this.GetTheme(true);
-            bs.ForeColor = this.GetTheme(false);
+            bs.emoticonLabel.Text = GetString("emoticon");
+            bs.BackColor = GetTheme(true);
+            bs.ForeColor = GetTheme(false);
             bs.qr = GetBool("qr");
             bs.close = GetBool("autoclose");
             bs.green = GetBool("insider");
-            bs.server = GetBool("server");
             bs.maxprogressmillis = GetInt("progressmillis");
-            bs.w11 = w11;
             bs.memCodes.Text = "0x" + GenHex(16, GetString("ecode1")) + "\r\n0x" +
                                 GenHex(16, GetString("ecode2")) + "\r\n0x" +
                                 GenHex(16, GetString("ecode3")) + "\r\n0x" +
                                 GenHex(16, GetString("ecode4"));
             bs.waterMarkText.Visible = GetBool("watermark");
+            bs.server = GetBool("server");
+            bs.w11 = w11;
             if (GetBool("show_file")) { bs.whatfail = GetString("culprit"); }
             if (GetBool("windowed")) { bs.WindowState = FormWindowState.Normal; bs.FormBorderStyle = FormBorderStyle.Sizable; }
             try
@@ -1497,25 +1707,26 @@ namespace SimulatorDatabase
                     bs.code = GetString("code").Split(' ')[1].ToString().Replace(")", "").Replace("(", "").ToString();
                 }
             }
-            catch (Exception ex)
+            catch (Exception ex) when (!Debugger.IsAttached)
             {
                 Log("Error", $"Error setting up Windows 8.x/10/11 simulator in SetupWinXabove method. Reason: {ex.Message}");
                 MessageBox.Show(ex.Message, "A non-critical error has occoured", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             bs.me = this;
-            bs.ShowDialog();
+            if (special) { CreateSpecialWindow(bs, previewImg); }
+            else { bs.ShowDialog(); }
         }
 
         ///<summary>
-        ///Prepares Windows 8 blue screen for simulation
+        ///Prepares Windows 8 crash screen for simulation
         ///</summary>
         ///<param name="bs">Form for the simulator</param>
-        private void SetupWin8(WXBS bs)
+        private void SetupWin8(WXBS bs, PictureBox previewImg = null)
         {
             Log("Info", "Setting up Windows 8.x/10/11 simulator in SetupWin8 method");
-            bs.emoticonLabel.Text = this.GetString("emoticon");
-            bs.BackColor = this.GetTheme(true);
-            bs.ForeColor = this.GetTheme(false);
+            bs.emoticonLabel.Text = GetString("emoticon");
+            bs.BackColor = GetTheme(true);
+            bs.ForeColor = GetTheme(false);
             bs.maxprogressmillis = GetInt("progressmillis");
             bs.qr = false;
             bs.w8 = true;
@@ -1540,13 +1751,14 @@ namespace SimulatorDatabase
                     bs.code = GetString("code").Split(' ')[1].ToString().Replace(")", "").Replace("(", "").ToString();
                 }
             }
-            catch (Exception ex)
+            catch (Exception ex) when (!Debugger.IsAttached)
             {
                 Log("Error", $"Error setting up Windows 8.x/10/11 simulator in SetupWin8 method. Reason: {ex.Message}");
                 MessageBox.Show(ex.Message, "A non-critical error has occoured", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             bs.me = this;
-            bs.ShowDialog();
+            if (special) { CreateSpecialWindow(bs, previewImg); }
+            else { bs.ShowDialog(); }
         }
 
 
@@ -1868,6 +2080,8 @@ namespace SimulatorDatabase
                     SetString("friendlyname", "Windows 10 (Native, ClearType)");
                     PushText("Information text with dump", "Your PC ran into a problem and needs to restart. We're just\r\ncollecting some error info, and then we'll restart for you.");
                     PushText("Information text without dump", "Your PC ran into a problem and needs to restart. We're just\r\ncollecting some error info, and then you can restart.");
+                    PushText("No crashdump with autorestart", "We'll restart for you.");
+                    PushText("No crashdump", "You can restart.");
                     PushText("Additional information", "For more information about this issue and possible fixes, visit http://windows.com/stopcode");
                     PushText("Culprit file", "What failed: {0}");
                     PushText("Error code", "If you call a support person, give them this info:\r\n\r\nStop code: {0}");
@@ -1883,6 +2097,7 @@ namespace SimulatorDatabase
                     SetBool("autoclose", true);
                     SetBool("qr", true);
                     SetBool("device", true);
+                    SetBool("crashdump", true);
                     SetString("qr_file", "local:0");
                     SetString("code", "IRQL_NOT_LESS_OR_EQUAL (0x0000000A)");
                     SetBool("show_description", true);
@@ -1895,6 +2110,8 @@ namespace SimulatorDatabase
                     SetString("emoticon", ":(");
                     PushText("Information text with dump", "Your device ran into a problem and needs to restart. We're just\r\ncollecting some error info, and then we'll restart for you.");
                     PushText("Information text without dump", "Your device ran into a problem and needs to restart. We're just\r\ncollecting some error info, and then you can restart.");
+                    PushText("No crashdump with autorestart", "We'll restart for you.");
+                    PushText("No crashdump", "You can restart.");
                     PushText("Additional information", "For more information about this issue and possible fixes, visit http://windows.com/stopcode");
                     PushText("Culprit file", "What failed: {0}");
                     PushText("Error code", "If you call a support person, give them this info:\r\n\r\nStop code: {0}");
@@ -1910,7 +2127,28 @@ namespace SimulatorDatabase
                     SetBool("autoclose", true);
                     SetBool("blackscreen", false);
                     SetBool("qr", true);
+                    SetBool("crashdump", true);
                     SetString("qr_file", "local:0");
+                    SetString("code", "IRQL_NOT_LESS_OR_EQUAL (0x0000000A)");
+                    SetDefaultProgression();
+                    SetBool("show_description", true);
+                    SetBool("font_support", true);
+                    break;
+                case "Windows 11 Beta":
+                    this.icon = "2D window";
+                    SetString("friendlyname", "Windows 11 Beta (Native, ClearType)");
+                    PushText("Information text", "Your device ran into a problem and needs to restart.");
+                    PushText("No autorestart", "We're just collecting some error info, and then you can restart.");
+                    PushText("No crashdump with autorestart", "We'll restart for you.");
+                    PushText("No crashdump", "You can restart.");
+                    PushText("Error code", "Stop code: {0} ({1})");
+                    PushText("Progress", "{0}% complete");
+                    PushText("Culprit file", "What failed: {0}");
+                    SetFont("Segoe UI Variable Small Semilig", 20f, FontStyle.Regular);
+                    SetTheme(RGB(0, 0, 0), RGB(255, 255, 255));
+
+                    SetBool("autoclose", true);
+                    SetBool("crashdump", true);
                     SetString("code", "IRQL_NOT_LESS_OR_EQUAL (0x0000000A)");
                     SetDefaultProgression();
                     SetBool("show_description", true);
@@ -1931,7 +2169,7 @@ namespace SimulatorDatabase
             int percent = 0;
             while (percent < 100)
             {
-                int val = r.Next(0, 9);
+                int val = BlueScreen.r.Next(0, 9);
                 if (val + percent > 100)
                 {
                     val = 100 - percent;

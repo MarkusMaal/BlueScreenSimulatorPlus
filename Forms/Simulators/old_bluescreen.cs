@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using SimulatorDatabase;
 
@@ -15,13 +14,15 @@ namespace UltimateBlueScreenSimulator
         public bool window = false;
         public string screenmode = "System error";
         internal BlueScreen me = Program.templates.GetAt(0);
-        IDictionary<string, string> titles;
-        IDictionary<string, string> texts;
-        Color bg;
-        Color fg;
-        Color hlb;
-        Color hlf;
-        readonly string[] letters = { "?", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ":", ",", ".", "+", "*", "!", "_" , "-", "(", ")", "/", "\\", "'", " " };
+        private IDictionary<string, string> titles;
+        private IDictionary<string, string> texts;
+        private Color bg;
+        private Color fg;
+        private Color hlb;
+        private Color hlf;
+        private int moves = 0;
+        private readonly string[] letters = { "?", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ":", ",", ".", "+", "*", "!", "_", "-", "(", ")", "/", "\\", "'", " " };
+        private Point initialCursorPosition;
         public Old_bluescreen()
         {
             if (Program.verificate)
@@ -37,11 +38,11 @@ namespace UltimateBlueScreenSimulator
                 if (Program.TestDicts(letters, me))
                 {
                     screenUpdater.Enabled = false;
-                    this.Close();
+                    Close();
                     return;
                 }
-                this.Icon = me.GetIcon();
-                this.Text = me.GetString("friendlyname");
+                Icon = me.GetIcon();
+                Text = me.GetString("friendlyname");
                 string prompt;
                 titles = me.GetTitles();
                 texts = me.GetTexts();
@@ -49,7 +50,7 @@ namespace UltimateBlueScreenSimulator
                 {
                     Process.Start(Program.gs.UpdateServer.Replace("/app", "/bssp/crash.mp4"));
                     screenUpdater.Enabled = false;
-                    this.Close();
+                    Close();
                     return;
                 }
                 if (screenmode == "No unresponsive programs")
@@ -137,32 +138,33 @@ namespace UltimateBlueScreenSimulator
                 }
                 anyKeyMsg.Image = WriteWord(prompt, bg, fg);
                 anyKeyMsg.Size = new Size(prompt.Length * 8, anyKeyMsg.Height);
-                anyKeyMsg.Location = new Point((this.Width / 2) - (anyKeyMsg.Width / 2) - 16, anyKeyMsg.Location.Y);
+                anyKeyMsg.Location = new Point((Width / 2) - (anyKeyMsg.Width / 2) - 16, anyKeyMsg.Location.Y);
                 blinkingColor.Location = new Point(anyKeyMsg.Location.X + anyKeyMsg.Width + 8, blinkingColor.Location.Y);
                 Program.loadfinished = true;
-                if (!window)
+                if (!window && Opacity != 0.0)
                 {
-                    this.FormBorderStyle = FormBorderStyle.None;
-                    this.TopMost = false;
+                    FormBorderStyle = FormBorderStyle.None;
+                    TopMost = false;
                     Program.dr.Init(this);
                 }
                 else
                 {
                     //this.Size = new Size(640, 320);
                 }
-                int[] colors = { this.BackColor.R + 50, this.BackColor.R + 50, this.BackColor.B + 50 };
+                int[] colors = { BackColor.R + 50, BackColor.R + 50, BackColor.B + 50 };
                 if (colors[0] > 255) { colors[0] -= 255; }
                 if (colors[1] > 255) { colors[1] -= 255; }
                 if (colors[2] > 255) { colors[2] -= 255; }
                 waterMarkText.ForeColor = Color.FromArgb(colors[0], colors[1], colors[2]);
+                initialCursorPosition = Cursor.Position;
             } catch (Exception ex)
             {
                 Program.loadfinished = true;
                 screenUpdater.Enabled = false;
-                this.Hide();
+                Hide();
                 if (Program.gs.EnableEggs) { me.Crash(ex, "OrangeScreen"); }
-                else { MessageBox.Show("The blue screen cannot be displayed due to an error.\n\n" + ex.Message + "\n\n" + ex.StackTrace, "E R R O R", MessageBoxButtons.OK, MessageBoxIcon.Error); }
-                this.Close();
+                else { MessageBox.Show("The crash screen cannot be displayed due to an error.\n\n" + ex.Message + "\n\n" + ex.StackTrace, "E R R O R", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+                Close();
             }
         }
 
@@ -171,7 +173,7 @@ namespace UltimateBlueScreenSimulator
             titleText.Image = WriteWord(title, hlb, hlf);
             titleText.Size = new Size(8 * title.Length, titleText.Height);
             titleBorder.Size = new Size(titleText.Width + 20, titleBorder.Height);
-            titleBorder.Location = new Point((this.Width / 2) - (titleBorder.Width / 2) - 8, titleBorder.Location.Y);
+            titleBorder.Location = new Point((Width / 2) - (titleBorder.Width / 2) - 8, titleBorder.Location.Y);
             titleText.Location = new Point(10, 2);
         }
 
@@ -277,7 +279,9 @@ namespace UltimateBlueScreenSimulator
                 {
                     Color pixelColor = img.GetPixel(i, j);
                     if (pixelColor == black)
+                    {
                         img.SetPixel(i, j, white);
+                    }
                 }
             }
             return img;
@@ -291,8 +295,12 @@ namespace UltimateBlueScreenSimulator
                 if (!window)
                 {
                     Program.dr.DrawAll();
-                    this.BringToFront();
-                    this.Activate();
+                    BringToFront();
+                    Activate();
+                }
+                if (Program.isScreensaver && Program.gs.MouseMoveExit && (Cursor.Position.X != initialCursorPosition.X) && (Cursor.Position.Y != initialCursorPosition.Y))
+                {
+                    Close();
                 }
                 if (blinkingColor.Visible == false)
                 {
@@ -305,12 +313,12 @@ namespace UltimateBlueScreenSimulator
                     return;
                 }
             }
-            catch (Exception ex)
+            catch (Exception ex) when (!Debugger.IsAttached)
             {
                 Program.dr.Dispose();
                 screenUpdater.Enabled = false;
                 me.Crash(ex, "GreenScreen");
-                this.Close();
+                Close();
             }
         }
 
@@ -319,7 +327,7 @@ namespace UltimateBlueScreenSimulator
             if ((e.KeyCode == Keys.Enter) || (e.KeyCode == Keys.Escape) || (e.KeyCode == Keys.F7))
             {
                 Program.dr.Dispose();
-                this.Close();
+                Close();
             }
             else if ((e.KeyCode == Keys.F2) && me.GetBool("windowed"))
             {
@@ -363,6 +371,15 @@ namespace UltimateBlueScreenSimulator
                 {
                     Application.Exit();
                 }
+            }
+        }
+
+        private void Old_bluescreen_MouseMove(object sender, MouseEventArgs e)
+        {
+            moves++;
+            if (moves > 50 && Program.isScreensaver && Program.gs.MouseMoveExit)
+            {
+                Close();
             }
         }
     }

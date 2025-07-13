@@ -977,6 +977,7 @@
             this.Activated += new System.EventHandler(this.Form1_Activated);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Click += new System.EventHandler(this.Form1_Click);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ClickIt2_KeyDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseMove);
             this.Resize += new System.EventHandler(this.Form1_Resize);
             this.ResumeLayout(false);

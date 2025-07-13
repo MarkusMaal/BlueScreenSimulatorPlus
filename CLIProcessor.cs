@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using SimulatorDatabase;
-using System.Windows.Forms;
 using System.IO;
+using System.Linq;
+using System.Windows.Forms;
+using SimulatorDatabase;
 
 namespace UltimateBlueScreenSimulator
 {
@@ -18,7 +18,7 @@ namespace UltimateBlueScreenSimulator
         public CLIProcessor(string[] args)
         {
             this.args = args;
-            this.checkvalue = false;
+            checkvalue = false;
         }
 
         ///<summary>
@@ -83,7 +83,7 @@ namespace UltimateBlueScreenSimulator
                     {
                         if (bs.GetString("friendlyname").ToLower().Contains(ecode.ToLower()) || bs.GetString("os").ToLower().Contains(ecode.ToLower()))
                         {
-                            Program.f1.me = bs;
+                            UIActions.me = bs;
                             Program.gs.DisplayOne = true;
                             //Program.f1.comboBox1.SelectedIndex = i;
                             done = true;
@@ -118,7 +118,7 @@ namespace UltimateBlueScreenSimulator
                 case "file":
                     //displays errror cuplrit file if specified in arguments
                     Program.gs.Log("Info", "Setting culprit file");
-                    Program.f1.checkBox2.Checked = true;
+                    Program.F1.checkBox2.Checked = true;
                     ecode = value;
                     foreach (BlueScreen bs in Program.templates.GetAll())
                     {
@@ -128,7 +128,7 @@ namespace UltimateBlueScreenSimulator
                     {
                         Program.gs.ErrorCode = 16;
                     }
-                    Program.f1.textBox2.Text = ecode;
+                    Program.F1.textBox2.Text = ecode;
                     break;
             }
         }
@@ -139,8 +139,7 @@ namespace UltimateBlueScreenSimulator
         {
             if (!CheckNoSplash())
             {
-                Program.splt.Abort();
-                Program.splt.Join();
+                Program.gs.Log("Info", "Safely closing splash screen");
             }
         }
 
@@ -151,7 +150,7 @@ namespace UltimateBlueScreenSimulator
         private void ProcessFlag(string arg)
         {
             // key is the flag, value determines which boolean to force
-            var forceFlags = new Dictionary<string, string>()
+            Dictionary<string, string> forceFlags = new Dictionary<string, string>()
             {
                 {"wm", "watermark"}, {"desc", "show_description"}, {"ac", "autoclose"},
                 {"ap", "acpi"}, {"amd", "amd"}, {"blink", "blink"}, {"gs", "insider"},
@@ -173,7 +172,7 @@ namespace UltimateBlueScreenSimulator
             {
                 case "?":
                     ExitSplash();
-                    MessageBox.Show(Program.cmds, "Command line argument usage", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(string.Join("\n", Program.cmds), "Command line argument usage", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Program.gs.ErrorCode = 999;
                     Program.halt = true;
                     break;
@@ -190,16 +189,19 @@ namespace UltimateBlueScreenSimulator
                     break;
                 case "c":
                     ExitSplash();
-                    Program.f1.GetOS();
+                    UIActions.GetOS(Program.F1);
                     break;
                 case "doneupdate":
                     File.Delete("BSSP.exe");
                     break;
                 case "random":
-                    Program.f1.RandFunction(false);
+                    UIActions.RandFunction(Program.F1, false);
                     break;
                 case "hwm":
                     ForceBool("watermark", false);
+                    break;
+                case "legacy":
+                    Program.force_legacy = true;
                     break;
                 case "config":
                 case "file":
@@ -217,10 +219,17 @@ namespace UltimateBlueScreenSimulator
             //hide main interface if /h flag is set
             if (args.Contains("/h"))
             {
+                Program.halt = true;
                 Program.gs.Log("Info", "Hiding main interface");
-                Program.f1.WindowState = FormWindowState.Minimized;
-                Program.f1.ShowInTaskbar = false;
-                Program.f1.ShowIcon = false;
+                Form mf = Program.F1;
+                if (Program.gs.LegacyUI)
+                {
+                    mf = Program.F2;
+                }
+                mf.WindowState = FormWindowState.Minimized;
+                mf.ShowInTaskbar = false;
+                mf.ShowIcon = false;
+                mf.Hide();
                 Program.gs.PM_CloseMainUI = true;
                 if (!args.Contains("/c"))
                 {
@@ -231,7 +240,7 @@ namespace UltimateBlueScreenSimulator
             if (args.Contains("/c"))
             {
                 Program.gs.Log("Info", "Starting simulation from command line");
-                Program.f1.Crash();
+                UIActions.Crash(Program.F1);
             }
             //Post update scripts
             if (args.Contains("/finalize_update"))
@@ -251,7 +260,7 @@ namespace UltimateBlueScreenSimulator
         ///</summary>
         public bool CheckNoSplash()
         {
-            return this.args.Contains("/finalize_update") || this.args.Contains("/hidesplash");
+            return args.Contains("/finalize_update") || args.Contains("/hidesplash");
         }
 
         ///<summary>
@@ -259,7 +268,7 @@ namespace UltimateBlueScreenSimulator
         ///</summary>
         public bool CheckPreviewSplash()
         {
-            return this.args.Contains("/preview_splash");
+            return args.Contains("/preview_splash");
         }
     }
 }

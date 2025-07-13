@@ -12,15 +12,16 @@ namespace UltimateBlueScreenSimulator
         public bool fullscreen = true;
         public string whatfail = "";
         private bool naturalclose = false;
-        bool inr = false;
-        bool ing = false;
-        bool inb = false;
+        private bool inr = false;
+        private bool ing = false;
+        private bool inb = false;
         internal BlueScreen me = Program.templates.GetAt(0);
-        Color bg;
-        Color fg;
-        IDictionary<string, string> txt;
+        private Color bg;
+        private Color fg;
+        private IDictionary<string, string> txt;
+        private Point initialCursorPosition;
 
-        string state = "0";
+        private string state = "0";
         public Xvsbs()
         {
             if (Program.verificate)
@@ -33,12 +34,12 @@ namespace UltimateBlueScreenSimulator
         {
             try
             {
-                this.Icon = me.GetIcon();
-                this.Text = me.GetString("friendlyname");
+                Icon = me.GetIcon();
+                Text = me.GetString("friendlyname");
                 bg = me.GetTheme(true);
                 fg = me.GetTheme(false);
                 txt = me.GetTexts();
-                foreach (Control c in this.Controls)
+                foreach (Control c in Controls)
                 {
                     if (c is AliasedLabel)
                     {
@@ -54,7 +55,7 @@ namespace UltimateBlueScreenSimulator
                     }
                     if (bg == fg)
                     {
-                        this.BackColor = Color.FromArgb(255, 0, 0);
+                        BackColor = Color.FromArgb(255, 0, 0);
                         rainBowScreen.Enabled = true;
                     }
                 }
@@ -88,7 +89,7 @@ namespace UltimateBlueScreenSimulator
                 }
                 // for DPI awereness
                 Font commonFont = new Font(me.GetFont().FontFamily, me.GetFont().Size * 96f / CreateGraphics().DpiX, me.GetFont().Style, Font.Unit, Font.GdiCharSet, Font.GdiVerticalFont);
-                foreach (Control c in this.Controls)
+                foreach (Control c in Controls)
                 {
                     if (c is Label && (c.Name != "waterMarkText"))
                     {
@@ -96,17 +97,16 @@ namespace UltimateBlueScreenSimulator
                         c.Font = commonFont;
                     }
                 }
-                if (!fullscreen) { this.FormBorderStyle = FormBorderStyle.FixedSingle; this.ShowInTaskbar = true; this.ShowIcon = true; }
+                if (!fullscreen) { FormBorderStyle = FormBorderStyle.FixedSingle; ShowInTaskbar = true; ShowIcon = true; }
                 if (!errorCode.Visible && !dumpLabel.Visible)
                 {
                     supportInfo.Visible = false;
                     introductionText.Visible = false;
                 }
-                errorCode.Text = errorCode.Text.Replace("IRQL", "DRIVER_IRQL");
                 errorCode.Text = errorCode.Text.Replace("MANUALLY_INITIATED_CRASH", "The end-user manually generated the crash dump.");
                 errorCode.Text = errorCode.Text.Replace("VIDEO_TDR_", "VIDEO_TDR_ERROR");
                 technicalCode.Text = technicalCode.Text.Replace("STOP: ERROR", "STOP: 0x00000116");
-                int[] colors = { this.BackColor.R + 50, this.BackColor.G + 50, this.BackColor.B + 50 };
+                int[] colors = { BackColor.R + 50, BackColor.G + 50, BackColor.B + 50 };
                 if (colors[0] > 255) { colors[0] -= 255; }
                 if (colors[1] > 255) { colors[1] -= 255; }
                 if (colors[2] > 255) { colors[2] -= 255; }
@@ -114,14 +114,14 @@ namespace UltimateBlueScreenSimulator
                 dumpLabel.Location = new Point(technicalCode.Location.X, technicalCode.Location.Y + 48);
                 waterMarkText.ForeColor = Color.FromArgb(colors[0], colors[1], colors[2]);
                 Program.loadfinished = true;
-                if (fullscreen)
+                if (fullscreen && (Opacity != 0.0))
                 {
-                    this.TopMost = false;
+                    TopMost = false;
                     Program.dr.Init(this);
-                    this.Hide();
+                    Hide();
                 }
                 errorCode.Visible = me.GetBool("show_description");
-                if (!errorCode.Visible && this.Visible)
+                if (!errorCode.Visible && Visible)
                 {
                     supportInfo.Location = new Point(supportInfo.Location.X, supportInfo.Location.Y - 35);
                     technicalCode.Location = new Point(technicalCode.Location.X, technicalCode.Location.Y - 35);
@@ -133,12 +133,13 @@ namespace UltimateBlueScreenSimulator
                 }
                 naturalclose = false;
                 dumpLabel.Visible = me.GetBool("autoclose") && !me.GetBool("extrafile");
+                initialCursorPosition = Cursor.Position;
             } catch (Exception ex)
             {
                 Program.loadfinished = true;
                 if (Program.gs.EnableEggs) { me.Crash(ex, "OrangeScreen"); }
-                else { MessageBox.Show("The blue screen cannot be displayed due to an error.\n\n" + ex.Message + "\n\n" + ex.StackTrace, "E R R O R", MessageBoxButtons.OK, MessageBoxIcon.Error); }
-                this.Close();
+                else { MessageBox.Show("The crash screen cannot be displayed due to an error.\n\n" + ex.Message + "\n\n" + ex.StackTrace, "E R R O R", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+                Close();
             }
         }
 
@@ -157,7 +158,7 @@ namespace UltimateBlueScreenSimulator
                 dumpTimer.Enabled = false;
                 if (Program.gs.EnableEggs) { me.Crash(ex, "OrangeScreen"); }
                 else { MessageBox.Show("An error occoured.\r\n\r\n" + ex.Message + "\r\n\r\n" + ex.StackTrace, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
-                this.Close();
+                Close();
             }
         }
 
@@ -195,7 +196,7 @@ namespace UltimateBlueScreenSimulator
 
         private void TardisFade_Tick(object sender, EventArgs e)
         {
-            int r = this.BackColor.R;
+            int r = BackColor.R;
             int target_r = bg.R;
             if (r > 0)
             {
@@ -216,7 +217,7 @@ namespace UltimateBlueScreenSimulator
                 inr = true;
                 r += 1;
             }
-            int gr = this.BackColor.G;
+            int gr = BackColor.G;
             int target_g = bg.G;
             if (gr > 0)
             {
@@ -238,7 +239,7 @@ namespace UltimateBlueScreenSimulator
                 ing = true;
                 gr += 1;
             }
-            int b = this.BackColor.B;
+            int b = BackColor.B;
             int target_b = bg.B;
             if (b > 0)
             {
@@ -260,19 +261,19 @@ namespace UltimateBlueScreenSimulator
                 inb = true;
                 b += 1;
             }
-            this.BackColor = Color.FromArgb(r, gr, b);
-            foreach (Control c in this.Controls)
+            BackColor = Color.FromArgb(r, gr, b);
+            foreach (Control c in Controls)
             {
-                c.BackColor = this.BackColor;
+                c.BackColor = BackColor;
             }
             Program.dr.DrawAll();
         }
 
         private void RainBowScreen_Tick(object sender, EventArgs e)
         {
-            int r = this.BackColor.R;
-            int gr = this.BackColor.G;
-            int b = this.BackColor.B;
+            int r = BackColor.R;
+            int gr = BackColor.G;
+            int b = BackColor.B;
             if (state == "1")
             {
                 if (inr == false)
@@ -346,17 +347,17 @@ namespace UltimateBlueScreenSimulator
                 state = "1";
                 gr += 1;
             }
-            this.BackColor = Color.FromArgb(r, gr, b);
-            foreach (Control c in this.Controls)
+            BackColor = Color.FromArgb(r, gr, b);
+            foreach (Control c in Controls)
             {
-                c.BackColor = this.BackColor;
-                int[] colorsa = { this.BackColor.R - 100, this.BackColor.G - 100, this.BackColor.B - 100 };
+                c.BackColor = BackColor;
+                int[] colorsa = { BackColor.R - 100, BackColor.G - 100, BackColor.B - 100 };
                 if (colorsa[0] < 0) { colorsa[0] += 255; }
                 if (colorsa[1] < 0) { colorsa[1] += 255; }
                 if (colorsa[2] < 0) { colorsa[2] += 255; }
                 c.ForeColor = Color.FromArgb(colorsa[0], colorsa[1], colorsa[2]);
             }
-            int[] colors = { this.BackColor.R + 20, this.BackColor.G + 20, this.BackColor.B + 20 };
+            int[] colors = { BackColor.R + 20, BackColor.G + 20, BackColor.B + 20 };
             if (colors[0] > 255) { colors[0] -= 255; }
             if (colors[1] > 255) { colors[1] -= 255; }
             if (colors[2] > 255) { colors[2] -= 255; }
@@ -370,7 +371,7 @@ namespace UltimateBlueScreenSimulator
                 catch
                 {
                     ws.Close();
-                    this.naturalclose = true;
+                    naturalclose = true;
                 }
             }
         }
@@ -380,8 +381,12 @@ namespace UltimateBlueScreenSimulator
             if (fullscreen)
             {
                 Program.dr.DrawAll();
-                this.BringToFront();
-                this.Activate();
+                BringToFront();
+                Activate();
+            }
+            if (Program.isScreensaver && Program.gs.MouseMoveExit && (Cursor.Position.X != initialCursorPosition.X) && (Cursor.Position.Y != initialCursorPosition.Y))
+            {
+                Close();
             }
         }
 

@@ -132,9 +132,9 @@ namespace UltimateBlueScreenSimulator.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap bsodbanner3 {
+        internal static System.Drawing.Bitmap bsodbanner31 {
             get {
-                object obj = ResourceManager.GetObject("bsodbanner3", resourceCulture);
+                object obj = ResourceManager.GetObject("bsodbanner31", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -301,6 +301,15 @@ namespace UltimateBlueScreenSimulator.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Segoe UI;Consolas;Lucida Console;Segoe UI Variable Display;Segoe UI Variable Small;Segoe UI Semilight;Lucida Sans Typewriter.
+        /// </summary>
+        internal static string fonts {
+            get {
+                return ResourceManager.GetString("fonts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to *** Blue screen simulator plus 1.11 ***
         ///FACE :(
         ///MODERN 16:113:170,255:255:255
@@ -316,11 +325,21 @@ namespace UltimateBlueScreenSimulator.Properties {
         ///Press CTRL+ALT+DEL to restart your computer. If you do this,
         ///you will lose any unsaved information in all open applications.
         ///
-        ///Error: {0}//Press any key//Altough you can use CTRL+ALT+DEL to quit an [rest of string was truncated]&quot;;.
+        ///Error: {0}//Press any key//Altough you can use CTRL+ALT [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string legacy_template {
             get {
                 return ResourceManager.GetString("legacy_template", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap loadpic {
+            get {
+                object obj = ResourceManager.GetObject("loadpic", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -340,6 +359,16 @@ namespace UltimateBlueScreenSimulator.Properties {
         internal static System.Drawing.Bitmap msoftware {
             get {
                 object obj = ResourceManager.GetObject("msoftware", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap msoftware_dm {
+            get {
+                object obj = ResourceManager.GetObject("msoftware_dm", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -373,6 +402,15 @@ namespace UltimateBlueScreenSimulator.Properties {
         internal static string NTERRORDATABASE {
             get {
                 return ResourceManager.GetString("NTERRORDATABASE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Roboto;Microsoft Sans Serif;Roboto Medium.
+        /// </summary>
+        internal static string optionalFonts {
+            get {
+                return ResourceManager.GetString("optionalFonts", resourceCulture);
             }
         }
         
@@ -492,6 +530,16 @@ namespace UltimateBlueScreenSimulator.Properties {
         internal static System.Drawing.Bitmap verifile {
             get {
                 object obj = ResourceManager.GetObject("verifile", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap verifile_dm {
+            get {
+                object obj = ResourceManager.GetObject("verifile_dm", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>UltimateBlueScreenSimulator</RootNamespace>
     <AssemblyName>Blue screen simulator plus</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <TargetFrameworkProfile />
@@ -57,9 +57,6 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MaterialSkin, Version=2.3.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\MaterialSkin.2.2.3.1\lib\net48\MaterialSkin.dll</HintPath>
-    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -109,6 +106,92 @@
     <Compile Include="Forms\Interfaces\NTdtor.Designer.cs">
       <DependentUpon>NTdtor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Interfaces\PrankModeActions.cs" />
+    <Compile Include="Forms\Interfaces\SettingsActions.cs" />
+    <Compile Include="Forms\Interfaces\TestSuite.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Interfaces\TestSuite.Designer.cs">
+      <DependentUpon>TestSuite.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Legacy\AboutSettingsDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Legacy\AboutSettingsDialog.Designer.cs">
+      <DependentUpon>AboutSettingsDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Legacy\AddBluescreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Legacy\AddBluescreen.Designer.cs">
+      <DependentUpon>AddBluescreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Legacy\ChooseFile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Legacy\ChooseFile.Designer.cs">
+      <DependentUpon>ChooseFile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Legacy\ErrorCodeEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Legacy\ErrorCodeEditor.Designer.cs">
+      <DependentUpon>ErrorCodeEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Legacy\Gen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Legacy\Gen.Designer.cs">
+      <DependentUpon>Gen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Legacy\IndexForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Legacy\IndexForm.Designer.cs">
+      <DependentUpon>IndexForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Legacy\MessageTableEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Legacy\MessageTableEditor.Designer.cs">
+      <DependentUpon>MessageTableEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Legacy\PrankMode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Legacy\PrankMode.Designer.cs">
+      <DependentUpon>PrankMode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Legacy\ProgressTuner.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Legacy\ProgressTuner.Designer.cs">
+      <DependentUpon>ProgressTuner.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Legacy\ScreenSaverConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Legacy\ScreenSaverConfig.Designer.cs">
+      <DependentUpon>ScreenSaverConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Legacy\StringEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Legacy\StringEdit.Designer.cs">
+      <DependentUpon>StringEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Legacy\TextView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Legacy\TextView.Designer.cs">
+      <DependentUpon>TextView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Loaders\ScreensaverPreview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Loaders\ScreensaverPreview.Designer.cs">
+      <DependentUpon>ScreensaverPreview.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Simulators\BootMgr.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -150,6 +233,12 @@
     </Compile>
     <Compile Include="Forms\DictEdit.Designer.cs">
       <DependentUpon>DictEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Simulators\SunValleyBSOD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Simulators\SunValleyBSOD.Designer.cs">
+      <DependentUpon>SunValleyBSOD.cs</DependentUpon>
     </Compile>
     <Compile Include="GlobalSettings.cs" />
     <Compile Include="Forms\Simulators\JupiterBSOD.cs">
@@ -194,12 +283,7 @@
     <Compile Include="Forms\Simulators\old_bluescreen.Designer.cs">
       <DependentUpon>old_bluescreen.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Interfaces\PrankMode.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Interfaces\PrankMode.Designer.cs">
-      <DependentUpon>PrankMode.cs</DependentUpon>
-    </Compile>
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="MaterialSkin\Controls\SizableMaterialButton.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -287,6 +371,7 @@
       <DependentUpon>xvsbs.cs</DependentUpon>
     </Compile>
     <Compile Include="TemplateRegistry.cs" />
+    <Compile Include="UIActions.cs" />
     <Compile Include="Verifile.cs" />
     <EmbeddedResource Include="Forms\Interfaces\AboutSettingsDialog.resx">
       <DependentUpon>AboutSettingsDialog.cs</DependentUpon>
@@ -303,6 +388,48 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Interfaces\NTdtor.resx">
       <DependentUpon>NTdtor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Interfaces\TestSuite.resx">
+      <DependentUpon>TestSuite.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Legacy\AboutSettingsDialog.resx">
+      <DependentUpon>AboutSettingsDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Legacy\AddBluescreen.resx">
+      <DependentUpon>AddBluescreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Legacy\ChooseFile.resx">
+      <DependentUpon>ChooseFile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Legacy\ErrorCodeEditor.resx">
+      <DependentUpon>ErrorCodeEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Legacy\Gen.resx">
+      <DependentUpon>Gen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Legacy\IndexForm.resx">
+      <DependentUpon>IndexForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Legacy\MessageTableEditor.resx">
+      <DependentUpon>MessageTableEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Legacy\PrankMode.resx">
+      <DependentUpon>PrankMode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Legacy\ProgressTuner.resx">
+      <DependentUpon>ProgressTuner.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Legacy\ScreenSaverConfig.resx">
+      <DependentUpon>ScreenSaverConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Legacy\StringEdit.resx">
+      <DependentUpon>StringEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Legacy\TextView.resx">
+      <DependentUpon>TextView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Loaders\ScreensaverPreview.resx">
+      <DependentUpon>ScreensaverPreview.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Simulators\BootMgr.resx">
       <DependentUpon>BootMgr.cs</DependentUpon>
@@ -347,11 +474,11 @@
     <EmbeddedResource Include="Forms\Simulators\old_bluescreen.resx">
       <DependentUpon>old_bluescreen.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Interfaces\PrankMode.resx">
-      <DependentUpon>PrankMode.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Interfaces\ProgressTuner.resx">
       <DependentUpon>ProgressTuner.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Simulators\SunValleyBSOD.resx">
+      <DependentUpon>SunValleyBSOD.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MaterialSkin\Controls\SizableMaterialButton.resx">
       <DependentUpon>SizableMaterialButton.cs</DependentUpon>
@@ -409,6 +536,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="bssp3_icon.ico" />
+    <None Include="Resources\BSSP_manual.pdf" />
+    <None Include="Resources\loadpic.png" />
+    <None Include="Resources\msoftware_dm.png" />
+    <None Include="Resources\verifile_dm.png" />
+    <None Include="Resources\bsodbanner31.png" />
     <None Include="Resources\9xERRORS.TXT" />
     <None Include="Resources\BSSP manual_3_offline.pdf" />
     <None Include="Resources\BSSP manual_4_offline.pdf" />
@@ -440,15 +572,18 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <PackageReference Include="Costura.Fody">
-      <Version>5.7.0</Version>
+      <Version>6.0.0</Version>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="MaterialSkin2Framework">
+      <Version>1.0.0</Version>
     </PackageReference>
     <PackageReference Include="System.Net.Http">
       <Version>4.3.4</Version>
     </PackageReference>
     <PackageReference Include="System.Text.Json">
-      <Version>8.0.5</Version>
+      <Version>9.0.7</Version>
     </PackageReference>
     <PackageReference Include="System.Text.RegularExpressions">
       <Version>4.3.1</Version>

@@ -82,8 +82,8 @@
             this.pictureBox47 = new System.Windows.Forms.PictureBox();
             this.pictureBox48 = new System.Windows.Forms.PictureBox();
             this.pictureBox49 = new System.Windows.Forms.PictureBox();
-            this.blinkyThing = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.blinkyThing = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox20)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox21)).BeginInit();
@@ -133,8 +133,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox47)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox48)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox49)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.blinkyThing)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.blinkyThing)).BeginInit();
             this.SuspendLayout();
             // 
             // waterMarkText
@@ -754,6 +754,15 @@
             this.pictureBox49.TabIndex = 68;
             this.pictureBox49.TabStop = false;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(640, 9);
+            this.pictureBox1.TabIndex = 69;
+            this.pictureBox1.TabStop = false;
+            // 
             // blinkyThing
             // 
             this.blinkyThing.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -766,15 +775,6 @@
             this.blinkyThing.TabIndex = 13;
             this.blinkyThing.TabStop = false;
             this.blinkyThing.Visible = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(640, 9);
-            this.pictureBox1.TabIndex = 69;
-            this.pictureBox1.TabStop = false;
             // 
             // W2kbs
             // 
@@ -799,6 +799,7 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.W2kbs_FormClosed);
             this.Load += new System.EventHandler(this.W2kbs_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.W2kbs_KeyDown);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.W2kbs_MouseMove);
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox20)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox21)).EndInit();
@@ -848,8 +849,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox47)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox48)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox49)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.blinkyThing)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.blinkyThing)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

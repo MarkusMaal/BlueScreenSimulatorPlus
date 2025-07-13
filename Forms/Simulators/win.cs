@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Media;
-using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using SimulatorDatabase;
@@ -16,14 +12,16 @@ namespace UltimateBlueScreenSimulator
     {
         public bool window = false;
         internal BlueScreen me = Program.templates.GetAt(0);
-        ThreadStart t;
-        Thread secondThread;
-        readonly List<Bitmap> image = new List<Bitmap>();
-        bool locked = true;
-        bool displaying = false;
+        private ThreadStart t;
+        private Thread secondThread;
+        private readonly List<Bitmap> image = new List<Bitmap>();
+        private bool locked = true;
+        private bool displaying = false;
         internal Random r;
-        readonly SoundPlayer sp = new SoundPlayer();
-        Bitmap splash = Properties.Resources.win1_splash;
+        private readonly SoundPlayer sp = new SoundPlayer();
+        private Bitmap splash = Properties.Resources.win1_splash;
+        private int moves = 0;
+        private Point initialCursorPosition;
         public Win()
         {
             //
@@ -45,7 +43,7 @@ namespace UltimateBlueScreenSimulator
                     Thread.Sleep(2);
                 }
                 Color bg = me.GetTheme(true); Color fg = me.GetTheme(false);
-                if (Program.gs.EnableEggs && (this.BackColor == this.ForeColor))
+                if (Program.gs.EnableEggs && (BackColor == ForeColor))
                 {
                     bg = Color.FromArgb(r.Next(0, 255), r.Next(0, 255), r.Next(0, 255));
                     fg = Color.FromArgb(r.Next(0, 255), r.Next(0, 255), r.Next(0, 255));
@@ -109,7 +107,9 @@ namespace UltimateBlueScreenSimulator
                 {
                     Color pixelColor = img.GetPixel(i, j);
                     if (pixelColor == black)
+                    {
                         img.SetPixel(i, j, white);
+                    }
                 }
             }
             return img;
@@ -117,7 +117,7 @@ namespace UltimateBlueScreenSimulator
 
         public Bitmap CreateNonIndexedImage(Image src)
         {
-            Bitmap newBmp = new Bitmap(this.Width, this.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+            Bitmap newBmp = new Bitmap(Width, Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
 
             using (Graphics gfx = Graphics.FromImage(newBmp))
             {
@@ -131,11 +131,11 @@ namespace UltimateBlueScreenSimulator
         {
             try
             {
-                this.Icon = me.GetIcon();
-                this.Text = me.GetString("friendlyname");
+                Icon = me.GetIcon();
+                Text = me.GetString("friendlyname");
                 if (me.GetBool("halfres"))
                 {
-                    this.Height = (int)(this.Height / 2);
+                    Height = (int)(Height / 2);
                     for (int i = 1; i <= 9; i++)
                     {
                         tableLayoutPanel1.Controls[$"pictureBox{i}"].Visible = false;
@@ -158,7 +158,7 @@ namespace UltimateBlueScreenSimulator
                             break;
                     }
 
-                    if (Program.gs.EnableEggs && (this.BackColor == this.ForeColor))
+                    if (Program.gs.EnableEggs && (BackColor == ForeColor))
                     {
                         Color bg = Color.FromArgb(r.Next(0, 255), r.Next(0, 255), r.Next(0, 255));
                         Color fg = Color.FromArgb(r.Next(0, 255), r.Next(0, 255), r.Next(0, 255));
@@ -170,10 +170,10 @@ namespace UltimateBlueScreenSimulator
                     // forces the bitmap to be resized to window dimensions
                     if (!me.GetBool("halfres"))
                     {
-                        splash = new Bitmap(splash, this.Width, this.Height);
+                        splash = new Bitmap(splash, Width, Height);
                     } else
                     {
-                        splash = new Bitmap(splash, this.Width, this.Height / 2);
+                        splash = new Bitmap(splash, Width, Height / 2);
                     }
                     int z = 1;
                     for (int y = 0; y < 224; y += 12)
@@ -185,27 +185,27 @@ namespace UltimateBlueScreenSimulator
                         Rectangle cropRect = new Rectangle(0, y, wdth, hght);
                         using (Graphics g = Graphics.FromImage(bmp))
                         {
-                            g.DrawImage(splash, new Rectangle(0, 0, this.Width, bmp.Height), cropRect, GraphicsUnit.Pixel);
+                            g.DrawImage(splash, new Rectangle(0, 0, Width, bmp.Height), cropRect, GraphicsUnit.Pixel);
                         }
                         ((PictureBox)tableLayoutPanel1.Controls["pictureBox" + z.ToString()]).Image = bmp;
                         z++;
                     }
                 }
-                if (me.GetBool("playsound"))
+                if (me.GetBool("playsound") && (Opacity != 0.0))
                 {
                     sp.Stream = Properties.Resources.beep;
                     sp.PlayLooping();
                 }
-                int[] colors = { this.BackColor.R + 50, this.BackColor.G + 50, this.BackColor.B + 50 };
+                int[] colors = { BackColor.R + 50, BackColor.G + 50, BackColor.B + 50 };
                 if (colors[0] > 255) { colors[0] -= 255; }
                 if (colors[1] > 255) { colors[1] -= 255; }
                 if (colors[2] > 255) { colors[2] -= 255; }
                 watermark.ForeColor = Color.FromArgb(colors[0], colors[1], colors[2]);
                 Program.loadfinished = true;
-                if (!me.GetBool("windowed"))
+                if (!me.GetBool("windowed") && (Opacity != 0.0))
                 {
-                    this.FormBorderStyle = FormBorderStyle.None;
-                    this.TopMost = false;
+                    FormBorderStyle = FormBorderStyle.None;
+                    TopMost = false;
                     Program.dr.Init(this);
                 }
                 else
@@ -215,28 +215,34 @@ namespace UltimateBlueScreenSimulator
                 t = new ThreadStart(WriteWord);
                 secondThread = new Thread(t);
                 secondThread.Start();
+                initialCursorPosition = Cursor.Position;
             } catch (Exception ex)
             {
                 Program.loadfinished = true;
                 screenUpdater.Enabled = false;
-                this.Hide();
+                Hide();
                 if (Program.gs.EnableEggs) { me.Crash(ex, "OrangeScreen"); }
-                else { MessageBox.Show("The blue screen cannot be displayed due to an error.\n\n" + ex.Message + "\n\n" + ex.StackTrace, "E R R O R", MessageBoxButtons.OK, MessageBoxIcon.Error); }
-                this.Close();
+                else { MessageBox.Show("The crash screen cannot be displayed due to an error.\n\n" + ex.Message + "\n\n" + ex.StackTrace, "E R R O R", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+                Close();
             }
             Program.load_progress = 100;
         }
 
         private void Timer1_Tick(object sender, EventArgs e)
         {
+            if (Opacity == 0.0)
+            {
+                return;
+            }
+
             if (screenUpdater.Interval != me.GetInt("blink_speed")) { screenUpdater.Interval = me.GetInt("blink_speed"); }
-            if (!window)
+            if (!window && (Opacity != 0.0))
             {
                 foreach (WindowScreen ws in Program.dr.wss)
                 {
                     if (ws.Visible == false)
                     {
-                        this.Close();
+                        Close();
                     }
                     try
                     {
@@ -248,11 +254,11 @@ namespace UltimateBlueScreenSimulator
                     }
                     catch
                     {
-                        this.Close();
+                        Close();
                     }
                 }
-                this.BringToFront();
-                this.Activate();
+                BringToFront();
+                Activate();
             }
             if (!locked)
             {
@@ -273,10 +279,7 @@ namespace UltimateBlueScreenSimulator
                                 g.DrawImage(pictureBox19.Image, 0, 0);
                                 g.DrawImage(partone, new Point(pictureBox19.Image.Width + 1, 0));
                                 pictureBox19.Image = bmp;
-                                if (pictureBox1.Image != null)
-                                {
-                                    pictureBox1.Image.Dispose();
-                                }
+                                pictureBox1.Image?.Dispose();
                                 for (int i = 1; i < 19; i++)
                                 {
                                     try
@@ -312,6 +315,10 @@ namespace UltimateBlueScreenSimulator
                 displaying = false;
                 locked = true;
             }
+            if (Program.isScreensaver && Program.gs.MouseMoveExit && (Cursor.Position.X != initialCursorPosition.X) && (Cursor.Position.Y != initialCursorPosition.Y))
+            {
+                Close();
+            }
         }
 
         private void Win_FormClosed(object sender, FormClosedEventArgs e)
@@ -322,7 +329,7 @@ namespace UltimateBlueScreenSimulator
                 {
                     c.Dispose();
                 }
-                this.Dispose();
+                Dispose();
                 if (Program.gs.PM_CloseMainUI)
                 {
                     Application.Exit();
@@ -339,12 +346,9 @@ namespace UltimateBlueScreenSimulator
             try
             {
                 screenUpdater.Enabled = false;
-                if (Program.f1 != null)
+                if (Program.F1 != null)
                 {
-                    if (secondThread != null)
-                    {
-                        secondThread.Abort();
-                    }
+                    secondThread?.Abort();
                     Program.dr.Dispose();
                     foreach (Image img in image)
                     {
@@ -359,14 +363,14 @@ namespace UltimateBlueScreenSimulator
                     }
                     try
                     {
-                        this.Dispose();
+                        Dispose();
                     } catch { }
                 }
             } catch (Exception ex)
             {
                 Program.loadfinished = true;
                 MessageBox.Show("An error has occoured.\n\n" + ex.Message + "\n\n" + ex.StackTrace, "Critical error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.Dispose();
+                Dispose();
             }
         }
 
@@ -382,6 +386,15 @@ namespace UltimateBlueScreenSimulator
                 string output = Program.dr.Screenshot(this);
                 Cursor.Show();
                 MessageBox.Show($"Image saved as {output}", "Screenshot taken", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void Win_MouseMove(object sender, MouseEventArgs e)
+        {
+            moves++;
+            if (moves > 50 && Program.isScreensaver && Program.gs.MouseMoveExit)
+            {
+                Close();
             }
         }
     }

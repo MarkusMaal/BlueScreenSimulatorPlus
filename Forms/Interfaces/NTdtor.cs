@@ -1,34 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using MaterialSkin;
-using MaterialSkin.Controls;
+using MaterialSkin2Framework;
+using MaterialSkin2Framework.Controls;
 using SimulatorDatabase;
 
 namespace UltimateBlueScreenSimulator.Forms.Interfaces
 {
     public partial class NTdtor : MaterialForm
     {
-        bool locked = false;
+        private bool locked = false;
         internal BlueScreen me;
         private readonly string validChars = "0123456789ABCDEFR";
 
         public NTdtor()
         {
             InitializeComponent();
-            MaterialSkinManager materialSkinManager = Program.f1.materialSkinManager;
+            MaterialSkinManager materialSkinManager = Program.F1.materialSkinManager;
             materialSkinManager.AddFormToManage(this);
         }
 
         private void NTdtor_Load(object sender, EventArgs e)
         {
-            this.Text += " - " + me.GetString("friendlyname");
+            if (me == null)
+            {
+                return;
+            }
+
+            Text += " - " + me.GetString("friendlyname");
             UpdateCodeList();
         }
 
@@ -85,9 +84,29 @@ namespace UltimateBlueScreenSimulator.Forms.Interfaces
             locked = false;
         }
 
-        private void codefilesList_SelectedIndexChanged(object sender, EventArgs e)
+        private void CodefilesList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            delEntryButton.Enabled = codefilesList.SelectedIndices.Count > 0;
+            if (me == null)
+            {
+                return;
+            }
+
+            codeBox.Enabled = codefilesList.SelectedIndices.Count > 0;
+            fixedButton.Enabled = codeBox.Enabled;
+            fixedRandomButton.Enabled = codeBox.Enabled;
+            randomButton.Enabled = codeBox.Enabled;
+            zeroButton.Enabled = codeBox.Enabled;
+            delCodeButton.Enabled = false;
+            if (codeBox.Enabled)
+            {
+                activeModeLabel.Text = "Edit mode";
+            } else
+            {
+                activeModeLabel.Text = "Insert mode";
+            }
+            activeModeLabel.Text += " (click to toggle)";
+
+                delEntryButton.Enabled = codefilesList.SelectedIndices.Count > 0;
             if (codefilesList.SelectedItems.Count == 1)
             {
                 KeyValuePair<string, string[]> currentFile = me.GetFile(codefilesList.SelectedIndices[0]);
@@ -114,8 +133,10 @@ namespace UltimateBlueScreenSimulator.Forms.Interfaces
                 int i = 1;
                 foreach (string code in me.GetFile(codefilesList.SelectedIndices[0]).Value)
                 {
-                    MaterialListBoxItem mlbi = new MaterialListBoxItem(code);
-                    mlbi.SecondaryText = $"Code {i}";
+                    MaterialListBoxItem mlbi = new MaterialListBoxItem(code)
+                    {
+                        SecondaryText = $"Code {i}"
+                    };
                     randCodesList.AddItem(mlbi);
                     i++;
                 }
@@ -137,20 +158,30 @@ namespace UltimateBlueScreenSimulator.Forms.Interfaces
             UpdateCodeList();
         }
 
-        private void codefilesList_KeyDown(object sender, KeyEventArgs e)
+        private void CodefilesList_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Delete)
             {
                 DeleteSelectedEntries();
+            } else if ((e.KeyCode == Keys.D) && (e.Control))
+            {
+                List<string> codes = new List<string>();
+                foreach (MaterialListBoxItem m in randCodesList.Items)
+                {
+                    codes.Add(m.Text);
+                }
+                me.PushFile(filenameBox.Text, codes.ToArray());
+                UpdateCodeList();
             }
+            NTdtor_KeyDown(sender, e);
         }
 
-        private void materialButton4_Click(object sender, EventArgs e)
+        private void MaterialButton4_Click(object sender, EventArgs e)
         {
             DeleteSelectedEntries();
         }
 
-        private void materialButton5_Click(object sender, EventArgs e)
+        private void MaterialButton5_Click(object sender, EventArgs e)
         {
             List<string> codes = new List<string>();
             foreach (MaterialListBoxItem m in randCodesList.Items)
@@ -161,25 +192,41 @@ namespace UltimateBlueScreenSimulator.Forms.Interfaces
             UpdateCodeList();
         }
 
-        private void materialButton3_Click(object sender, EventArgs e)
+        private void MaterialButton3_Click(object sender, EventArgs e)
         {
-            foreach (int idx in codefilesList.SelectedIndices)
+            if (codefilesList.SelectedItems.Count > 0)
             {
-                me.PushCode(idx, "RRRRRRRR");
+                foreach (int idx in codefilesList.SelectedIndices)
+                {
+                    me.PushCode(idx, "RRRRRRRR");
+                }
+            } else
+            {
+                randCodesList.Items.Add(new MaterialListBoxItem()
+                {
+                    Text = "RRRRRRRR",
+                    SecondaryText = "Code " + (randCodesList.Items.Count + 1)
+                });
             }
             UpdateCodeList();
         }
 
-        private void materialButton2_Click(object sender, EventArgs e)
+        private void MaterialButton2_Click(object sender, EventArgs e)
         {
-            foreach (int idx in codefilesList.SelectedIndices)
+            if (codefilesList.SelectedIndices.Count > 0)
             {
-                me.RemoveCode(idx, randCodesList.SelectedIndex);
+                foreach (int idx in codefilesList.SelectedIndices)
+                {
+                    me.RemoveCode(idx, randCodesList.SelectedIndex);
+                }
+                UpdateCodeList();
+            } else 
+            {
+                randCodesList.Items.RemoveAt(randCodesList.SelectedIndex);
             }
-            UpdateCodeList();
         }
 
-        private void randCodesList_MouseClick(object sender, MouseEventArgs e)
+        private void RandCodesList_MouseClick(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
             {
@@ -188,7 +235,7 @@ namespace UltimateBlueScreenSimulator.Forms.Interfaces
             delCodeButton.Enabled = randCodesList.SelectedIndex != -1;
         }
 
-        private void randCodesList_SelectedIndexChanged(object sender, MaterialListBoxItem selectedItem)
+        private void RandCodesList_SelectedIndexChanged(object sender, MaterialListBoxItem selectedItem)
         {
             if (randCodesList.SelectedIndex != -1)
             {
@@ -198,7 +245,7 @@ namespace UltimateBlueScreenSimulator.Forms.Interfaces
             
         }
 
-        private void browseButton_Click(object sender, EventArgs e)
+        private void BrowseButton_Click(object sender, EventArgs e)
         {
             ChooseFile cf = new ChooseFile();
             if (cf.ShowDialog() == DialogResult.OK)
@@ -207,7 +254,7 @@ namespace UltimateBlueScreenSimulator.Forms.Interfaces
             }
         }
 
-        private void codefilesList_MouseClick(object sender, MouseEventArgs e)
+        private void CodefilesList_MouseClick(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
             {
@@ -215,8 +262,13 @@ namespace UltimateBlueScreenSimulator.Forms.Interfaces
             }
         }
 
-        private void filenameBox_TextChanged(object sender, EventArgs e)
+        private void FilenameBox_TextChanged(object sender, EventArgs e)
         {
+            if (me == null)
+            {
+                return;
+            }
+
             if ((codefilesList.SelectedItems.Count > 0) && (filenameBox.Text.Length > 0))
             {
                 foreach (int idx in codefilesList.SelectedIndices)
@@ -237,8 +289,13 @@ namespace UltimateBlueScreenSimulator.Forms.Interfaces
             return newStr == "";
         }
 
-        private void codeBox_TextChanged(object sender, EventArgs e)
+        private void CodeBox_TextChanged(object sender, EventArgs e)
         {
+            if (me == null)
+            {
+                return;
+            }
+
             int bck = randCodesList.SelectedIndex;
             if ((randCodesList.SelectedIndex != -1))
             {
@@ -284,9 +341,9 @@ namespace UltimateBlueScreenSimulator.Forms.Interfaces
             UpdateCodeList();
         }
 
-        private void fixedRandomButton_Click(object sender, EventArgs e)
+        private void FixedRandomButton_Click(object sender, EventArgs e)
         {
-            if (randCodesList.SelectedItems.Count > 0)
+            if (randCodesList.SelectedIndex != -1)
             {
                 codeBox.Text = me.GenHex(8, codeBox.Text);
             } else
@@ -295,9 +352,9 @@ namespace UltimateBlueScreenSimulator.Forms.Interfaces
             }
         }
 
-        private void randomButton_Click(object sender, EventArgs e)
+        private void RandomButton_Click(object sender, EventArgs e)
         {
-            if (randCodesList.SelectedItems.Count > 0)
+            if (randCodesList.SelectedIndex != -1)
             {
                 codeBox.Text = "RRRRRRRR";
             } else
@@ -306,9 +363,9 @@ namespace UltimateBlueScreenSimulator.Forms.Interfaces
             }
         }
 
-        private void zeroButton_Click(object sender, EventArgs e)
+        private void ZeroButton_Click(object sender, EventArgs e)
         {
-            if (randCodesList.SelectedItems.Count > 0)
+            if (randCodesList.SelectedIndex != -1)
             {
                 codeBox.Text = "00000000";
             } else
@@ -317,15 +374,40 @@ namespace UltimateBlueScreenSimulator.Forms.Interfaces
             }
         }
 
-        private void fixedButton_Click(object sender, EventArgs e)
+        private void FixedButton_Click(object sender, EventArgs e)
         {
-            if (randCodesList.SelectedItems.Count > 0)
+            if (randCodesList.SelectedIndex != -1)
             {
                 codeBox.Text = codeBox.Text;
             }
             else
             {
                 SetCodeValues(false, codeBox.Text);
+            }
+        }
+
+        private void NTdtor_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F2)
+            {
+                MessageBox.Show("Screenshot saved as " + Program.dr.Screenshot(this), "Screenshot taken!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Cursor.Show();
+            } else if (e.KeyCode == Keys.Insert)
+            {
+                activeModeLabel_Click(sender, e);
+            }
+        }
+
+        private void activeModeLabel_Click(object sender, EventArgs e)
+        {
+            if (activeModeLabel.Text.StartsWith("Edit mode"))
+            {
+                codefilesList.SelectedIndices.Clear();
+                codefilesList.SelectedItems.Clear();
+            }
+            else
+            {
+                codefilesList.SelectedIndices.Add(0);
             }
         }
     }

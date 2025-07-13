@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+using System.Diagnostics;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using MaterialSkin;
-using MaterialSkin.Controls;
+using MaterialSkin2Framework;
+using MaterialSkin2Framework.Controls;
 using SimulatorDatabase;
 
 namespace UltimateBlueScreenSimulator.Forms.Interfaces
@@ -21,10 +16,10 @@ namespace UltimateBlueScreenSimulator.Forms.Interfaces
         internal string c3;
         internal string c4;
         private bool init = false;
-        private string topText = "The following error code method will be used:\r\n\r\n{0}";
+        private readonly string topText = "The following error code method will be used:\r\n\r\n{0}";
         public ErrorCodeEditor()
         {
-            MaterialSkinManager materialSkinManager = Program.f1.materialSkinManager;
+            MaterialSkinManager materialSkinManager = Program.F1.materialSkinManager;
             materialSkinManager.EnforceBackcolorOnAllComponents = false;
             materialSkinManager.AddFormToManage(this);
             InitializeComponent();
@@ -36,7 +31,7 @@ namespace UltimateBlueScreenSimulator.Forms.Interfaces
             if (chooseCode1.Checked == true)
             {
                 topLabel.Text = string.Format(topText, DispCodes(c1, c2, c3, c4));
-                if (sender is MaterialTextBox) { return; } // avoid updating the textbox content if user just modified the text on it
+                if (sender is MaterialTextBox2) { return; } // avoid updating the textbox content if user just modified the text on it
                 SetupCodes(c1);
             }
         }
@@ -46,7 +41,7 @@ namespace UltimateBlueScreenSimulator.Forms.Interfaces
             if (chooseCode2.Checked == true)
             {
                 topLabel.Text = string.Format(topText, DispCodes(c1, c2, c3, c4));
-                if (sender is MaterialTextBox) { return; } // avoid updating the textbox content if user just modified the text on it
+                if (sender is MaterialTextBox2) { return; } // avoid updating the textbox content if user just modified the text on it
                 SetupCodes(c2);
             }
         }
@@ -55,7 +50,7 @@ namespace UltimateBlueScreenSimulator.Forms.Interfaces
             if (chooseCode3.Checked == true)
             {
                 topLabel.Text = string.Format(topText, DispCodes(c1, c2, c3, c4));
-                if (sender is MaterialTextBox) { return; } // avoid updating the textbox content if user just modified the text on it
+                if (sender is MaterialTextBox2) { return; } // avoid updating the textbox content if user just modified the text on it
                 SetupCodes(c3);
             }
         }
@@ -65,7 +60,7 @@ namespace UltimateBlueScreenSimulator.Forms.Interfaces
             if (chooseCode4.Checked == true)
             {
                 topLabel.Text = string.Format(topText, DispCodes(c1, c2, c3, c4));
-                if (sender is MaterialTextBox) { return; } // avoid updating the textbox content if user just modified the text on it
+                if (sender is MaterialTextBox2) { return; } // avoid updating the textbox content if user just modified the text on it
                 SetupCodes(c4);
             }
         }
@@ -97,7 +92,7 @@ namespace UltimateBlueScreenSimulator.Forms.Interfaces
                 }
                 return "0x" + c1 + ", 0x" + c2 + ", 0x" + c3 + ", 0x" + c4;
             }
-            catch (Exception ex)
+            catch (Exception ex) when (!Debugger.IsAttached)
             {
                 Program.gs.Log("Error", "Error displaying codes: " + ex.Message);
                 return "0xDEADDEADDEADDEAD, 0xDEADDEADDEADDEAD, 0xDEADDEADDEADDEAD, 0xDEADDEADDEADDEAD";
@@ -150,7 +145,7 @@ namespace UltimateBlueScreenSimulator.Forms.Interfaces
             return -1;
         }
 
-        private void codeContent_TextChanged(object sender, EventArgs e)
+        private void CodeContent_TextChanged(object sender, EventArgs e)
         {
             if (ValidateField())
             {
@@ -192,17 +187,17 @@ namespace UltimateBlueScreenSimulator.Forms.Interfaces
             }
         }
 
-        private void materialButton2_Click(object sender, EventArgs e)
+        private void MaterialButton2_Click(object sender, EventArgs e)
         {
             codeContent.Text = "RRRRRRRRRRRRRRRR";
         }
 
-        private void materialButton1_Click(object sender, EventArgs e)
+        private void MaterialButton1_Click(object sender, EventArgs e)
         {
             codeContent.Text = "0000000000000000";
         }
 
-        private void materialButton3_Click(object sender, EventArgs e)
+        private void MaterialButton3_Click(object sender, EventArgs e)
         {
             if (ValidateField())
             {
@@ -213,7 +208,7 @@ namespace UltimateBlueScreenSimulator.Forms.Interfaces
             }
         }
 
-        private void materialButton4_Click(object sender, EventArgs e)
+        private void MaterialButton4_Click(object sender, EventArgs e)
         {
             if (ValidateField())
             {
@@ -230,6 +225,15 @@ namespace UltimateBlueScreenSimulator.Forms.Interfaces
             else
             {
                 MessageBox.Show("Entered code is invalid. Cannot apply to all!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void ErrorCodeEditor_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F2)
+            {
+                MessageBox.Show("Screenshot saved as " + Program.dr.Screenshot(this), "Screenshot taken!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Cursor.Show();
             }
         }
     }

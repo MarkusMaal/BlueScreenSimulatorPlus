@@ -135,6 +135,7 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AfterUnload);
             this.Load += new System.EventHandler(this.Initialize);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Cebsod_KeyDown);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Cebsod_MouseMove);
             this.ResumeLayout(false);
             this.PerformLayout();
 

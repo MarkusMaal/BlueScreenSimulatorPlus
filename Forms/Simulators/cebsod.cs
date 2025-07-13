@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using SimulatorDatabase;
@@ -10,12 +9,15 @@ namespace UltimateBlueScreenSimulator
     {
         public bool fullscreen = true;
         private int progress = 30;
-        bool inr = false;
-        bool ing = false;
-        bool inb = false;
+        private bool inr = false;
+        private bool ing = false;
+        private bool inb = false;
         internal BlueScreen me = Program.templates.GetAt(0);
 
-        string state = "0";
+        private string state = "0";
+        private int moves = 0;
+        private Point initialCursorPosition;
+
         public Cebsod()
         {
             InitializeComponent();
@@ -26,25 +28,32 @@ namespace UltimateBlueScreenSimulator
             if (fullscreen)
             {
                 Program.dr.DrawAll();
-                this.BringToFront();
-                this.Activate();
+                BringToFront();
+                Activate();
             }
-            if (progress == 0) { this.Close(); }
+            if (!Program.isScreensaver && (progress == 0)) { Close(); }
             timeOut.Text = timeOut.Text.Replace(progress.ToString(), (progress - 1).ToString());
-            progress--;
+            if (progress > 1)
+            {
+                progress--;
+            }
+            if (Program.isScreensaver && Program.gs.MouseMoveExit && (Cursor.Position.X != initialCursorPosition.X) && (Cursor.Position.Y != initialCursorPosition.Y))
+            {
+                Close();
+            }
         }
 
         private void Initialize(object sender, EventArgs e)
         {
             try
             {
-                this.Icon = me.GetIcon();
-                this.Text = me.GetString("friendlyname");
+                Icon = me.GetIcon();
+                Text = me.GetString("friendlyname");
                 if (Program.gs.EnableEggs)
                 {
-                    if (this.BackColor == this.ForeColor)
+                    if (BackColor == ForeColor)
                     {
-                        this.BackColor = Color.FromArgb(255, 0, 0);
+                        BackColor = Color.FromArgb(255, 0, 0);
                         rainBowScreen.Enabled = true;
                     }
                 }
@@ -55,7 +64,7 @@ namespace UltimateBlueScreenSimulator
                 techinfoLabel.Text = me.GetTexts()["Technical information"];
                 infoLabel.Text = me.GetTexts()["A problem has occurred..."] + "\n" + me.GetTexts()["CTRL+ALT+DEL message"];
                 Font commonFont = new Font(me.GetFont().FontFamily, me.GetFont().Size * 96f / CreateGraphics().DpiX, me.GetFont().Style, Font.Unit, Font.GdiCharSet, Font.GdiVerticalFont);
-                foreach (Control c in this.Controls)
+                foreach (Control c in Controls)
                 {
                     if (c is Label)
                     {
@@ -70,23 +79,24 @@ namespace UltimateBlueScreenSimulator
                     Program.dr.DrawRainbow(this);
                 }
                 Program.loadfinished = true;
-                if (!fullscreen) { this.FormBorderStyle = FormBorderStyle.FixedSingle; }
-                if (fullscreen)
+                if (!fullscreen) { FormBorderStyle = FormBorderStyle.FixedSingle; }
+                if (fullscreen && (Opacity != 0.0))
                 {
-                    this.TopMost = false;
+                    TopMost = false;
                     Program.dr.Init(this);
                     Program.loadfinished = true;
                 }
+                initialCursorPosition = Cursor.Position;
             } catch (Exception ex)
             {
                 Program.loadfinished = true;
                 screenUpdater.Enabled = false;
-                this.Hide();
+                Hide();
                 if (Program.gs.EnableEggs) { me.Crash(ex, "OrangeScreen"); }
-                else { MessageBox.Show("The blue screen cannot be displayed due to an error.\n\n" + ex.Message + "\n\n" + ex.StackTrace, "E R R O R", MessageBoxButtons.OK, MessageBoxIcon.Error); }
-                this.Close();
+                else { MessageBox.Show("The crash screen cannot be displayed due to an error.\n\n" + ex.Message + "\n\n" + ex.StackTrace, "E R R O R", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+                Close();
             }
-            int[] colors = { this.BackColor.R + 50, this.BackColor.G + 50, this.BackColor.B + 50 };
+            int[] colors = { BackColor.R + 50, BackColor.G + 50, BackColor.B + 50 };
             if (colors[0] > 255) { colors[0] -= 255; }
             if (colors[1] > 255) { colors[1] -= 255; }
             if (colors[2] > 255) { colors[2] -= 255; }
@@ -133,9 +143,9 @@ namespace UltimateBlueScreenSimulator
         private void DoubleRainbow(object sender, EventArgs e)
         {
 
-            int r = this.BackColor.R;
-            int gr = this.BackColor.G;
-            int b = this.BackColor.B;
+            int r = BackColor.R;
+            int gr = BackColor.G;
+            int b = BackColor.B;
             if (state == "1")
             {
                 if (inr == false)
@@ -211,27 +221,30 @@ namespace UltimateBlueScreenSimulator
                 state = "1";
                 gr += 1;
             }
-            this.BackColor = Color.FromArgb(r, gr, b);
-            foreach (Control c in this.Controls)
+            BackColor = Color.FromArgb(r, gr, b);
+            foreach (Control c in Controls)
             {
-                int[] colorsa = { this.BackColor.R - 100, this.BackColor.G - 100, this.BackColor.B - 100 };
+                int[] colorsa = { BackColor.R - 100, BackColor.G - 100, BackColor.B - 100 };
                 if (colorsa[0] < 0) { colorsa[0] += 255; }
                 if (colorsa[1] < 0) { colorsa[1] += 255; }
                 if (colorsa[2] < 0) { colorsa[2] += 255; }
                 c.ForeColor = Color.FromArgb(colorsa[0], colorsa[1], colorsa[2]);
             }
-            int[] colors = { this.BackColor.R + 20, this.BackColor.G + 20, this.BackColor.B + 20 };
+            int[] colors = { BackColor.R + 20, BackColor.G + 20, BackColor.B + 20 };
             if (colors[0] > 255) { colors[0] -= 255; }
             if (colors[1] > 255) { colors[1] -= 255; }
             if (colors[2] > 255) { colors[2] -= 255; }
             waterMarkText.ForeColor = Color.FromArgb(colors[0], colors[1], colors[2]);
             try
             {
-                Program.dr.DrawAll();
+                if (Opacity != 0.0)
+                {
+                    Program.dr.DrawAll();
+                }
             }
             catch
             {
-                this.Close();
+                Close();
             }
         }
 
@@ -247,6 +260,15 @@ namespace UltimateBlueScreenSimulator
                 string output = Program.dr.Screenshot(this);
                 Cursor.Show();
                 MessageBox.Show($"Image saved as {output}", "Screenshot taken", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void Cebsod_MouseMove(object sender, MouseEventArgs e)
+        {
+            moves++;
+            if (moves > 50 && Program.isScreensaver && Program.gs.MouseMoveExit)
+            {
+                Close();
             }
         }
     }

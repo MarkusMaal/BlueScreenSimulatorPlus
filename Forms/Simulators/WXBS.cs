@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 using SimulatorDatabase;
 
@@ -11,23 +9,32 @@ namespace UltimateBlueScreenSimulator
     {
         public bool server = false;
         public bool qr = true;
-        public bool green = false;
         public bool close = true;
-        public string code = "";
-        public string whatfail = "";
         public bool w8 = false;
         public bool w11 = false;
         private bool w8close = false;
+        private bool oldmode = true;
+        public bool green = false;
+        public string code = "";
+        public string whatfail = "";
         private int progress = 0;
         private int progressmillis = 0;
-        private bool oldmode = true;
         internal int maxprogressmillis = 0;
+        private string secondPart = "";
+        private Point initialCursorPosition;
         internal BlueScreen me = Program.templates.GetAt(0);
+        
         public WXBS()
         {
             if (new Verifile().RC() && Program.verificate)
             {
                 InitializeComponent();
+            } else
+            {
+                Program.loadfinished = true;
+                Program.verifile.HideUI();
+                Program.verifile.ShowBad();
+                Application.Exit();
             }
         }
 
@@ -75,15 +82,19 @@ namespace UltimateBlueScreenSimulator
                 {
                     supportContainer.Margin = new Padding(0,3,3,3);
                     supportInfo.Location = new Point(supportInfo.Location.X - 3, supportInfo.Location.Y);
-                    errorCode.Location = new Point(errorCode.Location.X - 3, errorCode.Location.Y);
+                    errorCode.Location = new Point(errorCode.Location.X - 6, errorCode.Location.Y);
+                    if (!me.GetBool("qr"))
+                    {
+                        errorCode.Location = new Point(errorCode.Location.X + 3, errorCode.Location.Y);
+                    }
                     if (w8)
                     {
                         errorCode.Location = supportInfo.Location;
                         supportInfo.Visible = false;
                     }
                 }
-                this.Icon = me.GetIcon();
-                this.Text = me.GetString("friendlyname");
+                Icon = me.GetIcon();
+                Text = me.GetString("friendlyname");
                 memCodes.Visible = me.GetBool("extracodes");
                 Font textfont = me.GetFont();
                 float textsize = textfont.Size;
@@ -94,7 +105,21 @@ namespace UltimateBlueScreenSimulator
                 progressIndicator.Font = textfont;
                 supportInfo.Font = modernDetailFont;
                 errorCode.Font = modernDetailFont;
-                yourPCranLabel.Text = me.GetTexts()["Information text with dump"];
+                if (me.GetTexts()["Information text with dump"].Contains("."))
+                {
+                    yourPCranLabel.Text = me.GetTexts()["Information text with dump"].Split('.')[0] + ".\r\n\r\n";
+                } else
+                {
+                    yourPCranLabel.Text = me.GetTexts()["Information text with dump"];
+                }
+                try
+                {
+                    secondPart = me.GetTexts()["Information text with dump"].Substring(yourPCranLabel.Text.Length - 4);
+                }
+                catch
+                {
+                    secondPart = "";
+                }
 
                 qrCode.Size = new Size(me.GetInt("qr_size"), me.GetInt("qr_size"));
 
@@ -103,28 +128,30 @@ namespace UltimateBlueScreenSimulator
                 else { try { qrCode.Image = Image.FromFile(me.GetString("qr_file")); } catch { qrCode.Image = Properties.Resources.bsodqr; } }
                 if (w8 == true)
                 {
-                    yourPCranLabel.Text = me.GetTexts()["Information text with dump"].Replace("{0}", "0");
+                    yourPCranLabel.Text = me.GetTexts()["Information text with dump"].Split('.')[0] + ".\r\n\r\n\r\n";
+                    secondPart = me.GetTexts()["Information text with dump"].Substring(yourPCranLabel.Text.Length - 6);
                     if (close == true) { close = false; w8close = true; }
 
                 }
                 else
                 {
-                    progressIndicator.Text = me.GetTexts()["Progress"].Replace("{0}", "0");
+                    //progressIndicator.Text = me.GetTexts()["Progress"].Replace("{0}", "0");
                     supportInfo.Text = me.GetTexts()["Additional information"];
                 }
                 if (me.GetBool("blackscreen"))
                 {
-                    this.BackColor = Color.Black;
+                    BackColor = Color.Black;
                 }
                 if (!w8close)
                 {
                     if (close == false)
                     {
-                        yourPCranLabel.Text = me.GetTexts()["Information text without dump"];
+                        yourPCranLabel.Text = me.GetTexts()["Information text without dump"].Split('.')[0] + ".\r\n\r\n";
+                        secondPart = me.GetTexts()["Information text without dump"].Substring(yourPCranLabel.Text.Length - 4);
                     }
                     if (green)
                     {
-                        this.BackColor = Color.FromArgb(47, 121, 42);
+                        BackColor = Color.FromArgb(47, 121, 42);
                         yourPCranLabel.Text = yourPCranLabel.Text.Replace("PC", "Windows Insider Build");
                     }
                     if (server)
@@ -134,8 +161,8 @@ namespace UltimateBlueScreenSimulator
                     }
                     if (me.GetBool("device")) { yourPCranLabel.Text = yourPCranLabel.Text.Replace("PC", "device"); }
                 }
-                try { waterMarkText.ForeColor = Color.FromArgb(this.BackColor.R + 60, this.BackColor.G + 60, this.BackColor.B + 60); } catch { }
-                if (this.FormBorderStyle == FormBorderStyle.None)
+                try { waterMarkText.ForeColor = Color.FromArgb(BackColor.R + 60, BackColor.G + 60, BackColor.B + 60); } catch { }
+                if (FormBorderStyle == FormBorderStyle.None)
                 {
                     if (!Program.gs.ShowCursor && Program.verificate)
                     {
@@ -146,12 +173,12 @@ namespace UltimateBlueScreenSimulator
                 {
                     Program.dr.DrawRainbow(this);
                 }
-                emoticonLabel.Padding = new Padding(0, Convert.ToInt32(this.Height * ((double)me.GetInt("margin-y") / 100.0)), 0, 0);
-                qrMargin.Width = Convert.ToInt32(this.Width * ((double)me.GetInt("margin-x") / 100.0)) - 10;
+                emoticonLabel.Padding = new Padding(0, Convert.ToInt32(Height * ((double)me.GetInt("margin-y") / 100.0)), 0, 0);
+                qrMargin.Width = Convert.ToInt32(Width * ((double)me.GetInt("margin-x") / 100.0)) - 10;
                 yourPCranLabel.Padding = new Padding(qrMargin.Width - 3, 0, 0, 0);
                 progressIndicator.Padding = yourPCranLabel.Padding;
                 emoticonLabel.Margin = new Padding(yourPCranLabel.Padding.Left - (int)(emoticonLabel.Width * 0.2), 0, 0, 0);
-                horizontalFlowPanel.Width = this.Width - 10;
+                horizontalFlowPanel.Width = Width - 10;
                 if (w8 == false)
                 {
                     if (whatfail == "")
@@ -218,20 +245,43 @@ namespace UltimateBlueScreenSimulator
                 {
                     progressUpdater.Enabled = true;
                 }
+                if (!w8 && !me.GetBool("crashdump") && me.GetBool("autoclose") && me.GetTexts().Keys.Contains("No crashdump with autorestart"))
+                {
+                    yourPCranLabel.Text = yourPCranLabel.Text.Substring(0,yourPCranLabel.Text.Length - 2);
+                    secondPart = " " + (me.GetTexts()["No crashdump with autorestart"]);
+                } else if (!w8 && !me.GetBool("crashdump") && !me.GetBool("autoclose") && me.GetTexts().Keys.Contains("No crashdump"))
+                {
+                    yourPCranLabel.Text = yourPCranLabel.Text.Substring(0,yourPCranLabel.Text.Length - 2);
+                    secondPart = " " + (me.GetTexts()["No crashdump"]) + "\r\n";
+                }
+                if (Opacity == 0.0)
+                {
+                    yourPCranLabel.Text = yourPCranLabel.Text.Replace("\r\n", "");
+                    yourPCranLabel.Text += secondPart;
+                    if (!w8)
+                    {
+                        progressIndicator.Visible = true;
+                        progressIndicator.Text = string.Format(me.GetTexts()["Progress"], "0");
+                    } else
+                    {
+                        yourPCranLabel.Text = string.Format(yourPCranLabel.Text, "0");
+                    }
+                }
                 Program.loadfinished = true;
-                if (!me.GetBool("windowed"))
+                if (!me.GetBool("windowed") && (Opacity != 0.0))
                 {
                     Program.dr.Init(this, true);
                 }
+                initialCursorPosition = Cursor.Position;
             } catch (Exception ex)
             {
                 Program.loadfinished = true;
                 screenUpdater.Enabled = false;
                 progressUpdater.Enabled = false;
-                this.Hide();
+                Hide();
                 if (Program.gs.EnableEggs) { me.Crash(ex, "OrangeScreen"); }
-                else { MessageBox.Show("The blue screen cannot be displayed due to an error.\n\n" + ex.Message + "\n\n" + ex.StackTrace, "E R R O R", MessageBoxButtons.OK, MessageBoxIcon.Error); }
-                this.Close();
+                else { MessageBox.Show("The crash screen cannot be displayed due to an error.\n\n" + ex.Message + "\n\n" + ex.StackTrace, "E R R O R", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+                Close();
             }
         }
 
@@ -240,13 +290,15 @@ namespace UltimateBlueScreenSimulator
             try
             {
                 if (!oldmode) { progressmillis++; }
-                if (!w8close)
+                if (oldmode && progressmillis != 21) { progressmillis = 20; }
+                if (!w8close && progressmillis > 20)
                 {
+                    progressIndicator.Visible = true;
                     if (!Program.verificate) { throw new NotImplementedException(); }
                     if ((oldmode && (progress >= 100)) || (progressmillis == maxprogressmillis))
                     {
                         progressUpdater.Enabled = false;
-                        if (me.GetBool("autoclose")) { this.Close(); }
+                        if (me.GetBool("autoclose") && !Program.isScreensaver) { Close(); }
                         progressIndicator.Text = me.GetTexts()["Progress"].Replace("{0}", "100");
                     }
                     if (oldmode)
@@ -257,7 +309,7 @@ namespace UltimateBlueScreenSimulator
                     {
                         progress += me.GetProgression(progressmillis);
                     }
-                    progressIndicator.Text = me.GetTexts()["Progress"].Replace("{0}", progress.ToString());
+                    progressIndicator.Text = string.Format(me.GetTexts()["Progress"], progress);
                 }
                 else
                 {
@@ -265,9 +317,9 @@ namespace UltimateBlueScreenSimulator
                     {
                         yourPCranLabel.Text = yourPCranLabel.Text.Replace(progress.ToString() + "%", "100%");
                         progressUpdater.Enabled = false;
-                        if (me.GetBool("autoclose"))
+                        if (me.GetBool("autoclose") && !Program.isScreensaver)
                         {
-                            this.Close();
+                            Close();
                         }
                     }
                     string oldprogress = progress.ToString();
@@ -282,6 +334,20 @@ namespace UltimateBlueScreenSimulator
                     }
                     yourPCranLabel.Text = yourPCranLabel.Text.Replace(oldprogress + "%", progress.ToString() + "%");
                 }
+                if ((progressmillis == 20) && (secondPart != ""))
+                {
+                    string s = yourPCranLabel.Text.Replace("\r\n", "");
+                    if (w8)
+                    {
+                        yourPCranLabel.Text = s + secondPart.ToString().Replace("{0}", progress.ToString());
+                    } else
+                    {
+                        if (me.GetBool("crashdump")) { progressIndicator.Text = me.GetTexts()["Progress"].Replace("{0}", progress.ToString()); }
+                        else { progressUpdater.Enabled = false; }
+                        yourPCranLabel.Text = s + secondPart.ToString();
+                    }
+                    if (oldmode) { progressmillis += 1; maxprogressmillis = 9999; }
+                }
             } catch (Exception ex)
             {
                 progressUpdater.Enabled = false;
@@ -293,36 +359,36 @@ namespace UltimateBlueScreenSimulator
 
         private void WXBS_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (Program.gs.PM_CloseMainUI)
-            {
-                Application.Exit();
-            }
             if (Program.gs.PM_ShowMessage)
             {
                 MessageBox.Show(Program.gs.PM_MsgText, Program.gs.PM_MsgTitle, Program.gs.PM_MsgType, Program.gs.PM_MsgIcon);
                 Program.gs.PM_ShowMessage = false;
             }
+            if (Program.gs.PM_CloseMainUI)
+            {
+                Application.Exit();
+            }
         }
 
         private void WXBS_Resize(object sender, EventArgs e)
         {
-            emoticonLabel.Padding = new Padding(0, Convert.ToInt32(this.Height * ((double)me.GetInt("margin-y") / 100.0)), 0, 0);
-            qrMargin.Width = Convert.ToInt32(this.Width * ((double)me.GetInt("margin-x") / 100.0)) - 10;
+            emoticonLabel.Padding = new Padding(0, Convert.ToInt32(Height * ((double)me.GetInt("margin-y") / 100.0)), 0, 0);
+            qrMargin.Width = Convert.ToInt32(Width * ((double)me.GetInt("margin-x") / 100.0)) - 10;
             yourPCranLabel.Padding = new Padding(qrMargin.Width - 3, 0, 0, 0);
             progressIndicator.Padding = yourPCranLabel.Padding;
             emoticonLabel.Margin = new Padding(yourPCranLabel.Padding.Left - (int)(emoticonLabel.Width * 0.2), 0, 0, 0);
-            horizontalFlowPanel.Width = this.Width - 10;
+            horizontalFlowPanel.Width = Width - 10;
 
             if (qr == true)
             {
                 //errorCode.Location = new Point(3, 56);
-                Point locationOnForm = qrCode.FindForm().PointToClient(qrCode.Parent.PointToScreen(qrCode.Location));
+                _ = qrCode.FindForm().PointToClient(qrCode.Parent.PointToScreen(qrCode.Location));
                 //supportContainer.Location = new Point(qrMargin.Width + qrCode.Width + 20, locationOnForm.Y);
             }
             else
             {
                 //errorCode.Location = new Point(3, 0);
-                Point locationOnForm = horizontalFlowPanel.FindForm().PointToClient(horizontalFlowPanel.Parent.PointToScreen(horizontalFlowPanel.Location));
+                _ = horizontalFlowPanel.FindForm().PointToClient(horizontalFlowPanel.Parent.PointToScreen(horizontalFlowPanel.Location));
                 //supportContainer.Location = new Point(qrMargin.Width - 13, locationOnForm.Y);
             }
             if (qr == false)
@@ -354,8 +420,12 @@ namespace UltimateBlueScreenSimulator
                 {
                     Program.dr.Draw(ws, me.GetBool("watermark"));
                 }
-                this.BringToFront();
-                this.Activate();
+                BringToFront();
+                Activate();
+            }
+            if (Program.isScreensaver && Program.gs.MouseMoveExit && (Cursor.Position.X != initialCursorPosition.X) && (Cursor.Position.Y != initialCursorPosition.Y))
+            {
+                Close();
             }
         }
 
@@ -364,7 +434,7 @@ namespace UltimateBlueScreenSimulator
             if ((e.KeyCode == Keys.Escape) || (e.KeyCode == Keys.F7))
             {
                 // debug here
-                Program.f1.me.GetString("a");
+                UIActions.me.GetString("a");
                 Close();
             }
             else if ((e.KeyCode == Keys.F2) && me.GetBool("windowed"))
@@ -373,15 +443,6 @@ namespace UltimateBlueScreenSimulator
                 Cursor.Show();
                 MessageBox.Show($"Image saved as {output}", "Screenshot taken", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-        }
-
-        private void WXBS_Paint(object sender, PaintEventArgs e)
-        {
-        }
-
-        private void WXBS_LocationChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

@@ -5,7 +5,7 @@ using System.Drawing.Drawing2D;
 using System.Drawing.Text;
 using System.Windows.Forms;
 
-namespace MaterialSkin.Controls
+namespace MaterialSkin2Framework.Controls
 {
     public class SizableMaterialButton : Panel
     {
@@ -73,7 +73,7 @@ namespace MaterialSkin.Controls
 
         private void InitializeComponent()
         {
-            this.button1 = new MaterialSkin.Controls.MaterialButton();
+            this.button1 = new MaterialSkin2Framework.Controls.MaterialButton();
             this.label1 = new Label();
             // 
             // label1
@@ -89,7 +89,7 @@ namespace MaterialSkin.Controls
             // 
             this.button1.AutoSize = false;
             this.button1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.button1.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.button1.Density = MaterialSkin2Framework.Controls.MaterialButton.MaterialButtonDensity.Default;
             this.button1.Depth = 0;
             this.button1.HighEmphasis = true;
             this.button1.Icon = null;

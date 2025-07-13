@@ -1,10 +1,11 @@
 ﻿using System;
 using System.IO;
-using System.Linq;
 using System.Management;
 using System.Security.Cryptography;
 using System.Text;
 using System.Windows.Forms;
+using System.Linq;
+using System.Threading;
 
 namespace UltimateBlueScreenSimulator
 {
@@ -40,6 +41,7 @@ namespace UltimateBlueScreenSimulator
                 File.Copy(legacykey, filename);
                 File.Delete(legacykey);
             }
+            Program.gs.Log("Info", "Checking Verifile signature");
             if (File.Exists(badkey))
             {
                 File.Delete(badkey);
@@ -48,6 +50,26 @@ namespace UltimateBlueScreenSimulator
             aa = new ManagementObjectSearcher("root\\CIMV2", "SELECT * FROM Win32_BaseBoard");
         }
 
+        public void HideUI()
+        {
+            if (Program.gs.LegacyUI)
+            {
+                Program.F2.BeginInvoke(new MethodInvoker(delegate {
+                    Program.F2.Hide();
+                }));
+            }
+            else
+            {
+                Program.F1.BeginInvoke(new MethodInvoker(delegate {
+                    Program.F1.Hide();
+                }));
+            }
+        }
+
+        public void ShowBad()
+        {
+            MessageBox.Show("A malicious program or script tried to potentially fool you into thinking that your system crashed. Due to signature verification failure, this program has to close.\n\n\nWhat should I do?\n\nIf you did not download the Bluescreen simulator plus yourself, please scan your computer for potential viruses or malware\nIf you DID download blue screen simulator plus, then the problem is most likely caused by a recent hardware change, which can invalidate the signature. To recreate the signature, run following commands in command prompt:\ncd \"" + AppDomain.CurrentDomain.BaseDirectory + "\"\nBlue screen simulator plus.exe /clr\n\nAfter that, you should be able to relaunch the program after clicking \"OK\".", "Ultimate blue screen simulator plus", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
 
         public bool Bad {
             get { return bad; }
@@ -71,17 +93,24 @@ namespace UltimateBlueScreenSimulator
             bool verifi = File.Exists(filename);
             if (verifi)
             {
-                if (Vfile() != File.ReadAllText(filename))
+                try
                 {
-                    Program.gs.Log("Error", "Verifile attestation result: TAMPERED");
-                    MessageBox.Show("A malicious program or script tried to potentially fool you into thinking that your system crashed. Due to signature verification failure, this program has to close.\n\n\nWhat should I do?\n\nIf you did not download the Bluescreen simulator plus yourself, please scan your computer for potential viruses or malware\nIf you DID download blue screen simulator plus, then the problem is most likely caused by a recent hardware change, which can invalidate the signature. To recreate the signature, run following commands in command prompt:\ncd \"" + AppDomain.CurrentDomain.BaseDirectory + "\"\nBlue screen simulator plus.exe /clr\n\nAfter that, you should be able to relaunch the program after clicking \"OK\".", "Ultimate blue screen simulator plus", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    bad = true;
-                    Program.halt = true;
-                    return false;
-                }
-                else
+                    if (Vfile() != File.ReadAllText(filename))
+                    {
+                        Program.gs.Log("Error", "Verifile attestation result: TAMPERED");
+                        Program.clip.ExitSplash();
+                        ShowBad();
+                        bad = true;
+                        Program.halt = true;
+                        return false;
+                    }
+                    else
+                    {
+                        Program.gs.Log("Info", "Verifile attestation result: VERIFIED");
+                    }
+                } catch
                 {
-                    Program.gs.Log("Info", "Verifile attestation result: VERIFIED");
+                    verifi = false;
                 }
             }
             if (!verifi)
@@ -99,7 +128,14 @@ namespace UltimateBlueScreenSimulator
                 }
                 string usetype = "";
                 if (preversion) { usetype = "version of the "; }
-                if (MessageBox.Show("It looks like you are using this " + usetype + "program for the very first time. If you did not start this program, dont worry. This program is not malicious, but you should click \"No\" below and scan your computer for viruses/malicious programs.\n\n\nThis program can only be used for non-harmful purposes, such as:\n\n* Screenshotting blue screens from different operating systems (for use in a video, article, etc)\n* Non-harmful pranking purposes (ie pranking a friend, relative, etc)\n* Having fun tweaking different blue screens\n* Learning about different blue screens from different operating systems\n* Other testing or reviewing purposes\n\n\nBy clicking or selecting \"Yes\" you accept that you DO NOT use this program maliciously (ie as a part of a malicious program, a way of sacrificing productivity, etc). A verification signature will be created preventing this message from popping up in this computer. \n\nIf you click or select \"No\" then the program will close. The popup will reappear once you relaunch the program from this computer and user account.", "Welcome to Blue screen simulator plus", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.No)
+                // Sleep 0.5 seconds to avoid race issues
+                if (!Program.clip.CheckNoSplash())
+                {
+                    Thread.Sleep(500);
+                }
+
+                Program.clip.ExitSplash();
+                if (MessageBox.Show("It looks like you are using this " + usetype + "program for the very first time. If you did not start this program, dont worry. This program is not malicious, but you should click \"No\" below and scan your computer for viruses/malicious programs.\n\n\nThis program can only be used for non-harmful purposes, such as:\n\n* Screenshotting crash screens from different operating systems (for use in a video, article, etc)\n* Non-harmful pranking purposes (ie pranking a friend, relative, etc)\n* Having fun tweaking different blue screens\n* Learning about different blue screens from different operating systems\n* Other testing or reviewing purposes\n\n\nBy clicking or selecting \"Yes\" you accept that you DO NOT use this program maliciously (ie as a part of a malicious program, a way of sacrificing productivity, etc). A verification signature will be created preventing this message from popping up in this computer. \n\nIf you click or select \"No\" then the program will close. The popup will reappear once you relaunch the program from this computer and user account.", "Welcome to Blue screen simulator plus", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.No)
                 {
                     Program.halt = true;
                     Application.Exit();
@@ -107,8 +143,20 @@ namespace UltimateBlueScreenSimulator
                 }
                 else
                 {
-                    Program.gs.Log("Info", "Registering Verifile data");
-                    WriteFile();
+                    new Thread(() => {
+                        Program.gs.Log("Info", "Registering Verifile data");
+                        WriteFile();
+                    }).Start();
+                    if (!Program.clip.CheckNoSplash())
+                    {
+                        Program.hidden = true;
+                        Program.splt = new Thread(Program.ShowLoading);
+                        Program.splt.Start();
+                        if (Program.clip.CheckPreviewSplash())
+                        {
+                            Program.halt = true;
+                        }
+                    }
                     return true;
                 }
             }
@@ -121,7 +169,6 @@ namespace UltimateBlueScreenSimulator
         /// <param name="di">Directory info of current path to check</param>
         private void RecursePaths(DirectoryInfo di)
         {
-            Program.gs.Log("Info", $"Directory \"{di.FullName}\" doesn't exist. Creating it...");
             if (!Directory.Exists(di.Parent.FullName))
             {
                 RecursePaths(di.Parent);
@@ -146,11 +193,16 @@ namespace UltimateBlueScreenSimulator
             }
             else
             {
-                File.WriteAllText(filename, verificatable, Encoding.ASCII);
+                try
+                {
+                    File.WriteAllText(filename, verificatable, Encoding.ASCII);
+                } catch
+                {
+                }
             }
 
         }
-        string Q()
+        private string Q()
         {
             string gg = "CPI" + Ff();
             try
@@ -159,12 +211,19 @@ namespace UltimateBlueScreenSimulator
             }
             catch
             {
-                MessageBox.Show("Unable to write signature information. To remove first use message, please run the application as administrator at least once.", "Verifile error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (Program.wineKey != null)
+                {
+                    MessageBox.Show("Signature verification didn't work, most likely because you tried to run this app with Wine. You'll see this message every time you attempt to launch the program unless you run it under Windows or when WineHQ finally decide to fix their mess by releasing a patch...", "Verifile error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    MessageBox.Show("Unable to write signature information. To remove first use message, please run the application as administrator at least once.", "Verifile error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
                 return "error";
             }
         }
 
-        string Uu()
+        private string Uu()
         {
             using (ManagementObjectSearcher o = new ManagementObjectSearcher("SELECT * FROM Win32_BIOS"))
 
@@ -173,17 +232,14 @@ namespace UltimateBlueScreenSimulator
             {
 
                 StringBuilder t = new StringBuilder();
-                foreach (ManagementObject mo in moc)
-
+                foreach (string version in from ManagementObject mo in moc
+                                        let BIOSVersions = (string[])mo["BIOSVersion"]
+                                        from string version in BIOSVersions
+                                        select version)
                 {
-
-                    string[] BIOSVersions = (string[])mo["BIOSVersion"];
-                    foreach (string version in BIOSVersions)
-                    {
-                        t.AppendLine(string.Format("{0}", version));
-                    }
-
+                    t.AppendLine(string.Format("{0}", version));
                 }
+
                 return t.ToString().Split('\n')[0].ToString();
             }
         }
@@ -193,22 +249,22 @@ namespace UltimateBlueScreenSimulator
             string l = string.Empty;
             ManagementClass mc = new ManagementClass("win32_processor");
             ManagementObjectCollection moc = mc.GetInstances();
-
-            foreach (ManagementObject mo in moc)
+            foreach (ManagementObject mo in from ManagementObject mo in moc
+                               where l == ""
+                               select mo)
             {
-                if (l == "")
+                try
                 {
-                    try
-                    {
-                        l = mo.Properties["processorID"].Value.ToString();
-                    }
-                    catch
-                    {
-                        l = "a";
-                    }
-                    break;
+                    l = mo.Properties["processorID"].Value.ToString();
                 }
+                catch
+                {
+                    l = "a";
+                }
+
+                break;
             }
+
             return l;
         }
         public static string J(string z)
@@ -237,12 +293,20 @@ namespace UltimateBlueScreenSimulator
             }
             return t.ToString();
         }
-        public bool RC() { return Vfile() == File.ReadAllText(filename); }
+        public bool RC() {
+            try
+            {
+                return Vfile() == File.ReadAllText(filename);
+            } catch
+            {
+                return false;
+            }
+        }
         public string B {
             get {
                 try
                 {
-                    foreach (ManagementObject queryObj in aa.Get())
+                    foreach (ManagementObject queryObj in aa.Get().Cast<ManagementObject>())
                     {
                         return queryObj["Product"].ToString();
                     }

@@ -7,11 +7,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Blue screen simulator plus")]
-[assembly: AssemblyDescription("Allows you to simulate blue screens from different Windows releases")]
+[assembly: AssemblyDescription("Allows you to simulate crash screens from different Windows releases")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Markus' software (Markuse tarkvara)")]
 [assembly: AssemblyProduct("Blue screen simulator plus")]
-[assembly: AssemblyCopyright("Copyright © 2024")]
+[assembly: AssemblyCopyright("Copyright © 2025")]
 [assembly: AssemblyTrademark("Markus' software (Markuse tarkvara)")]
 [assembly: AssemblyCulture("")]
 
@@ -33,6 +33,6 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("3.0.2.0")]
-[assembly: AssemblyFileVersion("3.0.2.0")]
+[assembly: AssemblyVersion("3.1.0.0")]
+[assembly: AssemblyFileVersion("3.1.0.0")]
 [assembly: NeutralResourcesLanguage("en-US")]

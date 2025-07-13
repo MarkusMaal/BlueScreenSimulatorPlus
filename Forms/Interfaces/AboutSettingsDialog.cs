@@ -7,26 +7,29 @@ using SimulatorDatabase;
 using System.Collections.Generic;
 using System.Threading;
 using System.Diagnostics;
-using MaterialSkin.Controls;
-using MaterialSkin;
+using MaterialSkin2Framework.Controls;
+using MaterialSkin2Framework;
 using System.Text;
 using System.Text.Json;
-using System.Windows.Media.Animation;
+using UltimateBlueScreenSimulator.Forms.Interfaces;
 
 namespace UltimateBlueScreenSimulator
 {
-    partial class AboutSettingsDialog : MaterialForm
+    internal partial class AboutSettingsDialog : MaterialForm
     {
         //If this flag is set, then help tabs are hidden and setting tabs are visible
         public bool SettingTab = false;
         public int tab_id = 0;
         public bool finished = false;
         internal bool Demo = false;
-        readonly Random r = new Random();
+        private readonly Random r = new Random();
         private int reelTime = 0;
+        private bool closed = false;
+
+
         public AboutSettingsDialog()
         {
-            MaterialSkinManager materialSkinManager = Program.f1.materialSkinManager;
+            MaterialSkinManager materialSkinManager = Program.F1.materialSkinManager;
             materialSkinManager.EnforceBackcolorOnAllComponents = false;
             materialSkinManager.AddFormToManage(this);
             InitializeComponent();
@@ -42,19 +45,24 @@ namespace UltimateBlueScreenSimulator
             loadBsconfig.Filter = all + filters.ToString().Substring(0, filters.Length - 1);
             saveBsconfig.Filter = filters.ToString().Substring(0, filters.Length - 1);
             //Get assembly information about the program
-            this.Text = String.Format("About {0}", AssemblyTitle);
-            this.labelProductName.Text = "Blue Screen Simulator Plus";
-            if (Program.gs.DevBuild) { this.labelProductName.Text += " [Development Build]"; }
+            this.Text = $"About {AssemblyTitle}";
+            Font = new Font(Font.Name, 8.25f * 96f / CreateGraphics().DpiX, Font.Style, Font.Unit, Font.GdiCharSet, Font.GdiVerticalFont);
+
+        }
+
+        public static void GetAbout(Dictionary<string, Control> controls)
+        {
+            controls["labelProductName"].Text = "Blue Screen Simulator Plus";
+            if (Program.gs.DevBuild) {
+                controls["labelProductName"].Text += "[Development Build]"; }
             string asmVer = AssemblyVersion.Replace(".0", "");
             if (!asmVer.Contains("."))
             {
                 asmVer += ".0";
             }
-            this.labelVersion.Text = String.Format("Version {0} with Verifile 1.2", asmVer);
-            this.labelCopyright.Text = AssemblyCopyright;
-            this.labelCompanyName.Text = "Codename ModestIndigo\nLanguage: C# (.NET framework, Windows Forms)\nCreated by: Markus Maal a.k.a. mmaal (markustegelane)\n\nThis program can only be provided free of charge (if you had to pay for this, please ask for a refund). This program is provided as is, without a warranty.\n2022 Markuse tarkvara (Markus' software)";
-            Font = new Font(Font.Name, 8.25f * 96f / CreateGraphics().DpiX, Font.Style, Font.Unit, Font.GdiCharSet, Font.GdiVerticalFont);
-
+            controls["labelVersion"].Text = $"Version {asmVer} with Verifile 1.3";
+            controls["labelCopyright"].Text = AssemblyCopyright;
+            controls["labelCompanyName"].Text = "Codename LotsaSpaghetti\nLanguage: C# (.NET framework, Windows Forms)\nCreated by: Markus Maal a.k.a. MarkusTegelane\n\nThis program can only be provided free of charge (if you had to pay for this, please ask for a refund). This program is provided as is, without a warranty.\nMarkuse tarkvara (Markus' software)";
         }
 
         #region Assembly Attribute Accessors
@@ -76,7 +84,7 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        public string AssemblyVersion
+        public static string AssemblyVersion
         {
             get
             {
@@ -97,7 +105,7 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        public string AssemblyProduct
+        public static string AssemblyProduct
         {
             get
             {
@@ -110,7 +118,7 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        public string AssemblyCopyright
+        public static string AssemblyCopyright
         {
             get
             {
@@ -139,52 +147,18 @@ namespace UltimateBlueScreenSimulator
 
         private void SetInitalInterface(object sender, EventArgs e)
         {
-            // legacy night mode
-            /*if (Program.f1.nightThemeToolStripMenuItem.Checked)
-            {
-                aboutSettingsTabControl.Appearance = TabAppearance.FlatButtons;
-                this.BackColor = Color.Black;
-                this.ForeColor = Color.Gray;
-                foreach (System.Windows.Forms.Panel p in aboutSettingsTabControl.TabPages)
-                {
-                    p.BackColor = this.BackColor;
-                    p.ForeColor = this.ForeColor;
-                }
-                markusSoftwareLogo.BackColor = Color.DimGray;
-                veriFileLogo.BackColor = Color.DimGray;
-                primaryServerBox.BackColor = Color.Black;
-                primaryServerBox.ForeColor = Color.Gray;
-                primaryServerBox.BorderStyle = BorderStyle.FixedSingle;
-                configList.BackColor = Color.Black;
-                configList.ForeColor = Color.Gray;
-                //configList.BorderStyle = BorderStyle.FixedSingle;
-                helpDisplay.BackColor = Color.Black;
-                helpDisplay.ForeColor = Color.Gray;
-                commandLineHelpDisplay.BackColor = Color.Black;
-                commandLineHelpDisplay.ForeColor = Color.Gray;
-            }*/
             //Ping main form that the about box/help/settings dialog is open
             if (Demo)
             {
                 demoReelTimer.Enabled = true;
                 return;
             }
-            Program.f1.abopen = true;
+            Program.F1.abopen = true;
             rtlSwitch.Visible = Program.gs.DevBuild;
             //Hide settings tabs
-            if (!SettingTab)
-            {
-                updatePanel.Dispose();
-                simulatorSettingsPanel.Dispose();
-                appearancePanel.Dispose();
-                rndFactButton.Visible = Program.gs.EnableEggs;
-            }
             //Hide help/about tabs and get settings
             if (SettingTab)
             {
-                aboutPanel.Dispose();
-                commandLinePanel.Dispose();
-                helpPanel.Dispose();
                 eggHunterButton.Checked = Program.gs.EnableEggs;
                 darkDetectCheck.Checked = Program.gs.AutoDark;
                 materialSwitch1.Checked = Program.gs.QuickHelp;
@@ -204,6 +178,7 @@ namespace UltimateBlueScreenSimulator
                 autoUpdateRadio.Checked = Program.gs.AutoUpdate;
                 hashBox.Checked = Program.gs.HashVerify;
                 primaryServerBox.Text = Program.gs.UpdateServer;
+                legacyInterfaceCheck.Checked = Program.gs.LegacyUI;
                 if (!((primaryServerBox.Text == "http://nossl.markustegelane.eu/app") || (primaryServerBox.Text == "http://markustegelane.eu/app")))
                 {
                     primaryServerBox.Enabled = true;
@@ -292,34 +267,29 @@ namespace UltimateBlueScreenSimulator
                 }
                 devFlowPanel.Visible = Program.gs.DevBuild;
             }
-            else if (aboutSettingsTabControl.SelectedTab.Text == "Command line help")
-            {
-                //Loads command line help
-                commandLineHelpDisplay.Text = Program.cmds.Replace("\n", Environment.NewLine);
-            }
         }
 
         //Help texts
-        private void QuickHelp_Help(object sender, EventArgs e)
+        public static void QuickHelp_Help(Control c)
         {
-            helpDisplay.Text = "How to quickly get help?\n\nFor items that have [?] at the end, you can just hover over them for more information.".Replace("\n", Environment.NewLine);
+            c.Text = "How to quickly get help?\n\nFor items that have [?] at the end, you can just hover over them for more information.".Replace("\n", Environment.NewLine);
         }
 
-        private void QuickHelp_Purpose(object sender, EventArgs e)
+        public static void QuickHelp_Purpose(Control c)
         {
-            helpDisplay.Text = "What is the purpose of this program?\n\nThis program can be used as a way of screenshotting bluescreens without actually crashing your computer or messing with virtual machines. You can also use this program for pranking purposes (no harm will be done to the system).".Replace("\n", Environment.NewLine);
+            c.Text = "What is the purpose of this program?\n\nThis program can be used as a way of screenshotting bluescreens without actually crashing your computer or messing with virtual machines. You can also use this program for pranking purposes (no harm will be done to the system).".Replace("\n", Environment.NewLine);
         }
 
-        private void QuickHelp_SystemRequirements(object sender, EventArgs e)
+        public static void QuickHelp_SystemRequirements(Control c)
         {
-            helpDisplay.Text = "System requirements:\n\nOS: Windows 7 or later (Windows Vista partially works as well)\nInstalled fonts: Segoe UI (with Semilight variant), Consolas, Lucida Console\n200MB of available RAM (recommended minimum)\n100MB of available RAM (absolute minimum)\nx86 or compatible processor\nRead-Write storage media\nMicrosoft.NET Framework 4.5.2\n1000+ bps internet connection (for updates and online help functionality)\nScreen resolution: 1024x720 or higher (1280x720 or higher recommended)".Replace("\n", Environment.NewLine);
+            c.Text = "System requirements:\n\nOS: Windows 7 or later (Windows Vista partially works as well)\nInstalled fonts: Segoe UI (with Semilight variant), Consolas, Lucida Console\n200MB of available RAM (recommended minimum)\n100MB of available RAM (absolute minimum)\nx86 or compatible processor\nRead-Write storage media\nMicrosoft.NET Framework 4.8.1\n1000+ bps internet connection (for updates and online help functionality)\nScreen resolution: 1024x720 or higher (1280x720 or higher recommended)".Replace("\n", Environment.NewLine);
         }
 
         //Closes the dialog and sets dialogresult to ok
         private void OkButton_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.OK;
-            this.Close();
+            DialogResult = DialogResult.OK;
+            Close();
         }
 
         private void UnsignMe(object sender, EventArgs e)
@@ -333,7 +303,7 @@ namespace UltimateBlueScreenSimulator
                     MessageBox.Show("Signature removed successfully.", "Verifile verification system", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-            catch (Exception ex)
+            catch (Exception ex) when (!Debugger.IsAttached)
             {
                 MessageBox.Show("Something went wrong. Please send the following details to the developer:\n\n" + ex.Message + "\n\n" + ex.StackTrace);
             }
@@ -348,27 +318,12 @@ namespace UltimateBlueScreenSimulator
                 {
                     File.Delete(Program.prefix + "vercheck.txt");
                 }
-                UpdateInterface ui = new UpdateInterface();
-                ui.DownloadFile(Program.gs.UpdateServer + "/bssp_version.txt", Program.prefix + "vercheck.txt");
                 updateCheckButton.Enabled = false;
                 updateCheckButton.Text = "Please wait now ...";
-                updateCheckerTimer.Enabled = true;
-                Program.f1.updateCheckerTimer.Interval = 5998;
-                Program.f1.updateCheckerTimer.Enabled = true;
+                UIActions.CheckUpdates(Program.F1, updateCheckButton);
             } else
             {
                 MessageBox.Show("No internet connection available", "Couldn't check for updates", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void UpdateTimer_Tick(object sender, EventArgs e)
-        {
-            //Checks if check for updates has finished
-            if (!Program.f1.updateCheckerTimer.Enabled)
-            {
-                updateCheckerTimer.Enabled = false;
-                updateCheckButton.Enabled = true;
-                updateCheckButton.Text = "Check for updates";
             }
         }
 
@@ -422,10 +377,17 @@ namespace UltimateBlueScreenSimulator
         private void ExitMe(object sender, FormClosingEventArgs e)
         {
             //Makes sure that the configuration is saved when closing the form
-            Program.f1.abopen = false;
-            if (SettingTab)
+            Program.F1.abopen = false;
+            if (SettingTab && !closed)
             {
-                Program.f1.GetOS();
+                closed = true;
+                if (Program.gs.LegacyUI)
+                {
+                    Program.gs.SaveSettings();
+                    Application.Restart();
+                    return;
+                }
+                UIActions.GetOS(Program.F1);
             }
         }
 
@@ -681,7 +643,7 @@ namespace UltimateBlueScreenSimulator
             primaryServerBox.Enabled = true;
         }
 
-        private void UserManualButtonClick(object sender, EventArgs e)
+        public static void UserManualButtonClick()
         {
             if (Program.DoWeHaveInternet(1000))
             {
@@ -704,7 +666,6 @@ namespace UltimateBlueScreenSimulator
         {
             Splash spl = new Splash();
             spl.SplashText.Text = "Idling. Press ESC to exit.";
-            spl.veriFileTimer.Enabled = false;
             spl.Show();
         }
 
@@ -730,14 +691,14 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void Button2_Click(object sender, EventArgs e)
+        public static void SourceCode(object sender, EventArgs e)
         {
             Process p = new Process();
             p.StartInfo.FileName = "https://github.com/MarkusMaal/BlueScreenSimulatorPlus";
             p.Start();
         }
 
-        private void Button3_Click(object sender, EventArgs e)
+        public static void Copying(object sender, EventArgs e)
         {
             TextView tv = new TextView
             {
@@ -748,40 +709,11 @@ namespace UltimateBlueScreenSimulator
             tv.Dispose();
         }
 
-        /* DONE: Remove devbuild text from the stable release 2.1 */
-        private void Button4_Click(object sender, EventArgs e)
+        public static void RandomFact(object sender, EventArgs e)
         {
             if (Program.gs.EnableEggs)
             {
-                string[] tips =
-                {
-                "Material Design is a design language developed by Google in 2014!",
-                "You can close a blue screen by pressing ALT+F4",
-                "There is a crash screen for a program that simulates crash screens, right?",
-                "The codename came from a song that was playing in the background during the development process",
-                "If Microsoft decides to change their error screens, I'll push an update that adds these changes",
-                "Configuration files store every property about all error screens",
-                "Windows Vista/7 blue screen scrolls, when there is too much information on screen",
-                "There are rainbow easter eggs for Windows XP, Vista, 7, CE, and 1.x/2.x blue screens",
-                "In prank mode, the watermark on a blue screen is disabled automatically",
-                "There are two error screens in this program, that technically aren't blue screens",
-                "This program, for the most part, also works in ReactOS, which is an open source Windows clone based on reverse engineering",
-                "The first Windows XP bluescreen I ever saw displayed DRIVER_IRQL_NOT_LESS_OR_EQUAL as the error code",
-                "You can also use the Enter key to close Windows 9x bluescreens",
-                "Microsoft originally planned to replace a blue screen with a black one as early as Windows 8",
-                "Every major Windows release, up until Windows 11, has had some sort of a blue screen",
-                "Blue is a color that symbolises peace",
-                "Initially, this version was going to be 2.2, but due to large changes was renamed to 3.0",
-                "Windows 2000 blue screen didn't use rasterized fonts in previous versions, because I figured it looked 'close enough' to the original",
-                "If you use the 'choose' button when setting a culprit file, you might see some weird filenames...",
-                "The background of the logo graphic in the about screen displays two major colors used by bugcheck screens - black and blue",
-                "This program isn't a copy of FlyTech's work, instead it was developed from scratch, because of the limitations I saw when trying out FlyTech's blue screen simulator.",
-                "You can use progress tuner to make more realistic progress indicators for modern blue screens",
-                "There is no random factoid here",
-                "target: void"
-            };
-                Random r = new Random();
-                MessageBox.Show(tips[r.Next(0, tips.Length - 1)], "Random fact", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(Program.tips[BlueScreen.r.Next(0, Program.tips.Length - 1)], "Random fact", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -826,41 +758,17 @@ namespace UltimateBlueScreenSimulator
             osName.Text = "Select a configuration to modify/remove it";
         }
 
-        private void LogoPictureBox_Click(object sender, EventArgs e)
+        public static void Changelog(object sender, EventArgs e)
         {
-            if (Program.gs.EnableEggs)
-            {
-                if (r.Next(0, 255) == 13)
-                {
-                    logoPictureBox.Image = Properties.Resources.success;
-                    foreach (BlueScreen bs in Program.templates.GetAll())
-                    {
-                        if (bs.GetString("os") == "Windows 10")
-                        {
-                            bs.SetText("Information text with dump", "Your P");
-                            bs.SetText("Information text without dump", "Your P");
-                            bs.SetText("Additional information", "");
-                            bs.SetText("Culprit file", "");
-                            bs.SetText("Error code", "");
-                            bs.SetText("Progress", "");
-                            bs.SetBool("qr", false);
-                        }
-                    }
-                }
-            }
+            MessageBox.Show(string.Join("\r\n", Program.changelog) + "\n\nYou can find a more detailed changelog in the official BlueScreenSimulatorPlus GitHub page.", "What's new?", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void button3_Click_1(object sender, EventArgs e)
-        {
-            MessageBox.Show(Program.changelog + "\n\nYou can find a more detailed changelog in the official BlueScreenSimulatorPlus GitHub page.", "What's new?", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
-        private void darkDetectCheck_CheckedChanged(object sender, EventArgs e)
+        private void DarkDetectCheck_CheckedChanged(object sender, EventArgs e)
         {
             Program.gs.AutoDark = darkDetectCheck.Checked;
         }
 
-        private void materialButton4_Click(object sender, EventArgs e)
+        private void MaterialButton4_Click(object sender, EventArgs e)
         {
             Program.loadfinished = false;
             Gen g = new Gen();
@@ -878,34 +786,34 @@ namespace UltimateBlueScreenSimulator
             dummyThread.Start();
         }
 
-        private void accentBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void AccentBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             Program.gs.ColorScheme = (GlobalSettings.ColorSchemes)accentBox.SelectedIndex;
             Program.gs.ApplyScheme();
         }
 
-        private void darkMode_CheckedChanged(object sender, EventArgs e)
+        private void DarkMode_CheckedChanged(object sender, EventArgs e)
         {
             Program.gs.NightTheme = darkMode.Checked;
             if (darkMode.Checked)
             {
-                Program.f1.materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
+                Program.F1.materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
             }
             else
             {
-                Program.f1.materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
+                Program.F1.materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
             }
-            Program.f1.RelocateButtons();
+            Program.F1.RelocateButtons();
         }
 
-        private void rtlSwitch_CheckedChanged(object sender, EventArgs e)
+        private void RtlSwitch_CheckedChanged(object sender, EventArgs e)
         {
-            Program.f1.RightToLeft = rtlSwitch.Checked ? RightToLeft.Yes : RightToLeft.Inherit;
+            Program.F1.RightToLeft = rtlSwitch.Checked ? RightToLeft.Yes : RightToLeft.Inherit;
         }
 
-        private void materialButton6_Click_1(object sender, EventArgs e)
+        private void MaterialButton6_Click_1(object sender, EventArgs e)
         {
-            var options = new JsonSerializerOptions { WriteIndented = true };
+            JsonSerializerOptions options = new JsonSerializerOptions { WriteIndented = true };
             string jsonString = JsonSerializer.Serialize(Program.templates, options);
             TextView tv = new TextView
             {
@@ -915,7 +823,7 @@ namespace UltimateBlueScreenSimulator
             tv.Show();
         }
 
-        private void configList_DoubleClick(object sender, EventArgs e)
+        private void ConfigList_DoubleClick(object sender, EventArgs e)
         {
             AddBluescreen ab = new AddBluescreen();
             BlueScreen me = Program.templates.GetAt(configList.SelectedIndex);
@@ -931,13 +839,13 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void materialSwitch1_CheckedChanged(object sender, EventArgs e)
+        private void MaterialSwitch1_CheckedChanged(object sender, EventArgs e)
         {
             Program.gs.QuickHelp = materialSwitch1.Checked;
-            this.helpTip.Active = materialSwitch1.Checked;
+            helpTip.Active = materialSwitch1.Checked;
         }
 
-        private void helpTip_Popup(object sender, PopupEventArgs e)
+        private void HelpTip_Popup(object sender, PopupEventArgs e)
         {
             if (e.AssociatedControl != null)
             {
@@ -964,15 +872,15 @@ namespace UltimateBlueScreenSimulator
             }
         }
 
-        private void materialComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void MaterialComboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             Program.gs.PrimaryColor = (GlobalSettings.ColorSchemes)primaryColorBox.SelectedIndex;
             Program.gs.ApplyScheme();
 
             // applies the color to titlebars immediately
-            Program.f1.Refresh();
-            Program.f1.nineXmessage.Refresh();
-            this.Refresh();
+            Program.F1.Refresh();
+            Program.F1.nineXmessage.Refresh();
+            Refresh();
         }
 
         private void ShowEmbedded(object sender, EventArgs e)
@@ -987,8 +895,8 @@ namespace UltimateBlueScreenSimulator
             }
             if ((filename != "") && MessageBox.Show("Are you sure?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
-                this.Hide();
-                Program.f1.Hide();
+                Hide();
+                Program.F1.Hide();
                 string jsonString = Program.GetEmbedded(filename);
                 if (jsonString != "")
                 {
@@ -997,18 +905,20 @@ namespace UltimateBlueScreenSimulator
                         Program.dr = new DrawRoutines();
                         Thread th = new Thread(new ThreadStart(() => {
                             // initialize BlueScreen object
-                            Program.f1.me = Program.templates.LoadSingleConfig(jsonString);
+                            UIActions.me = Program.templates.LoadSingleConfig(jsonString);
                             // display the crash screen
-                            Program.f1.me.Show();
+                            UIActions.me.Show();
                         }));
                         th.Start();
                         th.Join();
                     }
                     else
                     {
-                        TextView tv = new TextView();
-                        tv.Text = jsonString;
-                        tv.Title = "JSON data";
+                        TextView tv = new TextView
+                        {
+                            Text = jsonString,
+                            Title = "JSON data"
+                        };
                         tv.ShowDialog();
                     }
                 }
@@ -1016,13 +926,13 @@ namespace UltimateBlueScreenSimulator
                 {
                     MessageBox.Show("No embedded data was found.", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
-                Program.f1.Show();
-                this.Show();
-                this.BringToFront();
+                Program.F1.Show();
+                Show();
+                BringToFront();
             }
             loadBsconfig.Filter = backup;
             loadBsconfig.FileName = "";
-            this.Enabled = true;
+            Enabled = true;
         }
 
         private void AutosaveCheckChanged(object sender, EventArgs e)
@@ -1030,7 +940,7 @@ namespace UltimateBlueScreenSimulator
             Program.gs.Autosave = autosaveCheck.Checked;
         }
 
-        private void demoReelTimer_Tick(object sender, EventArgs e)
+        private void DemoReelTimer_Tick(object sender, EventArgs e)
         {
             if (reelTime < 20)
             {
@@ -1041,12 +951,12 @@ namespace UltimateBlueScreenSimulator
             {
                 reelTime = 0;
                 demoReelTimer.Enabled = false;
-                this.Close();
+                Close();
             }
             reelTime++;
         }
 
-        private void materialButton8_Click(object sender, EventArgs e)
+        private void MaterialButton8_Click(object sender, EventArgs e)
         {
             // Get primary and accent colors from an empty GlobalSettings object
             GlobalSettings dummy = new GlobalSettings();
@@ -1054,10 +964,29 @@ namespace UltimateBlueScreenSimulator
             primaryColorBox.SelectedIndex = (int)dummy.PrimaryColor;
         }
 
-        private void materialButton11_Click(object sender, EventArgs e)
+        private void MaterialButton11_Click(object sender, EventArgs e)
         {
             accentBox.SelectedIndex = r.Next(0, accentBox.Items.Count - 1);
             primaryColorBox.SelectedIndex = r.Next(0, primaryColorBox.Items.Count - 1);
+        }
+
+        private void LegacyInterfaceCheck_CheckedChanged(object sender, EventArgs e)
+        {
+            Program.gs.LegacyUI = legacyInterfaceCheck.Checked;
+        }
+
+        private void MaterialButton12_Click(object sender, EventArgs e)
+        {
+            new TestSuite().Show();
+        }
+
+        private void AboutSettingsDialog_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F2)
+            {
+                MessageBox.Show("Screenshot saved as " + Program.dr.Screenshot(this), "Screenshot taken!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Cursor.Show();
+            }
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Windows.Forms;
 using SimulatorDatabase;
@@ -14,19 +13,21 @@ namespace UltimateBlueScreenSimulator
         public string whatfail = "";
         private bool naturalclose = false;
         private int progress = 0;
-        bool inr = false;
-        bool ing = false;
-        bool inb = false;
+        private bool inr = false;
+        private bool ing = false;
+        private bool inb = false;
         internal BlueScreen me = Program.templates.GetAt(0);
-        string h1;
-        string h2;
-        string h3;
-        Color bg;
-        Color fg;
-        IDictionary<string, string> txt;
+        private string h1;
+        private string h2;
+        private string h3;
+        private Color bg;
+        private Color fg;
+        private IDictionary<string, string> txt;
 
-        string state = "0";
-        Font commonFont;
+        private string state = "0";
+        private Font commonFont;
+
+        private Point initialCursorPosition;
         public Vistabs()
         {
             //
@@ -64,7 +65,7 @@ namespace UltimateBlueScreenSimulator
                 bg = me.GetTheme(true);
                 fg = me.GetTheme(false);
                 txt = me.GetTexts();
-                foreach (Control c in this.Controls)
+                foreach (Control c in Controls)
                 {
                     if (c is AliasedLabel)
                     {
@@ -80,15 +81,15 @@ namespace UltimateBlueScreenSimulator
                     }
                     if (bg == fg)
                     {
-                        this.BackColor = Color.FromArgb(255, 0, 0);
+                        BackColor = Color.FromArgb(255, 0, 0);
                         rainBowScreen.Enabled = true;
                     }
                 }
                 float HeightInPixels;
                 commonFont = new Font(me.GetFont().FontFamily, me.GetFont().Size * 96f / CreateGraphics().DpiX, me.GetFont().Style, Font.Unit, Font.GdiCharSet, Font.GdiVerticalFont);
-                using (Graphics g = this.CreateGraphics())
+                using (Graphics g = CreateGraphics())
                 {
-                    var points = commonFont.SizeInPoints;
+                    float points = commonFont.SizeInPoints;
                     HeightInPixels = points * g.DpiX / 72;
                 }
 
@@ -158,11 +159,11 @@ namespace UltimateBlueScreenSimulator
                 if (colors[1] > 255) { colors[1] -= 255; }
                 if (colors[2] > 255) { colors[2] -= 255; }
                 waterMarkText.ForeColor = Color.FromArgb(colors[0], colors[1], colors[2]);
-                if (fullscreen)
+                if (fullscreen && (this.Opacity != 0.0))
                 {
                     this.TopMost = false;
                     Program.dr.Init(this);
-                    this.Hide();
+                    Hide();
                 }
                 errorCode.Visible = me.GetBool("show_description");
                 errorCode.Text = errorCode.Text.Replace("CRITICAL_OBJECT_TERMINATION", "A process or thread crucial to system operation has unexpectedly exited or been terminated.");
@@ -186,14 +187,15 @@ namespace UltimateBlueScreenSimulator
                     Program.dr.DrawRainbow(this);
                 }
                 Program.loadfinished = true;
+                initialCursorPosition = Cursor.Position;
             } catch (Exception ex)
             {
                 Program.loadfinished = true;
                 screenUpdater.Enabled = false;
-                this.Hide();
+                Hide();
                 if (Program.gs.EnableEggs) { me.Crash(ex, "OrangeScreen"); }
-                else { MessageBox.Show("The blue screen cannot be displayed due to an error.\n\n" + ex.Message + "\n\n" + ex.StackTrace, "E R R O R", MessageBoxButtons.OK, MessageBoxIcon.Error); }
-                this.Close();
+                else { MessageBox.Show("The crash screen cannot be displayed due to an error.\n\n" + ex.Message + "\n\n" + ex.StackTrace, "E R R O R", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+                Close();
             }
         }
 
@@ -227,9 +229,9 @@ namespace UltimateBlueScreenSimulator
                             dumpText.Text += "\n" + me.GetTexts()["End dump"] + "\n" + me.GetTexts()["Technical support"];
                         }
                         float HeightInPixels;
-                        using (Graphics g = this.CreateGraphics())
+                        using (Graphics g = CreateGraphics())
                         {
-                            var points = dumpText.Font.SizeInPoints;
+                            float points = dumpText.Font.SizeInPoints;
                             HeightInPixels = points * g.DpiX / 72;
                         }
                         if (dumpText.Location.Y + (int)(HeightInPixels * dumpText.Text.Split('\n').Length + 2) > this.ClientSize.Height)
@@ -253,16 +255,21 @@ namespace UltimateBlueScreenSimulator
                 if (fullscreen)
                 {
                     Program.dr.DrawAll();
-                    this.BringToFront();
-                    this.Activate();
+                    BringToFront();
+                    Activate();
                 }
                 if (tardisFade.Enabled == true) { return; }
                 if (rainBowScreen.Enabled == true) { return; }
+
+                if (Program.isScreensaver && Program.gs.MouseMoveExit && (Cursor.Position.X != initialCursorPosition.X) && (Cursor.Position.Y != initialCursorPosition.Y))
+                {
+                    Close();
+                }
             } catch (Exception ex)
             {
                 screenUpdater.Enabled = false;
                 me.Crash(ex, "OrangeScreen");
-                this.Close();
+                Close();
             }
         }
 

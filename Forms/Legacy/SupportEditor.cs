@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace UltimateBlueScreenSimulator
@@ -24,6 +18,15 @@ namespace UltimateBlueScreenSimulator
         private void SupportEditor_Load(object sender, EventArgs e)
         {
             textBox1.Text = Program.gs.SupportText;
+        }
+
+        private void SupportEditor_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F2)
+            {
+                MessageBox.Show("Screenshot saved as " + Program.dr.Screenshot(this), "Screenshot taken!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Cursor.Show();
+            }
         }
     }
 }

@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
-using System.Threading;
-using System.Windows.Forms;
-using ms = MaterialSkin;
 using System.Text.Json;
 using System.Text.Json.Serialization; // alias to ms to avoid conflict with ColorScheme
+using System.Threading;
+using System.Windows.Forms;
+using ms = MaterialSkin2Framework;
 
 namespace UltimateBlueScreenSimulator
 {
@@ -33,6 +34,8 @@ namespace UltimateBlueScreenSimulator
         private string update_server;
         private bool quickhelp;
         private bool autosave;
+        private bool legacyui;
+        private bool mousemoveexit;
 
         // runtime settings (these are not persistent)
         [JsonIgnore]
@@ -49,6 +52,9 @@ namespace UltimateBlueScreenSimulator
 
         [JsonIgnore]
         private bool displayone;
+
+        [JsonIgnore]
+        private bool fileio;
 
         // prank mode
         private MessageBoxIcon MsgBoxIcon;
@@ -128,6 +134,10 @@ namespace UltimateBlueScreenSimulator
             devmode = false;
             quickhelp = true;
             autosave = true;
+            legacyui = false;
+            mousemoveexit = false;
+            fileio = true;
+
             singlesim = "";
             update_server = "https://markustegelane.eu/app/";
 
@@ -149,6 +159,22 @@ namespace UltimateBlueScreenSimulator
             ScaleMode = ScaleModes.HighQualityBicubic;
             ColorScheme = ColorSchemes.Blue;
             PrimaryColor = ColorSchemes.Indigo;
+        }
+
+        ///<summary>
+        ///Specific to screensaver files, exits the simulation when moving the mouse cursor
+        ///</summary>
+        public bool MouseMoveExit {
+            get { return mousemoveexit; }
+            set { mousemoveexit = value; }
+        }
+
+        ///<summary>
+        ///Specifies whether or not the user wants a classic user interface (UI)
+        ///</summary>
+        public bool LegacyUI {
+            get { return legacyui; }
+            set { legacyui = value; }
         }
 
         ///<summary>
@@ -396,6 +422,15 @@ namespace UltimateBlueScreenSimulator
             set { devmode = value; }
         }
 
+        ///<summary>
+        ///Read-write mode flag
+        ///</summary>
+        [JsonIgnore]
+        public bool FileIO {
+            get { return fileio; }
+            set { fileio = value; }
+        }
+
 
         ///<summary>
         ///Saves application configuration settings
@@ -416,16 +451,16 @@ namespace UltimateBlueScreenSimulator
                 string jsonString = JsonSerializer.Serialize(this, options);
                 File.WriteAllText(Program.prefix + "settings.json", jsonString);
             }
-            catch (DllNotFoundException)
+            catch (DllNotFoundException) when (!Debugger.IsAttached)
             {
                 Program.DllError();
                 return;
             }
-            catch (IOException)
+            catch (IOException) when (!Debugger.IsAttached)
             {
                 Program.DllError();
                 return;
-            } catch (Exception ex)
+            } catch (Exception ex) when (!Debugger.IsAttached)
             {
                 if (MessageBox.Show($"Unable to save settings! Reason: {ex.Message}\r\n{ex.StackTrace}", "Blue screen simulator plus", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error) == DialogResult.Retry)
                 {
@@ -455,8 +490,8 @@ namespace UltimateBlueScreenSimulator
             }
             else if (File.Exists(Program.prefix + "settings.json"))
             {
-                GlobalSettings settings = new GlobalSettings();
-                this.Log("Info", $"Loading settings from JSON file");
+                GlobalSettings settings;
+                Log("Info", $"Loading settings from JSON file");
                 try
                 {
                     JsonSerializerOptions options = new JsonSerializerOptions
@@ -472,12 +507,12 @@ namespace UltimateBlueScreenSimulator
                         File.Delete("settings.cfg");
                     }
                 }
-                catch (DllNotFoundException)
+                catch (DllNotFoundException) when (!Debugger.IsAttached)
                 {
                     Program.DllError();
                     return this;
                 }
-                catch (IOException)
+                catch (IOException) when (!Debugger.IsAttached)
                 {
                     Program.DllError();
                     return this;
@@ -485,7 +520,7 @@ namespace UltimateBlueScreenSimulator
                 return settings;
             } else 
             {
-                this.Log("Warning", "Settings file does not exist, using defaults");
+                Log("Warning", "Settings file does not exist, using defaults");
             }
             return this;
         }
@@ -495,7 +530,7 @@ namespace UltimateBlueScreenSimulator
         /// </summary>
         public void LoadLegacy()
         {
-            this.Log("Info", $"Loading settings from legacy configuration file");
+            Log("Info", $"Loading settings from legacy configuration file");
             string[] fc = File.ReadAllText("settings.cfg").Split('\n');
             foreach (string element in fc)
             {
@@ -550,34 +585,11 @@ namespace UltimateBlueScreenSimulator
         }
 
         ///<summary>
-        ///Returns current scale mode as a string (e.g. ScaleModes.Bilinear would return "Bilinear" etc.)
-        ///</summary>
-        private string GetScaleModeAsString()
-        {
-            this.Log("Info", $"Requested scale mode as string");
-            switch (this.ScaleMode)
-            {
-                case ScaleModes.HighQualityBicubic:
-                    return "HighQualityBicubic";
-                case ScaleModes.HighQualityBilinear:
-                    return "HighQualityBilinear";
-                case ScaleModes.Bicubic:
-                    return "Bicubic";
-                case ScaleModes.Bilinear:
-                    return "Bilinear";
-                case ScaleModes.NearestNeighbour:
-                    return "NearestNeighbour";
-                default:
-                    throw new NotImplementedException();
-            }
-        }
-
-        ///<summary>
         ///Converts current interpolation mode to System.Drawing.Drawing2D.InterpolationMode. This should be used when setting scaling mode for System.Drawing.Graphics (to avoid a bunch of unnecessary conditional statements).
         ///</summary>
         public System.Drawing.Drawing2D.InterpolationMode GetInterpolationMode()
         {
-            this.Log("Info", $"Requested interpolation mode");
+            Log("Info", $"Requested interpolation mode");
             switch (ScaleMode)
             {
                 case ScaleModes.HighQualityBicubic:
@@ -600,7 +612,7 @@ namespace UltimateBlueScreenSimulator
         ///</summary>
         private void SetScalingFromString(string algorithm)
         {
-            this.Log("Info", $"Changed scaling mode to {algorithm}");
+            Log("Info", $"Changed scaling mode to {algorithm}");
             switch (algorithm)
             {
                 case "HighQualityBicubic":
@@ -627,7 +639,7 @@ namespace UltimateBlueScreenSimulator
         [JsonIgnore]
         public string DisplayMode {
             get {
-                this.Log("Info", "Requested display mode");
+                Log("Info", "Requested display mode");
                 switch (DisplayModeEnum)
                 {
                     case DisplayModes.None:
@@ -643,7 +655,7 @@ namespace UltimateBlueScreenSimulator
                 }
             }
             set {
-                this.Log("Info", $"Changed display mode to {value}");
+                Log("Info", $"Changed display mode to {value}");
                 switch (value)
                 {
                     case "none":
@@ -678,57 +690,57 @@ namespace UltimateBlueScreenSimulator
         ///</summary>
         public void ApplyScheme()
         {
-            this.Log("Info", $"Applying color scheme {ColorScheme}");
+            Log("Info", $"Applying color scheme {ColorScheme}");
             ms.Primary[] primaryScheme = GetPrimaryColors();
             switch (ColorScheme)
             {
                 case ColorSchemes.Indigo:
-                    Program.f1.materialSkinManager.ColorScheme = MakeScheme(ms.Accent.Indigo700, primaryScheme);
+                    Program.F1.materialSkinManager.ColorScheme = MakeScheme(ms.Accent.Indigo700, primaryScheme);
                     break;
                 case ColorSchemes.Lime:
-                    Program.f1.materialSkinManager.ColorScheme = MakeScheme(ms.Accent.Lime700, primaryScheme);
+                    Program.F1.materialSkinManager.ColorScheme = MakeScheme(ms.Accent.Lime700, primaryScheme);
                     break;
                 case ColorSchemes.Red:
-                    Program.f1.materialSkinManager.ColorScheme = MakeScheme(ms.Accent.Red700, primaryScheme);
+                    Program.F1.materialSkinManager.ColorScheme = MakeScheme(ms.Accent.Red700, primaryScheme);
                     break;
                 case ColorSchemes.Pink:
-                    Program.f1.materialSkinManager.ColorScheme = MakeScheme(ms.Accent.Pink700, primaryScheme);
+                    Program.F1.materialSkinManager.ColorScheme = MakeScheme(ms.Accent.Pink700, primaryScheme);
                     break;
                 case ColorSchemes.Orange:
-                    Program.f1.materialSkinManager.ColorScheme = MakeScheme(ms.Accent.Orange700, primaryScheme);
+                    Program.F1.materialSkinManager.ColorScheme = MakeScheme(ms.Accent.Orange700, primaryScheme);
                     break;
                 case ColorSchemes.Amber:
-                    Program.f1.materialSkinManager.ColorScheme = MakeScheme(ms.Accent.Amber700, primaryScheme);
+                    Program.F1.materialSkinManager.ColorScheme = MakeScheme(ms.Accent.Amber700, primaryScheme);
                     break;
                 case ColorSchemes.Blue:
-                    Program.f1.materialSkinManager.ColorScheme = MakeScheme(ms.Accent.Blue700, primaryScheme);
+                    Program.F1.materialSkinManager.ColorScheme = MakeScheme(ms.Accent.Blue700, primaryScheme);
                     break;
                 case ColorSchemes.Cyan:
-                    Program.f1.materialSkinManager.ColorScheme = MakeScheme(ms.Accent.Cyan700, primaryScheme);
+                    Program.F1.materialSkinManager.ColorScheme = MakeScheme(ms.Accent.Cyan700, primaryScheme);
                     break;
                 case ColorSchemes.DeepOrange:
-                    Program.f1.materialSkinManager.ColorScheme = MakeScheme(ms.Accent.DeepOrange700, primaryScheme);
+                    Program.F1.materialSkinManager.ColorScheme = MakeScheme(ms.Accent.DeepOrange700, primaryScheme);
                     break;
                 case ColorSchemes.DeepPurple:
-                    Program.f1.materialSkinManager.ColorScheme = MakeScheme(ms.Accent.DeepPurple700, primaryScheme);
+                    Program.F1.materialSkinManager.ColorScheme = MakeScheme(ms.Accent.DeepPurple700, primaryScheme);
                     break;
                 case ColorSchemes.Green:
-                    Program.f1.materialSkinManager.ColorScheme = MakeScheme(ms.Accent.Green700, primaryScheme);
+                    Program.F1.materialSkinManager.ColorScheme = MakeScheme(ms.Accent.Green700, primaryScheme);
                     break;
                 case ColorSchemes.LightBlue:
-                    Program.f1.materialSkinManager.ColorScheme = MakeScheme(ms.Accent.LightBlue700, primaryScheme);
+                    Program.F1.materialSkinManager.ColorScheme = MakeScheme(ms.Accent.LightBlue700, primaryScheme);
                     break;
                 case ColorSchemes.LightGreen:
-                    Program.f1.materialSkinManager.ColorScheme = MakeScheme(ms.Accent.LightGreen700, primaryScheme);
+                    Program.F1.materialSkinManager.ColorScheme = MakeScheme(ms.Accent.LightGreen700, primaryScheme);
                     break;
                 case ColorSchemes.Purple:
-                    Program.f1.materialSkinManager.ColorScheme = MakeScheme(ms.Accent.Purple700, primaryScheme);
+                    Program.F1.materialSkinManager.ColorScheme = MakeScheme(ms.Accent.Purple700, primaryScheme);
                     break;
                 case ColorSchemes.Teal:
-                    Program.f1.materialSkinManager.ColorScheme = MakeScheme(ms.Accent.Teal700, primaryScheme);
+                    Program.F1.materialSkinManager.ColorScheme = MakeScheme(ms.Accent.Teal700, primaryScheme);
                     break;
                 case ColorSchemes.Yellow:
-                    Program.f1.materialSkinManager.ColorScheme = MakeScheme(ms.Accent.Yellow700, primaryScheme);
+                    Program.F1.materialSkinManager.ColorScheme = MakeScheme(ms.Accent.Yellow700, primaryScheme);
                     break;
             }
         }
@@ -738,7 +750,7 @@ namespace UltimateBlueScreenSimulator
         ///</summary>
         private ms.Primary[] GetPrimaryColors()
         {
-            this.Log("Info", $"Applying primary color {PrimaryColor}");
+            Log("Info", $"Applying primary color {PrimaryColor}");
             switch (PrimaryColor)
             {
                 default:
@@ -788,6 +800,41 @@ namespace UltimateBlueScreenSimulator
             {
                 msg += $" @{source}";
             }
+            if ((log1.Count != 0) && (log1[log1.Count - 1] == msg)) // ignore duplicates
+            {
+                return;
+            }
+            if ((Program.spl != null) && Program.spl.Visible && !Program.spl.IsDisposed && !message.Contains("Safely closing"))
+            {
+                Program.spl.BeginInvoke(new MethodInvoker(delegate {
+                    Program.spl.UpdateMsg();
+                }));
+            } else if (message.Contains("Safely closing"))
+            {
+                if ((Program.spl == null) || !Program.spl.Visible)
+                {
+                    return;
+                }
+
+                Program.spl.BeginInvoke(new MethodInvoker(delegate {
+                    Program.spl.Close();
+                }));
+
+                Thread.Sleep(250);
+                
+                if (Program.gs.LegacyUI && (Program.F1 != null) && Program.F2.Visible)
+                {
+                    Program.F2.BeginInvoke(new MethodInvoker(delegate {
+                        Program.F2.BringToFront();
+                    }));
+                } else if ((Program.F1 != null) && Program.F1.Visible)
+                {
+                    Program.F1.BeginInvoke(new MethodInvoker(delegate {
+                        Program.F1.BringToFront();
+                    }));
+                }
+            }
+
             Program.load_message = message;
             log1.Add(msg);
         }
