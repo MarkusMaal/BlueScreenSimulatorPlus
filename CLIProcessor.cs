@@ -183,8 +183,9 @@ namespace UltimateBlueScreenSimulator
                 case "clr":
                     //Clears Verifile verification certificate
                     ExitSplash();
-                    File.Delete(Environment.GetEnvironmentVariable("USERPROFILE") + @"\bssp2_firstlaunch.txt");
+                    File.Delete(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"\Verifile\bssp3.key");
                     MessageBox.Show("Signature verification file deleted. The program will now close.", "Ultimate blue screen simulator plus", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Program.halt = true;
                     Application.Exit();
                     break;
                 case "c":
@@ -231,9 +232,11 @@ namespace UltimateBlueScreenSimulator
                 mf.ShowIcon = false;
                 mf.Hide();
                 Program.gs.PM_CloseMainUI = true;
-                if (!args.Contains("/c"))
+                if (!args.Contains("/c") && !args.Contains("/random"))
                 {
-                    Program.gs.ErrorCode = 1;
+                    ExitSplash();
+                    MessageBox.Show("/h cannot be used without /c or /random", "Syntax error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Application.Exit();
                 }
             }
             //Simulate crash if /c flag is set

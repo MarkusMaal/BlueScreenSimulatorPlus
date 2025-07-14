@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Threading;
@@ -436,6 +437,27 @@ namespace UltimateBlueScreenSimulator.Forms.Interfaces
                 Program.ReloadNTErrors();
             }));
             Thread.CurrentThread.Abort();
+        }
+
+        public static void EraseSignature(Control sender)
+        {
+            string keyFile = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"\Verifile\bssp3.key";
+            try
+            {
+                if (File.Exists(keyFile))
+                {
+                    File.Delete(keyFile);
+                    MessageBox.Show("Signature deleted successfully", "Verifile", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    sender.Enabled = false;
+                }
+                else
+                {
+                    MessageBox.Show("Signature file does not exist!", "Verifile", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            } catch (Exception ex)
+            {
+                MessageBox.Show($"Something went wrong while trying to delete the signature file.\r\n\r\nTechnical info:\r\n\r\n{ex.Message}\r\n{ex.StackTrace}", "Verifile", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
