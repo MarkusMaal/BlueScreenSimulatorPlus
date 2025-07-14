@@ -129,14 +129,14 @@ namespace UltimateBlueScreenSimulator
             this.aboutSettingsTabControl.Controls.Add(this.simulatorSettingsPanel);
             this.aboutSettingsTabControl.Controls.Add(this.appearancePanel);
             this.aboutSettingsTabControl.Depth = 0;
-            this.aboutSettingsTabControl.Location = new System.Drawing.Point(3, 75);
+            this.aboutSettingsTabControl.Location = new System.Drawing.Point(4, 92);
             this.aboutSettingsTabControl.Margin = new System.Windows.Forms.Padding(0);
             this.aboutSettingsTabControl.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.aboutSettingsTabControl.Multiline = true;
             this.aboutSettingsTabControl.Name = "aboutSettingsTabControl";
             this.aboutSettingsTabControl.Padding = new System.Drawing.Point(0, 0);
             this.aboutSettingsTabControl.SelectedIndex = 0;
-            this.aboutSettingsTabControl.Size = new System.Drawing.Size(734, 514);
+            this.aboutSettingsTabControl.Size = new System.Drawing.Size(979, 633);
             this.aboutSettingsTabControl.TabIndex = 1;
             this.aboutSettingsTabControl.SelectedIndexChanged += new System.EventHandler(this.TabSwitcher);
             // 
@@ -144,10 +144,11 @@ namespace UltimateBlueScreenSimulator
             // 
             this.updatePanel.BackColor = System.Drawing.Color.White;
             this.updatePanel.Controls.Add(this.materialCard6);
-            this.updatePanel.Location = new System.Drawing.Point(4, 22);
+            this.updatePanel.Location = new System.Drawing.Point(4, 25);
+            this.updatePanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.updatePanel.Name = "updatePanel";
-            this.updatePanel.Padding = new System.Windows.Forms.Padding(3);
-            this.updatePanel.Size = new System.Drawing.Size(726, 488);
+            this.updatePanel.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.updatePanel.Size = new System.Drawing.Size(971, 604);
             this.updatePanel.TabIndex = 1;
             this.updatePanel.Text = "Update settings";
             // 
@@ -169,10 +170,10 @@ namespace UltimateBlueScreenSimulator
             this.materialCard6.Controls.Add(this.updateCheckButton);
             this.materialCard6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.materialCard6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialCard6.Location = new System.Drawing.Point(3, 3);
+            this.materialCard6.Location = new System.Drawing.Point(4, 4);
             this.materialCard6.Margin = new System.Windows.Forms.Padding(0);
             this.materialCard6.Name = "materialCard6";
-            this.materialCard6.Size = new System.Drawing.Size(720, 482);
+            this.materialCard6.Size = new System.Drawing.Size(963, 596);
             this.materialCard6.TabIndex = 15;
             // 
             // updatePanelHeading
@@ -181,7 +182,8 @@ namespace UltimateBlueScreenSimulator
             this.updatePanelHeading.Depth = 0;
             this.updatePanelHeading.Font = new System.Drawing.Font("Roboto Medium", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.updatePanelHeading.FontType = MaterialSkin2Framework.MaterialSkinManager.fontType.H6;
-            this.updatePanelHeading.Location = new System.Drawing.Point(10, 20);
+            this.updatePanelHeading.Location = new System.Drawing.Point(13, 25);
+            this.updatePanelHeading.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.updatePanelHeading.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.updatePanelHeading.Name = "updatePanelHeading";
             this.updatePanelHeading.Size = new System.Drawing.Size(142, 24);
@@ -199,12 +201,12 @@ namespace UltimateBlueScreenSimulator
             this.customServerButton.ForeColor = System.Drawing.SystemColors.ControlText;
             this.customServerButton.HighEmphasis = true;
             this.customServerButton.Icon = null;
-            this.customServerButton.Location = new System.Drawing.Point(625, 300);
-            this.customServerButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.customServerButton.Location = new System.Drawing.Point(836, 369);
+            this.customServerButton.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
             this.customServerButton.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.customServerButton.Name = "customServerButton";
             this.customServerButton.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.customServerButton.Size = new System.Drawing.Size(81, 26);
+            this.customServerButton.Size = new System.Drawing.Size(108, 32);
             this.customServerButton.TabIndex = 13;
             this.customServerButton.Text = "Custom";
             this.helpTip.SetToolTip(this.customServerButton, "This is the last option. If the both servers are down, you can use another server" +
@@ -221,8 +223,8 @@ namespace UltimateBlueScreenSimulator
             this.updateSettingsFlowPanel.Controls.Add(this.autoUpdateRadio);
             this.updateSettingsFlowPanel.Controls.Add(this.noUpdatesRadio);
             this.updateSettingsFlowPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.updateSettingsFlowPanel.Location = new System.Drawing.Point(13, 69);
-            this.updateSettingsFlowPanel.Margin = new System.Windows.Forms.Padding(0, 12, 3, 3);
+            this.updateSettingsFlowPanel.Location = new System.Drawing.Point(17, 85);
+            this.updateSettingsFlowPanel.Margin = new System.Windows.Forms.Padding(0, 15, 4, 4);
             this.updateSettingsFlowPanel.Name = "updateSettingsFlowPanel";
             this.updateSettingsFlowPanel.Size = new System.Drawing.Size(540, 74);
             this.updateSettingsFlowPanel.TabIndex = 1;
@@ -277,12 +279,12 @@ namespace UltimateBlueScreenSimulator
             this.primaryServerButton.ForeColor = System.Drawing.SystemColors.ControlText;
             this.primaryServerButton.HighEmphasis = true;
             this.primaryServerButton.Icon = null;
-            this.primaryServerButton.Location = new System.Drawing.Point(446, 300);
-            this.primaryServerButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.primaryServerButton.Location = new System.Drawing.Point(598, 369);
+            this.primaryServerButton.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
             this.primaryServerButton.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.primaryServerButton.Name = "primaryServerButton";
             this.primaryServerButton.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.primaryServerButton.Size = new System.Drawing.Size(85, 26);
+            this.primaryServerButton.Size = new System.Drawing.Size(113, 32);
             this.primaryServerButton.TabIndex = 12;
             this.primaryServerButton.Text = "Primary";
             this.helpTip.SetToolTip(this.primaryServerButton, "This is the server you want to use most of the time.");
@@ -297,7 +299,7 @@ namespace UltimateBlueScreenSimulator
             this.hashBox.Checked = true;
             this.hashBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.hashBox.Depth = 0;
-            this.hashBox.Location = new System.Drawing.Point(12, 144);
+            this.hashBox.Location = new System.Drawing.Point(16, 177);
             this.hashBox.Margin = new System.Windows.Forms.Padding(0);
             this.hashBox.MouseLocation = new System.Drawing.Point(-1, -1);
             this.hashBox.MouseState = MaterialSkin2Framework.MouseState.HOVER;
@@ -322,12 +324,12 @@ namespace UltimateBlueScreenSimulator
             this.backupServerButton.ForeColor = System.Drawing.SystemColors.ControlText;
             this.backupServerButton.HighEmphasis = true;
             this.backupServerButton.Icon = null;
-            this.backupServerButton.Location = new System.Drawing.Point(539, 300);
-            this.backupServerButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.backupServerButton.Location = new System.Drawing.Point(722, 369);
+            this.backupServerButton.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
             this.backupServerButton.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.backupServerButton.Name = "backupServerButton";
             this.backupServerButton.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.backupServerButton.Size = new System.Drawing.Size(78, 26);
+            this.backupServerButton.Size = new System.Drawing.Size(104, 32);
             this.backupServerButton.TabIndex = 11;
             this.backupServerButton.Text = "Backup";
             this.helpTip.SetToolTip(this.backupServerButton, "This is the server you should use if the primary server is down.");
@@ -343,8 +345,8 @@ namespace UltimateBlueScreenSimulator
             this.updateTimeFlowPanel.Controls.Add(this.updateImmediatelyRadio);
             this.updateTimeFlowPanel.Controls.Add(this.updateOnCloseRadio);
             this.updateTimeFlowPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.updateTimeFlowPanel.Location = new System.Drawing.Point(19, 212);
-            this.updateTimeFlowPanel.Margin = new System.Windows.Forms.Padding(0, 12, 3, 3);
+            this.updateTimeFlowPanel.Location = new System.Drawing.Point(25, 261);
+            this.updateTimeFlowPanel.Margin = new System.Windows.Forms.Padding(0, 15, 4, 4);
             this.updateTimeFlowPanel.Name = "updateTimeFlowPanel";
             this.updateTimeFlowPanel.Size = new System.Drawing.Size(589, 74);
             this.updateTimeFlowPanel.TabIndex = 3;
@@ -390,18 +392,34 @@ namespace UltimateBlueScreenSimulator
             this.primaryServerBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.primaryServerBox.AnimateReadOnly = false;
+            this.primaryServerBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
+            this.primaryServerBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+            this.primaryServerBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.primaryServerBox.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
             this.primaryServerBox.Depth = 0;
             this.primaryServerBox.Enabled = false;
             this.primaryServerBox.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.primaryServerBox.HideSelection = true;
             this.primaryServerBox.LeadingIcon = null;
-            this.primaryServerBox.Location = new System.Drawing.Point(19, 333);
+            this.primaryServerBox.Location = new System.Drawing.Point(25, 410);
+            this.primaryServerBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.primaryServerBox.MaxLength = 50;
             this.primaryServerBox.MouseState = MaterialSkin2Framework.MouseState.OUT;
             this.primaryServerBox.Name = "primaryServerBox";
-            this.primaryServerBox.Size = new System.Drawing.Size(687, 36);
+            this.primaryServerBox.PasswordChar = '\0';
+            this.primaryServerBox.PrefixSuffixText = null;
+            this.primaryServerBox.ReadOnly = false;
+            this.primaryServerBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.primaryServerBox.SelectedText = "";
+            this.primaryServerBox.SelectionLength = 0;
+            this.primaryServerBox.SelectionStart = 0;
+            this.primaryServerBox.ShortcutsEnabled = true;
+            this.primaryServerBox.Size = new System.Drawing.Size(919, 36);
             this.primaryServerBox.TabIndex = 10;
-            this.primaryServerBox.Text = "";
+            this.primaryServerBox.TabStop = false;
+            this.primaryServerBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.primaryServerBox.TrailingIcon = null;
+            this.primaryServerBox.UseSystemPasswordChar = false;
             this.primaryServerBox.UseTallSize = false;
             this.primaryServerBox.TextChanged += new System.EventHandler(this.ChangeUpdateServer);
             // 
@@ -411,7 +429,8 @@ namespace UltimateBlueScreenSimulator
             this.updateSettingsLabel.Depth = 0;
             this.updateSettingsLabel.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.updateSettingsLabel.FontType = MaterialSkin2Framework.MaterialSkinManager.fontType.Caption;
-            this.updateSettingsLabel.Location = new System.Drawing.Point(10, 54);
+            this.updateSettingsLabel.Location = new System.Drawing.Point(13, 66);
+            this.updateSettingsLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.updateSettingsLabel.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.updateSettingsLabel.Name = "updateSettingsLabel";
             this.updateSettingsLabel.Size = new System.Drawing.Size(112, 14);
@@ -424,7 +443,8 @@ namespace UltimateBlueScreenSimulator
             this.primaryServerLabel.Depth = 0;
             this.primaryServerLabel.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.primaryServerLabel.FontType = MaterialSkin2Framework.MaterialSkinManager.fontType.Caption;
-            this.primaryServerLabel.Location = new System.Drawing.Point(16, 311);
+            this.primaryServerLabel.Location = new System.Drawing.Point(21, 383);
+            this.primaryServerLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.primaryServerLabel.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.primaryServerLabel.Name = "primaryServerLabel";
             this.primaryServerLabel.Size = new System.Drawing.Size(90, 14);
@@ -438,7 +458,8 @@ namespace UltimateBlueScreenSimulator
             this.updateTimeLabel.Depth = 0;
             this.updateTimeLabel.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.updateTimeLabel.FontType = MaterialSkin2Framework.MaterialSkinManager.fontType.Caption;
-            this.updateTimeLabel.Location = new System.Drawing.Point(16, 197);
+            this.updateTimeLabel.Location = new System.Drawing.Point(21, 242);
+            this.updateTimeLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.updateTimeLabel.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.updateTimeLabel.Name = "updateTimeLabel";
             this.updateTimeLabel.Size = new System.Drawing.Size(171, 14);
@@ -451,10 +472,11 @@ namespace UltimateBlueScreenSimulator
             this.noticeLabel.Depth = 0;
             this.noticeLabel.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.noticeLabel.FontType = MaterialSkin2Framework.MaterialSkinManager.fontType.Caption;
-            this.noticeLabel.Location = new System.Drawing.Point(188, 463);
+            this.noticeLabel.Location = new System.Drawing.Point(254, 573);
+            this.noticeLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.noticeLabel.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.noticeLabel.Name = "noticeLabel";
-            this.noticeLabel.Size = new System.Drawing.Size(529, 18);
+            this.noticeLabel.Size = new System.Drawing.Size(705, 22);
             this.noticeLabel.TabIndex = 8;
             this.noticeLabel.Text = "These settings will be saved once the program is closed.";
             this.noticeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -468,8 +490,8 @@ namespace UltimateBlueScreenSimulator
             this.unsignButton.ForeColor = System.Drawing.SystemColors.ControlText;
             this.unsignButton.HighEmphasis = true;
             this.unsignButton.Icon = null;
-            this.unsignButton.Location = new System.Drawing.Point(13, 424);
-            this.unsignButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.unsignButton.Location = new System.Drawing.Point(17, 533);
+            this.unsignButton.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
             this.unsignButton.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.unsignButton.Name = "unsignButton";
             this.unsignButton.NoAccentTextColor = System.Drawing.Color.Empty;
@@ -492,12 +514,12 @@ namespace UltimateBlueScreenSimulator
             this.updateCheckButton.ForeColor = System.Drawing.SystemColors.ControlText;
             this.updateCheckButton.HighEmphasis = true;
             this.updateCheckButton.Icon = null;
-            this.updateCheckButton.Location = new System.Drawing.Point(214, 424);
-            this.updateCheckButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.updateCheckButton.Location = new System.Drawing.Point(285, 533);
+            this.updateCheckButton.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
             this.updateCheckButton.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.updateCheckButton.Name = "updateCheckButton";
             this.updateCheckButton.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.updateCheckButton.Padding = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.updateCheckButton.Padding = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.updateCheckButton.Size = new System.Drawing.Size(168, 36);
             this.updateCheckButton.TabIndex = 7;
             this.updateCheckButton.Text = "Check for updates";
@@ -512,9 +534,10 @@ namespace UltimateBlueScreenSimulator
             this.simulatorSettingsPanel.BackColor = System.Drawing.Color.White;
             this.simulatorSettingsPanel.Controls.Add(this.label1);
             this.simulatorSettingsPanel.Controls.Add(this.materialCard7);
-            this.simulatorSettingsPanel.Location = new System.Drawing.Point(4, 22);
+            this.simulatorSettingsPanel.Location = new System.Drawing.Point(4, 25);
+            this.simulatorSettingsPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.simulatorSettingsPanel.Name = "simulatorSettingsPanel";
-            this.simulatorSettingsPanel.Size = new System.Drawing.Size(726, 488);
+            this.simulatorSettingsPanel.Size = new System.Drawing.Size(971, 604);
             this.simulatorSettingsPanel.TabIndex = 4;
             this.simulatorSettingsPanel.Text = "Simulator settings";
             // 
@@ -524,10 +547,11 @@ namespace UltimateBlueScreenSimulator
             this.label1.BackColor = System.Drawing.SystemColors.ControlDark;
             this.label1.Depth = 0;
             this.label1.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.label1.Location = new System.Drawing.Point(510, 118);
+            this.label1.Location = new System.Drawing.Point(680, 145);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(1, 130);
+            this.label1.Size = new System.Drawing.Size(1, 160);
             this.label1.TabIndex = 26;
             // 
             // materialCard7
@@ -552,7 +576,7 @@ namespace UltimateBlueScreenSimulator
             this.materialCard7.Location = new System.Drawing.Point(0, 0);
             this.materialCard7.Margin = new System.Windows.Forms.Padding(0);
             this.materialCard7.Name = "materialCard7";
-            this.materialCard7.Size = new System.Drawing.Size(726, 488);
+            this.materialCard7.Size = new System.Drawing.Size(971, 604);
             this.materialCard7.TabIndex = 27;
             // 
             // simulatorSettingsHeading
@@ -561,7 +585,8 @@ namespace UltimateBlueScreenSimulator
             this.simulatorSettingsHeading.Depth = 0;
             this.simulatorSettingsHeading.Font = new System.Drawing.Font("Roboto Medium", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.simulatorSettingsHeading.FontType = MaterialSkin2Framework.MaterialSkinManager.fontType.H6;
-            this.simulatorSettingsHeading.Location = new System.Drawing.Point(10, 20);
+            this.simulatorSettingsHeading.Location = new System.Drawing.Point(13, 25);
+            this.simulatorSettingsHeading.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.simulatorSettingsHeading.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.simulatorSettingsHeading.Name = "simulatorSettingsHeading";
             this.simulatorSettingsHeading.Size = new System.Drawing.Size(164, 24);
@@ -580,9 +605,10 @@ namespace UltimateBlueScreenSimulator
             this.devFlowPanel.Controls.Add(this.devRestartApp);
             this.devFlowPanel.Controls.Add(this.materialButton12);
             this.devFlowPanel.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.devFlowPanel.Location = new System.Drawing.Point(199, 3);
+            this.devFlowPanel.Location = new System.Drawing.Point(265, 4);
+            this.devFlowPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.devFlowPanel.Name = "devFlowPanel";
-            this.devFlowPanel.Size = new System.Drawing.Size(515, 69);
+            this.devFlowPanel.Size = new System.Drawing.Size(687, 85);
             this.devFlowPanel.TabIndex = 23;
             this.devFlowPanel.Visible = false;
             this.devFlowPanel.WrapContents = false;
@@ -595,8 +621,8 @@ namespace UltimateBlueScreenSimulator
             this.materialButton6.Depth = 0;
             this.materialButton6.HighEmphasis = true;
             this.materialButton6.Icon = null;
-            this.materialButton6.Location = new System.Drawing.Point(1244, 6);
-            this.materialButton6.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.materialButton6.Location = new System.Drawing.Point(1259, 7);
+            this.materialButton6.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
             this.materialButton6.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.materialButton6.Name = "materialButton6";
             this.materialButton6.NoAccentTextColor = System.Drawing.Color.Empty;
@@ -618,8 +644,8 @@ namespace UltimateBlueScreenSimulator
             this.devSplashButton.ForeColor = System.Drawing.SystemColors.ControlText;
             this.devSplashButton.HighEmphasis = true;
             this.devSplashButton.Icon = null;
-            this.devSplashButton.Location = new System.Drawing.Point(1061, 6);
-            this.devSplashButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.devSplashButton.Location = new System.Drawing.Point(1074, 7);
+            this.devSplashButton.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
             this.devSplashButton.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.devSplashButton.Name = "devSplashButton";
             this.devSplashButton.NoAccentTextColor = System.Drawing.Color.Empty;
@@ -641,8 +667,8 @@ namespace UltimateBlueScreenSimulator
             this.devDictEditButton.ForeColor = System.Drawing.SystemColors.ControlText;
             this.devDictEditButton.HighEmphasis = true;
             this.devDictEditButton.Icon = null;
-            this.devDictEditButton.Location = new System.Drawing.Point(928, 6);
-            this.devDictEditButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.devDictEditButton.Location = new System.Drawing.Point(939, 7);
+            this.devDictEditButton.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
             this.devDictEditButton.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.devDictEditButton.Name = "devDictEditButton";
             this.devDictEditButton.NoAccentTextColor = System.Drawing.Color.Empty;
@@ -664,8 +690,8 @@ namespace UltimateBlueScreenSimulator
             this.devNewAllButton.ForeColor = System.Drawing.SystemColors.ControlText;
             this.devNewAllButton.HighEmphasis = true;
             this.devNewAllButton.Icon = null;
-            this.devNewAllButton.Location = new System.Drawing.Point(709, 6);
-            this.devNewAllButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.devNewAllButton.Location = new System.Drawing.Point(718, 7);
+            this.devNewAllButton.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
             this.devNewAllButton.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.devNewAllButton.Name = "devNewAllButton";
             this.devNewAllButton.NoAccentTextColor = System.Drawing.Color.Empty;
@@ -685,8 +711,8 @@ namespace UltimateBlueScreenSimulator
             this.materialButton7.Depth = 0;
             this.materialButton7.HighEmphasis = true;
             this.materialButton7.Icon = null;
-            this.materialButton7.Location = new System.Drawing.Point(522, 6);
-            this.materialButton7.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.materialButton7.Location = new System.Drawing.Point(529, 7);
+            this.materialButton7.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
             this.materialButton7.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.materialButton7.Name = "materialButton7";
             this.materialButton7.NoAccentTextColor = System.Drawing.Color.Empty;
@@ -706,8 +732,8 @@ namespace UltimateBlueScreenSimulator
             this.materialButton4.Depth = 0;
             this.materialButton4.HighEmphasis = true;
             this.materialButton4.Icon = null;
-            this.materialButton4.Location = new System.Drawing.Point(417, 6);
-            this.materialButton4.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.materialButton4.Location = new System.Drawing.Point(422, 7);
+            this.materialButton4.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
             this.materialButton4.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.materialButton4.Name = "materialButton4";
             this.materialButton4.NoAccentTextColor = System.Drawing.Color.Empty;
@@ -727,8 +753,8 @@ namespace UltimateBlueScreenSimulator
             this.devRestartApp.Depth = 0;
             this.devRestartApp.HighEmphasis = true;
             this.devRestartApp.Icon = null;
-            this.devRestartApp.Location = new System.Drawing.Point(188, 6);
-            this.devRestartApp.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.devRestartApp.Location = new System.Drawing.Point(191, 7);
+            this.devRestartApp.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
             this.devRestartApp.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.devRestartApp.Name = "devRestartApp";
             this.devRestartApp.NoAccentTextColor = System.Drawing.Color.Empty;
@@ -748,8 +774,8 @@ namespace UltimateBlueScreenSimulator
             this.materialButton12.Depth = 0;
             this.materialButton12.HighEmphasis = true;
             this.materialButton12.Icon = null;
-            this.materialButton12.Location = new System.Drawing.Point(4, 6);
-            this.materialButton12.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.materialButton12.Location = new System.Drawing.Point(5, 7);
+            this.materialButton12.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
             this.materialButton12.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.materialButton12.Name = "materialButton12";
             this.materialButton12.NoAccentTextColor = System.Drawing.Color.Empty;
@@ -766,7 +792,7 @@ namespace UltimateBlueScreenSimulator
             this.selectAllBox.AutoSize = true;
             this.selectAllBox.CheckAlign = System.Drawing.ContentAlignment.TopLeft;
             this.selectAllBox.Depth = 0;
-            this.selectAllBox.Location = new System.Drawing.Point(488, 259);
+            this.selectAllBox.Location = new System.Drawing.Point(651, 319);
             this.selectAllBox.Margin = new System.Windows.Forms.Padding(0);
             this.selectAllBox.MouseLocation = new System.Drawing.Point(-1, -1);
             this.selectAllBox.MouseState = MaterialSkin2Framework.MouseState.HOVER;
@@ -787,7 +813,8 @@ namespace UltimateBlueScreenSimulator
             this.configListHeading.Depth = 0;
             this.configListHeading.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.configListHeading.FontType = MaterialSkin2Framework.MaterialSkinManager.fontType.Caption;
-            this.configListHeading.Location = new System.Drawing.Point(20, 58);
+            this.configListHeading.Location = new System.Drawing.Point(27, 71);
+            this.configListHeading.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.configListHeading.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.configListHeading.Name = "configListHeading";
             this.configListHeading.Size = new System.Drawing.Size(133, 14);
@@ -798,7 +825,7 @@ namespace UltimateBlueScreenSimulator
             // 
             this.randomnessCheckBox.AutoSize = true;
             this.randomnessCheckBox.Depth = 0;
-            this.randomnessCheckBox.Location = new System.Drawing.Point(13, 261);
+            this.randomnessCheckBox.Location = new System.Drawing.Point(17, 321);
             this.randomnessCheckBox.Margin = new System.Windows.Forms.Padding(0);
             this.randomnessCheckBox.MouseLocation = new System.Drawing.Point(-1, -1);
             this.randomnessCheckBox.MouseState = MaterialSkin2Framework.MouseState.HOVER;
@@ -818,7 +845,7 @@ namespace UltimateBlueScreenSimulator
             this.hideInFullscreenButton.Checked = true;
             this.hideInFullscreenButton.CheckState = System.Windows.Forms.CheckState.Checked;
             this.hideInFullscreenButton.Depth = 0;
-            this.hideInFullscreenButton.Location = new System.Drawing.Point(13, 296);
+            this.hideInFullscreenButton.Location = new System.Drawing.Point(17, 364);
             this.hideInFullscreenButton.Margin = new System.Windows.Forms.Padding(0);
             this.hideInFullscreenButton.MouseLocation = new System.Drawing.Point(-1, -1);
             this.hideInFullscreenButton.MouseState = MaterialSkin2Framework.MouseState.HOVER;
@@ -838,7 +865,8 @@ namespace UltimateBlueScreenSimulator
             this.scalingModeLabel.Depth = 0;
             this.scalingModeLabel.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.scalingModeLabel.FontType = MaterialSkin2Framework.MaterialSkinManager.fontType.Caption;
-            this.scalingModeLabel.Location = new System.Drawing.Point(20, 424);
+            this.scalingModeLabel.Location = new System.Drawing.Point(27, 522);
+            this.scalingModeLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.scalingModeLabel.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.scalingModeLabel.Name = "scalingModeLabel";
             this.scalingModeLabel.Size = new System.Drawing.Size(132, 14);
@@ -866,11 +894,12 @@ namespace UltimateBlueScreenSimulator
             "Blank other screens",
             "Mirror primary screen",
             "Freeze secondary screens"});
-            this.multiDisplayBox.Location = new System.Drawing.Point(175, 371);
+            this.multiDisplayBox.Location = new System.Drawing.Point(233, 457);
+            this.multiDisplayBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.multiDisplayBox.MaxDropDownItems = 4;
             this.multiDisplayBox.MouseState = MaterialSkin2Framework.MouseState.OUT;
             this.multiDisplayBox.Name = "multiDisplayBox";
-            this.multiDisplayBox.Size = new System.Drawing.Size(524, 35);
+            this.multiDisplayBox.Size = new System.Drawing.Size(700, 35);
             this.multiDisplayBox.StartIndex = 0;
             this.multiDisplayBox.TabIndex = 18;
             this.multiDisplayBox.UseTallSize = false;
@@ -898,11 +927,12 @@ namespace UltimateBlueScreenSimulator
             "Nearest neighbour (sharpest, but blocky)",
             "Alternate bicubic (less artifacting)",
             "Alternate bilinear (sharper)"});
-            this.scalingModeBox.Location = new System.Drawing.Point(175, 413);
+            this.scalingModeBox.Location = new System.Drawing.Point(233, 508);
+            this.scalingModeBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.scalingModeBox.MaxDropDownItems = 4;
             this.scalingModeBox.MouseState = MaterialSkin2Framework.MouseState.OUT;
             this.scalingModeBox.Name = "scalingModeBox";
-            this.scalingModeBox.Size = new System.Drawing.Size(524, 35);
+            this.scalingModeBox.Size = new System.Drawing.Size(700, 35);
             this.scalingModeBox.StartIndex = 0;
             this.scalingModeBox.TabIndex = 6;
             this.helpTip.SetToolTip(this.scalingModeBox, "Specifies how bugchecks in full screen mode should be scaled. Bicubic scaling is " +
@@ -916,7 +946,8 @@ namespace UltimateBlueScreenSimulator
             this.multiDisplayLabel.Depth = 0;
             this.multiDisplayLabel.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.multiDisplayLabel.FontType = MaterialSkin2Framework.MaterialSkinManager.fontType.Caption;
-            this.multiDisplayLabel.Location = new System.Drawing.Point(20, 383);
+            this.multiDisplayLabel.Location = new System.Drawing.Point(27, 471);
+            this.multiDisplayLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.multiDisplayLabel.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.multiDisplayLabel.Name = "multiDisplayLabel";
             this.multiDisplayLabel.Size = new System.Drawing.Size(131, 14);
@@ -930,10 +961,11 @@ namespace UltimateBlueScreenSimulator
             this.simulatorSettingsNotice.Depth = 0;
             this.simulatorSettingsNotice.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.simulatorSettingsNotice.FontType = MaterialSkin2Framework.MaterialSkinManager.fontType.Caption;
-            this.simulatorSettingsNotice.Location = new System.Drawing.Point(20, 453);
+            this.simulatorSettingsNotice.Location = new System.Drawing.Point(27, 558);
+            this.simulatorSettingsNotice.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.simulatorSettingsNotice.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.simulatorSettingsNotice.Name = "simulatorSettingsNotice";
-            this.simulatorSettingsNotice.Size = new System.Drawing.Size(676, 37);
+            this.simulatorSettingsNotice.Size = new System.Drawing.Size(904, 46);
             this.simulatorSettingsNotice.TabIndex = 7;
             this.simulatorSettingsNotice.Text = "Scaling mode does not affect modern Windows crash screens, as they use the native" +
     " resolution of your monitor without scaling. Setting up multi-monitor behaviour " +
@@ -949,9 +981,10 @@ namespace UltimateBlueScreenSimulator
             this.configEditingButtonsFlowPanel.Controls.Add(this.loadCfg);
             this.configEditingButtonsFlowPanel.Controls.Add(this.addCfg);
             this.configEditingButtonsFlowPanel.FlowDirection = System.Windows.Forms.FlowDirection.BottomUp;
-            this.configEditingButtonsFlowPanel.Location = new System.Drawing.Point(309, 107);
+            this.configEditingButtonsFlowPanel.Location = new System.Drawing.Point(415, 132);
+            this.configEditingButtonsFlowPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.configEditingButtonsFlowPanel.Name = "configEditingButtonsFlowPanel";
-            this.configEditingButtonsFlowPanel.Size = new System.Drawing.Size(404, 150);
+            this.configEditingButtonsFlowPanel.Size = new System.Drawing.Size(539, 185);
             this.configEditingButtonsFlowPanel.TabIndex = 16;
             // 
             // resetButton
@@ -964,12 +997,12 @@ namespace UltimateBlueScreenSimulator
             this.resetButton.ForeColor = System.Drawing.SystemColors.ControlText;
             this.resetButton.HighEmphasis = true;
             this.resetButton.Icon = null;
-            this.resetButton.Location = new System.Drawing.Point(4, 108);
-            this.resetButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.resetButton.Location = new System.Drawing.Point(5, 134);
+            this.resetButton.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
             this.resetButton.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.resetButton.Name = "resetButton";
             this.resetButton.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.resetButton.Size = new System.Drawing.Size(190, 36);
+            this.resetButton.Size = new System.Drawing.Size(253, 44);
             this.resetButton.TabIndex = 12;
             this.resetButton.Text = "Reset everything [?]";
             this.helpTip.SetToolTip(this.resetButton, "Reset all settings in this configuration");
@@ -988,12 +1021,12 @@ namespace UltimateBlueScreenSimulator
             this.resetHackButton.ForeColor = System.Drawing.SystemColors.ControlText;
             this.resetHackButton.HighEmphasis = true;
             this.resetHackButton.Icon = null;
-            this.resetHackButton.Location = new System.Drawing.Point(4, 60);
-            this.resetHackButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.resetHackButton.Location = new System.Drawing.Point(5, 76);
+            this.resetHackButton.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
             this.resetHackButton.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.resetHackButton.Name = "resetHackButton";
             this.resetHackButton.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.resetHackButton.Size = new System.Drawing.Size(190, 36);
+            this.resetHackButton.Size = new System.Drawing.Size(253, 44);
             this.resetHackButton.TabIndex = 13;
             this.resetHackButton.Text = "Reset hacks [?]";
             this.helpTip.SetToolTip(this.resetHackButton, "Deletes everything under the \'additional options\' menu for this configuration");
@@ -1012,12 +1045,12 @@ namespace UltimateBlueScreenSimulator
             this.removeCfg.ForeColor = System.Drawing.SystemColors.ControlText;
             this.removeCfg.HighEmphasis = true;
             this.removeCfg.Icon = null;
-            this.removeCfg.Location = new System.Drawing.Point(4, 12);
-            this.removeCfg.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.removeCfg.Location = new System.Drawing.Point(5, 18);
+            this.removeCfg.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
             this.removeCfg.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.removeCfg.Name = "removeCfg";
             this.removeCfg.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.removeCfg.Size = new System.Drawing.Size(190, 36);
+            this.removeCfg.Size = new System.Drawing.Size(253, 44);
             this.removeCfg.TabIndex = 15;
             this.removeCfg.Text = "Remove config [?]";
             this.helpTip.SetToolTip(this.removeCfg, "Removes the configuration, meaning it will no longer be accessible in the main me" +
@@ -1036,12 +1069,12 @@ namespace UltimateBlueScreenSimulator
             this.saveCfg.ForeColor = System.Drawing.SystemColors.ControlText;
             this.saveCfg.HighEmphasis = true;
             this.saveCfg.Icon = null;
-            this.saveCfg.Location = new System.Drawing.Point(208, 108);
-            this.saveCfg.Margin = new System.Windows.Forms.Padding(10, 6, 4, 6);
+            this.saveCfg.Location = new System.Drawing.Point(276, 134);
+            this.saveCfg.Margin = new System.Windows.Forms.Padding(13, 7, 5, 7);
             this.saveCfg.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.saveCfg.Name = "saveCfg";
             this.saveCfg.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.saveCfg.Size = new System.Drawing.Size(188, 36);
+            this.saveCfg.Size = new System.Drawing.Size(251, 44);
             this.saveCfg.TabIndex = 16;
             this.saveCfg.Text = "Save configs [?]";
             this.helpTip.SetToolTip(this.saveCfg, "Allows you to save all of these configurations into a file, that can be loaded la" +
@@ -1060,12 +1093,12 @@ namespace UltimateBlueScreenSimulator
             this.loadCfg.ForeColor = System.Drawing.SystemColors.ControlText;
             this.loadCfg.HighEmphasis = true;
             this.loadCfg.Icon = null;
-            this.loadCfg.Location = new System.Drawing.Point(208, 60);
-            this.loadCfg.Margin = new System.Windows.Forms.Padding(10, 6, 4, 6);
+            this.loadCfg.Location = new System.Drawing.Point(276, 76);
+            this.loadCfg.Margin = new System.Windows.Forms.Padding(13, 7, 5, 7);
             this.loadCfg.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.loadCfg.Name = "loadCfg";
             this.loadCfg.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.loadCfg.Size = new System.Drawing.Size(188, 36);
+            this.loadCfg.Size = new System.Drawing.Size(251, 44);
             this.loadCfg.TabIndex = 17;
             this.loadCfg.Text = "Load configs [?]";
             this.helpTip.SetToolTip(this.loadCfg, "Allows you to load configurations from a file. BSSP 1.x and 2.x files also suppor" +
@@ -1084,12 +1117,12 @@ namespace UltimateBlueScreenSimulator
             this.addCfg.ForeColor = System.Drawing.SystemColors.ControlText;
             this.addCfg.HighEmphasis = true;
             this.addCfg.Icon = null;
-            this.addCfg.Location = new System.Drawing.Point(208, 12);
-            this.addCfg.Margin = new System.Windows.Forms.Padding(10, 6, 4, 6);
+            this.addCfg.Location = new System.Drawing.Point(276, 18);
+            this.addCfg.Margin = new System.Windows.Forms.Padding(13, 7, 5, 7);
             this.addCfg.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.addCfg.Name = "addCfg";
             this.addCfg.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.addCfg.Size = new System.Drawing.Size(188, 36);
+            this.addCfg.Size = new System.Drawing.Size(251, 44);
             this.addCfg.TabIndex = 14;
             this.addCfg.Text = "Add configuration [?]";
             this.helpTip.SetToolTip(this.addCfg, resources.GetString("addCfg.ToolTip"));
@@ -1104,7 +1137,7 @@ namespace UltimateBlueScreenSimulator
             this.autosaveCheck.Checked = true;
             this.autosaveCheck.CheckState = System.Windows.Forms.CheckState.Checked;
             this.autosaveCheck.Depth = 0;
-            this.autosaveCheck.Location = new System.Drawing.Point(201, 329);
+            this.autosaveCheck.Location = new System.Drawing.Point(268, 405);
             this.autosaveCheck.Margin = new System.Windows.Forms.Padding(0);
             this.autosaveCheck.MouseLocation = new System.Drawing.Point(-1, -1);
             this.autosaveCheck.MouseState = MaterialSkin2Framework.MouseState.HOVER;
@@ -1124,7 +1157,7 @@ namespace UltimateBlueScreenSimulator
             this.eggHunterButton.Checked = true;
             this.eggHunterButton.CheckState = System.Windows.Forms.CheckState.Checked;
             this.eggHunterButton.Depth = 0;
-            this.eggHunterButton.Location = new System.Drawing.Point(13, 329);
+            this.eggHunterButton.Location = new System.Drawing.Point(17, 405);
             this.eggHunterButton.Margin = new System.Windows.Forms.Padding(0);
             this.eggHunterButton.MouseLocation = new System.Drawing.Point(-1, -1);
             this.eggHunterButton.MouseState = MaterialSkin2Framework.MouseState.HOVER;
@@ -1145,10 +1178,11 @@ namespace UltimateBlueScreenSimulator
             this.osName.Depth = 0;
             this.osName.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.osName.FontType = MaterialSkin2Framework.MaterialSkinManager.fontType.Body2;
-            this.osName.Location = new System.Drawing.Point(309, 75);
+            this.osName.Location = new System.Drawing.Point(415, 92);
+            this.osName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.osName.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.osName.Name = "osName";
-            this.osName.Size = new System.Drawing.Size(404, 38);
+            this.osName.Size = new System.Drawing.Size(539, 47);
             this.osName.TabIndex = 11;
             this.osName.Text = "Select a configuration to modify/remove it";
             // 
@@ -1160,13 +1194,14 @@ namespace UltimateBlueScreenSimulator
             this.configList.BorderColor = System.Drawing.Color.LightGray;
             this.configList.Depth = 0;
             this.configList.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.configList.Location = new System.Drawing.Point(21, 88);
+            this.configList.Location = new System.Drawing.Point(28, 108);
+            this.configList.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.configList.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.configList.Name = "configList";
             this.configList.SelectedIndex = -1;
             this.configList.SelectedItem = null;
             this.configList.ShowScrollBar = true;
-            this.configList.Size = new System.Drawing.Size(282, 160);
+            this.configList.Size = new System.Drawing.Size(379, 197);
             this.configList.TabIndex = 9;
             this.configList.SelectedIndexChanged += new MaterialSkin2Framework.Controls.MaterialListBox.SelectedIndexChangedEventHandler(this.ConfigSelector);
             this.configList.DoubleClick += new System.EventHandler(this.ConfigList_DoubleClick);
@@ -1189,9 +1224,10 @@ namespace UltimateBlueScreenSimulator
             this.appearancePanel.Controls.Add(this.primaryColorBox);
             this.appearancePanel.Controls.Add(this.accentBox);
             this.appearancePanel.Controls.Add(this.darkMode);
-            this.appearancePanel.Location = new System.Drawing.Point(4, 22);
+            this.appearancePanel.Location = new System.Drawing.Point(4, 25);
+            this.appearancePanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.appearancePanel.Name = "appearancePanel";
-            this.appearancePanel.Size = new System.Drawing.Size(726, 488);
+            this.appearancePanel.Size = new System.Drawing.Size(971, 604);
             this.appearancePanel.TabIndex = 5;
             this.appearancePanel.Text = "Appearance";
             // 
@@ -1199,7 +1235,7 @@ namespace UltimateBlueScreenSimulator
             // 
             this.legacyInterfaceCheck.AutoSize = true;
             this.legacyInterfaceCheck.Depth = 0;
-            this.legacyInterfaceCheck.Location = new System.Drawing.Point(20, 118);
+            this.legacyInterfaceCheck.Location = new System.Drawing.Point(27, 145);
             this.legacyInterfaceCheck.Margin = new System.Windows.Forms.Padding(0);
             this.legacyInterfaceCheck.MouseLocation = new System.Drawing.Point(-1, -1);
             this.legacyInterfaceCheck.MouseState = MaterialSkin2Framework.MouseState.HOVER;
@@ -1222,12 +1258,12 @@ namespace UltimateBlueScreenSimulator
             this.materialButton10.DrawShadows = false;
             this.materialButton10.HighEmphasis = true;
             this.materialButton10.Icon = null;
-            this.materialButton10.Location = new System.Drawing.Point(453, 187);
+            this.materialButton10.Location = new System.Drawing.Point(604, 230);
             this.materialButton10.Margin = new System.Windows.Forms.Padding(1);
             this.materialButton10.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.materialButton10.Name = "materialButton10";
             this.materialButton10.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.materialButton10.Size = new System.Drawing.Size(32, 32);
+            this.materialButton10.Size = new System.Drawing.Size(43, 39);
             this.materialButton10.TabIndex = 18;
             this.helpTip.SetToolTip(this.materialButton10, "Accent color preview");
             this.materialButton10.Type = MaterialSkin2Framework.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -1243,12 +1279,12 @@ namespace UltimateBlueScreenSimulator
             this.materialButton9.DrawShadows = false;
             this.materialButton9.HighEmphasis = true;
             this.materialButton9.Icon = null;
-            this.materialButton9.Location = new System.Drawing.Point(417, 187);
+            this.materialButton9.Location = new System.Drawing.Point(556, 230);
             this.materialButton9.Margin = new System.Windows.Forms.Padding(1);
             this.materialButton9.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.materialButton9.Name = "materialButton9";
             this.materialButton9.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.materialButton9.Size = new System.Drawing.Size(32, 32);
+            this.materialButton9.Size = new System.Drawing.Size(43, 39);
             this.materialButton9.TabIndex = 18;
             this.helpTip.SetToolTip(this.materialButton9, "Primary color preview");
             this.materialButton9.Type = MaterialSkin2Framework.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -1262,8 +1298,8 @@ namespace UltimateBlueScreenSimulator
             this.materialButton11.Depth = 0;
             this.materialButton11.HighEmphasis = true;
             this.materialButton11.Icon = null;
-            this.materialButton11.Location = new System.Drawing.Point(200, 231);
-            this.materialButton11.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.materialButton11.Location = new System.Drawing.Point(267, 284);
+            this.materialButton11.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
             this.materialButton11.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.materialButton11.Name = "materialButton11";
             this.materialButton11.NoAccentTextColor = System.Drawing.Color.Empty;
@@ -1283,8 +1319,8 @@ namespace UltimateBlueScreenSimulator
             this.materialButton8.Depth = 0;
             this.materialButton8.HighEmphasis = true;
             this.materialButton8.Icon = null;
-            this.materialButton8.Location = new System.Drawing.Point(29, 231);
-            this.materialButton8.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.materialButton8.Location = new System.Drawing.Point(39, 284);
+            this.materialButton8.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
             this.materialButton8.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.materialButton8.Name = "materialButton8";
             this.materialButton8.NoAccentTextColor = System.Drawing.Color.Empty;
@@ -1303,7 +1339,7 @@ namespace UltimateBlueScreenSimulator
             this.darkDetectCheck.Checked = true;
             this.darkDetectCheck.CheckState = System.Windows.Forms.CheckState.Checked;
             this.darkDetectCheck.Depth = 0;
-            this.darkDetectCheck.Location = new System.Drawing.Point(20, 85);
+            this.darkDetectCheck.Location = new System.Drawing.Point(27, 105);
             this.darkDetectCheck.Margin = new System.Windows.Forms.Padding(0);
             this.darkDetectCheck.MouseLocation = new System.Drawing.Point(-1, -1);
             this.darkDetectCheck.MouseState = MaterialSkin2Framework.MouseState.HOVER;
@@ -1324,7 +1360,7 @@ namespace UltimateBlueScreenSimulator
             this.materialSwitch1.Checked = true;
             this.materialSwitch1.CheckState = System.Windows.Forms.CheckState.Checked;
             this.materialSwitch1.Depth = 0;
-            this.materialSwitch1.Location = new System.Drawing.Point(13, 327);
+            this.materialSwitch1.Location = new System.Drawing.Point(17, 402);
             this.materialSwitch1.Margin = new System.Windows.Forms.Padding(0);
             this.materialSwitch1.MouseLocation = new System.Drawing.Point(-1, -1);
             this.materialSwitch1.MouseState = MaterialSkin2Framework.MouseState.HOVER;
@@ -1342,7 +1378,7 @@ namespace UltimateBlueScreenSimulator
             // 
             this.rtlSwitch.AutoSize = true;
             this.rtlSwitch.Depth = 0;
-            this.rtlSwitch.Location = new System.Drawing.Point(14, 364);
+            this.rtlSwitch.Location = new System.Drawing.Point(19, 448);
             this.rtlSwitch.Margin = new System.Windows.Forms.Padding(0);
             this.rtlSwitch.MouseLocation = new System.Drawing.Point(-1, -1);
             this.rtlSwitch.MouseState = MaterialSkin2Framework.MouseState.HOVER;
@@ -1362,7 +1398,8 @@ namespace UltimateBlueScreenSimulator
             this.materialLabel2.Depth = 0;
             this.materialLabel2.Font = new System.Drawing.Font("Roboto", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.materialLabel2.FontType = MaterialSkin2Framework.MaterialSkinManager.fontType.H5;
-            this.materialLabel2.Location = new System.Drawing.Point(15, 289);
+            this.materialLabel2.Location = new System.Drawing.Point(20, 356);
+            this.materialLabel2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.materialLabel2.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.materialLabel2.Name = "materialLabel2";
             this.materialLabel2.Size = new System.Drawing.Size(136, 29);
@@ -1375,7 +1412,8 @@ namespace UltimateBlueScreenSimulator
             this.materialLabel1.Depth = 0;
             this.materialLabel1.Font = new System.Drawing.Font("Roboto", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.materialLabel1.FontType = MaterialSkin2Framework.MaterialSkinManager.fontType.H5;
-            this.materialLabel1.Location = new System.Drawing.Point(24, 19);
+            this.materialLabel1.Location = new System.Drawing.Point(32, 23);
+            this.materialLabel1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.materialLabel1.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.materialLabel1.Name = "materialLabel1";
             this.materialLabel1.Size = new System.Drawing.Size(94, 29);
@@ -1387,7 +1425,8 @@ namespace UltimateBlueScreenSimulator
             this.materialLabel3.AutoSize = true;
             this.materialLabel3.Depth = 0;
             this.materialLabel3.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel3.Location = new System.Drawing.Point(26, 164);
+            this.materialLabel3.Location = new System.Drawing.Point(35, 202);
+            this.materialLabel3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.materialLabel3.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.materialLabel3.Name = "materialLabel3";
             this.materialLabel3.Size = new System.Drawing.Size(95, 19);
@@ -1399,7 +1438,8 @@ namespace UltimateBlueScreenSimulator
             this.materialLabel8.AutoSize = true;
             this.materialLabel8.Depth = 0;
             this.materialLabel8.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel8.Location = new System.Drawing.Point(221, 164);
+            this.materialLabel8.Location = new System.Drawing.Point(295, 202);
+            this.materialLabel8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.materialLabel8.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.materialLabel8.Name = "materialLabel8";
             this.materialLabel8.Size = new System.Drawing.Size(88, 19);
@@ -1437,11 +1477,12 @@ namespace UltimateBlueScreenSimulator
             "Red",
             "Teal",
             "Yellow"});
-            this.primaryColorBox.Location = new System.Drawing.Point(29, 187);
+            this.primaryColorBox.Location = new System.Drawing.Point(39, 230);
+            this.primaryColorBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.primaryColorBox.MaxDropDownItems = 4;
             this.primaryColorBox.MouseState = MaterialSkin2Framework.MouseState.OUT;
             this.primaryColorBox.Name = "primaryColorBox";
-            this.primaryColorBox.Size = new System.Drawing.Size(189, 35);
+            this.primaryColorBox.Size = new System.Drawing.Size(251, 35);
             this.primaryColorBox.StartIndex = 0;
             this.primaryColorBox.TabIndex = 12;
             this.helpTip.SetToolTip(this.primaryColorBox, "Color of the titlebar and most buttons.");
@@ -1479,11 +1520,12 @@ namespace UltimateBlueScreenSimulator
             "Red",
             "Teal",
             "Yellow"});
-            this.accentBox.Location = new System.Drawing.Point(224, 187);
+            this.accentBox.Location = new System.Drawing.Point(299, 230);
+            this.accentBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.accentBox.MaxDropDownItems = 4;
             this.accentBox.MouseState = MaterialSkin2Framework.MouseState.OUT;
             this.accentBox.Name = "accentBox";
-            this.accentBox.Size = new System.Drawing.Size(189, 35);
+            this.accentBox.Size = new System.Drawing.Size(251, 35);
             this.accentBox.StartIndex = 0;
             this.accentBox.TabIndex = 12;
             this.helpTip.SetToolTip(this.accentBox, "Color of various highlights, such as checkboxes and important buttons");
@@ -1494,7 +1536,7 @@ namespace UltimateBlueScreenSimulator
             // 
             this.darkMode.AutoSize = true;
             this.darkMode.Depth = 0;
-            this.darkMode.Location = new System.Drawing.Point(20, 48);
+            this.darkMode.Location = new System.Drawing.Point(27, 59);
             this.darkMode.Margin = new System.Windows.Forms.Padding(0);
             this.darkMode.MouseLocation = new System.Drawing.Point(-1, -1);
             this.darkMode.MouseState = MaterialSkin2Framework.MouseState.HOVER;
@@ -1542,28 +1584,30 @@ namespace UltimateBlueScreenSimulator
             this.materialTabSelector1.CharacterCasing = MaterialSkin2Framework.Controls.MaterialTabSelector.CustomCharacterCasing.Normal;
             this.materialTabSelector1.Depth = 0;
             this.materialTabSelector1.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialTabSelector1.Location = new System.Drawing.Point(0, 24);
+            this.materialTabSelector1.Location = new System.Drawing.Point(0, 30);
+            this.materialTabSelector1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.materialTabSelector1.MouseState = MaterialSkin2Framework.MouseState.HOVER;
             this.materialTabSelector1.Name = "materialTabSelector1";
-            this.materialTabSelector1.Size = new System.Drawing.Size(771, 48);
+            this.materialTabSelector1.Size = new System.Drawing.Size(1028, 59);
             this.materialTabSelector1.TabIndex = 2;
             this.materialTabSelector1.Text = "materialTabSelector1";
             // 
             // AboutSettingsDialog
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(740, 592);
+            this.ClientSize = new System.Drawing.Size(987, 729);
             this.Controls.Add(this.materialTabSelector1);
             this.Controls.Add(this.aboutSettingsTabControl);
             this.DrawerTabControl = this.aboutSettingsTabControl;
             this.FormStyle = MaterialSkin2Framework.Controls.MaterialForm.FormStyles.ActionBar_None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(740, 580);
+            this.MinimumSize = new System.Drawing.Size(987, 714);
             this.Name = "AboutSettingsDialog";
-            this.Padding = new System.Windows.Forms.Padding(3, 24, 3, 3);
+            this.Padding = new System.Windows.Forms.Padding(4, 30, 4, 4);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ExitMe);
             this.Load += new System.EventHandler(this.SetInitalInterface);

@@ -294,19 +294,7 @@ namespace UltimateBlueScreenSimulator
 
         private void UnsignMe(object sender, EventArgs e)
         {
-            //Removes verification signature from the system
-            try
-            {
-                if (File.Exists(Environment.GetEnvironmentVariable("USERPROFILE") + "\\bssp2_firstlaunch.txt"))
-                {
-                    File.Delete(Environment.GetEnvironmentVariable("USERPROFILE") + "\\bssp2_firstlaunch.txt");
-                    MessageBox.Show("Signature removed successfully.", "Verifile verification system", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-            catch (Exception ex) when (!Debugger.IsAttached)
-            {
-                MessageBox.Show("Something went wrong. Please send the following details to the developer:\n\n" + ex.Message + "\n\n" + ex.StackTrace);
-            }
+            SettingsActions.EraseSignature((Control)sender);
         }
 
         private void CheckForUpdates(object sender, EventArgs e)

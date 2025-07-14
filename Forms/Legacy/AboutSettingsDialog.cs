@@ -259,19 +259,7 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
 
         private void UnsignMe(object sender, EventArgs e)
         {
-            //Removes verification signature from the system
-            try
-            {
-                if (File.Exists(Environment.GetEnvironmentVariable("USERPROFILE") + "\\bssp2_firstlaunch.txt"))
-                {
-                    File.Delete(Environment.GetEnvironmentVariable("USERPROFILE") + "\\bssp2_firstlaunch.txt");
-                    MessageBox.Show("Signature removed successfully.", "Verifile verification system", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Something went wrong. Please send the following details to the developer:\n\n" + ex.Message + "\n\n" + ex.StackTrace);
-            }
+            SettingsActions.EraseSignature((Control)sender);
         }
 
         private void CheckForUpdates(object sender, EventArgs e)
@@ -361,12 +349,6 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
             if (SettingTab && !closed)
             {
                 closed = true;
-                if (!Program.gs.LegacyUI)
-                {
-                    Program.gs.SaveSettings();
-                    Application.Restart();
-                    return;
-                }
                 UIActions.GetOS(Program.F2);
             }
         }
@@ -1413,6 +1395,22 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
 
         private void LegacyInterfaceCheck_CheckedChanged(object sender, EventArgs e)
         {
+            if (!legacyInterfaceCheck.Checked)
+            {
+                switch (MessageBox.Show("You must restart the application for the changes to take effect. Do you want to restart the app now?", UltimateBlueScreenSimulator.AboutSettingsDialog.AssemblyProduct + " " + UIActions.Version, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Exclamation))
+                {
+                    case DialogResult.Yes:
+                        Program.gs.LegacyUI = false;
+                        Program.gs.SaveSettings();
+                        Application.Restart();
+                        return;
+                    case DialogResult.Cancel:
+                        legacyInterfaceCheck.Checked = true;
+                        break;
+                    default:
+                        break;
+                }
+            }
             Program.gs.LegacyUI = legacyInterfaceCheck.Checked;
         }
 

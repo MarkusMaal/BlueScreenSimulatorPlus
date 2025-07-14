@@ -163,6 +163,7 @@ namespace UltimateBlueScreenSimulator
                 PrankModeActions.OKClick(this, closePrank, bestMatchRadio, timeRadio, appRadio, triggerAppBox, friendlyMessageBox, letCloseBox);
                 return;
             }
+            Program.isScreensaver = false;
             if (ModifierKeys.HasFlag(Keys.Shift))
             {
                 BlueScreen cloned = CloneMe(UIActions.me);
@@ -1078,6 +1079,23 @@ namespace UltimateBlueScreenSimulator
                 scalingModeBox, darkMode, darkDetectCheck, legacyInterfaceCheck, primaryColorBox,
                 accentBox, materialSwitch1, primaryServerBox
             }));
+            if (sender is MaterialCheckbox mcb)
+            {
+                if (mcb.Name != "legacyInterfaceCheck") { return; }
+                if (!mcb.Checked) { return; }
+                switch (MessageBox.Show("You must restart the application for the changes to take effect. Do you want to restart the app now?", AboutSettingsDialog.AssemblyProduct + " " + UIActions.Version, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Exclamation))
+                {
+                    case DialogResult.Yes:
+                        Program.gs.SaveSettings();
+                        Application.Restart();
+                        return;
+                    case DialogResult.Cancel:
+                        mcb.Checked = false;
+                        break;
+                    default:
+                        break;
+                }
+            }
             if (sender is MaterialSwitch ms)
             {
                 if (ms.Name != "materialSwitch1") { return; }
@@ -1292,6 +1310,11 @@ namespace UltimateBlueScreenSimulator
         private void MatchAllRadio_Click(object sender, EventArgs e)
         {
             PrankModeActions.BestAllMatchCheck(bestMatchRadio, matchAllRadio, letCloseBox, false);
+        }
+
+        private void UnsignButton_Click(object sender, EventArgs e)
+        {
+            SettingsActions.EraseSignature((Control)sender);
         }
     }
 }
