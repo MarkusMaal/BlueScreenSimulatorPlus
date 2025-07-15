@@ -108,6 +108,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "JupiterBSOD";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "JupiterBSOD";
             this.TopMost = true;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

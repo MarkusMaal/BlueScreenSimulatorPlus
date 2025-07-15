@@ -230,6 +230,7 @@
             this.MinimumSize = new System.Drawing.Size(1000, 700);
             this.Name = "WXBS";
             this.ShowInTaskbar = false;
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Modern Windows blue screen simulator";
             this.TopMost = true;
