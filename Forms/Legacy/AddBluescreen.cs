@@ -123,12 +123,12 @@ namespace UltimateBlueScreenSimulator.Forms.Legacy
                     break;
                 case "Windows 11":
                     osBox.Text = "Windows 11";
-                    friendlyBox.Text = "Windows 11 (Native, ClearType)";
+                    friendlyBox.Text = "Legacy Windows 11 (Native, ClearType)";
                     iconBox.SelectedIndex = (int)Icons.Window2D;
                     break;
                 case "Windows 11 Beta":
                     osBox.Text = "Windows 11 Beta";
-                    friendlyBox.Text = "Windows 11 Beta (Native, ClearType)";
+                    friendlyBox.Text = "Windows 11 (Native, ClearType)";
                     iconBox.SelectedIndex = (int)Icons.Window2D;
                     break;
             }

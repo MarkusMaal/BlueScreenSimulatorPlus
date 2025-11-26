@@ -212,14 +212,14 @@ namespace UltimateBlueScreenSimulator.Forms.Interfaces
             ExpectedBools["winxplus"] = true;
             ok = ok && CheckStrings(ExpectedStrings, tempreg.GetLast(), "Windows 10") && CheckBools(ExpectedBools, tempreg.GetLast(), "Windows 10");
             tempreg.AddTemplate("Windows 11");
-            ExpectedStrings["friendlyname"] = "Windows 11 (Native, ClearType)";
+            ExpectedStrings["friendlyname"] = "Legacy Windows 11 (Native, ClearType)";
             ExpectedBools["blackscreen"] = false;
             ok = ok && CheckStrings(ExpectedStrings, tempreg.GetLast(), "Windows 11") && CheckBools(ExpectedBools, tempreg.GetLast(), "Windows 11");
             HighlightSubtest(10, ok);
             tempreg.AddTemplate("Windows 11 Beta");
             ExpectedBools.Clear();
             ExpectedStrings.Clear();
-            ExpectedStrings["friendlyname"] = "Windows 11 Beta (Native, ClearType)";
+            ExpectedStrings["friendlyname"] = "Windows 11 (Native, ClearType)";
             ExpectedStrings["code"] = "IRQL_NOT_LESS_OR_EQUAL (0x0000000A)";
             ExpectedBools["autoclose"] = true;
             ExpectedBools["crashdump"] = true;

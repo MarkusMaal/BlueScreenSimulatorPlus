@@ -636,10 +636,9 @@ namespace UltimateBlueScreenSimulator
             if (os_build >= 26200)
             {
                 SetOS("Windows 11", f);
-            }
-            if (os_build >= 22000)
+            } else if (os_build >= 22000)
             {
-                SetOS("Windows 11 (", f);
+                SetOS("Legacy Windows 11", f);
             }
             //this code identifies Windows 10
             else if (winver.Contains("Windows 10"))
@@ -1159,7 +1158,7 @@ namespace UltimateBlueScreenSimulator
                         File.Delete(Program.prefix + "vercheck.txt");
                         return;
                     }
-                    if (Convert.ToDouble(lines[0].Replace("\r", "").Replace("\n", "").Trim(), CultureInfo.CreateSpecificCulture("en-US")) > Convert.ToDouble(Version, CultureInfo.CreateSpecificCulture("en-US")))
+                    if (Convert.ToDouble(lines[0].Replace("\r", "").Replace("\n", "").Trim(), CultureInfo.CreateSpecificCulture("en-US")) > 3.11)
                     {
                         File.Delete(Program.prefix + "vercheck.txt");
                         if (MessageBox.Show("A new version of blue screen simulator is available. Would you like to update now?", "Update available", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)

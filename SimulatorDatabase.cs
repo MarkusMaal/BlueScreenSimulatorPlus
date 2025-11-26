@@ -2106,7 +2106,7 @@ namespace SimulatorDatabase
                     break;
                 case "Windows 11":
                     this.icon = "2D window";
-                    SetString("friendlyname", "Windows 11 (Native, ClearType)");
+                    SetString("friendlyname", "Legacy Windows 11 (Native, ClearType)");
                     SetString("emoticon", ":(");
                     PushText("Information text with dump", "Your device ran into a problem and needs to restart. We're just\r\ncollecting some error info, and then we'll restart for you.");
                     PushText("Information text without dump", "Your device ran into a problem and needs to restart. We're just\r\ncollecting some error info, and then you can restart.");
@@ -2136,7 +2136,7 @@ namespace SimulatorDatabase
                     break;
                 case "Windows 11 Beta":
                     this.icon = "2D window";
-                    SetString("friendlyname", "Windows 11 Beta (Native, ClearType)");
+                    SetString("friendlyname", "Windows 11 (Native, ClearType)");
                     PushText("Information text", "Your device ran into a problem and needs to restart.");
                     PushText("No autorestart", "We're just collecting some error info, and then you can restart.");
                     PushText("No crashdump with autorestart", "We'll restart for you.");

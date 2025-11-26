@@ -81,16 +81,9 @@ namespace UltimateBlueScreenSimulator
         public static bool hidden = false;
         internal static string[] changelog = new string[]
         {
-            "+ Improved UI design - you can now navigate between tabs without opening the drawer on the left",
-            "+ Integrated several windows in Material UI into tabs for faster operation",
-            "+ Classic UI option for accessibility and those who prefer it",
-            "+ Screensaver export",
-            "+ The new Windows 11 Beta bugcheck simulator (black screen)",
-            "+ Pop-in effect for modern bugchecks",
-            "+ Crash screen preview in additional options",
-            "* Faster update checker and user friendly error messages during check failures",
-            "* Bug fixes",
-            "? New easter eggs"
+            "* Renamed Windows 11 Beta to Windows 11",
+            "* Renamed Windows 11 to Legacy Windows 11",
+            "- Verifile checks when previewing or changing settings for a screensaver (pointless)",
         };
 
         public static bool hide_splash = false;
@@ -203,8 +196,15 @@ namespace UltimateBlueScreenSimulator
                         halt = true;
                     }
                 }
-                verifile = new Verifile();
-                verificate = verifile.Verify;
+
+                if (isScreensaver && !args.Contains("/s") && !args.Contains("/S"))
+                {
+                    verificate = true;
+                } else
+                {
+                    verifile = new Verifile();
+                    verificate = verifile.Verify;
+                }
                 gs.Log("Info", "Verifile passed");
                 // this delay makes sure that the splash screen is actually displayed
                 Thread.Sleep(100);
@@ -530,8 +530,15 @@ namespace UltimateBlueScreenSimulator
                 gs = gs.LoadSettings();
 
                 clip = new CLIProcessor(new string[] { "/hidesplash" });
-                verifile = new Verifile();
-                verificate = verifile.Verify;
+                if (isScreensaver && !args.Contains("/s") && !args.Contains("/S"))
+                {
+                    verificate = true;
+                }
+                else
+                {
+                    verifile = new Verifile();
+                    verificate = verifile.Verify;
+                }
                 if (verificate || args.Contains("/p"))
                 {
                     templates = new TemplateRegistry();
